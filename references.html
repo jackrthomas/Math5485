@@ -225,37 +225,61 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<!-- Desktop Right-Sidebar Buttons -->
+<!-- Right-Sidebar Buttons -->
 <div class="custom-sidebar-tools">
-<p><!-- Quarto injects current file name directly during build --> <a href="https://raw.githubusercontent.com/jackrthomas/Math5485/main/?meta:quarto-file-path" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a></p>
-<p><a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
+<p><a href="#" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // 1. Ask a Question Link (Reads exact browser location)
-    var currentUrl = encodeURIComponent(window.location.href);
-    var pageTitle = encodeURIComponent("[Question] " + (document.title || "Lecture"));
-    var issueBody = encodeURIComponent("**Reference Page:** " + decodeURIComponent(currentUrl) + "\n\n**Question:**\n<!-- Type your question here -->");
-    
-    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new" +
-                   "?template=question.md" +
-                   "&title=" + pageTitle + 
-                   "&body=" + issueBody;
+    // 1. ASK A QUESTION BUTTON
+    // Reads exact live URL and title from the active browser window
+    var currentUrl = window.location.origin + window.location.pathname;
+    var pageTitle = document.title || "Lecture";
+
+    var issueTitle = encodeURIComponent("[Question] " + pageTitle);
+    var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
+    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md&title=" + issueTitle + "&body=" + issueBody;
 
     document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
       btn.setAttribute("href", issueUrl);
     });
 
-    // 2. Download Notebook Link (Unhides only if source file is .ipynb)
-    var downloadBtn = document.getElementById("ipynb-download-btn");
-    if (downloadBtn) {
-      var rawHref = downloadBtn.getAttribute("href");
-      if (rawHref && rawHref.endsWith(".ipynb")) {
+    // 2. DOWNLOAD NOTEBOOK BUTTON
+    // Locate Quarto's "Edit this page" or "Report an issue" link built into the page
+    // Quarto always injects the exact source filename (e.g., lecture01.ipynb) into repo-action links!
+    var repoLink = document.querySelector('a[href*="github.com/jackrthomas/Math5485/edit/"]') || 
+                   document.querySelector('a[href*="github.com/jackrthomas/Math5485/issues/new"]');
+
+    var sourceFile = "";
+
+    if (repoLink) {
+      var href = repoLink.getAttribute("href");
+      // Extract the filename from GitHub edit URL (e.g., .../main/lecture01.ipynb)
+      var match = href.match(/\/main\/(.+\.(ipynb|qmd))/);
+      if (match && match[1]) {
+        sourceFile = match[1];
+      }
+    }
+
+    // Fallback: If no repo link found, check main document ID or title
+    if (!sourceFile) {
+      var mainElem = document.querySelector('main.content');
+      if (mainElem && mainElem.id) {
+        sourceFile = mainElem.id + ".ipynb";
+      }
+    }
+
+    // Only display download button if the source file is actually a .ipynb notebook
+    if (sourceFile && sourceFile.endsWith(".ipynb")) {
+      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + sourceFile;
+      var downloadBtn = document.getElementById("ipynb-download-btn");
+      if (downloadBtn) {
+        downloadBtn.setAttribute("href", rawUrl);
         downloadBtn.style.display = "block";
       }
     }
 
-    // 3. Mobile layout clone
+    // 3. Clone for mobile screens below main content
     var mainContent = document.querySelector("main.content");
     var toolsContainer = document.querySelector(".custom-sidebar-tools");
     if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
