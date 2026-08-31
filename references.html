@@ -128,17 +128,25 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
-<script type="application/json" class="js-hypothesis-config">
-{
-  "theme": "clean"
-}
-</script>
 <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<style>
+  @media (max-width: 991.98px) {
+    #quarto-margin-sidebar {
+      display: block !important;
+    }
+    #quarto-margin-sidebar > *:not(#toggle-right-sidebar-btn) {
+      display: none;
+    }
+    #quarto-margin-sidebar.show-mobile-sidebar > * {
+      display: block !important;
+    }
+  }
+</style>
 
 
 </head>
@@ -217,7 +225,14 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<a href="#" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" id="ask-question-btn" class="btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a>
+<!-- Mobile-only toggle button -->
+<button id="toggle-right-sidebar-btn" class="btn btn-outline-secondary btn-sm d-lg-none" type="button" style="width: 100%; margin-bottom: 0.75rem;">
+<i class="bi bi-layout-sidebar-reverse"></i> Show Page Menu &amp; Tools
+</button>
+<!-- Sidebar Content Container -->
+<div id="right-sidebar-content">
+<p><a href="#" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" id="ask-question-btn" class="btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
+</div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
@@ -225,20 +240,38 @@ div.csl-indent {
     var currentUrl = window.location.href;
     var pageTitle = document.title || "Lecture";
 
-    // 1. Dynamic Question Button (Passes Page Info to Issue)
+    // 1. Mobile Toggle Logic
+    var toggleBtn = document.getElementById("toggle-right-sidebar-btn");
+    var sidebarContent = id = document.getElementById("right-sidebar-content");
+    var tocNav = document.getElementById("toc-title") ? document.getElementById("toc-title").parentElement : null;
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", function() {
+        var sidebar = document.getElementById("quarto-margin-sidebar");
+        if (sidebar) {
+          if (sidebar.classList.contains("show-mobile-sidebar")) {
+            sidebar.classList.remove("show-mobile-sidebar");
+            toggleBtn.innerHTML = '<i class="bi bi-layout-sidebar-reverse"></i> Show Page Menu & Tools';
+          } else {
+            sidebar.classList.add("show-mobile-sidebar");
+            toggleBtn.innerHTML = '<i class="bi bi-x-lg"></i> Hide Page Menu & Tools';
+          }
+        }
+      });
+    }
+
+    // 2. Dynamic Question Link
     var questionBtn = document.getElementById("ask-question-btn");
     if (questionBtn) {
       var issueTitle = encodeURIComponent("[Question] " + pageTitle);
       var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
-      
       var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md" +
                      "&title=" + issueTitle + 
                      "&body=" + issueBody;
-      
       questionBtn.setAttribute("href", issueUrl);
     }
 
-    // 2. Notebook Download Button (Shows only for .ipynb-generated pages)
+    // 3. Notebook Download Button Link
     if (page && page.startsWith("lecture") && page.endsWith(".html")) {
       var ipynbFile = page.replace(".html", ".ipynb");
       var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
