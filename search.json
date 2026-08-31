@@ -14,18 +14,18 @@
     "href": "lecture01.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Subheading 1\nKnuth (1984)\nCode\n1+1\n\n\n2",
+    "text": "1.1 Subheading\nKnuth (1984)",
     "crumbs": [
       "Lecture Notes",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "lecture01.html#subhead-2",
-    "href": "lecture01.html#subhead-2",
+    "objectID": "lecture01.html#subheading",
+    "href": "lecture01.html#subheading",
     "title": "1  Introduction",
-    "section": "1.2 Subhead 2",
-    "text": "1.2 Subhead 2\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
     "crumbs": [
       "Lecture Notes",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
