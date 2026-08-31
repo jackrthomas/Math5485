@@ -117,19 +117,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<style>
-  @media (max-width: 991.98px) {
-    #quarto-margin-sidebar {
-      display: block !important;
-    }
-    #quarto-margin-sidebar > *:not(#toggle-right-sidebar-btn) {
-      display: none;
-    }
-    #quarto-margin-sidebar.show-mobile-sidebar > * {
-      display: block !important;
-    }
-  }
-</style>
 
 
 </head>
@@ -207,72 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<!-- Right-Sidebar Buttons -->
-<div class="custom-sidebar-tools">
-<p><a href="#" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // 1. ASK A QUESTION BUTTON
-    // Reads exact live URL and title from the active browser window
-    var currentUrl = window.location.origin + window.location.pathname;
-    var pageTitle = document.title || "Lecture";
-
-    var issueTitle = encodeURIComponent("[Question] " + pageTitle);
-    var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
-    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md&title=" + issueTitle + "&body=" + issueBody;
-
-    document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
-      btn.setAttribute("href", issueUrl);
-    });
-
-    // 2. DOWNLOAD NOTEBOOK BUTTON
-    // Locate Quarto's "Edit this page" or "Report an issue" link built into the page
-    // Quarto always injects the exact source filename (e.g., lecture01.ipynb) into repo-action links!
-    var repoLink = document.querySelector('a[href*="github.com/jackrthomas/Math5485/edit/"]') || 
-                   document.querySelector('a[href*="github.com/jackrthomas/Math5485/issues/new"]');
-
-    var sourceFile = "";
-
-    if (repoLink) {
-      var href = repoLink.getAttribute("href");
-      // Extract the filename from GitHub edit URL (e.g., .../main/lecture01.ipynb)
-      var match = href.match(/\/main\/(.+\.(ipynb|qmd))/);
-      if (match && match[1]) {
-        sourceFile = match[1];
-      }
-    }
-
-    // Fallback: If no repo link found, check main document ID or title
-    if (!sourceFile) {
-      var mainElem = document.querySelector('main.content');
-      if (mainElem && mainElem.id) {
-        sourceFile = mainElem.id + ".ipynb";
-      }
-    }
-
-    // Only display download button if the source file is actually a .ipynb notebook
-    if (sourceFile && sourceFile.endsWith(".ipynb")) {
-      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + sourceFile;
-      var downloadBtn = document.getElementById("ipynb-download-btn");
-      if (downloadBtn) {
-        downloadBtn.setAttribute("href", rawUrl);
-        downloadBtn.style.display = "block";
-      }
-    }
-
-    // 3. Clone for mobile screens below main content
-    var mainContent = document.querySelector("main.content");
-    var toolsContainer = document.querySelector(".custom-sidebar-tools");
-    if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
-      var mobileTools = toolsContainer.cloneNode(true);
-      mobileTools.classList.add("mobile-custom-tools", "d-lg-none", "mt-4", "pt-3", "border-top");
-      mainContent.appendChild(mobileTools);
-    }
-  });
-</script>
-</div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
