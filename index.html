@@ -214,13 +214,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Get clean page URL and Title
-    var currentUrl = window.location.origin + window.location.pathname;
-    var pageTitle = document.title || "Lecture";
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
+    // 1. Get the current page filename reliably from window.location
+    var pathname = window.location.pathname;
+    
+    // Remove trailing slash if present
+    if (pathname.endsWith("/")) {
+      pathname = pathname.slice(0, -1);
+    }
+    
+    // Extract the last path segment (e.g., "lecture01.html" or "lecture01")
+    var filename = pathname.split("/").pop() || "";
 
-    // Construct encoded parameters for GitHub Issue
+    // Fallback to reading section/file from document if URL is clean index
+    if (!filename || filename === "Math5485") {
+      filename = "index.html";
+    }
+
+    // Strip .html extension to isolate base name (e.g., "lecture01")
+    var baseName = filename.replace(/\.html$/, "");
+
+    // Clean full page URL for the GitHub Issue
+    var currentUrl = window.location.href;
+    var pageTitle = document.title || "Lecture";
+
+    // 2. Build "Ask a Question" URL
     var issueTitle = encodeURIComponent("[Question] " + pageTitle);
     var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
     
@@ -229,22 +246,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                    "&title=" + issueTitle + 
                    "&body=" + issueBody;
 
-    // 1. Assign Issue URL to all Question Buttons
     document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
       btn.setAttribute("href", issueUrl);
     });
 
-    // 2. Assign Raw Download URL to Notebook Buttons
-    if (page && page.startsWith("lecture") && page.endsWith(".html")) {
-      var ipynbFile = page.replace(".html", ".ipynb");
-      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
+    // 3. Build "Download Notebook" URL (Matches lectureXX files)
+    if (baseName.toLowerCase().indexOf("lecture") !== -1) {
+      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + baseName + ".ipynb";
       document.querySelectorAll(".ipynb-download-btn").forEach(function(btn) {
         btn.setAttribute("href", rawUrl);
         btn.style.display = "block";
       });
     }
 
-    // 3. Clone for narrow screens/mobile footer if present
+    // 4. Duplicate tools to bottom of main content on narrow/mobile screens
     var mainContent = document.querySelector("main.content");
     var toolsContainer = document.querySelector(".custom-sidebar-tools");
     if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
