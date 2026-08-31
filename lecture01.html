@@ -226,14 +226,11 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<!-- Mobile-only toggle button -->
-<button id="toggle-right-sidebar-btn" class="btn btn-outline-secondary btn-sm d-lg-none" type="button" style="width: 100%; margin-bottom: 0.75rem;">
-<i class="bi bi-layout-sidebar-reverse"></i> Show Page Menu &amp; Tools
-</button>
-<!-- Sidebar Content Container -->
-<div id="right-sidebar-content">
-<p><a href="#" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" id="ask-question-btn" class="btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
+<!-- Desktop Right-Sidebar Buttons -->
+<div class="custom-sidebar-tools">
+<p><a href="#" class="ipynb-download-btn btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
 </div>
+<!-- Script to set links and clone buttons to page footer on mobile -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var path = window.location.pathname;
@@ -241,46 +238,35 @@ div.csl-indent {
     var currentUrl = window.location.href;
     var pageTitle = document.title || "Lecture";
 
-    // 1. Mobile Toggle Logic
-    var toggleBtn = document.getElementById("toggle-right-sidebar-btn");
-    var sidebarContent = id = document.getElementById("right-sidebar-content");
-    var tocNav = document.getElementById("toc-title") ? document.getElementById("toc-title").parentElement : null;
+    // 1. Build Issue Target URL
+    var issueTitle = encodeURIComponent("[Question] " + pageTitle);
+    var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
+    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md" +
+                   "&title=" + issueTitle + 
+                   "&body=" + issueBody;
 
-    if (toggleBtn) {
-      toggleBtn.addEventListener("click", function() {
-        var sidebar = document.getElementById("quarto-margin-sidebar");
-        if (sidebar) {
-          if (sidebar.classList.contains("show-mobile-sidebar")) {
-            sidebar.classList.remove("show-mobile-sidebar");
-            toggleBtn.innerHTML = '<i class="bi bi-layout-sidebar-reverse"></i> Show Page Menu & Tools';
-          } else {
-            sidebar.classList.add("show-mobile-sidebar");
-            toggleBtn.innerHTML = '<i class="bi bi-x-lg"></i> Hide Page Menu & Tools';
-          }
-        }
-      });
-    }
+    // 2. Set links for Ask a Question buttons
+    document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
+      btn.setAttribute("href", issueUrl);
+    });
 
-    // 2. Dynamic Question Link
-    var questionBtn = document.getElementById("ask-question-btn");
-    if (questionBtn) {
-      var issueTitle = encodeURIComponent("[Question] " + pageTitle);
-      var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
-      var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md" +
-                     "&title=" + issueTitle + 
-                     "&body=" + issueBody;
-      questionBtn.setAttribute("href", issueUrl);
-    }
-
-    // 3. Notebook Download Button Link
+    // 3. Set links for Notebook Download buttons
     if (page && page.startsWith("lecture") && page.endsWith(".html")) {
       var ipynbFile = page.replace(".html", ".ipynb");
       var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
-      var downloadBtn = document.getElementById("ipynb-download-btn");
-      if (downloadBtn) {
-        downloadBtn.setAttribute("href", rawUrl);
-        downloadBtn.style.display = "block";
-      }
+      document.querySelectorAll(".ipynb-download-btn").forEach(function(btn) {
+        btn.setAttribute("href", rawUrl);
+        btn.style.display = "block";
+      });
+    }
+
+    // 4. Duplicate tools to bottom of main content for narrow screens
+    var mainContent = document.querySelector("main.content");
+    var toolsContainer = document.querySelector(".custom-sidebar-tools");
+    if (mainContent && toolsContainer) {
+      var mobileTools = toolsContainer.cloneNode(true);
+      mobileTools.classList.add("d-lg-none", "mt-4", "pt-3", "border-top");
+      mainContent.appendChild(mobileTools);
     }
   });
 </script>
