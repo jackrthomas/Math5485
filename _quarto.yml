@@ -6,13 +6,27 @@ resources:
   - "*.ipynb"
   - "**/*.ipynb"
 
+comments: 
+  hypothesis:
+    theme: clean
+
 book:
   title: "Math5485"
   author: "Jack Thomas"
+  date: today
   downloads: [pdf]
   
   repo-url: https://github.com/jackrthomas/Math5485
-  repo-actions: [edit, issue]
+  repo-branch: main
+  repo-actions: [edit]
+
+  sidebar:
+      style: "docked"
+      search: true
+      tools:
+      - icon: question-circle
+        text: "Ask a Question"
+        href: "https://github.com/jackrthomas/Math5485/issues/new?template=question.md"
 
   chapters:
     - index.qmd
@@ -25,7 +39,7 @@ book:
 
 language:
   search-no-results-text: "No results"
-  repo-action-links-issue: "Ask a question about this lecture"
+  repo-action-links-issue: "Ask a question"
 
 website:
   site-url: "https://jackrthomas.github.io/Math5485/"
@@ -38,19 +52,82 @@ bibliography: references.bib
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
+    include-in-header:
+      text: |
+        <style>
+          @media (max-width: 991.98px) {
+            #quarto-margin-sidebar {
+              display: block !important;
+            }
+            #quarto-margin-sidebar > *:not(#toggle-right-sidebar-btn) {
+              display: none;
+            }
+            #quarto-margin-sidebar.show-mobile-sidebar > * {
+              display: block !important;
+            }
+          }
+        </style>
     code-fold: true
     code-tools:
       source: true           
       toggle: true
     format-links: [ipynb]
-    sidebar:
-      search: true
-    comments: 
-      hypothesis:
-        theme: clean
+    comments:
+      hypothesis: true
+    margin-header: |
+      <!-- Desktop Right-Sidebar Buttons -->
+      <div class="custom-sidebar-tools">
+        <a href="#" class="ipynb-download-btn btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank">
+          <i class="bi bi-journal-code"></i> Download Notebook (.ipynb)
+        </a>
+        <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank">
+          <i class="bi bi-question-circle"></i> Ask a Question
+        </a>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          // Get clean page URL and Title
+          var currentUrl = window.location.origin + window.location.pathname;
+          var pageTitle = document.title || "Lecture";
+          var path = window.location.pathname;
+          var page = path.split("/").pop();
+
+          // Construct encoded parameters for GitHub Issue
+          var issueTitle = encodeURIComponent("[Question] " + pageTitle);
+          var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
+          
+          var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new" +
+                         "?template=question.md" +
+                         "&title=" + issueTitle + 
+                         "&body=" + issueBody;
+
+          // 1. Assign Issue URL to all Question Buttons
+          document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
+            btn.setAttribute("href", issueUrl);
+          });
+
+          // 2. Assign Raw Download URL to Notebook Buttons
+          if (page && page.startsWith("lecture") && page.endsWith(".html")) {
+            var ipynbFile = page.replace(".html", ".ipynb");
+            var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
+            document.querySelectorAll(".ipynb-download-btn").forEach(function(btn) {
+              btn.setAttribute("href", rawUrl);
+              btn.style.display = "block";
+            });
+          }
+
+          // 3. Clone for narrow screens/mobile footer if present
+          var mainContent = document.querySelector("main.content");
+          var toolsContainer = document.querySelector(".custom-sidebar-tools");
+          if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
+            var mobileTools = toolsContainer.cloneNode(true);
+            mobileTools.classList.add("mobile-custom-tools", "d-lg-none", "mt-4", "pt-3", "border-top");
+            mainContent.appendChild(mobileTools);
+          }
+        });
+      </script>
 
   pdf:
     documentclass: scrreprt

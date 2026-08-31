@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jack Thomas">
+<meta name="dcterms.date" content="2026-08-31">
 
 <title>Math5485</title>
 <style>
@@ -82,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-60e774d9130576dfbd61553c06ce0eee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,22 +111,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script type="application/json" class="js-hypothesis-config">
-{
-  "theme": "clean"
-}
-</script>
 <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<style>
+  @media (max-width: 991.98px) {
+    #quarto-margin-sidebar {
+      display: block !important;
+    }
+    #quarto-margin-sidebar > *:not(#toggle-right-sidebar-btn) {
+      display: none;
+    }
+    #quarto-margin-sidebar.show-mobile-sidebar > * {
+      display: block !important;
+    }
+  }
+</style>
 
 
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -134,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome!</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -146,11 +155,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Math5485</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
     <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Math5485.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
@@ -166,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Welcome</span></a>
+ <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -197,14 +207,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<!-- Desktop Right-Sidebar Buttons -->
+<div class="custom-sidebar-tools">
+<p><a href="#" class="ipynb-download-btn btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get clean page URL and Title
+    var currentUrl = window.location.origin + window.location.pathname;
+    var pageTitle = document.title || "Lecture";
+    var path = window.location.pathname;
+    var page = path.split("/").pop();
+
+    // Construct encoded parameters for GitHub Issue
+    var issueTitle = encodeURIComponent("[Question] " + pageTitle);
+    var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
+    
+    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new" +
+                   "?template=question.md" +
+                   "&title=" + issueTitle + 
+                   "&body=" + issueBody;
+
+    // 1. Assign Issue URL to all Question Buttons
+    document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
+      btn.setAttribute("href", issueUrl);
+    });
+
+    // 2. Assign Raw Download URL to Notebook Buttons
+    if (page && page.startsWith("lecture") && page.endsWith(".html")) {
+      var ipynbFile = page.replace(".html", ".ipynb");
+      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
+      document.querySelectorAll(".ipynb-download-btn").forEach(function(btn) {
+        btn.setAttribute("href", rawUrl);
+        btn.style.display = "block";
+      });
+    }
+
+    // 3. Clone for narrow screens/mobile footer if present
+    var mainContent = document.querySelector("main.content");
+    var toolsContainer = document.querySelector(".custom-sidebar-tools");
+    if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
+      var mobileTools = toolsContainer.cloneNode(true);
+      mobileTools.classList.add("mobile-custom-tools", "d-lg-none", "mt-4", "pt-3", "border-top");
+      mainContent.appendChild(mobileTools);
+    }
+  });
+</script>
+</div></div>
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jackrthomas/Math5485/issues/new" class="toc-action"><i class="bi empty"></i>Ask a question about this lecture</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -225,6 +282,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 31, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -235,8 +298,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome</h1>
-<p>Lecture notes will appear here!</p>
+<h1 class="unnumbered">Welcome!</h1>
+<p>These are the lecture notes for Math 5485, Fall 2026.</p>
 
 
 <!-- -->
@@ -704,13 +767,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome {.unnumbered}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome! {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Lecture notes will appear here!</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>These are the lecture notes for Math 5485, Fall 2026.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/jackrthomas/Math5485/issues/new" class="toc-action"><i class="bi empty"></i>Ask a question about this lecture</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

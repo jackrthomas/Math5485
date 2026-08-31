@@ -1,10 +1,9 @@
 ---
 name: Lecture Question
-about: Ask a question or request clarification about lecture content.
+about: Ask a question or flag a error/typo
 title: '[Question] '
 labels: question
-assignees: ''
+assignees: 'jackrthomas'
 ---
 
-**Your Question**
-<!-- Describe what you're trying to understand -->
+Note: This is a public question. Please email if you would like to stay anonymous.
