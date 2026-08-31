@@ -227,56 +227,35 @@ div.csl-indent {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
 <!-- Desktop Right-Sidebar Buttons -->
 <div class="custom-sidebar-tools">
-<p><a href="#" class="ipynb-download-btn btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
+<p><!-- Quarto injects current file name directly during build --> <a href="https://raw.githubusercontent.com/jackrthomas/Math5485/main/?meta:quarto-file-path" id="ipynb-download-btn" class="btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a></p>
+<p><a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // 1. Get the current page filename reliably from window.location
-    var pathname = window.location.pathname;
-    
-    // Remove trailing slash if present
-    if (pathname.endsWith("/")) {
-      pathname = pathname.slice(0, -1);
-    }
-    
-    // Extract the last path segment (e.g., "lecture01.html" or "lecture01")
-    var filename = pathname.split("/").pop() || "";
-
-    // Fallback to reading section/file from document if URL is clean index
-    if (!filename || filename === "Math5485") {
-      filename = "index.html";
-    }
-
-    // Strip .html extension to isolate base name (e.g., "lecture01")
-    var baseName = filename.replace(/\.html$/, "");
-
-    // Clean full page URL for the GitHub Issue
-    var currentUrl = window.location.href;
-    var pageTitle = document.title || "Lecture";
-
-    // 2. Build "Ask a Question" URL
-    var issueTitle = encodeURIComponent("[Question] " + pageTitle);
-    var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
+    // 1. Ask a Question Link (Reads exact browser location)
+    var currentUrl = encodeURIComponent(window.location.href);
+    var pageTitle = encodeURIComponent("[Question] " + (document.title || "Lecture"));
+    var issueBody = encodeURIComponent("**Reference Page:** " + decodeURIComponent(currentUrl) + "\n\n**Question:**\n<!-- Type your question here -->");
     
     var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new" +
                    "?template=question.md" +
-                   "&title=" + issueTitle + 
+                   "&title=" + pageTitle + 
                    "&body=" + issueBody;
 
     document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
       btn.setAttribute("href", issueUrl);
     });
 
-    // 3. Build "Download Notebook" URL (Matches lectureXX files)
-    if (baseName.toLowerCase().indexOf("lecture") !== -1) {
-      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + baseName + ".ipynb";
-      document.querySelectorAll(".ipynb-download-btn").forEach(function(btn) {
-        btn.setAttribute("href", rawUrl);
-        btn.style.display = "block";
-      });
+    // 2. Download Notebook Link (Unhides only if source file is .ipynb)
+    var downloadBtn = document.getElementById("ipynb-download-btn");
+    if (downloadBtn) {
+      var rawHref = downloadBtn.getAttribute("href");
+      if (rawHref && rawHref.endsWith(".ipynb")) {
+        downloadBtn.style.display = "block";
+      }
     }
 
-    // 4. Duplicate tools to bottom of main content on narrow/mobile screens
+    // 3. Mobile layout clone
     var mainContent = document.querySelector("main.content");
     var toolsContainer = document.querySelector(".custom-sidebar-tools");
     if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
