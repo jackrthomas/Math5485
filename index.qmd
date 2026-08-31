@@ -1,0 +1,3 @@
+# Welcome {.unnumbered}
+
+Lecture notes will appear here!

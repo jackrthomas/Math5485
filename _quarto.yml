@@ -1,0 +1,57 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Math5485"
+  author: "Jack Thomas"
+  downloads: [pdf]
+  
+  repo-url: https://github.com/jackrthomas/Math5485
+  repo-actions: [edit, issue]
+
+  chapters:
+    - index.qmd
+
+    - part: "Lecture Notes"
+      chapters:
+        - lecture01.ipynb
+
+    - references.qmd
+
+website:
+  site-url: "https://jackrthomas.github.io/Math5485/"
+
+execute:
+  freeze: auto
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    code-fold: true
+    code-tools:
+      source: true           
+      toggle: true
+    sidebar:
+      search: true
+    comments: 
+      hypothesis:
+        theme: clean
+        openSidebar: false
+
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+    classoption:
+      - open=any
+    colorlinks: true
+    include-in-header:
+      text: |
+        \makeatletter
+        \def\@endpart{\bigbreak}
+        \makeatother

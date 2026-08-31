@@ -1,0 +1,17 @@
+{
+  "index.qmd": {
+    "index.html": "6136a83c"
+  },
+  "intro.qmd": {
+    "intro.html": "e2f812ec"
+  },
+  "summary.qmd": {
+    "summary.html": "fc1a715f"
+  },
+  "references.qmd": {
+    "references.html": "689dd17b"
+  },
+  "lecture01.ipynb": {
+    "lecture01.html": "7427c7e8"
+  }
+}
