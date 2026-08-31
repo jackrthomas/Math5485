@@ -2,6 +2,10 @@ project:
   type: book
   output-dir: _book
 
+resources:
+  - "*.ipynb"
+  - "**/*.ipynb"
+
 book:
   title: "Math5485"
   author: "Jack Thomas"
@@ -19,11 +23,16 @@ book:
 
     - references.qmd
 
+language:
+  search-no-results-text: "No results"
+  repo-action-links-issue: "Ask a question about this lecture"
+
 website:
   site-url: "https://jackrthomas.github.io/Math5485/"
 
 execute:
   freeze: auto
+  keep-ipynb: true
 
 bibliography: references.bib
 
@@ -36,12 +45,12 @@ format:
     code-tools:
       source: true           
       toggle: true
+    format-links: [ipynb]
     sidebar:
       search: true
     comments: 
       hypothesis:
         theme: clean
-        openSidebar: false
 
   pdf:
     documentclass: scrreprt
