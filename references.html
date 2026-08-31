@@ -229,27 +229,29 @@ div.csl-indent {
 <div class="custom-sidebar-tools">
 <p><a href="#" class="ipynb-download-btn btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
 </div>
-<!-- Script to set links and clone buttons to page footer on mobile -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+    // Get clean page URL and Title
+    var currentUrl = window.location.origin + window.location.pathname;
+    var pageTitle = document.title || "Lecture";
     var path = window.location.pathname;
     var page = path.split("/").pop();
-    var currentUrl = window.location.href;
-    var pageTitle = document.title || "Lecture";
 
-    // 1. Build Issue Target URL
+    // Construct encoded parameters for GitHub Issue
     var issueTitle = encodeURIComponent("[Question] " + pageTitle);
     var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
-    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md" +
+    
+    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new" +
+                   "?template=question.md" +
                    "&title=" + issueTitle + 
                    "&body=" + issueBody;
 
-    // 2. Set links for Ask a Question buttons
+    // 1. Assign Issue URL to all Question Buttons
     document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
       btn.setAttribute("href", issueUrl);
     });
 
-    // 3. Set links for Notebook Download buttons
+    // 2. Assign Raw Download URL to Notebook Buttons
     if (page && page.startsWith("lecture") && page.endsWith(".html")) {
       var ipynbFile = page.replace(".html", ".ipynb");
       var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
@@ -259,12 +261,12 @@ div.csl-indent {
       });
     }
 
-    // 4. Duplicate tools to bottom of main content for narrow screens
+    // 3. Clone for narrow screens/mobile footer if present
     var mainContent = document.querySelector("main.content");
     var toolsContainer = document.querySelector(".custom-sidebar-tools");
-    if (mainContent && toolsContainer) {
+    if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
       var mobileTools = toolsContainer.cloneNode(true);
-      mobileTools.classList.add("d-lg-none", "mt-4", "pt-3", "border-top");
+      mobileTools.classList.add("mobile-custom-tools", "d-lg-none", "mt-4", "pt-3", "border-top");
       mainContent.appendChild(mobileTools);
     }
   });
