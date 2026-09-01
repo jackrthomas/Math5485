@@ -4,31 +4,9 @@
     "href": "index.html",
     "title": "Math5485",
     "section": "",
-    "text": "Welcome!\nThese are the lecture notes for Math 5485, Fall 2026.",
+    "text": "Welcome!\nThese are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.\nUse the links on the side or navigate by chapter:\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations\n\nUseful links:\n\n  Syllabus   GitHub  Fall 2025 Course   Ask a Question    Suggest Correction   Math 5486\n\nReferences\n\nDriscoll and Braun (2017)\nBurden et al. (2016)\nSüli and Mayers (2003)\nTrefethen (2019)\n\n\n\n\n\n\n\nBurden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016. Numerical Analysis. 10th ed. Cengage Learning. https://doi.org/10.13140/2.1.4830.2406.\n\n\nDriscoll, Tobin A., and Richard J. Braun. 2017. Fundamentals of Numerical Computation. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975086.\n\n\nSüli, Endre, and David F. Mayers. 2003. An Introduction to Numerical Analysis. Cambridge University Press. https://doi.org/10.1017/CBO9780511801181.\n\n\nTrefethen, Lloyd N. 2019. Approximation Theory and Approximation Practice, Extended Edition. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975949.",
     "crumbs": [
       "Welcome!"
-    ]
-  },
-  {
-    "objectID": "lecture01.html",
-    "href": "lecture01.html",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "1.1 Subheading\nKnuth (1984)",
-    "crumbs": [
-      "Lecture Notes",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "lecture01.html#subheading",
-    "href": "lecture01.html#subheading",
-    "title": "1  Introduction",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput. J. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
-    "crumbs": [
-      "Lecture Notes",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
@@ -36,8 +14,9 @@
     "href": "references.html",
     "title": "Resources",
     "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. (USA) 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "Burden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016.\nNumerical Analysis. 10th ed. Cengage Learning. https://doi.org/10.13140/2.1.4830.2406.\n\n\nDriscoll, Tobin A., and Richard J. Braun. 2017. Fundamentals of\nNumerical Computation. Society for Industrial; Applied Mathematics.\nhttps://doi.org/10.1137/1.9781611975086.\n\n\nSüli, Endre, and David F. Mayers. 2003. An Introduction to Numerical\nAnalysis. Cambridge University Press. https://doi.org/10.1017/CBO9780511801181.\n\n\nTrefethen, Lloyd N. 2019. Approximation Theory and Approximation\nPractice, Extended Edition. Society for Industrial; Applied\nMathematics. https://doi.org/10.1137/1.9781611975949.",
     "crumbs": [
+      "Appendices",
       "Resources"
     ]
   }
