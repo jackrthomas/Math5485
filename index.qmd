@@ -4,7 +4,7 @@ These are the lecture notes for Math 5485: Introduction to Numerical Methods I, 
 
 Use the links on the side or navigate by chapter:
 
-* Chapter 1: <a href="lecture01.html#sec-chapter-1" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> An Introduction to Numerical Analysis</a>
+* Chapter 1: <a href="L01.html#sec-chapter-1" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> An Introduction to Numerical Analysis</a>
 * Chapter 2: Solving Nonlinear Equations in 1d
 * Chapter 3: Polynomial Interpolation
 * Chapter 4: Numerical Integration
