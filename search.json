@@ -10,8 +10,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html",
-    "href": "lecture01.html",
+    "objectID": "L01.html",
+    "href": "L01.html",
     "title": "1  Introduction",
     "section": "",
     "text": "1.1 Notebooks\nThis website is created using Jupyter Notebooks. They allow you to include Markdown, \\(\\LaTeX\\), and Julia (as well as python and other languages).\nNotebooks are made up from “cells”.",
@@ -21,8 +21,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html#notebooks",
-    "href": "lecture01.html#notebooks",
+    "objectID": "L01.html#notebooks",
+    "href": "L01.html#notebooks",
     "title": "1  Introduction",
     "section": "",
     "text": "Tip\n\n\n\nFollow the steps in installing-julia.html and A1 to learn about notebooks and Julia.\n\n\n\n\nA adds a cell above the currently selected cell,\nB adds a cell below,\nM changes the cell from Julia to markdown,\nY changes the cell from markdown to Julia,\nDouble click or enter to see the syntax and edit cells,\nPress ctrl+enter to exit edit mode,\n\n\nExercise 1.1 Add a new markdown cell below this one and write “Hello world!”",
@@ -32,8 +32,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html#markdown",
-    "href": "lecture01.html#markdown",
+    "objectID": "L01.html#markdown",
+    "href": "L01.html#markdown",
     "title": "1  Introduction",
     "section": "1.2 Markdown",
     "text": "1.2 Markdown\nText in this cell can be bold, italic, bold italic, quotes\n\n“The only source of knowledge is experience”\n– Einstein\n\nPreformatted text,\n    useful for\npseudocode\n\nBullet points\n\nlevel 2 bullet points\netc..\n\nAnother point\n\n\nYou can also use normal html formatting if you are familiar with that…\n\nMarkdown cheat sheet:   link (opens in a new tab)",
@@ -43,8 +43,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html#latex",
-    "href": "lecture01.html#latex",
+    "objectID": "L01.html#latex",
+    "href": "L01.html#latex",
     "title": "1  Introduction",
     "section": "1.3 \\(\\LaTeX\\)",
     "text": "1.3 \\(\\LaTeX\\)\n\\(\\LaTeX\\) allows you to display math: e.g. \\(\\pi \\approx \\frac{22}{7}\\) and \\[f(x) = f(a) + f'(a) (x - a) + \\frac{1}{2} f''(a) (x-a)^2 + R(x).\\]\nMulti-line equations are also possible:\n\\[\\begin{align}\n    \\int_a^b f(x) \\mathrm{d}x\n    %\n    &\\approx \\int_a^b p_n(x) \\mathrm{d}x \\nonumber\\\\\n    %\n    &= \\sum_{j=0}^n w_j f(x_j)  \n\\end{align}\\]\n\\(\\LaTeX\\) cheat sheet:   link (opens in a new tab) \nDraw symbol to get \\(\\LaTeX\\) syntax:   link (opens in a new tab)",
@@ -54,8 +54,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html#julia",
-    "href": "lecture01.html#julia",
+    "objectID": "L01.html#julia",
+    "href": "L01.html#julia",
     "title": "1  Introduction",
     "section": "1.4 Julia",
     "text": "1.4 Julia\n\n\nCode\n1+1\n\n\n2\n\n\nYou can use greek symbols in Julia code: type \\pi and tab to get the symbol.\n\n\nCode\nπ \n\n\nπ = 3.1415926535897...\n\n\nYou can add comments with a #:\n\n\nCode\n# Define p\np = 22/7;\n\n\nYou can also use @show to print variables (which also prints the calculation):\n\n\nCode\n@show abs(π-p)/π;\n\n\nabs(π - p) / π = 0.0004024994347707008\n\n\nYou can use println() to output variables (and you can also add text):\n\n\nCode\nprintln( \"The relative error when approximating π by 22/7 is \", abs(π-p)/π)\n\n\nThe relative error when approximating π by 22/7 is 0.0004024994347707008\n\n\n\n1.4.1 Arrays, vectors, and matrices\nArrays start at 1:\n\n\nCode\na = [1 2 3 4 5]\n\n\n1×5 Matrix{Int64}:\n 1  2  3  4  5\n\n\n\n\nCode\na[1]\n\n\n1\n\n\nVectors:\n\n\nCode\nb = [2, 4, 6, 8]\n\n\n4-element Vector{Int64}:\n 2\n 4\n 6\n 8\n\n\nVector of objects:\n\n\nCode\nc = [ a , b , \"hello world\" ]\n\n\n3-element Vector{Any}:\n [1 2 … 4 5]\n [2, 4, 6, 8]\n \"hello world\"\n\n\n\n\nCode\nc[3]\n\n\n\"hello world\"\n\n\nMatrices\nYou can either specify the columns:\n\n\nCode\nX = [ [1, 4] [2, 5] ]\n\n\n2×2 Matrix{Int64}:\n 1  2\n 4  5\n\n\nOr the rows:\n\n\nCode\nY = [ 1 2 ; 4 5 ]\n\n\n2×2 Matrix{Int64}:\n 1  2\n 4  5\n\n\n\n\nLinear Algebra\nIn order to use a certain package, you need to use the using keyword:\n\n\nCode\nusing LinearAlgebra\n\n\nRecall that\n\n\nCode\nX\n\n\n2×2 Matrix{Int64}:\n 1  2\n 4  5\n\n\n\n\nCode\ndet( X )\n\n\n-3.0\n\n\n\n\nCode\ntr( X )\n\n\n6\n\n\n\n\nCode\n(-1/3) * [ 5 -2 ; -4 1 ]\n\n\n2×2 Matrix{Float64}:\n -1.66667   0.666667\n  1.33333  -0.333333\n\n\n\n\nCode\ninv( X )\n\n\n2×2 Matrix{Float64}:\n -1.66667   0.666667\n  1.33333  -0.333333\n\n\n\n\nCode\nϵ, v = eigen( X )\n\n\nEigen{Float64, Float64, Matrix{Float64}, Vector{Float64}}\nvalues:\n2-element Vector{Float64}:\n -0.4641016151377544\n  6.464101615137754\nvectors:\n2×2 Matrix{Float64}:\n -0.806898  -0.343724\n  0.59069   -0.939071\n\n\n\n\nCode\nv1 = v[1:2,1]; # gets the first column of v\nnorm( ( X - ϵ[1] * Diagonal([1, 1]) ) * v1 )\n\n\n2.220446049250313e-16\n\n\n\n\n1.4.2 Functions\n\n\nCode\nf = x -&gt; cos( x );\nf( π )\n\n\n-1.0\n\n\n\n\nCode\n# vectorisation = entry-wise functuions --&gt; use dot!\nf.( [-π, 0, π] )\n\n\n3-element Vector{Float64}:\n -1.0\n  1.0\n -1.0\n\n\n\n\nCode\n# you can also specify the vectorisation at the start:\n@. f( [-π, 0, π] )\n\n\n3-element Vector{Float64}:\n -1.0\n  1.0\n -1.0\n\n\nIn order to plot functions we need the Plots package and, in order to write \\(\\LaTeX\\) in the titles and labels, we need LaTeXStrings.\n\n\nCode\nusing Plots, LaTeXStrings\n\n\nPlots.GRBackend()\n\n\n\n\nCode\ng(x) = x/exp(x)\nplot( g, -5, 1, label=\"hello\" )\n\n\n\n\n\n\n\nCode\nX = -5:.01:1;\nY = X .* exp.(X) ;\n \nplot( X, Y; \n    label = L\"f(w) = w e^w\", \n    xlabel = L\"w\", ylabel = \"not latex\", \n    title = \"L\\\"\\\" is a LaTeX string and \\\"\\\" a normal string\" ) \n\n\n\n\n\n\n\nCode\nX = range(0, 10, length=100)\nY1 = @. sin(X) / X\nY2 = cos.(X)\nplot( X, [Y1 Y2], \n        xlabel=L\"x\", \n        label=[L\"\\frac{\\sin x}{x}\" L\"\\cos x\"], \n        linewidth=[4 2], \n        lc=[:green :blue]) \n\n\n\n\n\n\n\nFigure 1.1: Ploting two functions on one graph\n\n\n\n\nIn Figure 1.1, you can see two graphs!\n\n\n\n\n\n\nNote\n\n\n\nIf you are looking at the code, don’t worry about the @fig-1 or the ::: {.callout-note} syntax - this adds the html/css elements so that the webpage looks nicer.\n\n\n! is like “hold on” in Matlab (if you are familar with that!)\n\n\nCode\nf3(x) = 1 / (1 + x^2);\nf4(x) = 1 / (1 + sin(x)^2);\nplot(f3, -π, π, \n        lw=3, \n        label = L\"f_1(x) = \\frac{1}{1+x^2}\");\nplot!(f4, -π, π, \n        lw = 3, \n        label = L\"f_2(x) = \\frac{1}{1+\\sin^2(x)}\", \n        size = (600, 250), legend = :outertopright )\n\n\n\n\n\n\n\nFigure 1.2: Ploting functions",
@@ -65,8 +65,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html#math-5485",
-    "href": "lecture01.html#math-5485",
+    "objectID": "L01.html#math-5485",
+    "href": "L01.html#math-5485",
     "title": "1  Introduction",
     "section": "1.5 Math 5485",
     "text": "1.5 Math 5485\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations",
@@ -76,8 +76,8 @@
     ]
   },
   {
-    "objectID": "lecture01.html#sec-chapter-1",
-    "href": "lecture01.html#sec-chapter-1",
+    "objectID": "L01.html#sec-chapter-1",
+    "href": "L01.html#sec-chapter-1",
     "title": "1  Introduction",
     "section": "1.6 Chapter 1: Basics of Numerical Analysis",
     "text": "1.6 Chapter 1: Basics of Numerical Analysis\n\nAbsolute and relative error\nRate of convergence\nUsing plots to show rate of convergence\n\nSuppose we approximate \\(x\\) with \\(\\widetilde{x}\\). Here, \\(x\\) could be e.g. a root (or fixed point) of a function, the value of an integral, the solution of an ODE or PDE evaluated at a point, …. .\n\nDefinition 1.1 (Errors) We define:\n\\[\\begin{align}\n\\text{Actual error:} &\\quad x - \\widetilde{x} \\\\\n\\text{Absolute error:} &\\quad |x - \\widetilde{x}|\n\\end{align}\\]\nAnd when \\(x \\neq 0\\), the relative error is:\n\\[\\begin{align}\n\\text{Relative error:} \\quad \\frac{|x - \\widetilde{x}|}{|x}\n\\end{align}\\]\n\n\nExample 1.1 If \\(x = 1.5\\) and \\(\\widetilde{x} = 1\\), then the absolute error is \\(0.5\\) and the relative error is \\(\\frac{0.5}{1.5} = \\frac13\\).\nIf \\(x = 1.5 \\times 10^{42}\\) and \\(\\widetilde{x} = 10^{42}\\), then the absolute error is \\(0.5 \\times 10^{42}\\) and the relative error is \\(\\frac13\\).\nIf \\(x = 1.5 \\times 10^{-42}\\) and \\(\\widetilde{x} = 10^{-42}\\), then the absolute error is \\(0.5 \\times 10^{-42}\\) and the relative error is \\(\\frac13\\).\n\nThe relative error is a better measure for small or large \\(x\\):\n\nExample 1.2 Approximating Planck’s constant \\(6.62607015 \\times 10^{-34} \\text{m}^2 \\text{kg } \\text{s}^{-1}\\) with \\(0 \\text{m}^2 \\text{kg } \\text{s}^{-1}\\) would give an absolute error of \\(\\approx 6 \\times 10^{-34}\\) (which seems small) but a relative error of \\(1\\). In practice \\(0\\) is a bad approximation to Planck’s constant!\n\n\nDefinition 1.2 (Number of accurate digits) Suppose \\(x \\not= 0\\) is approximated by \\(\\widetilde{x}\\). Then, we say this approximation is accurate to\n\\[\\eta := -\\log_{10} \\left| \\frac{x-\\widetilde{x}}{x} \\right| \\]\ndigits.\n\n\nExample 1.3 Approximating \\(e := \\lim_{n\\to\\infty} \\big( 1 + \\frac1n \\big)^n \\approx 2.7182818.....\\) with \\(3, 2.7,\\) and \\(2.718\\) gives \\(\\eta = 0.98, 2.17\\), and \\(3.98\\) (to \\(2\\) decimal places), respectively.\n\nWe now consider a sequence of approximations \\(x_n\\) converging to \\(x\\). That is, for all \\(\\varepsilon &gt; 0\\), there exists \\(N=N(\\varepsilon)\\) such that \\(|x - x_n| &lt; \\varepsilon\\) for all \\(n &gt; N\\). In numerical analysis, we are interested in (i) whether our numerical schemes converge, and (ii) the rate of convergence:\n\nDefinition 1.3 (Rate of convergence) Suppose \\(\\varepsilon_n \\geq 0\\) and \\((\\varepsilon_n) \\to 0\\). Then, \\(x_n \\to x\\) with rate \\(O(\\varepsilon_n)\\) if there exist \\(C\\) and \\(N\\) such that\n\\[\n|x - x_n| \\leq C\\varepsilon_n\n\\]\nfor all \\(n &gt; N\\). We also write \\(x_n = x + O(\\varepsilon_n)\\).\n\n\nExercise 1.2 Show that \\(\\frac{n + \\cos(n)}{n^2} = O(\\frac1n)\\) and \\(\\frac{n^2+3}{n^{42}} = O(\\frac1{n^{40}})\\).\n\nWhen plotting graphs, \\(O(n^{-k})\\) decay (that is, algebraic decay) can be seen as straight lines on log-log plots (\\(-k\\) is the slope in such graphs):\n\n\nCode\nN = 1:100;\nplot( N.^(-1) ;\n    xlabel=\"n\", xaxis=:log, yaxis=:log, \n    linestyle = :dot, lw=2, label = L\"n^{-1}\")\nplot!( N.^(-2); \n    linestyle = :dot, lw=2, label = L\"n^{-2}\")\nplot!( N.^(-5); \n    linestyle = :dot, lw=2, label = L\"n^{-5}\")\n\n\n\n\n\nOn the other hand, \\(O(e^{-c N})\\) (that is, exponential decay) can be seen as straight lines on a semi-log y plot (and \\(-c\\) is the gradient):\n\n\nCode\nplot( exp.(-N);\n    xlabel=\"n\", yaxis=:log, \n    linestyle = :dot, lw=2, label = L\"e^{-n}\")\nplot!( exp.(-2 .* N ); \n    linestyle = :dot, lw=2, label = L\"e^{-2n}\")\nplot!( exp.(-5 .* N ); \n    linestyle = :dot, lw=2, label = L\"e^{-5n}\")\n\n\n\n\n\n\n\n\n\n\n\nTipTO-DO\n\n\n\n\nAssignment 1: Due Wednesday (Install Julia),\nExercises (below)\n(Sign-up to office hours if you like)",
@@ -87,11 +87,11 @@
     ]
   },
   {
-    "objectID": "lecture01.html#exercises-chapter-1",
-    "href": "lecture01.html#exercises-chapter-1",
+    "objectID": "L01.html#exercises",
+    "href": "L01.html#exercises",
     "title": "1  Introduction",
-    "section": "1.7 Exercises (Chapter 1)",
-    "text": "1.7 Exercises (Chapter 1)\n\nExercise 1.3 (Approximating Euler’s constant) Let \\(e\\) denote Euler’s constant.\n\n\\(e_N := \\big( 1 + \\frac{1}{N} \\big)^N\\) is an approximation \\(e\\). What is the error, absolute error, and relative error in approximating \\(e\\) with \\(e_N\\) for \\(N = 1,2,...,10\\)? What are the number of accurate digits in this approximation?\nWhat is the rate of convergence of \\(e_N\\) to \\(e\\)?\n\n\n\nExercise 1.4 (Approximating Euler-Mascheroni constant) Euler-Mascheroni constant, \\(\\gamma\\), is defined as the limit \\(\\sum_{k=1}^n \\frac{1}{k} - \\log n\\) as \\(n \\to \\infty\\).\n\nWhat is the absolute error in approximating \\(\\gamma\\) with \\(\\gamma_{1000}\\)?\nWhat is the rate of convergence of \\(\\gamma_n\\) to \\(\\gamma\\)?\n[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]\nProve that \\(|\\gamma - \\gamma_n| \\leq \\frac1n\\).\n\n\n\n\n\n\n\n\nTipSolutions\n\n\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!",
+    "section": "1.7 Exercises",
+    "text": "1.7 Exercises\n\nExercise 1.3 (Approximating Euler’s constant) Let \\(e\\) denote Euler’s constant.\n\n\\(e_N := \\big( 1 + \\frac{1}{N} \\big)^N\\) is an approximation \\(e\\). What is the error, absolute error, and relative error in approximating \\(e\\) with \\(e_N\\) for \\(N = 1,2,...,10\\)? What are the number of accurate digits in this approximation?\nWhat is the rate of convergence of \\(e_N\\) to \\(e\\)?\n\n\n\nExercise 1.4 (Approximating Euler-Mascheroni constant) Euler-Mascheroni constant, \\(\\gamma\\), is defined as the limit \\(\\sum_{k=1}^n \\frac{1}{k} - \\log n\\) as \\(n \\to \\infty\\).\n\nWhat is the absolute error in approximating \\(\\gamma\\) with \\(\\gamma_{1000}\\)?\nWhat is the rate of convergence of \\(\\gamma_n\\) to \\(\\gamma\\)?\n[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]\nProve that \\(|\\gamma - \\gamma_n| \\leq \\frac1n\\).\n\n\n\n\n\n\n\n\nTipSolutions\n\n\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!",
     "crumbs": [
       "Lectures",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
