@@ -1,3 +1,43 @@
 # Welcome! {.unnumbered}
 
-These are the lecture notes for Math 5485, Fall 2026.
+These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026. 
+
+Use the links on the side or navigate by chapter:
+
+* Chapter 1: <a href="lecture01.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> An Introduction to Numerical Analysis</a>
+* Chapter 2: Solving Nonlinear Equations in 1d
+* Chapter 3: Polynomial Interpolation
+* Chapter 4: Numerical Integration
+* Chapter 5: Linear systems of equations
+
+Useful links: 
+
+<div class="d-flex gap-2 flex-wrap my-3">
+  <a href="syllabus.html" 
+     class="btn btn-outline-success btn-sm" 
+     target="_blank">
+    <i class="bi bi-journal-code"></i> Syllabus
+  </a>
+  <a href="https://github.com/jackrthomas/Math5485" class="btn btn-outline-dark btn-sm" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+<a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/" class="btn btn-outline-info btn-sm" target="_blank"><i class="bi bi-archive"></i> Fall 2025 Course</a>
+  <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" 
+     class="btn btn-outline-secondary btn-sm" 
+     target="_blank">
+    <i class="bi bi-question-circle"></i> Ask a Question
+  </a>
+  <a href="https://z.umn.edu/Math5486-errors" 
+     class="btn btn-outline-danger btn-sm" 
+     target="_blank">
+    <i class="bi bi-exclamation-triangle"></i> Suggest Correction
+  </a>
+  <a href="https://jack.thomaslabs.co.uk/teaching/Math5486-Spring-2026/" class="btn btn-outline-warning btn-sm" target="_blank"><i class="bi bi-link-45deg"></i> Math 5486</a>
+</div>
+
+References 
+
+* @fnc
+* @Burden
+* @Suli
+* @Trefethen
+
+

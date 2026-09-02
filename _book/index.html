@@ -63,7 +63,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -117,19 +136,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
-<style>
-  @media (max-width: 991.98px) {
-    #quarto-margin-sidebar {
-      display: block !important;
-    }
-    #quarto-margin-sidebar > *:not(#toggle-right-sidebar-btn) {
-      display: none;
-    }
-    #quarto-margin-sidebar.show-mobile-sidebar > * {
-      display: block !important;
-    }
-  }
-</style>
 
 
 </head>
@@ -182,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Lecture Notes</span></a>
+ <span class="menu-text">Lectures</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -196,65 +202,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Appendices</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Problem Classes</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Assignments</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Exams</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Admin</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
-<!-- Desktop Right-Sidebar Buttons -->
-<div class="custom-sidebar-tools">
-<p><a href="#" class="ipynb-download-btn btn btn-outline-primary btn-sm" role="button" style="display: none; width: 100%; margin-bottom: 0.5rem;" target="_blank"> <i class="bi bi-journal-code"></i> Download Notebook (.ipynb) </a> <a href="#" class="ask-question-btn btn btn-outline-secondary btn-sm" role="button" style="width: 100%; margin-bottom: 1rem;" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a></p>
-</div>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Get clean page URL and Title
-    var currentUrl = window.location.origin + window.location.pathname;
-    var pageTitle = document.title || "Lecture";
-    var path = window.location.pathname;
-    var page = path.split("/").pop();
-
-    // Construct encoded parameters for GitHub Issue
-    var issueTitle = encodeURIComponent("[Question] " + pageTitle);
-    var issueBody = encodeURIComponent("**Reference Page:** " + currentUrl + "\n\n**Question:**\n<!-- Type your question here -->");
-    
-    var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new" +
-                   "?template=question.md" +
-                   "&title=" + issueTitle + 
-                   "&body=" + issueBody;
-
-    // 1. Assign Issue URL to all Question Buttons
-    document.querySelectorAll(".ask-question-btn").forEach(function(btn) {
-      btn.setAttribute("href", issueUrl);
-    });
-
-    // 2. Assign Raw Download URL to Notebook Buttons
-    if (page && page.startsWith("lecture") && page.endsWith(".html")) {
-      var ipynbFile = page.replace(".html", ".ipynb");
-      var rawUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + ipynbFile;
-      document.querySelectorAll(".ipynb-download-btn").forEach(function(btn) {
-        btn.setAttribute("href", rawUrl);
-        btn.style.display = "block";
-      });
-    }
-
-    // 3. Clone for narrow screens/mobile footer if present
-    var mainContent = document.querySelector("main.content");
-    var toolsContainer = document.querySelector(".custom-sidebar-tools");
-    if (mainContent && toolsContainer && !document.querySelector(".mobile-custom-tools")) {
-      var mobileTools = toolsContainer.cloneNode(true);
-      mobileTools.classList.add("mobile-custom-tools", "d-lg-none", "mt-4", "pt-3", "border-top");
-      mainContent.appendChild(mobileTools);
-    }
-  });
-</script>
-</div></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
@@ -269,6 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title">Math5485</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Introduction to Numerical Methods I</p>
 </div>
 
 
@@ -299,11 +303,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome" class="level1 unnumbered">
 <h1 class="unnumbered">Welcome!</h1>
-<p>These are the lecture notes for Math 5485, Fall 2026.</p>
+<p>These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.</p>
+<p>Use the links on the side or navigate by chapter:</p>
+<ul>
+<li>Chapter 1: <a href="lecture01.html" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> An Introduction to Numerical Analysis</a></li>
+<li>Chapter 2: Solving Nonlinear Equations in 1d</li>
+<li>Chapter 3: Polynomial Interpolation</li>
+<li>Chapter 4: Numerical Integration</li>
+<li>Chapter 5: Linear systems of equations</li>
+</ul>
+<p>Useful links:</p>
+<div class="d-flex gap-2 flex-wrap my-3">
+<p><a href="syllabus.html" class="btn btn-outline-success btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Syllabus </a> <a href="https://github.com/jackrthomas/Math5485" class="btn btn-outline-dark btn-sm" target="_blank"><i class="bi bi-github"></i> GitHub</a> <a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/" class="btn btn-outline-info btn-sm" target="_blank"><i class="bi bi-archive"></i> Fall 2025 Course</a> <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" class="btn btn-outline-secondary btn-sm" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a> <a href="https://z.umn.edu/Math5486-errors" class="btn btn-outline-danger btn-sm" target="_blank"> <i class="bi bi-exclamation-triangle"></i> Suggest Correction </a> <a href="https://jack.thomaslabs.co.uk/teaching/Math5486-Spring-2026/" class="btn btn-outline-warning btn-sm" target="_blank"><i class="bi bi-link-45deg"></i> Math 5486</a></p>
+</div>
+<p>References</p>
+<ul>
+<li><span class="citation" data-cites="fnc">Driscoll and Braun (<a href="references.html#ref-fnc" role="doc-biblioref">2017</a>)</span></li>
+<li><span class="citation" data-cites="Burden">Burden et al. (<a href="references.html#ref-Burden" role="doc-biblioref">2016</a>)</span></li>
+<li><span class="citation" data-cites="Suli">Süli and Mayers (<a href="references.html#ref-Suli" role="doc-biblioref">2003</a>)</span></li>
+<li><span class="citation" data-cites="Trefethen">Trefethen (<a href="references.html#ref-Trefethen" role="doc-biblioref">2019</a>)</span></li>
+</ul>
 
 
 <!-- -->
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Burden" class="csl-entry" role="listitem">
+Burden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016. <em>Numerical Analysis</em>. 10th ed. Cengage Learning. <a href="https://doi.org/10.13140/2.1.4830.2406">https://doi.org/10.13140/2.1.4830.2406</a>.
+</div>
+<div id="ref-fnc" class="csl-entry" role="listitem">
+Driscoll, Tobin A., and Richard J. Braun. 2017. <em>Fundamentals of Numerical Computation</em>. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611975086">https://doi.org/10.1137/1.9781611975086</a>.
+</div>
+<div id="ref-Suli" class="csl-entry" role="listitem">
+Süli, Endre, and David F. Mayers. 2003. <em>An Introduction to Numerical Analysis</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511801181">https://doi.org/10.1017/CBO9780511801181</a>.
+</div>
+<div id="ref-Trefethen" class="csl-entry" role="listitem">
+Trefethen, Lloyd N. 2019. <em>Approximation Theory and Approximation Practice, Extended Edition</em>. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611975949">https://doi.org/10.1137/1.9781611975949</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -769,7 +806,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome! {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>These are the lecture notes for Math 5485, Fall 2026.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026. </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Use the links on the side or navigate by chapter:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 1: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"lecture01.html"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-primary btn-sm"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-book"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> An Introduction to Numerical Analysis<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2: Solving Nonlinear Equations in 1d</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 3: Polynomial Interpolation</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 4: Numerical Integration</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 5: Linear systems of equations</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Useful links: </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"d-flex gap-2 flex-wrap my-3"</span><span class="dt">&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"syllabus.html"</span><span class="ot"> </span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ot">     class</span><span class="op">=</span><span class="st">"btn btn-outline-success btn-sm"</span><span class="ot"> </span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ot">     target</span><span class="op">=</span><span class="st">"_blank"</span><span class="dt">&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-journal-code"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> Syllabus</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/jackrthomas/Math5485"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-dark btn-sm"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-github"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> GitHub<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-info btn-sm"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-archive"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> Fall 2025 Course<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://github.com/jackrthomas/Math5485/issues/new?template=question.md"</span><span class="ot"> </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ot">     class</span><span class="op">=</span><span class="st">"btn btn-outline-secondary btn-sm"</span><span class="ot"> </span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ot">     target</span><span class="op">=</span><span class="st">"_blank"</span><span class="dt">&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-question-circle"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> Ask a Question</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://z.umn.edu/Math5486-errors"</span><span class="ot"> </span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ot">     class</span><span class="op">=</span><span class="st">"btn btn-outline-danger btn-sm"</span><span class="ot"> </span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ot">     target</span><span class="op">=</span><span class="st">"_blank"</span><span class="dt">&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-exclamation-triangle"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> Suggest Correction</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://jack.thomaslabs.co.uk/teaching/Math5486-Spring-2026/"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-warning btn-sm"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-link-45deg"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> Math 5486<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>References </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>@fnc</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>@Burden</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>@Suli</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>@Trefethen</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
