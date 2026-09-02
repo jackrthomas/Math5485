@@ -1,2 +1,11 @@
 /.quarto/
 **/*.quarto_ipynb
+
+Fall-2025/
+Spring-2026/
+
+answers/
+extras/
+
+Manifest.toml
+Project.toml

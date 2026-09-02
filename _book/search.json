@@ -1,23 +1,211 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Math5485",
-    "section": "",
-    "text": "Welcome!\nThese are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.\nUse the links on the side or navigate by chapter:\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations\n\nUseful links:\n\n  Syllabus   GitHub  Fall 2025 Course   Ask a Question    Suggest Correction   Math 5486\n\nReferences\n\nDriscoll and Braun (2017)\nBurden et al. (2016)\nSüli and Mayers (2003)\nTrefethen (2019)\n\n\n\n\n\n\n\nBurden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016. Numerical Analysis. 10th ed. Cengage Learning. https://doi.org/10.13140/2.1.4830.2406.\n\n\nDriscoll, Tobin A., and Richard J. Braun. 2017. Fundamentals of Numerical Computation. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975086.\n\n\nSüli, Endre, and David F. Mayers. 2003. An Introduction to Numerical Analysis. Cambridge University Press. https://doi.org/10.1017/CBO9780511801181.\n\n\nTrefethen, Lloyd N. 2019. Approximation Theory and Approximation Practice, Extended Edition. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975949.",
-    "crumbs": [
-      "Welcome!"
-    ]
-  },
-  {
     "objectID": "lecture01.html",
     "href": "lecture01.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Subheading\n(knuth84?)\nCode\n1 + 1\n\n\n2",
+    "text": "1.1 Notebooks\nThis website is created using Jupyter Notebooks. They allow you to include Markdown, \\(\\LaTeX\\), and Julia (as well as python and other languages).\nNotebooks are made up from “cells”.",
     "crumbs": [
       "Lectures",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#notebooks",
+    "href": "lecture01.html#notebooks",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Tip\n\n\n\nFollow the steps in installing-julia.html and A1 to learn about notebooks and Julia.\n\n\n\n\nA adds a cell above the currently selected cell,\nB adds a cell below,\nM changes the cell from Julia to markdown,\nY changes the cell from markdown to Julia,\nDouble click or enter to see the syntax and edit cells,\nPress ctrl+enter to exit edit mode,\n\n\nExercise 1.1 Add a new markdown cell below this one and write “Hello world!”",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#markdown",
+    "href": "lecture01.html#markdown",
+    "title": "1  Introduction",
+    "section": "1.2 Markdown",
+    "text": "1.2 Markdown\nText in this cell can be bold, italic, bold italic, quotes\n\n“The only source of knowledge is experience”\n– Einstein\n\nPreformatted text,\n    useful for\npseudocode\n\nBullet points\n\nlevel 2 bullet points\netc..\n\nAnother point\n\n\nYou can also use normal html formatting if you are familiar with that…\n\nMarkdown cheat sheet:   link (opens in a new tab)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#latex",
+    "href": "lecture01.html#latex",
+    "title": "1  Introduction",
+    "section": "1.3 \\(\\LaTeX\\)",
+    "text": "1.3 \\(\\LaTeX\\)\n\\(\\LaTeX\\) allows you to display math: e.g. \\(\\pi \\approx \\frac{22}{7}\\) and \\[f(x) = f(a) + f'(a) (x - a) + \\frac{1}{2} f''(a) (x-a)^2 + R(x).\\]\nMulti-line equations are also possible:\n\\[\\begin{align}\n    \\int_a^b f(x) \\mathrm{d}x\n    %\n    &\\approx \\int_a^b p_n(x) \\mathrm{d}x \\nonumber\\\\\n    %\n    &= \\sum_{j=0}^n w_j f(x_j)  \n\\end{align}\\]\n\\(\\LaTeX\\) cheat sheet:   link (opens in a new tab) \nDraw symbol to get \\(\\LaTeX\\) syntax:   link (opens in a new tab)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#julia",
+    "href": "lecture01.html#julia",
+    "title": "1  Introduction",
+    "section": "1.4 Julia",
+    "text": "1.4 Julia\n\n\nCode\n1+1\n\n\n2\n\n\nYou can use greek symbols in Julia code: type \\pi and tab to get the symbol.\n\n\nCode\nπ \n\n\nπ = 3.1415926535897...\n\n\nYou can add comments with a #:\n\n\nCode\n# Define p\np = 22/7;\n\n\nYou can also use @show to print variables (which also prints the calculation):\n\n\nCode\n@show abs(π-p)/π;\n\n\nabs(π - p) / π = 0.0004024994347707008\n\n\nYou can use println() to output variables (and you can also add text):\n\n\nCode\nprintln( \"The relative error when approximating π by 22/7 is \", abs(π-p)/π)\n\n\nThe relative error when approximating π by 22/7 is 0.0004024994347707008\n\n\n\n1.4.1 Arrays, vectors, and matrices\nArrays start at 1:\n\n\nCode\na = [1 2 3 4 5]\n\n\n1×5 Matrix{Int64}:\n 1  2  3  4  5\n\n\n\n\nCode\na[1]\n\n\n1\n\n\nVectors:\n\n\nCode\nb = [2, 4, 6, 8]\n\n\n4-element Vector{Int64}:\n 2\n 4\n 6\n 8\n\n\nVector of objects:\n\n\nCode\nc = [ a , b , \"hello world\" ]\n\n\n3-element Vector{Any}:\n [1 2 … 4 5]\n [2, 4, 6, 8]\n \"hello world\"\n\n\n\n\nCode\nc[3]\n\n\n\"hello world\"\n\n\nMatrices\nYou can either specify the columns:\n\n\nCode\nX = [ [1, 4] [2, 5] ]\n\n\n2×2 Matrix{Int64}:\n 1  2\n 4  5\n\n\nOr the rows:\n\n\nCode\nY = [ 1 2 ; 4 5 ]\n\n\n2×2 Matrix{Int64}:\n 1  2\n 4  5\n\n\n\n\nLinear Algebra\nIn order to use a certain package, you need to use the using keyword:\n\n\nCode\nusing LinearAlgebra\n\n\nRecall that\n\n\nCode\nX\n\n\n2×2 Matrix{Int64}:\n 1  2\n 4  5\n\n\n\n\nCode\ndet( X )\n\n\n-3.0\n\n\n\n\nCode\ntr( X )\n\n\n6\n\n\n\n\nCode\n(-1/3) * [ 5 -2 ; -4 1 ]\n\n\n2×2 Matrix{Float64}:\n -1.66667   0.666667\n  1.33333  -0.333333\n\n\n\n\nCode\ninv( X )\n\n\n2×2 Matrix{Float64}:\n -1.66667   0.666667\n  1.33333  -0.333333\n\n\n\n\nCode\nϵ, v = eigen( X )\n\n\nEigen{Float64, Float64, Matrix{Float64}, Vector{Float64}}\nvalues:\n2-element Vector{Float64}:\n -0.4641016151377544\n  6.464101615137754\nvectors:\n2×2 Matrix{Float64}:\n -0.806898  -0.343724\n  0.59069   -0.939071\n\n\n\n\nCode\nv1 = v[1:2,1]; # gets the first column of v\nnorm( ( X - ϵ[1] * Diagonal([1, 1]) ) * v1 )\n\n\n2.220446049250313e-16\n\n\n\n\n1.4.2 Functions\n\n\nCode\nf = x -&gt; cos( x );\nf( π )\n\n\n-1.0\n\n\n\n\nCode\n# vectorisation = entry-wise functuions --&gt; use dot!\nf.( [-π, 0, π] )\n\n\n3-element Vector{Float64}:\n -1.0\n  1.0\n -1.0\n\n\n\n\nCode\n# you can also specify the vectorisation at the start:\n@. f( [-π, 0, π] )\n\n\n3-element Vector{Float64}:\n -1.0\n  1.0\n -1.0\n\n\nIn order to plot functions we need the Plots package and, in order to write \\(\\LaTeX\\) in the titles and labels, we need LaTeXStrings.\n\n\nCode\nusing Plots, LaTeXStrings\n\n\n\n\nCode\ng(x) = x/exp(x)\nplot( g, -5, 1, label=\"hello\" )\n\n\n\n\n\n\n\nCode\nX = -5:.01:1;\nY = X .* exp.(X) ;\n \nplot( X, Y; \n    label = L\"f(w) = w e^w\", \n    xlabel = L\"w\", ylabel = \"not latex\", \n    title = \"L\\\"\\\" is a LaTeX string and \\\"\\\" a normal string\" ) \n\n\n\n\n\n\n\nCode\nX = range(0, 10, length=100)\nY1 = @. sin(X) / X\nY2 = cos.(X)\nplot( X, [Y1 Y2], \n        xlabel=L\"x\", \n        label=[L\"\\frac{\\sin x}{x}\" L\"\\cos x\"], \n        linewidth=[4 2], \n        lc=[:green :blue]) \n\n\n\n\n\n\n\nFigure 1.1: Ploting two functions on one graph\n\n\n\n\nIn Figure 1.1, you can see two graphs!\n\n\n\n\n\n\nNote\n\n\n\nIf you are looking at the code, don’t worry about the @fig-1 or the ::: {.callout-note} syntax - this adds the html/css elements so that the webpage looks nicer.\n\n\n! is like “hold on” in Matlab (if you are familar with that!)\n\n\nCode\nf3(x) = 1 / (1 + x^2);\nf4(x) = 1 / (1 + sin(x)^2);\nplot(f3, -π, π, \n        lw=3, \n        label = L\"f_1(x) = \\frac{1}{1+x^2}\");\nplot!(f4, -π, π, \n        lw = 3, \n        label = L\"f_2(x) = \\frac{1}{1+\\sin^2(x)}\", \n        size = (600, 250), legend = :outertopright )\n\n\n\n\n\n\n\nFigure 1.2: Ploting functions",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#math-5486",
+    "href": "lecture01.html#math-5486",
+    "title": "2  Introduction",
+    "section": "3.1 Math 5486",
+    "text": "3.1 Math 5486\n\nChapter 1: Initial Value Problems\nChapter 2: Iterative Methods in Matrix Algebra\nChapter 3: Finite Differences for Boundary Value Problems\nChapter 4: Numerical Solution to PDEs\n\n\n\n\n\n\n\nTipTO-DO\n\n\n\n\nRead: Relevant sections of the lecture notes for Math 5485 if anything from today was unclear,\nRead: Pages 259–268 of Burden et al. (2016) - please come to the lecture next week with any questions you have,\nAssignment 1: Due Wednesday,\n(Sign-up to office hours if you like)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html",
+    "href": "appendix/syllabus.html",
+    "title": "Appendix A — Course Syllabus",
+    "section": "",
+    "text": "A.1 Summary\nFall 2026\nFirst part of a two-semester sequence that explores the design and implementation of numerical methods to solve the most common types of problems arising in science and engineering. Typically these problems cannot be solved in terms of a classical analytical formula, and thus numerical methods must be used to approximate the solution. Topics include: how a computer does arithmetic, solving nonlinear equations in one variable, polynomial interpolation and approximation, methods for solving linear systems, and matrix eigenvalue problems. We study how and why numerical methods work, and also their errors and limitations.\nIn   Math 5486 (opens in a new tab) , we will study numerical integration and differentiation, solving initial and boundary value ODEs, and (time permitting) PDEs.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#prerequisites",
+    "href": "appendix/syllabus.html#prerequisites",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.2 Prerequisites",
+    "text": "A.2 Prerequisites\nMath [2243 or 2373 or 2573]. This course assumes knowledge of calculus, linear algebra, and differential equations, and familiarity with some programming language.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#goals-and-objectives",
+    "href": "appendix/syllabus.html#goals-and-objectives",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.3 Goals and Objectives",
+    "text": "A.3 Goals and Objectives\n\nGain familiarity with numerical methods for approximating solutions to common problems arising in science,\nBe able to explain when and why certain methods do (or do not) work,\nJustify your explanations with rigorous error analysis,\nTest your understanding by implementing numerical methods and completing Jupyter notebooks.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#format",
+    "href": "appendix/syllabus.html#format",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.4 Format",
+    "text": "A.4 Format\nTwo lectures per week (9:05-11 MW). Combination of blackboard (theory), Jupyter notebooks (practice), and problem classes.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#textbooks",
+    "href": "appendix/syllabus.html#textbooks",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.5 Textbooks",
+    "text": "A.5 Textbooks\nWe will use written up lecture notes from last year as well as the following texts, interactive notebooks, and (parts of) research articles:\n\nE. Süli and D. Mayers, An Introduction to Numerical Analysis, Cambridge University Press, 2003 (Süli and Mayers 2003)\nR. L. Burden, D. J. Faires, and A. M. Burden, Numerical Analysis, 10th Edition, Cengage, 2016 (Burden et al. 2016)\nT. A. Driscoll and R. J. Braun, Fundamentals of Numerical Computation. Available online https://fncbook.com/ (Driscoll and Braun 2017)\n\nOther books which may be useful for parts of the course:\n\nL. N. Trefethen, Approximation Theory and Approximation Practice (Trefethen 2019).\n\nAdditional references will be provided on the   webpage (opens in a new tab) .",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#course-grading",
+    "href": "appendix/syllabus.html#course-grading",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.6 Course Grading",
+    "text": "A.6 Course Grading\nThe course will be graded by a combination of exams (midterm on the content of the first 7 weeks and final on the content of the whole course), assignments (Juptyer notebooks), and in-class tests (15 min test on course content at the start of the lectures).\n\nMidterm: Wed 28 Oct 9:05-11:00\nFinal: Sat 19 Dec 10:30-12:30\n\nThe course grade is determined by the following components:\n\nAssignments & Participation 20%\nIn-class tests 20%\nMidterm 20%\nA: Final Exam 40%, or\nB: Final Exam 30%, Presentation 10%\n\nYou will be given the opportunity to give a short presentation in the second half of the semester. If your final exam score is higher than the score for your presentation, your final exam will be worth 40% and your presentation will be worth 0% (we will take the maximum of A and B, as above).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#course-schedule",
+    "href": "appendix/syllabus.html#course-schedule",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.7 Course Schedule",
+    "text": "A.7 Course Schedule\nHere is the planned course schedule (which is subject to change).\nL = lecture, A = assignment, T = in-class test\n\n\n\nCourse schedule\n\n\nSee   Course Schedule (opens in a new tab)  for an up-to-date version.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#course-policies",
+    "href": "appendix/syllabus.html#course-policies",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.8 Course Policies",
+    "text": "A.8 Course Policies\nAttendance in class is mandatory. If you cannot attend the class for any reason, please let me know.\nYou will have at least one week to complete assignments. Assignments must be uploaded to Canvas by the deadline. Late assignments will not be accepted and score 0, though the application for an extension can be considered at most twice under reasonable circumstances, and you must send an email to me (cc Grader) as early as possible. If you get an extension, the assignment will be due on the following Monday at 9am (so that we may go through answers in class).\nI encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own.\nThere is no make-up for in-class tests: if you are absent with good reason, the corresponding proportion can be added to the remaining in-class tests.\nThere is no make-up for the midterm exam: if you are absent with good reason, the corresponding proportion can be added to the final exam instead.\nIf accommodation for exams in the DRC center is needed, you have to send the accommodation letter to me as soon as possible.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#ai-usage",
+    "href": "appendix/syllabus.html#ai-usage",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.9 AI usage",
+    "text": "A.9 AI usage\nThe Board of Regents Student Conduct Code states the following in Section IV, Subd.1: Scholastic Dishonesty:\n“Scholastic dishonesty means plagiarism; cheating on assignments or examinations, including the unauthorized use of online learning support and testing platforms; engaging in unauthorized collaboration on academic work, including the posting of student-generated coursework on online learning support and testing platforms not approved for the specific course in question; taking, acquiring, or using course materials without faculty permission, including the posting of faculty-provided course materials on online learning and testing platforms; …”\nGenerative AI systems and online assignment help tools are online learning support platforms, which cannot be used for course assignments. We are testing your knowledge and understanding, not your ability to use GenAI.\nThe use of online learning support platforms are forms of scholastic dishonesty and will be treated as such.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#workload",
+    "href": "appendix/syllabus.html#workload",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.10 Workload",
+    "text": "A.10 Workload\nThis course is 4 credits. As per https://policy.umn.edu/education/timepercredit, this means you are expected to spend 3 hours x 4 = 12 hours per week on this course. This includes 4 hours of lectures, leaving 8 hours for reading lecture notes and other resources provided to you, completing assignments, preparing for in-class tests, presentations, mid-term and final.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#important-dates",
+    "href": "appendix/syllabus.html#important-dates",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.11 Important dates",
+    "text": "A.11 Important dates\n  Term dates (opens in a new tab)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#university-policy-statements",
+    "href": "appendix/syllabus.html#university-policy-statements",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.12 University Policy Statements",
+    "text": "A.12 University Policy Statements\nThe University’s Education & Student life policies are available in the online Policy Library.\nThe University seeks an environment that promotes academic achievement and integrity, that is protective of free inquiry, and that serves the educational mission of the University. To support this environment, the University seeks a community that is free from violence, threats, and intimidation; that is respectful of the rights, opportunities, and welfare of students, faculty, staff, and guests of the University; and that does not threaten the physical or mental health or safety of members of the University community.\nAs a student at the University, you are expected to adhere to Board of Regents Policy: Student Conduct Code.\nThe following links to University Policy Statements are provided for your reference:\n\nSexual harassment, sexual assault, stalking and relationship violence\n\nEquity, Diversity, Equal Employment Opportunity, and Affirmative Action\n\nDisability Services\n\nAcademic Freedom and Responsibility.\n\nResources related to mental health, stress management, and counseling can be found here.\n\n\n\n\nBurden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016. Numerical Analysis. 10th ed. Cengage Learning. https://doi.org/10.13140/2.1.4830.2406.\n\n\nDriscoll, Tobin A., and Richard J. Braun. 2017. Fundamentals of Numerical Computation. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975086.\n\n\nSüli, Endre, and David F. Mayers. 2003. An Introduction to Numerical Analysis. Cambridge University Press. https://doi.org/10.1017/CBO9780511801181.\n\n\nTrefethen, Lloyd N. 2019. Approximation Theory and Approximation Practice, Extended Edition. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975949.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/installing-julia.html",
+    "href": "appendix/installing-julia.html",
+    "title": "Appendix B — Installing Julia & Jupyter",
+    "section": "",
+    "text": "Follow the instructions at Install Julia to install juliaup (for me, all I had to do was enter winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore in the command line but this will be different for different operating systems)\nEnter julia in the command line to install and run the most recent version of Julia - after a short wait, you will see this\n\n\n\n\nimage.png\n\n\n\nUse ] (closing square bracket) to enter package management mode,\n\n\n\n\nimage-2.png\n\n\n\nEnter add IJulia (this package will allow you to use Julia in notebooks):\n\n\n\n\nimage-3.png\n\n\n\nDo the same with Plots, PrettyTables and LaTeXStrings, \nPress Backspace,\n\n\n\n\nimage-4.png\n\n\n\nEnter using IJulia and then notebook() to download Jupyter notebooks (confirm by entering y)\n\n\n\n\nimage-5.png\n\n\n\nAfter installation, Jupyter will launch in the browser\n\n\n\n\nimage-6.png\n\n\n\nYou should then be able to create a new folder for your assignments and add A1 Jupyter Notebooks, LaTeX & Julia.ipynb (when it becomes available)\nTo open Jupyter next time, just enter using IJulia and then notebook() again:\n\n\n\n\nimage-7.png",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Installing Julia & Jupyter</span>"
     ]
   },
   {
@@ -29,6 +217,60 @@
     "crumbs": [
       "Appendices",
       "Resources"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Math5485",
+    "section": "",
+    "text": "Welcome!\nThese are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.\nUse the links on the side or navigate by chapter:\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations\n\nUseful links:\n\n\n  Syllabus (opens in a new tab)     Canvas (opens in a new tab)     GitHub (opens in a new tab)     ChimeIn (opens in a new tab)     Fall 2025 Course (opens in a new tab)     Ask a Question (opens in a new tab)     Suggest Correction (opens in a new tab)    Course Catalog (opens in a new tab)     Math 5486 (opens in a new tab)    Email (opens in a new tab)    Office hours sign up (opens in a new tab)",
+    "crumbs": [
+      "Welcome!"
+    ]
+  },
+  {
+    "objectID": "lecture00.html",
+    "href": "lecture00.html",
+    "title": "1  title",
+    "section": "",
+    "text": "Warning\n\n\n\n\n\nThese lecture notes are mainly a record of what we discussed in class. They should not be used as a replacement for attending lectures or reading books. Please let me know if you find any errors or have any questions about the material.\n\n\n\n\n\n\n\n\n\nTipHypothesis\n\n\n\n\n\nYou can use the Hypothesis commenting system available on the right side panel (you can login with your U/Google account). This allows you annotate the notes (private) and leave comments or reply to other people’s comments (public).\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\n\nI encourage you to download the lecture notes and play around with the Julia code.\n\n\n\n\n  Download (.ipynb)    Ask a Question    ChimeIn (opens in a new tab) \n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nA note\n\n\n\n\n\n\n\n\nTipA tip\n\n\n\n\n\nWords\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nImportant words\n\n\n\n\n\n\n\n\nWarning\n\n\n\na warning\n\n\n\n\n\n\n\n\nCaution\n\n\n\ncaution\n\n\n\nExample 1.1  \n\n\nExercise 1.1  \n\n\nTheorem 1.1 (Theorem)  \n\n\nLemma 1.1 (Lemma)  \n\n\nCorollary 1.1 (Corollary)  \n\n\nProposition 1.1 (Proposition)  \n\n\nConjecture 1.1 (Conjecture)  \n\n\nDefinition 1.1 (Definition)  \n\n\nExample 1.2 (Example)  \n\n\nExercise 1.2 (Exercise)  \n\n\nSolution 1.1 (Solution). \n\n\nRemark 1.1 (Remark). \n\nTheorem 1.1\nLemma 1.1\nCorollary 1.1\nProposition 1.1\nConjecture 1.1\nDefinition 1.1\nExample 1.2\nExercise 1.2\nSolution 1.1\nRemark 1.1",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>title</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#math-5485",
+    "href": "lecture01.html#math-5485",
+    "title": "1  Introduction",
+    "section": "1.5 Math 5485",
+    "text": "1.5 Math 5485\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#sec-chapter-1",
+    "href": "lecture01.html#sec-chapter-1",
+    "title": "1  Introduction",
+    "section": "1.6 Chapter 1: Basics of Numerical Analysis",
+    "text": "1.6 Chapter 1: Basics of Numerical Analysis\n\nAbsolute and relative error\nRate of convergence\nUsing plots to show rate of convergence\n\nSuppose we approximate \\(x\\) with \\(\\widetilde{x}\\). Here, \\(x\\) could be e.g. a root (or fixed point) of a function, the value of an integral, the solution of an ODE or PDE evaluated at a point, …. .\n\nDefinition 1.1 (Errors) We define:\n\\[\\begin{align}\n\\text{Actual error:} &\\quad x - \\widetilde{x} \\\\\n\\text{Absolute error:} &\\quad |x - \\widetilde{x}|\n\\end{align}\\]\nAnd when \\(x \\neq 0\\), the relative error is:\n\\[\\begin{align}\n\\text{Relative error:} \\quad \\frac{|x - \\widetilde{x}|}{|x}\n\\end{align}\\]\n\n\nExample 1.1 If \\(x = 1.5\\) and \\(\\widetilde{x} = 1\\), then the absolute error is \\(0.5\\) and the relative error is \\(\\frac{0.5}{1.5} = \\frac13\\).\nIf \\(x = 1.5 \\times 10^{42}\\) and \\(\\widetilde{x} = 10^{42}\\), then the absolute error is \\(0.5 \\times 10^{42}\\) and the relative error is \\(\\frac13\\).\nIf \\(x = 1.5 \\times 10^{-42}\\) and \\(\\widetilde{x} = 10^{-42}\\), then the absolute error is \\(0.5 \\times 10^{-42}\\) and the relative error is \\(\\frac13\\).\n\nThe relative error is a better measure for small or large \\(x\\):\n\nExample 1.2 Approximating Planck’s constant \\(6.62607015 \\times 10^{-34} \\text{m}^2 \\text{kg } \\text{s}^{-1}\\) with \\(0 \\text{m}^2 \\text{kg } \\text{s}^{-1}\\) would give an absolute error of \\(\\approx 6 \\times 10^{-34}\\) (which seems small) but a relative error of \\(1\\). In practice \\(0\\) is a bad approximation to Planck’s constant!\n\n\nDefinition 1.2 (Number of accurate digits) Suppose \\(x \\not= 0\\) is approximated by \\(\\widetilde{x}\\). Then, we say this approximation is accurate to\n\\[\\eta := -\\log_{10} \\left| \\frac{x-\\widetilde{x}}{x} \\right| \\]\ndigits.\n\n\nExample 1.3 Approximating \\(e := \\lim_{n\\to\\infty} \\big( 1 + \\frac1n \\big)^n \\approx 2.7182818.....\\) with \\(3, 2.7,\\) and \\(2.718\\) gives \\(\\eta = 0.98, 2.17\\), and \\(3.98\\) (to \\(2\\) decimal places), respectively.\n\nWe now consider a sequence of approximations \\(x_n\\) converging to \\(x\\). That is, for all \\(\\varepsilon &gt; 0\\), there exists \\(N=N(\\varepsilon)\\) such that \\(|x - x_n| &lt; \\varepsilon\\) for all \\(n &gt; N\\). In numerical analysis, we are interested in (i) whether our numerical schemes converge, and (ii) the rate of convergence:\n\nDefinition 1.3 (Rate of convergence) Suppose \\(\\varepsilon_n \\geq 0\\) and \\((\\varepsilon_n) \\to 0\\). Then, \\(x_n \\to x\\) with rate \\(O(\\varepsilon_n)\\) if there exist \\(C\\) and \\(N\\) such that\n\\[\n|x - x_n| \\leq C\\varepsilon_n\n\\]\nfor all \\(n &gt; N\\). We also write \\(x_n = x + O(\\varepsilon_n)\\).\n\n\nExercise 1.2 Show that \\(\\frac{n + \\cos(n)}{n^2} = O(\\frac1n)\\) and \\(\\frac{n^2+3}{n^{42}} = O(\\frac1{n^{40}})\\).\n\nWhen plotting graphs, \\(O(n^{-k})\\) decay (that is, algebraic decay) can be seen as straight lines on log-log plots (\\(-k\\) is the slope in such graphs):\n\n\nCode\nN = 1:100;\nplot( N.^(-1) ;\n    xlabel=\"n\", xaxis=:log, yaxis=:log, \n    linestyle = :dot, lw=2, label = L\"n^{-1}\")\nplot!( N.^(-2); \n    linestyle = :dot, lw=2, label = L\"n^{-2}\")\nplot!( N.^(-5); \n    linestyle = :dot, lw=2, label = L\"n^{-5}\")\n\n\n\n\n\nOn the other hand, \\(O(e^{-c N})\\) (that is, exponential decay) can be seen as straight lines on a semi-log y plot (and \\(-c\\) is the gradient):\n\n\nCode\nplot( exp.(-N);\n    xlabel=\"n\", yaxis=:log, \n    linestyle = :dot, lw=2, label = L\"e^{-n}\")\nplot!( exp.(-2 .* N ); \n    linestyle = :dot, lw=2, label = L\"e^{-2n}\")\nplot!( exp.(-5 .* N ); \n    linestyle = :dot, lw=2, label = L\"e^{-5n}\")\n\n\n\n\n\n\n\n\n\n\n\nTipTO-DO\n\n\n\n\nAssignment 1: Due Wednesday (Install Julia),\nExercises (below)\n(Sign-up to office hours if you like)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "lecture01.html#exercises-chapter-1",
+    "href": "lecture01.html#exercises-chapter-1",
+    "title": "1  Introduction",
+    "section": "1.7 Exercises (Chapter 1)",
+    "text": "1.7 Exercises (Chapter 1)\n\nExercise 1.3 (Approximating Euler’s constant) Let \\(e\\) denote Euler’s constant.\n\n\\(e_N := \\big( 1 + \\frac{1}{N} \\big)^N\\) is an approximation \\(e\\). What is the error, absolute error, and relative error in approximating \\(e\\) with \\(e_N\\) for \\(N = 1,2,...,10\\)? What are the number of accurate digits in this approximation?\nWhat is the rate of convergence of \\(e_N\\) to \\(e\\)?\n\n\n\nExercise 1.4 (Approximating Euler-Mascheroni constant) Euler-Mascheroni constant, \\(\\gamma\\), is defined as the limit \\(\\sum_{k=1}^n \\frac{1}{k} - \\log n\\) as \\(n \\to \\infty\\).\n\nWhat is the absolute error in approximating \\(\\gamma\\) with \\(\\gamma_{1000}\\)?\nWhat is the rate of convergence of \\(\\gamma_n\\) to \\(\\gamma\\)?\n[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]\nProve that \\(|\\gamma - \\gamma_n| \\leq \\frac1n\\).\n\n\n\n\n\n\n\n\nTipSolutions\n\n\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   }
 ]

@@ -19,5 +19,14 @@
   },
   "syllabus.qmd": {
     "syllabus.html": "6add45db"
+  },
+  "syllabus.ipynb": {
+    "syllabus.html": "d61b0789"
+  },
+  "appendix/syllabus.ipynb": {
+    "syllabus.html": "5a180160"
+  },
+  "appendix/installing-julia.ipynb": {
+    "installing-julia.html": "f23bb535"
   }
 }

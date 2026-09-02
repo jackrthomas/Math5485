@@ -1,0 +1,63 @@
+::: {.callout-warning collapse="false" style="margin-bottom: 0.25rem; margin-top: 0.0rem;"}
+These lecture notes are mainly a record of what we discussed in class. They should not be used as a replacement for attending lectures or reading books. Please let me know if you find any errors or have any questions about the material. 
+:::
+
+::: {.callout-tip collapse="false" style="margin-top: 0.25rem; margin-bottom: 0.25rem;"}
+# Hypothesis
+You can use the Hypothesis commenting system available on the right side panel (you can login with your U/Google account). This allows you annotate the notes (private) and leave comments or reply to other people's comments (public). 
+::: 
+
+::: {.callout-note collapse="false" style="margin-top: 0.25rem;"}
+I encourage you to download the lecture notes and play around with the Julia code. 
+:::
+
+<div class="custom-lecture-buttons my-3 d-flex gap-2">
+  <a href="#" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank">
+    <i class="bi bi-journal-code"></i> Download (.ipynb)
+  </a>
+  <a href="#" class="btn-ask-question btn btn-outline-secondary btn-sm" target="_blank">
+    <i class="bi bi-question-circle"></i> Ask a Question
+  </a>
+  <a href="https://chimein.cla.umn.edu/join/330276" 
+     class="btn btn-outline-success btn-sm" 
+     target="_blank" 
+     rel="noopener noreferrer">
+    <i class="bi bi-asterisk me-1" aria-hidden="true"></i>
+    ChimeIn
+    <span class="visually-hidden">(opens in a new tab)</span>
+  </a>
+</div>
+
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" 
+        class="btn btn-dark btn-sm rounded-circle shadow position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" 
+        style="width: 42px; height: 42px; z-index: 1050;" 
+        title="Go to Top">
+  <i class="bi bi-arrow-up fs-5"></i>
+</button>
+
+<script>
+(function() {
+  // Extract notebook file name from current page
+  var path = window.location.pathname.replace(/\/$/, "");
+  var page = path.split("/").pop().replace(/\.html$/, "") || "lecture01";
+  
+  // 1. Set Raw Notebook Download URL
+  var rawNotebookUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/" + page + ".ipynb";
+  var downloadBtn = document.querySelector(".btn-download-ipynb");
+  if (downloadBtn) {
+    downloadBtn.setAttribute("href", rawNotebookUrl);
+  }
+
+  // 2. Set Ask a Question URL with current page title & URL pre-filled
+  var pageTitle = encodeURIComponent("[Question] " + (document.title || page));
+  var currentUrl = encodeURIComponent(window.location.href);
+  var issueBody = encodeURIComponent("**Reference Page:** " + decodeURIComponent(currentUrl) + "\n\n**Question/comment:**\n[Your question/query/suggestion/comment here]");
+  
+  var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md&title=" + pageTitle + "&body=" + issueBody;
+  
+  var questionBtn = document.querySelector(".btn-ask-question");
+  if (questionBtn) {
+    questionBtn.setAttribute("href", issueUrl);
+  }
+})();
+</script>

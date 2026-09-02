@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jack Thomas">
-<meta name="dcterms.date" content="2026-09-02">
 
-<title>Math5485</title>
+<title>Appendix B — Installing Julia &amp; Jupyter – Math5485</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -28,63 +26,29 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lecture00.html" rel="next">
-<link href="./images/pi.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../references.html" rel="next">
+<link href="../appendix/syllabus.html" rel="prev">
+<link href="../images/pi.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-60e774d9130576dfbd61553c06ce0eee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,6 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
@@ -120,10 +85,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -132,7 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome!</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/installing-julia.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -144,14 +109,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Math5485</a> 
+      <a href="../">Math5485</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
     <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Math5485.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="../Math5485.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -164,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
@@ -179,14 +144,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lecture00.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">title</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lecture01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  <a href="../lecture01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
       </ul>
@@ -214,19 +173,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -237,41 +196,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/installing-julia.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Math5485</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">Introduction to Numerical Methods I</p>
+<h1 class="title">Appendix B — Installing Julia &amp; Jupyter</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jack Thomas </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 2, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -281,28 +221,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome!</h1><p><img src="images/PCA-5485-2.gif" title="Math5485" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.</p>
-<p>Use the links on the side or navigate by chapter:</p>
 <ul>
-<li>Chapter 1: <a href="lecture01.html#sec-chapter-1" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> An Introduction to Numerical Analysis</a></li>
-<li>Chapter 2: Solving Nonlinear Equations in 1d</li>
-<li>Chapter 3: Polynomial Interpolation</li>
-<li>Chapter 4: Numerical Integration</li>
-<li>Chapter 5: Linear systems of equations</li>
+<li><p>Follow the instructions at <a href="https://julialang.org/downloads/">Install Julia</a> to install <code>juliaup</code> (for me, all I had to do was enter <code>winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code> in the command line but this will be different for different operating systems)</p></li>
+<li><p>Enter <code>julia</code> in the command line to install and run the most recent version of Julia - after a short wait, you will see this</p></li>
 </ul>
-<p>Useful links:</p>
-<nav aria-label="Course links" class="d-flex gap-2 flex-wrap my-3">
-<!-- Syllabus -->
-<a href="appendix/syllabus.html" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-journal-text me-1" aria-hidden="true"></i> Syllabus <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Canvas --> <a href="https://canvas.umn.edu/courses/579983" class="btn btn-outline-danger btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-asterisk me-1" aria-hidden="true"></i> Canvas <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- GitHub --> <a href="https://github.com/jackrthomas/Math5485" class="btn btn-outline-dark btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-github me-1" aria-hidden="true"></i> GitHub <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Canvas --> <a href="https://chimein.cla.umn.edu/join/330276" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-asterisk me-1" aria-hidden="true"></i> ChimeIn <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Fall 2025 Course --> <a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-archive me-1" aria-hidden="true"></i> Fall 2025 Course <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Ask a Question --> <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-question-circle me-1" aria-hidden="true"></i> Ask a Question <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Suggest Correction --> <a href="https://z.umn.edu/Math5486-errors" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-exclamation-triangle me-1" aria-hidden="true"></i> Suggest Correction <span class="visually-hidden">(opens in a new tab)</span> </a> <a href="https://umtc.catalog.prod.coursedog.com/courses/0043011/tab-aoYks)" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-journal-text me-1" aria-hidden="true"></i> Course Catalog <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Math 5486 --> <a href="https://jack.thomaslabs.co.uk/teaching/Math5486-Spring-2026/" class="btn btn-outline-warning btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-box-arrow-up-right me-1" aria-hidden="true"></i> Math 5486 <span class="visually-hidden">(opens in a new tab)</span> </a> <a href="mailto:thom9218@umn.edu" class="btn btn-outline-danger btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-envelope-fill me-1" aria-hidden="true"></i> Email <span class="visually-hidden">(opens in a new tab)</span> </a> <a href="https://z.umn.edu/JT-office" class="btn btn-outline-dark btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-calendar-check me-1" aria-hidden="true"></i> Office hours sign up <span class="visually-hidden">(opens in a new tab)</span> </a>
-</nav>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-7-image.png" class="img-fluid figure-img"></p>
+<figcaption>image.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>Use ] (closing square bracket) to enter package management mode,</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-1-image-2.png" class="img-fluid figure-img"></p>
+<figcaption>image-2.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>Enter <code>add IJulia</code> (this package will allow you to use Julia in notebooks):</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-2-image-3.png" class="img-fluid figure-img"></p>
+<figcaption>image-3.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>Do the same with <code>Plots</code>, <code>PrettyTables</code> and <code>LaTeXStrings</code>,&nbsp;</li>
+<li>Press Backspace,</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-3-image-4.png" class="img-fluid figure-img"></p>
+<figcaption>image-4.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>Enter <code>using IJulia</code> and then <code>notebook()</code> to download Jupyter notebooks (confirm by entering <code>y</code>)</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-4-image-5.png" class="img-fluid figure-img"></p>
+<figcaption>image-5.png</figcaption>
+</figure>
+</div>
+<ul>
+<li>After installation, Jupyter will launch in the browser</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-5-image-6.png" class="img-fluid figure-img"></p>
+<figcaption>image-6.png</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>You should then be able to create a new folder for your assignments and add <code>A1 Jupyter Notebooks, LaTeX &amp; Julia.ipynb</code> (when it becomes available)</p></li>
+<li><p>To open Jupyter next time, just enter using IJulia and then notebook() again:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="installing-julia_files/figure-html/ca329280-6-image-7.png" class="img-fluid figure-img"></p>
+<figcaption>image-7.png</figcaption>
+</figure>
+</div>
 
 
-<!-- -->
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -758,32 +744,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../appendix/syllabus.html" class="pagination-link" aria-label="Course Syllabus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lecture00.html" class="pagination-link" aria-label="title">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">title</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link" aria-label="Resources">
+        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome! {.unnumbered}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026. </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Use the links on the side or navigate by chapter:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 1: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"lecture01.html#sec-chapter-1"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-primary btn-sm"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-book"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> An Introduction to Numerical Analysis<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2: Solving Nonlinear Equations in 1d</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 3: Polynomial Interpolation</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 4: Numerical Integration</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 5: Linear systems of equations</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Useful links: </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>{{&lt; include extras/_useful-links.html &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/installing-julia.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
