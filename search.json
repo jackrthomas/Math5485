@@ -4,9 +4,152 @@
     "href": "index.html",
     "title": "Math5485",
     "section": "",
-    "text": "Welcome!\nThese are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.\nUse the links on the side or navigate by chapter:\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations\n\nUseful links:\n\n  Syllabus   GitHub  Fall 2025 Course   Ask a Question    Suggest Correction   Math 5486\n\nReferences\n\nDriscoll and Braun (2017)\nBurden et al. (2016)\nSüli and Mayers (2003)\nTrefethen (2019)\n\n\n\n\n\n\n\nBurden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016. Numerical Analysis. 10th ed. Cengage Learning. https://doi.org/10.13140/2.1.4830.2406.\n\n\nDriscoll, Tobin A., and Richard J. Braun. 2017. Fundamentals of Numerical Computation. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975086.\n\n\nSüli, Endre, and David F. Mayers. 2003. An Introduction to Numerical Analysis. Cambridge University Press. https://doi.org/10.1017/CBO9780511801181.\n\n\nTrefethen, Lloyd N. 2019. Approximation Theory and Approximation Practice, Extended Edition. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975949.",
+    "text": "Welcome!\nThese are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.\nUse the links on the side or navigate by chapter:\n\nChapter 1:  An Introduction to Numerical Analysis\nChapter 2: Solving Nonlinear Equations in 1d\nChapter 3: Polynomial Interpolation\nChapter 4: Numerical Integration\nChapter 5: Linear systems of equations\n\nUseful links:\n\n\n  Syllabus (opens in a new tab)     Canvas (opens in a new tab)     GitHub (opens in a new tab)     ChimeIn (opens in a new tab)     Fall 2025 Course (opens in a new tab)     Ask a Question (opens in a new tab)     Suggest Correction (opens in a new tab)    Course Catalog (opens in a new tab)     Math 5486 (opens in a new tab)    Email (opens in a new tab)    Office hours sign up (opens in a new tab)",
     "crumbs": [
       "Welcome!"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html",
+    "href": "appendix/syllabus.html",
+    "title": "Appendix A — Course Syllabus",
+    "section": "",
+    "text": "A.1 Summary\nFall 2026\nFirst part of a two-semester sequence that explores the design and implementation of numerical methods to solve the most common types of problems arising in science and engineering. Typically these problems cannot be solved in terms of a classical analytical formula, and thus numerical methods must be used to approximate the solution. Topics include: how a computer does arithmetic, solving nonlinear equations in one variable, polynomial interpolation and approximation, methods for solving linear systems, and matrix eigenvalue problems. We study how and why numerical methods work, and also their errors and limitations.\nIn   Math 5486 (opens in a new tab) , we will study numerical integration and differentiation, solving initial and boundary value ODEs, and (time permitting) PDEs.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#prerequisites",
+    "href": "appendix/syllabus.html#prerequisites",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.2 Prerequisites",
+    "text": "A.2 Prerequisites\nMath [2243 or 2373 or 2573]. This course assumes knowledge of calculus, linear algebra, and differential equations, and familiarity with some programming language.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#goals-and-objectives",
+    "href": "appendix/syllabus.html#goals-and-objectives",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.3 Goals and Objectives",
+    "text": "A.3 Goals and Objectives\n\nGain familiarity with numerical methods for approximating solutions to common problems arising in science,\nBe able to explain when and why certain methods do (or do not) work,\nJustify your explanations with rigorous error analysis,\nTest your understanding by implementing numerical methods and completing Jupyter notebooks.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#format",
+    "href": "appendix/syllabus.html#format",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.4 Format",
+    "text": "A.4 Format\nTwo lectures per week (9:05-11 MW). Combination of blackboard (theory), Jupyter notebooks (practice), and problem classes.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#textbooks",
+    "href": "appendix/syllabus.html#textbooks",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.5 Textbooks",
+    "text": "A.5 Textbooks\nWe will use written up lecture notes from last year as well as the following texts, interactive notebooks, and (parts of) research articles:\n\nE. Süli and D. Mayers, An Introduction to Numerical Analysis, Cambridge University Press, 2003 (Süli and Mayers 2003)\nR. L. Burden, D. J. Faires, and A. M. Burden, Numerical Analysis, 10th Edition, Cengage, 2016 (Burden et al. 2016)\nT. A. Driscoll and R. J. Braun, Fundamentals of Numerical Computation. Available online https://fncbook.com/ (Driscoll and Braun 2017)\n\nOther books which may be useful for parts of the course:\n\nL. N. Trefethen, Approximation Theory and Approximation Practice (Trefethen 2019).\n\nAdditional references will be provided on the   webpage (opens in a new tab) .",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#course-grading",
+    "href": "appendix/syllabus.html#course-grading",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.6 Course Grading",
+    "text": "A.6 Course Grading\nThe course will be graded by a combination of exams (midterm on the content of the first 7 weeks and final on the content of the whole course), assignments (Juptyer notebooks), and in-class tests (15 min test on course content at the start of the lectures).\n\nMidterm: Wed 28 Oct 9:05-11:00\nFinal: Sat 19 Dec 10:30-12:30\n\nThe course grade is determined by the following components:\n\nAssignments & Participation 20%\nIn-class tests 20%\nMidterm 20%\nA: Final Exam 40%, or\nB: Final Exam 30%, Presentation 10%\n\nYou will be given the opportunity to give a short presentation in the second half of the semester. If your final exam score is higher than the score for your presentation, your final exam will be worth 40% and your presentation will be worth 0% (we will take the maximum of A and B, as above).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#course-schedule",
+    "href": "appendix/syllabus.html#course-schedule",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.7 Course Schedule",
+    "text": "A.7 Course Schedule\nHere is the planned course schedule (which is subject to change).\nL = lecture, A = assignment, T = in-class test\n\n\n\nCourse schedule\n\n\nSee   Course Schedule (opens in a new tab)  for an up-to-date version.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#course-policies",
+    "href": "appendix/syllabus.html#course-policies",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.8 Course Policies",
+    "text": "A.8 Course Policies\nAttendance in class is mandatory. If you cannot attend the class for any reason, please let me know.\nYou will have at least one week to complete assignments. Assignments must be uploaded to Canvas by the deadline. Late assignments will not be accepted and score 0, though the application for an extension can be considered at most twice under reasonable circumstances, and you must send an email to me (cc Grader) as early as possible. If you get an extension, the assignment will be due on the following Monday at 9am (so that we may go through answers in class).\nI encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own.\nThere is no make-up for in-class tests: if you are absent with good reason, the corresponding proportion can be added to the remaining in-class tests.\nThere is no make-up for the midterm exam: if you are absent with good reason, the corresponding proportion can be added to the final exam instead.\nIf accommodation for exams in the DRC center is needed, you have to send the accommodation letter to me as soon as possible.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#ai-usage",
+    "href": "appendix/syllabus.html#ai-usage",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.9 AI usage",
+    "text": "A.9 AI usage\nThe Board of Regents Student Conduct Code states the following in Section IV, Subd.1: Scholastic Dishonesty:\n“Scholastic dishonesty means plagiarism; cheating on assignments or examinations, including the unauthorized use of online learning support and testing platforms; engaging in unauthorized collaboration on academic work, including the posting of student-generated coursework on online learning support and testing platforms not approved for the specific course in question; taking, acquiring, or using course materials without faculty permission, including the posting of faculty-provided course materials on online learning and testing platforms; …”\nGenerative AI systems and online assignment help tools are online learning support platforms, which cannot be used for course assignments. We are testing your knowledge and understanding, not your ability to use GenAI.\nThe use of online learning support platforms are forms of scholastic dishonesty and will be treated as such.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#workload",
+    "href": "appendix/syllabus.html#workload",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.10 Workload",
+    "text": "A.10 Workload\nThis course is 4 credits. As per https://policy.umn.edu/education/timepercredit, this means you are expected to spend 3 hours x 4 = 12 hours per week on this course. This includes 4 hours of lectures, leaving 8 hours for reading lecture notes and other resources provided to you, completing assignments, preparing for in-class tests, presentations, mid-term and final.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#important-dates",
+    "href": "appendix/syllabus.html#important-dates",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.11 Important dates",
+    "text": "A.11 Important dates\n  Term dates (opens in a new tab)",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/syllabus.html#university-policy-statements",
+    "href": "appendix/syllabus.html#university-policy-statements",
+    "title": "Appendix A — Course Syllabus",
+    "section": "A.12 University Policy Statements",
+    "text": "A.12 University Policy Statements\nThe University’s Education & Student life policies are available in the online Policy Library.\nThe University seeks an environment that promotes academic achievement and integrity, that is protective of free inquiry, and that serves the educational mission of the University. To support this environment, the University seeks a community that is free from violence, threats, and intimidation; that is respectful of the rights, opportunities, and welfare of students, faculty, staff, and guests of the University; and that does not threaten the physical or mental health or safety of members of the University community.\nAs a student at the University, you are expected to adhere to Board of Regents Policy: Student Conduct Code.\nThe following links to University Policy Statements are provided for your reference:\n\nSexual harassment, sexual assault, stalking and relationship violence\n\nEquity, Diversity, Equal Employment Opportunity, and Affirmative Action\n\nDisability Services\n\nAcademic Freedom and Responsibility.\n\nResources related to mental health, stress management, and counseling can be found here.\n\n\n\n\nBurden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016. Numerical Analysis. 10th ed. Cengage Learning. https://doi.org/10.13140/2.1.4830.2406.\n\n\nDriscoll, Tobin A., and Richard J. Braun. 2017. Fundamentals of Numerical Computation. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975086.\n\n\nSüli, Endre, and David F. Mayers. 2003. An Introduction to Numerical Analysis. Cambridge University Press. https://doi.org/10.1017/CBO9780511801181.\n\n\nTrefethen, Lloyd N. 2019. Approximation Theory and Approximation Practice, Extended Edition. Society for Industrial; Applied Mathematics. https://doi.org/10.1137/1.9781611975949.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Course Syllabus</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/installing-julia.html",
+    "href": "appendix/installing-julia.html",
+    "title": "Appendix B — Installing Julia & Jupyter",
+    "section": "",
+    "text": "Follow the instructions at Install Julia to install juliaup (for me, all I had to do was enter winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore in the command line but this will be different for different operating systems)\nEnter julia in the command line to install and run the most recent version of Julia - after a short wait, you will see this\n\n\n\n\nimage.png\n\n\n\nUse ] (closing square bracket) to enter package management mode,\n\n\n\n\nimage-2.png\n\n\n\nEnter add IJulia (this package will allow you to use Julia in notebooks):\n\n\n\n\nimage-3.png\n\n\n\nDo the same with Plots, PrettyTables and LaTeXStrings, \nPress Backspace,\n\n\n\n\nimage-4.png\n\n\n\nEnter using IJulia and then notebook() to download Jupyter notebooks (confirm by entering y)\n\n\n\n\nimage-5.png\n\n\n\nAfter installation, Jupyter will launch in the browser\n\n\n\n\nimage-6.png\n\n\n\nYou should then be able to create a new folder for your assignments and add A1 Jupyter Notebooks, LaTeX & Julia.ipynb (when it becomes available)\nTo open Jupyter next time, just enter using IJulia and then notebook() again:\n\n\n\n\nimage-7.png",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Installing Julia & Jupyter</span>"
     ]
   },
   {
