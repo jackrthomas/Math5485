@@ -24,11 +24,11 @@ book:
   repo-actions: [edit]
 
   sidebar:
-      search: true
-      tools:
-      - icon: question-circle
-        text: "Ask a Question"
-        href: "https://github.com/jackrthomas/Math5485/issues/new?template=question.md"
+    search: true
+    tools:
+    - icon: question-circle
+      text: "Ask a Question"
+      href: "https://github.com/jackrthomas/Math5485/issues/new?template=question.md"
 
   chapters:
     - index.qmd
@@ -36,8 +36,14 @@ book:
     - part: "Lectures"
       chapters:
       - L01.ipynb
+
     - part: "Problem Classes"
+
     - part: "Assignments"
+      number-sections: false
+      chapters:
+      - assignments/A01.ipynb
+      
     - part: "Exams"
      
   appendices: 
