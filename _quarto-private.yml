@@ -3,20 +3,11 @@ project:
   output-dir: _book-private
 
 book:
-  title: "🔒 Math5485"
   
   chapters:
-    - part: "🔒 Lectures"
-      chapters:
-      - lectures-private/L02.ipynb
-
-    - part: "🔒 Assignments"
+    - part: "🔒"
       number-sections: false
       chapters:
-      - assignments/A01.ipynb
-    
-    - part: "🔒 Solutions"
-      number-sections: false
-      chapters:
-      - answers/L01.ipynb
-      - answers/A01.ipynb
+      - private/L02.ipynb
+      - private/answers-L01.ipynb
+      - private/answers-A01.ipynb

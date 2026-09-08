@@ -2,10 +2,6 @@ project:
   type: book
   output-dir: _book
 
-#resources:
-#  - "*.ipynb"
-#  - "**/*.ipynb"
-
 comments: 
   hypothesis:
     theme: clean
@@ -17,7 +13,6 @@ book:
   date: today
   favicon: images/pi.ico
   cover-image: images/PCA-5485-2.gif
-  # downloads: [pdf]
   
   repo-url: https://github.com/jackrthomas/Math5485
   repo-branch: main
@@ -76,16 +71,3 @@ format:
     comments:
       hypothesis: true
     css: style.css
-
-#  pdf:
-#    documentclass: scrreprt
-#    toc: true
-#    number-sections: true
-#    classoption:
-#      - open=any
-#    colorlinks: true
-#    include-in-header:
-#      text: |
-#        \makeatletter
-#        \def\@endpart{\bigbreak}
-#        \makeatother
