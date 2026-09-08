@@ -35,7 +35,7 @@ book:
 
     - part: "Lectures"
       chapters:
-      - L01.ipynb
+      - lectures/L01.ipynb
 
     - part: "Problem Classes"
 
@@ -44,8 +44,9 @@ book:
       chapters:
       - assignments/A01.ipynb
       
-    - part: "Exams"
-     
+    - part: "Exams" 
+    - part: "Solutions"
+
   appendices: 
     - appendix/syllabus.ipynb
     - appendix/installing-julia.ipynb
