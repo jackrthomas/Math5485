@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-09-09">
 
 <title>2&nbsp; A1: Notebooks – Math5485</title>
 <style>
@@ -73,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../appendix/syllabus.html" rel="next">
-<link href="../L01.html" rel="prev">
+<link href="../lectures/L01.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -207,7 +206,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../L01.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -239,14 +238,18 @@ window.Quarto = {
  <span class="menu-text">Exams</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Solutions</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
@@ -291,7 +294,6 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A01.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
-<p class="subtitle lead">Assignment 1: Jupyter Notebooks, LaTeX, Julia &amp; Prerequisites</p>
 </div>
 
 
@@ -299,12 +301,6 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 9, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -314,51 +310,43 @@ window.Quarto = {
 </header>
 
 
-<script>
-  var DUE = "Wed 16 Sept, 23:59";
-</script>
-<div class="callout callout-style-default callout-note callout-titled" style="margin-top: 0.25rem; margin-bottom: 0.75rem;">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
+<p>Assignment 1: Jupyter Notebooks, LaTeX, Julia &amp; Prerequisites <br> Published: <b>Wed 9 Sept</b></p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
 <ul>
-<li>Complete the following and submit to Canvas before <span id="due-display"></span></li>
-<li>Late work will recieve 0%,</li>
-<li>Each assignment is worth the same,</li>
-<li>Please get in contact with the TA/instructor in plenty of time if you need help,</li>
-<li>Before submitting your work, make sure to check everything runs as expected. Click <strong>Kernel &gt; Restart Kernel and Run All Cells</strong>. Submit your notebook in .pdf format by clicking <strong>File &gt; Export Notebook As &gt; PDF</strong> or by printing to PDF in the browser.</li>
-<li>Feel free to add more cells to experiment or test your answers,</li>
-<li>I encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own,</li>
-<li>The use of GenAI is prohibited as outlined in the course syllabus. If I suspect you of cheating, you may be asked to complete a written or oral exam on the content of this assignment.</li>
+<li>
+Complete the following and submit to Canvas before <b>Wed 16 Sept, 23:59</b>.
+</li>
+<li>
+Late work will receive 0%.
+</li>
+<li>
+Each assignment is worth the same.
+</li>
+<li>
+Please get in contact with the TA/instructor in plenty of time if you need help.
+</li>
+<li>
+Before submitting your work, make sure to check everything runs as expected. Click <b>Kernel &gt; Restart Kernel and Run All Cells</b>. Submit your notebook in .pdf format by clicking <b>File &gt; Export Notebook As &gt; PDF</b> or by printing to PDF in the browser.
+</li>
+<li>
+Feel free to add more cells to experiment or test your answers.
+</li>
+<li>
+I encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own.
+</li>
+<li>
+The use of GenAI is prohibited as outlined in the course syllabus. If suspected of cheating, you may be asked to complete a written or oral exam on the content of this assignment.
+</li>
 </ul>
 </div>
+<div class="custom-lecture-buttons my-3 d-flex gap-2">
+<p><a href="https://raw.githubusercontent.com/jackrthomas/Math5485/main/assignments/A01.ipynb" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Download (.ipynb) </a></p>
 </div>
-</div>
-<script>
-  document.getElementById("due-display").textContent = DUE;
-</script>
 <section id="a-jupyter-notebooks" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="a-jupyter-notebooks">A: Jupyter Notebooks</h2>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You may do this part with the help from your classmates</p>
-</div>
+<div class="alert alert-block alert-info">
+<p><b>Tip:</b> You may do this part with the help from your classmates</p>
 </div>
 <p><strong><em>Exercise 1.</em></strong></p>
 <ul>
@@ -368,7 +356,7 @@ Tip
 </li>
 <li>Double click on the following cell to replace YOUR NAME HERE with your name</li>
 </ul>
-<div id="ccfc9a8e" class="cell" data-execution_count="14">
+<div id="ccfc9a8e" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Name <span class="op">=</span> <span class="st">"YOUR NAME HERE"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -384,9 +372,8 @@ Tip
 <ol type="a">
 <li>Write down the degree <span class="math inline">\(n\)</span> Taylor polynomial of <span class="math inline">\(f:\mathbb R \to \mathbb R\)</span> about some point <span class="math inline">\(a\)</span>.</li>
 </ol>
-<div class="box">
-<p><strong><em>Answer.</em></strong></p>
-<p>Your answer here</p>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
 <p><span class="math display">\[\begin{align}
     T_nf(x) = ....
     \nonumber
@@ -395,9 +382,8 @@ Tip
 <ol start="2" type="a">
 <li>Write down your favourite form of the remainder <span class="math inline">\(R_n(x) := f(x) - T_nf(x)\)</span></li>
 </ol>
-<div class="box">
-<p><strong><em>Answer.</em></strong></p>
-<p>Your answer here</p>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
 <p><span class="math display">\[\begin{align}
     R_n(x) = ....
     \nonumber
@@ -406,14 +392,13 @@ Tip
 <ol start="3" type="a">
 <li>Consider the function <span class="math inline">\(f(x) := \frac{e^x - 1}{x}\)</span>. Use Taylor expansion of <span class="math inline">\(e^x\)</span> to evaluate <span class="math inline">\(\lim_{x\to 0} f(x)\)</span>.</li>
 </ol>
-<div class="box">
-<p><strong><em>Answer.</em></strong></p>
-<p>Your answer here</p>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
 </div>
 </section>
 <section id="c.-julia" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="c.-julia">C. Julia</h2>
-<div id="a2de3804" class="cell" data-execution_count="15">
+<div id="a2de3804" class="cell" data-execution_count="2">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -432,11 +417,10 @@ Tip
 </li>
 <li>✍️ For what <span class="math inline">\(n\)</span> is <span class="math inline">\(\pi_n\)</span> equal to <span class="math inline">\(\pi\)</span> up to the first <span class="math inline">\(2026\)</span> significant decimal digits?</li>
 </ul>
-<div class="box">
-<p><strong><em>Answer.</em></strong></p>
-<p>Your answer here</p>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
 </div>
-<div id="8657f54e" class="cell" data-execution_count="16">
+<div id="8657f54e" class="cell" data-execution_count="3">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your answer here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -445,7 +429,7 @@ Tip
 <p><strong><em>Exercise 4. Subtractive Cancellation</em></strong></p>
 <p>Take <span class="math inline">\(f(x) := \frac{e^x - 1}{x}\)</span>. Implementing this function directly is a bad idea due to subtractive cancellation (we will go through this in detail in week 2). Julia has the built-in function <code>expm1</code> which uses the Taylor expansion of <span class="math inline">\(e^x\)</span> (as you did in Exercise 2) to evaluate <span class="math inline">\(e^x-1\)</span> without subtractive cancellation.</p>
 <p>Here are two ways of evaluating <span class="math inline">\(f(10^{-15})\)</span>:</p>
-<div id="ad134ae2" class="cell" data-execution_count="17">
+<div id="ad134ae2" class="cell" data-execution_count="4">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(x) <span class="op">=</span> (<span class="fu">exp</span>(x)<span class="op">-</span><span class="fl">1</span>)<span class="op">/</span>x    </span>
@@ -459,7 +443,7 @@ Tip
 </div>
 <p>What are the relative errors between the mathematical value of <span class="math inline">\(f(10^{-15})\)</span> and the approximations <code>g_x</code> (naive formula) and <code>h_x</code> (Taylor expansion).</p>
 <p>You may use <code>y</code> defined in the code below as the “exact” value of <span class="math inline">\(f(10^{-15})\)</span> (which is correct to the first 100 significant digits).</p>
-<div id="4ffbf2a7" class="cell" data-execution_count="18">
+<div id="4ffbf2a7" class="cell" data-execution_count="5">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">1.000000000000000500000000000000166666666666666708333333333333341666666666666668055555555555555753968</span></span>
@@ -481,17 +465,17 @@ Tip
 * <strong>Reading notes/materials:</strong> ____<br>
 * <strong>Exercises:</strong> ____</p>
 <p>(Reminder: you should be spending around 8 hours per week on this course outside of the 4 hours of lectures)</p>
-<div class="box">
-<p><strong><em>Any other comments:</em></strong></p>
+<div class="alert alert-block alert-success">
+<p><b>Any other comments:</b></p>
 </div>
 <p>Take a moment to reflect on your learning over the past week:</p>
 <p>What was the easiest topic or task and why? Where did you struggle, and how did you overcome those challenges? Which resources (e.g.&nbsp;lecture notes, practice exercises, peer discussions, …) helped you the most? How did you manage your time and workload (e.g., all at once, spread out over several days, or working with peers)? Looking back, what would you do differently if you were starting this week over today?</p>
-<div class="box">
-<p><strong><em>Comments:</em></strong></p>
+<div class="alert alert-block alert-success">
+<p><b>Comments:</b></p>
 </div>
 <p>(Optional) Any changes that would improve the lectures, exercises, or assignments for the future? You can also suggest things anonymously <a href="http://z.umn.edu/JT-message" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-archive me-1" aria-hidden="true"></i> here <span class="visually-hidden">(opens in a new tab)</span> </a></p>
-<div class="box">
-<p><strong><em>Comments:</em></strong></p>
+<div class="alert alert-block alert-success">
+<p><b>Comments:</b></p>
 </div>
 </section>
 <section id="e-bonus-exercises---not-for-credit" class="level2 unnumbered">
@@ -499,7 +483,7 @@ Tip
 <p>Catch up with the exercises from the lectures. If you have time, think about the following questions:</p>
 <p>In Exercise 4, <span class="math inline">\(y\)</span> is defined as <span class="math inline">\(y = 1.0000000000000005....\)</span> but the output is <span class="math inline">\(y = 1.0000000000000004\)</span>. Why? How should you implement numbers with higher precision?</p>
 <p>Think about why the following method for computing <span class="math inline">\(f(10^{-15})\)</span> does not suffer from subtractive cancellation:</p>
-<div id="2f782e44" class="cell" data-execution_count="19">
+<div id="2f782e44" class="cell" data-execution_count="6">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">j</span>(y) <span class="op">=</span> (y<span class="op">-</span><span class="fl">1</span>)<span class="op">/</span><span class="fu">log</span>(y) </span>
@@ -967,7 +951,7 @@ Tip
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../L01.html" class="pagination-link" aria-label="Introduction">
+      <a href="../lectures/L01.html" class="pagination-link" aria-label="Introduction">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
