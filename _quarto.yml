@@ -64,6 +64,8 @@ format:
   html:
     theme: cosmo
     code-fold: show
+    crossrefs-hover: true
+    include-after-body: extras/tags.html
     code-tools:
       source: true           
       toggle: true
