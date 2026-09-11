@@ -47,7 +47,7 @@
     "href": "lectures/L01.html#latex",
     "title": "1  Introduction",
     "section": "1.3 \\(\\LaTeX\\)",
-    "text": "1.3 \\(\\LaTeX\\)\n\\(\\LaTeX\\) allows you to display math: e.g. \\(\\pi \\approx \\frac{22}{7}\\) and \\[f(x) = f(a) + f'(a) (x - a) + \\frac{1}{2} f''(a) (x-a)^2 + R(x).\\]\nMulti-line equations are also possible:\n\\[\\begin{align}\n    \\int_a^b f(x) \\mathrm{d}x\n    %\n    &\\approx \\int_a^b p_n(x) \\mathrm{d}x \\nonumber\\\\\n    %\n    &= \\sum_{j=0}^n w_j f(x_j)  \n\\end{align}\\]\n\\(\\LaTeX\\) cheat sheet:   link (opens in a new tab) \nDraw symbol to get \\(\\LaTeX\\) syntax:   link (opens in a new tab)",
+    "text": "1.3 \\(\\LaTeX\\)\n\\(\\LaTeX\\) allows you to display math: e.g. \\(\\pi \\approx \\frac{22}{7}\\) and \\[f(x) = f(a) + f'(a) (x - a) + \\frac{1}{2} f''(a) (x-a)^2 + R(x).\\]\nMulti-line equations are also possible:\n\\[\n\\begin{align}\n    \\int_a^b f(x) \\mathrm{d}x\n    %\n    &\\approx \\int_a^b p_n(x) \\mathrm{d}x \\nonumber \\\\\n    %\n    &= \\sum_{j=0}^n w_j f(x_j)  \n\\end{align}\n\\tag{1.1}\\]\n\\(\\LaTeX\\) cheat sheet:   link (opens in a new tab) \nDraw symbol to get \\(\\LaTeX\\) syntax:   link (opens in a new tab)",
     "crumbs": [
       "Lectures",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
@@ -91,76 +91,175 @@
     "href": "lectures/L01.html#exercises",
     "title": "1  Introduction",
     "section": "1.7 Exercises",
-    "text": "1.7 Exercises\n\nExercise 1.4 (Approximating Euler’s constant) Let \\(e\\) denote Euler’s constant.\n\n\\(e_N := \\big( 1 + \\frac{1}{N} \\big)^N\\) is an approximation \\(e\\). What is the error, absolute error, and relative error in approximating \\(e\\) with \\(e_N\\) for \\(N = 1,2,...,10\\)? What are the number of accurate digits in this approximation?\nWhat is the rate of convergence of \\(e_N\\) to \\(e\\)?\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!\n\n\n\n\nExercise 1.5 (Approximating Euler-Mascheroni constant) Euler-Mascheroni constant, \\(\\gamma\\), is defined as the limit of \\(\\gamma_n = \\sum_{k=1}^n \\frac{1}{k} - \\log n\\) as \\(n \\to \\infty\\).\n\nWhat is the absolute error in approximating \\(\\gamma\\) with \\(\\gamma_{1000}\\)?\nWhat is the rate of convergence of \\(\\gamma_n\\) to \\(\\gamma\\)?\n[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]\nProve that \\(|\\gamma - \\gamma_n| \\leq \\frac1n\\).\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!",
+    "text": "1.7 Exercises\n\nExercise 1.4 Let \\(e\\) denote Euler’s constant.\n\n\\(e_N := \\big( 1 + \\frac{1}{N} \\big)^N\\) is an approximation \\(e\\). What is the error, absolute error, and relative error in approximating \\(e\\) with \\(e_N\\) for \\(N = 1,2,...,10\\)? What are the number of accurate digits in this approximation?\nWhat is the rate of convergence of \\(e_N\\) to \\(e\\)?\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!\n\n\n\n\nExercise 1.5 Euler-Mascheroni constant, \\(\\gamma\\), is defined as the limit of \\(\\gamma_n = \\sum_{k=1}^n \\frac{1}{k} - \\log n\\) as \\(n \\to \\infty\\).\n\nWhat is the absolute error in approximating \\(\\gamma\\) with \\(\\gamma_{1000}\\)?\nWhat is the rate of convergence of \\(\\gamma_n\\) to \\(\\gamma\\)?\n[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]\nProve that \\(|\\gamma - \\gamma_n| \\leq \\frac1n\\).\n\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nAnswers will be avaliable here one week after the lecture. Please try yourself first!",
     "crumbs": [
       "Lectures",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
+    "objectID": "lectures/L02.html",
+    "href": "lectures/L02.html",
+    "title": "2  How computers add",
+    "section": "",
+    "text": "2.1 Recap\nLast time: Admin, Notebooks (Markdown, \\(\\LaTeX\\), Julia), Errors, Significant digits, rate of convergence, “seeing” the rate on graphs.",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#recap",
+    "href": "lectures/L02.html#recap",
+    "title": "2  How computers add",
+    "section": "",
+    "text": "Exercise 2.1 In England, when we need to convert between lb and kg some people use the phrase “2.2 pounds of jam is the same as a kilogram”.\n\nWhat is the error, absolute error, and relative error of approximating 1 kg with 2.2 lb?\nTo how many significant digits is this approximation correct to?\n\nYou may use 1 kg = 2.20462262185 lb.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nThe error is simply “exact minus approx.” \\(= 2.20462262185 - 2.2 \\approx 0.00462262185\\). This is also the absolute error (because it is positive).\nFor the relative error, we divide by the exact value:\n\n\nCode\nx = 2.20462262185 \ny = 2.2 \n\nprintln(\"relative error = $( (x-y)/x )\")\n\n\nrelative error = 0.0020967860005540483\n\n\nThe error is \\(0.00462262185 \\leq 5 \\times 10^{-3}\\) and so \\(2.2\\) is correct to 3 significant digits. (This is sufficient for all recipes you will likely use).\n\n\n\n\nExercise 2.2 Most people say a marathon is 26 miles when it is actually 26 miles 385 yards. In Europe, people say a marathon is 42 km when it is actually 42.194988 km.\n\nWhich approximation has a smaller error?\nWhat is the advantage of computing the relative errors in this case?\n\nHint: You may use the fact that 1 mile \\(=\\) 1760 yards.\n\n\n\n\n\n\n\nTipSolution\n\n\n\n\n\nA marathon is \\(26 \\times 1760 + 385\\) yards. The error and relative error in this approximation is\n\n\nCode\nx = 26*1760 + 385\ny = 26*1760\n\nerr, r_err = x-y, (x-y)/x\n\n\n(385, 0.00834326579261025)\n\n\nThe same calculation for the approximation in km is\n\n\nCode\nx′ = 42.194988\ny′ = 42 \n\nerr′, r_err′ = x′-y′, (x′-y′)/x′\n\n\n(0.19498800000000216, 0.004621117560218341)\n\n\n\n\nCode\nr_err / r_err′\n\n\n1.8054649516893149\n\n\nThe approximation in miles has a \\(1.8\\times\\) larger relative error than the approximation in km.\nWhy is the error in the approximation in miles much larger than \\(1.8\\times\\) bigger than the error in the approximation in km?",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#standardscientific-form",
+    "href": "lectures/L02.html#standardscientific-form",
+    "title": "2  How computers add",
+    "section": "2.2 Standard/scientific form",
+    "text": "2.2 Standard/scientific form\n\nExample 2.1 (Planck’s constant) Planck’s constant is \\(6.62607015 × 10^{-34} \\text{m}^2 \\text{kg s}^{-1}\\).\n\n\nExercise 2.3 The astronomical unit is defined as \\(1 \\text{AU} = 149,597,870,700 \\text{m}\\). Write this in standard form.",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#floating-point-numbers",
+    "href": "lectures/L02.html#floating-point-numbers",
+    "title": "2  How computers add",
+    "section": "2.3 Floating point numbers",
+    "text": "2.3 Floating point numbers\nThere are many different versions of floating point numbers; we will pick one to give general ideas rather than specific details.\nFor fixed \\(\\ell, k\\), we define\n\\[\n\\begin{align}\n    \\mathbb F_{k\\ell} :=\n    &\\Bigg\\{\n        (-1)^s (1 + f) 2^n : f = (0.b_1b_2....b_k)_2, \\nonumber\\\\\n        &\\qquad\\qquad n = c - (2^{\\ell-1}-1), \\quad c \\in \\{1,\\dots,2^{\\ell}-2\\}\\nonumber\n    \\Bigg\\} \\nonumber\\\\\n    %\n    &\\cup \\{\\pm0, \\pm\\infty, \\text{NaN}\\} \\cup \\{ \\text{subnormal numbers} \\} \\nonumber\n\\end{align}\n\\] {eq-floats}\nHere,\n\n\\(k\\) is the binary precision,\n\n\\(s\\in \\{0,1\\}\\) is the sign bit, so \\((-1)^s\\) is the sign,\n\n\\(1 + f\\) is the significand,\n\n\\(f\\) is the mantissa, also called the fraction,\n\n\\(n\\) is the exponent, belongs to \\(\\{ 2 - 2^{\\ell-1}, ...., 2^{\\ell-1}-1 \\}\\),\n\n\\(c\\) is the characteristic,\n\n\\(2^{\\ell-1}-1\\) is the bias\n\nThis is stored in a computer as the following \\(\\ell + k + 1\\) bits:\n\\[\\begin{align}\n    \\texttt{bitstring} \\quad = \\quad s \\quad | \\quad c \\text{ written in binary} \\quad | \\quad  b_1b_2....b_k\n    \\nonumber\n\\end{align}\\]\nSpecial values.\nWhen \\(c = 0\\), \\(\\texttt{bitstring}\\) represents the number \\((-1)^s f \\cdot 2^{-(2^{\\ell-1} - 1)}\\). When \\(f = 0\\), this encodes \\(\\pm 0\\) and when \\(f \\not=0\\) these are called subnormal numbers,\nWhen \\(c = 2^{\\ell}-1\\), \\(\\texttt{bitstring}\\) represents \\(\\pm \\infty\\) when \\(f = 0\\) and \\(\\text{NaN}\\) when \\(f\\not=0\\).\n\nExercise 2.4 Write down all the floating point numbers with \\(k = 2\\) in the interval \\([1,2)\\). What about the interval \\([2,4)\\)? \\([2^n,2^{n+1})\\)?\n\n\n\n\n\n\n\nTipHint\n\n\n\n\n\nThere are \\(2^k\\) equally spaced floating point numbers in any interval \\([2^n,2^{n+1})\\) (as long as \\(\\ell\\) is sufficiently large).\n\n\n\nMaximum number is \\(2^{2^{\\ell-1} -1}( 2 - 2^{-k} ) \\approx 2^{2^{\\ell-1}}\\). If the result of a computation exceeds this value, it is stored as \\(+\\infty\\) and we have an OVERFLOW error,\nMinimum positive (normal) number is \\(2^{2-2^{\\ell-1}}\\). If the result of a computation is between this value and zero, it is stored as \\(0\\) and we have an UNDERFLOW error,\nMachine precision is \\(\\epsilon_{\\text{mach}} = 2^{-k}\\). The next largest float after \\(1\\) is \\(1 + \\epsilon_{\\text{mach}}\\).\n\nExercise 2.5 Take \\(k=\\ell=2\\).\n\nWhat number does \\(0 0 1 1 0\\) encode?\nWrite the bitstring of \\(-3.5\\).\nWhat are the maximum and minimum positive numbers and the machine precision in this system?\n\n\nIn the following, we will write \\(1|\\ell|k\\) for the number of bits used to represent the sign (\\(1\\)), the exponent (\\(\\ell\\)), and the significand (\\(k\\)).\nIn practice, we have:\n\nFloat16 = half precision = \\(1|5|10\\),\n\nFloat32 = single precision = \\(1|8|23\\), and\n\nFloat64 = double precision = \\(1|11|52\\),\n\n\nExercise 2.6 What are the maximum and minimum positive numbers and the machine precision for each of Float16, Float32, and Float64?",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#floating-point-arithmetic",
+    "href": "lectures/L02.html#floating-point-arithmetic",
+    "title": "2  How computers add",
+    "section": "2.4 Floating point arithmetic",
+    "text": "2.4 Floating point arithmetic\nWe now consider a set of floating point numbers \\(\\mathbb F := \\mathbb F_{k,\\ell}\\) and define a function \\(\\mathrm{fl} : \\mathbb R \\to \\mathbb F\\) that maps real numbers to (one of) the closest points in \\(\\mathbb F\\).\n\nTheorem 2.1 If \\(x \\not= 0\\) and \\(|x| \\leq (2-2^{-k}) 2^{2^{\\ell-1}-1}\\), then\n\\[\\begin{align}\n    \\frac\n        {| x - \\mathrm{fl}(x) |}\n        {|x|}\n    \\leq  \\frac12 \\epsilon_{\\rm mach}.\n\\end{align}\\]\n\nProof. Suppose that \\(x \\in [2^n, 2^{n+1})\\). The floats in the interval \\([2^n, 2^{n+1})\\) are of the form \\((1 + z \\cdot 2^{-k}) \\cdot 2^n\\) for \\(z = 0,\\dots,2^{k}-1\\). Therefore, consectutive floats are spaced apart by \\(2^{n-k}\\) and since \\(|x| \\geq 2^n\\), we have\n\\[\\begin{align}\n    \\frac\n        {| x - \\mathrm{fl}(x) |}\n        {|x|}\n    \\leq \\frac12\n    \\frac\n        {2^{n-k}}\n        {|x|}\n    \\leq  \\frac12 2^{-k} = \\frac12 \\epsilon_{\\rm mach}\n\\end{align}\\]",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#float16",
+    "href": "lectures/L02.html#float16",
+    "title": "2  How computers add",
+    "section": "2.5 Float16 ",
+    "text": "2.5 Float16 \nIn Julia you can specify the precision by using FloatN() where \\(N = 16, 32,\\) or \\(64\\). e.g.\n\n\nCode\nx = Float16( π );\nx == 3.140625;\n\n(1 + 1/2 + 1/16 + 1/128)*2\n\n\n3.140625\n\n\nYou can see how this is represented in binary using bitstring():\n\n\nCode\nbs = bitstring( x )\n\n\n\"0100001001001000\"\n\n\nHere, the first bit is the sign and the next 5 bits correspond to the characteristic:\n\n\nCode\ns = parse(Int, bs[1:1], base=2);\nc = parse(Int, bs[2:6], base=2);\n@show ( s, c );\n\n\n(s, c) = (0, 16)\n\n\nThe final bits bs[7:16] \\(:= b_1b_2 ... b_{10}\\) represent the significand/mantissa in the following way\n\\[\\begin{align}\nf &= \\big(0 . b_1 b_2 b_3 b_4 b_5 b_6 b_7 b_8 b_9 b_{10}\\big)_2 \\nonumber\\\\\n%\n&= \\sum_{i=1}^{10} b_i 2^{-i}\n\\end{align}\\]\nThat is, bs[7:16] is \\(2^{10} \\times\\) larger than \\(f\\):\n\n\nCode\nf = 2^(-10) * parse(Int, bs[7:16], base=2)\n\n\n0.5703125\n\n\n\n\nCode\n# exponent is c - 15 (characteristic minus bias)\n# significand is 1 + f\n[ exponent(x), significand(x) ]\n\n\n2-element Vector{Float16}:\n 1.0\n 1.57\n\n\n\n\nCode\ny = (-1)^s * 2.0^( c - 15 ) * ( 1 + f )\n\n\n3.140625\n\n\nRecall that x = Float16( pi )\n\n\nCode\nx == y\n\n\ntrue",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#errors-in-float16",
+    "href": "lectures/L02.html#errors-in-float16",
+    "title": "2  How computers add",
+    "section": "2.6 Errors in Float16",
+    "text": "2.6 Errors in Float16\n\n\nCode\nusing Plots \nusing LaTeXStrings \n\n\n\n\nCode\nϵ = eps( Float16 );\nx = range( -2.0^(16), 2.0^(16), 10000 ); \ny = @. ( ( x - Float16(x) ) );\n\nplot( x , y,  seriestype=:scatter, ms=1, title=L\"$x - fl(x)$ in Float16\", legend=false)\nvline!( [2.0^n for n in 12:1:16] )\n\n\n\n\n\n\n\n\n\n\n\nCode\nϵ = eps( Float16 );\nx = range( -2^(16), 2^(16), 10000 ); \ny = @. ( ( x - Float16(x) ) /x );\n\nscatter( x , y; \n    ms=1, title=L\"$\\frac{x - \\text{fl}(x)}{x}$ in Float16\", legend=false)\nvline!( [2.0^n for n in 13:1:16] )\nhline!( [-ϵ/2, ϵ/2] )\n\n\n\n\n\nSpecial values:\n\n\nCode\na = Float16( 0 );\n(a, bitstring(a) )\n\n\n(Float16(0.0), \"0000000000000000\")\n\n\n\n\nCode\nb = -Float16( 0 );\n(b, bitstring(b) )\n\n\n(Float16(-0.0), \"1000000000000000\")\n\n\n\n\nCode\nc = Float16( 1/0 );\n(c, bitstring(c) )\n\n\n(Inf16, \"0111110000000000\")\n\n\n\n\nCode\nc = Float16( -1/0 );\n(c, bitstring(c) )\n\n\n(-Inf16, \"1111110000000000\")\n\n\n\n\nCode\nc = Float16( 0/0 );\n(c, bitstring(c) )\n\n\n(NaN16, \"1111111000000000\")\n\n\nBy default, Julia uses Float64. We will use this datatype for the remainder of this course.\n\n\nCode\ntypeof( 1.0 + π )\n\n\nFloat64",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#subtractive-cancellation-and-conditioning",
+    "href": "lectures/L02.html#subtractive-cancellation-and-conditioning",
+    "title": "2  How computers add",
+    "section": "2.7 Subtractive cancellation and conditioning",
+    "text": "2.7 Subtractive cancellation and conditioning\nwhen adding or subtracting numbers so that the result is much smaller in magnitude. For example, we know \\(x = -1.0000000000000000000147\\) to \\(23\\) significant digits but \\(x + 1 = 1.47 \\times 10^{-22}\\) to only \\(3\\) significant digits.\nThis concept can be illustrated using (relative) condition number: suppose we are interested in a quantity \\(f(x)\\) for \\(x\\in \\mathbb R\\). In practice, we can only store \\(\\widetilde{x} := \\mathrm{fl}(x)\\) in a computer (recall that \\(\\widetilde{x} = x(1 + \\epsilon)\\) for some \\(|\\epsilon|\\leq \\frac12 \\epsilon_{\\mathrm{mach}}\\)). Then the ratio of the relative error in the output to the relative error in the input in the limit as the precision goes to zero is known as the (relative) condition number \\(\\kappa_f(x)\\):\n\\[\\begin{align}\n\\frac\n    {\\left|\\frac\n        {f(x) - f(\\widetilde{x})}\n        {f(x)} \\right|}\n    {\\left|\\frac\n        {x-\\widetilde{x}}\n        {x}\\right|}\n    %\n    &= \\left|\n    \\frac\n        {f(x) - f(x + \\epsilon x)}\n        {\\epsilon f(x)}\n    \\right| \\nonumber\\\\\n    %\n    &\\to \\kappa_f(x) \\quad \\text{as } \\epsilon \\to 0\n\\end{align}\\]\nThat is, the (relative) condition number is approximately the constant of proportionality between the relative error in the output and the relative error of the input:\n\\[\\begin{align}\n    \\left|\\frac\n        {f(x) - f(\\widetilde{x})}\n        {f(x)} \\right|\n    \\approx \\kappa_f(x) |\\epsilon|\n\\end{align}\\]\n\nExample 2.2 The condition number of \\(f(x) = x + 1\\) is \\(\\kappa_f(x) = \\left|\\frac{x}{x+1}\\right|\\). This blows up when \\(x\\approx -1\\) which explains subtractive cancellation that we mentioned above.\n\nIf the condition number is large, we say the problem is ill-conditioned or the problem is badly conditioned.\nNotice that\n\\[\n\\begin{align}\n    \\kappa_f(x) &= \\lim_{\\epsilon\\to0}\\left|\n    \\frac\n        {f(x) - f(x + \\epsilon x)}\n        {\\epsilon f(x)}\n    \\right| \\nonumber\\\\\n    %\n    &= \\lim_{\\epsilon\\to0}\\left|\n    \\frac\n        {f(x) - f(x + \\epsilon x)}\n        {\\epsilon x}\n    \\right|\n    \\left| \\frac{x}{f(x)} \\right| \\nonumber\\\\\n    %\n    &= \\left| \\frac{x f'(x)}{f(x)} \\right|\n\\end{align}\n\\tag{2.1}\\]\n\n\n\n\n\n\nTipTO-DO\n\n\n\n\nAssignment 1: Due Wednesday (Install Julia),\nExercises throughout the notes and below,\n(Sign-up to office hours if you like)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
+    "objectID": "lectures/L02.html#exercises",
+    "href": "lectures/L02.html#exercises",
+    "title": "2  How computers add",
+    "section": "2.8 Exercises",
+    "text": "2.8 Exercises\n\nExample 2.3 Compute the relative condition numbers of (i) \\(x \\mapsto cx\\) for \\(c \\not= 0\\), (ii) \\(\\log\\), (iii) \\(\\exp\\), (iv) \\(x^p\\), and (v) \\(f\\circ g\\) in terms of \\(\\kappa_f\\) and \\(\\kappa_g\\)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>How computers add</span>"
+    ]
+  },
+  {
     "objectID": "assignments/A01.html",
     "href": "assignments/A01.html",
-    "title": "2  A1: Notebooks",
+    "title": "3  A1: Notebooks",
     "section": "",
     "text": "A: Jupyter Notebooks\nAssignment 1: Jupyter Notebooks, LaTeX, Julia & Prerequisites  Published: Wed 9 Sept\nExercise 1.\nCode\nName = \"YOUR NAME HERE\"\n\n\n\"YOUR NAME HERE\"",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#a-jupyter-notebooks",
     "href": "assignments/A01.html#a-jupyter-notebooks",
-    "title": "2  A1: Notebooks",
+    "title": "3  A1: Notebooks",
     "section": "",
     "text": "Tip: You may do this part with the help from your classmates\n\n\n\nFollow the steps here to install Julia and Jupyter,\n\nUpload and run this .ipynb file,\n\nDouble click on the following cell to replace YOUR NAME HERE with your name",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#b-latex",
     "href": "assignments/A01.html#b-latex",
-    "title": "2  A1: Notebooks",
+    "title": "3  A1: Notebooks",
     "section": "B: \\(\\LaTeX\\)",
     "text": "B: \\(\\LaTeX\\)\nExercise 2. Taylor expansion\n\nWrite down the degree \\(n\\) Taylor polynomial of \\(f:\\mathbb R \\to \\mathbb R\\) about some point \\(a\\).\n\n\nAnswer.\n\\[\\begin{align}\n    T_nf(x) = ....\n    \\nonumber\n\\end{align}\\]\n\n\nWrite down your favourite form of the remainder \\(R_n(x) := f(x) - T_nf(x)\\)\n\n\nAnswer.\n\\[\\begin{align}\n    R_n(x) = ....\n    \\nonumber\n\\end{align}\\]\n\n\nConsider the function \\(f(x) := \\frac{e^x - 1}{x}\\). Use Taylor expansion of \\(e^x\\) to evaluate \\(\\lim_{x\\to 0} f(x)\\).\n\n\nAnswer.",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#c.-julia",
     "href": "assignments/A01.html#c.-julia",
-    "title": "2  A1: Notebooks",
+    "title": "3  A1: Notebooks",
     "section": "C. Julia",
     "text": "C. Julia\n\n\nCode\nusing Plots\n\n\nExercise 3. Archimedes’ method for computing (lower bounds to) \\(\\pi\\).\nRecall that \\(\\pi\\) is half the circumference of the unit circle. Let \\(P_n\\) be the inscribed regular \\(n\\)-gon inside the unit circle and notice that its perimeter satisfies \\(2 \\pi_n \\leq 2 \\pi\\).\n\n✍️ Explain why \\(\\pi_n = n \\sin \\frac{\\pi}{n}\\),\n\n💻 What is the absolute error when approximating \\(\\pi\\) with \\(\\pi_{2026}\\)?\n\n✍️ Use Taylor expansion of \\(\\sin\\) to explain why \\((\\pi_n)\\) converges with rate \\(O(n^{-2})\\),\n\n💻 Verify this rate of convergence with a plot.\n\n✍️ For what \\(n\\) is \\(\\pi_n\\) equal to \\(\\pi\\) up to the first \\(2026\\) significant decimal digits?\n\n\nAnswer.\n\n\n\nCode\n# your answer here\n\n\nExercise 4. Subtractive Cancellation\nTake \\(f(x) := \\frac{e^x - 1}{x}\\). Implementing this function directly is a bad idea due to subtractive cancellation (we will go through this in detail in week 2). Julia has the built-in function expm1 which uses the Taylor expansion of \\(e^x\\) (as you did in Exercise 2) to evaluate \\(e^x-1\\) without subtractive cancellation.\nHere are two ways of evaluating \\(f(10^{-15})\\):\n\n\nCode\ng(x) = (exp(x)-1)/x    \nh(x) = expm1(x)/x\n\ng_x, h_x = g(1e-15), h(1e-15)\n\n\n(1.1102230246251565, 1.0000000000000007)\n\n\nWhat are the relative errors between the mathematical value of \\(f(10^{-15})\\) and the approximations g_x (naive formula) and h_x (Taylor expansion).\nYou may use y defined in the code below as the “exact” value of \\(f(10^{-15})\\) (which is correct to the first 100 significant digits).\n\n\nCode\ny = 1.000000000000000500000000000000166666666666666708333333333333341666666666666668055555555555555753968\n\n# YOUR CODE HERE\n\n\n1.0000000000000004",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#d.-reflection",
     "href": "assignments/A01.html#d.-reflection",
-    "title": "2  A1: Notebooks",
+    "title": "3  A1: Notebooks",
     "section": "D. Reflection",
     "text": "D. Reflection\nGoal: Reflect on your learning strategies, track your workload, and help us improve future course material.\nFormat: Short answer (Graded on completion: Complete / incomplete).\nTime: take 5-10 mins (this shouldn’t take too long)\nEstimate the approximate hours you spent:\n* Assignment: ____\n* Reading notes/materials: ____\n* Exercises: ____\n(Reminder: you should be spending around 8 hours per week on this course outside of the 4 hours of lectures)\n\nAny other comments:\n\nTake a moment to reflect on your learning over the past week:\nWhat was the easiest topic or task and why? Where did you struggle, and how did you overcome those challenges? Which resources (e.g. lecture notes, practice exercises, peer discussions, …) helped you the most? How did you manage your time and workload (e.g., all at once, spread out over several days, or working with peers)? Looking back, what would you do differently if you were starting this week over today?\n\nComments:\n\n(Optional) Any changes that would improve the lectures, exercises, or assignments for the future? You can also suggest things anonymously   here (opens in a new tab) \n\nComments:",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#e-bonus-exercises---not-for-credit",
     "href": "assignments/A01.html#e-bonus-exercises---not-for-credit",
-    "title": "2  A1: Notebooks",
+    "title": "3  A1: Notebooks",
     "section": "(E: Bonus exercises - not for credit)",
     "text": "(E: Bonus exercises - not for credit)\nCatch up with the exercises from the lectures. If you have time, think about the following questions:\nIn Exercise 4, \\(y\\) is defined as \\(y = 1.0000000000000005....\\) but the output is \\(y = 1.0000000000000004\\). Why? How should you implement numbers with higher precision?\nThink about why the following method for computing \\(f(10^{-15})\\) does not suffer from subtractive cancellation:\n\n\nCode\nj(y) = (y-1)/log(y) \nj_x = j(exp(1e-15))\n\n\n1.0000000000000004",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
@@ -304,6 +403,28 @@
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>B</span>  <span class='chapter-title'>Installing Julia & Jupyter</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/exercises.html",
+    "href": "appendix/exercises.html",
+    "title": "Appendix C — List of Exercises",
+    "section": "",
+    "text": "C.1 Lecture 1\nBelow are all collected exercises across all lectures:",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>List of Exercises</span>"
+    ]
+  },
+  {
+    "objectID": "appendix/exercises.html#lecture-1",
+    "href": "appendix/exercises.html#lecture-1",
+    "title": "Appendix C — List of Exercises",
+    "section": "",
+    "text": "Exercise 1.1\nAdd a new markdown cell below this one and write “Hello world!”\n\n\n\nExercise 1.2\nCompute \\(\\eta\\) for approximating \\(e\\) with \\(3\\), \\(2.7\\), and \\(2.718\\).\n\n\n\nExercise 1.3\nShow that \\(\\frac{n + \\cos(n)}{n^2} = O(\\frac1n)\\) and \\(\\frac{n^2+3}{n^{42}} = O(\\frac1{n^{40}})\\).\n\n\n\nExercise 1.4: Approximating Euler’s constant\nLet \\(e\\) denote Euler’s constant.\n\n\\(e_N := \\big( 1 + \\frac{1}{N} \\big)^N\\) is an approximation \\(e\\). What is the error, absolute error, and relative error in approximating \\(e\\) with \\(e_N\\) for \\(N = 1,2,...,10\\)? What are the number of accurate digits in this approximation?\nWhat is the rate of convergence of \\(e_N\\) to \\(e\\)?\n\n\n\n\nExercise 1.5: Approximating Euler-Mascheroni constant\nEuler-Mascheroni constant, \\(\\gamma\\), is defined as the limit of \\(\\gamma_n = \\sum_{k=1}^n \\frac{1}{k} - \\log n\\) as \\(n \\to \\infty\\).\n\nWhat is the absolute error in approximating \\(\\gamma\\) with \\(\\gamma_{1000}\\)?\nWhat is the rate of convergence of \\(\\gamma_n\\) to \\(\\gamma\\)?\n[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]\nProve that \\(|\\gamma - \\gamma_n| \\leq \\frac1n\\).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>List of Exercises</span>"
     ]
   },
   {
