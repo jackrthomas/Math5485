@@ -31,6 +31,7 @@ book:
     - part: "Lectures"
       chapters:
       - lectures/L01.ipynb
+      - lectures/L02.ipynb
 
     - part: "Problem Classes"
 
@@ -45,6 +46,7 @@ book:
   appendices: 
     - appendix/syllabus.ipynb
     - appendix/installing-julia.ipynb
+    - appendix/exercises.qmd
     - references.qmd
 
 language:

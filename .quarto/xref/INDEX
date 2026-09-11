@@ -61,5 +61,20 @@
   },
   "private/answers-A01.ipynb": {
     "answers-A01.html": "c5c9a4b5"
+  },
+  "private/examples.qmd": {
+    "examples.html": "181f34a7"
+  },
+  "private/exercises.qmd": {
+    "exercises.html": "2c161d58"
+  },
+  "appendix/exercises.qmd": {
+    "exercises.html": "13614db2"
+  },
+  "lectures/L02.ipynb": {
+    "L02.html": "1f28c19f"
+  },
+  "private/L03.ipynb": {
+    "L03.html": "399038da"
   }
 }

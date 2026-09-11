@@ -1,0 +1,70 @@
+# List of Exercises
+
+Below are all collected exercises across all lectures:
+
+
+## Lecture 1
+
+::: {.exercise-box}
+**@exr-1**
+
+
+Add a new markdown cell below this one and write "Hello world!" 
+
+:::
+
+
+---
+
+::: {.exercise-box}
+**@exr-eta**
+
+
+Compute $\eta$ for approximating $e$ with $3$, $2.7$, and $2.718$.
+
+:::
+
+
+---
+
+::: {.exercise-box}
+**@exr-rate-1**
+
+
+Show that $\frac{n + \cos(n)}{n^2} = O(\frac1n)$ and $\frac{n^2+3}{n^{42}} = O(\frac1{n^{40}})$.
+
+:::
+
+
+---
+
+::: {.exercise-box}
+**@exr-e: Approximating Euler's constant**
+
+
+Let $e$ denote Euler's constant.
+
+1. $e_N := \big( 1 + \frac{1}{N} \big)^N$ is an approximation $e$. What is the error, absolute error, and relative error in approximating $e$ with $e_N$ for $N = 1,2,...,10$? What are the number of accurate digits in this approximation?
+2. What is the rate of convergence of $e_N$ to $e$?
+
+:::
+
+
+---
+
+::: {.exercise-box}
+**@exr-Euler-Mascheroni: Approximating Euler-Mascheroni constant**
+
+
+Euler-Mascheroni constant, $\gamma$, is defined as the limit of $\gamma_n = \sum_{k=1}^n \frac{1}{k} - \log n$ as $n \to \infty$. 
+
+1. What is the absolute error in approximating $\gamma$ with $\gamma_{1000}$?
+2. What is the rate of convergence of $\gamma_n$ to $\gamma$?
+3. [This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]  
+   Prove that $|\gamma - \gamma_n| \leq \frac1n$.
+   
+:::
+
+
+---
+

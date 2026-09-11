@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix B — Installing Julia &amp; Jupyter – Math5485</title>
+<title>Appendix C — List of Exercises – Math5485</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -36,8 +71,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/exercises.html" rel="next">
-<link href="../appendix/syllabus.html" rel="prev">
+<link href="../references.html" rel="next">
+<link href="../appendix/installing-julia.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,7 +111,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
@@ -84,6 +118,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -97,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/installing-julia.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/exercises.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">List of Exercises</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -201,13 +264,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/exercises.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix/exercises.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">List of Exercises</span></span></a>
   </div>
 </li>
@@ -224,15 +287,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#lecture-1" id="toc-lecture-1" class="nav-link active" data-scroll-target="#lecture-1"><span class="header-section-number">C.1</span> Lecture 1</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/appendix/exercises.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/installing-julia.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/exercises.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">List of Exercises</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix B — Installing Julia &amp; Jupyter</h1>
+<div class="quarto-title-block"><div><h1 class="title">Appendix C — List of Exercises</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -249,74 +318,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li><p>Follow the instructions at <a href="https://julialang.org/downloads/">Install Julia</a> to install <code>juliaup</code> (for me, all I had to do was enter <code>winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code> in the command line but this will be different for different operating systems)</p></li>
-<li><p>Enter <code>julia</code> in the command line to install and run the most recent version of Julia - after a short wait, you will see this</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-7-image.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
+<p>Below are all collected exercises across all lectures:</p>
+<section id="lecture-1" class="level2" data-number="C.1">
+<h2 data-number="C.1" class="anchored" data-anchor-id="lecture-1"><span class="header-section-number">C.1</span> Lecture 1</h2>
+<div class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-1" class="quarto-xref">Exercise&nbsp;<span>1.1</span></a></strong></p>
+<p>Add a new markdown cell below this one and write “Hello world!”</p>
 </div>
-<ul>
-<li>Use ] (closing square bracket) to enter package management mode,</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-1-image-2.png" class="img-fluid figure-img"></p>
-<figcaption>image-2.png</figcaption>
-</figure>
+<hr>
+<div class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-eta" class="quarto-xref">Exercise&nbsp;<span>1.2</span></a></strong></p>
+<p>Compute <span class="math inline">\(\eta\)</span> for approximating <span class="math inline">\(e\)</span> with <span class="math inline">\(3\)</span>, <span class="math inline">\(2.7\)</span>, and <span class="math inline">\(2.718\)</span>.</p>
 </div>
-<ul>
-<li>Enter <code>add IJulia</code> (this package will allow you to use Julia in notebooks):</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-2-image-3.png" class="img-fluid figure-img"></p>
-<figcaption>image-3.png</figcaption>
-</figure>
+<hr>
+<div class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-rate-1" class="quarto-xref">Exercise&nbsp;<span>1.3</span></a></strong></p>
+<p>Show that <span class="math inline">\(\frac{n + \cos(n)}{n^2} = O(\frac1n)\)</span> and <span class="math inline">\(\frac{n^2+3}{n^{42}} = O(\frac1{n^{40}})\)</span>.</p>
 </div>
-<ul>
-<li>Do the same with <code>Plots</code>, <code>PrettyTables</code> and <code>LaTeXStrings</code>,&nbsp;</li>
-<li>Press Backspace,</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-3-image-4.png" class="img-fluid figure-img"></p>
-<figcaption>image-4.png</figcaption>
-</figure>
+<hr>
+<div class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-e" class="quarto-xref">Exercise&nbsp;<span>1.4</span></a>: Approximating Euler’s constant</strong></p>
+<p>Let <span class="math inline">\(e\)</span> denote Euler’s constant.</p>
+<ol type="1">
+<li><span class="math inline">\(e_N := \big( 1 + \frac{1}{N} \big)^N\)</span> is an approximation <span class="math inline">\(e\)</span>. What is the error, absolute error, and relative error in approximating <span class="math inline">\(e\)</span> with <span class="math inline">\(e_N\)</span> for <span class="math inline">\(N = 1,2,...,10\)</span>? What are the number of accurate digits in this approximation?</li>
+<li>What is the rate of convergence of <span class="math inline">\(e_N\)</span> to <span class="math inline">\(e\)</span>?</li>
+</ol>
 </div>
-<ul>
-<li>Enter <code>using IJulia</code> and then <code>notebook()</code> to download Jupyter notebooks (confirm by entering <code>y</code>)</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-4-image-5.png" class="img-fluid figure-img"></p>
-<figcaption>image-5.png</figcaption>
-</figure>
+<hr>
+<div class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-Euler-Mascheroni" class="quarto-xref">Exercise&nbsp;<span>1.5</span></a>: Approximating Euler-Mascheroni constant</strong></p>
+<p>Euler-Mascheroni constant, <span class="math inline">\(\gamma\)</span>, is defined as the limit of <span class="math inline">\(\gamma_n = \sum_{k=1}^n \frac{1}{k} - \log n\)</span> as <span class="math inline">\(n \to \infty\)</span>.</p>
+<ol type="1">
+<li>What is the absolute error in approximating <span class="math inline">\(\gamma\)</span> with <span class="math inline">\(\gamma_{1000}\)</span>?</li>
+<li>What is the rate of convergence of <span class="math inline">\(\gamma_n\)</span> to <span class="math inline">\(\gamma\)</span>?</li>
+<li>[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]<br>
+Prove that <span class="math inline">\(|\gamma - \gamma_n| \leq \frac1n\)</span>.</li>
+</ol>
 </div>
-<ul>
-<li>After installation, Jupyter will launch in the browser</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-5-image-6.png" class="img-fluid figure-img"></p>
-<figcaption>image-6.png</figcaption>
-</figure>
-</div>
-<ul>
-<li><p>You should then be able to create a new folder for your assignments and add <code>A1 Jupyter Notebooks, LaTeX &amp; Julia.ipynb</code> (when it becomes available)</p></li>
-<li><p>To open Jupyter next time, just enter using IJulia and then notebook() again:</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-6-image-7.png" class="img-fluid figure-img"></p>
-<figcaption>image-7.png</figcaption>
-</figure>
-</div>
+<hr>
 
 
+<!-- -->
+
+</section>
 
 </main> <!-- /main -->
 <style>
@@ -827,20 +871,89 @@ window.addEventListener("load", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../appendix/syllabus.html" class="pagination-link" aria-label="Course Syllabus">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span>
+      <a href="../appendix/installing-julia.html" class="pagination-link" aria-label="Installing Julia &amp; Jupyter">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/exercises.html" class="pagination-link" aria-label="List of Exercises">
-        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">List of Exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link" aria-label="Resources">
+        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># List of Exercises</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Below are all collected exercises across all lectures:</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lecture 1</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>::: {.exercise-box}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>**@exr-1**</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Add a new markdown cell below this one and write "Hello world!" </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>::: {.exercise-box}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>**@exr-eta**</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Compute $\eta$ for approximating $e$ with $3$, $2.7$, and $2.718$.</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>::: {.exercise-box}</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>**@exr-rate-1**</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Show that $\frac{n + \cos(n)}{n^2} = O(\frac1n)$ and $\frac{n^2+3}{n^{42}} = O(\frac1{n^{40}})$.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>::: {.exercise-box}</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>**@exr-e: Approximating Euler's constant**</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>Let $e$ denote Euler's constant.</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>$e_N := \big( 1 + \frac{1}{N} \big)^N$ is an approximation $e$. What is the error, absolute error, and relative error in approximating $e$ with $e_N$ for $N = 1,2,...,10$? What are the number of accurate digits in this approximation?</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What is the rate of convergence of $e_N$ to $e$?</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>::: {.exercise-box}</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>**@exr-Euler-Mascheroni: Approximating Euler-Mascheroni constant**</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>Euler-Mascheroni constant, $\gamma$, is defined as the limit of $\gamma_n = \sum_{k=1}^n \frac{1}{k} - \log n$ as $n \to \infty$. </span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>What is the absolute error in approximating $\gamma$ with $\gamma_{1000}$?</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What is the rate of convergence of $\gamma_n$ to $\gamma$?</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="co">[</span><span class="ot">This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate</span><span class="co">]</span>  </span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>   Prove that $|\gamma - \gamma_n| \leq \frac1n$.</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/installing-julia.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/appendix/exercises.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

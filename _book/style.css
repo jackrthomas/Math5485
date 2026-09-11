@@ -70,3 +70,24 @@
 .proof {
   font-style: italic;
 }
+
+.exercise-box {
+  background-color: #f5e7f9;
+  border-left: 5px solid #7b1fa2;
+  border-radius: 4px;
+  padding: 0.85em 1.25em;
+  margin: 1.2em 0;
+}
+
+/* Forces the title line, bold elements, and Quarto @exr links to be black & bold */
+.exercise-box p:first-child,
+.exercise-box p:first-child strong,
+.exercise-box p:first-child a {
+  color: #000000 !important;
+  font-weight: 700 !important;
+  text-decoration: none;
+}
+
+.exercise-box p:last-child {
+  margin-bottom: 0;
+}
