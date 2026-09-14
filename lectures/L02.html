@@ -420,19 +420,6 @@ Note
   }
 })();
 </script>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Notes for this lecture have not been updated since we met (stay tuned for updates)</p>
-</div>
-</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -458,7 +445,7 @@ Note
 <p>You may use 1 kg = 2.20462262185 lb.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -467,7 +454,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The error is simply “exact minus approx.” <span class="math inline">\(= 2.20462262185 - 2.2 \approx 0.00462262185\)</span>. This is also the absolute error (because it is positive).</p>
 <p>For the relative error, we divide by the exact value:</p>
@@ -483,7 +470,7 @@ Note
 <pre><code>relative error = 0.0020967860005540483</code></pre>
 </div>
 </div>
-<p>The error is <span class="math inline">\(0.00462262185 \leq 5 \times 10^{-3}\)</span> and so <span class="math inline">\(2.2\)</span> is correct to 3 significant digits. (This is sufficient for all recipes you will likely use).</p>
+<p>The error is <span class="math inline">\(0.002096.... \leq 5 \times 10^{-3}\)</span> and so <span class="math inline">\(2.2\)</span> is correct to 3 significant digits. (This is sufficient for all recipes you will likely use).</p>
 </div>
 </div>
 </div>
@@ -496,7 +483,7 @@ Note
 <p>Hint: You may use the fact that 1 mile <span class="math inline">\(=\)</span> 1760 yards.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -505,7 +492,7 @@ Note
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>A marathon is <span class="math inline">\(26 \times 1760 + 385\)</span> yards. The error and relative error in this approximation is</p>
 <div id="a530595d" class="cell" data-execution_count="12">
@@ -561,7 +548,7 @@ Note
 <h2 data-number="2.3" class="anchored" data-anchor-id="floating-point-numbers"><span class="header-section-number">2.3</span> Floating point numbers</h2>
 <p>There are many different versions of floating point numbers; we will pick one to give general ideas rather than specific details.</p>
 <p>For fixed <span class="math inline">\(\ell, k\)</span>, we define</p>
-<p><span class="math display">\[
+<p><span id="eq-floats"><span class="math display">\[
 \begin{align}
     \mathbb F_{k\ell} :=
     &amp;\Bigg\{
@@ -571,7 +558,20 @@ Note
     %
     &amp;\cup \{\pm0, \pm\infty, \text{NaN}\} \cup \{ \text{subnormal numbers} \} \nonumber
 \end{align}
-\]</span> {eq-floats}</p>
+\tag{2.1}\]</span></span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <a href="#eq-floats" class="quarto-xref">Equation&nbsp;<span>2.1</span></a>, <span class="math inline">\(\mathbb F_{k\ell}\)</span> is my notation, not a standard notation.</p>
+</div>
+</div>
 <p>Here,</p>
 <ul>
 <li><span class="math inline">\(k\)</span> is the <em>binary precision</em>,<br>
@@ -904,7 +904,7 @@ f &amp;= \big(0 . b_1 b_2 b_3 b_4 b_5 b_6 b_7 b_8 b_9 b_{10}\big)_2 \nonumber\\
     %
     &amp;= \left| \frac{x f'(x)}{f(x)} \right|
 \end{align}
-\tag{2.1}\]</span></span></p>
+\tag{2.2}\]</span></span></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -925,8 +925,8 @@ f &amp;= \big(0 . b_1 b_2 b_3 b_4 b_5 b_6 b_7 b_8 b_9 b_{10}\big)_2 \nonumber\\
 </section>
 <section id="exercises" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.8</span> Exercises</h2>
-<div id="exm-cond-2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2.3</strong></span> Compute the relative condition numbers of (i) <span class="math inline">\(x \mapsto cx\)</span> for <span class="math inline">\(c \not= 0\)</span>, (ii) <span class="math inline">\(\log\)</span>, (iii) <span class="math inline">\(\exp\)</span>, (iv) <span class="math inline">\(x^p\)</span>, and (v) <span class="math inline">\(f\circ g\)</span> in terms of <span class="math inline">\(\kappa_f\)</span> and <span class="math inline">\(\kappa_g\)</span></p>
+<div id="exr-cond-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2.7</strong></span> Compute the relative condition numbers of (i) <span class="math inline">\(x \mapsto cx\)</span> for <span class="math inline">\(c \not= 0\)</span>, (ii) <span class="math inline">\(\log\)</span>, (iii) <span class="math inline">\(\exp\)</span>, (iv) <span class="math inline">\(x^p\)</span>, and (v) <span class="math inline">\(f\circ g\)</span> in terms of <span class="math inline">\(\kappa_f\)</span> and <span class="math inline">\(\kappa_g\)</span></p>
 </div>
 
 
