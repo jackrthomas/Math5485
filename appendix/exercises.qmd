@@ -1,6 +1,6 @@
 # List of Exercises
 
-Below are all collected exercises across all lectures:
+Below is a list of all the exercises across all lectures:
 
 
 ## Lecture 1
@@ -14,8 +14,6 @@ Add a new markdown cell below this one and write "Hello world!"
 :::
 
 
----
-
 ::: {.exercise-box}
 **@exr-eta**
 
@@ -25,8 +23,6 @@ Compute $\eta$ for approximating $e$ with $3$, $2.7$, and $2.718$.
 :::
 
 
----
-
 ::: {.exercise-box}
 **@exr-rate-1**
 
@@ -35,8 +31,6 @@ Show that $\frac{n + \cos(n)}{n^2} = O(\frac1n)$ and $\frac{n^2+3}{n^{42}} = O(\
 
 :::
 
-
----
 
 ::: {.exercise-box}
 **@exr-e: Approximating Euler's constant**
@@ -49,8 +43,6 @@ Let $e$ denote Euler's constant.
 
 :::
 
-
----
 
 ::: {.exercise-box}
 **@exr-Euler-Mascheroni: Approximating Euler-Mascheroni constant**
@@ -66,5 +58,83 @@ Euler-Mascheroni constant, $\gamma$, is defined as the limit of $\gamma_n = \sum
 :::
 
 
----
+
+## Lecture 2
+
+::: {.exercise-box}
+**@exr-jam**
+
+
+In England, when we need to convert between lb and kg some people use the phrase "2.2 pounds of jam is the same as a kilogram". 
+
+- What is the error, absolute error, and relative error of approximating 1 kg with 2.2 lb? 
+- To how many significant digits is this approximation correct to?
+
+You may use 1 kg = 2.20462262185 lb.
+
+:::
+
+
+::: {.exercise-box}
+**@exr-marathon**
+
+
+Most people say a marathon is 26 miles when it is actually 26 miles 385 yards. In Europe, people say a marathon is 42 km when it is actually 42.194988 km.
+
+- Which approximation has a smaller error? 
+- What is the advantage of computing the relative errors in this case?
+
+Hint: You may use the fact that 1 mile $=$ 1760 yards. 
+
+:::
+
+
+::: {.exercise-box}
+**@exr-AU: Astronomical Unit**
+
+
+The astronomical unit is defined as $1 \text{AU} = 149,597,870,700 \text{m}$. Write this in standard form. 
+
+:::
+
+
+::: {.exercise-box}
+**@exr-fp-1**
+
+
+Write down all the floating point numbers with $k = 2$ in the interval $[1,2)$. What about the interval $[2,4)$? $[2^n,2^{n+1})$? 
+
+:::
+
+
+::: {.exercise-box}
+**@exr-fp-3**
+
+
+Take $k=\ell=2$.
+
+- What number does $0 0 1 1 0$ encode?
+- Write the bitstring of $-3.5$.
+- What are the maximum and minimum positive numbers and the machine precision in this system?
+
+:::
+
+
+::: {.exercise-box}
+**@exr-fp-2**
+
+
+What are the maximum and minimum positive numbers and the machine precision for each of ``Float16``, ``Float32``, and ``Float64``?
+
+:::
+
+
+::: {.exercise-box}
+**@exr-cond-2**
+
+
+Compute the relative condition numbers of (i) $x \mapsto cx$ for $c \not= 0$, (ii) $\log$, (iii) $\exp$, (iv) $x^p$, and (v) $f\circ g$ in terms of $\kappa_f$ and $\kappa_g$
+
+:::
+
 
