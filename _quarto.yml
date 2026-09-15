@@ -32,6 +32,8 @@ book:
       chapters:
       - lectures/L01.ipynb
       - lectures/L02.ipynb
+      - lectures/L03.ipynb
+
 
     - part: "Problem Classes"
 
