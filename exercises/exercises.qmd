@@ -1,4 +1,4 @@
-# List of Exercises
+# List of exercises
 
 Below is a list of all the exercises across all lectures:
 
@@ -130,10 +130,86 @@ What are the maximum and minimum positive numbers and the machine precision for 
 
 
 ::: {.exercise-box}
+**@exr-Float16-pi**
+
+
+Write down the bitstring for $\pi$ in ```Float16```.
+
+:::
+
+
+::: {.exercise-box}
 **@exr-cond-2**
 
 
 Compute the relative condition numbers of (i) $x \mapsto cx$ for $c \not= 0$, (ii) $\log$, (iii) $\exp$, (iv) $x^p$, and (v) $f\circ g$ in terms of $\kappa_f$ and $\kappa_g$
+
+:::
+
+
+
+## Lecture 3
+
+::: {.exercise-box}
+**@exr-ep-over-2**
+
+
+Let $\epsilon$ be the machine precision. Is $(1 + \epsilon/2) - 1 = 1 + (\epsilon/2-1)$ in Float64?
+
+:::
+
+
+::: {.exercise-box}
+**@exr-fp-sums**
+
+
+Let $X$ be an array containing $10^{16}, -10^{16}$, and $N$ copies of $1$. What is the sum of all the entries of the array $X$? Does it depend on the order of summation? What about in ``Float64``? Why?
+
+:::
+
+
+::: {.exercise-box}
+**@exr-FNC-1-4-1**
+
+
+Exercise 1.4.1 from @fnc 
+
+:::
+
+
+::: {.exercise-box}
+**@exr-FNC-1-4-2**
+
+
+Exercise 1.4.2 from @fnc.
+
+:::
+
+
+::: {.exercise-box}
+**@exr-change-sign-1**
+
+
+Let $f(x) = e^x - 2x - 1$. Apply change of sign theorem to $f$ to conclude there exists $\xi \in [1,2]$ such that $f(\xi) = 0$.
+
+:::
+
+
+::: {.exercise-box}
+**@exr-change-sign-2**
+
+
+Let's return to @exr-change-sign-1. You showed that $f(x) = e^x - 2x - 1$ has a root $\xi \in [1,2]$. 
+
+Show that $f(x) = 0$ can be solved by instead considering the fixed point problems $g(x) = x$ or $h(x) = x$ where
+
+$$
+\begin{align}
+    g(x) = \log( 2x + 1 ), \quad  \text{and} \quad h(x) = \frac{e^x - 1}{2}
+\end{align}
+$$ {#eq-L3-g-h}
+
+Show that Brouwer's fixed point theorem applies to $g$ but **not** $h$ on $[1,2]$.
 
 :::
 

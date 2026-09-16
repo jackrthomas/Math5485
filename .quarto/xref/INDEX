@@ -79,5 +79,14 @@
   },
   "lectures/L03.ipynb": {
     "L03.html": "dde05a7b"
+  },
+  "lectures/L04.ipynb": {
+    "L04.html": "87223144"
+  },
+  "exercises/exercises.qmd": {
+    "exercises.html": "09b63787"
+  },
+  "exercises/answers.ipynb": {
+    "answers.html": "4cc5e6e6"
   }
 }

@@ -1,0 +1,85 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Capture math elements BEFORE MathJax / KaTeX converts the text
+  document.querySelectorAll('.math.display').forEach(function (el) {
+    
+    // 1. Extract raw LaTeX source code while it's still plain text
+    let rawTex = "";
+    const katexAnnotation = el.querySelector('annotation[encoding="application/x-tex"]');
+    
+    if (katexAnnotation) {
+      rawTex = katexAnnotation.textContent.trim();
+    } else {
+      rawTex = el.textContent
+        .replace(/^\\\[\s*/, '')
+        .replace(/\s*\\\]$/, '')
+        .replace(/^\$\$\s*/, '')
+        .replace(/\s*\$\$$/, '')
+        .trim();
+    }
+
+    // 2. Create container and store raw LaTeX on dataset
+    const container = document.createElement('div');
+    container.className = 'math-container';
+    container.style.position = 'relative';
+    container.dataset.rawTex = rawTex;
+
+    // 3. Create button group
+    const btnGroup = document.createElement('div');
+    btnGroup.style.position = 'absolute';
+    btnGroup.style.right = '0';
+    btnGroup.style.top = '-0.5rem';
+    btnGroup.style.display = 'flex';
+    btnGroup.style.gap = '0.3rem';
+    btnGroup.style.zIndex = '10';
+
+    function createCopyButton(label, title) {
+      const btn = document.createElement('button');
+      btn.innerHTML = label;
+      btn.title = title;
+      btn.style.border = '1px solid #ccc';
+      btn.style.borderRadius = '4px';
+      btn.style.background = 'var(--bs-body-bg, #fff)';
+      btn.style.color = 'var(--bs-body-color, #333)';
+      btn.style.fontSize = '0.75rem';
+      btn.style.padding = '0.15rem 0.4rem';
+      btn.style.cursor = 'pointer';
+      btn.style.opacity = '0.6';
+
+      btn.addEventListener('mouseenter', () => btn.style.opacity = '1');
+      btn.addEventListener('mouseleave', () => btn.style.opacity = '0.6');
+      return btn;
+    }
+
+    // LaTeX Button (Copies preserved raw LaTeX string)
+    const latexBtn = createCopyButton('LaTeX', 'Copy raw LaTeX source code');
+    latexBtn.addEventListener('click', function () {
+      const textToCopy = container.dataset.rawTex;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const orig = latexBtn.innerHTML;
+        latexBtn.innerHTML = 'Copied!';
+        setTimeout(() => { latexBtn.innerHTML = orig; }, 1200);
+      });
+    });
+
+    // Unicode Button (Copies rendered visual text)
+    const unicodeBtn = createCopyButton('Unicode', 'Copy formatted plain/Unicode text');
+    unicodeBtn.addEventListener('click', function () {
+      const textToCopy = el.innerText.trim();
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const orig = unicodeBtn.innerHTML;
+        unicodeBtn.innerHTML = 'Copied!';
+        setTimeout(() => { unicodeBtn.innerHTML = orig; }, 1200);
+      });
+    });
+
+    btnGroup.appendChild(latexBtn);
+    btnGroup.appendChild(unicodeBtn);
+
+    // Insert container into DOM
+    el.parentNode.insertBefore(container, el);
+    container.appendChild(el);
+    container.appendChild(btnGroup);
+  });
+});
+</script>

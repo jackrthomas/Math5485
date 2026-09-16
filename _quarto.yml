@@ -33,9 +33,12 @@ book:
       - lectures/L01.ipynb
       - lectures/L02.ipynb
       - lectures/L03.ipynb
+      - lectures/L04.ipynb
 
-
-    - part: "Problem Classes"
+    - part: "Exercises"
+      chapters:
+      - exercises/exercises.qmd
+      - exercises/answers.ipynb
 
     - part: "Assignments"
       number-sections: false
@@ -43,12 +46,10 @@ book:
       - assignments/A01.ipynb
       
     - part: "Exams" 
-    - part: "Solutions"
 
   appendices: 
     - appendix/syllabus.ipynb
     - appendix/installing-julia.ipynb
-    - appendix/exercises.qmd
     - references.qmd
 
 language:
