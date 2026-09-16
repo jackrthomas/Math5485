@@ -340,69 +340,80 @@
     ]
   },
   {
+    "objectID": "exercises/test-sample.html",
+    "href": "exercises/test-sample.html",
+    "title": "7  Sample in-class test",
+    "section": "",
+    "text": "NAME:\n\n\nSTUDENT NUMBER:\n\n\nTime allowed: 15 mins\nPlease label any paper you use with your name and student number\nElectronic devices are not needed and not permitted in this test.\n\n\n[5 points] Let \\(x_n = \\frac{1 + n^2}{ 2 n^3 } \\cos n\\).\nFor which of the following sequences \\((\\varepsilon_n)\\) do we have \\(x_n = O(\\varepsilon_n)\\) as \\(n\\to\\infty\\)?\nPlease select all that apply.\n\n\n\n\\(\\varepsilon_n = e^{-n}\\)\n\n\n\\(\\varepsilon_n = n^{-2}\\)\n\n\n\\(\\varepsilon_n = n^{-1}\\)\n\n\n\\(\\varepsilon_n = 1\\)\n\n\n\\(\\varepsilon_n = n\\)\n\n\n\n[5 points] Recall that Float64 uses binary precision \\(k = 52\\). How many floating point numbers are in the interval \\([64, 128)\\)?\n\n\n\n\n\n[5 points] Let us define\n\n\\[\\begin{align*}\n   f(x) = \\frac{\\sqrt{1+x}-1}{x}, \\qquad g(x) = \\frac{1}{\\sqrt{1+x} + 1}.\n\\end{align*}\\]\nOne may verify that \\(f\\) and \\(g\\) are mathematically identical (but you don’t have to). The following table is the output of evaluating \\(f\\) and \\(g\\) on \\(\\{10^{-14}, 10^{-15}, 10^{-16}\\}\\) in double precision floating point. Why are the function values different?\n\n\n                         f(x)                  g(x)\nx = 10^(-14):     0.4884981308350689    0.4999999999999988\nx = 10^(-15):     0.44408920985006256   0.4999999999999999\nx = 10^(-16):     0.0                   0.5",
+    "crumbs": [
+      "Exercises",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sample in-class test</span>"
+    ]
+  },
+  {
     "objectID": "assignments/A01.html",
     "href": "assignments/A01.html",
-    "title": "7  A1: Notebooks",
+    "title": "8  A1: Notebooks",
     "section": "",
     "text": "A: Jupyter Notebooks\nAssignment 1: Jupyter Notebooks, LaTeX, Julia & Prerequisites  Published: Wed 9 Sept\nExercise 1.\nCode\nName = \"YOUR NAME HERE\"\n\n\n\"YOUR NAME HERE\"",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#a-jupyter-notebooks",
     "href": "assignments/A01.html#a-jupyter-notebooks",
-    "title": "7  A1: Notebooks",
+    "title": "8  A1: Notebooks",
     "section": "",
     "text": "Tip: You may do this part with the help from your classmates\n\n\n\nFollow the steps here to install Julia and Jupyter,\n\nUpload and run this .ipynb file,\n\nDouble click on the following cell to replace YOUR NAME HERE with your name",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#b-latex",
     "href": "assignments/A01.html#b-latex",
-    "title": "7  A1: Notebooks",
+    "title": "8  A1: Notebooks",
     "section": "B: \\(\\LaTeX\\)",
     "text": "B: \\(\\LaTeX\\)\nExercise 2. Taylor expansion\n\nWrite down the degree \\(n\\) Taylor polynomial of \\(f:\\mathbb R \\to \\mathbb R\\) about some point \\(a\\).\n\n\nAnswer.\n\\[\\begin{align}\n    T_nf(x) = ....\n    \\nonumber\n\\end{align}\\]\n\n\nWrite down your favourite form of the remainder \\(R_n(x) := f(x) - T_nf(x)\\)\n\n\nAnswer.\n\\[\\begin{align}\n    R_n(x) = ....\n    \\nonumber\n\\end{align}\\]\n\n\nConsider the function \\(f(x) := \\frac{e^x - 1}{x}\\). Use Taylor expansion of \\(e^x\\) to evaluate \\(\\lim_{x\\to 0} f(x)\\).\n\n\nAnswer.",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#c.-julia",
     "href": "assignments/A01.html#c.-julia",
-    "title": "7  A1: Notebooks",
+    "title": "8  A1: Notebooks",
     "section": "C. Julia",
     "text": "C. Julia\n\n\nCode\nusing Plots\n\n\nExercise 3. Archimedes’ method for computing (lower bounds to) \\(\\pi\\).\nRecall that \\(\\pi\\) is half the circumference of the unit circle. Let \\(P_n\\) be the inscribed regular \\(n\\)-gon inside the unit circle and notice that its perimeter satisfies \\(2 \\pi_n \\leq 2 \\pi\\).\n\n✍️ Explain why \\(\\pi_n = n \\sin \\frac{\\pi}{n}\\),\n\n💻 What is the absolute error when approximating \\(\\pi\\) with \\(\\pi_{2026}\\)?\n\n✍️ Use Taylor expansion of \\(\\sin\\) to explain why \\((\\pi_n)\\) converges with rate \\(O(n^{-2})\\),\n\n💻 Verify this rate of convergence with a plot.\n\n✍️ For what \\(n\\) is \\(\\pi_n\\) equal to \\(\\pi\\) up to the first \\(2026\\) significant decimal digits?\n\n\nAnswer.\n\n\n\nCode\n# your answer here\n\n\nExercise 4. Subtractive Cancellation\nTake \\(f(x) := \\frac{e^x - 1}{x}\\). Implementing this function directly is a bad idea due to subtractive cancellation (we will go through this in detail in week 2). Julia has the built-in function expm1 which uses the Taylor expansion of \\(e^x\\) (as you did in Exercise 2) to evaluate \\(e^x-1\\) without subtractive cancellation.\nHere are two ways of evaluating \\(f(10^{-15})\\):\n\n\nCode\ng(x) = (exp(x)-1)/x    \nh(x) = expm1(x)/x\n\ng_x, h_x = g(1e-15), h(1e-15)\n\n\n(1.1102230246251565, 1.0000000000000007)\n\n\nWhat are the relative errors between the mathematical value of \\(f(10^{-15})\\) and the approximations g_x (naive formula) and h_x (Taylor expansion).\nYou may use y defined in the code below as the “exact” value of \\(f(10^{-15})\\) (which is correct to the first 100 significant digits).\n\n\nCode\ny = 1.000000000000000500000000000000166666666666666708333333333333341666666666666668055555555555555753968\n\n# YOUR CODE HERE\n\n\n1.0000000000000004",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#d.-reflection",
     "href": "assignments/A01.html#d.-reflection",
-    "title": "7  A1: Notebooks",
+    "title": "8  A1: Notebooks",
     "section": "D. Reflection",
     "text": "D. Reflection\nGoal: Reflect on your learning strategies, track your workload, and help us improve future course material.\nFormat: Short answer (Graded on completion: Complete / incomplete).\nTime: take 5-10 mins (this shouldn’t take too long)\nEstimate the approximate hours you spent:\n* Assignment: ____\n* Reading notes/materials: ____\n* Exercises: ____\n(Reminder: you should be spending around 8 hours per week on this course outside of the 4 hours of lectures)\n\nAny other comments:\n\nTake a moment to reflect on your learning over the past week:\nWhat was the easiest topic or task and why? Where did you struggle, and how did you overcome those challenges? Which resources (e.g. lecture notes, practice exercises, peer discussions, …) helped you the most? How did you manage your time and workload (e.g., all at once, spread out over several days, or working with peers)? Looking back, what would you do differently if you were starting this week over today?\n\nComments:\n\n(Optional) Any changes that would improve the lectures, exercises, or assignments for the future? You can also suggest things anonymously   here (opens in a new tab) \n\nComments:",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
     "objectID": "assignments/A01.html#e-bonus-exercises---not-for-credit",
     "href": "assignments/A01.html#e-bonus-exercises---not-for-credit",
-    "title": "7  A1: Notebooks",
+    "title": "8  A1: Notebooks",
     "section": "(E: Bonus exercises - not for credit)",
     "text": "(E: Bonus exercises - not for credit)\nCatch up with the exercises from the lectures. If you have time, think about the following questions:\nIn Exercise 4, \\(y\\) is defined as \\(y = 1.0000000000000005....\\) but the output is \\(y = 1.0000000000000004\\). Why? How should you implement numbers with higher precision?\nThink about why the following method for computing \\(f(10^{-15})\\) does not suffer from subtractive cancellation:\n\n\nCode\nj(y) = (y-1)/log(y) \nj_x = j(exp(1e-15))\n\n\n1.0000000000000004",
     "crumbs": [
       "Assignments",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>A1: Notebooks</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>A1: Notebooks</span>"
     ]
   },
   {
