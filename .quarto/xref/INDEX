@@ -88,5 +88,20 @@
   },
   "exercises/answers.ipynb": {
     "answers.html": "4cc5e6e6"
+  },
+  "private/T1.ipynb": {
+    "T1.html": "b545dbd2"
+  },
+  "exercises/test-sample.ipynb": {
+    "test-sample.html": "1d5a8f8a"
+  },
+  "private/A1-Jose.ipynb": {
+    "A1-Jose.html": "9b230846"
+  },
+  "private/random-exr.ipynb": {
+    "random-exr.html": "062572de"
+  },
+  "exercises/random.ipynb": {
+    "random.html": "406e2a53"
   }
 }

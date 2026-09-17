@@ -8,6 +8,5 @@ book:
     - part: "🔒"
       number-sections: false
       chapters:
-      - private/answers-L01.ipynb
-      - private/answers-A01.ipynb
-      
+      - private/T1.ipynb
+      - private/answers-A01.ipynb      
