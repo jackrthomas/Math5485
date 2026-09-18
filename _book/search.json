@@ -274,6 +274,17 @@
     ]
   },
   {
+    "objectID": "lectures/L04.html#recap",
+    "href": "lectures/L04.html#recap",
+    "title": "4  Solving nonlinear equations in 1d",
+    "section": "",
+    "text": "ChimeIn\n\n\n\n\n\n\n\n\nTipHints\n\n\n\n\n\nSince \\(f\\) is continuous and we have \\(f(1) = e - 3 &lt; 0 &lt; e^2 - 5 = f(2)\\) and so we can apply change of sign theorem to \\(f\\) on the interval \\([1,2]\\): there exists \\(\\xi \\in [1,2]\\) with \\(f(\\xi) = 0\\).\nHere’s a picture:\n\n\nCode\nf(x) = exp(x) - 2*x - 1\ng(x) = log( 2*x + 1 )    \nh(x) = (exp(x) - 1)/2\nid(x) = x\n\n@show (f(1), f(2))\nplot( f, 1, 2, label=L\"y = f(x)\" )\nhline!([0], label=L\"y = 0\", linestyle=:dash)\nscatter!([1 2], [f(1) f(2)] , label=[L\"f(1)\" L\"f(2)\"]) \n\n\n(f(1), f(2)) = (-0.2817181715409549, 2.3890560989306504)\n\n\n\n\n\nRearranging \\(f(x) = 0\\) gives \\(g(x) = x\\) and \\(h(x) = x\\).\nSince \\(g\\) is increasing we have \\(1 &lt; \\log3 = g(1) \\leq g(x) \\leq g(2) = \\log5 &lt; 2\\) for all \\(x \\in [1,2]\\). We can therefore apply Brouwer’s fixed point theorem to conclude there exists \\(\\xi \\in [1,2]\\) such that \\(g(\\xi) = \\xi\\).\nOn the other hand \\(h(1) = \\frac{e-1}{2} &lt; 1\\) (and \\(g(2) &gt; 2\\)) and so \\(h\\) does not map \\([1,2]\\) onto \\([1,2]\\) and we cannot apply Brouwer’s fixed point theorem to \\(h\\).\nHere’s a picture:\n\n\nCode\n@show (g(1), g(2));\n@show (h(1), h(2));\n\nplot( [g, id, h], 1, 2, \n    label=[L\"g\" L\"x\" L\"h\"], lw=2,\n    color=[\"red\" \"black\" \"green\"], linestyle=[:solid :dash :solid] )\nhline!( [1,2], linestyle=:dash, primary=false, color=\"black\" )\n\n\n(g(1), g(2)) = (1.0986122886681098, 1.6094379124341003)\n(h(1), h(2)) = (0.8591409142295225, 3.194528049465325)",
+    "crumbs": [
+      "Lectures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Solving nonlinear equations in 1d</span>"
+    ]
+  },
+  {
     "objectID": "lectures/L04.html#simple-iterations",
     "href": "lectures/L04.html#simple-iterations",
     "title": "4  Solving nonlinear equations in 1d",
@@ -601,17 +612,6 @@
     "crumbs": [
       "Appendices",
       "Resources"
-    ]
-  },
-  {
-    "objectID": "lectures/L04.html#recap",
-    "href": "lectures/L04.html#recap",
-    "title": "4  Solving nonlinear equations in 1d",
-    "section": "",
-    "text": "ChimeIn\n\n\n\n\n\n\n\n\nTipHints\n\n\n\n\n\nSince \\(f\\) is continuous and we have \\(f(1) = e - 3 &lt; 0 &lt; e^2 - 5 = f(2)\\) and so we can apply change of sign theorem to \\(f\\) on the interval \\([1,2]\\): there exists \\(\\xi \\in [1,2]\\) with \\(f(\\xi) = 0\\).\nHere’s a picture:\n\n\nCode\nf(x) = exp(x) - 2*x - 1\ng(x) = log( 2*x + 1 )    \nh(x) = (exp(x) - 1)/2\nid(x) = x\n\n@show (f(1), f(2))\nplot( f, 1, 2, label=L\"y = f(x)\" )\nhline!([0], label=L\"y = 0\", linestyle=:dash)\nscatter!([1 2], [f(1) f(2)] , label=[L\"f(1)\" L\"f(2)\"]) \n\n\n(f(1), f(2)) = (-0.2817181715409549, 2.3890560989306504)\n\n\n\n\n\nRearranging \\(f(x) = 0\\) gives \\(g(x) = x\\) and \\(h(x) = x\\).\nSince \\(g\\) is increasing we have \\(1 &lt; \\log3 = g(1) \\leq g(x) \\leq g(2) = \\log5 &lt; 2\\) for all \\(x \\in [1,2]\\). We can therefore apply Brouwer’s fixed point theorem to conclude there exists \\(\\xi \\in [1,2]\\) such that \\(g(\\xi) = \\xi\\).\nOn the other hand \\(h(1) = \\frac{e-1}{2} &lt; 1\\) (and \\(g(2) &gt; 2\\)) and so \\(h\\) does not map \\([1,2]\\) onto \\([1,2]\\) and we cannot apply Brouwer’s fixed point theorem to \\(h\\).\nHere’s a picture:\n\n\nCode\n@show (g(1), g(2));\n@show (h(1), h(2));\n\nplot( [g, id, h], 1, 2, \n    label=[L\"g\" L\"x\" L\"h\"], lw=2,\n    color=[\"red\" \"black\" \"green\"], linestyle=[:solid :dash :solid] )\nhline!( [1,2], linestyle=:dash, primary=false, color=\"black\" )\n\n\n(g(1), g(2)) = (1.0986122886681098, 1.6094379124341003)\n(h(1), h(2)) = (0.8591409142295225, 3.194528049465325)",
-    "crumbs": [
-      "Lectures",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Solving nonlinear equations in 1d</span>"
     ]
   }
 ]
