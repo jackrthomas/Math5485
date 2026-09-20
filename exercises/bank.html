@@ -1172,7 +1172,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const pool = getActivePool();
     if (pool.length === 0) return renderExercise(null);
     const currentIndex = pool.findIndex(el => el.id === activeExerciseId);
-    let nextIndex = (currentIndex + 1) % pool.length;
+    // If current exercise not in pool (index -1), start from beginning
+    const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % pool.length;
     renderExercise(pool[nextIndex]);
   }
 
@@ -1180,7 +1181,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const pool = getActivePool();
     if (pool.length === 0) return renderExercise(null);
     const currentIndex = pool.findIndex(el => el.id === activeExerciseId);
-    let prevIndex = (currentIndex - 1 + pool.length) % pool.length;
+    // If current exercise not in pool (index -1), start from end
+    const prevIndex = currentIndex === -1 ? pool.length - 1 : (currentIndex - 1 + pool.length) % pool.length;
     renderExercise(pool[prevIndex]);
   }
 
@@ -1226,26 +1228,64 @@ document.addEventListener("DOMContentLoaded", function () {
     syncProgressToServer();
   });
 
-  filterSelect.addEventListener('change', showNextExercise);
+  filterSelect.addEventListener('change', () => {
+    // When filter changes, reset to first exercise in the new pool
+    // (not 'next from current' which breaks when current isn't in new pool)
+    const pool = getActivePool();
+    if (pool.length === 0) return renderExercise(null);
+    // If the current exercise is in the new pool, keep it; otherwise go to first
+    const stillInPool = pool.find(el => el.id === activeExerciseId);
+    renderExercise(stillInPool || pool[0]);
+  });
   prevBtn.addEventListener('click', showPrevExercise);
   nextBtn.addEventListener('click', showNextExercise);
   randomBtn.addEventListener('click', showRandomExercise);
+
+  async function fetchAndRestoreProgress(id) {
+    syncStatus.textContent = 'Syncing...';
+    syncStatus.className = 'badge bg-warning text-dark border';
+    try {
+      const response = await fetch(`${SERVER_SYNC_URL}?studentID=${encodeURIComponent(id)}`);
+      if (!response.ok) throw new Error('Not found');
+      const data = await response.json();
+      if (data.status === 'error') throw new Error(data.message);
+
+      // Merge server data into localStorage — server wins on conflicts
+      let restored = 0;
+      Object.entries(data.votes || {}).forEach(([k, v]) => { localStorage.setItem('vote_' + k, v); restored++; });
+      Object.entries(data.difficulties || {}).forEach(([k, v]) => { localStorage.setItem('diff_' + k, v); });
+      Object.entries(data.timeSpentSeconds || {}).forEach(([k, v]) => { localStorage.setItem('timeSpent_' + k, v); });
+      Object.entries(data.firstSeenTimestamps || {}).forEach(([k, v]) => { localStorage.setItem('firstSeen_' + k, v); });
+
+      syncStatus.textContent = 'Synced';
+      syncStatus.className = 'badge bg-success text-white border';
+      updateCounters();
+      updateStreakDisplay();
+      updateFeedbackUI();
+      alert(`Progress restored from server (${restored} exercise(s) synced).`);
+    } catch (e) {
+      syncStatus.textContent = 'Offline';
+      syncStatus.className = 'badge bg-danger text-white border';
+      alert('Could not fetch progress from server: ' + e.message);
+    }
+  }
 
   manageIdBtn.addEventListener('click', () => {
     const currentID = localStorage.getItem('studentID') || '(none)';
     const newID = window.prompt(
       `Your current Student ID is:\n\n  ${currentID}\n\nTo sync progress from another device, paste that device's ID below and press OK.\nLeave blank to keep your current ID.`
     );
-    if (newID === null) return; // cancelled
+    if (newID === null) return;
     const trimmed = newID.trim();
-    if (trimmed === '') return; // blank — keep current
+    if (trimmed === '') return;
     if (!/^\d{3}-\d{3}-\d{3}$/.test(trimmed)) {
       alert('Invalid ID format. Expected xxx-xxx-xxx (e.g. 042-317-891).');
       return;
     }
     localStorage.setItem('studentID', trimmed);
     studentID = trimmed;
-    syncProgressToServer({ changedID: true });
+    // Fetch existing progress for this ID from server, then push local data up
+    fetchAndRestoreProgress(trimmed).then(() => syncProgressToServer({ changedID: true }));
   });
 
   updateCounters();
