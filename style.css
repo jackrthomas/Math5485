@@ -92,6 +92,89 @@
   margin-bottom: 0;
 }
 
+/* ── Exercise hint & solution ─────────────────────────────────────────────── */
+
+.exercise-hint {
+  background-color: #e8f0fd;
+  border-left: 5px solid #2780e3;
+  border-radius: 4px;
+  padding: 0.85em 1.25em;
+  margin: 0.3em 0 0;   /* was 1em 0 0 */
+}
+
+.exercise-hint p:first-child {
+  color: #000000 !important;
+}
+
+.exercise-hint p:last-child {
+  margin-bottom: 0;
+}
+
+.exercise-solution {
+  background-color: #e8f8f0;
+  border-left: 5px solid #1a8a4a;
+  border-radius: 4px;
+  padding: 0.85em 1.25em;
+  margin: 0.3em 0 0;   /* was 1em 0 0 */
+}
+
+.exercise-solution p:first-child {
+  color: #000000 !important;
+}
+
+.exercise-solution p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Question bank link inside exercise/example boxes ─────────────────────── */
+
+.exercise, .exercise-box, .blank-exr {
+  position: relative;
+}
+
+.exercise a[href*="bank.html"],
+.exercise-box a[href*="bank.html"],
+.blank-exr a[href*="bank.html"] {
+  position: absolute;
+  top: 0.55em;
+  right: 0.75em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px 2px 6px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  white-space: nowrap;
+  background: rgba(123, 31, 162, 0.1);
+  color: #7b1fa2;
+  border: 1px solid rgba(123, 31, 162, 0.25);
+  opacity: 0.7;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.exercise a[href*="bank.html"]::before,
+.exercise-box a[href*="bank.html"]::before,
+.blank-exr a[href*="bank.html"]::before {
+  content: '';
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%237b1fa2'%3E%3Cpath d='M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z'/%3E%3Cpath d='M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.exercise a[href*="bank.html"]:hover,
+.exercise-box a[href*="bank.html"]:hover,
+.blank-exr a[href*="bank.html"]:hover {
+  opacity: 1;
+  background: rgba(123, 31, 162, 0.18);
+  text-decoration: none;
+}
+
 .answer-box {
           background-color: #f8fafc;
           border: 1px solid #e2e8f0;
@@ -109,3 +192,23 @@
           letter-spacing: 0.05em;
           margin-bottom: 0.5rem;
         }
+
+
+  details {
+  border-left: 5px solid #6c757d;
+  background: #f8f9fa;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  margin: 0.75em 0;
+}
+
+details summary {
+  font-weight: 600;
+  cursor: pointer;
+  color: #6c757d;
+  user-select: none;
+}
+
+details[open] summary {
+  margin-bottom: 0.5em;
+}

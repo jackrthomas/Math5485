@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Exercises – Math5485</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../exercises/test-sample.html" rel="next">
+<link href="../lectures/L04.html" rel="prev">
+<link href="../images/pi.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f2c6d6e2b784ddc5de38779acc06f37d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/bank.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Math5485</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
+    <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How computers add</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conditioning &amp; stability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solving nonlinear equations in 1d</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exercises</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/test-sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sample in-class test</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Exams</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/bank.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Exercises</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="question-bank" style="display: none !important;">
+<section id="lecture-1" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="lecture-1"><span class="header-section-number">5.1</span> Lecture 1</h2>
+<!-- L01 -->
+<div id="bank-exr-1" class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-1" class="quarto-xref">Exercise&nbsp;<span>1.1</span></a></strong></p>
+<p>Add a new markdown cell below this one and write “Hello world!”</p>
+</div>
+<!-- L01 -->
+<div id="bank-exr-eta" class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-eta" class="quarto-xref">Exercise&nbsp;<span>1.2</span></a></strong></p>
+<p>Compute <span class="math inline">\(\eta\)</span> for approximating <span class="math inline">\(e\)</span> with <span class="math inline">\(3\)</span>, <span class="math inline">\(2.7\)</span>, and <span class="math inline">\(2.718\)</span>.</p>
+</div>
+<!-- L01 -->
+<div id="bank-exr-rate-1" class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-rate-1" class="quarto-xref">Exercise&nbsp;<span>1.3</span></a></strong></p>
+<p>Show that <span class="math inline">\(\frac{n + \cos(n)}{n^2} = O(\frac1n)\)</span> and <span class="math inline">\(\frac{n^2+3}{n^{42}} = O(\frac1{n^{40}})\)</span>.</p>
+</div>
+<!-- L01 -->
+<div id="bank-exr-e" class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-e" class="quarto-xref">Exercise&nbsp;<span>1.4</span></a></strong></p>
+<p>Let <span class="math inline">\(e\)</span> denote Euler’s constant.</p>
+<ol type="1">
+<li><span class="math inline">\(e_N := \big( 1 + \frac{1}{N} \big)^N\)</span> is an approximation <span class="math inline">\(e\)</span>. What is the error, absolute error, and relative error in approximating <span class="math inline">\(e\)</span> with <span class="math inline">\(e_N\)</span> for <span class="math inline">\(N = 1,2,...,10\)</span>? What are the number of accurate digits in this approximation?</li>
+<li>What is the rate of convergence of <span class="math inline">\(e_N\)</span> to <span class="math inline">\(e\)</span>?</li>
+</ol>
+</div>
+<!-- L01 -->
+<div id="bank-exr-Euler-Mascheroni" class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-Euler-Mascheroni" class="quarto-xref">Exercise&nbsp;<span>1.5</span></a></strong></p>
+<p>Euler-Mascheroni constant, <span class="math inline">\(\gamma\)</span>, is defined as the limit of <span class="math inline">\(\gamma_n = \sum_{k=1}^n \frac{1}{k} - \log n\)</span> as <span class="math inline">\(n \to \infty\)</span>.</p>
+<ol type="1">
+<li>What is the absolute error in approximating <span class="math inline">\(\gamma\)</span> with <span class="math inline">\(\gamma_{1000}\)</span>?</li>
+<li>What is the rate of convergence of <span class="math inline">\(\gamma_n\)</span> to <span class="math inline">\(\gamma\)</span>?</li>
+<li>[This was just so that we can remember some calculus and also rigorously prove the rate of convergence that we have seen above using a rigorous error estimate]<br>
+Prove that <span class="math inline">\(|\gamma - \gamma_n| \leq \frac1n\)</span>.</li>
+</ol>
+</div>
+<!-- L01 -->
+<div id="bank-exr-pi-artan" class="exercise-box">
+<p><strong><a href="../lectures/L01.html#exr-pi-artan" class="quarto-xref">Exercise&nbsp;<span>1.6</span></a></strong></p>
+<p><em>Assignment 1, Fall 2025, 30 pts</em> The quantities</p>
+<p><span class="math display">\[\begin{align}
+\pi_N := 4 \sum_{n=0}^N \frac{(-1)^n}{2n+1}
+\end{align}\]</span></p>
+<p>approximate <span class="math inline">\(\pi\)</span> by using the Taylor expansion of <span class="math inline">\(\arctan\)</span> together with the fact that <span class="math inline">\(\pi = 4 \arctan(1)\)</span>.</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Nmax <span class="op">=</span> <span class="fl">100</span>;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Ninter <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>Nmax;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># vectors of length Nmax</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">zeros</span>( Nmax ); q <span class="op">=</span> <span class="fu">zeros</span>( Nmax );</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>p[<span class="fl">1</span>] <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> ( <span class="fl">1</span> <span class="op">-</span> <span class="fl">1</span><span class="op">/</span><span class="fl">3</span> ) ;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>q[<span class="fl">1</span>] <span class="op">=</span> <span class="fu">abs</span>( p[<span class="fl">1</span>] <span class="op">-</span> <span class="cn">π</span> );</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> N <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span>Nmax</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    p[N] <span class="op">=</span> p[N<span class="op">-</span><span class="fl">1</span>] <span class="op">+</span> <span class="fl">4</span> <span class="op">*</span> (<span class="op">-</span><span class="fl">1</span>)<span class="op">^</span>N<span class="op">/</span>(<span class="fl">2</span><span class="op">*</span>N <span class="op">+</span> <span class="fl">1</span>);</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    q[N] <span class="op">=</span> <span class="fu">abs</span>( p[N] <span class="op">-</span> <span class="cn">π</span> );</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, legend<span class="op">=</span><span class="cn">false</span>, xlabel<span class="op">=</span><span class="st">"N"</span>, title<span class="op">=</span>L<span class="st">"\pi_N"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAAGQCAIAAAD9V4nPAAAABmJLR0QA/wD/AP+gvaeTAAAgAElEQVR4nOzdd3wc1dU38N+9s0UrraplFcuSbNlyFy64gDGmE3oNEEIISWh2eElCCQEeyBOSPJDQEjBJKGkEEkpoIYXQQjFugAu25V5ky7JlWV270mp35973j1mtZmfurIUjMGOf7x98jHdHHrU9e849514mpQQhhBByuOIH+wYIIYSQg4kCISGEkMMaBUJCCCGHNQqEhBBCDmueg30DhBAAiEaj4XDY/vcZGRmBQODzvx9CDh+UERJykOm6fsstt+Tm5haoTJw48WDfICGHOMoICTnI7rzzTiHEe++95/V6f/e73914440tLS3PP//8/PnzARQXFx/sGyTkEEeBkJCDaeXKlaWlpddffz2Ap5566vTTT6+qqtq8efPRRx9dVVV1sO+OkMMClUYJOZimTp1qREEAL7/88rHHHgvgww8/LC0tPaj3RchhhAIhIV8Izc3NLS0tOTk5AFauXJmRkXGw74iQwwUFQkK+EJ544omjjz7a+HNDQ0N7e7vyacuXL58/f/6oUaP++te/Jv/ynnvumT179ne/+92VK1d+HvdKyKGF1ggJOfji8fhvfvObP/zhD8b/trW11dXVKZ955JFH7t27t6ur65577rnooouMv7ztttu6urruvvvuz+duCTnEUEZIyMH3yiuvtLa2zpkzx/jfIUOGvPnmm05P3rRp03333VdbW7to0SLjb6LRaHV19edxo4QciigQEnLwPffcc+ecc47f7zf+d9q0aZs3b3Z6Mue8tLT0wgsvfOSRR4y/Wbp06YwZMz6PGyXkUESlUUIOvgULFgSDweT//vznP4/FYspndnV15ebmArjuuutOOOGEhoaGsrKydevWXXvttZ/TvRJyyKGMkJCDr6SkxBwIg8Fgfn6+8pkLFy485phjABxzzDGTJ09+4oknAEgpGWOfz60ScuihQEiIm2zdunX06NHGn+fPn//YY491dXUla6qEkANAgZAQNzFnfpdeemksFvv+978/a9asg3hLhLgdBUJCXKOjo8NcQQ0EAldeeeXLL788YcKEg3hXhLgdNcsQ4g7vvPPOo48+mp2dfcIJJ1RWVhp/OX/+/J07d9ICISH/DSalPNj3QAjZv/Xr1/v9/t7e3iFDhhQV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" style="max-width:100%;height:auto;display:block;margin:.5em 0;"></p>
+<p>Based on the following graph, what is the rate of convergence of this particular approximation to <span class="math inline">\(\pi\)</span>? Why do we use a log-log scale for this graph?</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( q , xaxis<span class="op">=:</span>log, yaxis<span class="op">=:</span>log, xlabel<span class="op">=</span>L<span class="st">"N"</span>, title<span class="op">=</span><span class="st">"absolute error"</span>, legend<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>( Ninter<span class="op">.^</span>(<span class="op">-</span><span class="fl">1</span>) , ls<span class="op">=:</span>dash)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p><img src="data:image/png;base64,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" style="max-width:100%;height:auto;display:block;margin:.5em 0;"></p>
+</div>
+</section>
+<section id="lecture-2" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="lecture-2"><span class="header-section-number">5.2</span> Lecture 2</h2>
+<!-- L02 -->
+<div id="bank-exr-jam" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-jam" class="quarto-xref">Exercise&nbsp;<span>2.1</span></a></strong></p>
+<p>In England, when we need to convert between lb and kg some people use the phrase “2.2 pounds of jam is the same as a kilogram”.</p>
+<ul>
+<li>What is the error, absolute error, and relative error of approximating 1 kg with 2.2 lb?</li>
+<li>To how many significant digits is this approximation correct to?</li>
+</ul>
+<p>You may use 1 kg = 2.20462262185 lb.</p>
+<div class="exercise-solution" style="display: none;">
+<p>The error is simply “exact minus approx.” <span class="math inline">\(= 2.20462262185 - 2.2 \approx 0.00462262185\)</span>. This is also the absolute error (because it is positive).</p>
+<p>For the relative error, we divide by the exact value:</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">2.20462262185</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">2.2</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"relative error = </span><span class="sc">$</span>( (x<span class="op">-</span>y)<span class="op">/</span>x )<span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<p>The error is <span class="math inline">\(0.002096... \leq 5 \times 10^{-3}\)</span> and so <span class="math inline">\(2.2\)</span> is correct to 3 significant digits. (This is sufficient for all recipes you will likely use).</p>
+</div>
+</div>
+<!-- L02 -->
+<div id="bank-exr-marathon" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-marathon" class="quarto-xref">Exercise&nbsp;<span>2.2</span></a></strong></p>
+<p>Most people say a marathon is 26 miles when it is actually 26 miles 385 yards. In Europe, people say a marathon is 42 km when it is actually 42.194988 km.</p>
+<ul>
+<li>Which approximation has a smaller error?</li>
+<li>What is the advantage of computing the relative errors in this case?</li>
+</ul>
+<p>Hint: You may use the fact that 1 mile <span class="math inline">\(=\)</span> 1760 yards.</p>
+</div>
+<!-- L02 -->
+<div id="bank-exr-AU" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-AU" class="quarto-xref">Exercise&nbsp;<span>2.3</span></a></strong></p>
+<p>The astronomical unit is defined as <span class="math inline">\(1 \text{AU} = 149,597,870,700 \text{m}\)</span>. Write this in standard form.</p>
+</div>
+<!-- L02 -->
+<div id="bank-exr-fp-1" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-fp-1" class="quarto-xref">Exercise&nbsp;<span>2.4</span></a></strong></p>
+<p>Write down all the floating point numbers with <span class="math inline">\(k = 2\)</span> in the interval <span class="math inline">\([1,2)\)</span>. What about the interval <span class="math inline">\([2,4)\)</span>? <span class="math inline">\([2^n,2^{n+1})\)</span>?</p>
+</div>
+<!-- L02 -->
+<div id="bank-exr-fp-3" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-fp-3" class="quarto-xref">Exercise&nbsp;<span>2.5</span></a></strong></p>
+<p>Take <span class="math inline">\(k=\ell=2\)</span>.</p>
+<ul>
+<li>What number does <span class="math inline">\(0 0 1 1 0\)</span> encode?</li>
+<li>Write the bitstring of <span class="math inline">\(-3.5\)</span>.</li>
+<li>What are the maximum and minimum positive numbers and the machine precision in this system?</li>
+</ul>
+</div>
+<!-- L02 -->
+<div id="bank-exr-fp-2" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-fp-2" class="quarto-xref">Exercise&nbsp;<span>2.6</span></a></strong></p>
+<p>What are the maximum and minimum positive numbers and the machine precision for each of <code>Float16</code>, <code>Float32</code>, and <code>Float64</code>?</p>
+</div>
+<!-- L02 -->
+<div id="bank-exr-Float16-pi" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-Float16-pi" class="quarto-xref">Exercise&nbsp;<span>2.7</span></a></strong></p>
+<p>Write down the bitstring for <span class="math inline">\(\pi\)</span> in <code>Float16</code>.</p>
+</div>
+<!-- L02 -->
+<div id="bank-exr-cond-2" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-cond-2" class="quarto-xref">Exercise&nbsp;<span>2.8</span></a></strong></p>
+<p>Compute the relative condition numbers of (i) <span class="math inline">\(x \mapsto cx\)</span> for <span class="math inline">\(c \not= 0\)</span>, (ii) <span class="math inline">\(\log\)</span>, (iii) <span class="math inline">\(\exp\)</span>, (iv) <span class="math inline">\(x^p\)</span>, and (v) <span class="math inline">\(f\circ g\)</span> in terms of <span class="math inline">\(\kappa_f\)</span> and <span class="math inline">\(\kappa_g\)</span></p>
+</div>
+<!-- L02 -->
+<div id="bank-exr-subtractive-cancellation-1" class="exercise-box">
+<p><strong><a href="../lectures/L02.html#exr-subtractive-cancellation-1" class="quarto-xref">Exercise&nbsp;<span>2.9</span></a></strong></p>
+<p><em>Midterm, Fall 2025, Compulsory Section, 3 pts.</em> Let us define</p>
+<p><span class="math display">\[\begin{align*}
+   f(x) = \frac{\sqrt{1+x}-1}{x}, \qquad g(x) = \frac{1}{\sqrt{1+x} + 1}.
+\end{align*}\]</span></p>
+<p>One may verify that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are mathematically identical (but you don’t have to). The following table is the output of evaluating <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> on <span class="math inline">\(\{10^{-14}, 10^{-15}, 10^{-16}\}\)</span> in double precision floating point. Why are the function values different?</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> ( <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) <span class="op">-</span> <span class="fl">1</span> ) <span class="op">/</span> x</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x<span class="op">-&gt;</span> <span class="fl">1</span><span class="op">/</span>( <span class="fl">1</span> <span class="op">+</span> <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) )</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">1e-14</span>; <span class="fl">1e-15</span>; <span class="fl">1e-16</span>];</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"                         f(x)                  g(x)"</span> )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-14):     "</span>, <span class="fu">f</span>(t[<span class="fl">1</span>]), <span class="st">"    "</span>,    <span class="fu">g</span>(t[<span class="fl">1</span>]) )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-15):     "</span>, <span class="fu">f</span>(t[<span class="fl">2</span>]), <span class="st">"   "</span>,    <span class="fu">g</span>(t[<span class="fl">2</span>]) )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-16):     "</span>, <span class="fu">f</span>(t[<span class="fl">3</span>]), <span class="st">"                   "</span>,    <span class="fu">g</span>(t[<span class="fl">3</span>]) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="lecture-3" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="lecture-3"><span class="header-section-number">5.3</span> Lecture 3</h2>
+<!-- L03 -->
+<div id="bank-exr-ep-over-2" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-ep-over-2" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a></strong></p>
+<p>Let <span class="math inline">\(\epsilon\)</span> be the machine precision. Is <span class="math inline">\((1 + \epsilon/2) - 1 = 1 + (\epsilon/2-1)\)</span> in Float64?</p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-fp-sums" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-fp-sums" class="quarto-xref">Exercise&nbsp;<span>3.2</span></a></strong></p>
+<p>Let <span class="math inline">\(X\)</span> be an array containing <span class="math inline">\(10^{16}, -10^{16}\)</span>, and <span class="math inline">\(N\)</span> copies of <span class="math inline">\(1\)</span>. What is the sum of all the entries of the array <span class="math inline">\(X\)</span>? Does it depend on the order of summation? What about in <code>Float64</code>? Why?</p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-FNC-1-4-1" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-FNC-1-4-1" class="quarto-xref">Exercise&nbsp;<span>3.3</span></a></strong></p>
+<p>Exercise 1.4.1 from <span class="citation" data-cites="fnc">Driscoll and Braun (<a href="../references.html#ref-fnc" role="doc-biblioref">2017</a>)</span></p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-FNC-1-4-2" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-FNC-1-4-2" class="quarto-xref">Exercise&nbsp;<span>3.4</span></a></strong></p>
+<p>Exercise 1.4.2 from <span class="citation" data-cites="fnc">Driscoll and Braun (<a href="../references.html#ref-fnc" role="doc-biblioref">2017</a>)</span>.</p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-change-sign-1" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-change-sign-1" class="quarto-xref">Exercise&nbsp;<span>3.5</span></a></strong></p>
+<p>Let <span class="math inline">\(f(x) = e^x - 2x - 1\)</span>. Apply change of sign theorem to <span class="math inline">\(f\)</span> to conclude there exists <span class="math inline">\(\xi \in [1,2]\)</span> such that <span class="math inline">\(f(\xi) = 0\)</span>.</p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-change-sign-2" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-change-sign-2" class="quarto-xref">Exercise&nbsp;<span>3.6</span></a></strong></p>
+<p>Let’s return to <a href="../lectures/L03.html#exr-change-sign-1" class="quarto-xref">Exercise&nbsp;<span>3.5</span></a>. You showed that <span class="math inline">\(f(x) = e^x - 2x - 1\)</span> has a root <span class="math inline">\(\xi \in [1,2]\)</span>.</p>
+<p>Show that <span class="math inline">\(f(x) = 0\)</span> can be solved by instead considering the fixed point problems <span class="math inline">\(g(x) = x\)</span> or <span class="math inline">\(h(x) = x\)</span> where</p>
+<p><span class="math display">\[
+\begin{align}
+    g(x) = \log( 2x + 1 ), \quad  \text{and} \quad h(x) = \frac{e^x - 1}{2}
+\end{align}
+\]</span></p>
+<p>Show that Brouwer’s fixed point theorem applies to <span class="math inline">\(g\)</span> but <strong>not</strong> <span class="math inline">\(h\)</span> on <span class="math inline">\([1,2]\)</span>.</p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-LambertW" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-LambertW" class="quarto-xref">Exercise&nbsp;<span>3.7</span></a></strong></p>
+<p><em>Assignment 1, Fall 2025, [30 pts].</em> Prove that, for <span class="math inline">\(x \geq 0\)</span>, there exists a unique <span class="math inline">\(W(x) \geq 0\)</span> for which <span class="math inline">\(W(x) e^{W(x)} = x\)</span>. Show that <span class="math inline">\(\Omega := W(1)\)</span> satisfies <span class="math inline">\(0.56 &lt; \Omega &lt; 0.58\)</span>.</p>
+</div>
+<!-- L03 -->
+<div id="bank-exr-condition-numbers" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-condition-numbers" class="quarto-xref">Exercise&nbsp;<span>3.8</span></a></strong></p>
+<p><em>Assignment 2, Fall 2025, [10 pts].</em> For fixed <span class="math inline">\(f\)</span>, define</p>
+<p><span class="math display">\[\begin{align}
+    g(x) &amp;= f(x - a), \\
+    h(x) &amp;= b f(x), \\
+    j(x) &amp;= f(c x),
+\end{align}\]</span></p>
+<ol type="1">
+<li>What is <span class="math inline">\(\kappa_g(x)\)</span>?</li>
+<li>Write <span class="math inline">\(\kappa_{h}(x)\)</span> in terms of <span class="math inline">\(\kappa_f\)</span>,</li>
+<li>Write <span class="math inline">\(\kappa_{j}(x)\)</span> in terms of <span class="math inline">\(\kappa_f\)</span>,</li>
+<li>What is <span class="math inline">\(\kappa_f(x)\)</span> when <span class="math inline">\(f(x) = e^{-x^2}\)</span>?</li>
+</ol>
+</div>
+<!-- L03 -->
+<div id="bank-exr-conditioning-diff" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-conditioning-diff" class="quarto-xref">Exercise&nbsp;<span>3.9</span></a></strong></p>
+<p><em>Assignment 2, Fall 2025, [25 pts].</em> Consider the differential equation (initial value problem)</p>
+<p><span class="math display">\[
+\begin{align}
+\begin{split}
+    u'(x) &amp;= u(x) +e^{-x} \nonumber \\
+    u(0) &amp;= -\frac12 .
+\end{split}
+\end{align}
+\]</span></p>
+<ol type="1">
+<li>Show that <span class="math inline">\(u(x) = -\frac12 e^{-x}\)</span> solves <a href="../lectures/L03.html#eq-exr-diff" class="quarto-xref">Equation&nbsp;<span>3.2</span></a>.</li>
+</ol>
+<p>Now we perturb the initial data, by considering</p>
+<p><span class="math display">\[
+\begin{align}
+\begin{split}
+    u'(x) &amp;= u(x) +e^{-x} \nonumber \\
+    u(0) &amp;= \alpha
+\end{split}
+\end{align}
+\]</span></p>
+<p>for <span class="math inline">\(\alpha := \epsilon - \frac12\)</span>.</p>
+<ol start="2" type="1">
+<li>Show that $u_{}(x) = (+ ) e^x - e^{-x} $ solves <a href="../lectures/L03.html#eq-exr-diff-2" class="quarto-xref">Equation&nbsp;<span>3.3</span></a>.</li>
+<li>Plot the functions <span class="math inline">\(u\)</span> and <span class="math inline">\(u_{\alpha}\)</span> and comment on the difference between the solutions for large <span class="math inline">\(x\)</span>.</li>
+<li>Let <span class="math inline">\(f( \alpha ) = u_\alpha( 100 )\)</span>. What is the condition number <span class="math inline">\(\kappa_f( \alpha )\)</span>?</li>
+<li>Explain what happens for <span class="math inline">\(\alpha \approx -\frac12\)</span>. Link your observations to your answer for question 3.</li>
+</ol>
+</div>
+<!-- L03 -->
+<div id="bank-exr-cond-number-poly" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-cond-number-poly" class="quarto-xref">Exercise&nbsp;<span>3.10</span></a></strong></p>
+<p><em>Assignment 2, Fall 2025, [10 pts].</em> Let <span class="math inline">\(p_{\alpha}(x) = \alpha x^n + \sum_{j=0}^{n-1} a_{j} x^j\)</span> be a polynomial of degree <span class="math inline">\(n\)</span> and let <span class="math inline">\(r(\alpha)\)</span> be a root of <span class="math inline">\(p_{\alpha}\)</span>. What is the condition number <span class="math inline">\(\kappa_r(\alpha)\)</span>?</p>
+</div>
+</section>
+<section id="lecture-4" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="lecture-4"><span class="header-section-number">5.4</span> Lecture 4</h2>
+<!-- L04 -->
+<div id="bank-exr-contraction-1" class="exercise-box">
+<p><strong><a href="../lectures/L04.html#exr-contraction-1" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a></strong></p>
+<p>Suppose <span class="math inline">\(g :[a,b] \to \mathbb R\)</span> is continuously differentiable with <span class="math inline">\(|g'(x)| \leq L &lt; 1\)</span> for all <span class="math inline">\(x \in [a,b]\)</span>. Show that <span class="math inline">\(g\)</span> is a contraction with constant <span class="math inline">\(L\)</span>.</p>
+</div>
+<!-- L04 -->
+<div id="bank-exr-contraction-2" class="exercise-box">
+<p><strong><a href="../lectures/L04.html#exr-contraction-2" class="quarto-xref">Exercise&nbsp;<span>4.2</span></a></strong></p>
+<p>Take the simple iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> for some contraction <span class="math inline">\(g : [a,b] \to [a,b]\)</span>. Show that <span class="math inline">\((x_n)\)</span> converges to the fixed point of <span class="math inline">\(g\)</span> in <span class="math inline">\([a,b]\)</span> at least linearly with asymptotic error constant <span class="math inline">\(\mu = |g'(\xi)|\)</span>.</p>
+</div>
+<!-- L04 -->
+<div id="bank-exr-change-sign-5" class="exercise-box">
+<p><strong><a href="../lectures/L04.html#exr-change-sign-5" class="quarto-xref">Exercise&nbsp;<span>4.3</span></a></strong></p>
+<p>Show that <span class="math inline">\(g(x) = \log( 2x + 1)\)</span> is a contraction on <span class="math inline">\([1,2]\)</span> with <span class="math inline">\(L = \frac23\)</span>. Hence conclude that <span class="math inline">\(x_{n+1} := g(x_n)\)</span> converges for all <span class="math inline">\(x_1 \in [1,2]\)</span>.</p>
+</div>
+<!-- L04 -->
+<div id="bank-exr-cond-number-poly" class="exercise-box">
+<p><strong><a href="../lectures/L03.html#exr-cond-number-poly" class="quarto-xref">Exercise&nbsp;<span>3.10</span></a></strong></p>
+<p><em>Assignment 2, Fall 2025, [25 pts].</em> Fix <span class="math inline">\(a, x_1 &gt; 0\)</span> and define the iteration <span class="math inline">\(x_{n+1} = \frac{1}{2}\big( x_n + \frac{a}{x_n} \big)\)</span>.</p>
+<ol type="1">
+<li>✍ Show that <span class="math inline">\(x_{n+1}\)</span> has the same sign as <span class="math inline">\(x_n\)</span>,</li>
+<li>✍ Suppose that <span class="math inline">\((x_n) \to \xi\)</span>. What is the value of <span class="math inline">\(\xi\)</span>?</li>
+<li>💻 Let <span class="math inline">\(x\)</span> be as in question 2. Show numerically that <span class="math inline">\((x_n) \to \xi\)</span> for a few different choices of <span class="math inline">\(a\)</span> and <span class="math inline">\(x_1\)</span>,</li>
+<li>💻 This iteration can be seen as a way of approximating <span class="math inline">\(\xi\)</span>. What is the correseponding order of convergence?</li>
+</ol>
+</div>
+<!-- L04 -->
+<div id="bank-exr-Lambert-W-2" class="exercise-box">
+<p><strong><a href="../lectures/L04.html#exr-Lambert-W-2" class="quarto-xref">Exercise&nbsp;<span>4.5</span></a></strong></p>
+<p><em>Assignment 3, Fall 2025.</em> The <em>Lambert W function</em> (also called the <em>product-log function</em>) <span class="math inline">\(W : [0,\infty) \to [0,\infty)\)</span> satisfies <span class="math inline">\(W(a) e^{W(a)} = a\)</span>. Define <span class="math inline">\(\Omega := W(1)\)</span>.</p>
+<ol type="1">
+<li>✍ Show that <span class="math inline">\(\Omega \in [0.56, 0.58]\)</span>.</li>
+<li>✍ Show that <span class="math inline">\(\Omega\)</span> is a fixed point of <span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span> as defined by</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+    g(x) = e^{-x}, \qquad h(x) = \log \left|\frac{1}{x}\right|
+\end{align}\]</span></p>
+<ol start="3" type="1">
+<li>💻 Show numerically that <span class="math inline">\(x_{n+1} = g(x_n)\)</span> converges and <span class="math inline">\(y_{n+1} = h(y_n)\)</span> diverges for a few different choices of <span class="math inline">\(x_1\)</span> and <span class="math inline">\(y_1\)</span>.</li>
+<li>✍ Show that <span class="math inline">\(g:[\frac{1}{e}, 1]\to[\frac{1}{e},1]\)</span> with <span class="math inline">\(|g'| &lt; 1\)</span>,</li>
+<li>✍ Explain why this means that the iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> converges for all <span class="math inline">\(x_1 \in [\frac{1}{e}, 1]\)</span>,</li>
+<li>✍ Now fix <span class="math inline">\(x_1 \in \mathbb R\)</span>. Show that the sequence <span class="math inline">\((x_n)\)</span> is eventually contained in <span class="math inline">\([0,1]\)</span> and that <span class="math inline">\(g : [0,1] \to [\frac{1}{e}, 1]\)</span>. Explain why this means that <span class="math inline">\((x_n)\)</span> converges for all <span class="math inline">\(x_1 \in \mathbb R\)</span>,</li>
+<li>✍ What is the order of convergence of this method?</li>
+<li>💻 Confirm this numerically.</li>
+<li>✍ Show that <span class="math inline">\((y_n)\)</span> doesn’t converge to <span class="math inline">\(\Omega\)</span> for any choice of <span class="math inline">\(y_1 \not= \Omega\)</span>.</li>
+</ol>
+</div>
+<!-- L04 -->
+<div id="bank-exr-simple-iteration" class="exercise-box">
+<p><strong><a href="../lectures/L04.html#exr-simple-iteration" class="quarto-xref">Exercise&nbsp;<span>4.6</span></a></strong></p>
+<p><em>Midterm, Fall 2025, Optional section, 30 pts.</em> Define <span class="math inline">\(g(x) = 1 + \frac{1}{1 + x}\)</span> and <span class="math inline">\(I := [1,2]\)</span>.</p>
+<ol type="1">
+<li><strong>[3 points]</strong> Show that <span class="math inline">\(g(x) \in I\)</span> for all <span class="math inline">\(x \in I\)</span>.</li>
+<li><strong>[3 points]</strong> Which theorem guarantees the existence of a fixed point <span class="math inline">\(\xi = g(\xi) \in I\)</span>.</li>
+<li><strong>[3 points]</strong> Compute the value of <span class="math inline">\(\xi\)</span>.</li>
+<li><strong>[3 points]</strong> Show that <span class="math inline">\(L := \max_{x \in I} |g'(x)| = \frac14\)</span>.</li>
+<li><strong>[3 points]</strong> Explain why this means the iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> converges to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in I\)</span>.</li>
+<li><strong>[5 points]</strong> What is the order of convergence?</li>
+<li><strong>[5 points]</strong> What is the asymptotic error constant?</li>
+<li><strong>[5 points]</strong> Fix <span class="math inline">\(x_1 \in I\)</span>. Find <span class="math inline">\(n\)</span> for which the error bound <span class="math inline">\(|x_{n+1} - \xi| \leq \frac{1}{64}\)</span> is guaranteed.</li>
+</ol>
+</div>
+</section>
+</div>
+<div id="exercise-app-root" class="my-4">
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/julia.min.js"></script>
+<p><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"></p>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const SERVER_SYNC_URL = "https://jack.thomaslabs.co.uk/Math5485-gh/backup.php";
+  const SOLUTION_DELAY_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+  const root = document.getElementById('exercise-app-root');
+  const sourcePool = document.getElementById('question-bank');
+
+  if (!root || !sourcePool) return;
+
+  function getFormattedStudentId() {
+    let id = localStorage.getItem('studentID');
+    if (!id || !/^\d{3}-\d{3}-\d{3}$/.test(id)) {
+      const pad = (num) => String(num).padStart(3, '0');
+      const p1 = pad(Math.floor(Math.random() * 1000));
+      const p2 = pad(Math.floor(Math.random() * 1000));
+      const p3 = pad(Math.floor(Math.random() * 1000));
+      id = `${p1}-${p2}-${p3}`;
+      localStorage.setItem('studentID', id);
+    }
+    return id;
+  }
+
+  let studentID = getFormattedStudentId();
+  const allExercises = Array.from(sourcePool.querySelectorAll('.exercise-box'));
+
+  if (allExercises.length === 0) {
+    root.innerHTML = '<div class="alert alert-warning">No exercises found.</div>';
+    return;
+  }
+
+  function cleanTitle(rawText) {
+    return rawText.replace(/^(\d+(\.\d+)*\.?\s*|chapter\s+\d+:?\s*|section\s+\d+:?\s*)/i, '').trim();
+  }
+
+  let currentLecture = "Exercises";
+
+  allExercises.forEach((el, index) => {
+    let prev = el.previousElementSibling;
+    while (prev) {
+      if (/^H[1-6]$/i.test(prev.tagName) || prev.classList.contains('lecture-title')) {
+        currentLecture = cleanTitle(prev.textContent);
+        break;
+      }
+      prev = prev.previousElementSibling;
+    }
+
+    if (!el.dataset.lecture) el.dataset.lecture = currentLecture;
+
+    const titleHeader = el.querySelector('h1, h2, h3, h4, .exercise-title, strong');
+    const displayLabel = titleHeader ? titleHeader.textContent.trim() : `Ex ${index + 1}`;
+    el.dataset.title = displayLabel;
+
+    if (!el.id) {
+      const textContent = el.textContent.trim();
+      let hash = 0;
+      for (let i = 0; i < textContent.length; i++) {
+        hash = ((hash << 5) - hash) + textContent.charCodeAt(i);
+        hash |= 0;
+      }
+      el.id = 'exr_hash_' + Math.abs(hash);
+    }
+  });
+
+  // Inject UI structure
+  root.innerHTML = `
+    <style>
+      .exr-nav-btn {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 7px 16px; border-radius: 999px; font-size: 0.875rem;
+        font-weight: 500; border: 1.5px solid; cursor: pointer;
+        transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        background: #fff;
+      }
+      .exr-nav-btn:hover { box-shadow: 0 3px 8px rgba(0,0,0,0.13); transform: translateY(-1px); }
+      .exr-nav-btn:active { transform: translateY(0); box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+      .exr-nav-btn.prev  { border-color: #6c757d; color: #6c757d; }
+      .exr-nav-btn.prev:hover  { background: #6c757d; color: #fff; }
+      .exr-nav-btn.next  { border-color: #0d6efd; color: #0d6efd; }
+      .exr-nav-btn.next:hover  { background: #0d6efd; color: #fff; }
+      .exr-nav-btn.rand  { border-color: #0d6efd; background: #0d6efd; color: #fff; }
+      .exr-nav-btn.rand:hover  { background: #0b5ed7; border-color: #0b5ed7; }
+      .exr-nav-btn svg { flex-shrink: 0; }
+      .exr-nav-btn.hint { border-color: #f0ad4e; color: #b07800; }
+      .exr-nav-btn.hint:hover { background: #f0ad4e; color: #fff; }
+      .exr-nav-btn.hint.hint-on { background: #f0ad4e; color: #fff; border-color: #f0ad4e; }
+      #hint-container { border: none; background: transparent; border-radius: 0; padding: 0; margin-top: 0.4rem; }
+      #solution-container { border: none; background: #f0faf4; border-radius: 8px; padding: 1rem 1.25rem; margin-top: 0.75rem; }
+    </style>
+    <div class="card p-3 my-3">
+      <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+        <div class="d-flex gap-2" role="group">
+          <button id="prev-exr-btn" class="exr-nav-btn prev">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+            Previous
+          </button>
+          <button id="next-exr-btn" class="exr-nav-btn next">
+            Next
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+          </button>
+          <button id="random-exr-btn" class="exr-nav-btn rand">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.443 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/><path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/></svg>
+            Shuffle
+          </button>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <select id="filter-select" class="form-select form-select-sm" style="width: auto;">
+            <option value="all">All questions</option>
+            <option value="unrated">❓ Unrated only</option>
+            <option value="down">⚠️ Needs review only</option>
+            <option value="up">✓ Completed only</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center gap-2 mt-3 pt-2 border-top small text-muted flex-wrap">
+        <div>
+          <span>Total: <strong id="cnt-all">0</strong></span> |
+          <span>Unrated: <strong id="cnt-unrated" class="text-secondary">0</strong></span> |
+          <span>Completed: <strong id="cnt-up" class="text-success">0</strong></span> |
+          <span>Needs review: <strong id="cnt-down" class="text-warning">0</strong></span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <span id="sync-status" class="badge bg-light text-muted border">Synced</span>
+          <span id="streak-display" title="Day streak" style="font-size:.82rem;color:#6c757d;"></span>
+          <button id="manage-id-btn" class="btn btn-sm btn-outline-secondary py-0" title="View or change Student ID">🔑 ID</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container for active exercise -->
+    <div id="random-exercise-display"></div>
+
+    <!-- Hints & Solutions Control Bar -->
+    <div id="solution-controls" class="my-3" style="display:none;">
+      <div class="d-flex gap-2 flex-wrap align-items-center">
+        <button id="btn-show-hint" class="exr-nav-btn hint" title="Toggle hint" style="display:none;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6zm3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5z"/></svg>
+          Hint
+        </button>
+        <button id="btn-show-solution" class="exr-nav-btn" disabled style="display:none; border-color:#6c757d; color:#6c757d;">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+          Solution (<span id="solution-timer">30</span>s)
+        </button>
+      </div>
+
+      <div id="hint-container" style="display:none;"></div>
+      <div id="solution-container" style="display:none;"></div>
+    </div>
+
+    <!-- Feedback Bar -->
+    <div id="feedback-bar" class="mt-3 p-3 bg-light border rounded d-flex flex-wrap align-items-center justify-content-between gap-3" style="display:none;">
+      <div class="d-flex align-items-center gap-2">
+        <button id="btn-thumbs-up" class="btn btn-outline-success btn-sm">✓ Completed</button>
+        <button id="btn-thumbs-down" class="btn btn-outline-warning btn-sm">⚠️ Needs review</button>
+      </div>
+
+      <div class="d-flex align-items-center gap-2">
+        <span class="small fw-bold text-muted">Difficulty:</span>
+        <div id="star-rating" class="d-flex gap-1 fs-5 text-warning" style="cursor: pointer;">
+          <span data-star="1">☆</span>
+          <span data-star="2">☆</span>
+          <span data-star="3">☆</span>
+          <span data-star="4">☆</span>
+          <span data-star="5">☆</span>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // DOM Elements
+  const prevBtn = document.getElementById('prev-exr-btn');
+  const nextBtn = document.getElementById('next-exr-btn');
+  const randomBtn = document.getElementById('random-exr-btn');
+  const filterSelect = document.getElementById('filter-select');
+  const displayContainer = document.getElementById('random-exercise-display');
+  const feedbackBar = document.getElementById('feedback-bar');
+  const btnUp = document.getElementById('btn-thumbs-up');
+  const btnDown = document.getElementById('btn-thumbs-down');
+  const starContainer = document.getElementById('star-rating');
+  const manageIdBtn = document.getElementById('manage-id-btn');
+  const syncStatus = document.getElementById('sync-status');
+
+  const solutionControls = document.getElementById('solution-controls');
+  const btnShowHint = document.getElementById('btn-show-hint');
+  const btnShowSolution = document.getElementById('btn-show-solution');
+  const solutionTimerSpan = document.getElementById('solution-timer');
+  const hintContainer = document.getElementById('hint-container');
+  const solutionContainer = document.getElementById('solution-container');
+
+  const cntAll = document.getElementById('cnt-all');
+  const cntUnrated = document.getElementById('cnt-unrated');
+  const cntUp = document.getElementById('cnt-up');
+  const cntDown = document.getElementById('cnt-down');
+
+  let activeExerciseId = null;
+  let activeLectureTitle = null;
+  let showingTitleCard = false;
+  let questionStartTime = null;
+  let solutionTimerInterval = null;
+
+  function getVote(id) { return localStorage.getItem('vote_' + id); }
+  function getDifficulty(id) { return localStorage.getItem('diff_' + id); }
+  function getTimeSpent(id) { return localStorage.getItem('timeSpent_' + id); }
+  function getFirstSeen(id) { return localStorage.getItem('firstSeen_' + id); }
+  function recordFirstSeen(id) {
+    if (!getFirstSeen(id)) {
+      localStorage.setItem('firstSeen_' + id, Date.now());
+      updateStreakDisplay();
+    }
+  }
+  function formatTimeRemaining(ms) {
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    if (h > 0) return `${h}h ${m}m`;
+    return `${m}m`;
+  }
+
+  function computeStreak() {
+    // Collect all unique days on which any question was first seen
+    const daySet = new Set();
+    allExercises.forEach(el => {
+      const ts = getFirstSeen(el.id);
+      if (ts) {
+        const d = new Date(parseInt(ts));
+        daySet.add(`${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`);
+      }
+    });
+    if (daySet.size === 0) return 0;
+
+    // Sort days and count consecutive streak ending today (or yesterday)
+    const today = new Date();
+    const toKey = d => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    let streak = 0;
+    let check = new Date(today);
+    // Allow streak to still show if the student hasn't opened anything today yet
+    if (!daySet.has(toKey(check))) check.setDate(check.getDate() - 1);
+    while (daySet.has(toKey(check))) {
+      streak++;
+      check.setDate(check.getDate() - 1);
+    }
+    return streak;
+  }
+
+  function updateStreakDisplay() {
+    const streak = computeStreak();
+    const el = document.getElementById('streak-display');
+    if (!el) return;
+    if (streak === 0) { el.textContent = ''; return; }
+    const flame = streak >= 3 ? '🔥' : '📅';
+    el.textContent = `${flame} ${streak}d`;
+    el.title = streak === 1 ? '1 day streak' : `${streak} day streak`;
+  }
+
+  async function syncProgressToServer(actionMetaData = null) {
+    syncStatus.textContent = 'Syncing...';
+    syncStatus.className = 'badge bg-warning text-dark border';
+
+    const votes = {};
+    const difficulties = {};
+    const titles = {};
+    const timeSpent = {};
+    const firstSeen = {};
+
+    allExercises.forEach(el => {
+      const v = getVote(el.id);
+      const d = getDifficulty(el.id);
+      const t = getTimeSpent(el.id);
+      const f = getFirstSeen(el.id);
+      if (v) votes[el.id] = v;
+      if (d) difficulties[el.id] = d;
+      if (t) timeSpent[el.id] = parseInt(t, 10);
+      if (f) firstSeen[el.id] = parseInt(f, 10);
+      titles[el.id] = el.dataset.title;
+    });
+
+    const payload = {
+      studentID: localStorage.getItem('studentID'),
+      timestamp: new Date().toISOString(),
+      votes: votes,
+      difficulties: difficulties,
+      timeSpentSeconds: timeSpent,
+      firstSeenTimestamps: firstSeen,
+      exerciseTitles: titles
+    };
+
+    if (actionMetaData) payload.lastAction = actionMetaData;
+
+    try {
+      const response = await fetch(SERVER_SYNC_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        syncStatus.textContent = 'Synced';
+        syncStatus.className = 'badge bg-light text-success border';
+      }
+    } catch (err) {
+      syncStatus.textContent = 'Offline';
+      syncStatus.className = 'badge bg-light text-secondary border';
+    }
+  }
+
+  function updateCounters() {
+    const total = allExercises.length;
+    const upCount = allExercises.filter(el => getVote(el.id) === 'up').length;
+    const downCount = allExercises.filter(el => getVote(el.id) === 'down').length;
+
+    cntAll.textContent = total;
+    cntUnrated.textContent = total - (upCount + downCount);
+    cntUp.textContent = upCount;
+    cntDown.textContent = downCount;
+  }
+
+  function getActivePool() {
+    const filter = filterSelect.value;
+    if (filter === 'unrated') return allExercises.filter(el => !getVote(el.id));
+    if (filter === 'down') return allExercises.filter(el => getVote(el.id) === 'down');
+    if (filter === 'up') return allExercises.filter(el => getVote(el.id) === 'up');
+    return allExercises;
+  }
+
+  function updateFeedbackUI() {
+    if (!activeExerciseId || showingTitleCard) return;
+
+    const vote = getVote(activeExerciseId);
+    btnUp.className = vote === 'up' ? 'btn btn-success btn-sm' : 'btn btn-outline-success btn-sm';
+    btnDown.className = vote === 'down' ? 'btn btn-warning btn-sm' : 'btn btn-outline-warning btn-sm';
+
+    const currentDiff = parseInt(getDifficulty(activeExerciseId)) || 0;
+    Array.from(starContainer.children).forEach(star => {
+      const starVal = parseInt(star.dataset.star);
+      star.textContent = starVal <= currentDiff ? '★' : '☆';
+    });
+  }
+
+  function setupSolutionControls(exerciseElement) {
+    clearInterval(solutionTimerInterval);
+    
+    hintContainer.style.display = 'block';
+    solutionContainer.style.display = 'none';
+    hintContainer.innerHTML = '';
+    solutionContainer.innerHTML = '';
+    btnShowHint.classList.remove('hint-on');
+    btnShowSolution.classList.remove('next');
+
+    const hintEl = exerciseElement.querySelector('.exercise-hint');
+    const solutionEl = exerciseElement.querySelector('.exercise-solution');
+
+    if (!hintEl && !solutionEl) {
+      solutionControls.style.display = 'none';
+      return;
+    }
+
+    solutionControls.style.display = 'block';
+
+    // Configure Hint Button — content rendered into hintContainer below the buttons
+    if (hintEl) {
+      btnShowHint.style.display = 'inline-flex';
+      hintContainer.innerHTML = hintEl.outerHTML;
+      hintContainer.querySelector('.exercise-hint').style.display = 'none';
+    } else {
+      btnShowHint.style.display = 'none';
+    }
+
+    // Configure Solution Button (unlocks 24h after first view)
+    if (solutionEl) {
+      btnShowSolution.style.display = 'inline-flex';
+      solutionContainer.innerHTML = solutionEl.innerHTML;
+
+      const firstSeen = parseInt(getFirstSeen(exerciseElement.id) || '0', 10);
+      const elapsed = firstSeen ? Date.now() - firstSeen : 0;
+      const remaining = SOLUTION_DELAY_MS - elapsed;
+
+      const lockSVG = '<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>';
+      const unlockSVG = '<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2z"/></svg>';
+
+      if (remaining <= 0) {
+        // Already unlocked
+        btnShowSolution.disabled = false;
+        btnShowSolution.className = 'exr-nav-btn next';
+        btnShowSolution.style.cssText = '';
+        btnShowSolution.innerHTML = unlockSVG + ' Show Solution';
+      } else {
+        // Locked — show time remaining, no live countdown needed
+        btnShowSolution.disabled = true;
+        btnShowSolution.className = 'exr-nav-btn';
+        btnShowSolution.style.cssText = 'border-color:#6c757d; color:#6c757d; opacity:0.6; cursor:not-allowed;';
+        btnShowSolution.innerHTML = lockSVG + ' Solution in ' + formatTimeRemaining(remaining);
+      }
+    } else {
+      btnShowSolution.style.display = 'none';
+    }
+  }
+
+  function renderExercise(chosenElement) {
+    if (!chosenElement) {
+      displayContainer.innerHTML = `<div class="alert alert-info m-0">No exercises found for this filter.</div>`;
+      feedbackBar.style.display = 'none';
+      solutionControls.style.display = 'none';
+      activeExerciseId = null;
+      showingTitleCard = false;
+      questionStartTime = null;
+      return;
+    }
+
+    showingTitleCard = false;
+    feedbackBar.style.display = 'flex';
+    activeExerciseId = chosenElement.id;
+    activeLectureTitle = chosenElement.dataset.lecture;
+    questionStartTime = Date.now();
+    recordFirstSeen(chosenElement.id);
+
+    const clone = chosenElement.cloneNode(true);
+    clone.style.display = 'block';
+
+    // Keep only .exercise-solution stripped from clone; hint is shown below via button
+    clone.querySelectorAll('.exercise-hint, .exercise-solution').forEach(e => e.remove());
+
+    displayContainer.innerHTML = '';
+    displayContainer.appendChild(clone);
+
+    // Setup hint and solution triggers (must be after clone is in DOM)
+    setupSolutionControls(chosenElement);
+
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise([displayContainer]);
+    }
+
+    updateFeedbackUI();
+  }
+
+  // Hint Click Handler — toggles .exercise-hint rendered below the buttons
+  btnShowHint.addEventListener('click', () => {
+    const inlineHint = hintContainer.querySelector('.exercise-hint');
+    if (!inlineHint) return;
+    const isVisible = inlineHint.style.display !== 'none';
+    if (isVisible) {
+      inlineHint.style.display = 'none';
+      btnShowHint.classList.remove('hint-on');
+    } else {
+      inlineHint.style.display = '';
+      btnShowHint.classList.add('hint-on');
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([inlineHint]);
+      }
+      syncProgressToServer({ exerciseID: activeExerciseId, requestedHint: true });
+    }
+  });
+
+  // Solution Click Handler — toggles solution visibility and active pill state
+  btnShowSolution.addEventListener('click', () => {
+    const isVisible = solutionContainer.style.display === 'block';
+    if (isVisible) {
+      solutionContainer.style.display = 'none';
+      btnShowSolution.classList.remove('next');
+      btnShowSolution.style.cssText = 'border-color:#0d6efd; color:#0d6efd;';
+    } else {
+      solutionContainer.style.display = 'block';
+      btnShowSolution.classList.add('next');
+      btnShowSolution.style.cssText = '';
+      if (window.hljs) hljs.highlightAll();
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([solutionContainer]);
+      }
+      syncProgressToServer({ exerciseID: activeExerciseId, requestedSolution: true });
+    }
+  });
+
+  function showNextExercise() {
+    const pool = getActivePool();
+    if (pool.length === 0) return renderExercise(null);
+    const currentIndex = pool.findIndex(el => el.id === activeExerciseId);
+    let nextIndex = (currentIndex + 1) % pool.length;
+    renderExercise(pool[nextIndex]);
+  }
+
+  function showPrevExercise() {
+    const pool = getActivePool();
+    if (pool.length === 0) return renderExercise(null);
+    const currentIndex = pool.findIndex(el => el.id === activeExerciseId);
+    let prevIndex = (currentIndex - 1 + pool.length) % pool.length;
+    renderExercise(pool[prevIndex]);
+  }
+
+  function showRandomExercise() {
+    const pool = getActivePool();
+    if (pool.length === 0) return renderExercise(null);
+    const chosen = pool.length > 1 ? pool.filter(el => el.id !== activeExerciseId)[Math.floor(Math.random() * (pool.length - 1))] : pool[0];
+    renderExercise(chosen);
+  }
+
+  function handleStatusClick(newVoteState) {
+    if (!activeExerciseId || showingTitleCard) return;
+
+    let timeSpentSecs = null;
+    if (questionStartTime) {
+      const elapsedSeconds = Math.round((Date.now() - questionStartTime) / 1000);
+      if (elapsedSeconds > 10) {
+        timeSpentSecs = elapsedSeconds;
+        const existingTime = parseInt(getTimeSpent(activeExerciseId) || '0', 10);
+        localStorage.setItem('timeSpent_' + activeExerciseId, existingTime + timeSpentSecs);
+      }
+    }
+
+    const currentVote = getVote(activeExerciseId);
+    currentVote === newVoteState 
+      ? localStorage.removeItem('vote_' + activeExerciseId) 
+      : localStorage.setItem('vote_' + activeExerciseId, newVoteState);
+
+    updateFeedbackUI();
+    updateCounters();
+    syncProgressToServer({ exerciseID: activeExerciseId, statusMarked: newVoteState, timeSpentOnThisSession: timeSpentSecs });
+  }
+
+  btnUp.addEventListener('click', () => handleStatusClick('up'));
+  btnDown.addEventListener('click', () => handleStatusClick('down'));
+
+  starContainer.addEventListener('click', (e) => {
+    if (!activeExerciseId || showingTitleCard) return;
+    const starVal = e.target.dataset.star;
+    if (!starVal) return;
+    getDifficulty(activeExerciseId) === starVal ? localStorage.removeItem('diff_' + activeExerciseId) : localStorage.setItem('diff_' + activeExerciseId, starVal);
+    updateFeedbackUI();
+    syncProgressToServer();
+  });
+
+  filterSelect.addEventListener('change', showNextExercise);
+  prevBtn.addEventListener('click', showPrevExercise);
+  nextBtn.addEventListener('click', showNextExercise);
+  randomBtn.addEventListener('click', showRandomExercise);
+
+  manageIdBtn.addEventListener('click', () => {
+    const currentID = localStorage.getItem('studentID') || '(none)';
+    const newID = window.prompt(
+      `Your current Student ID is:\n\n  ${currentID}\n\nTo sync progress from another device, paste that device's ID below and press OK.\nLeave blank to keep your current ID.`
+    );
+    if (newID === null) return; // cancelled
+    const trimmed = newID.trim();
+    if (trimmed === '') return; // blank — keep current
+    if (!/^\d{3}-\d{3}-\d{3}$/.test(trimmed)) {
+      alert('Invalid ID format. Expected xxx-xxx-xxx (e.g. 042-317-891).');
+      return;
+    }
+    localStorage.setItem('studentID', trimmed);
+    studentID = trimmed;
+    syncProgressToServer({ changedID: true });
+  });
+
+  updateCounters();
+  updateStreakDisplay();
+
+  // If the URL contains a hash matching a bank exercise id, show that exercise;
+  // otherwise start with a random one as usual.
+  // Links from lectures use: random-2.html#bank-exr-pi-artan
+  const hashId = window.location.hash.slice(1); // e.g. 'bank-exr-pi-artan'
+  const hashMatch = hashId ? allExercises.find(el => el.id === hashId) : null;
+  if (hashMatch) {
+    renderExercise(hashMatch);
+  } else {
+    showRandomExercise();
+  }
+});
+</script>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-fnc" class="csl-entry" role="listitem">
+Driscoll, Tobin A., and Richard J. Braun. 2017. <em>Fundamentals of Numerical Computation</em>. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611975086">https://doi.org/10.1137/1.9781611975086</a>.
+</div>
+</div>
+
+</main> <!-- /main -->
+<style>
+
+  /* Change cursor on equation tags to signal interactivity */
+
+  .mjx-tag, .katex-tag, [id^="eq-"] .tag {
+
+    cursor: pointer !important;
+
+  }
+
+  .mjx-tag:hover, .katex-tag:hover {
+
+    opacity: 0.7;
+
+  }
+
+</style>
+
+
+
+<script>
+
+window.addEventListener("load", function() {
+
+  const setupEquationCopy = () => {
+
+    // Find all equation containers generated by Quarto with an 'eq-' ID
+
+    document.querySelectorAll('[id^="eq-"]').forEach(container => {
+
+      const eqId = container.getAttribute('id');
+
+      const labelText = `@${eqId}`;
+
+      
+
+      // Locate the rendered tag element inside MathJax or KaTeX
+
+      const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
+
+      
+
+      // Set hover title to display the label name
+
+      tag.setAttribute('title', `📋 ${labelText}`);
+
+      
+
+      // Copy label to clipboard on click
+
+      tag.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        navigator.clipboard.writeText(labelText).then(() => {
+
+          showToast(`Copied ${labelText} to clipboard!`);
+
+        });
+
+      });
+
+    });
+
+  };
+
+
+
+  // Wait for MathJax/KaTeX rendering before attaching listeners
+
+  if (window.MathJax && window.MathJax.startup) {
+
+    window.MathJax.startup.promise.then(setupEquationCopy);
+
+  } else {
+
+    setupEquationCopy();
+
+  }
+
+
+
+  function showToast(message) {
+
+    let toast = document.getElementById('eq-copy-toast');
+
+    if (!toast) {
+
+      toast = document.createElement('div');
+
+      toast.id = 'eq-copy-toast';
+
+      toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
+
+      document.body.appendChild(toast);
+
+    }
+
+    toast.textContent = message;
+
+    toast.style.opacity = '1';
+
+    setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+
+  }
+
+});
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/L04.html" class="pagination-link" aria-label="Solving nonlinear equations in 1d">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solving nonlinear equations in 1d</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../exercises/test-sample.html" class="pagination-link" aria-label="Sample in-class test">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sample in-class test</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/exercises/bank.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
