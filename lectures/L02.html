@@ -242,7 +242,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercise bank</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -931,6 +931,18 @@ f &amp;= \big(0 . b_1 b_2 b_3 b_4 b_5 b_6 b_7 b_8 b_9 b_{10}\big)_2 \nonumber\\
 \end{align*}\]</span></p>
 <p>One may verify that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are mathematically identical (but you don’t have to). The following table is the output of evaluating <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> on <span class="math inline">\(\{10^{-14}, 10^{-15}, 10^{-16}\}\)</span> in double precision floating point. Why are the function values different?</p>
 <div id="749713ba" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> ( <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) <span class="op">-</span> <span class="fl">1</span> ) <span class="op">/</span> x</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x<span class="op">-&gt;</span> <span class="fl">1</span><span class="op">/</span>( <span class="fl">1</span> <span class="op">+</span> <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) )</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">1e-14</span>; <span class="fl">1e-15</span>; <span class="fl">1e-16</span>];</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"                         f(x)                  g(x)"</span> )</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-14):     "</span>, <span class="fu">f</span>(t[<span class="fl">1</span>]), <span class="st">"    "</span>,    <span class="fu">g</span>(t[<span class="fl">1</span>]) )</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-15):     "</span>, <span class="fu">f</span>(t[<span class="fl">2</span>]), <span class="st">"   "</span>,    <span class="fu">g</span>(t[<span class="fl">2</span>]) )</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-16):     "</span>, <span class="fu">f</span>(t[<span class="fl">3</span>]), <span class="st">"                   "</span>,    <span class="fu">g</span>(t[<span class="fl">3</span>]) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>                         f(x)                  g(x)
 x = 10^(-14):     0.4884981308350689    0.4999999999999988

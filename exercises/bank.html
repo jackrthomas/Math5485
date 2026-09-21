@@ -175,7 +175,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/bank.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/bank.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercise bank</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -259,7 +259,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercise bank</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -331,7 +331,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/bank.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/bank.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercise bank</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Exercises</h1>
 </div>
@@ -451,6 +451,8 @@ Code
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"relative error = </span><span class="sc">$</span>( (x<span class="op">-</span>y)<span class="op">/</span>x )<span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<pre><code>relative error = 0.0020967860005540483
+</code></pre>
 <p>The error is <span class="math inline">\(0.002096... \leq 5 \times 10^{-3}\)</span> and so <span class="math inline">\(2.2\)</span> is correct to 3 significant digits. (This is sufficient for all recipes you will likely use).</p>
 </div>
 </div>
@@ -463,6 +465,39 @@ Code
 <li>What is the advantage of computing the relative errors in this case?</li>
 </ul>
 <p>Hint: You may use the fact that 1 mile <span class="math inline">\(=\)</span> 1760 yards.</p>
+<div class="exercise-solution" style="display: none;">
+<p>A marathon is <span class="math inline">\(26 \times 1760 + 385\)</span> yards. The error and relative error in this approximation is</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">26</span><span class="op">*</span><span class="fl">1760</span> <span class="op">+</span> <span class="fl">385</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">26</span><span class="op">*</span><span class="fl">1760</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>err, r_err <span class="op">=</span> x<span class="op">-</span>y, (x<span class="op">-</span>y)<span class="op">/</span>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>(385, 0.00834326579261025)</code></pre>
+<p>The same calculation for the approximation in km is</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x′ <span class="op">=</span> <span class="fl">42.194988</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>y′ <span class="op">=</span> <span class="fl">42</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>err′, r_err′ <span class="op">=</span> x′<span class="op">-</span>y′, (x′<span class="op">-</span>y′)<span class="op">/</span>x′</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>(0.19498800000000216, 0.004621117560218341)</code></pre>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>r_err <span class="op">/</span> r_err′</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>1.8054649516893149</code></pre>
+<p>The approximation in miles has a <span class="math inline">\(1.8\times\)</span> larger relative error than the approximation in km.</p>
+<p>Why is the error in the approximation in miles much larger than <span class="math inline">\(1.8\times\)</span> bigger than the error in the approximation in km?</p>
+</div>
 </div>
 <!-- L02 -->
 <div id="bank-exr-AU" class="exercise-box">
@@ -473,6 +508,9 @@ Code
 <div id="bank-exr-fp-1" class="exercise-box">
 <p><strong><a href="../lectures/L02.html#exr-fp-1" class="quarto-xref">Exercise&nbsp;<span>2.4</span></a></strong></p>
 <p>Write down all the floating point numbers with <span class="math inline">\(k = 2\)</span> in the interval <span class="math inline">\([1,2)\)</span>. What about the interval <span class="math inline">\([2,4)\)</span>? <span class="math inline">\([2^n,2^{n+1})\)</span>?</p>
+<div class="exercise-hint" style="display: none;">
+<p>There are <span class="math inline">\(2^k\)</span> equally spaced floating point numbers in any interval <span class="math inline">\([2^n,2^{n+1})\)</span> (as long as <span class="math inline">\(\ell\)</span> is sufficiently large).</p>
+</div>
 </div>
 <!-- L02 -->
 <div id="bank-exr-fp-3" class="exercise-box">
@@ -493,6 +531,15 @@ Code
 <div id="bank-exr-Float16-pi" class="exercise-box">
 <p><strong><a href="../lectures/L02.html#exr-Float16-pi" class="quarto-xref">Exercise&nbsp;<span>2.7</span></a></strong></p>
 <p>Write down the bitstring for <span class="math inline">\(\pi\)</span> in <code>Float16</code>.</p>
+<div class="exercise-hint" style="display: none;">
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="fl">16</span> <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="fl">128</span>)<span class="op">*</span><span class="fl">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>3.140625</code></pre>
+</div>
 </div>
 <!-- L02 -->
 <div id="bank-exr-cond-2" class="exercise-box">
@@ -511,18 +558,23 @@ Code
 <summary>
 Code
 </summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> ( <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) <span class="op">-</span> <span class="fl">1</span> ) <span class="op">/</span> x</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x<span class="op">-&gt;</span> <span class="fl">1</span><span class="op">/</span>( <span class="fl">1</span> <span class="op">+</span> <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) )</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">1e-14</span>; <span class="fl">1e-15</span>; <span class="fl">1e-16</span>];</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"                         f(x)                  g(x)"</span> )</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-14):     "</span>, <span class="fu">f</span>(t[<span class="fl">1</span>]), <span class="st">"    "</span>,    <span class="fu">g</span>(t[<span class="fl">1</span>]) )</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-15):     "</span>, <span class="fu">f</span>(t[<span class="fl">2</span>]), <span class="st">"   "</span>,    <span class="fu">g</span>(t[<span class="fl">2</span>]) )</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-16):     "</span>, <span class="fu">f</span>(t[<span class="fl">3</span>]), <span class="st">"                   "</span>,    <span class="fu">g</span>(t[<span class="fl">3</span>]) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> ( <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) <span class="op">-</span> <span class="fl">1</span> ) <span class="op">/</span> x</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x<span class="op">-&gt;</span> <span class="fl">1</span><span class="op">/</span>( <span class="fl">1</span> <span class="op">+</span> <span class="fu">sqrt</span>(<span class="fl">1</span> <span class="op">+</span> x) )</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="fl">1e-14</span>; <span class="fl">1e-15</span>; <span class="fl">1e-16</span>];</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"                         f(x)                  g(x)"</span> )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-14):     "</span>, <span class="fu">f</span>(t[<span class="fl">1</span>]), <span class="st">"    "</span>,    <span class="fu">g</span>(t[<span class="fl">1</span>]) )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-15):     "</span>, <span class="fu">f</span>(t[<span class="fl">2</span>]), <span class="st">"   "</span>,    <span class="fu">g</span>(t[<span class="fl">2</span>]) )</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = 10^(-16):     "</span>, <span class="fu">f</span>(t[<span class="fl">3</span>]), <span class="st">"                   "</span>,    <span class="fu">g</span>(t[<span class="fl">3</span>]) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<pre><code>                         f(x)                  g(x)
+x = 10^(-14):     0.4884981308350689    0.4999999999999988
+x = 10^(-15):     0.44408920985006256   0.4999999999999999
+x = 10^(-16):     0.0                   0.5
+</code></pre>
 </div>
 </section>
 <section id="lecture-3" class="level2" data-number="5.3">
@@ -531,21 +583,148 @@ Code
 <div id="bank-exr-ep-over-2" class="exercise-box">
 <p><strong><a href="../lectures/L03.html#exr-ep-over-2" class="quarto-xref">Exercise&nbsp;<span>3.1</span></a></strong></p>
 <p>Let <span class="math inline">\(\epsilon\)</span> be the machine precision. Is <span class="math inline">\((1 + \epsilon/2) - 1 = 1 + (\epsilon/2-1)\)</span> in Float64?</p>
+<div class="exercise-solution" style="display:none;">
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ϵ <span class="op">=</span> <span class="fu">eps</span>( <span class="dt">Float64</span> )</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1.0</span> <span class="op">+</span> ϵ<span class="op">/</span><span class="fl">2</span>) <span class="op">-</span> <span class="fl">1.0</span> <span class="op">==</span> <span class="fl">1.0</span> <span class="op">+</span> (ϵ<span class="op">/</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">1.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>false</code></pre>
+<p>This is false, since <span class="math inline">\(1 + \epsilon\)</span> is the smallest float larger than <span class="math inline">\(1\)</span>, Julia has to round or truncate <span class="math inline">\(1 + \epsilon/2\)</span>:</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span> <span class="op">+</span> ϵ<span class="op">/</span><span class="fl">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>1.0</code></pre>
+<p>Therefore, <span class="math inline">\((1 + \epsilon/2) -1 = 0\)</span>. On the other hand <span class="math inline">\(\epsilon/2 - 1\)</span> is a float and so <span class="math inline">\(1 + (\epsilon/2 - 1)\)</span> is not equal to <span class="math inline">\(0\)</span>.</p>
+</div>
 </div>
 <!-- L03 -->
 <div id="bank-exr-fp-sums" class="exercise-box">
 <p><strong><a href="../lectures/L03.html#exr-fp-sums" class="quarto-xref">Exercise&nbsp;<span>3.2</span></a></strong></p>
 <p>Let <span class="math inline">\(X\)</span> be an array containing <span class="math inline">\(10^{16}, -10^{16}\)</span>, and <span class="math inline">\(N\)</span> copies of <span class="math inline">\(1\)</span>. What is the sum of all the entries of the array <span class="math inline">\(X\)</span>? Does it depend on the order of summation? What about in <code>Float64</code>? Why?</p>
+<div class="exercise-solution" style="display: none;">
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="fl">2</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">vcat</span>( [<span class="fl">1e16</span>, <span class="op">-</span><span class="fl">1e16</span>], <span class="fu">fill</span>(<span class="fl">1</span>., N) )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span> </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">shuffle!</span>(X)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fl">0</span>. </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="op">∈</span> X</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        s <span class="op">+=</span> x </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(s)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>72.0
+32.0
+92.0
+25.0
+44.0
+94.0
+77.0
+96.0
+55.0
+26.0
+</code></pre>
+<p>This happens because <span class="math inline">\(2^{53} \leq 10^{16} &lt; 2^{54}\)</span> and so the spacing between floats in this interval is <span class="math inline">\(2^{n-k} = 2^{53-52} = 2\)</span> (in Float64, the binary precision is <span class="math inline">\(k=52\)</span>). As a result <span class="math inline">\(10^{16} + 1\)</span> is not a float; Julia rounds this to <span class="math inline">\(10^{16}\)</span>:</p>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fl">1e16</span> <span class="op">+</span> <span class="fl">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>1.0e16</code></pre>
+</div>
 </div>
 <!-- L03 -->
 <div id="bank-exr-FNC-1-4-1" class="exercise-box">
 <p><strong><a href="../lectures/L03.html#exr-FNC-1-4-1" class="quarto-xref">Exercise&nbsp;<span>3.3</span></a></strong></p>
-<p>Exercise 1.4.1 from <span class="citation" data-cites="fnc">Driscoll and Braun (<a href="../references.html#ref-fnc" role="doc-biblioref">2017</a>)</span></p>
+<p>Exercise 1.4.1 from <span class="citation" data-cites="fnc">Driscoll and Braun (<a href="../references.html#ref-fnc" role="doc-biblioref">2017</a>)</span>, <a href="https://fncbook.com/stability/">[Fundamentals of Numerical Computation by Driscoll, Braun]</a></p>
+<div class="exercise-hint" style="display: none;">
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> (<span class="fl">1</span> <span class="op">-</span> <span class="fu">cos</span>(x) )<span class="op">/</span><span class="fu">sin</span>(x)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fl">2</span><span class="fu">*sin</span>(x<span class="op">/</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span><span class="op">/</span><span class="fu">sin</span>(x)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>(<span class="fu">f</span>(<span class="fl">1e-6</span>), <span class="fu">g</span>(<span class="fl">1e-6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>(5.000444502912538e-7, 5.000000000000416e-7)</code></pre>
+</div>
 </div>
 <!-- L03 -->
 <div id="bank-exr-FNC-1-4-2" class="exercise-box">
 <p><strong><a href="../lectures/L03.html#exr-FNC-1-4-2" class="quarto-xref">Exercise&nbsp;<span>3.4</span></a></strong></p>
-<p>Exercise 1.4.2 from <span class="citation" data-cites="fnc">Driscoll and Braun (<a href="../references.html#ref-fnc" role="doc-biblioref">2017</a>)</span>.</p>
+<p>Exercise 1.4.2 from <span class="citation" data-cites="fnc">Driscoll and Braun (<a href="../references.html#ref-fnc" role="doc-biblioref">2017</a>)</span>, <a href="https://fncbook.com/stability/">[Fundamentals of Numerical Computation by Driscoll, Braun]</a></p>
+<div class="exercise-hint" style="display: none;">
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> @. <span class="fl">10.0</span><span class="op">^</span>(<span class="fu">-</span>(<span class="fl">1</span><span class="op">:</span><span class="fl">11</span>));</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> @. (<span class="fu">exp</span>(x) <span class="op">-</span> <span class="fl">1</span>)<span class="op">/</span>x;</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>p<span class="op">=</span><span class="fl">1</span>;</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span><span class="fl">8</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> @. p <span class="op">+</span> x<span class="op">^</span>n<span class="op">/</span>( <span class="fu">factorial</span>(n<span class="op">+</span><span class="fl">1</span>) );</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span> </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>.(f<span class="op">-</span>p) <span class="op">./</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>11-element Vector{Float64}:
+    1.1102230246251565e-14
+    1.0880185641326532e-12
+    4.285460875053104e-11
+    4.32542890393961e-9
+    9.701794922989393e-7
+    3.798317216308078e-5
+    0.005663214341922184
+    1.1077470940534795
+   82.24037095772019
+  826.9037099495335
+ 8273.537099867668</code></pre>
+<details>
+<summary>
+Code
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># upper bound on the error between f and p as functions on x</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> @. (<span class="fl">1</span><span class="op">/</span><span class="fu">factorial</span>(<span class="fl">10</span>)) <span class="op">*</span> (x<span class="op">^</span><span class="fl">9</span><span class="op">/</span>(<span class="fl">1</span><span class="op">-</span>x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<pre><code>11-element Vector{Float64}:
+ 3.061924358220656e-16
+ 2.7835675983824175e-25
+ 2.7584904128114e-34
+ 2.7560075231509052e-43
+ 2.7557594799933906e-52
+ 2.755734678133266e-61
+ 2.7557321979718108e-70
+ 2.755731949955909e-79
+ 2.755731925154322e-88
+ 2.7557319226741635e-97
+ 2.755731922426145e-106</code></pre>
+</div>
 </div>
 <!-- L03 -->
 <div id="bank-exr-change-sign-1" class="exercise-box">
@@ -568,6 +747,9 @@ Code
 <div id="bank-exr-LambertW" class="exercise-box">
 <p><strong><a href="../lectures/L03.html#exr-LambertW" class="quarto-xref">Exercise&nbsp;<span>3.7</span></a></strong></p>
 <p><em>Assignment 1, Fall 2025, [30 pts].</em> Prove that, for <span class="math inline">\(x \geq 0\)</span>, there exists a unique <span class="math inline">\(W(x) \geq 0\)</span> for which <span class="math inline">\(W(x) e^{W(x)} = x\)</span>. Show that <span class="math inline">\(\Omega := W(1)\)</span> satisfies <span class="math inline">\(0.56 &lt; \Omega &lt; 0.58\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Intermediate value theorem is useful!</p>
+</div>
 </div>
 <!-- L03 -->
 <div id="bank-exr-condition-numbers" class="exercise-box">
@@ -611,7 +793,7 @@ Code
 \]</span></p>
 <p>for <span class="math inline">\(\alpha := \epsilon - \frac12\)</span>.</p>
 <ol start="2" type="1">
-<li>Show that $u_{}(x) = (+ ) e^x - e^{-x} $ solves <a href="../lectures/L03.html#eq-exr-diff-2" class="quarto-xref">Equation&nbsp;<span>3.3</span></a>.</li>
+<li>Show that <span class="math inline">\(u_{\alpha}(x) = (\alpha + \frac12) e^x -\frac12 e^{-x}\)</span> solves <a href="../lectures/L03.html#eq-exr-diff-2" class="quarto-xref">Equation&nbsp;<span>3.3</span></a>.</li>
 <li>Plot the functions <span class="math inline">\(u\)</span> and <span class="math inline">\(u_{\alpha}\)</span> and comment on the difference between the solutions for large <span class="math inline">\(x\)</span>.</li>
 <li>Let <span class="math inline">\(f( \alpha ) = u_\alpha( 100 )\)</span>. What is the condition number <span class="math inline">\(\kappa_f( \alpha )\)</span>?</li>
 <li>Explain what happens for <span class="math inline">\(\alpha \approx -\frac12\)</span>. Link your observations to your answer for question 3.</li>
@@ -629,20 +811,55 @@ Code
 <div id="bank-exr-contraction-1" class="exercise-box">
 <p><strong><a href="../lectures/L04.html#exr-contraction-1" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a></strong></p>
 <p>Suppose <span class="math inline">\(g :[a,b] \to \mathbb R\)</span> is continuously differentiable with <span class="math inline">\(|g'(x)| \leq L &lt; 1\)</span> for all <span class="math inline">\(x \in [a,b]\)</span>. Show that <span class="math inline">\(g\)</span> is a contraction with constant <span class="math inline">\(L\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Use Taylor/mean value theorem: for <span class="math inline">\(x, y \in [a,b]\)</span> there exists <span class="math inline">\(c \in [a,b]\)</span> such that <span class="math inline">\(g(x) - g(y) = g'(c) (x - y)\)</span>.</p>
+</div>
 </div>
 <!-- L04 -->
 <div id="bank-exr-contraction-2" class="exercise-box">
 <p><strong><a href="../lectures/L04.html#exr-contraction-2" class="quarto-xref">Exercise&nbsp;<span>4.2</span></a></strong></p>
 <p>Take the simple iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> for some contraction <span class="math inline">\(g : [a,b] \to [a,b]\)</span>. Show that <span class="math inline">\((x_n)\)</span> converges to the fixed point of <span class="math inline">\(g\)</span> in <span class="math inline">\([a,b]\)</span> at least linearly with asymptotic error constant <span class="math inline">\(\mu = |g'(\xi)|\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Notice that, by the mean value theorem, there exists <span class="math inline">\(\eta_n\)</span> between <span class="math inline">\(x_{n}\)</span> and <span class="math inline">\(\xi\)</span> for which</p>
+<p><span class="math display">\[\begin{align}
+    \frac
+        {|x_{n+1} - \xi|}
+        {|x_n - \xi|}
+    %
+    &amp;= \frac
+        {|g(x_n) - g(\xi)|}
+        {|x_n - \xi|} \nonumber\\
+    %
+    &amp;= \frac
+        {|g'(\eta_n)| |x_n - \xi|}
+        {|x_n - \xi|} \nonumber\\
+    %
+    &amp;= |g'(\eta_n)| \nonumber
+\end{align}\]</span></p>
+<p>Therefore, since <span class="math inline">\((x_n) \to \xi\)</span>, and <span class="math inline">\(\eta_n\)</span> is between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span>, we have</p>
+<p><span class="math display">\[\begin{align}
+    \lim_{n\to\infty}
+    \frac
+        {|x_{n+1} - \xi|}
+        {|x_n - \xi|}
+    %
+    &amp;= |g'(\xi)| \nonumber
+\end{align}\]</span></p>
+<p>and the order of convergence is at least linear with asymptotic error constant <span class="math inline">\(\mu = |g'(\xi)|\)</span>.</p>
+<p>(Recal that, if <span class="math inline">\(\mu = 0\)</span>, the order of convergence is superlinear)</p>
+</div>
 </div>
 <!-- L04 -->
 <div id="bank-exr-change-sign-5" class="exercise-box">
 <p><strong><a href="../lectures/L04.html#exr-change-sign-5" class="quarto-xref">Exercise&nbsp;<span>4.3</span></a></strong></p>
 <p>Show that <span class="math inline">\(g(x) = \log( 2x + 1)\)</span> is a contraction on <span class="math inline">\([1,2]\)</span> with <span class="math inline">\(L = \frac23\)</span>. Hence conclude that <span class="math inline">\(x_{n+1} := g(x_n)\)</span> converges for all <span class="math inline">\(x_1 \in [1,2]\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Notice that <span class="math inline">\(g'(x) = \frac{2}{2x+1}\)</span> which is positive and decreasing on <span class="math inline">\([1,2]\)</span>. We therefore have <span class="math inline">\(\frac25 = g'(2) \leq g'(x) \leq g'(1) = \frac{2}{3}\)</span> and so <span class="math inline">\(g\)</span> is a contraction with <span class="math inline">\(L = \frac23\)</span> by <a href="../lectures/L04.html#exr-contraction-1" class="quarto-xref">Exercise&nbsp;<span>4.1</span></a>. Applying the contraction mapping theorem shows that <span class="math inline">\((x_n)\)</span> converges linearly to the fixed point <span class="math inline">\(\xi \in [1,2]\)</span> of <span class="math inline">\(g\)</span>.</p>
+</div>
 </div>
 <!-- L04 -->
-<div id="bank-exr-cond-number-poly" class="exercise-box">
-<p><strong><a href="../lectures/L03.html#exr-cond-number-poly" class="quarto-xref">Exercise&nbsp;<span>3.10</span></a></strong></p>
+<div id="bank-exr-2025-A2" class="exercise-box">
+<p><strong><a href="../lectures/L04.html#exr-2025-A2" class="quarto-xref">Exercise&nbsp;<span>4.4</span></a></strong></p>
 <p><em>Assignment 2, Fall 2025, [25 pts].</em> Fix <span class="math inline">\(a, x_1 &gt; 0\)</span> and define the iteration <span class="math inline">\(x_{n+1} = \frac{1}{2}\big( x_n + \frac{a}{x_n} \big)\)</span>.</p>
 <ol type="1">
 <li>✍ Show that <span class="math inline">\(x_{n+1}\)</span> has the same sign as <span class="math inline">\(x_n\)</span>,</li>
@@ -1013,6 +1230,9 @@ document.addEventListener("DOMContentLoaded", function () {
     cntDown.textContent = downCount;
   }
 
+  // Track current position as an index into allExercises (avoids findIndex bugs)
+  let currentExerciseIndex = -1;
+
   function getActivePool() {
     const filter = filterSelect.value;
     if (filter === 'unrated') return allExercises.filter(el => !getVote(el.id));
@@ -1109,6 +1329,7 @@ document.addEventListener("DOMContentLoaded", function () {
     feedbackBar.style.display = 'flex';
     activeExerciseId = chosenElement.id;
     activeLectureTitle = chosenElement.dataset.lecture;
+    currentExerciseIndex = allExercises.indexOf(chosenElement);
     questionStartTime = Date.now();
     recordFirstSeen(chosenElement.id);
 
@@ -1171,19 +1392,18 @@ document.addEventListener("DOMContentLoaded", function () {
   function showNextExercise() {
     const pool = getActivePool();
     if (pool.length === 0) return renderExercise(null);
-    const currentIndex = pool.findIndex(el => el.id === activeExerciseId);
-    // If current exercise not in pool (index -1), start from beginning
-    const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % pool.length;
-    renderExercise(pool[nextIndex]);
+    // Find where current exercise sits in the pool by index in allExercises
+    const posInPool = pool.findIndex(el => allExercises.indexOf(el) === currentExerciseIndex);
+    const nextPos = posInPool === -1 ? 0 : (posInPool + 1) % pool.length;
+    renderExercise(pool[nextPos]);
   }
 
   function showPrevExercise() {
     const pool = getActivePool();
     if (pool.length === 0) return renderExercise(null);
-    const currentIndex = pool.findIndex(el => el.id === activeExerciseId);
-    // If current exercise not in pool (index -1), start from end
-    const prevIndex = currentIndex === -1 ? pool.length - 1 : (currentIndex - 1 + pool.length) % pool.length;
-    renderExercise(pool[prevIndex]);
+    const posInPool = pool.findIndex(el => allExercises.indexOf(el) === currentExerciseIndex);
+    const prevPos = posInPool === -1 ? pool.length - 1 : (posInPool - 1 + pool.length) % pool.length;
+    renderExercise(pool[prevPos]);
   }
 
   function showRandomExercise() {
@@ -1257,11 +1477,15 @@ document.addEventListener("DOMContentLoaded", function () {
       Object.entries(data.timeSpentSeconds || {}).forEach(([k, v]) => { localStorage.setItem('timeSpent_' + k, v); });
       Object.entries(data.firstSeenTimestamps || {}).forEach(([k, v]) => { localStorage.setItem('firstSeen_' + k, v); });
 
-      syncStatus.textContent = 'Synced';
-      syncStatus.className = 'badge bg-success text-white border';
+      // Update all UI that reads from localStorage
       updateCounters();
       updateStreakDisplay();
       updateFeedbackUI();
+      // Re-render current exercise so solution lock reflects restored firstSeen
+      if (currentExerciseIndex >= 0) renderExercise(allExercises[currentExerciseIndex]);
+
+      syncStatus.textContent = 'Synced';
+      syncStatus.className = 'badge bg-success text-white border';
       alert(`Progress restored from server (${restored} exercise(s) synced).`);
     } catch (e) {
       syncStatus.textContent = 'Offline';
