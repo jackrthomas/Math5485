@@ -104,6 +104,7 @@
   "exercises/random.ipynb": {
     "random.html": "406e2a53"
   },
+<<<<<<< HEAD
   "private/L05.ipynb": {
     "L05.html": "ea27ed2f"
   },
@@ -145,5 +146,9 @@
   },
   "private/L4 Solving nonlinear equations in 1d.ipynb": {
     "L4 Solving nonlinear equations in 1d.html": "e0730c4f"
+=======
+  "lectures/L05.ipynb": {
+    "L05.html": "c3be7477"
+>>>>>>> b8a6d45639966a23b55025533e0c31cb2360130f
   }
 }
