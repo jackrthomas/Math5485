@@ -103,5 +103,47 @@
   },
   "exercises/random.ipynb": {
     "random.html": "406e2a53"
+  },
+  "private/L05.ipynb": {
+    "L05.html": "ea27ed2f"
+  },
+  "private/L06.ipynb": {
+    "L06.html": "6ff1a1eb"
+  },
+  "private/L07.ipynb": {
+    "L07.html": "47d0e5af"
+  },
+  "private/L08.ipynb": {
+    "L08.html": "2277acdc"
+  },
+  "private/L09.ipynb": {
+    "L09.html": "5b5520e8"
+  },
+  "private/L10.ipynb": {
+    "L10.html": "7d2d626a"
+  },
+  "private/L11.ipynb": {
+    "L11.html": "c02a12cb"
+  },
+  "private/L12.ipynb": {
+    "L12.html": "284d7a44"
+  },
+  "private/L13.ipynb": {
+    "L13.html": "0537bff2"
+  },
+  "private/L14.ipynb": {
+    "L14.html": "cd406935"
+  },
+  "exercises/random-2.ipynb": {
+    "random-2.html": "ffb71357"
+  },
+  "exercises/bank.ipynb": {
+    "bank.html": "d29b2b49"
+  },
+  "lectures-test/L01.ipynb": {
+    "L01.html": "51c12fa6"
+  },
+  "private/L4 Solving nonlinear equations in 1d.ipynb": {
+    "L4 Solving nonlinear equations in 1d.html": "e0730c4f"
   }
 }

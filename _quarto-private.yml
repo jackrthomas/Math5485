@@ -9,4 +9,15 @@ book:
       number-sections: false
       chapters:
       - private/T1.ipynb
-      - private/answers-A01.ipynb      
+      - private/answers-A01.ipynb
+      - private/L4 Solving nonlinear equations in 1d.ipynb  
+      - private/L05.ipynb  
+      - private/L06.ipynb 
+      - private/L07.ipynb 
+      - private/L08.ipynb 
+      - private/L09.ipynb 
+      - private/L10.ipynb 
+      - private/L11.ipynb 
+      - private/L12.ipynb 
+      - private/L13.ipynb 
+      - private/L14.ipynb 

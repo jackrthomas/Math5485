@@ -37,9 +37,7 @@ book:
 
     - part: "Exercises"
       chapters:
-      - exercises/random.ipynb
-      - exercises/exercises.qmd
-      - exercises/answers.ipynb
+      - exercises/bank.ipynb
       - exercises/test-sample.ipynb
 
     - part: "Assignments"
