@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jack Thomas">
-<meta name="dcterms.date" content="2026-09-22">
 
-<title>Math5485</title>
+<title>8&nbsp; A2 – Math5485</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -66,25 +64,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./lectures/L01.html" rel="next">
-<link href="./images/pi.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendix/syllabus.html" rel="next">
+<link href="../assignments/A01.html" rel="prev">
+<link href="../images/pi.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -119,8 +118,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="style.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -132,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Welcome!</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A02.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A2</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -147,7 +175,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Math5485</a> 
+      <a href="../">Math5485</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
     <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
@@ -163,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome!</span></a>
   </div>
 </li>
@@ -178,25 +206,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/L01.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/L02.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/L02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How computers add</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/L03.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/L03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conditioning &amp; stability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lectures/L04.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/L04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solving nonlinear equations in 1d</span></span></a>
   </div>
 </li>
@@ -213,13 +241,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/bank.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./exercises/test-sample.html" class="sidebar-item-text sidebar-link">
+  <a href="../exercises/test-sample.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sample in-class test</span></span></a>
   </div>
 </li>
@@ -236,13 +264,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assignments/A01.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./assignments/A02.html" class="sidebar-item-text sidebar-link">
+  <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A2</span></span></a>
   </div>
 </li>
@@ -263,19 +291,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -291,36 +319,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
+  <li><a href="#a-conditioning-stability" id="toc-a-conditioning-stability" class="nav-link active" data-scroll-target="#a-conditioning-stability">A: Conditioning &amp; Stability</a></li>
+  <li><a href="#b-simple-iteration" id="toc-b-simple-iteration" class="nav-link" data-scroll-target="#b-simple-iteration">B: Simple iteration</a></li>
+  <li><a href="#c.-reflection" id="toc-c.-reflection" class="nav-link" data-scroll-target="#c.-reflection">C. Reflection</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/assignments/A02.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A02.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A2</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Math5485</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">Introduction to Numerical Methods I</p>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A2</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jack Thomas </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 22, 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -330,26 +347,236 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-
-<section id="welcome" class="level1 unnumbered">
-<h1 class="unnumbered">Welcome!</h1><p><img src="images/PCA-5485-2.gif" title="Math5485" class="quarto-cover-image nolightbox img-fluid"></p>
-<p>These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026.</p>
-<p>Use the links on the side or navigate by chapter:</p>
+<p>Assignment 2: Floating point numbers, conditioning, and solving nonlinear equations in 1d <br> Published: <b>Tue 22 Sept</b></p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
 <ul>
-<li>Chapter 1: <a href="lectures/L01.html#sec-chapter-1" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> An Introduction to Numerical Analysis</a></li>
-<li>Chapter 2: <a href="lectures/L03.html#sec-chapter-2" class="btn btn-outline-primary btn-sm"><i class="bi bi-book"></i> Solving Nonlinear Equations in 1d</a></li>
-<li>Chapter 3: Polynomial Interpolation</li>
-<li>Chapter 4: Numerical Integration</li>
-<li>Chapter 5: Linear systems of equations</li>
+<li>
+Complete the following and submit to Canvas before <b>Wed 30 Sept, 23:59</b>.
+</li>
+<li>
+Late work will receive 0%.
+</li>
+<li>
+Each assignment is worth the same.
+</li>
+<li>
+Please get in contact with the TA/instructor in plenty of time if you need help.
+</li>
+<li>
+Before submitting your work, make sure to check everything runs as expected. Click <b>Kernel &gt; Restart Kernel and Run All Cells</b>. Submit your notebook in .pdf format by clicking <b>File &gt; Export Notebook As &gt; PDF</b> or by printing to PDF in the browser.
+</li>
+<li>
+Feel free to add more cells to experiment or test your answers.
+</li>
+<li>
+I encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own.
+</li>
+<li>
+The use of GenAI is prohibited as outlined in the course syllabus. If suspected of cheating, you may be asked to complete a written or oral exam on the content of this assignment.
+</li>
 </ul>
-<p>Useful links:</p>
-<nav aria-label="Course links" class="d-flex gap-2 flex-wrap my-3">
-<!-- Syllabus -->
-<a href="appendix/syllabus.html" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-journal-text me-1" aria-hidden="true"></i> Syllabus <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Canvas --> <a href="https://canvas.umn.edu/courses/579983" class="btn btn-outline-danger btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-asterisk me-1" aria-hidden="true"></i> Canvas <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- GitHub --> <a href="https://github.com/jackrthomas/Math5485" class="btn btn-outline-dark btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-github me-1" aria-hidden="true"></i> GitHub <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Canvas --> <a href="https://chimein.cla.umn.edu/join/330276" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-asterisk me-1" aria-hidden="true"></i> ChimeIn <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Fall 2025 Course --> <a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-archive me-1" aria-hidden="true"></i> Fall 2025 Course <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Ask a Question --> <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-question-circle me-1" aria-hidden="true"></i> Ask a Question <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Suggest Correction --> <a href="https://z.umn.edu/Math5486-errors" class="btn btn-outline-secondary btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-exclamation-triangle me-1" aria-hidden="true"></i> Suggest Correction <span class="visually-hidden">(opens in a new tab)</span> </a> <a href="https://umtc.catalog.prod.coursedog.com/courses/0043011/tab-aoYks" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-journal-text me-1" aria-hidden="true"></i> Course Catalog <span class="visually-hidden">(opens in a new tab)</span> </a> <!-- Math 5486 --> <a href="https://jack.thomaslabs.co.uk/teaching/Math5486-Spring-2026/" class="btn btn-outline-warning btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-box-arrow-up-right me-1" aria-hidden="true"></i> Math 5486 <span class="visually-hidden">(opens in a new tab)</span> </a> <a href="mailto:thom9218@umn.edu" class="btn btn-outline-danger btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-envelope-fill me-1" aria-hidden="true"></i> Email <span class="visually-hidden">(opens in a new tab)</span> </a> <a href="https://z.umn.edu/JT-office" class="btn btn-outline-dark btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-calendar-check me-1" aria-hidden="true"></i> Office hours sign up <span class="visually-hidden">(opens in a new tab)</span> </a>
-</nav>
+</div>
+<div class="custom-lecture-buttons my-3 d-flex gap-2">
+<p><a href="https://raw.githubusercontent.com/jackrthomas/Math5485/main/assignments/A02.ipynb" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Download (.ipynb) </a></p>
+</div>
+<p>The assignment is worth <strong>100 pts</strong>. The symbols ✍️, 💻 indicate theory (<span class="math inline">\(\LaTeX\)</span>), practice (code), respectively.</p>
+<div id="773dbca1" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Name <span class="op">=</span> <span class="st">"YOUR NAME HERE"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The following cell contains some code that you may find useful: <code>simple_iteration</code> is the function from Lecture 4 and <code>order_table(x, ξ; α)</code> prints the errors <span class="math inline">\(e_n := |x_n - \xi|\)</span> together with <span class="math inline">\(\frac{e_{n}}{e_{n-1}^\alpha}\)</span> and <span class="math inline">\(\frac{\log e_{n}}{\log e_{n-1}}\)</span> (which are useful when estimating the asymptotic error constant and the order of convergence). You may need to ignore the last few rows of the table once <span class="math inline">\(e_n\)</span> is of the order of machine precision.</p>
+<div id="8732dea5" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span>, <span class="bu">Printf</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># simple iteration x_{n+1} = g(x_n) (from Lecture 4)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">simple_iteration</span>(g, x1; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-10</span>, flag<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>(<span class="cn">undef</span>, N)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    x[<span class="fl">1</span>] <span class="op">=</span> x1</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span>N</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        x[n] <span class="op">=</span> <span class="fu">g</span>(x[n<span class="op">-</span><span class="fl">1</span>])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> !<span class="fu">isfinite</span>(x[n])</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x[<span class="fl">1</span><span class="op">:</span>n], <span class="cn">false</span> </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute relative error</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        rel_err <span class="op">=</span> <span class="fu">abs</span>(x[n] <span class="op">-</span> x[n<span class="op">-</span><span class="fl">1</span>]) <span class="op">/</span> <span class="fu">max</span>(<span class="fu">abs</span>(x[n]), <span class="fl">1e-12</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> rel_err <span class="op">&lt;</span> tol</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x[<span class="fl">1</span><span class="op">:</span>n], <span class="cn">true</span> </span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flag</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@warn</span> <span class="st">"Fixed-point iteration did not converge within </span><span class="sc">$</span>N<span class="st"> iterations."</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, <span class="cn">false</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># prints the errors e_n = |x_n - ξ| together with </span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#   e_n / e_{n-1}^α          (\to μ if the order of convergence is α)  </span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   log(e_n) / log(e_{n-1})  (\to order of convergence)</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">order_table</span>(x, ξ; α<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> @. <span class="fu">abs</span>(x <span class="op">-</span> ξ)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%4s %22s %12s %16s %20s</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">"n"</span>, <span class="st">"x_n"</span>, <span class="st">"e_n"</span>, <span class="st">"e_n/e_{n-1}^α"</span>, <span class="st">"log e_n/log e_{n-1}"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%4d %22.16f %12.3e</span><span class="sc">\n</span><span class="st">"</span>, <span class="fl">1</span>, x[<span class="fl">1</span>], <span class="cn">e</span>[<span class="fl">1</span>])</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span><span class="fu">length</span>(x)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@printf</span>(<span class="st">"%4d %22.16f %12.3e %16.6f %20.6f</span><span class="sc">\n</span><span class="st">"</span>, n, x[n], <span class="cn">e</span>[n], <span class="cn">e</span>[n]<span class="op">/</span><span class="cn">e</span>[n<span class="op">-</span><span class="fl">1</span>]<span class="op">^</span>α, <span class="fu">log</span>(<span class="cn">e</span>[n])<span class="op">/</span><span class="fu">log</span>(<span class="cn">e</span>[n<span class="op">-</span><span class="fl">1</span>]))</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>order_table (generic function with 1 method)</code></pre>
+</div>
+</div>
+<div style="break-after: page;">
 
+</div>
+<section id="a-conditioning-stability" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="a-conditioning-stability">A: Conditioning &amp; Stability</h2>
+<p><strong><em>Exercise 1. (Harmonic numbers)</em></strong></p>
+<p>The harmonic numbers are defined as <span class="math inline">\(H_N := \sum_{k=1}^N \frac1k\)</span>.</p>
+<ol type="i">
+<li><p>💻 Compute <span class="math inline">\(H_{N}\)</span> for <span class="math inline">\(N = 10^7\)</span> in <code>Float32</code> (single precision) by summing <em>forwards</em> (<span class="math inline">\(k = 1, 2, \dots, N\)</span>) and <em>backwards</em> (<span class="math inline">\(k = N, N-1, \dots, 1\)</span>). What are the relative errors of these two approximations?</p></li>
+<li><p>✍️ Which approximation is more accurate? Explain why.</p></li>
+</ol>
+<p><em>Hint:</em> You may use <code>y</code> defined below as the “exact” value of <span class="math inline">\(H_{10^7}\)</span>. You can use <code>Float32(1)</code> or <code>1f0</code> for <span class="math inline">\(1\)</span> in <code>Float32</code>. Use <code>typeof( x )</code> to check the type of variable <code>x</code>.</p>
+<div id="45be8256" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">16.695311365859851815399118939540451884249869752373080462785</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<p><strong><em>Exercise 2. Conditioning vs stability</em></strong></p>
+<p>Let <span class="math inline">\(f(x) := \sqrt{x+1} - \sqrt{x}\)</span> for <span class="math inline">\(x &gt; 0\)</span>.</p>
+<ol type="i">
+<li>✍️ Compute the relative condition number <span class="math inline">\(\kappa_f(x)\)</span> and show that <span class="math inline">\(\kappa_f(x) \leq \frac12\)</span> for all <span class="math inline">\(x &gt; 0\)</span>.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<ol start="2" type="i">
+<li>💻 Evaluate <span class="math inline">\(f(x)\)</span> (using the formula above) for <span class="math inline">\(x = 10^2, 10^4, \dots, 10^{16}\)</span> in <code>Float64</code> and compute the relative errors. You may use <code>sqrt(big(x)+1) - sqrt(big(x))</code> (which uses higher precision <code>BigFloat</code> arithmetic) as the “exact” value of <span class="math inline">\(f(x)\)</span>.</li>
+</ol>
+<div id="2d262b29" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ol start="3" type="i">
+<li>✍️ Explain why your results in (ii) do not contradict (i).</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<ol start="4" type="i">
+<li>✍️💻 Find a mathematically equivalent formula for <span class="math inline">\(f\)</span> which avoids subtractive cancellation and repeat (ii) using your new formula.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div id="547c6f8c" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div style="break-after: page;">
 
-<!-- -->
+</div>
+</section>
+<section id="b-simple-iteration" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="b-simple-iteration">B: Simple iteration</h2>
+<p><strong><em>Exercise 3.</em></strong></p>
+<p>Let <span class="math inline">\(f(x) := x^3 + 4x^2 - 10\)</span> and consider</p>
+<p><span class="math display">\[\begin{align}
+    g_1(x) &amp;:= x - x^3 - 4x^2 + 10, \nonumber\\
+    g_2(x) &amp;:= \frac12 \sqrt{10 - x^3}, \nonumber\\
+    g_3(x) &amp;:= \sqrt{\frac{10}{4+x}}. \nonumber
+\end{align}\]</span></p>
+<ol type="i">
+<li>✍️ Show that <span class="math inline">\(f\)</span> has a root <span class="math inline">\(\xi \in [1,2]\)</span>.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<ol start="2" type="i">
+<li>✍️ Show that <span class="math inline">\(\xi\)</span> is a fixed point of each of <span class="math inline">\(g_1, g_2\)</span>, and <span class="math inline">\(g_3\)</span>.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<ol start="3" type="i">
+<li>💻 Run the simple iterations <span class="math inline">\(x_{n+1} = g_j(x_n)\)</span> with <span class="math inline">\(x_1 = 1.5\)</span> for <span class="math inline">\(j = 1,2,3\)</span>. Which of these iterations appear to converge?</li>
+</ol>
+<div id="bd5d1a39" class="cell" data-execution_count="23">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<ol start="4" type="i">
+<li>✍️ Show that <span class="math inline">\(g_3 : [1,2] \to [1,2]\)</span> and that <span class="math inline">\(|g_3'(x)| \leq L &lt; 1\)</span> for all <span class="math inline">\(x \in [1,2]\)</span>. Explain why this means that <span class="math inline">\(x_{n+1} = g_3(x_n)\)</span> converges to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [1,2]\)</span>.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<ol start="22" type="a">
+<li>✍️ Show that the contraction mapping theorem can <strong>not</strong> be applied to <span class="math inline">\(g_2\)</span> on <span class="math inline">\([1,2]\)</span> but that it can be applied to <span class="math inline">\(g_2\)</span> on <span class="math inline">\([1, 3/2]\)</span>.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<ol start="6" type="i">
+<li>✍️💻 What are the order of convergence and the asymptotic error constants of the iterations <span class="math inline">\(x_{n+1} = g_2(x_n)\)</span> and <span class="math inline">\(x_{n+1} = g_3(x_n)\)</span>? Compare your theoretical values with numerical estimates (you may use <code>order_table</code>). Which iteration gains more digits of accuracy per iteration and approximately how many?</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div id="481d3e13" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div style="break-after: page;">
+
+</div>
+</section>
+<section id="c.-reflection" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="c.-reflection">C. Reflection</h2>
+<p><strong>Goal:</strong> Reflect on your learning strategies, track your workload, and help us improve future course material.<br>
+<strong>Time:</strong> take 5-10 mins (this shouldn’t take too long)</p>
+<p>Estimate the approximate hours you spent:<br>
+* <strong>Assignment:</strong> ____<br>
+* <strong>Reading notes/materials:</strong> ____<br>
+* <strong>Exercises:</strong> ____</p>
+<p>(Reminder: you should be spending around 8 hours per week on this course outside of the 4 hours of lectures)</p>
+<div class="alert alert-block alert-success">
+<p><b>Any other comments:</b></p>
+</div>
+<p>Take a moment to reflect on your learning over the past two weeks:</p>
+<p>What was the easiest topic or task and why? Where did you struggle, and how did you overcome those challenges? Which resources (e.g.&nbsp;lecture notes, practice exercises, peer discussions, …) helped you the most? How did you manage your time and workload (e.g., all at once, spread out over several days, or working with peers)? Looking back, what would you do differently if you were starting these two weeks over today?</p>
+<div class="alert alert-block alert-success">
+<p><b>Comments:</b></p>
+</div>
+<p>(Optional) Any changes that would improve the lectures, exercises, or assignments for the future? You can also suggest things anonymously <a href="http://z.umn.edu/JT-message" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-archive me-1" aria-hidden="true"></i> here <span class="visually-hidden">(opens in a new tab)</span> </a></p>
+<div class="alert alert-block alert-success">
+<p><b>Comments:</b></p>
+</div>
+
 
 </section>
 
@@ -862,32 +1089,19 @@ window.addEventListener("load", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../assignments/A01.html" class="pagination-link" aria-label="A1: Notebooks">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./lectures/L01.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/syllabus.html" class="pagination-link" aria-label="Course Syllabus">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Welcome! {.unnumbered}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>These are the lecture notes for Math 5485: Introduction to Numerical Methods I, Fall 2026. </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Use the links on the side or navigate by chapter:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 1: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"lectures/L01.html#sec-chapter-1"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-primary btn-sm"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-book"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> An Introduction to Numerical Analysis<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2: <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"lectures/L03.html#sec-chapter-2"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"btn btn-outline-primary btn-sm"</span><span class="dt">&gt;&lt;</span><span class="kw">i</span><span class="ot"> class</span><span class="op">=</span><span class="st">"bi bi-book"</span><span class="dt">&gt;&lt;/</span><span class="kw">i</span><span class="dt">&gt;</span> Solving Nonlinear Equations in 1d<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 3: Polynomial Interpolation</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 4: Numerical Integration</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 5: Linear systems of equations</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>Useful links: </span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>{{&lt; include extras/_useful-links.html &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/assignments/A02.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
