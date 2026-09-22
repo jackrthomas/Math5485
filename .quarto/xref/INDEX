@@ -1,154 +1,38 @@
 {
   "index.qmd": {
-    "index.html": "6136a83c"
-  },
-  "intro.qmd": {
-    "intro.html": "e2f812ec"
-  },
-  "summary.qmd": {
-    "summary.html": "fc1a715f"
-  },
-  "references.qmd": {
-    "references.html": "689dd17b"
-  },
-  "lecture01.ipynb": {
-    "lecture01.html": "7427c7e8"
-  },
-  "lecture00.ipynb": {
-    "lecture00.html": "24281ac1"
-  },
-  "syllabus.qmd": {
-    "syllabus.html": "6add45db"
-  },
-  "syllabus.ipynb": {
-    "syllabus.html": "d61b0789"
-  },
-  "appendix/syllabus.ipynb": {
-    "syllabus.html": "5a180160"
-  },
-  "appendix/installing-julia.ipynb": {
-    "installing-julia.html": "f23bb535"
-  },
-  "L01.ipynb": {
-    "L01.html": "d14a0a21"
-  },
-  "assignments/A01.ipynb": {
-    "A01.html": "9e899002"
-  },
-  "answers/A01.ipynb": {
-    "A01.html": "85a95bf1"
-  },
-  "L02.ipynb": {
-    "L02.html": "12fb6f13"
+    "index.html": "b3176e51"
   },
   "lectures/L01.ipynb": {
-    "L01.html": "8a47f34b"
-  },
-  "lectures-private/L01.ipynb": {
-    "L01.html": "96c1437e"
-  },
-  "lectures-private/L02.ipynb": {
-    "L02.html": "246260c0"
-  },
-  "answers/L01.ipynb": {
-    "L01.html": "5648c55a"
-  },
-  "private/L02.ipynb": {
-    "L02.html": "c2f6be7b"
-  },
-  "private/answers-L01.ipynb": {
-    "answers-L01.html": "d9975fc4"
-  },
-  "private/answers-A01.ipynb": {
-    "answers-A01.html": "c5c9a4b5"
-  },
-  "private/examples.qmd": {
-    "examples.html": "181f34a7"
-  },
-  "private/exercises.qmd": {
-    "exercises.html": "2c161d58"
-  },
-  "appendix/exercises.qmd": {
-    "exercises.html": "13614db2"
+    "L01.html": "d33084b9"
   },
   "lectures/L02.ipynb": {
-    "L02.html": "1f28c19f"
-  },
-  "private/L03.ipynb": {
-    "L03.html": "399038da"
+    "L02.html": "a63ca4f5"
   },
   "lectures/L03.ipynb": {
-    "L03.html": "dde05a7b"
+    "L03.html": "eaf95334"
   },
   "lectures/L04.ipynb": {
-    "L04.html": "87223144"
-  },
-  "exercises/exercises.qmd": {
-    "exercises.html": "09b63787"
-  },
-  "exercises/answers.ipynb": {
-    "answers.html": "4cc5e6e6"
-  },
-  "private/T1.ipynb": {
-    "T1.html": "b545dbd2"
-  },
-  "exercises/test-sample.ipynb": {
-    "test-sample.html": "1d5a8f8a"
-  },
-  "private/A1-Jose.ipynb": {
-    "A1-Jose.html": "9b230846"
-  },
-  "private/random-exr.ipynb": {
-    "random-exr.html": "062572de"
-  },
-  "exercises/random.ipynb": {
-    "random.html": "406e2a53"
-  },
-<<<<<<< HEAD
-  "private/L05.ipynb": {
-    "L05.html": "ea27ed2f"
-  },
-  "private/L06.ipynb": {
-    "L06.html": "6ff1a1eb"
-  },
-  "private/L07.ipynb": {
-    "L07.html": "47d0e5af"
-  },
-  "private/L08.ipynb": {
-    "L08.html": "2277acdc"
-  },
-  "private/L09.ipynb": {
-    "L09.html": "5b5520e8"
-  },
-  "private/L10.ipynb": {
-    "L10.html": "7d2d626a"
-  },
-  "private/L11.ipynb": {
-    "L11.html": "c02a12cb"
-  },
-  "private/L12.ipynb": {
-    "L12.html": "284d7a44"
-  },
-  "private/L13.ipynb": {
-    "L13.html": "0537bff2"
-  },
-  "private/L14.ipynb": {
-    "L14.html": "cd406935"
-  },
-  "exercises/random-2.ipynb": {
-    "random-2.html": "ffb71357"
+    "L04.html": "6ec6e03c"
   },
   "exercises/bank.ipynb": {
-    "bank.html": "d29b2b49"
+    "bank.html": "a3686290"
   },
-  "lectures-test/L01.ipynb": {
-    "L01.html": "51c12fa6"
+  "exercises/test-sample.ipynb": {
+    "test-sample.html": "f407bcb3"
   },
-  "private/L4 Solving nonlinear equations in 1d.ipynb": {
-    "L4 Solving nonlinear equations in 1d.html": "e0730c4f"
-=======
-  "lectures/L05.ipynb": {
-    "L05.html": "c3be7477"
->>>>>>> b8a6d45639966a23b55025533e0c31cb2360130f
+  "assignments/A01.ipynb": {
+    "A01.html": "338117be"
+  },
+  "appendix/syllabus.ipynb": {
+    "syllabus.html": "6b6630ee"
+  },
+  "appendix/installing-julia.ipynb": {
+    "installing-julia.html": "8c847f21"
+  },
+  "references.qmd": {
+    "references.html": "4b676884"
+  },
+  "assignments/A02.ipynb": {
+    "A02.html": "62e1c169"
   }
 }

@@ -44,6 +44,7 @@ book:
       number-sections: false
       chapters:
       - assignments/A01.ipynb
+      - assignments/A02.ipynb
       
     - part: "Exams" 
 
