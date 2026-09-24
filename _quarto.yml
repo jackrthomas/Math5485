@@ -50,10 +50,13 @@ book:
       
     - part: "Exams" 
 
-  appendices: 
-    - appendix/syllabus.ipynb
-    - appendix/installing-julia.ipynb
-    - references.qmd
+  appendices:
+    - appendix/calculus.ipynb
+    - part: "Admin"
+      chapters: 
+      - appendix/syllabus.ipynb
+      - appendix/installing-julia.ipynb
+      - references.qmd
 
 language:
   search-no-results-text: "No results"
