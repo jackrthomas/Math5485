@@ -34,11 +34,13 @@ book:
       - lectures/L02.ipynb
       - lectures/L03.ipynb
       - lectures/L04.ipynb
+      - lectures/L05.ipynb
 
     - part: "Exercises"
       chapters:
       - exercises/bank.ipynb
       - exercises/test-sample.ipynb
+      - exercises/Q1.ipynb
 
     - part: "Assignments"
       number-sections: false
@@ -71,6 +73,7 @@ format:
     theme: cosmo
     code-fold: show
     crossrefs-hover: true
+    include-before-body: extras/_banner.html
     include-after-body: extras/tags.html
     code-tools:
       source: true           

@@ -1,0 +1,51 @@
+    <div id="course-announcement-banner" class="announcement-banner">
+      <span class="banner-content">
+        📢 <strong>Update Sept 23:</strong> Lecture 1 exercises have answers!
+      </span>
+      <button class="banner-close-btn" onclick="closeBanner()">&times;</button>
+    </div>
+    <style>
+      .announcement-banner {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 16px;
+        text-align: center;
+        position: relative;
+        font-size: 0.95rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .banner-content {
+        flex-grow: 1;
+      }
+      .banner-close-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0 8px;
+        opacity: 0.8;
+      }
+      .banner-close-btn:hover {
+        opacity: 1;
+      }
+    </style>
+    <script>
+      // Hide immediately if already dismissed in this browser session
+      if (sessionStorage.getItem('hideCourseBanner') === 'true') {
+        document.write('<style>#course-announcement-banner { display: none !important; }</style>');
+      }
+
+      function closeBanner() {
+        var banner = document.getElementById('course-announcement-banner');
+        if (banner) {
+          banner.style.display = 'none';
+        }
+        // Remember that the user closed it during this browser session
+        sessionStorage.setItem('hideCourseBanner', 'true');
+      }
+    </script>
