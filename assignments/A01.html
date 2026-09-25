@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; A1: Notebooks – Math5485</title>
+<title>A1: Notebooks – Math5485</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assignments/A02.html" rel="next">
-<link href="../exercises/test-sample.html" rel="prev">
+<link href="../exercises/bank.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -160,7 +160,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A01.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A01.html">A1: Notebooks</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -228,12 +228,24 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Simple iterations</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, Secant</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise bank</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Exercises</span></a>
+ <span class="menu-text">Assignments</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -241,37 +253,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/test-sample.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sample in-class test</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Assignments</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></span></a>
+ <span class="menu-text">A1: Notebooks</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A2</span></span></a>
+ <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
   </div>
 </li>
       </ul>
@@ -282,23 +271,38 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Admin</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -307,6 +311,8 @@ window.Quarto = {
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
+      </ul>
+  </li>
       </ul>
   </li>
     </ul>
@@ -329,29 +335,148 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-    <div id="course-announcement-banner" class="announcement-banner">
-      <span class="banner-content">
-        📢 <strong>Update Sept 23:</strong> Lecture 1 exercises have answers!
-      </span>
-      <button class="banner-close-btn" onclick="closeBanner()">×</button>
+    <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
+      <span class="banner-label">📢 <strong>Updates</strong></span>
+      <div class="banner-ticker">
+        <div class="banner-ticker-track">
+          <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
+                 * Order doesn't matter: updates are sorted by date (newest first).
+                 * Updates dated in the future are hidden until that day (so you can schedule them).
+                 * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
+          <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
+          <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
+        </div>
+      </div>
+      <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
+      <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
+      <div id="banner-all-updates" class="banner-all" hidden="">
+        <div class="banner-all-title">All updates</div>
+        <ul class="banner-all-list"></ul>
+      </div>
     </div>
     <style>
       .announcement-banner {
         background-color: #007bff;
         color: white;
-        padding: 10px 16px;
-        text-align: center;
+        padding: 8px 12px;
         position: relative;
         font-size: 0.95rem;
         z-index: 1000;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 0.75rem;   /* space between the banner and the page below */
       }
-      .banner-content {
+      .banner-label {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+      /* scrolling area: fades out at both ends */
+      .banner-ticker {
         flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+                mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
       }
+      .banner-ticker-track {
+        display: inline-flex;
+        white-space: nowrap;
+        will-change: transform;
+      }
+      .banner-ticker.scrolling .banner-ticker-track {
+        animation: banner-scroll var(--banner-duration, 30s) linear infinite;
+      }
+      /* pause while the mouse is over the text, so it can be read */
+      .banner-ticker:hover .banner-ticker-track {
+        animation-play-state: paused;
+      }
+      .banner-item {
+        padding: 0 1.5rem;
+      }
+      .banner-date {
+        display: inline-block;
+        font-size: 0.8em;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        padding: 0 6px;
+        margin-right: 6px;
+      }
+      .banner-item::before {
+        content: "•";
+        margin-right: 1.5rem;
+        opacity: 0.7;
+      }
+      @keyframes banner-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }   /* the track holds two identical halves */
+      }
+      /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
+      @media (prefers-reduced-motion: reduce) {
+        .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
+        .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
+      }
+      /* "All updates" button and drop-down list */
+      .banner-more-btn {
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: white;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        padding: 2px 10px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .banner-more-btn:hover,
+      .banner-more-btn[aria-expanded="true"] {
+        background: white;
+        color: #007bff;
+      }
+      .banner-all {
+        position: absolute;
+        top: 100%;
+        right: 12px;
+        margin-top: 6px;
+        width: min(420px, calc(100vw - 24px));
+        max-height: 60vh;
+        overflow-y: auto;
+        background: white;
+        color: #212529;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        padding: 10px 14px;
+        text-align: left;
+        z-index: 1001;
+      }
+      .banner-all[hidden] { display: none; }
+      .banner-all-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .banner-all-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .banner-all-list li {
+        padding: 5px 0;
+        border-top: 1px solid #f1f3f5;
+      }
+      .banner-all-list li:first-child { border-top: none; }
+      .banner-all-list li.banner-all-date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #6c757d;
+        border-top: none;
+        padding: 8px 0 2px;
+      }
+      .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
       .banner-close-btn {
+        flex-shrink: 0;
         background: none;
         border: none;
         color: white;
@@ -379,11 +504,129 @@ window.Quarto = {
         // Remember that the user closed it during this browser session
         sessionStorage.setItem('hideCourseBanner', 'true');
       }
+
+      // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
+      // the whole set so the animation (which moves the track by half its width) loops seamlessly.
+      (function () {
+        var SPEED = 60;          // pixels per second
+        var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
+
+        // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
+        function parseDate(str) {
+          var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
+          return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+        }
+        function dateLabel(d) {
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+          var days = Math.round((today - d) / 86400000);
+          if (days === 0) return 'Today';
+          if (days === 1) return 'Yesterday';
+          var opts = { weekday: 'short', month: 'short', day: 'numeric' };
+          if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
+          return d.toLocaleDateString('en-US', opts);
+        }
+
+        // Sort the updates by date, hide future ones, keep the newest few in the ticker
+        // (with a date label) and list all of them, grouped by date, under "All updates".
+        function setupUpdates(track) {
+          var banner = document.getElementById('course-announcement-banner');
+          var btn = banner.querySelector('.banner-more-btn');
+          var panel = banner.querySelector('.banner-all');
+          var list = panel.querySelector('.banner-all-list');
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+
+          var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
+            return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
+          }).filter(function (u) {
+            return !u.date || u.date <= today;                       // scheduled updates stay hidden
+          }).sort(function (a, b) {
+            if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
+            if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
+            return a.order - b.order;                                              // same day: file order
+          });
+
+          // ticker: the newest MAX_SCROLLING updates, each with its date
+          track.innerHTML = '';
+          updates.slice(0, MAX_SCROLLING).forEach(function (u) {
+            var span = document.createElement('span');
+            span.className = 'banner-item';
+            span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
+            track.appendChild(span);
+          });
+          if (updates.length === 0) { banner.style.display = 'none'; return; }
+
+          // drop-down: everything, grouped by date
+          var lastLabel = null;
+          updates.forEach(function (u) {
+            var label = u.date ? dateLabel(u.date) : 'Other';
+            if (label !== lastLabel) {
+              var h = document.createElement('li');
+              h.className = 'banner-all-date';
+              h.textContent = label;
+              list.appendChild(h);
+              lastLabel = label;
+            }
+            var li = document.createElement('li');
+            li.innerHTML = u.html;
+            list.appendChild(li);
+          });
+          if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
+
+          btn.textContent = 'All updates (' + updates.length + ')';
+          btn.hidden = false;
+
+          function setOpen(open) {
+            panel.hidden = !open;
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          }
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            setOpen(panel.hidden);
+          });
+          panel.addEventListener('click', function (e) { e.stopPropagation(); });
+          document.addEventListener('click', function () { setOpen(false); });
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+        }
+
+        function startTicker() {
+          var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
+          if (!ticker) return;
+          var track = ticker.querySelector('.banner-ticker-track');
+          setupUpdates(track);
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+          var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
+          if (items.length === 0) return;
+
+          // one "half": the updates repeated until they are at least as wide as the banner
+          var guard = 0;
+          while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
+            items.forEach(function (item) {
+              var copy = item.cloneNode(true);
+              copy.setAttribute('aria-hidden', 'true');
+              track.appendChild(copy);
+            });
+          }
+          // second half: an exact copy of the first
+          Array.prototype.slice.call(track.children).forEach(function (el) {
+            var copy = el.cloneNode(true);
+            copy.setAttribute('aria-hidden', 'true');
+            track.appendChild(copy);
+          });
+
+          var halfWidth = track.scrollWidth / 2;
+          ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
+          ticker.classList.add('scrolling');
+        }
+
+        if (document.readyState === 'complete') startTicker();
+        else window.addEventListener('load', startTicker);
+      })();
     </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A01.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A01.html">A1: Notebooks</a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">A1: Notebooks</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -1096,13 +1339,13 @@ window.addEventListener("load", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../exercises/test-sample.html" class="pagination-link" aria-label="Sample in-class test">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sample in-class test</span></span>
+      <a href="../exercises/bank.html" class="pagination-link" aria-label="Exercise bank">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exercise bank</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../assignments/A02.html" class="pagination-link" aria-label="A2">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">A2</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../assignments/A02.html" class="pagination-link" aria-label="A2: Stability &amp; simple iterations">
+        <span class="nav-page-text">A2: Stability &amp; simple iterations</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -79,10 +79,11 @@
   margin: 1.2em 0;
 }
 
-/* Forces the title line, bold elements, and Quarto @exr links to be black & bold */
-.exercise-box p:first-child,
-.exercise-box p:first-child strong,
-.exercise-box p:first-child a {
+/* Forces the title line, bold elements, and Quarto @exr links to be black & bold
+   (first-of-type: in the exercise bank the difficulty stars come before the title) */
+.exercise-box > p:first-of-type,
+.exercise-box > p:first-of-type strong,
+.exercise-box > p:first-of-type a {
   color: #000000 !important;
   font-weight: 700 !important;
   text-decoration: none;

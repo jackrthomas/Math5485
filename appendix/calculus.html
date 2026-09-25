@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A2: Stability &amp; simple iterations – Math5485</title>
+<title>Appendix A — Calculus – Math5485</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -71,8 +36,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/calculus.html" rel="next">
-<link href="../assignments/A01.html" rel="prev">
+<link href="../appendix/syllabus.html" rel="next">
+<link href="../assignments/A02.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -160,7 +125,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A02.html">A2: Stability &amp; simple iterations</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/calculus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/calculus.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -259,7 +224,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link active">
+  <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
   </div>
 </li>
@@ -280,7 +245,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></span></a>
   </div>
 </li>
@@ -320,16 +285,8 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#a-conditioning-stability" id="toc-a-conditioning-stability" class="nav-link active" data-scroll-target="#a-conditioning-stability">A: Conditioning &amp; Stability</a></li>
-  <li><a href="#b-simple-iteration" id="toc-b-simple-iteration" class="nav-link" data-scroll-target="#b-simple-iteration">B: Simple iteration</a></li>
-  <li><a href="#c.-reflection" id="toc-c.-reflection" class="nav-link" data-scroll-target="#c.-reflection">C. Reflection</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/assignments/A02.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -622,9 +579,9 @@ window.Quarto = {
       })();
     </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A02.html">A2: Stability &amp; simple iterations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/calculus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/calculus.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">A2: Stability &amp; simple iterations</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<h1 class="title">Appendix A — Calculus</h1>
 </div>
 
 
@@ -641,238 +598,65 @@ window.Quarto = {
 </header>
 
 
-<p>Assignment 2: Floating point numbers, conditioning, and solving nonlinear equations in 1d <br> Published: <b>Tue 22 Sept</b></p>
-<div class="alert alert-block alert-info">
-<b>Note:</b>
-<ul>
-<li>
-Complete the following and submit to Canvas before <b>Wed 30 Sept, 23:59</b>.
-</li>
-<li>
-Late work will receive 0%.
-</li>
-<li>
-Each assignment is worth the same.
-</li>
-<li>
-Please get in contact with the TA/instructor in plenty of time if you need help.
-</li>
-<li>
-Before submitting your work, make sure to check everything runs as expected. Click <b>Kernel &gt; Restart Kernel and Run All Cells</b>. Submit your notebook in .pdf format by clicking <b>File &gt; Export Notebook As &gt; PDF</b> or by printing to PDF in the browser.
-</li>
-<li>
-Feel free to add more cells to experiment or test your answers.
-</li>
-<li>
-I encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own.
-</li>
-<li>
-The use of GenAI is prohibited as outlined in the course syllabus. If suspected of cheating, you may be asked to complete a written or oral exam on the content of this assignment.
-</li>
-</ul>
+<div id="thm-A-IVT" class="theorem">
+<p><span class="theorem-title"><strong>Theorem A.1 (⚠ Intermediate Value Theorem)</strong></span> Suppose that <span class="math inline">\(f : [a,b] \to \mathbb  R\)</span> is continuous. Then, <span class="math inline">\(f\)</span> is bounded on <span class="math inline">\([a,b]\)</span> and for all <span class="math inline">\(y \in [\min_{[a,b]} f, \max_{[a,b]} f ]\)</span> there exists <span class="math inline">\(x\in[a,b]\)</span> such that <span class="math inline">\(f(x) = y\)</span>.</p>
 </div>
-<div class="custom-lecture-buttons my-3 d-flex gap-2">
-<p><a href="https://raw.githubusercontent.com/jackrthomas/Math5485/main/assignments/A02.ipynb" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Download (.ipynb) </a></p>
+<div id="thm-A-MVT" class="theorem">
+<p><span class="theorem-title"><strong>Theorem A.2 (⚠ Mean Value Theorem)</strong></span> Suppose that <span class="math inline">\(f \colon [a,b] \to \mathbb R\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and differentiable on <span class="math inline">\((a,b)\)</span>. Then, there exists <span class="math inline">\(c\in[a,b]\)</span> for which</p>
+<p><span class="math display">\[\begin{align*}
+    f(b) - f(a) = f'(c) (b-a)
+\end{align*}\]</span></p>
 </div>
-<p>The assignment is worth <strong>100 pts</strong>. The symbols ✍️, 💻 indicate theory (<span class="math inline">\(\LaTeX\)</span>), practice (code), respectively.</p>
-<div id="773dbca1" class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Name <span class="op">=</span> <span class="st">"YOUR NAME HERE"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<p><em>Proof:</em> Consider <span class="math inline">\(g(x) := f(x) - \frac{f(b)-f(a)}{b-a} x\)</span>, a function for which <span class="math inline">\(g(a) = g(b)\)</span>. You can show that there exists <span class="math inline">\(c\in [a,b]\)</span> for which <span class="math inline">\(g'(c) = 0\)</span> (this is known as Rolle’s theorem). This follows from the intermediate value theorem - either the max or min is achieved at <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> (and the function is constant), or there is an extreme point in <span class="math inline">\((a,b)\)</span>. In the latter case, you can show this point is stationary: i.e.&nbsp;<span class="math inline">\(g'\)</span> vanishes here.</p>
+<p>Cauchy’s Mean Value Theorem (need this for the proof of Taylor remainder theorem): Suppose that <span class="math inline">\(f, g \colon [a,b] \to \mathbb R\)</span> are continuous on <span class="math inline">\([a,b]\)</span> and differentiable on <span class="math inline">\((a,b)\)</span>. Then, there exists <span class="math inline">\(c\in[a,b]\)</span> for which</p>
+<p><span class="math display">\[\begin{align*}
+    \big( f(b) - f(a) \big) g'(c) = \big(g(b) - g(a) \big) f'(c)
+\end{align*}\]</span></p>
+<p><em>Proof:</em> <span class="math inline">\(h(x) = \big( g(b) - g(a) \big) f(x) - \big( f(b) - f(a) \big) g(x)\)</span> is such that <span class="math inline">\(h(a) = h(b)\)</span> and so there exists <span class="math inline">\(c \in [a,b]\)</span> such that <span class="math inline">\(h'(c) = 0\)</span>.</p>
+<div id="thm-A-Taylor" class="theorem">
+<p><span class="theorem-title"><strong>Theorem A.3 (⚠ Taylor Remainder Theorem)</strong></span> Suppose that <span class="math inline">\(f\colon [a,b] \to \mathbb R\)</span> is a function with <span class="math inline">\(n\)</span> times continuously differentiable. Then, there exists <span class="math inline">\(c\in[a,b]\)</span> for which</p>
+<p><span class="math display">\[\begin{align*}
+    f(x) = f(a) + f'(a) (x - a) + \dots + \frac{f^{(n-1)}(a)}{(n-1)!} (x - a)^{n-1} + \frac{f^{(n)}(c)}{n!} (x-a)^{n}
+\end{align*}\]</span></p>
 </div>
-<p>The following cell contains some code that you may find useful: <code>simple_iteration</code> is the function from Lecture 4 and <code>order_table(x, ξ; α)</code> prints the errors <span class="math inline">\(e_n := |x_n - \xi|\)</span> together with <span class="math inline">\(\frac{e_{n}}{e_{n-1}^\alpha}\)</span> and <span class="math inline">\(\frac{\log e_{n}}{\log e_{n-1}}\)</span> (which are useful when estimating the asymptotic error constant and the order of convergence). You may need to ignore the last few rows of the table once <span class="math inline">\(e_n\)</span> is of the order of machine precision.</p>
-<div id="8732dea5" class="cell" data-execution_count="24">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span>, <span class="bu">Printf</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># simple iteration x_{n+1} = g(x_n) (from Lecture 4)</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">simple_iteration</span>(g, x1; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-10</span>, flag<span class="op">=</span><span class="cn">false</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">Vector</span><span class="dt">{Float64}</span>(<span class="cn">undef</span>, N)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    x[<span class="fl">1</span>] <span class="op">=</span> x1</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span>N</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        x[n] <span class="op">=</span> <span class="fu">g</span>(x[n<span class="op">-</span><span class="fl">1</span>])</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> !<span class="fu">isfinite</span>(x[n])</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x[<span class="fl">1</span><span class="op">:</span>n], <span class="cn">false</span> </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># compute relative error</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        rel_err <span class="op">=</span> <span class="fu">abs</span>(x[n] <span class="op">-</span> x[n<span class="op">-</span><span class="fl">1</span>]) <span class="op">/</span> <span class="fu">max</span>(<span class="fu">abs</span>(x[n]), <span class="fl">1e-12</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> rel_err <span class="op">&lt;</span> tol</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x[<span class="fl">1</span><span class="op">:</span>n], <span class="cn">true</span> </span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flag</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@warn</span> <span class="st">"Fixed-point iteration did not converge within </span><span class="sc">$</span>N<span class="st"> iterations."</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, <span class="cn">false</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># prints the errors e_n = |x_n - ξ| together with </span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#   e_n / e_{n-1}^α          (\to μ if the order of convergence is α)  </span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   log(e_n) / log(e_{n-1})  (\to order of convergence)</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">order_table</span>(x, ξ; α<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> @. <span class="fu">abs</span>(x <span class="op">-</span> ξ)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%4s %22s %12s %16s %20s</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">"n"</span>, <span class="st">"x_n"</span>, <span class="st">"e_n"</span>, <span class="st">"e_n/e_{n-1}^α"</span>, <span class="st">"log e_n/log e_{n-1}"</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%4d %22.16f %12.3e</span><span class="sc">\n</span><span class="st">"</span>, <span class="fl">1</span>, x[<span class="fl">1</span>], <span class="cn">e</span>[<span class="fl">1</span>])</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span><span class="fu">length</span>(x)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@printf</span>(<span class="st">"%4d %22.16f %12.3e %16.6f %20.6f</span><span class="sc">\n</span><span class="st">"</span>, n, x[n], <span class="cn">e</span>[n], <span class="cn">e</span>[n]<span class="op">/</span><span class="cn">e</span>[n<span class="op">-</span><span class="fl">1</span>]<span class="op">^</span>α, <span class="fu">log</span>(<span class="cn">e</span>[n])<span class="op">/</span><span class="fu">log</span>(<span class="cn">e</span>[n<span class="op">-</span><span class="fl">1</span>]))</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display">
-<pre><code>order_table (generic function with 1 method)</code></pre>
+<p><em>Proof:</em> Define <span class="math inline">\(F(x) = f(x) - \sum_{k=0}^{n-1} \frac{f^{(k)}(a)}{k!} (x - a)^k\)</span> and <span class="math inline">\(G(x) = (x-a)^n\)</span> and note that <span class="math inline">\(F(a) = F'(a) = \cdots = F^{(n-1)}(a) = 0\)</span> and <span class="math inline">\(G(a) = \cdots = G^{(n-1)}(a) = 0\)</span> and <span class="math inline">\(G^{(n)}(x) = n!\)</span>. Applying Cauchy’s Mean Value Theorem <span class="math inline">\(n\)</span> times, we can conclude there exists <span class="math inline">\(c_1,\dots,c_n\)</span> between <span class="math inline">\(a\)</span> and <span class="math inline">\(x\)</span> such that</p>
+<p><span class="math display">\[\begin{align*}
+    \frac{F(x)}{G(x)} &amp;= \frac{F(x) - F(a)}{G(x) - G(a)}
+    = \frac{F'(c_1)}{G'(c_1)} \nonumber\\
+    &amp;= \frac{F'(c_1) - F'(a)}{G'(c_1) - G'(a)}
+    = \frac{F''(c_2)}{G''(c_2)} \nonumber\\
+    &amp;= \cdots = \frac{F^{(n)}(c_n)}{G^{(n)}(c_n)}
+    %
+    = \frac
+        {f^{(n)}(c_n)}
+        { n! }
+\end{align*}\]</span></p>
+<div id="thm-A-change-sign" class="theorem">
+<p><span class="theorem-title"><strong>Theorem A.4 (⚠ Change of Sign Theorem)</strong></span> Suppose that <span class="math inline">\(f\colon [a,b] \to \mathbb R\)</span> is a continuous function with <span class="math inline">\(f(a) f(b) \leq 0\)</span>. Then, <span class="math inline">\(f\)</span> has a <em>root</em> (or <em>zero</em>) <span class="math inline">\(\xi \in [a,b]\)</span> (i.e.&nbsp;<span class="math inline">\(f(\xi) = 0\)</span>).</p>
 </div>
+<p><em>Proof.</em> If <span class="math inline">\(f(a) f(b) = 0\)</span> then <span class="math inline">\(a\)</span> or <span class="math inline">\(b\)</span> is a root of <span class="math inline">\(f\)</span>. Otherwise, <span class="math inline">\(0 \in (\min_{[a,b]}f, \max_{[a,b]}f)\)</span> and so the Intermediate Value Theorem applies.</p>
+<div id="thm-A-Brouwer" class="theorem">
+<p><span class="theorem-title"><strong>Theorem A.5 (Brouwer’s Fixed Point Theorem)</strong></span> Suppose that <span class="math inline">\(g \colon [a,b] \to [a,b]\)</span> is continuous. Then, there exists a fixed point <span class="math inline">\(\xi \in [a,b]\)</span>.</p>
 </div>
-<div style="break-after: page;">
-
+<p><em>Proof.</em> We can apply the change of sign theorem to <span class="math inline">\(f(x) := g(x) - x\)</span>.</p>
+<div id="thm-A-Banach" class="theorem">
+<p><span class="theorem-title"><strong>Theorem A.6 (Contraction Mapping Theorem (Banach fixed point theorem))</strong></span> Suppose <span class="math inline">\(g:[a,b] \to[a,b]\)</span> is a contraction. Then, there exists a unique fixed point <span class="math inline">\(\xi = g(\xi) \in [a,b]\)</span>. Moreover, the iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> converges at least linearly to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [a,b]\)</span>.</p>
 </div>
-<section id="a-conditioning-stability" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="a-conditioning-stability">A: Conditioning &amp; Stability</h2>
-<p><strong><em>Exercise 1. (Harmonic numbers)</em></strong></p>
-<p>The harmonic numbers are defined as <span class="math inline">\(H_N := \sum_{k=1}^N \frac1k\)</span>.</p>
-<ol type="i">
-<li><p>💻 Compute <span class="math inline">\(H_{N}\)</span> for <span class="math inline">\(N = 10^7\)</span> in <code>Float32</code> (single precision) by summing <em>forwards</em> (<span class="math inline">\(k = 1, 2, \dots, N\)</span>) and <em>backwards</em> (<span class="math inline">\(k = N, N-1, \dots, 1\)</span>). What are the relative errors of these two approximations?</p></li>
-<li><p>✍️ Which approximation is more accurate? Explain why.</p></li>
-</ol>
-<p><em>Hint:</em> You may use <code>y</code> defined below as the “exact” value of <span class="math inline">\(H_{10^7}\)</span>. You can use <code>Float32(1)</code> or <code>1f0</code> for <span class="math inline">\(1\)</span> in <code>Float32</code>. Use <code>typeof( x )</code> to check the type of variable <code>x</code>.</p>
-<div id="45be8256" class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">16.695311365859851815399118939540451884249869752373080462785</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<p><strong><em>Exercise 2. Conditioning vs stability</em></strong></p>
-<p>Let <span class="math inline">\(f(x) := \sqrt{x+1} - \sqrt{x}\)</span> for <span class="math inline">\(x &gt; 0\)</span>.</p>
-<ol type="i">
-<li>✍️ Compute the relative condition number <span class="math inline">\(\kappa_f(x)\)</span> and show that <span class="math inline">\(\kappa_f(x) \leq \frac12\)</span> for all <span class="math inline">\(x &gt; 0\)</span>.</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<ol start="2" type="i">
-<li>💻 Evaluate <span class="math inline">\(f(x)\)</span> (using the formula above) for <span class="math inline">\(x = 10^2, 10^4, \dots, 10^{16}\)</span> in <code>Float64</code> and compute the relative errors. You may use <code>sqrt(big(x)+1) - sqrt(big(x))</code> (which uses higher precision <code>BigFloat</code> arithmetic) as the “exact” value of <span class="math inline">\(f(x)\)</span>.</li>
-</ol>
-<div id="2d262b29" class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ol start="3" type="i">
-<li>✍️ Explain why your results in (ii) do not contradict (i).</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<ol start="4" type="i">
-<li>✍️💻 Find a mathematically equivalent formula for <span class="math inline">\(f\)</span> which avoids subtractive cancellation and repeat (ii) using your new formula.</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<div id="547c6f8c" class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div style="break-after: page;">
-
-</div>
-</section>
-<section id="b-simple-iteration" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="b-simple-iteration">B: Simple iteration</h2>
-<p><strong><em>Exercise 3.</em></strong></p>
-<p>Let <span class="math inline">\(f(x) := x^3 + 4x^2 - 10\)</span> and consider</p>
+<p><em>Proof.</em> Existence of a fixed point <span class="math inline">\(\xi = g(\xi)\)</span> follows from Brouwer’s fixed point theorem. If there exists <span class="math inline">\(\zeta = g(\zeta) \in [a,b]\)</span> then <span class="math inline">\(|\xi - \zeta| = |g(\xi) - g(\zeta)| \leq L |\xi - \zeta|\)</span>. Since <span class="math inline">\(L \in (0,1)\)</span>, we must have <span class="math inline">\(\xi = \zeta\)</span> and the fixed point is unique.</p>
+<p>Notice that <span class="math inline">\(|x_{n+1} - \xi| = |g(x_n) - g(\xi)| \leq L |x_n - \xi|\)</span> for all <span class="math inline">\(n \geq 1\)</span>. Therefore, we have <span class="math inline">\(|x_{n+1} - \xi| \leq L^n |x_1 - \xi|\)</span> which goes to zero as <span class="math inline">\(n\to\infty\)</span> (as <span class="math inline">\(|L|&lt;1\)</span>). Finally, we note that by the Mean Value Theorem there exist <span class="math inline">\(\eta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span> such that</p>
 <p><span class="math display">\[\begin{align}
-    g_1(x) &amp;:= x - x^3 - 4x^2 + 10, \nonumber\\
-    g_2(x) &amp;:= \frac12 \sqrt{10 - x^3}, \nonumber\\
-    g_3(x) &amp;:= \sqrt{\frac{10}{4+x}}. \nonumber
+    \frac
+        {|x_{n+1} - \xi|}
+        {|x_n - \xi|}
+    %
+    = \frac
+        {|g(x_{n}) - g(\xi)|}
+        {|x_n - \xi|}
+    = |g'(\eta_n)|.
 \end{align}\]</span></p>
-<ol type="i">
-<li>✍️ Show that <span class="math inline">\(f\)</span> has a root <span class="math inline">\(\xi \in [1,2]\)</span>.</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<ol start="2" type="i">
-<li>✍️ Show that <span class="math inline">\(\xi\)</span> is a fixed point of each of <span class="math inline">\(g_1, g_2\)</span>, and <span class="math inline">\(g_3\)</span>.</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<ol start="3" type="i">
-<li>💻 Run the simple iterations <span class="math inline">\(x_{n+1} = g_j(x_n)\)</span> with <span class="math inline">\(x_1 = 1.5\)</span> for <span class="math inline">\(j = 1,2,3\)</span>. Which of these iterations appear to converge?</li>
-</ol>
-<div id="bd5d1a39" class="cell" data-execution_count="23">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<ol start="4" type="i">
-<li>✍️ Show that <span class="math inline">\(g_3 : [1,2] \to [1,2]\)</span> and that <span class="math inline">\(|g_3'(x)| \leq L &lt; 1\)</span> for all <span class="math inline">\(x \in [1,2]\)</span>. Explain why this means that <span class="math inline">\(x_{n+1} = g_3(x_n)\)</span> converges to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [1,2]\)</span>.</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<ol start="22" type="a">
-<li>✍️ Show that the contraction mapping theorem can <strong>not</strong> be applied to <span class="math inline">\(g_2\)</span> on <span class="math inline">\([1,2]\)</span> but that it can be applied to <span class="math inline">\(g_2\)</span> on <span class="math inline">\([1, 3/2]\)</span>.</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<ol start="6" type="i">
-<li>✍️💻 What are the order of convergence and the asymptotic error constants of the iterations <span class="math inline">\(x_{n+1} = g_2(x_n)\)</span> and <span class="math inline">\(x_{n+1} = g_3(x_n)\)</span>? Compare your theoretical values with numerical estimates (you may use <code>order_table</code>). Which iteration gains more digits of accuracy per iteration and approximately how many?</li>
-</ol>
-<div class="alert alert-block alert-success">
-<p><b>Answer.</b></p>
-</div>
-<div id="481d3e13" class="cell">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-<div style="break-after: page;">
-
-</div>
-</section>
-<section id="c.-reflection" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="c.-reflection">C. Reflection</h2>
-<p><strong>Goal:</strong> Reflect on your learning strategies, track your workload, and help us improve future course material.<br>
-<strong>Time:</strong> take 5-10 mins (this shouldn’t take too long)</p>
-<p>Estimate the approximate hours you spent:<br>
-* <strong>Assignment:</strong> ____<br>
-* <strong>Reading notes/materials:</strong> ____<br>
-* <strong>Exercises:</strong> ____</p>
-<p>(Reminder: you should be spending around 8 hours per week on this course outside of the 4 hours of lectures)</p>
-<div class="alert alert-block alert-success">
-<p><b>Any other comments:</b></p>
-</div>
-<p>Take a moment to reflect on your learning over the past two weeks:</p>
-<p>What was the easiest topic or task and why? Where did you struggle, and how did you overcome those challenges? Which resources (e.g.&nbsp;lecture notes, practice exercises, peer discussions, …) helped you the most? How did you manage your time and workload (e.g., all at once, spread out over several days, or working with peers)? Looking back, what would you do differently if you were starting these two weeks over today?</p>
-<div class="alert alert-block alert-success">
-<p><b>Comments:</b></p>
-</div>
-<p>(Optional) Any changes that would improve the lectures, exercises, or assignments for the future? You can also suggest things anonymously <a href="http://z.umn.edu/JT-message" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-archive me-1" aria-hidden="true"></i> here <span class="visually-hidden">(opens in a new tab)</span> </a></p>
-<div class="alert alert-block alert-success">
-<p><b>Comments:</b></p>
-</div>
+<p>This quantity converges to <span class="math inline">\(|g'(\xi)|\)</span> as <span class="math inline">\(n \to \infty\)</span>.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <style>
@@ -1383,13 +1167,13 @@ window.addEventListener("load", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../assignments/A01.html" class="pagination-link" aria-label="A1: Notebooks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A1: Notebooks</span>
+      <a href="../assignments/A02.html" class="pagination-link" aria-label="A2: Stability &amp; simple iterations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A2: Stability &amp; simple iterations</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/calculus.html" class="pagination-link" aria-label="Calculus">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/syllabus.html" class="pagination-link" aria-label="Course Syllabus">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1398,4 +1182,4 @@ window.addEventListener("load", function() {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/assignments/A02.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/calculus.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
