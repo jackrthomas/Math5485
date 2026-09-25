@@ -1,0 +1,90 @@
+---
+title: "Quiz 0 (Sample)"
+date: "2026-09-16"
+after-lecture: 2
+---
+
+<!--
+Sample quiz questions for the exercise bank (collected by extras/collect_exercises.ipynb).
+See Q1.qmd for how quiz files work.
+-->
+
+::: {.quiz-question}
+
+Let $x_n = \frac{1 + n^2}{ 2 n^3 } \cos n$. For which of the following sequences $(\varepsilon_n)$ do we have $x_n = O(\varepsilon_n)$ as $n\to\infty$? Select all that apply.
+
+(a). $\varepsilon_n = e^{-n}$,
+(b). $\varepsilon_n = n^{-2}$,
+(c). $\varepsilon_n = n^{-1}$,
+(d). $\varepsilon_n = 1$,
+(e). $\varepsilon_n = n$.
+
+::: {.exercise-solution style="display: none;"}
+
+(c), (d), and (e). Since $|\cos n| \leq 1$ and $1 \leq n^2$ for all $n \in \mathbb N$, we have
+
+\begin{align}
+   |x_n| &= \left|\frac{1 + n^2}{ 2 n^3 } \cos n\right| \nonumber\\
+   %
+   &\leq \frac{n^2 + n^2}{ 2 n^3 } \nonumber\\
+   %
+   &= n^{-1} \leq 1 \leq n. \nonumber
+\end{align}
+
+Therefore, $x_n = O(n^{-1})$, $O(1)$, and $O(n)$.
+
+However, $x_n \not= O(n^{-2})$ (and so $x_n \not= O(e^{-n})$ either): $|\cos x| < \frac12$ only when $x$ lies in an interval of the form $(\frac\pi3, \frac{2\pi}3) + k\pi$ (of length $\frac\pi3 < 2$), so at least one of any three consecutive integers $n$ satisfies $|\cos n| \geq \frac12$. For these $n$, we have $|x_n| \geq \frac{n^2}{2n^3} \cdot \frac12 = \frac1{4n}$, and so $n^2 |x_n| \geq \frac{n}{4}$ is unbounded.
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+Let us define
+
+\begin{align*}
+   f(x) = \frac{\sqrt{1+x}-1}{x}, \qquad g(x) = \frac{1}{\sqrt{1+x} + 1}.
+\end{align*}
+
+One may verify that $f$ and $g$ are mathematically identical (but you don't have to). The following table is the output of evaluating $f$ and $g$ on $\{10^{-14}, 10^{-15}, 10^{-16}\}$ in double precision floating point. Why are the function values different?
+
+<details><summary>Code</summary>
+
+```julia
+f = x -> ( sqrt(1 + x) - 1 ) / x
+g = x-> 1/( 1 + sqrt(1 + x) )
+
+t = [1e-14; 1e-15; 1e-16];
+
+println( "                         f(x)                  g(x)" )
+println( "x = 10^(-14):     ", f(t[1]), "    ",    g(t[1]) )
+println( "x = 10^(-15):     ", f(t[2]), "   ",    g(t[2]) )
+println( "x = 10^(-16):     ", f(t[3]), "                   ",    g(t[3]) )
+```
+</details>
+
+```
+                         f(x)                  g(x)
+x = 10^(-14):     0.4884981308350689    0.4999999999999988
+x = 10^(-15):     0.44408920985006256   0.4999999999999999
+x = 10^(-16):     0.0                   0.5
+```
+
+::: {.exercise-solution style="display: none;"}
+
+Subtractive cancellation! For small $x$, $\sqrt{1+x} \approx 1 + \frac{x}{2}$, so the numerator of $f$ is the difference of two numbers that agree in almost all of their digits: the result has very few correct significant digits. At $x = 10^{-16} < \frac12 \epsilon_{\rm mach}$ we even have ```1 + 1e-16 == 1```, so the numerator is exactly $0$. The formula $g$ only adds positive numbers, so there is no cancellation and $g(x) \approx \frac12$ is accurate.
+
+(The formulae are the same since
+
+\begin{align}
+    f(x) &= \frac{\sqrt{1+x}-1}{x} \frac{\sqrt{1+x}+1}{\sqrt{1+x}+1} \nonumber\\
+    %
+    &= \frac{1+x-1}{x(\sqrt{1+x}+1)}  = g(x). \nonumber
+\end{align}
+
+Moreover, $\lim_{x\to 0} f(x) = \lim_{x\to 0} g(x) = \frac12$.)
+
+:::
+
+:::

@@ -36,11 +36,7 @@ book:
       - lectures/L04.ipynb
       - lectures/L05.ipynb
 
-    - part: "Exercises"
-      chapters:
-      - exercises/bank.ipynb
-      - exercises/test-sample.ipynb
-      - exercises/Q1.ipynb
+    - exercises/bank.ipynb
 
     - part: "Assignments"
       number-sections: false

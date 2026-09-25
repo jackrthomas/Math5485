@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-09-23">
 
-<title>Appendix C — Installing Julia &amp; Jupyter – Math5485</title>
+<title>8&nbsp; Quiz 1 – Math5485</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,6 +27,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -36,8 +72,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
-<link href="../appendix/syllabus.html" rel="prev">
+<link href="../assignments/A01.html" rel="next">
+<link href="../exercises/test-sample.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,7 +112,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>html{ scroll-behavior: smooth; }</style>
 <script async="" src="https://hypothes.is/embed.js"></script>
 <script>
   window.document.addEventListener("DOMContentLoaded", function (_event) {
@@ -84,6 +119,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -97,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/calculus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Admin</a></li><li class="breadcrumb-item"><a href="../appendix/installing-julia.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/Q1.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,16 +237,10 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercise bank</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Assignments</span></a>
+ <span class="menu-text">Exercises</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -190,14 +248,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Exercises</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/test-sample.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sample Quiz</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/Q1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A1: Notebooks</span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">A2</span></span></a>
   </div>
 </li>
       </ul>
@@ -208,13 +295,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
@@ -223,13 +310,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">Admin</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
@@ -238,7 +325,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
   </div>
 </li>
@@ -262,148 +349,29 @@ ul.task-list li input[type="checkbox"] {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-    <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
-      <span class="banner-label">📢 <strong>Updates</strong></span>
-      <div class="banner-ticker">
-        <div class="banner-ticker-track">
-          <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
-                 * Order doesn't matter: updates are sorted by date (newest first).
-                 * Updates dated in the future are hidden until that day (so you can schedule them).
-                 * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
-          <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
-          <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
-          <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
-        </div>
-      </div>
-      <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
-      <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
-      <div id="banner-all-updates" class="banner-all" hidden="">
-        <div class="banner-all-title">All updates</div>
-        <ul class="banner-all-list"></ul>
-      </div>
+    <div id="course-announcement-banner" class="announcement-banner">
+      <span class="banner-content">
+        📢 <strong>Update Sept 23:</strong> Lecture 1 exercises have answers!
+      </span>
+      <button class="banner-close-btn" onclick="closeBanner()">×</button>
     </div>
     <style>
       .announcement-banner {
         background-color: #007bff;
         color: white;
-        padding: 8px 12px;
+        padding: 10px 16px;
+        text-align: center;
         position: relative;
         font-size: 0.95rem;
         z-index: 1000;
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 0.75rem;   /* space between the banner and the page below */
+        justify-content: space-between;
       }
-      .banner-label {
-        flex-shrink: 0;
-        white-space: nowrap;
-      }
-      /* scrolling area: fades out at both ends */
-      .banner-ticker {
+      .banner-content {
         flex-grow: 1;
-        overflow: hidden;
-        white-space: nowrap;
-        -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-                mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
       }
-      .banner-ticker-track {
-        display: inline-flex;
-        white-space: nowrap;
-        will-change: transform;
-      }
-      .banner-ticker.scrolling .banner-ticker-track {
-        animation: banner-scroll var(--banner-duration, 30s) linear infinite;
-      }
-      /* pause while the mouse is over the text, so it can be read */
-      .banner-ticker:hover .banner-ticker-track {
-        animation-play-state: paused;
-      }
-      .banner-item {
-        padding: 0 1.5rem;
-      }
-      .banner-date {
-        display: inline-block;
-        font-size: 0.8em;
-        font-weight: 600;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        padding: 0 6px;
-        margin-right: 6px;
-      }
-      .banner-item::before {
-        content: "•";
-        margin-right: 1.5rem;
-        opacity: 0.7;
-      }
-      @keyframes banner-scroll {
-        from { transform: translateX(0); }
-        to   { transform: translateX(-50%); }   /* the track holds two identical halves */
-      }
-      /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
-      @media (prefers-reduced-motion: reduce) {
-        .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
-        .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
-      }
-      /* "All updates" button and drop-down list */
-      .banner-more-btn {
-        flex-shrink: 0;
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        color: white;
-        border-radius: 999px;
-        font-size: 0.8rem;
-        padding: 2px 10px;
-        cursor: pointer;
-        white-space: nowrap;
-      }
-      .banner-more-btn:hover,
-      .banner-more-btn[aria-expanded="true"] {
-        background: white;
-        color: #007bff;
-      }
-      .banner-all {
-        position: absolute;
-        top: 100%;
-        right: 12px;
-        margin-top: 6px;
-        width: min(420px, calc(100vw - 24px));
-        max-height: 60vh;
-        overflow-y: auto;
-        background: white;
-        color: #212529;
-        border: 1px solid #dee2e6;
-        border-radius: 8px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        padding: 10px 14px;
-        text-align: left;
-        z-index: 1001;
-      }
-      .banner-all[hidden] { display: none; }
-      .banner-all-title {
-        font-weight: 600;
-        margin-bottom: 6px;
-      }
-      .banner-all-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      .banner-all-list li {
-        padding: 5px 0;
-        border-top: 1px solid #f1f3f5;
-      }
-      .banner-all-list li:first-child { border-top: none; }
-      .banner-all-list li.banner-all-date {
-        font-size: 0.78rem;
-        font-weight: 600;
-        color: #6c757d;
-        border-top: none;
-        padding: 8px 0 2px;
-      }
-      .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
       .banner-close-btn {
-        flex-shrink: 0;
         background: none;
         border: none;
         color: white;
@@ -431,129 +399,11 @@ ul.task-list li input[type="checkbox"] {
         // Remember that the user closed it during this browser session
         sessionStorage.setItem('hideCourseBanner', 'true');
       }
-
-      // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
-      // the whole set so the animation (which moves the track by half its width) loops seamlessly.
-      (function () {
-        var SPEED = 60;          // pixels per second
-        var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
-
-        // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
-        function parseDate(str) {
-          var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
-          return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
-        }
-        function dateLabel(d) {
-          var today = new Date(); today.setHours(0, 0, 0, 0);
-          var days = Math.round((today - d) / 86400000);
-          if (days === 0) return 'Today';
-          if (days === 1) return 'Yesterday';
-          var opts = { weekday: 'short', month: 'short', day: 'numeric' };
-          if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
-          return d.toLocaleDateString('en-US', opts);
-        }
-
-        // Sort the updates by date, hide future ones, keep the newest few in the ticker
-        // (with a date label) and list all of them, grouped by date, under "All updates".
-        function setupUpdates(track) {
-          var banner = document.getElementById('course-announcement-banner');
-          var btn = banner.querySelector('.banner-more-btn');
-          var panel = banner.querySelector('.banner-all');
-          var list = panel.querySelector('.banner-all-list');
-          var today = new Date(); today.setHours(0, 0, 0, 0);
-
-          var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
-            return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
-          }).filter(function (u) {
-            return !u.date || u.date <= today;                       // scheduled updates stay hidden
-          }).sort(function (a, b) {
-            if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
-            if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
-            return a.order - b.order;                                              // same day: file order
-          });
-
-          // ticker: the newest MAX_SCROLLING updates, each with its date
-          track.innerHTML = '';
-          updates.slice(0, MAX_SCROLLING).forEach(function (u) {
-            var span = document.createElement('span');
-            span.className = 'banner-item';
-            span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
-            track.appendChild(span);
-          });
-          if (updates.length === 0) { banner.style.display = 'none'; return; }
-
-          // drop-down: everything, grouped by date
-          var lastLabel = null;
-          updates.forEach(function (u) {
-            var label = u.date ? dateLabel(u.date) : 'Other';
-            if (label !== lastLabel) {
-              var h = document.createElement('li');
-              h.className = 'banner-all-date';
-              h.textContent = label;
-              list.appendChild(h);
-              lastLabel = label;
-            }
-            var li = document.createElement('li');
-            li.innerHTML = u.html;
-            list.appendChild(li);
-          });
-          if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
-
-          btn.textContent = 'All updates (' + updates.length + ')';
-          btn.hidden = false;
-
-          function setOpen(open) {
-            panel.hidden = !open;
-            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          }
-          btn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            setOpen(panel.hidden);
-          });
-          panel.addEventListener('click', function (e) { e.stopPropagation(); });
-          document.addEventListener('click', function () { setOpen(false); });
-          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
-        }
-
-        function startTicker() {
-          var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
-          if (!ticker) return;
-          var track = ticker.querySelector('.banner-ticker-track');
-          setupUpdates(track);
-          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-          var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
-          if (items.length === 0) return;
-
-          // one "half": the updates repeated until they are at least as wide as the banner
-          var guard = 0;
-          while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
-            items.forEach(function (item) {
-              var copy = item.cloneNode(true);
-              copy.setAttribute('aria-hidden', 'true');
-              track.appendChild(copy);
-            });
-          }
-          // second half: an exact copy of the first
-          Array.prototype.slice.call(track.children).forEach(function (el) {
-            var copy = el.cloneNode(true);
-            copy.setAttribute('aria-hidden', 'true');
-            track.appendChild(copy);
-          });
-
-          var halfWidth = track.scrollWidth / 2;
-          ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
-          ticker.classList.add('scrolling');
-        }
-
-        if (document.readyState === 'complete') startTicker();
-        else window.addEventListener('load', startTicker);
-      })();
     </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/calculus.html">Appendices</a></li><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Admin</a></li><li class="breadcrumb-item"><a href="../appendix/installing-julia.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../exercises/bank.html">Exercises</a></li><li class="breadcrumb-item"><a href="../exercises/Q1.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix C — Installing Julia &amp; Jupyter</h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Quiz 1</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 </div>
 
 
@@ -561,6 +411,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 23, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -570,71 +426,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li><p>Follow the instructions at <a href="https://julialang.org/downloads/">Install Julia</a> to install <code>juliaup</code> (for me, all I had to do was enter <code>winget install --name Julia --id 9NJNWW8PVKMN -e -s msstore</code> in the command line but this will be different for different operating systems)</p></li>
-<li><p>Enter <code>julia</code> in the command line to install and run the most recent version of Julia - after a short wait, you will see this</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-7-image.png" class="img-fluid figure-img"></p>
-<figcaption>image.png</figcaption>
-</figure>
+<div style="padding: 10px; border: 5px solid black;">
+<strong>NAME:</strong>
 </div>
-<ul>
-<li>Use ] (closing square bracket) to enter package management mode,</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-1-image-2.png" class="img-fluid figure-img"></p>
-<figcaption>image-2.png</figcaption>
-</figure>
+<div style="padding: 10px; border: 5px solid black; border-top: 0px">
+<strong>STUDENT NUMBER:</strong>
 </div>
-<ul>
-<li>Enter <code>add IJulia</code> (this package will allow you to use Julia in notebooks):</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-2-image-3.png" class="img-fluid figure-img"></p>
-<figcaption>image-3.png</figcaption>
-</figure>
+<hr>
+<p>Time allowed: <strong>15 mins</strong></p>
+<p><strong>Please label any paper you use with your name and student number</strong></p>
+<p>Electronic devices are not needed and not permitted in this quiz.</p>
+<hr>
+<ol type="1">
+<li><strong>[5 points]</strong> Let <span class="math inline">\(x_n = \frac{1 + n^2}{ 3 n^4 } \cos n^5\)</span>.<br>
+For which of the following sequences <span class="math inline">\((\varepsilon_n)\)</span> do we have <span class="math inline">\(x_n = O(\varepsilon_n)\)</span> as <span class="math inline">\(n\to\infty\)</span>?<br>
+Please select all that apply.</li>
+</ol>
+<div style="border: 1px solid black; margin:10px">
+<div style="padding: 10px; border: 1px solid black; border-left:50px solid lightgray; height:50px;">
+<p><span class="math inline">\(\varepsilon_n = e^{-n}\)</span></p>
 </div>
-<ul>
-<li>Do the same with <code>Plots</code>, <code>PrettyTables</code> and <code>LaTeXStrings</code>,&nbsp;</li>
-<li>Press Backspace,</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-3-image-4.png" class="img-fluid figure-img"></p>
-<figcaption>image-4.png</figcaption>
-</figure>
+<div style="padding: 10px; border: 1px solid black; border-left:50px solid lightgray; height:50px;">
+<p><span class="math inline">\(\varepsilon_n = n^{-2}\)</span></p>
 </div>
-<ul>
-<li>Enter <code>using IJulia</code> and then <code>notebook()</code> to download Jupyter notebooks (confirm by entering <code>y</code>)</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-4-image-5.png" class="img-fluid figure-img"></p>
-<figcaption>image-5.png</figcaption>
-</figure>
+<div style="padding: 10px; border: 1px solid black; border-left:50px solid lightgray; height:50px;">
+<p><span class="math inline">\(\varepsilon_n = n^{-1}\)</span></p>
 </div>
-<ul>
-<li>After installation, Jupyter will launch in the browser</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-5-image-6.png" class="img-fluid figure-img"></p>
-<figcaption>image-6.png</figcaption>
-</figure>
+<div style="padding: 10px; border: 1px solid black; border-left:50px solid lightgray; height:50px;">
+<p><span class="math inline">\(\varepsilon_n = 1\)</span></p>
 </div>
-<ul>
-<li><p>You should then be able to create a new folder for your assignments and add <code>A1 Jupyter Notebooks, LaTeX &amp; Julia.ipynb</code> (when it becomes available)</p></li>
-<li><p>To open Jupyter next time, just enter using IJulia and then notebook() again:</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="installing-julia_files/figure-html/ca329280-6-image-7.png" class="img-fluid figure-img"></p>
-<figcaption>image-7.png</figcaption>
-</figure>
+<div style="padding: 10px; border: 1px solid black; border-left:50px solid lightgray; height:50px;">
+<p><span class="math inline">\(\varepsilon_n = n\)</span></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>[5 points]</strong> Note that <span class="math inline">\(x := 1.001^{2026}\)</span> and <span class="math inline">\(y := e^{2026 \log 1.001}\)</span> are mathematically identical (<span class="math inline">\(x=y\)</span>).<br>
+In the following code, we use 16 bit floating point arithmetic to compute <span class="math inline">\(x\)</span> (by repeated multiplication) and <span class="math inline">\(y\)</span> (with the above formula):</li>
+</ol>
+<div id="664886e5" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>b, n, x <span class="op">=</span> <span class="fu">Float16</span>( <span class="fl">1.001</span> ), <span class="fl">2026</span>, <span class="fu">Float16</span>( <span class="fl">1</span> );</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> b<span class="op">*</span>x</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fu">exp</span>( n <span class="op">*</span> <span class="fu">log</span>( b ) ) </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"x = "</span>, x, <span class="st">"; y = "</span>, y )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 5.914; y = 7.227</code></pre>
+</div>
+</div>
+<p>Which result do you trust more and why?</p>
+<div style="border:1px black solid; height:150px">
+
+</div>
+<ol start="3" type="1">
+<li><strong>[5 points]</strong> True or false: there exists a continuous function <span class="math inline">\(f\)</span> with a root in <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(f(a) f(b) &gt; 0\)</span>? Why or why not?</li>
+</ol>
+<div style="border:1px black solid; height:150px">
+
+</div>
+<ol start="4" type="1">
+<li><strong>[5 points]</strong> True or false: the function <span class="math inline">\(f(x) = x^2\)</span> is a contraction on some interval <span class="math inline">\([a,b]\)</span>. Show your working.</li>
+</ol>
+<div style="border:1px black solid; height:150px">
+
 </div>
 
 
@@ -1148,13 +1005,13 @@ window.addEventListener("load", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../appendix/syllabus.html" class="pagination-link" aria-label="Course Syllabus">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span>
+      <a href="../exercises/test-sample.html" class="pagination-link" aria-label="Sample Quiz">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sample Quiz</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="Resources">
-        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../assignments/A01.html" class="pagination-link" aria-label="A1: Notebooks">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">A1: Notebooks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1163,5 +1020,4 @@ window.addEventListener("load", function() {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/installing-julia.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/exercises/Q1.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

@@ -34,5 +34,50 @@
   },
   "assignments/A02.ipynb": {
     "A02.html": "62e1c169"
+  },
+  "lectures/L05.ipynb": {
+    "L05.html": "de85d2c3"
+  },
+  "exercises/Q1.ipynb": {
+    "Q1.html": "bd0aa671"
+  },
+  "appendix/calculus.ipynb": {
+    "calculus.html": "4033c099"
+  },
+  "private/exercise-report.qmd": {
+    "exercise-report.html": "5da11e82"
+  },
+  "private/answers-A01.ipynb": {
+    "answers-A01.html": "e6f63ba4"
+  },
+  "private/answers-A02.ipynb": {
+    "answers-A02.html": "00f43e93"
+  },
+  "private/L06.ipynb": {
+    "L06.html": "0876c402"
+  },
+  "private/L07.ipynb": {
+    "L07.html": "a8146771"
+  },
+  "private/L08.ipynb": {
+    "L08.html": "89ea571f"
+  },
+  "private/L09.ipynb": {
+    "L09.html": "00f716bf"
+  },
+  "private/L10.ipynb": {
+    "L10.html": "1b2a1743"
+  },
+  "private/L11.ipynb": {
+    "L11.html": "78eea3a3"
+  },
+  "private/L12.ipynb": {
+    "L12.html": "745eca76"
+  },
+  "private/L13.ipynb": {
+    "L13.html": "b61b5b6e"
+  },
+  "private/L14.ipynb": {
+    "L14.html": "a326f4ea"
   }
 }

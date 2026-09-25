@@ -1,0 +1,100 @@
+---
+title: "Quiz 1"
+date: "2026-09-23"
+after-lecture: 4
+---
+
+<!--
+Quiz questions for the exercise bank (collected by extras/collect_exercises.ipynb).
+
+* Each question is a top-level `::: {.quiz-question}` block. They are labelled
+  "Quiz 1: Exercise 1", "Quiz 1: Exercise 2", ... in the order they appear.
+* `after-lecture: 4` places this quiz between Lecture 4 and Lecture 5 in the bank.
+* Solutions (`::: {.exercise-solution style="display: none;"}`) are available in the
+  bank immediately (unlike lecture exercises, which are released a week after the lecture).
+-->
+
+::: {.quiz-question}
+
+Let $x_n = \frac{1 + n^2}{ 3 n^4 } \cos n^5$. For which of the following sequences $(\varepsilon_n)$ do we have $x_n = O(\varepsilon_n)$ as $n\to\infty$? Select all that apply.
+
+* $\varepsilon_n = e^{-n}$,   
+* $\varepsilon_n = n^{-2}$,   
+* $\varepsilon_n = n^{-1}$,   
+* $\varepsilon_n = 1$,   
+* $\varepsilon_n = n$.
+
+::: {.exercise-solution style="display: none;"}
+
+(b), (c), (d), and (e). Since $|\cos n^5| \leq 1$ and $1 \leq n^2$ for all $n \in \mathbb N$, we have
+
+\begin{align}
+   |x_n| &= \left|\frac{1 + n^2}{ 3 n^4 } \cos n^5\right| \nonumber\\
+   %
+   &\leq \frac{n^2 + n^2}{ 3 n^4 } \nonumber\\
+   %
+   &= \frac23 n^{-2} \leq n^{-1} \leq 1 \leq n. \nonumber
+\end{align}
+
+Therefore, $x_n = O(n^{-2})$, $O(n^{-1})$, $O(1)$, and $O(n)$. However, $x_n \not= O(e^{-n})$: e.g. along the subsequence of $n$ for which $|\cos n^5| \geq \frac12$ (there are infinitely many), $|x_n| \geq \frac16 n^{-2}$, which decays much slower than $e^{-n}$.
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+Note that $x := 1.001^{2026}$ and $y := e^{2026 \log 1.001}$ are mathematically identical ($x=y$). In the following code, we use 16 bit floating point arithmetic to compute $x$ (by repeated multiplication) and $y$ (with the above formula):
+
+<details><summary>Code</summary>
+```julia
+b, n, x = Float16( 1.001 ), 2026, Float16( 1 );
+for i ∈ 1:n
+    x = b*x
+end
+y = exp( n * log( b ) )
+println( "x = ", x, "; y = ", y )
+```
+</details>
+
+```
+x = 5.914; y = 7.227
+```
+
+Which result do you trust more and why?
+
+::: {.exercise-solution style="display: none;"}
+
+Trust $y$ more. Computing $x$ by repeated multiplication involves $2026$ multiplications, each of which introduces a round-off error (of relative size up to $\frac12 \epsilon_{\rm mach} = 2^{-11}$ in ```Float16```) and these errors accumulate. On the other hand, $y$ is computed with only three operations (```log```, ```*```, and ```exp```), so there are far fewer opportunities for round-off error.
+
+(In fact, neither value equals $1.001^{2026} \approx 7.576$: ```Float16(1.001)``` is $1 + 2^{-10} \approx 1.000977$, and $y \approx 7.227$ is an accurate value of $(1 + 2^{-10})^{2026} \approx 7.225$.)
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+True or false: there exists a continuous function $f$ with a root in $[a,b]$ and $f(a) f(b) > 0$? Why or why not?
+
+::: {.exercise-solution style="display: none;"}
+
+**True.** For example, $f(x) = x^2$ has a root in $[-1,1]$ but $f(-1) f(1) = 1 > 0$. That is, the converse of the change of sign theorem is false.
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+True or false: the function $f(x) = x^2$ is a contraction on some interval $[a,b]$. Show your working.
+
+::: {.exercise-solution style="display: none;"}
+
+**True.** For example, on $[0, \frac14]$ we have $|x^2 - y^2| = |x+y|\,|x-y| \leq \frac12 |x-y|$, so $f$ is a contraction with $L = \frac12$.
+
+More generally, $|x^2 - y^2| = |x+y|\,|x-y| \leq 2\max(|a|,|b|)\,|x-y|$ for $x, y \in [a,b]$ (or use the mean value theorem: $|x^2 - y^2| = 2|\xi|\,|x-y|$ for some $\xi$ between $x$ and $y$). Therefore, $f$ is a contraction on any $[a,b] \subset (-\frac12, \frac12)$ with $L = 2\max(|a|,|b|) < 1$.
+
+:::
+
+:::

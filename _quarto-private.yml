@@ -8,11 +8,9 @@ book:
     - part: "🔒"
       number-sections: false
       chapters:
-      - private/T1.ipynb
+      - private/exercise-report.qmd
       - private/answers-A01.ipynb
       - private/answers-A02.ipynb
-      - private/L4 Solving nonlinear equations in 1d.ipynb  
-      - private/L05.ipynb  
       - private/L06.ipynb 
       - private/L07.ipynb 
       - private/L08.ipynb 
