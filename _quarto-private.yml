@@ -8,10 +8,9 @@ book:
     - part: "🔒"
       number-sections: false
       chapters:
-      - private/exercise-report.qmd
+      - private/answers-L06.ipynb
       - private/answers-A01.ipynb
       - private/answers-A02.ipynb
-      - private/L06.ipynb 
       - private/L07.ipynb 
       - private/L08.ipynb 
       - private/L09.ipynb 

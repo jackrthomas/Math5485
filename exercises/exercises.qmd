@@ -1635,3 +1635,124 @@ Fix $a > 0$.
 4. 💻 Take $a = 7$. Verify your answers to (ii) and (iii) numerically using $x_1 = 0.1, 0.28$, and $0.3$.
 :::
 
+## Lecture 6
+
+<!-- L06 -->
+::: {.exercise-box #bank-exr-L6-Taylor}
+**@exr-L6-Taylor**
+
+Show that the degree $m_0$ Taylor polynomial of $f$ about $x_0$ solves @eq-interpolation when $X = \{ x_0 \}$.
+
+::: {.exercise-hint style="display:none;"}
+
+Recall that 
+
+\begin{align}
+    p(x) = f(x_0) + f'(x_0)(x-x_0) + \cdots + \frac{f^{(m_0)}(x_0)}{m_0!}(x-x_0)^{m_0}
+    %
+    \nonumber
+\end{align}
+
+is the degree $m_0$ Taylor polynomial of $f$ about $x_0$.
+
+:::
+:::
+
+<!-- L06 -->
+::: {.exercise-box #bank-exr-l06-1}
+**@exr-l06-1**
+
+Write down the polynomial of least degree interpolating $f(x) = \sin(x)$ at the points $0, \frac{\pi}{2}, \pi$
+:::
+
+<!-- L06 -->
+::: {.exercise-box #bank-exr-Lagrange-int-1}
+**@exr-Lagrange-int-1**
+
+Write down an error estimate for approximating $f(x) = \sin(x)$ by $I_{\{0, \frac\pi2, \pi\}}f(x) = - \frac4{\pi^2} x (x - \pi)$.
+:::
+
+<!-- L06 -->
+::: {.exercise-box #bank-exr-poly-interpolation-2}
+**@exr-poly-interpolation-2**
+
+Consider $f(x) = e^{-x}$ on $[-1,1]$. 
+
+1. Find a Lagrange interpolating polynomial $p$ of $f$ on $\{ -1, 0 , 1\}$,
+
+2. Write down an error estimate for approximating $f$ with $p$ on $[-1,1]$.
+:::
+
+<!-- L06 -->
+::: {.exercise-box #bank-exr-equispaced-node-poly title="Growth of the equispaced node polynomial"}
+**@exr-equispaced-node-poly**
+
+**($\star$ more difficult)**
+
+Let $X = \{x_0 < \cdots < x_n\}$ be $n+1$ equispaced nodes on $[-1,1]$, i.e. $x_j = -1 + jh$ with $h = 2/n$, and let $\ell_X(x) = (x-x_0)(x-x_1)\cdots(x-x_n)$ be the node polynomial.
+
+1. Fix $x \in [x_k, x_{k+1}]$ for some $0 \leq k \leq n-1$. By bounding $|x - x_j|$ for $j < k$ and $j > k+1$ and using $|x-x_k|\,|x-x_{k+1}| \leq h^2/4$, show that
+
+   $$
+       |\ell_X(x)| \leq \frac{h^{n+1}}{4} (k+1)!\,(n-k)!,
+   $$
+
+   and deduce that $\max_{x\in[-1,1]} |\ell_X(x)| \leq \dfrac{n!}{4} h^{n+1}$.
+
+2. Use Stirling's formula, $n! \sim \sqrt{2\pi n}\,(n/e)^n$, to show that there is a constant $C > 0$, independent of $n$, such that
+
+   $$
+       \max_{x\in[-1,1]} |\ell_X(x)| \leq C\, \frac{(2/e)^n}{\sqrt n} \qquad \text{for all } n.
+   $$
+
+3. By evaluating $\ell_X$ at the point $x^* = x_0 + h/2$, show that there is a constant $c > 0$, independent of $n$, such that
+
+   $$
+       \max_{x\in[-1,1]} |\ell_X(x)| \geq c\, \frac{(2/e)^n}{n} \qquad \text{for all } n.
+   $$
+
+Note that $2/e \approx 0.736$: parts 2 and 3 together show that $\max\limits_{x\in[-1,1]} |\ell_X(x)|$ decays exponentially, but at a rate no better than $(2/e)^n$.
+:::
+
+<!-- L06 -->
+::: {.exercise-box #bank-exr-Runge-threshold title="A convergence threshold for Runge's example"}
+**@exr-Runge-threshold**
+
+**($\star$ more difficult)**
+
+Fix $\alpha > 0$ and let $f(x) = \dfrac{1}{1+\alpha x^2}$, as in @exm-Runge (with $\alpha=25$).
+
+1. Using the geometric series $f(x) = \sum_{k=0}^\infty (-\alpha)^k x^{2k}$ for $|x| < 1/\sqrt\alpha$, show that
+
+   \begin{align}
+       f^{(2k)}(0) &= (2k)!\,(-\alpha)^k, \nonumber\\ 
+       f^{(2k+1)}(0) &= 0. \nonumber
+   \end{align}
+
+2. Using partial fractions (the poles of $f$ are at $x = \pm i/\sqrt\alpha$), show more generally that
+
+   $$
+       \max_{x \in [-1,1]} |f^{(n)}(x)| = n!\, \alpha^{n/2},
+   $$
+
+   with the maximum attained at $x=0$.
+
+3. Combine part 2 with @exr-equispaced-node-poly and @thm-Lagrange-interpolation to show that, for $X$ the equispaced nodes on $[-1,1]$,
+
+   $$
+       |f(x) - I_Xf(x)| \leq C\sqrt\alpha \, \frac{1}{\sqrt n} \left( \frac{2\sqrt\alpha}{e} \right)^n,
+   $$
+
+   and deduce that this bound converges to $0$ whenever $\alpha < \frac{e^2}{4} \approx 1.847$. 
+
+It turns out that we have convergence for all $\alpha < \alpha_{\rm c} \approx 3.621$ @Trefethen, @Epperson.
+
+Next week, we will see that for Chebyshev nodes, the node polynomial instead satisfies $|\ell_X(x)| \leq 2^{1-n}$ and so
+
+$$
+    |f(x) - I_Xf(x)| \leq 2\sqrt\alpha \left( \frac{\sqrt\alpha}{2} \right)^n,
+$$
+
+which converges to $0$ whenever $\alpha < 4$. (A sharper argument, using that $f$ is analytic throughout a neighbourhood of $[-1,1]$ in $\mathbb C$ rather than just bounding derivatives along the real axis shows that Chebyshev interpolation converges for *all* $\alpha > 0$.)
+:::
+
