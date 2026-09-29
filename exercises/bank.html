@@ -185,7 +185,7 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
@@ -347,7 +347,7 @@ window.Quarto = {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
 
       <span class="banner-label">📢 <strong>Updates</strong></span>
@@ -363,6 +363,8 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
 
           <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
 
@@ -934,7 +936,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -2138,6 +2140,44 @@ Code
 </ol>
 </div>
 </section>
+<section id="problem-class-1" class="level2">
+<h2 class="anchored" data-anchor-id="problem-class-1">Problem Class 1</h2>
+<!-- PC1 -->
+<div id="bank-exr-P1-1" class="exercise-box" data-release-date="2026-09-30">
+<p><strong>Exercise 1</strong></p>
+<p>Show that each of the following have fixed points on <span class="math inline">\([2,4]\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+    g_1(x) &amp;= 1 + x - \frac19 x^2 \nonumber\\
+    g_2(x) &amp;= \pi + 0.99 \sin x \nonumber\\
+    g_3(x) &amp;= x + 1 - \tan\frac{x}4
+\end{align}\]</span></p>
+<ol type="1">
+<li>Do you expect the simple iterations <span class="math inline">\(x_{n+1} = g_j( x_n )\)</span> to converge?</li>
+<li>Why?</li>
+<li>Test your hypothesis numerically.</li>
+<li>Compute the order of convergence and asymptotic error constants.</li>
+</ol>
+</div>
+<!-- PC1 -->
+<div id="bank-exr-P1-2" class="exercise-box" data-release-date="2026-09-30">
+<p><strong>Exercise 2</strong></p>
+<p>Suppose that <span class="math inline">\(g(\xi) = \xi\)</span>, <span class="math inline">\(g'(\xi) = 0\)</span> and <span class="math inline">\(|g''|\)</span> is bounded near <span class="math inline">\(\xi\)</span>.</p>
+<ol type="1">
+<li>Show that the simple iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> with <span class="math inline">\(x_1 \approx \xi\)</span> converges to <span class="math inline">\(\xi\)</span>.</li>
+<li>What is the order of convergence?</li>
+<li>Can you generalise this statement to the case where <span class="math inline">\(g'(\xi) = \cdots = g^{(\ell-1)}(\xi) = 0\)</span> and <span class="math inline">\(g^{(\ell)}\)</span> bounded near <span class="math inline">\(\xi\)</span>?</li>
+</ol>
+</div>
+<!-- PC1 -->
+<div id="bank-exr-P1-3" class="exercise-box" data-release-date="2026-09-30">
+<p><strong>Exercise 3</strong></p>
+<p>For <span class="math inline">\(\alpha \in (0,1]\)</span>, define <span class="math inline">\(x_{n+1} := x_n + \alpha ( g(x_n) - x_n )\)</span> where <span class="math inline">\(g\)</span> is continuous.</p>
+<ol type="1">
+<li>Show that if <span class="math inline">\((x_n) \to \xi\)</span> then <span class="math inline">\(\xi\)</span> is a fixed point of <span class="math inline">\(g\)</span></li>
+<li>Suppose that <span class="math inline">\(g'\)</span> is continuous with <span class="math inline">\(g'(\xi) &lt; 0\)</span>. Show that there exists <span class="math inline">\(\alpha_0 &gt; 0\)</span> such that, if <span class="math inline">\(\alpha \leq \alpha_0\)</span>, then <span class="math inline">\((x_n)\)</span> converges to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1\)</span> sufficiently close to <span class="math inline">\(\xi\)</span></li>
+</ol>
+</div>
+</section>
 <section id="lecture-6" class="level2">
 <h2 class="anchored" data-anchor-id="lecture-6">Lecture 6</h2>
 <!-- L06 -->
@@ -2575,11 +2615,12 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${m}m`;
   }
 
-  // Release time of the solutions for an exercise (null if its lecture has no date)
+  // Release time of the solutions for an exercise (null if its lecture has no date).
+  // Problem-class exercises carry their own date (release-date="yyyy-mm-dd").
   function solutionReleaseTime(exerciseElement) {
     if (exerciseElement.dataset.release === 'now') return new Date(0);
     const m = (exerciseElement.dataset.lecture || '').match(/Lecture\s+(\d+)/i);
-    const lectureDate = m ? LECTURE_DATES[parseInt(m[1], 10)] : null;
+    const lectureDate = exerciseElement.dataset.releaseDate || (m ? LECTURE_DATES[parseInt(m[1], 10)] : null);
     if (!lectureDate) return null;
     const d = new Date(lectureDate + 'T00:00:00Z');
     d.setUTCDate(d.getUTCDate() + SOLUTION_DELAY_DAYS);
@@ -3755,7 +3796,7 @@ window.addEventListener("load", function() {
     }
   });
   </script>
-<nav class="page-navigation">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
       <a href="../lectures/L06.html" class="pagination-link" aria-label="Polynomial Interpolation">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial Interpolation</span></span>
