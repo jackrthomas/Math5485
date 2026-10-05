@@ -260,6 +260,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial Interpolation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chebyshev Polynomials</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -298,7 +304,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Appendix</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -307,28 +313,36 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></span></a>
+ <span class="menu-text">Calculus</span></a>
   </div>
 </li>
-          <li class="sidebar-item sidebar-item-section">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Admin</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
+ <span class="menu-text">Course Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
+ <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -337,8 +351,6 @@ window.Quarto = {
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
-      </ul>
-  </li>
       </ul>
   </li>
     </ul>
@@ -1055,7 +1067,7 @@ Note
 <p>This chapter will be mainly based on Chapter 1 of An Introduction to Numerical Analysis by <span class="citation" data-cites="Suli">Süli and Mayers (<a href="../references.html#ref-Suli" role="doc-biblioref">2003</a>)</span>. These notes are mainly a record of what we discussed and are not a substitute for attending the lectures and reading books! If anything is unclear/wrong, let me know and I will update the notes.</p>
 </div>
 </div>
-<div id="76076758" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;source_hidden&quot;:true}}" data-execution_count="1">
+<div id="76076758" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;source_hidden&quot;:true}}" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span>, <span class="bu">Polynomials</span>, <span class="bu">Printf</span></span>
@@ -1107,7 +1119,7 @@ Note
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> @. <span class="fu">abs</span>( x[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>] <span class="op">-</span> ξ ) <span class="op">/</span> ( <span class="fu">abs</span>(x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span><span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> ξ )<span class="op">^</span>α );</span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="1">
+<div class="cell-output cell-output-display">
 <pre><code>μ (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -1380,7 +1392,7 @@ Theoretical asymptotic error constant μ = 1 - λf'(ξ) = 0.9</code></pre>
 <ul>
 <li><span class="math inline">\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_{n})}\)</span></li>
 </ul>
-<div id="33897755" class="cell" data-execution_count="8">
+<div id="33897755" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Newton</span>( f, f_prime, x1; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-10</span>)</span>
@@ -1396,7 +1408,7 @@ Theoretical asymptotic error constant μ = 1 - λf'(ξ) = 0.9</code></pre>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display">
 <pre><code>Newton (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -1451,7 +1463,8 @@ Theoretical asymptotic error constant μ = 1 - λf'(ξ) = 0.9</code></pre>
 \end{align}\]</span></p>
 <p>is the Newton iteration with <span class="math inline">\(f(x) = x^2 - a\)</span>. Notice that <span class="math inline">\(\xi = \sqrt{a}\)</span> and <span class="math inline">\(f'(\xi) = 2\sqrt{a}\)</span>, <span class="math inline">\(f''(\xi) = 2\)</span>.</p>
 <p>Compute the order of convergence and asymptotic error constant numerically, and compare to <a href="#thm-Newton" class="quarto-xref">Theorem&nbsp;<span>5.3</span></a>.</p>
-</div>
+<div class="exercise-solution" style="display:none;">
+<p>Here, we plot the order of convergence and asymptotic error constant:</p>
 <div id="7ee07def" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1460,6 +1473,27 @@ Theoretical asymptotic error constant μ = 1 - λf'(ξ) = 0.9</code></pre>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">orderOfConvergence</span>( <span class="fu">Newton</span>(g,g′,<span class="fl">1</span>.), <span class="fu">sqrt</span>(<span class="fl">2</span>); α<span class="op">=</span><span class="fl">2</span> )</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"theoretical value of μ (for α=2) = "</span>,  (<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>) <span class="op">*</span> ( <span class="fl">2</span><span class="op">/</span> <span class="fu">g′</span>(<span class="fu">sqrt</span>(<span class="fl">2</span>)) ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>iteration  abs error        log error    α          μ (α=2.0)     
+1          4.142136e-01     -0.3828      NaN        NaN           
+2          8.578644e-02     -1.0666      2.7864     0.5000        
+3          2.453104e-03     -2.6103      2.4473     0.3333        
+4          2.123901e-06     -5.6729      2.1733     0.3529        
+5          1.594724e-12     -11.7973     2.0796     0.3535        
+theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="b1f51240" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(x) <span class="op">=</span> x<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">2</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">g′</span>(x) <span class="op">=</span> <span class="fl">2</span><span class="op">*</span>x </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">orderOfConvergence</span>( <span class="fu">Newton</span>(g,g′,<span class="fl">1</span>.), <span class="fu">sqrt</span>(<span class="fl">2</span>); α<span class="op">=</span><span class="fl">2</span> )</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"theoretical value of μ (for α=2) = "</span>,  (<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>) <span class="op">*</span> ( <span class="fl">2</span><span class="op">/</span> <span class="fu">g′</span>(<span class="fu">sqrt</span>(<span class="fl">2</span>)) ) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>iteration  abs error        log error    α          μ (α=2.0)     
@@ -1508,7 +1542,7 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
 <div id="cea26522" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">orderOfConvergence</span>( y, <span class="fl">2</span>π ; α <span class="op">=</span> <span class="fl">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">orderOfConvergence</span>( y, <span class="fl">2</span>π ; α <span class="op">=</span> <span class="fl">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>iteration  abs error        log error    α          μ (α=2.0)     
@@ -1524,7 +1558,7 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
 <div id="8d8526c5" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"theoretical value of μ (for α=3) = "</span>,  (<span class="fl">1</span><span class="op">/</span><span class="fl">3</span>) <span class="op">*</span> ( ϵ<span class="op">/</span> (<span class="fl">1</span><span class="op">-</span>ϵ) ) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>( <span class="st">"theoretical value of μ (for α=3) = "</span>,  (<span class="fl">1</span><span class="op">/</span><span class="fl">3</span>) <span class="op">*</span> ( ϵ<span class="op">/</span> (<span class="fl">1</span><span class="op">-</span>ϵ) ) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>theoretical value of μ (for α=3) = 3.0000000000000004</code></pre>
@@ -1532,7 +1566,7 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
 </div>
 <div id="exr-2025-A5-B" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 5.3</strong></span> <a href="../exercises/bank.html#bank-exr-2025-A5-B"></a></p>
-<p>TODO: add <em>Assignment 5, Fall 2025, Section B</em> to the exercises</p>
+<p><a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/A5%20Solution.html#b.-keplers-equation">Assignment 5, Fall 2025, Section B</a></p>
 <p>What happens when applying Newton to Kepler’s equation with <span class="math inline">\(\epsilon = 1\)</span> (in this case <span class="math inline">\(f(2\pi) = f'(2\pi) = f''(2\pi) = 0\)</span>).</p>
 </div>
 </section>
@@ -1552,31 +1586,31 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
 <div id="b79de49b" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">secant</span>( f, x1, x2; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-8</span>)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [x1, x2];</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span>N </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">push!</span>(x, x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> ((x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> x[n<span class="op">-</span><span class="fl">2</span>])<span class="op">/</span>(<span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>]) <span class="op">-</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">2</span>]))) <span class="op">*</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>]) )</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (<span class="fu">abs</span>(<span class="fu">f</span>(x[<span class="kw">end</span>])) <span class="op">&lt;</span> tol)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fu">secant</span>( f, <span class="fl">0.5</span>, <span class="fl">2.0</span> ,N<span class="op">=</span><span class="fl">20</span>)</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> <span class="pp">@animate</span> <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">3</span><span class="op">:</span><span class="fu">length</span>(z)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>( f , <span class="fu">minimum</span>(z), <span class="fu">maximum</span>(z), <span class="co"># ,1.5, #-.25, 2, </span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span>L<span class="st">"f(x)"</span>, title<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">extrm{Secant~iteration~} x_{n+1} = x_n - </span><span class="sc">\f</span><span class="st">rac{f(x_n)}{f[x_n,x_{n-1}]}"</span>,</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"purple"</span>, linestyle<span class="op">=:</span>solid, lw<span class="op">=</span><span class="fl">2</span>)</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>([<span class="fl">0</span>], linestyle<span class="op">=:</span>dash, primary<span class="op">=</span><span class="cn">false</span>)</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>( [z[n<span class="op">-</span><span class="fl">2</span>], z[n<span class="op">-</span><span class="fl">1</span>]], [<span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">2</span>]), <span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">1</span>])], color<span class="op">=</span><span class="st">"blue"</span>, label<span class="op">=</span>L<span class="st">"x_{n} </span><span class="sc">\t</span><span class="st">extrm{~and~} x_{n-1}"</span> )</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot!</span>( [z[n<span class="op">-</span><span class="fl">2</span>], z[n<span class="op">-</span><span class="fl">1</span>]], [<span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">2</span>]), <span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">1</span>])], </span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>            primary<span class="op">=</span><span class="cn">false</span>, lw<span class="op">=</span><span class="fl">2</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>( [z[n]], [<span class="fl">0</span>], color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span>L<span class="st">"x_{n+1}"</span>)</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a><span class="fu">gif</span>(anim, <span class="st">"../images/Secant.gif"</span>, fps <span class="op">=</span> <span class="fl">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">secant</span>( f, x1, x2; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-8</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [x1, x2];</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="fl">3</span><span class="op">:</span>N </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">push!</span>(x, x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> ((x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> x[n<span class="op">-</span><span class="fl">2</span>])<span class="op">/</span>(<span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>]) <span class="op">-</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">2</span>]))) <span class="op">*</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>]) )</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (<span class="fu">abs</span>(<span class="fu">f</span>(x[<span class="kw">end</span>])) <span class="op">&lt;</span> tol)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fu">secant</span>( f, <span class="fl">0.5</span>, <span class="fl">2.0</span> ,N<span class="op">=</span><span class="fl">20</span>)</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>anim <span class="op">=</span> <span class="pp">@animate</span> <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">3</span><span class="op">:</span><span class="fu">length</span>(z)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>( f , <span class="fu">minimum</span>(z), <span class="fu">maximum</span>(z), <span class="co"># ,1.5, #-.25, 2, </span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span>L<span class="st">"f(x)"</span>, title<span class="op">=</span>L<span class="st">"</span><span class="sc">\t</span><span class="st">extrm{Secant~iteration~} x_{n+1} = x_n - </span><span class="sc">\f</span><span class="st">rac{f(x_n)}{f[x_n,x_{n-1}]}"</span>,</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"purple"</span>, linestyle<span class="op">=:</span>solid, lw<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>([<span class="fl">0</span>], linestyle<span class="op">=:</span>dash, primary<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>( [z[n<span class="op">-</span><span class="fl">2</span>], z[n<span class="op">-</span><span class="fl">1</span>]], [<span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">2</span>]), <span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">1</span>])], color<span class="op">=</span><span class="st">"blue"</span>, label<span class="op">=</span>L<span class="st">"x_{n} </span><span class="sc">\t</span><span class="st">extrm{~and~} x_{n-1}"</span> )</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot!</span>( [z[n<span class="op">-</span><span class="fl">2</span>], z[n<span class="op">-</span><span class="fl">1</span>]], [<span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">2</span>]), <span class="fu">f</span>(z[n<span class="op">-</span><span class="fl">1</span>])], </span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>            primary<span class="op">=</span><span class="cn">false</span>, lw<span class="op">=</span><span class="fl">2</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scatter!</span>( [z[n]], [<span class="fl">0</span>], color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span>L<span class="st">"x_{n+1}"</span>)</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="fu">gif</span>(anim, <span class="st">"../images/Secant.gif"</span>, fps <span class="op">=</span> <span class="fl">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <div class="ansi-escaped-output">
@@ -1599,13 +1633,13 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
 <div id="f004616f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;jupyter&quot;,&quot;value&quot;:{&quot;outputs_hidden&quot;:true}}" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># g(x) = x^2 - 2 is already defined </span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span> <span class="op">+</span> <span class="fu">sqrt</span>(<span class="fl">5</span>));</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> ( <span class="fl">2</span><span class="op">/</span>(<span class="fl">2</span><span class="fu">*2*sqrt</span>(<span class="fl">2</span>)) )<span class="op">^</span>(a<span class="op">/</span>(<span class="fl">1</span><span class="op">+</span>a));</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">orderOfConvergence</span>( <span class="fu">secant</span>( g, <span class="fl">1</span>. ,<span class="fl">2</span>. ), <span class="fu">sqrt</span>(<span class="fl">2</span>); α<span class="op">=</span>a )</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"theoretical values of (α, μ) = ("</span>, a, <span class="st">", "</span> , mu, <span class="st">")"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># g(x) = x^2 - 2 is already defined </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span> <span class="op">+</span> <span class="fu">sqrt</span>(<span class="fl">5</span>));</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> ( <span class="fl">2</span><span class="op">/</span>(<span class="fl">2</span><span class="fu">*2*sqrt</span>(<span class="fl">2</span>)) )<span class="op">^</span>(a<span class="op">/</span>(<span class="fl">1</span><span class="op">+</span>a));</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">orderOfConvergence</span>( <span class="fu">secant</span>( g, <span class="fl">1</span>. ,<span class="fl">2</span>. ), <span class="fu">sqrt</span>(<span class="fl">2</span>); α<span class="op">=</span>a )</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"theoretical values of (α, μ) = ("</span>, a, <span class="st">", "</span> , mu, <span class="st">")"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>iteration  abs error        log error    α          μ (α=1.62)    
@@ -1705,6 +1739,39 @@ Note
 </li>
 <li>💻 Take <span class="math inline">\(a = 7\)</span>. Verify your answers to (ii) and (iii) numerically using <span class="math inline">\(x_1 = 0.1, 0.28\)</span>, and <span class="math inline">\(0.3\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display:none;">
+<ol type="1">
+<li>We have <span class="math inline">\(f(x) = \frac1x - a\)</span> and <span class="math inline">\(f'(x) = -\frac1{x^2}\)</span> and so Newton is</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+x_{n+1} &amp;= x_n - \frac{f(x_n)}{f'(x_n)} \nonumber\\
+%
+&amp;= x_n - \frac{\frac1{x_n} - a}{ - \frac{1}{x_n^2} } \nonumber\\
+%
+&amp;= x_n( 2 - a x_n )
+\end{align}\]</span></p>
+<p>If <span class="math inline">\(x_n \to \xi\)</span>, then <span class="math inline">\(\xi = \frac1a\)</span>.</p>
+<ol start="2" type="1">
+<li>Notice <span class="math inline">\(e_n = 1 - a x_n\)</span> and so</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+e_{n+1} &amp;= 1 - a x_{n+1} \nonumber\\
+&amp;= 1 - a x_n (2 - ax_n) \nonumber\\
+&amp;= 1 - 2 a x_n + (ax_n)^2 \nonumber\\
+&amp;= (1 - a x_n)^2 = e_n^2.
+\end{align}\]</span></p>
+<p>We have <span class="math inline">\(x_n \to \frac1a\)</span> if and only if <span class="math inline">\(e_n \to 0\)</span>. Since <span class="math inline">\(e_{n+1} = e_n^2 = e_1^{2^n}\)</span>, we have <span class="math inline">\(e_n \to 0\)</span> for all <span class="math inline">\(x_1\)</span> with <span class="math inline">\(|e_n| = |1 - a x_1| &lt; 1\)</span>. That is, if <span class="math inline">\(0 &lt; x_1 &lt; 2/a\)</span>.</p>
+<ol start="3" type="1">
+<li>We have</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+|x_{n+1} - \frac1a| &amp;= \frac{1}{a} | 1 - a x_{n+1} | \nonumber\\
+&amp;= \frac1a e_{n+1} \nonumber\\
+&amp;= \frac1a |1 - a x_n|^2 \nonumber\\
+&amp;= a |x_n - \frac1a|^2.
+\end{align}\]</span></p>
+<p>Therefore, the order of convergence is <span class="math inline">\(\alpha = 2\)</span> with asymptotic error constant <span class="math inline">\(\mu = a\)</span>. Here, we are applying Newton’s method to <span class="math inline">\(f(x) = \frac1x - a\)</span> and so <span class="math inline">\(f'(x) = -\frac1{x^2}\)</span>, <span class="math inline">\(f''(x) = \frac2{x^3}\)</span>, and <span class="math inline">\(\frac12 \big|\frac{f''(1/a)}{f'(1/a)}\big| = \frac12 \frac2{a^{-3}} (a^{-2}) = a\)</span> (which agrees with the above).</p>
+</div>
 </div>
 
 
