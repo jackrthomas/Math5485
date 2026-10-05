@@ -231,13 +231,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/L05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, Secant</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, secant</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/L06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial Interpolation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial interpolation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chebyshev polynomials</span></span></a>
   </div>
 </li>
       </ul>
@@ -272,13 +278,26 @@ window.Quarto = {
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Exams</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus</span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Admin</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -286,29 +305,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Calculus</span></span></a>
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Syllabus</span></a>
   </div>
 </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
- <span class="menu-text">Admin</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Course Syllabus</span></span></a>
+  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Installing Julia &amp; Jupyter</span></span></a>
+ <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -317,8 +327,6 @@ window.Quarto = {
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
-      </ul>
-  </li>
       </ul>
   </li>
     </ul>
@@ -354,6 +362,12 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
+
+          <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
+
+          <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
 
           <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
 
@@ -1126,7 +1140,7 @@ Note
 \end{align}
 \tag{4.1}\]</span></span></p>
 <p>We implement this here:</p>
-<div id="e9a898d4" class="cell" data-execution_count="4">
+<div id="e9a898d4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">simple_iteration</span>(g, x1; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-10</span>, flag<span class="op">=</span><span class="cn">false</span>)</span>
@@ -1154,7 +1168,7 @@ Note
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, <span class="cn">false</span></span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display">
 <pre><code>simple_iteration (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -1371,7 +1385,16 @@ Note
 <p><span class="theorem-title"><strong>Exercise 4.1</strong></span> <a href="../exercises/bank.html#bank-exr-contraction-1"></a></p>
 <p>Suppose <span class="math inline">\(g :[a,b] \to \mathbb R\)</span> is continuously differentiable with <span class="math inline">\(|g'(x)| \leq L &lt; 1\)</span> for all <span class="math inline">\(x \in [a,b]\)</span>. Show that <span class="math inline">\(g\)</span> is a contraction with constant <span class="math inline">\(L\)</span>.</p>
 <div class="exercise-hint" style="display: none;">
-<p>Use Taylor/mean value theorem: for <span class="math inline">\(x, y \in [a,b]\)</span> there exists <span class="math inline">\(c \in [a,b]\)</span> such that <span class="math inline">\(g(x) - g(y) = g'(c) (x - y)\)</span>.</p>
+<p>Use Taylor/mean value theorem.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>By the mean value theorem, for <span class="math inline">\(x, y \in [a,b]\)</span>, there exists <span class="math inline">\(c \in [a,b]\)</span> such that</p>
+<p><span class="math display">\[\begin{align}
+    |g(x) - g(y)|&amp;= |g'(c)| |x-y| \nonumber\\
+    %
+    &amp;\leq L |x-y|.
+\end{align}\]</span></p>
+<p>As a result, <span class="math inline">\(g\)</span> is a contraction.</p>
 </div>
 </div>
 <div id="thm-banach" class="theorem">
@@ -1465,6 +1488,132 @@ Note
 <li>💻 Let <span class="math inline">\(x\)</span> be as in question 2. Show numerically that <span class="math inline">\((x_n) \to \xi\)</span> for a few different choices of <span class="math inline">\(a\)</span> and <span class="math inline">\(x_1\)</span>,</li>
 <li>💻 This iteration can be seen as a way of approximating <span class="math inline">\(\xi\)</span>. What is the correseponding order of convergence?</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>Note <span class="math inline">\(\frac12 x_n\)</span> and <span class="math inline">\(\frac1{2 x_n}\)</span> have the same sign as <span class="math inline">\(x_n\)</span>. Moreover, since <span class="math inline">\(a&gt; 0\)</span>, <span class="math inline">\(\frac{a}{x_n}\)</span> has the same sign as <span class="math inline">\(x_n\)</span>. As a result <span class="math inline">\(x_{n+1}\)</span> has the same sign as <span class="math inline">\(x_n\)</span>. Since <span class="math inline">\(x_1 &gt; 0\)</span>, we find that <span class="math inline">\(x_n &gt; 0\)</span> for all <span class="math inline">\(n\)</span>.</p></li>
+<li><p>Since <span class="math inline">\(g(x) := \frac12\big( x + \frac{a}{x} \big)\)</span> is continuous on <span class="math inline">\((0,\infty)\)</span> and <span class="math inline">\((x_n)\to\xi\)</span>, we have <span class="math inline">\(\xi = g(\xi)\)</span>. Therefore, we have <span class="math inline">\(\frac12\xi = \frac12 \frac{a}{\xi}\)</span> and so <span class="math inline">\(\xi^2 = a\)</span>. Since <span class="math inline">\(\xi &gt; 0\)</span> since <span class="math inline">\(x_n &gt; 0\)</span> for all <span class="math inline">\(n\)</span>, we have <span class="math inline">\(\xi = + \sqrt{a}\)</span>.</p></li>
+<li></li>
+</ol>
+<div id="ec9e2897" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">9</span>, <span class="fl">81</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="fl">1</span>., <span class="fl">2</span>., <span class="fl">1e-2</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> a <span class="op">∈</span> A</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x1 <span class="op">∈</span> X </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> x <span class="op">-&gt;</span> (<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>) <span class="op">*</span> (x <span class="op">+</span> a<span class="op">/</span>x)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">print</span>( <span class="st">"(a, x₁) = ("</span>, a, <span class="st">", "</span>, x1, <span class="st">"); "</span> )</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        x, boo <span class="op">=</span> <span class="fu">simple_iteration</span>( g, x1 )</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> boo </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">println</span>( <span class="st">"converged to "</span>, x[<span class="kw">end</span>] )</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            <span class="fu">println</span>( <span class="st">" [didn't converge]"</span> )</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">""</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(a, x₁) = (2, 1.0); converged to 1.414213562373095
+(a, x₁) = (2, 2.0); converged to 1.414213562373095
+(a, x₁) = (2, 0.01); converged to 1.414213562373095
+
+(a, x₁) = (4, 1.0); converged to 2.0
+(a, x₁) = (4, 2.0); converged to 2.0
+(a, x₁) = (4, 0.01); converged to 2.0
+
+(a, x₁) = (9, 1.0); converged to 3.0
+(a, x₁) = (9, 2.0); converged to 3.0
+(a, x₁) = (9, 0.01); converged to 3.0
+
+(a, x₁) = (81, 1.0); converged to 9.0
+(a, x₁) = (81, 2.0); converged to 9.0
+(a, x₁) = (81, 0.01); converged to 9.0
+</code></pre>
+</div>
+</div>
+<p>This method converges to <span class="math inline">\(\sqrt{a}\)</span> for all <span class="math inline">\(a\)</span> and <span class="math inline">\(x_1\)</span> that we chose.</p>
+<ol start="4" type="1">
+<li>Here, we compute <span class="math inline">\(x_{n+1} = g(x_n)\)</span> for <span class="math inline">\(a = 2\)</span> and <span class="math inline">\(x_1 = 1\)</span>:</li>
+</ol>
+<div id="33977faf" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">μ</span>( x, ξ; α<span class="op">=</span><span class="fl">1</span> )</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> @. <span class="fu">abs</span>( x[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>] <span class="op">-</span> ξ ) <span class="op">/</span> ( <span class="fu">abs</span>(x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span><span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> ξ )<span class="op">^</span>α );</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x <span class="op">-&gt;</span> (<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>) <span class="op">*</span> (x <span class="op">+</span> <span class="fl">2</span><span class="op">/</span>x)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>x, _ <span class="op">=</span> <span class="fu">simple_iteration</span>(g, <span class="fl">1</span>; tol<span class="op">=</span><span class="fl">1e-5</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>5-element Vector{Float64}:
+ 1.0
+ 1.5
+ 1.4166666666666665
+ 1.4142156862745097
+ 1.4142135623746899</code></pre>
+</div>
+</div>
+<p>Next, we compute <span class="math inline">\(\frac{|x_{n+1} - \xi|}{|x_n-\xi|^\alpha}\)</span> for <span class="math inline">\(\alpha = 1\)</span>:</p>
+<div id="7a395f2a" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>( <span class="fu">μ</span>( x, √<span class="fl">2</span> ) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>4-element Vector{Float64}:
+ 0.20710678118654724
+ 0.028595479208965498
+ 0.0008658015152821018
+ 7.508466926336308e-7</code></pre>
+</div>
+</div>
+<p>This appears to converge to <span class="math inline">\(0\)</span>; suggesting the convergence is superlinear.</p>
+<p>For <span class="math inline">\(\alpha = 2\)</span>, we have:</p>
+<div id="4e4ad2fe" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>( <span class="fu">μ</span>( x, √<span class="fl">2</span>; α<span class="op">=</span><span class="fl">2</span>) ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>4-element Vector{Float64}:
+ 0.49999999999999917
+ 0.33333333333330084
+ 0.35294117643144196
+ 0.35352238456116425</code></pre>
+</div>
+</div>
+<p>This is a number <span class="math inline">\(&gt;0\)</span>, suggesting the convergence is quadratic.</p>
+<p>In fact, in the Lecture 5, we will prove that the convergence is quadratic with <span class="math inline">\(\mu = \frac1{2\sqrt{a}}\)</span>. In the last case, this is</p>
+<div id="2649e1ba" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1</span><span class="op">/</span>( <span class="fl">2</span>√<span class="fl">2</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>0.35355339059327373</code></pre>
+</div>
+</div>
+<p>which matches the numerically computed value above.</p>
+<p>We could have also numerically approximated <span class="math inline">\(\alpha\)</span> by computing <span class="math inline">\(\frac{\log |x_{n+1} - \xi|}{\log |x_n - \xi|}\)</span>:</p>
+<div id="6b38cba1" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>@. <span class="fu">log</span>(<span class="fu">abs</span>(x[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>]<span class="op">-</span>√<span class="fl">2</span>)) <span class="op">/</span> <span class="fu">log</span>(<span class="fu">abs</span>(x[<span class="fl">1</span><span class="op">:</span><span class="kw">end</span><span class="op">-</span><span class="fl">1</span>]<span class="op">-</span>√<span class="fl">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>4-element Vector{Float64}:
+ 2.7864397013573967
+ 2.4473369494135158
+ 2.1732752731987097
+ 2.0796040502714805</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div id="exr-Lambert-W-2" class="theorem exercise" title="Lambert W function">
 <p><span class="theorem-title"><strong>Exercise 4.5</strong></span> <a href="../exercises/bank.html#bank-exr-Lambert-W-2"></a></p>
@@ -1485,6 +1634,9 @@ Note
 <li>💻 Confirm this numerically.</li>
 <li>✍ Show that <span class="math inline">\((y_n)\)</span> doesn’t converge to <span class="math inline">\(\Omega\)</span> for any choice of <span class="math inline">\(y_1 \not= \Omega\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display:none;">
+<p><a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/A3%20Solutions.html">Solution</a></p>
+</div>
 </div>
 <div id="exr-simple-iteration" class="theorem exercise" title="Simple iteration">
 <p><span class="theorem-title"><strong>Exercise 4.6</strong></span> <a href="../exercises/bank.html#bank-exr-simple-iteration"></a></p>
@@ -1499,6 +1651,9 @@ Note
 <li><strong>[5 points]</strong> What is the asymptotic error constant?</li>
 <li><strong>[5 points]</strong> Fix <span class="math inline">\(x_1 \in I\)</span>. Find <span class="math inline">\(n\)</span> for which the error bound <span class="math inline">\(|x_{n+1} - \xi| \leq \frac{1}{64}\)</span> is guaranteed.</li>
 </ol>
+<div class="exercise-solution" style="display:none;">
+<p><a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/Solutions%20-%20Math%205485%20Midterm.html">Solution</a></p>
+</div>
 </div>
 
 
@@ -2072,8 +2227,8 @@ window.addEventListener("load", function() {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../lectures/L05.html" class="pagination-link" aria-label="Relaxation, Newton, Secant">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, Secant</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/L05.html" class="pagination-link" aria-label="Relaxation, Newton, secant">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, secant</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

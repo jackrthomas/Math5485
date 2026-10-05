@@ -5,13 +5,11 @@ project:
 book:
   
   chapters:
-    - part: "🔒"
+    - private/exercise-report.qmd
+
+    - part: "🔒 Lectures"
       number-sections: false
       chapters:
-      - private/answers-L06.ipynb
-      - private/answers-A01.ipynb
-      - private/answers-A02.ipynb
-      - private/L07.ipynb 
       - private/L08.ipynb 
       - private/L09.ipynb 
       - private/L10.ipynb 
@@ -19,3 +17,14 @@ book:
       - private/L12.ipynb 
       - private/L13.ipynb 
       - private/L14.ipynb 
+  
+    - part: "🔒 Assignments"
+      number-sections: false
+      chapters:
+      - private/answers-A01.ipynb
+      - private/answers-A02.ipynb
+
+    - part: "🔒 Problem classes"
+      number-sections: false
+      chapters:
+      - exercises/Problem classes/PC1.ipynb

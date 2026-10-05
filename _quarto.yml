@@ -36,6 +36,7 @@ book:
       - lectures/L04.ipynb
       - lectures/L05.ipynb
       - lectures/L06.ipynb
+      - lectures/L07.ipynb
 
     - exercises/bank.ipynb
 
@@ -44,14 +45,15 @@ book:
       chapters:
       - assignments/A01.ipynb
       - assignments/A02.ipynb
-      
-    - part: "Exams" 
 
-  appendices:
-    - appendix/calculus.ipynb
+    - part: "Appendix"
+      chapters: 
+      - appendix/calculus.ipynb
+  
     - part: "Admin"
       chapters: 
       - appendix/syllabus.ipynb
+      - appendix/schedule.qmd 
       - appendix/installing-julia.ipynb
       - references.qmd
 
