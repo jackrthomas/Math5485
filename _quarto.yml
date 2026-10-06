@@ -24,6 +24,9 @@ book:
     - icon: question-circle
       text: "Ask a Question"
       href: "https://github.com/jackrthomas/Math5485/issues/new?template=question.md"
+    - icon: stopwatch
+      text: "Timer"
+      href: "#timer"
 
   chapters:
     - index.qmd
@@ -37,6 +40,7 @@ book:
       - lectures/L05.ipynb
       - lectures/L06.ipynb
       - lectures/L07.ipynb
+      - lectures/L08.ipynb
 
     - exercises/bank.ipynb
 
@@ -70,13 +74,22 @@ execute:
 
 bibliography: references.bib
 
+crossref:
+  eq-prefix: ""
+
+filters:
+  - at: post-quarto
+    path: extras/eq-parens.lua
+
 format:
   html:
     theme: cosmo
     code-fold: show
     crossrefs-hover: true
     include-before-body: extras/_banner.html
-    include-after-body: extras/tags.html
+    include-after-body:
+      - extras/tags.html
+      - extras/timer.html
     code-tools:
       source: true           
       toggle: true

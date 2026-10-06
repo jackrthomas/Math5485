@@ -94,5 +94,8 @@
   },
   "appendix/schedule.qmd": {
     "schedule.html": "e987bc66"
+  },
+  "lectures/L08.ipynb": {
+    "L08.html": "908c3338"
   }
 }
