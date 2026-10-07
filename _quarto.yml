@@ -61,7 +61,8 @@ book:
       - appendix/syllabus.ipynb
       - appendix/schedule.qmd 
       - appendix/installing-julia.ipynb
-      - references.qmd
+    
+    - references.qmd
 
 language:
   search-no-results-text: "No results"
