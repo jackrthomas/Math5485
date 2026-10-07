@@ -109,8 +109,9 @@ ul.task-list li input[type="checkbox"] {
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Math5485</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
+    <a href="../#timer" title="Timer" class="quarto-navigation-tool px-1" aria-label="Timer"><i class="bi bi-stopwatch"></i></a>
     <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
@@ -179,6 +180,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chebyshev polynomials</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Barycentric formula and divided differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -206,6 +219,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A3: Newton, secant &amp; interpolation</span></a>
   </div>
 </li>
       </ul>
@@ -254,14 +273,14 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -287,6 +306,10 @@ ul.task-list li input[type="checkbox"] {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
+
+          <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
 
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
 
@@ -1055,6 +1078,548 @@ window.addEventListener("load", function() {
 });
 
 </script>
+<style>
+
+  /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
+
+  @font-face {
+
+    font-family: "DSEG7 Classic";
+
+    src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
+
+    font-weight: 700;
+
+    font-display: swap;
+
+  }
+
+  /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
+
+  #float-timer {
+
+    position: fixed;
+
+    top: 80px;
+
+    right: 24px;
+
+    z-index: 2000;
+
+    display: none;
+
+    flex-direction: column;
+
+    width: 390px;
+
+    height: 230px;
+
+    min-width: 280px;
+
+    max-width: calc(100vw - 16px);   /* keep it on small screens */
+
+    min-height: 190px;
+
+    resize: both;                /* drag the bottom-right corner to resize */
+
+    container: ft / inline-size; /* lets the contents react to the timer's own width */
+
+    overflow: hidden;
+
+    background: var(--bs-body-bg, #fff);
+
+    color: var(--bs-body-color, #212529);
+
+    border: 2px solid #2780e3;
+
+    border-radius: 8px;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+
+    user-select: none;
+
+    font-family: inherit;
+
+  }
+
+  #float-timer.visible { display: flex; }
+
+  #float-timer .ft-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 4px 8px;
+
+    background: #2780e3;
+
+    color: #fff;
+
+    cursor: move;
+
+    font-size: .95rem;
+
+    touch-action: none;
+
+  }
+
+  #float-timer .ft-modes button {
+
+    background: none;
+
+    border: 1px solid rgba(255, 255, 255, .6);
+
+    color: #fff;
+
+    border-radius: 4px;
+
+    font-size: .8rem;
+
+    padding: 0 6px;
+
+    cursor: pointer;
+
+  }
+
+  #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
+
+  #float-timer .ft-close {
+
+    background: none;
+
+    border: none;
+
+    color: #fff;
+
+    font-size: 1.3rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+  }
+
+  #float-timer .ft-display {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: "DSEG7 Classic", "Courier New", monospace;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+  }
+
+  #float-timer .ft-controls {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 4px 10px 10px 10px;
+
+  }
+
+  #float-timer .ft-controls .btn { font-size: 1rem; }
+
+  #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
+
+  #float-timer:not(.countdown) .ft-countdown-only { display: none; }
+
+  /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
+
+  /* drop the preset buttons and the title when the timer is too narrow for them */
+
+  @container ft (max-width: 382px) {
+
+    [data-preset] { display: none; }
+
+  }
+
+  @container ft (max-width: 290px) {
+
+    .ft-title { display: none; }
+
+  }
+
+  @media (max-width: 575.98px) {
+
+    #float-timer { right: 8px; }
+
+  }
+
+  #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
+
+  @keyframes ft-flash { to { visibility: hidden; } }
+
+</style>
+
+
+
+<div id="float-timer" aria-label="Timer">
+
+  <div class="ft-header">
+
+    <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
+
+    <span class="ft-modes">
+
+      <button data-mode="up" title="Count up">Stopwatch</button>
+
+      <button data-mode="down" title="Count down">Countdown</button>
+
+    </span>
+
+    <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
+
+  </div>
+
+  <div class="ft-display"><span class="ft-digits">00:00</span></div>
+
+  <div class="ft-controls">
+
+    <button class="btn btn-primary ft-toggle">Start</button>
+
+    <button class="btn btn-outline-secondary ft-reset">Reset</button>
+
+    <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
+
+    <span class="ft-countdown-only">min</span>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+(function () {
+
+  const KEY = "math5485-timer";
+
+  const box = document.getElementById("float-timer");
+
+  const display = box.querySelector(".ft-display");
+
+  const digits = box.querySelector(".ft-digits");
+
+  const toggleBtn = box.querySelector(".ft-toggle");
+
+  const minutesInput = box.querySelector(".ft-minutes");
+
+
+
+  // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
+
+  // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
+
+  let state = {
+
+    visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
+
+    left: null, top: null, width: null, height: null
+
+  };
+
+  try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+
+
+  const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
+
+  const pad = n => String(n).padStart(2, "0");
+
+  const fmt = ms => {
+
+    const s = Math.ceil(ms / 1000);
+
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+
+    return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
+
+  };
+
+
+
+  function render() {
+
+    let shown = elapsed(), timesUp = false;
+
+    if (state.mode === "down") {
+
+      const remaining = state.minutes * 60000 - shown;
+
+      if (remaining <= 0 && state.startedAt) {
+
+        // stop exactly at zero
+
+        state.elapsed = state.minutes * 60000; state.startedAt = null; save();
+
+      }
+
+      shown = Math.max(0, state.minutes * 60000 - elapsed());
+
+      timesUp = shown === 0 && state.minutes > 0;
+
+    } else {
+
+      shown = Math.floor(shown / 1000) * 1000;
+
+    }
+
+    digits.textContent = fmt(shown);
+
+    toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
+
+    box.classList.toggle("visible", state.visible);
+
+    box.classList.toggle("countdown", state.mode === "down");
+
+    box.classList.toggle("times-up", timesUp);
+
+    box.querySelectorAll(".ft-modes button").forEach(b =>
+
+      b.classList.toggle("active", b.dataset.mode === state.mode));
+
+    if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
+
+    if (state.left !== null) {
+
+      box.style.left = state.left + "px";
+
+      box.style.top = state.top + "px";
+
+      box.style.right = "auto";
+
+    }
+
+    if (state.width) {
+
+      box.style.width = state.width + "px";
+
+      box.style.height = state.height + "px";
+
+    }
+
+    fitText();
+
+  }
+
+
+
+  // scale the digits to fill the display area
+
+  function fitText() {
+
+    if (!state.visible) return;
+
+    // start from the available height, then shrink until the digits fit the width
+
+    const w = display.clientWidth - 16, h = display.clientHeight;
+
+    let size = h * 0.8;
+
+    display.style.fontSize = size + "px";
+
+    for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
+
+      size *= w / digits.offsetWidth;
+
+      display.style.fontSize = size + "px";
+
+    }
+
+    display.style.fontSize = Math.max(16, size) + "px";
+
+  }
+
+
+
+  function reset() {
+
+    state.elapsed = 0;
+
+    state.startedAt = state.startedAt ? Date.now() : null;
+
+  }
+
+
+
+  toggleBtn.addEventListener("click", () => {
+
+    if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
+
+    else {
+
+      if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
+
+      state.startedAt = Date.now();
+
+    }
+
+    save(); render();
+
+  });
+
+  box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
+
+  box.querySelector(".ft-close").addEventListener("click", () => {
+
+    state.visible = false; save(); render();
+
+  });
+
+  box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
+
+    if (state.mode !== b.dataset.mode) {
+
+      state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
+
+      save(); render();
+
+    }
+
+  }));
+
+  const setMinutes = m => {
+
+    state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
+
+    save(); render();
+
+  };
+
+  minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
+
+  box.querySelectorAll("[data-preset]").forEach(b =>
+
+    b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
+
+
+
+  // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
+
+  document.addEventListener("click", e => {
+
+    if (e.target.closest('a[href$="#timer"]')) {
+
+      e.preventDefault();
+
+      state.visible = !state.visible;
+
+      save(); render();
+
+    }
+
+  });
+
+
+
+  // dragging by the header (mouse and touch)
+
+  const header = box.querySelector(".ft-header");
+
+  header.addEventListener("pointerdown", e => {
+
+    if (e.target.closest("button")) return;
+
+    const r = box.getBoundingClientRect();
+
+    const dx = e.clientX - r.left, dy = e.clientY - r.top;
+
+    header.setPointerCapture(e.pointerId);
+
+    const move = ev => {
+
+      state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
+
+      state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
+
+      render();
+
+    };
+
+    const up = () => {
+
+      header.removeEventListener("pointermove", move);
+
+      header.removeEventListener("pointerup", up);
+
+      save();
+
+    };
+
+    header.addEventListener("pointermove", move);
+
+    header.addEventListener("pointerup", up);
+
+  });
+
+
+
+  // remember the size after resizing (via the bottom-right corner) and rescale the digits
+
+  new ResizeObserver(() => {
+
+    if (!state.visible) return;
+
+    state.width = box.offsetWidth; state.height = box.offsetHeight;
+
+    fitText(); save();
+
+  }).observe(box);
+
+
+
+  // the digital font loads asynchronously: refit once it arrives
+
+  if (document.fonts) {
+
+    document.fonts.ready.then(fitText);
+
+    document.fonts.addEventListener("loadingdone", fitText);
+
+  }
+
+
+
+  render();
+
+  setInterval(() => { if (state.startedAt) render(); }, 200);
+
+})();
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

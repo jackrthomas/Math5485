@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Schedule – Math5485</title>
+<title>9&nbsp; Hermite interpolation – Math5485</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/installing-julia.html" rel="next">
-<link href="../appendix/syllabus.html" rel="prev">
+<link href="../exercises/bank.html" rel="next">
+<link href="../lectures/L08.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -113,6 +78,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -126,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Admin</a></li><li class="breadcrumb-item"><a href="../appendix/schedule.html">Schedule</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/L01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/L09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -136,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
@@ -223,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../lectures/L09.html" class="sidebar-item-text sidebar-link">
+  <a href="../lectures/L09.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
   </div>
 </li>
@@ -298,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
@@ -321,9 +315,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#previously.." id="toc-previously.." class="nav-link active" data-scroll-target="#previously.."><span class="header-section-number">9.1</span> Previously…..</a></li>
+  <li><a href="#hermite-interpolation" id="toc-hermite-interpolation" class="nav-link" data-scroll-target="#hermite-interpolation"><span class="header-section-number">9.2</span> Hermite Interpolation</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises"><span class="header-section-number">9.3</span> Extra exercises</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/lectures/L09.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
 
       <span class="banner-label">📢 <strong>Updates</strong></span>
@@ -913,14 +917,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </script>
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/syllabus.html">Admin</a></li><li class="breadcrumb-item"><a href="../appendix/schedule.html">Schedule</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/L01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/L09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Schedule</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></h1>
+<p class="subtitle lead">Lecture 9: Chapter 3: Polynomial interpolation</p>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta">
 
     
   
@@ -932,12 +937,233 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQxUO6Lnkfz4fGBcxDVEWz346qFtwfVaG52kKF162Iistq-wPja6DO4qBU7Yb7SgMsFM7ib7HHSP6PH/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" style="width: 100%; height: 100vh; border: none;">
-</iframe>
+<div class="callout callout-style-default callout-warning callout-titled" style="margin-bottom: 0.25rem; margin-top: 0.0rem;">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>These lecture notes are mainly a record of what we discussed in class. They should not be used as a replacement for attending lectures or reading books. Please let me know if you find any errors or have any questions about the material.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" style="margin-top: 0.25rem; margin-bottom: 0.25rem;">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hypothesis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can use the Hypothesis commenting system available on the right side panel (you can login with your U/Google account). This allows you annotate the notes (private) and leave comments or reply to other people’s comments (public).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" style="margin-top: 0.25rem;">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>I encourage you to download the lecture notes and play around with the Julia code.</p>
+</div>
+</div>
+</div>
+<div class="custom-lecture-buttons my-3 d-flex gap-2">
+<p><a href="#" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Download (.ipynb) </a> <a href="#" class="btn-ask-question btn btn-outline-secondary btn-sm" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a> <a href="https://chimein.cla.umn.edu/join/330276" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-asterisk me-1" aria-hidden="true"></i> ChimeIn <span class="visually-hidden">(opens in a new tab)</span> </a></p>
+</div>
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn btn-dark btn-sm rounded-circle shadow position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px; z-index: 1050;" title="Go to Top">
+<i class="bi bi-arrow-up fs-5"></i>
+</button>
+<script>
+(function() {
+  // Extract notebook file name from current page
+  var path = window.location.pathname.replace(/\/$/, "");
+  var page = path.split("/").pop().replace(/\.html$/, "") || "L01";
+  
+  // 1. Set Raw Notebook Download URL
+  var rawNotebookUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/lectures/" + page + ".ipynb";
+  var downloadBtn = document.querySelector(".btn-download-ipynb");
+  if (downloadBtn) {
+    downloadBtn.setAttribute("href", rawNotebookUrl);
+  }
+
+  // 2. Set Ask a Question URL with current page title & URL pre-filled
+  var pageTitle = encodeURIComponent("[Question] " + (document.title || page));
+  var currentUrl = encodeURIComponent(window.location.href);
+  var issueBody = encodeURIComponent("**Reference Page:** " + decodeURIComponent(currentUrl) + "\n\n**Question/comment:**\n[Your question/query/suggestion/comment here]");
+  
+  var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md&title=" + pageTitle + "&body=" + issueBody;
+  
+  var questionBtn = document.querySelector(".btn-ask-question");
+  if (questionBtn) {
+    questionBtn.setAttribute("href", issueUrl);
+  }
+})();
+</script>
+<section id="previously.." class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="previously.."><span class="header-section-number">9.1</span> Previously…..</h2>
+<ul>
+<li>Barycentric formula: for <span class="math inline">\(x \not\in X\)</span>, <span class="math inline">\(I_Xf(x) = \sum_{j=0}^n \frac{\lambda_j f(x_j)}{x - x_j} \Big/ \sum_{j=0}^n \frac{\lambda_j}{x - x_j}\)</span> where <span class="math inline">\(\lambda_j = \prod_{k\not=j} (x_j - x_k)^{-1}\)</span>,</li>
+<li>Barycentric formula requires <span class="math inline">\(O(n)\)</span> operations per evaluation and is numerically stable for Chebyshev nodes (with weights <span class="math inline">\((-1)^j\)</span>, halved for <span class="math inline">\(j = 0, n\)</span>),</li>
+<li>Divided differences: <span class="math inline">\(f[x_0,\dots,x_n]\)</span> is the leading coefficient of <span class="math inline">\(I_Xf\)</span>; it doesn’t depend on the ordering of the nodes and is linear in <span class="math inline">\(f\)</span>,</li>
+<li>Recursion: <span class="math inline">\(f[x_0,\dots,x_n] = \frac{f[x_1,\dots,x_n] - f[x_0,\dots,x_{n-1}]}{x_n - x_0}\)</span> (<a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a>),</li>
+<li>Newton form: <span class="math inline">\(I_Xf = \sum_{k=0}^n f[x_0,\dots,x_k] \, \pi_k\)</span> where <span class="math inline">\(\pi_k(x) = (x-x_0)\cdots(x-x_{k-1})\)</span> (<a href="L08.html#thm-Newton-form" class="quarto-xref">Theorem&nbsp;<span>8.3</span></a>),</li>
+<li>The coefficients can be read off from the <em>divided difference table</em>; adding a new node only adds one new term.</li>
+</ul>
+<div class="box">
+<p><strong>Exercise.</strong> <a href="L08.html#exr-l08-bary-weights" class="quarto-xref">Exercise&nbsp;<span>8.6</span></a></p>
+</div>
+</section>
+<section id="hermite-interpolation" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="hermite-interpolation"><span class="header-section-number">9.2</span> Hermite Interpolation</h2>
+<p>Now consider distinct nodes <span class="math inline">\(z_0, \dots, z_k\)</span> with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span> and let <span class="math inline">\(X = \{\{ x_0, \dots, x_n \}\}\)</span> be the <em>multiset</em> in which each <span class="math inline">\(z_j\)</span> appears <span class="math inline">\(m_j\)</span> times (so that <span class="math inline">\(n+1 = \sum_{j=0}^k m_j\)</span>).</p>
+<p>Hermite: find <span class="math inline">\(p\)</span> such that, for <span class="math inline">\(j = 0, \dots, k\)</span>,</p>
+<p><span class="math display">\[
+\begin{align}
+    p(z_j) &amp;= f(z_j),  \nonumber\\
+    p'(z_j) &amp;= f'(z_j),  \nonumber\\
+    &amp;\vdots \nonumber\\
+    p^{(m_j-1)}(z_j) &amp;= f^{(m_j-1)}(z_j).
+\end{align}
+\]</span></p>
+<div id="exr-Taylor-Hermite" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.1</strong></span> What is the least degree polynomial interpolant on <span class="math inline">\(X = \{\{x_0, x_0, \dots, x_0\}\}\)</span> (where <span class="math inline">\(x_0\)</span> is repeated <span class="math inline">\(n+1\)</span> times)?</p>
+</div>
+<div id="thm-Hermite" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.1</strong></span> There exists a unique polynomial of degree at most <span class="math inline">\(n\)</span> solving the Hermite interpolation problem.</p>
+</div>
+<p><strong>Proof.</strong> See <a href="#exr-l09-hermite-exist" class="quarto-xref">Exercise&nbsp;<span>9.3</span></a>.</p>
+<p>Again, we define the divided differences (but now for the more general case where we may have repeated interpolation nodes):</p>
+<div id="def-divided-diffs-repeated" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 9.1</strong></span> We define the divided difference <span class="math inline">\(f[x_{0}, \dots, x_n]\)</span> to be the leading coefficient in the polynomial interpolation <span class="math inline">\(p\in \mathcal P_n\)</span> solving the Hermite interpolation problem for <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+    p(x) = f[x_0,\dots,x_n] x^n + q(x)
+\end{align}
+\]</span></p>
+<p>where <span class="math inline">\(q \in \mathcal P_{n-1}\)</span> and <span class="math inline">\(p^{(l)}(z_j) = f^{(l)}(z_j)\)</span> for <span class="math inline">\(l = 0,\dots,m_j-1\)</span> and <span class="math inline">\(j = 0, \dots, k\)</span>.</p>
+</div>
+<div id="thm-divided-diffs-recursion" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.2</strong></span> Suppose that <span class="math inline">\(f\)</span> is sufficiently differentiable (<span class="math inline">\(f \in C^{m-1}\)</span> where <span class="math inline">\(m := \max_j m_j\)</span>). Then, we have</p>
+<p><span class="math display">\[
+\begin{align}
+    f[x_0, \dots, x_n] &amp;= \begin{cases}
+    \frac{f^{(n)}(x_0)}{n!} &amp; \text{if } x_0 = x_1 = \dots = x_n \\
+    \frac
+        {f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}]}
+        {x_n - x_0} &amp;\text{if } x_0 \not= x_n
+    \end{cases}
+\end{align}
+\]</span></p>
+<p>If the nodes are not all equal, we can always reorder <span class="math inline">\(X\)</span> so that <span class="math inline">\(x_0 \not= x_n\)</span> (the divided difference does not depend on the ordering of the nodes).</p>
+</div>
+<p><strong>Proof.</strong> You have seen above that the Taylor polynomial</p>
+<p><span class="math display">\[
+\begin{align}
+    T_f(x) =\sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j
+\end{align}
+\]</span></p>
+<p>solves the Hermite interpolation problem on <span class="math inline">\(X = \{\{x_0,\dots,x_n\}\}\)</span> in the case where <span class="math inline">\(x_0 = \dots = x_n\)</span>. For such <span class="math inline">\(X\)</span>, the leading coefficient in this expression is <span class="math inline">\(f[x_{0}, \dots, x_n] = \frac{f^{(n)}(x_0)}{n!}\)</span>.</p>
+<p>For the second case, one can adapt the proof of <a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a> (see <a href="#exr-l09-hermite-recursion" class="quarto-xref">Exercise&nbsp;<span>9.4</span></a>). <span class="math inline">\(\square\)</span></p>
+<div id="exr-Hermite-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.2</strong></span> What is the Hermite interpolant of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(\{\{ 0,0,\pi, \pi\}\}\)</span>? Hint: you can compute the divided difference tables in the same way as before.</p>
+</div>
+<p>More coming soon….</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Exercises throughout the notes,</li>
+<li>(Sign-up to office hours if you like)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="extra-exercises" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">9.3</span> Extra exercises</h2>
+<div id="exr-l09-hermite-exist" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.3</strong></span> In this exercise, we prove <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>. As in the notes, let <span class="math inline">\(z_0, \dots, z_k\)</span> be distinct nodes with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span>, and let <span class="math inline">\(n + 1 = \sum_{j=0}^k m_j\)</span>.</p>
+<ol type="1">
+<li>Let <span class="math inline">\(r \in \mathcal P_n\)</span> and suppose that <span class="math inline">\(r^{(l)}(z) = 0\)</span> for <span class="math inline">\(l = 0, \dots, m-1\)</span>. Show that <span class="math inline">\(r(x) = (x - z)^m s(x)\)</span> for some polynomial <span class="math inline">\(s\)</span>.</li>
+<li>Suppose that <span class="math inline">\(r \in \mathcal P_n\)</span> satisfies <span class="math inline">\(r^{(l)}(z_j) = 0\)</span> for all <span class="math inline">\(l = 0,\dots,m_j - 1\)</span> and <span class="math inline">\(j = 0,\dots,k\)</span>. Show that <span class="math inline">\(r = 0\)</span>.</li>
+<li>Deduce that the Hermite interpolation problem has at most one solution in <span class="math inline">\(\mathcal P_n\)</span>.</li>
+<li>Consider the map <span class="math inline">\(L : \mathcal P_n \to \mathbb R^{n+1}\)</span> defined by <span class="math inline">\(L p := \big( p^{(l)}(z_j) \big)_{j = 0,\dots,k, \; l = 0, \dots, m_j - 1}\)</span>. Show that <span class="math inline">\(L\)</span> is linear and injective, and conclude that the Hermite interpolation problem has exactly one solution in <span class="math inline">\(\mathcal P_n\)</span>.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<p>For 1, write <span class="math inline">\(r\)</span> as its Taylor polynomial about <span class="math inline">\(z\)</span> (which is exact because <span class="math inline">\(r\)</span> is a polynomial). For 2, apply 1 at <span class="math inline">\(z_0\)</span> and then show that <span class="math inline">\(s\)</span> still has zeros of order <span class="math inline">\(m_j\)</span> at <span class="math inline">\(z_j\)</span> for <span class="math inline">\(j \geq 1\)</span>. For 4, recall that an injective linear map between vector spaces of the same finite dimension is also surjective.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>Since <span class="math inline">\(r \in \mathcal P_n\)</span>, Taylor’s theorem is exact: <span class="math inline">\(r(x) = \sum_{l=0}^n \frac{r^{(l)}(z)}{l!} (x - z)^l = \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^l = (x-z)^m s(x)\)</span> where <span class="math inline">\(s(x) := \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^{l-m}\)</span>.</p></li>
+<li><p>By 1, <span class="math inline">\(r(x) = (x - z_0)^{m_0} s_0(x)\)</span>. Fix <span class="math inline">\(j \geq 1\)</span> and write <span class="math inline">\(u(x) := (x - z_0)^{m_0}\)</span> (so that <span class="math inline">\(u(z_j) \not= 0\)</span> because the nodes are distinct). By the Leibniz rule, <span class="math display">\[
+r^{(l)}(z_j) = \sum_{i=0}^l \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j) = u(z_j) \, s_0^{(l)}(z_j) + \sum_{i=0}^{l-1} \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j).
+\]</span> By induction on <span class="math inline">\(l = 0, \dots, m_j - 1\)</span>, we obtain <span class="math inline">\(s_0^{(l)}(z_j) = 0\)</span>. Therefore, <span class="math inline">\(s_0\)</span> satisfies the same conditions at <span class="math inline">\(z_1, \dots, z_k\)</span> and, repeating the argument, we have <span class="math display">\[
+r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
+\]</span> for some polynomial <span class="math inline">\(s\)</span>. If <span class="math inline">\(s \not= 0\)</span>, then <span class="math inline">\(r\)</span> has degree at least <span class="math inline">\(\sum_j m_j = n+1\)</span>, which contradicts <span class="math inline">\(r \in \mathcal P_n\)</span>. Therefore <span class="math inline">\(s = 0\)</span> and <span class="math inline">\(r = 0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(p, q \in \mathcal P_n\)</span> both solve the Hermite interpolation problem, then <span class="math inline">\(r := p - q \in \mathcal P_n\)</span> satisfies <span class="math inline">\(r^{(l)}(z_j) = f^{(l)}(z_j) - f^{(l)}(z_j) = 0\)</span> for all <span class="math inline">\(j\)</span> and <span class="math inline">\(l = 0, \dots, m_j-1\)</span>. By 2, <span class="math inline">\(r = 0\)</span> and so <span class="math inline">\(p = q\)</span>.</p></li>
+<li><p>Differentiation and evaluation are linear and so <span class="math inline">\(L\)</span> is linear. If <span class="math inline">\(L p = 0\)</span>, then <span class="math inline">\(p = 0\)</span> by 2, and so <span class="math inline">\(L\)</span> is injective. Since <span class="math inline">\(\dim \mathcal P_n = n + 1 = \dim \mathbb R^{n+1}\)</span>, the rank-nullity theorem shows that <span class="math inline">\(L\)</span> is also surjective. In particular, there exists <span class="math inline">\(p \in \mathcal P_n\)</span> with <span class="math inline">\(L p = \big( f^{(l)}(z_j) \big)_{j,l}\)</span>, which is exactly a solution to the Hermite interpolation problem. By 3, this solution is unique.</p></li>
+</ol>
+</div>
+</div>
+<div id="exr-l09-hermite-recursion" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.4</strong></span> In this exercise, we prove the second case of <a href="#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a>: if <span class="math inline">\(X = \{\{x_0, \dots, x_n\}\}\)</span> is a multiset with <span class="math inline">\(x_0 \not= x_n\)</span> and <span class="math inline">\(f\)</span> is sufficiently differentiable, then <span class="math display">\[
+    f[x_0, \dots, x_n] = \frac{f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}]}{x_n - x_0}.
+\]</span></p>
+<ol type="1">
+<li>Explain why the (Hermite) divided difference <span class="math inline">\(f[x_0,\dots,x_n]\)</span> does not depend on the ordering of the nodes and why <span class="math inline">\((f + c g)[x_0,\dots,x_n] = f[x_0,\dots,x_n] + c\, g[x_0,\dots,x_n]\)</span>.</li>
+<li>Let <span class="math inline">\(p \in \mathcal P_{n-1}\)</span> be the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X' := \{\{x_0, \dots, x_{n-1}\}\}\)</span> and define <span class="math inline">\(g(x) := (x - x_n) f(x)\)</span> and <span class="math inline">\(q(x) := (x - x_n) p(x)\)</span>. Show that <span class="math inline">\(q\)</span> is the Hermite interpolant of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>.</li>
+<li>Deduce that <span class="math inline">\(\big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_0, \dots, x_{n-1}]\)</span> and <span class="math inline">\(\big( (x - x_0) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n]\)</span>.</li>
+<li>Conclude.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<p>For 2, use the product rule <span class="math inline">\(\frac{\mathrm d^l}{\mathrm dx^l} \big[ (x - a) u(x) \big] = (x - a) u^{(l)}(x) + l \, u^{(l-1)}(x)\)</span> with <span class="math inline">\(u = p - f\)</span>. Treat the nodes <span class="math inline">\(z \not= x_n\)</span> and the node <span class="math inline">\(z = x_n\)</span> separately: if <span class="math inline">\(x_n\)</span> appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X'\)</span>, then it appears <span class="math inline">\(m+1\)</span> times in <span class="math inline">\(X\)</span>. For 4, copy the end of the proof of <a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a>.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>The Hermite interpolation problem (and therefore its unique solution, by <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>) only depends on the multiset <span class="math inline">\(X\)</span>, not on how we label its elements. If <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the Hermite interpolants of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, then <span class="math inline">\(p + c q \in \mathcal P_n\)</span> satisfies <span class="math inline">\((p + cq)^{(l)}(z_j) = (f + cg)^{(l)}(z_j)\)</span> for all the required <span class="math inline">\(j, l\)</span>, and so it is the Hermite interpolant of <span class="math inline">\(f + cg\)</span>. Comparing the coefficients of <span class="math inline">\(x^n\)</span> gives linearity.</p></li>
+<li><p>Since <span class="math inline">\(q \in \mathcal P_n\)</span>, by <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a> it is enough to show that <span class="math inline">\(q\)</span> satisfies the Hermite conditions for <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Let <span class="math inline">\(u := p - f\)</span>. By the product rule, <span class="math display">\[
+q^{(l)}(x) - g^{(l)}(x) = \frac{\mathrm d^l}{\mathrm dx^l} \big[ (x - x_n) u(x) \big] = (x - x_n) u^{(l)}(x) + l \, u^{(l-1)}(x)
+\]</span> (where the second term is absent when <span class="math inline">\(l = 0\)</span>). Let <span class="math inline">\(z\)</span> be a node which appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X'\)</span> (so that <span class="math inline">\(u^{(i)}(z) = 0\)</span> for <span class="math inline">\(i = 0, \dots, m-1\)</span>).</p></li>
+</ol>
+<ul>
+<li>If <span class="math inline">\(z \not= x_n\)</span>, then <span class="math inline">\(z\)</span> also appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X\)</span>. For <span class="math inline">\(l \leq m - 1\)</span>, we have <span class="math inline">\(u^{(l)}(z) = 0\)</span> and <span class="math inline">\(u^{(l-1)}(z) = 0\)</span> and so <span class="math inline">\(q^{(l)}(z) = g^{(l)}(z)\)</span>.</li>
+<li>If <span class="math inline">\(z = x_n\)</span>, then <span class="math inline">\(z\)</span> appears <span class="math inline">\(m + 1\)</span> times in <span class="math inline">\(X\)</span> (with <span class="math inline">\(m = 0\)</span> if <span class="math inline">\(x_n \not\in X'\)</span>). For <span class="math inline">\(l \leq m\)</span>, the first term vanishes because <span class="math inline">\(z - x_n = 0\)</span>, and the second term vanishes because <span class="math inline">\(l - 1 \leq m - 1\)</span> (or <span class="math inline">\(l = 0\)</span>). Therefore <span class="math inline">\(q^{(l)}(x_n) = g^{(l)}(x_n)\)</span> for <span class="math inline">\(l = 0, \dots, m\)</span>.</li>
+</ul>
+<ol start="3" type="1">
+<li><p>By 2, the leading coefficient (of <span class="math inline">\(x^n\)</span>) of <span class="math inline">\(q\)</span> is <span class="math inline">\(g[x_0,\dots,x_n]\)</span>. On the other hand, <span class="math inline">\(q(x) = (x - x_n) p(x)\)</span> and the coefficient of <span class="math inline">\(x^{n-1}\)</span> in <span class="math inline">\(p\)</span> is <span class="math inline">\(f[x_0,\dots,x_{n-1}]\)</span>. Therefore, <span class="math inline">\(\big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_0, \dots, x_{n-1}]\)</span>. Applying this to the reordered multiset <span class="math inline">\(\{\{x_1, \dots, x_n, x_0\}\}\)</span> (allowed by 1) gives <span class="math inline">\(\big( (x - x_0) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n]\)</span>.</p></li>
+<li><p>Since <span class="math inline">\((x - x_0) f(x) - (x - x_n) f(x) = (x_n - x_0) f(x)\)</span>, linearity and 3 give <span class="math display">\[
+(x_n - x_0) f[x_0,\dots,x_n] = \big( (x - x_0) f \big)[x_0, \dots, x_n] - \big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}].
+\]</span> Dividing by <span class="math inline">\(x_n - x_0 \not= 0\)</span> gives the result.</p></li>
+</ol>
+</div>
+</div>
 
 
-<!-- -->
-
+</section>
 
 </main> <!-- /main -->
 <style>
@@ -2042,30 +2268,21 @@ window.addEventListener("load", function() {
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../appendix/syllabus.html" class="pagination-link" aria-label="Course Syllabus">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course Syllabus</span>
+      <a href="../lectures/L08.html" class="pagination-link" aria-label="Barycentric formula and divided differences">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Barycentric formula and divided differences</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/installing-julia.html" class="pagination-link" aria-label="Installing Julia &amp; Jupyter">
-        <span class="nav-page-text">Installing Julia &amp; Jupyter</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../exercises/bank.html" class="pagination-link" aria-label="Exercise bank">
+        <span class="nav-page-text">Exercise bank</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">page-layout:</span><span class="co"> full</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">toc:</span><span class="co"> false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu"># Schedule {.unnumbered}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">iframe</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://docs.google.com/spreadsheets/d/e/2PACX-1vQxUO6Lnkfz4fGBcxDVEWz346qFtwfVaG52kKF162Iistq-wPja6DO4qBU7Yb7SgMsFM7ib7HHSP6PH/pubhtml?gid=0</span><span class="dv">&amp;amp;</span><span class="st">single=true</span><span class="dv">&amp;amp;</span><span class="st">widget=true</span><span class="dv">&amp;amp;</span><span class="st">headers=false"</span><span class="ot"> style</span><span class="op">=</span><span class="st">"width: 100%; height: 100vh; border: none;"</span><span class="dt">&gt;&lt;/</span><span class="kw">iframe</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/appendix/schedule.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/lectures/L09.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

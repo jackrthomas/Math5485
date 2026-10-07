@@ -1,0 +1,2586 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>A3: Newton, secant &amp; interpolation – Math5485</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendix/calculus.html" rel="next">
+<link href="../assignments/A02.html" rel="prev">
+<link href="../images/pi.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A03.html">A3: Newton, secant &amp; interpolation</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Math5485</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
+    <a href="../#timer" title="Timer" class="quarto-navigation-tool px-1" aria-label="Timer"><i class="bi bi-stopwatch"></i></a>
+    <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How computers add</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conditioning &amp; stability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Simple iterations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, secant</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial interpolation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chebyshev polynomials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Barycentric formula and divided differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise bank</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1: Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">A3: Newton, secant &amp; interpolation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Admin</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a-newtons-method-in-practice-30-pts" id="toc-a-newtons-method-in-practice-30-pts" class="nav-link active" data-scroll-target="#a-newtons-method-in-practice-30-pts">A: Newton’s method in practice [30 pts]</a></li>
+  <li><a href="#b-efficiency-of-newton-and-secant-20-pts" id="toc-b-efficiency-of-newton-and-secant-20-pts" class="nav-link" data-scroll-target="#b-efficiency-of-newton-and-secant-20-pts">B: Efficiency of Newton and secant [20 pts]</a></li>
+  <li><a href="#c-barycentric-formula-divided-differences-30-pts" id="toc-c-barycentric-formula-divided-differences-30-pts" class="nav-link" data-scroll-target="#c-barycentric-formula-divided-differences-30-pts">C: Barycentric formula &amp; divided differences [30 pts]</a></li>
+  <li><a href="#d-reflection-20-pts" id="toc-d-reflection-20-pts" class="nav-link" data-scroll-target="#d-reflection-20-pts">D: Reflection [20 pts]</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/assignments/A03.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+    <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
+
+      <span class="banner-label">📢 <strong>Updates</strong></span>
+
+      <div class="banner-ticker">
+
+        <div class="banner-ticker-track">
+
+          <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
+
+                 * Order doesn't matter: updates are sorted by date (newest first).
+
+                 * Updates dated in the future are hidden until that day (so you can schedule them).
+
+                 * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
+
+          <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
+
+          <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
+
+          <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
+
+          <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
+
+          <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
+
+          <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
+
+          <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
+
+          <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
+
+        </div>
+
+      </div>
+
+      <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
+
+      <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
+
+      <div id="banner-all-updates" class="banner-all" hidden="">
+
+        <div class="banner-all-title">All updates</div>
+
+        <ul class="banner-all-list"></ul>
+
+      </div>
+
+    </div>
+
+    <style>
+
+      .announcement-banner {
+
+        background-color: #007bff;
+
+        color: white;
+
+        padding: 8px 12px;
+
+        position: relative;
+
+        font-size: 0.95rem;
+
+        z-index: 1000;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 0.75rem;   /* space between the banner and the page below */
+
+      }
+
+      .banner-label {
+
+        flex-shrink: 0;
+
+        white-space: nowrap;
+
+      }
+
+      /* scrolling area: fades out at both ends */
+
+      .banner-ticker {
+
+        flex-grow: 1;
+
+        overflow: hidden;
+
+        white-space: nowrap;
+
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+
+                mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+
+      }
+
+      .banner-ticker-track {
+
+        display: inline-flex;
+
+        white-space: nowrap;
+
+        will-change: transform;
+
+      }
+
+      .banner-ticker.scrolling .banner-ticker-track {
+
+        animation: banner-scroll var(--banner-duration, 30s) linear infinite;
+
+      }
+
+      /* pause while the mouse is over the text, so it can be read */
+
+      .banner-ticker:hover .banner-ticker-track {
+
+        animation-play-state: paused;
+
+      }
+
+      .banner-item {
+
+        padding: 0 1.5rem;
+
+      }
+
+      .banner-date {
+
+        display: inline-block;
+
+        font-size: 0.8em;
+
+        font-weight: 600;
+
+        background: rgba(255, 255, 255, 0.2);
+
+        border-radius: 4px;
+
+        padding: 0 6px;
+
+        margin-right: 6px;
+
+      }
+
+      .banner-item::before {
+
+        content: "•";
+
+        margin-right: 1.5rem;
+
+        opacity: 0.7;
+
+      }
+
+      @keyframes banner-scroll {
+
+        from { transform: translateX(0); }
+
+        to   { transform: translateX(-50%); }   /* the track holds two identical halves */
+
+      }
+
+      /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
+
+      @media (prefers-reduced-motion: reduce) {
+
+        .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
+
+        .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
+
+      }
+
+      /* "All updates" button and drop-down list */
+
+      .banner-more-btn {
+
+        flex-shrink: 0;
+
+        background: rgba(255, 255, 255, 0.15);
+
+        border: 1px solid rgba(255, 255, 255, 0.6);
+
+        color: white;
+
+        border-radius: 999px;
+
+        font-size: 0.8rem;
+
+        padding: 2px 10px;
+
+        cursor: pointer;
+
+        white-space: nowrap;
+
+      }
+
+      .banner-more-btn:hover,
+
+      .banner-more-btn[aria-expanded="true"] {
+
+        background: white;
+
+        color: #007bff;
+
+      }
+
+      .banner-all {
+
+        position: absolute;
+
+        top: 100%;
+
+        right: 12px;
+
+        margin-top: 6px;
+
+        width: min(420px, calc(100vw - 24px));
+
+        max-height: 60vh;
+
+        overflow-y: auto;
+
+        background: white;
+
+        color: #212529;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+        padding: 10px 14px;
+
+        text-align: left;
+
+        z-index: 1001;
+
+      }
+
+      .banner-all[hidden] { display: none; }
+
+      .banner-all-title {
+
+        font-weight: 600;
+
+        margin-bottom: 6px;
+
+      }
+
+      .banner-all-list {
+
+        list-style: none;
+
+        margin: 0;
+
+        padding: 0;
+
+      }
+
+      .banner-all-list li {
+
+        padding: 5px 0;
+
+        border-top: 1px solid #f1f3f5;
+
+      }
+
+      .banner-all-list li:first-child { border-top: none; }
+
+      .banner-all-list li.banner-all-date {
+
+        font-size: 0.78rem;
+
+        font-weight: 600;
+
+        color: #6c757d;
+
+        border-top: none;
+
+        padding: 8px 0 2px;
+
+      }
+
+      .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
+
+      .banner-close-btn {
+
+        flex-shrink: 0;
+
+        background: none;
+
+        border: none;
+
+        color: white;
+
+        font-size: 1.4rem;
+
+        cursor: pointer;
+
+        line-height: 1;
+
+        padding: 0 8px;
+
+        opacity: 0.8;
+
+      }
+
+      .banner-close-btn:hover {
+
+        opacity: 1;
+
+      }
+
+    </style>
+
+    <script>
+
+      // Hide immediately if already dismissed in this browser session
+
+      if (sessionStorage.getItem('hideCourseBanner') === 'true') {
+
+        document.write('<style>#course-announcement-banner { display: none !important; }</style>');
+
+      }
+
+
+
+      function closeBanner() {
+
+        var banner = document.getElementById('course-announcement-banner');
+
+        if (banner) {
+
+          banner.style.display = 'none';
+
+        }
+
+        // Remember that the user closed it during this browser session
+
+        sessionStorage.setItem('hideCourseBanner', 'true');
+
+      }
+
+
+
+      // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
+
+      // the whole set so the animation (which moves the track by half its width) loops seamlessly.
+
+      (function () {
+
+        var SPEED = 60;          // pixels per second
+
+        var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
+
+
+
+        // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
+
+        function parseDate(str) {
+
+          var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
+
+          return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+
+        }
+
+        function dateLabel(d) {
+
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+
+          var days = Math.round((today - d) / 86400000);
+
+          if (days === 0) return 'Today';
+
+          if (days === 1) return 'Yesterday';
+
+          var opts = { weekday: 'short', month: 'short', day: 'numeric' };
+
+          if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
+
+          return d.toLocaleDateString('en-US', opts);
+
+        }
+
+
+
+        // Sort the updates by date, hide future ones, keep the newest few in the ticker
+
+        // (with a date label) and list all of them, grouped by date, under "All updates".
+
+        function setupUpdates(track) {
+
+          var banner = document.getElementById('course-announcement-banner');
+
+          var btn = banner.querySelector('.banner-more-btn');
+
+          var panel = banner.querySelector('.banner-all');
+
+          var list = panel.querySelector('.banner-all-list');
+
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+
+
+
+          var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
+
+            return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
+
+          }).filter(function (u) {
+
+            return !u.date || u.date <= today;                       // scheduled updates stay hidden
+
+          }).sort(function (a, b) {
+
+            if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
+
+            if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
+
+            return a.order - b.order;                                              // same day: file order
+
+          });
+
+
+
+          // ticker: the newest MAX_SCROLLING updates, each with its date
+
+          track.innerHTML = '';
+
+          updates.slice(0, MAX_SCROLLING).forEach(function (u) {
+
+            var span = document.createElement('span');
+
+            span.className = 'banner-item';
+
+            span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
+
+            track.appendChild(span);
+
+          });
+
+          if (updates.length === 0) { banner.style.display = 'none'; return; }
+
+
+
+          // drop-down: everything, grouped by date
+
+          var lastLabel = null;
+
+          updates.forEach(function (u) {
+
+            var label = u.date ? dateLabel(u.date) : 'Other';
+
+            if (label !== lastLabel) {
+
+              var h = document.createElement('li');
+
+              h.className = 'banner-all-date';
+
+              h.textContent = label;
+
+              list.appendChild(h);
+
+              lastLabel = label;
+
+            }
+
+            var li = document.createElement('li');
+
+            li.innerHTML = u.html;
+
+            list.appendChild(li);
+
+          });
+
+          if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
+
+
+
+          btn.textContent = 'All updates (' + updates.length + ')';
+
+          btn.hidden = false;
+
+
+
+          function setOpen(open) {
+
+            panel.hidden = !open;
+
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+          }
+
+          btn.addEventListener('click', function (e) {
+
+            e.stopPropagation();
+
+            setOpen(panel.hidden);
+
+          });
+
+          panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+          document.addEventListener('click', function () { setOpen(false); });
+
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+
+        }
+
+
+
+        function startTicker() {
+
+          var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
+
+          if (!ticker) return;
+
+          var track = ticker.querySelector('.banner-ticker-track');
+
+          setupUpdates(track);
+
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+
+
+          var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
+
+          if (items.length === 0) return;
+
+
+
+          // one "half": the updates repeated until they are at least as wide as the banner
+
+          var guard = 0;
+
+          while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
+
+            items.forEach(function (item) {
+
+              var copy = item.cloneNode(true);
+
+              copy.setAttribute('aria-hidden', 'true');
+
+              track.appendChild(copy);
+
+            });
+
+          }
+
+          // second half: an exact copy of the first
+
+          Array.prototype.slice.call(track.children).forEach(function (el) {
+
+            var copy = el.cloneNode(true);
+
+            copy.setAttribute('aria-hidden', 'true');
+
+            track.appendChild(copy);
+
+          });
+
+
+
+          var halfWidth = track.scrollWidth / 2;
+
+          ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
+
+          ticker.classList.add('scrolling');
+
+        }
+
+
+
+        if (document.readyState === 'complete') startTicker();
+
+        else window.addEventListener('load', startTicker);
+
+      })();
+
+    </script>
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A03.html">A3: Newton, secant &amp; interpolation</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">A3: Newton, secant &amp; interpolation</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Assignment 3: Solving nonlinear equations in 1d and polynomial interpolation <br> Published: <b>Wed 7 Oct</b></p>
+<div class="alert alert-block alert-info">
+<b>Note:</b>
+<ul>
+<li>
+Complete the following and submit to Canvas before <b>Wed 14 Oct, 23:59</b>.
+</li>
+<li>
+Late work will receive 0%.
+</li>
+<li>
+Each assignment is worth the same.
+</li>
+<li>
+Please get in contact with the TA/instructor in plenty of time if you need help.
+</li>
+<li>
+Before submitting your work, make sure to check everything runs as expected. Click <b>Kernel &gt; Restart Kernel and Run All Cells</b>. Submit your notebook in .pdf format by clicking <b>File &gt; Export Notebook As &gt; PDF</b> or by printing to PDF in the browser.
+</li>
+<li>
+Feel free to add more cells to experiment or test your answers.
+</li>
+<li>
+I encourage you to discuss the course material and assignment questions with your classmates. However, unless otherwise explicitly stated on the assignment, you must complete and write up your solutions on your own.
+</li>
+<li>
+The use of GenAI is prohibited as outlined in the course syllabus. If suspected of cheating, you may be asked to complete a written or oral exam on the content of this assignment.
+</li>
+</ul>
+</div>
+<div class="custom-lecture-buttons my-3 d-flex gap-2">
+<p><a href="https://raw.githubusercontent.com/jackrthomas/Math5485/main/assignments/A03.ipynb" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Download (.ipynb) </a></p>
+</div>
+<p>The assignment is worth <strong>100 pts</strong>. The symbols ✍️, 💻 indicate theory (<span class="math inline">\(\LaTeX\)</span>), practice (code), respectively.</p>
+<div id="81b62b99" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Name <span class="op">=</span> <span class="st">"YOUR NAME HERE"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>The following cell contains code that you should use throughout the assignment (you do <strong>not</strong> need to implement Newton’s method or the secant method yourself): <code>Newton(f, f_prime, x1)</code> and <code>secant(f, x1, x2)</code> are the functions from Lecture 5 (each returns the vector of iterates <span class="math inline">\(x_1, x_2, \dots\)</span>) and <code>order_table(x, ξ; α)</code> (from A2) prints the errors <span class="math inline">\(e_n := |x_n - \xi|\)</span> together with <span class="math inline">\(\frac{e_{n}}{e_{n-1}^\alpha}\)</span> (approximating <span class="math inline">\(\mu\)</span> if the order is <span class="math inline">\(\alpha\)</span>) and <span class="math inline">\(\frac{\log e_{n}}{\log e_{n-1}}\)</span> (approximating <span class="math inline">\(\alpha\)</span>).</p>
+<div id="60461a73" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span>, <span class="bu">Printf</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Newton's method x_{n+1} = x_n - f(x_n)/f'(x_n) (from Lecture 5)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Newton</span>(f, f_prime, x1; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-10</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [x1]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span>N</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(x, x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>])<span class="op">/</span><span class="fu">f_prime</span>(x[n<span class="op">-</span><span class="fl">1</span>]))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(x[<span class="kw">end</span>])) <span class="op">&lt;</span> tol</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@warn</span> <span class="st">"Newton did not converge within </span><span class="sc">$</span>N<span class="st"> iterations."</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># secant method x_{n+1} = x_n - f(x_n)/f[x_n, x_{n-1}] (from Lecture 5)</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">secant</span>(f, x1, x2; N<span class="op">=</span><span class="fl">100</span>, tol<span class="op">=</span><span class="fl">1e-10</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [x1, x2]</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">3</span><span class="op">:</span>N</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(x, x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> (x[n<span class="op">-</span><span class="fl">1</span>] <span class="op">-</span> x[n<span class="op">-</span><span class="fl">2</span>])<span class="op">/</span>(<span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>]) <span class="op">-</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">2</span>])) <span class="op">*</span> <span class="fu">f</span>(x[n<span class="op">-</span><span class="fl">1</span>]))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">abs</span>(<span class="fu">f</span>(x[<span class="kw">end</span>])) <span class="op">&lt;</span> tol</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> x</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@warn</span> <span class="st">"secant did not converge within </span><span class="sc">$</span>N<span class="st"> iterations."</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># prints the errors e_n = |x_n - ξ| together with </span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">#   e_n / e_{n-1}^α          (\to μ if the order of convergence is α)  </span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   log(e_n) / log(e_{n-1})  (\to order of convergence)</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">order_table</span>(x, ξ; α<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> @. <span class="fu">abs</span>(x <span class="op">-</span> ξ)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%4s %22s %12s %16s %20s</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">"n"</span>, <span class="st">"x_n"</span>, <span class="st">"e_n"</span>, <span class="st">"e_n/e_{n-1}^α"</span>, <span class="st">"log e_n/log e_{n-1}"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%4d %22.16f %12.3e</span><span class="sc">\n</span><span class="st">"</span>, <span class="fl">1</span>, x[<span class="fl">1</span>], <span class="cn">e</span>[<span class="fl">1</span>])</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span><span class="fu">length</span>(x)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@printf</span>(<span class="st">"%4d %22.16f %12.3e %16.6f %20.6f</span><span class="sc">\n</span><span class="st">"</span>, n, x[n], <span class="cn">e</span>[n], <span class="cn">e</span>[n]<span class="op">/</span><span class="cn">e</span>[n<span class="op">-</span><span class="fl">1</span>]<span class="op">^</span>α, <span class="fu">log</span>(<span class="cn">e</span>[n])<span class="op">/</span><span class="fu">log</span>(<span class="cn">e</span>[n<span class="op">-</span><span class="fl">1</span>]))</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>order_table (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>The following theorem from lectures may be useful:</p>
+<div class="alert alert-block alert-success">
+<p><b>Theorem (Newton).</b></p>
+<p>Suppose <span class="math inline">\(f: [a,b] \to \mathbb R\)</span> is twice continuously differentiable with <span class="math inline">\(f(\xi) = 0\)</span> and <span class="math inline">\(f'(\xi) \not= 0\)</span> and that <span class="math inline">\(\left|\frac{f''(x)}{f'(y)}\right| \leq A\)</span> for all <span class="math inline">\(x,y \in [a,b]\)</span>. Then, <span class="math inline">\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\)</span> converges at least quadratically to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [a,b]\)</span> with <span class="math inline">\(|x_1 - \xi| \leq A^{-1}\)</span>, and the asymptotic error constant is <span class="math inline">\(\mu = \frac12 \left| \frac{f''(\xi)}{f'(\xi)} \right|\)</span>.</p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<section id="a-newtons-method-in-practice-30-pts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="a-newtons-method-in-practice-30-pts">A: Newton’s method in practice [30 pts]</h2>
+<p><strong><em>Exercise 1. (Newton’s method in practice)</em></strong> Consider the following functions:</p>
+<p><span class="math display">\[\begin{align}
+    f_1(x) &amp;= x^3 - 3x - 5,       \nonumber\\
+    f_2(x) &amp;= x - \log(1+x),          \nonumber\\
+    f_3(x) &amp;= \arctan x,      \nonumber\\
+    f_4(x) &amp;= \mathrm{sign}(x) \sqrt{|x|}.          \nonumber
+\end{align}\]</span></p>
+<p>Here’s a plot of these functions:</p>
+<div id="b2208f7e" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f1</span>(x) <span class="op">=</span> x<span class="op">^</span><span class="fl">3</span> <span class="op">-</span> <span class="fl">3</span>x <span class="op">-</span> <span class="fl">5</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f2</span>(x) <span class="op">=</span> x <span class="op">-</span> <span class="fu">log</span>(<span class="fl">1</span> <span class="op">+</span> x)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f3</span>(x) <span class="op">=</span> <span class="fu">atan</span>(x)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f4</span>(x) <span class="op">=</span> <span class="fu">sign</span>(x) <span class="op">*</span> <span class="fu">sqrt</span>(<span class="fu">abs</span>(x))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( f1, <span class="op">-</span><span class="fl">1</span>, <span class="fl">3</span>; ylims<span class="op">=</span>(<span class="op">-</span><span class="fl">1</span>,<span class="fl">2</span>), label<span class="op">=</span>L<span class="st">"f_1"</span>, lw<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>blue )</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>( f2, <span class="op">-</span><span class="fl">0.99</span>, <span class="fl">3</span>; label<span class="op">=</span>L<span class="st">"f_2"</span>, lw<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>red )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>( f3, <span class="op">-</span><span class="fl">1</span>, <span class="fl">3</span>; label<span class="op">=</span>L<span class="st">"f_3"</span>, lw<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>green )</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>( f4, <span class="op">-</span><span class="fl">1</span>, <span class="fl">3</span>; label<span class="op">=</span>L<span class="st">"f_4"</span>, lw<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>orange )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>( [<span class="fl">0</span>], linestyle<span class="op">=:</span>dash, primary<span class="op">=</span><span class="cn">false</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol type="i">
+<li>✍️ Show that <span class="math inline">\(f_1\)</span> has a root <span class="math inline">\(\xi \in [2,3]\)</span> and that <span class="math inline">\(f_2(0) = f_3(0) = f_4(0) = 0\)</span>.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="2" type="i">
+<li><span class="math inline">\(f_1\)</span>:</li>
+</ol>
+<p>💻 Run Newton’s method for <span class="math inline">\(f_1\)</span> with <span class="math inline">\(x_1 = 2\)</span> using <code>Newton</code> and <code>order_table</code> from the code cell at the start of the assignment. If the iteration converges, estimate the order of convergence <span class="math inline">\(\alpha\)</span> and the asymptotic error constant <span class="math inline">\(\mu\)</span> numerically.</p>
+<p>✍️ Find <span class="math inline">\(A\)</span> such that <span class="math inline">\(\left|\frac{f_1''(x)}{f_1'(y)}\right| \leq A\)</span> for all <span class="math inline">\(x, y \in [2,3]\)</span> and compare your numerical estimate of <span class="math inline">\(\mu\)</span> with the theoretical value <span class="math inline">\(\frac12 \left| \frac{f_1''(\xi)}{f_1'(\xi)} \right|\)</span>.</p>
+<div id="f87d311b" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="3" type="i">
+<li><span class="math inline">\(f_2\)</span>:</li>
+</ol>
+<p>💻 Run Newton’s method for <span class="math inline">\(f_2\)</span> with <span class="math inline">\(x_1 = 0.5\)</span> using <code>Newton</code> and <code>order_table</code> from the code cell at the start of the assignment. If the iteration converges, estimate the order of convergence <span class="math inline">\(\alpha\)</span> and the asymptotic error constant <span class="math inline">\(\mu\)</span> numerically.</p>
+<p>✍️ Why does the convergence behaviour for <span class="math inline">\(f_2\)</span> not contradict <strong>Theorem (Newton)</strong> above?</p>
+<div id="64f05362" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="4" type="i">
+<li><span class="math inline">\(f_3\)</span>:</li>
+</ol>
+<p>💻 Run Newton’s method for <span class="math inline">\(f_3\)</span> with <span class="math inline">\(x_1 = 0.5\)</span> using <code>Newton</code> and <code>order_table</code> from the code cell at the start of the assignment. If the iteration converges, estimate the order of convergence <span class="math inline">\(\alpha\)</span> and the asymptotic error constant <span class="math inline">\(\mu\)</span> numerically.</p>
+<p>✍️ For <span class="math inline">\(f_3\)</span>, the convergence (from <span class="math inline">\(x_1 = 0.5\)</span>) is faster than quadratic. Explain why. What happens if you instead start at <span class="math inline">\(x_1 = 2\)</span>? Explain.</p>
+<p><em>Hint:</em> see the discussion of Kepler’s equation (Example 5.5).</p>
+<div id="6b2c133f" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="22" type="a">
+<li><span class="math inline">\(f_4\)</span>:</li>
+</ol>
+<p>💻 Run Newton’s method for <span class="math inline">\(f_4\)</span> with <span class="math inline">\(x_1 = 0.5\)</span> using <code>Newton</code> and <code>order_table</code> from the code cell at the start of the assignment. If the iteration converges, estimate the order of convergence <span class="math inline">\(\alpha\)</span> and the asymptotic error constant <span class="math inline">\(\mu\)</span> numerically.</p>
+<p>✍️ Compute <span class="math inline">\(x_{n+1}\)</span> explicitly in terms of <span class="math inline">\(x_n\)</span>. Hence show that Newton’s method does not converge for any <span class="math inline">\(x_1 \not= 0\)</span>. Why does this not contradict <strong>Theorem (Newton)</strong> above?</p>
+<div id="93ecab4d" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+</section>
+<section id="b-efficiency-of-newton-and-secant-20-pts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="b-efficiency-of-newton-and-secant-20-pts">B: Efficiency of Newton and secant [20 pts]</h2>
+<p>The <em>efficiency index</em> of a method with order of convergence <span class="math inline">\(\alpha\)</span> requiring <span class="math inline">\(\theta\)</span> function evaluations per iteration is <span class="math inline">\(E := \alpha^{1/\theta}\)</span>. (Here, evaluating <span class="math inline">\(f\)</span> or <span class="math inline">\(f'\)</span> each counts as one function evaluation.)</p>
+<p><strong><em>Exercise 2. (Newton vs.&nbsp;secant)</em></strong> Let <span class="math inline">\(f_1(x) = x^3 - 3x - 5\)</span> and <span class="math inline">\(\xi \in [2,3]\)</span> be as in Exercise 1.</p>
+<ol type="i">
+<li>✍️ What is the efficiency index of Newton’s method and of the secant method?</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="2" type="i">
+<li>💻 Apply the secant method (<code>secant</code> from the code cell at the start of the assignment) to <span class="math inline">\(f_1\)</span> with <span class="math inline">\(x_1 = 2, x_2 = 3\)</span>. Estimate the order of convergence and compare with the theoretical values <span class="math inline">\(\alpha = \frac{1 + \sqrt5}{2}\)</span> and <span class="math inline">\(\mu = \left| \frac12 \frac{f_1''(\xi)}{f_1'(\xi)} \right|^{\alpha/(1+\alpha)}\)</span> from Lecture 5.</li>
+</ol>
+<div id="ebd500fe" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="3" type="i">
+<li>💻 For both Newton’s method (with <span class="math inline">\(x_1 = 2\)</span>) and the secant method (with <span class="math inline">\(x_1 = 2, x_2 = 3\)</span>), count the total number of function evaluations needed to obtain <span class="math inline">\(|x_n - \xi| &lt; 10^{-12}\)</span>. Which method is cheaper? Is this consistent with the efficiency indices of the two methods?</li>
+</ol>
+<p><em>Hint:</em> use <code>Newton</code> and <code>secant</code> from the code cell at the start of the assignment. Both stop once <span class="math inline">\(|f(x_n)| &lt;\)</span> <code>tol</code> (default <span class="math inline">\(10^{-10}\)</span>), so you may need to pass a smaller tolerance, e.g.&nbsp;<code>Newton(f, f_prime, x1; tol=1e-14)</code>.</p>
+<div id="d1bcbcd0" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+</section>
+<section id="c-barycentric-formula-divided-differences-30-pts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="c-barycentric-formula-divided-differences-30-pts">C: Barycentric formula &amp; divided differences [30 pts]</h2>
+<p>Recall from Lecture 8 that, for distinct nodes <span class="math inline">\(X = \{x_0, \dots, x_n\}\)</span>, the divided differences satisfy the recursion</p>
+<p><span class="math display">\[\begin{align}
+    f[x_0, \dots, x_n] = \frac{f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}]}{x_n - x_0}, \nonumber
+\end{align}\]</span></p>
+<p>the polynomial interpolant can be written in <em>Newton form</em></p>
+<p><span class="math display">\[\begin{align}
+    I_Xf(x) &amp;= \sum_{k=0}^n f[x_0, \dots, x_k] \, \pi_k(x), \nonumber\\
+    \pi_k(x) &amp;:= (x - x_0) \cdots (x - x_{k-1}), \nonumber
+\end{align}\]</span></p>
+<p>and in <em>Barycentric form</em></p>
+<p><span class="math display">\[\begin{align}
+    I_Xf(x) &amp;= \left. \sum_{j=0}^n \frac{\lambda_j f(x_j)}{x - x_j} \middle/ \sum_{j=0}^n \frac{\lambda_j}{x - x_j} \right., \nonumber\\
+    %
+    \lambda_j &amp;:= \frac{1}{\prod_{k\not=j} (x_j - x_k)}. \nonumber
+\end{align}\]</span></p>
+<div style="break-after: page;">
+
+</div>
+<p><strong><em>Exercise 3. (Divided differences)</em></strong> Let <span class="math inline">\(f(x) = \frac1x\)</span>.</p>
+<ol type="i">
+<li>✍️ Compute the divided difference table of <span class="math inline">\(f\)</span> on <span class="math inline">\(X = \{ x_0, x_1, x_2 \} = \{1, 2, 4\}\)</span> and write down <span class="math inline">\(I_Xf\)</span> in Newton form. Now add the node <span class="math inline">\(x_3 = \frac12\)</span>: update your table and write down the new interpolant. Which terms did you have to compute again?</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="2" type="i">
+<li>✍️ Show that, for any distinct nonzero nodes <span class="math inline">\(x_0, \dots, x_n\)</span>,</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+    f[x_0, \dots, x_n] = \frac{(-1)^n}{x_0 x_1 \cdots x_n}. \nonumber
+\end{align}\]</span></p>
+<p>Check that this agrees with your table in (i).</p>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="3" type="i">
+<li>✍️ Let <span class="math inline">\(X = \{x_0, \dots, x_n\}\)</span> be distinct nodes and <span class="math inline">\(x \not\in X\)</span>. By adding <span class="math inline">\(x\)</span> as an extra interpolation node, use the Newton form to show that</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+    f(x) - I_Xf(x) = f[x_0, \dots, x_n, x] \, \ell_X(x) \nonumber
+\end{align}\]</span></p>
+<p>where <span class="math inline">\(\ell_X(x) = (x - x_0) \cdots (x - x_n)\)</span> is the node polynomial. Hence, using (ii), write down an exact formula for the error <span class="math inline">\(\frac1x - I_Xf(x)\)</span> when <span class="math inline">\(f(x) = \frac1x\)</span> (and <span class="math inline">\(x, x_0, \dots, x_n \not= 0\)</span>).</p>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<p><strong><em>Exercise 4. (Newton form vs.&nbsp;Barycentric formula)</em></strong></p>
+<ol type="i">
+<li>✍️ Compute the Barycentric weights <span class="math inline">\(\lambda_0, \lambda_1, \lambda_2\)</span> for <span class="math inline">\(X = \{1, 2, 4\}\)</span> and write down the Barycentric formula for the interpolant of <span class="math inline">\(f(x) = \frac1x\)</span> from Exercise 3 (i).</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="2" type="i">
+<li>💻 The code below implements <code>divided_differences(x, y)</code>, which, given the nodes <code>x</code> <span class="math inline">\(= (x_0, \dots, x_n)\)</span> and the data values <code>y</code> <span class="math inline">\(= \big( f(x_0), \dots, f(x_n) \big)\)</span>, returns the vector of Newton coefficients <span class="math inline">\(\big( f[x_0], f[x_0,x_1], \dots, f[x_0,\dots,x_n] \big)\)</span> by computing the divided difference table column by column (using <span class="math inline">\(O(n^2)\)</span> operations), and <code>newton_eval(c, x, t)</code>, which evaluates the Newton form at <span class="math inline">\(t\)</span> using <span class="math inline">\(O(n)\)</span> operations by nested multiplication: <span class="math inline">\(c_0 + (t - x_0)\Big( c_1 + (t - x_1)\big( c_2 + \cdots \big) \Big)\)</span>.</li>
+</ol>
+<p>Run it, and use it to check your answer to Exercise 3 (i).</p>
+<div id="48c6169f" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Newton coefficients (f[x_0], f[x_0,x_1], ..., f[x_0,...,x_n]): the divided difference</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># table is computed column by column, overwriting c in place. Here y[j] = f(x[j]) are the data values</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">divided_differences</span>(x, y)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> <span class="fu">float</span>.(<span class="fu">copy</span>(y))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">length</span>(x)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>               <span class="co"># column k of the table</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">∈</span> n<span class="op">:-</span><span class="fl">1</span><span class="op">:</span>k<span class="op">+</span><span class="fl">1</span>        <span class="co"># bottom to top, so that c[j-1] still holds column k-1</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            c[j] <span class="op">=</span> (c[j] <span class="op">-</span> c[j<span class="op">-</span><span class="fl">1</span>]) <span class="op">/</span> (x[j] <span class="op">-</span> x[j<span class="op">-</span>k])</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># evaluates the Newton form c_0 + (t - x_0)(c_1 + (t - x_1)(c_2 + ...)) by nested multiplication</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newton_eval</span>(c, x, t)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> c[<span class="kw">end</span>]</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="op">∈</span> <span class="fu">length</span>(c)<span class="op">-</span><span class="fl">1</span><span class="op">:-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> c[k] <span class="op">+</span> (t <span class="op">-</span> x[k]) <span class="op">*</span> p</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="co"># test: g(x) = x^3 on 4 nodes has divided differences g[x_0,...,x_3] = 1 and is reproduced exactly</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(x) <span class="op">=</span> x<span class="op">^</span><span class="fl">3</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>]</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fu">divided_differences</span>(X, <span class="fu">g</span>.(X))</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Newton coefficients of x^3 on X: "</span>, c)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"p(3) = "</span>, <span class="fu">newton_eval</span>(c, X, <span class="fl">3</span>), <span class="st">",  g(3) = "</span>, <span class="fu">g</span>(<span class="fl">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="3" type="i">
+<li>💻 Let <span class="math inline">\(X_n := \{ \cos\frac{j\pi}{n} \}_{j=0}^n\)</span> be the Chebyshev nodes of the second kind. The code below computes (an approximation of) <span class="math inline">\(\max_{x\in[-1,1]} |f(x) - p(x)|\)</span> for <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span> and <span class="math inline">\(f(x) = e^x\)</span> and <span class="math inline">\(n = 10, 20, 40, 80, 160\)</span>, where <span class="math inline">\(p = I_{X_n}f\)</span> is evaluated using <em>(a)</em> the Newton form from (ii), and <em>(b)</em> the Barycentric formula (<code>ChebyshevInterpolant</code> from Lecture 8). Run it.</li>
+</ol>
+<div id="bde8d5d7" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Barycentric formula for Chebyshev nodes of the second kind (from Lecture 8)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ChebyshevInterpolant</span>( f, n )</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> @. <span class="fu">cos</span>( <span class="fu">π*</span>(<span class="fl">0</span><span class="op">:</span>n)<span class="op">/</span>n )</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> @. <span class="fu">f</span>( x )</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    λ <span class="op">=</span> @. (<span class="op">-</span><span class="fl">1.0</span>)<span class="op">^</span>(<span class="fl">0</span><span class="op">:</span>n)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    λ[<span class="fl">1</span>] <span class="op">/=</span> <span class="fl">2</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    λ[<span class="kw">end</span>] <span class="op">/=</span> <span class="fl">2</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">function</span> ( t )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        num <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        den <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>(n<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> t <span class="op">==</span> x[j]</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> y[j]</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            num <span class="op">+=</span> λ[j] <span class="op">*</span> y[j] <span class="op">/</span> (t <span class="op">-</span> x[j])</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            den <span class="op">+=</span> λ[j] <span class="op">/</span> (t <span class="op">-</span> x[j])</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> num <span class="op">/</span> den</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="fu">Runge</span>(x) <span class="op">=</span> <span class="fl">1</span><span class="op">/</span>(<span class="fl">1</span> <span class="op">+</span> <span class="fl">25</span>x<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>egrid <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">2001</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (name, f) <span class="op">∈</span> [(<span class="st">"1/(1 + 25x^2)"</span>, Runge), (<span class="st">"exp(x)"</span>, exp)]</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"f(x) = "</span>, name)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%5s %16s %16s</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">"n"</span>, <span class="st">"error (Newton)"</span>, <span class="st">"error (Bary)"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> [<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">160</span>]</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> @. <span class="fu">cos</span>( <span class="fu">π*</span>(<span class="fl">0</span><span class="op">:</span>n)<span class="op">/</span>n )</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        coeffs <span class="op">=</span> <span class="fu">divided_differences</span>(x, <span class="fu">f</span>.(x))</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> <span class="fu">ChebyshevInterpolant</span>(f, n)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>        err_newton <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>(<span class="fu">newton_eval</span>(coeffs, x, t) <span class="op">-</span> <span class="fu">f</span>(t)) <span class="cf">for</span> t <span class="op">∈</span> egrid )</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>        err_bary   <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>(<span class="fu">p</span>(t) <span class="op">-</span> <span class="fu">f</span>(t)) <span class="cf">for</span> t <span class="op">∈</span> egrid )</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@printf</span>(<span class="st">"%5d %16.2e %16.2e</span><span class="sc">\n</span><span class="st">"</span>, n, err_newton, err_bary)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>()</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="4" type="i">
+<li>✍️ Describe what you observe in (iii). Explain why the two methods give different results even though, in exact arithmetic, they compute the same polynomial.</li>
+</ol>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+<ol start="22" type="a">
+<li>💻 ✍️ The code below reorders the nodes <span class="math inline">\(X_n\)</span> using the <em>Leja ordering</em>: <span class="math inline">\(x_0\)</span> is a node of largest absolute value, and each subsequent <span class="math inline">\(x_k\)</span> is chosen among the remaining nodes to maximise <span class="math inline">\(\prod_{i&lt;k} |x_k - x_i|\)</span>. The nodes are the same, so the interpolant <span class="math inline">\(I_{X_n} f\)</span> is the same, but the Newton form now uses the nodes in a different order. Run it, and compare with the table from (iii). Why is the Newton form more numerically stable with this ordering?</li>
+</ol>
+<p><em>Hint:</em> In the Newton form, the coefficient <span class="math inline">\(f[x_0, \dots, x_k]\)</span> is multiplied by <span class="math inline">\(\omega_k(t) := \prod_{i&lt;k} (t - x_i)\)</span>. How large is <span class="math inline">\(|\omega_k(t)|\)</span> for <span class="math inline">\(t\)</span> near <span class="math inline">\(-1\)</span> when the nodes are in their original order <span class="math inline">\(1 = x_0 &gt; x_1 &gt; \cdots\)</span>? What about with the Leja ordering?</p>
+<div id="b3d84f21" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Leja ordering: start at a node of largest |x|, then repeatedly choose the remaining node that</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># maximises the product of distances to the nodes already chosen (sums of logs avoid overflow)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">leja_order</span>(x)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">float</span>.(<span class="fu">collect</span>(x))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fu">argmax</span>(<span class="fu">abs</span>.(x))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    order <span class="op">=</span> [i]</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">length</span>(x))            <span class="co"># s[j] = sum of log|x[j] - x[i]| over chosen nodes i</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="op">∈</span> <span class="fl">2</span><span class="op">:</span><span class="fu">length</span>(x)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        s <span class="op">.+=</span> <span class="fu">log</span>.(<span class="fu">abs</span>.(x <span class="op">.-</span> x[i]))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        s[order] <span class="op">.=</span> <span class="op">-</span><span class="cn">Inf</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="fu">argmax</span>(s)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">push!</span>(order, i)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[order]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (name, f) <span class="op">∈</span> [(<span class="st">"1/(1 + 25x^2)"</span>, Runge), (<span class="st">"exp(x)"</span>, exp)]</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"f(x) = "</span>, name)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"%5s %16s %16s %16s</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">"n"</span>, <span class="st">"error (Newton)"</span>, <span class="st">"error (Leja)"</span>, <span class="st">"error (Bary)"</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">∈</span> [<span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">40</span>, <span class="fl">80</span>, <span class="fl">160</span>]</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> @. <span class="fu">cos</span>( <span class="fu">π*</span>(<span class="fl">0</span><span class="op">:</span>n)<span class="op">/</span>n )</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>        coeffs <span class="op">=</span> <span class="fu">divided_differences</span>(x, <span class="fu">f</span>.(x))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>        xL <span class="op">=</span> <span class="fu">leja_order</span>(x)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>        coeffsL <span class="op">=</span> <span class="fu">divided_differences</span>(xL, <span class="fu">f</span>.(xL))</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> <span class="fu">ChebyshevInterpolant</span>(f, n)</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>        err_newton <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>(<span class="fu">newton_eval</span>(coeffs, x, t) <span class="op">-</span> <span class="fu">f</span>(t)) <span class="cf">for</span> t <span class="op">∈</span> egrid )</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>        err_leja   <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>(<span class="fu">newton_eval</span>(coeffsL, xL, t) <span class="op">-</span> <span class="fu">f</span>(t)) <span class="cf">for</span> t <span class="op">∈</span> egrid )</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>        err_bary   <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>(<span class="fu">p</span>(t) <span class="op">-</span> <span class="fu">f</span>(t)) <span class="cf">for</span> t <span class="op">∈</span> egrid )</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>        <span class="pp">@printf</span>(<span class="st">"%5d %16.2e %16.2e %16.2e</span><span class="sc">\n</span><span class="st">"</span>, n, err_newton, err_leja, err_bary)</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>()</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="alert alert-block alert-success">
+<p><b>Answer.</b></p>
+</div>
+<div style="break-after: page;">
+
+</div>
+</section>
+<section id="d-reflection-20-pts" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="d-reflection-20-pts">D: Reflection [20 pts]</h2>
+<p><strong>Goal:</strong> Reflect on your learning strategies, track your workload, and help us improve future course material.<br>
+<strong>Time:</strong> take 5-10 mins (this shouldn’t take too long)</p>
+<p>Estimate the approximate hours you spent:<br>
+* <strong>Assignment:</strong> ____<br>
+* <strong>Reading notes/materials:</strong> ____<br>
+* <strong>Exercises:</strong> ____</p>
+<p>(Reminder: you should be spending around 8 hours per week on this course outside of the 4 hours of lectures)</p>
+<div class="alert alert-block alert-success">
+<p><b>Any other comments:</b></p>
+</div>
+<p>Take a moment to reflect on your learning over the past two weeks:</p>
+<p>What was the easiest topic or task and why? Where did you struggle, and how did you overcome those challenges? Which resources (e.g.&nbsp;lecture notes, practice exercises, peer discussions, …) helped you the most? How did you manage your time and workload (e.g., all at once, spread out over several days, or working with peers)? Looking back, what would you do differently if you were starting these two weeks over today?</p>
+<div class="alert alert-block alert-success">
+<p><b>Comments:</b></p>
+</div>
+<p>(Optional) Any changes that would improve the lectures, exercises, or assignments for the future? You can also suggest things anonymously <a href="http://z.umn.edu/JT-message" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-archive me-1" aria-hidden="true"></i> here <span class="visually-hidden">(opens in a new tab)</span> </a></p>
+<div class="alert alert-block alert-success">
+<p><b>Comments:</b></p>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<style>
+
+  /* Change cursor on equation tags to signal interactivity */
+
+  .mjx-tag, .katex-tag, [id^="eq-"] .tag {
+
+    cursor: pointer !important;
+
+  }
+
+  .mjx-tag:hover, .katex-tag:hover {
+
+    opacity: 0.7;
+
+  }
+
+</style>
+
+
+
+<script>
+
+window.addEventListener("load", function() {
+
+  const setupEquationCopy = () => {
+
+    // Find all equation containers generated by Quarto with an 'eq-' ID
+
+    document.querySelectorAll('[id^="eq-"]').forEach(container => {
+
+      const eqId = container.getAttribute('id');
+
+      const labelText = `@${eqId}`;
+
+      
+
+      // Locate the rendered tag element inside MathJax or KaTeX
+
+      const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
+
+      
+
+      // Set hover title to display the label name
+
+      tag.setAttribute('title', `📋 ${labelText}`);
+
+      
+
+      // Copy label to clipboard on click
+
+      tag.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        navigator.clipboard.writeText(labelText).then(() => {
+
+          showToast(`Copied ${labelText} to clipboard!`);
+
+        });
+
+      });
+
+    });
+
+  };
+
+
+
+  // Wait for MathJax/KaTeX rendering before attaching listeners
+
+  if (window.MathJax && window.MathJax.startup) {
+
+    window.MathJax.startup.promise.then(setupEquationCopy);
+
+  } else {
+
+    setupEquationCopy();
+
+  }
+
+
+
+  function showToast(message) {
+
+    let toast = document.getElementById('eq-copy-toast');
+
+    if (!toast) {
+
+      toast = document.createElement('div');
+
+      toast.id = 'eq-copy-toast';
+
+      toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
+
+      document.body.appendChild(toast);
+
+    }
+
+    toast.textContent = message;
+
+    toast.style.opacity = '1';
+
+    setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+
+  }
+
+});
+
+</script>
+<style>
+
+  /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
+
+  @font-face {
+
+    font-family: "DSEG7 Classic";
+
+    src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
+
+    font-weight: 700;
+
+    font-display: swap;
+
+  }
+
+  /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
+
+  #float-timer {
+
+    position: fixed;
+
+    top: 80px;
+
+    right: 24px;
+
+    z-index: 2000;
+
+    display: none;
+
+    flex-direction: column;
+
+    width: 390px;
+
+    height: 230px;
+
+    min-width: 280px;
+
+    max-width: calc(100vw - 16px);   /* keep it on small screens */
+
+    min-height: 190px;
+
+    resize: both;                /* drag the bottom-right corner to resize */
+
+    container: ft / inline-size; /* lets the contents react to the timer's own width */
+
+    overflow: hidden;
+
+    background: var(--bs-body-bg, #fff);
+
+    color: var(--bs-body-color, #212529);
+
+    border: 2px solid #2780e3;
+
+    border-radius: 8px;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+
+    user-select: none;
+
+    font-family: inherit;
+
+  }
+
+  #float-timer.visible { display: flex; }
+
+  #float-timer .ft-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 4px 8px;
+
+    background: #2780e3;
+
+    color: #fff;
+
+    cursor: move;
+
+    font-size: .95rem;
+
+    touch-action: none;
+
+  }
+
+  #float-timer .ft-modes button {
+
+    background: none;
+
+    border: 1px solid rgba(255, 255, 255, .6);
+
+    color: #fff;
+
+    border-radius: 4px;
+
+    font-size: .8rem;
+
+    padding: 0 6px;
+
+    cursor: pointer;
+
+  }
+
+  #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
+
+  #float-timer .ft-close {
+
+    background: none;
+
+    border: none;
+
+    color: #fff;
+
+    font-size: 1.3rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+  }
+
+  #float-timer .ft-display {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: "DSEG7 Classic", "Courier New", monospace;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+  }
+
+  #float-timer .ft-controls {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 4px 10px 10px 10px;
+
+  }
+
+  #float-timer .ft-controls .btn { font-size: 1rem; }
+
+  #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
+
+  #float-timer:not(.countdown) .ft-countdown-only { display: none; }
+
+  /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
+
+  /* drop the preset buttons and the title when the timer is too narrow for them */
+
+  @container ft (max-width: 382px) {
+
+    [data-preset] { display: none; }
+
+  }
+
+  @container ft (max-width: 290px) {
+
+    .ft-title { display: none; }
+
+  }
+
+  @media (max-width: 575.98px) {
+
+    #float-timer { right: 8px; }
+
+  }
+
+  #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
+
+  @keyframes ft-flash { to { visibility: hidden; } }
+
+</style>
+
+
+
+<div id="float-timer" aria-label="Timer">
+
+  <div class="ft-header">
+
+    <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
+
+    <span class="ft-modes">
+
+      <button data-mode="up" title="Count up">Stopwatch</button>
+
+      <button data-mode="down" title="Count down">Countdown</button>
+
+    </span>
+
+    <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
+
+  </div>
+
+  <div class="ft-display"><span class="ft-digits">00:00</span></div>
+
+  <div class="ft-controls">
+
+    <button class="btn btn-primary ft-toggle">Start</button>
+
+    <button class="btn btn-outline-secondary ft-reset">Reset</button>
+
+    <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
+
+    <span class="ft-countdown-only">min</span>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+(function () {
+
+  const KEY = "math5485-timer";
+
+  const box = document.getElementById("float-timer");
+
+  const display = box.querySelector(".ft-display");
+
+  const digits = box.querySelector(".ft-digits");
+
+  const toggleBtn = box.querySelector(".ft-toggle");
+
+  const minutesInput = box.querySelector(".ft-minutes");
+
+
+
+  // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
+
+  // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
+
+  let state = {
+
+    visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
+
+    left: null, top: null, width: null, height: null
+
+  };
+
+  try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+
+
+  const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
+
+  const pad = n => String(n).padStart(2, "0");
+
+  const fmt = ms => {
+
+    const s = Math.ceil(ms / 1000);
+
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+
+    return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
+
+  };
+
+
+
+  function render() {
+
+    let shown = elapsed(), timesUp = false;
+
+    if (state.mode === "down") {
+
+      const remaining = state.minutes * 60000 - shown;
+
+      if (remaining <= 0 && state.startedAt) {
+
+        // stop exactly at zero
+
+        state.elapsed = state.minutes * 60000; state.startedAt = null; save();
+
+      }
+
+      shown = Math.max(0, state.minutes * 60000 - elapsed());
+
+      timesUp = shown === 0 && state.minutes > 0;
+
+    } else {
+
+      shown = Math.floor(shown / 1000) * 1000;
+
+    }
+
+    digits.textContent = fmt(shown);
+
+    toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
+
+    box.classList.toggle("visible", state.visible);
+
+    box.classList.toggle("countdown", state.mode === "down");
+
+    box.classList.toggle("times-up", timesUp);
+
+    box.querySelectorAll(".ft-modes button").forEach(b =>
+
+      b.classList.toggle("active", b.dataset.mode === state.mode));
+
+    if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
+
+    if (state.left !== null) {
+
+      box.style.left = state.left + "px";
+
+      box.style.top = state.top + "px";
+
+      box.style.right = "auto";
+
+    }
+
+    if (state.width) {
+
+      box.style.width = state.width + "px";
+
+      box.style.height = state.height + "px";
+
+    }
+
+    fitText();
+
+  }
+
+
+
+  // scale the digits to fill the display area
+
+  function fitText() {
+
+    if (!state.visible) return;
+
+    // start from the available height, then shrink until the digits fit the width
+
+    const w = display.clientWidth - 16, h = display.clientHeight;
+
+    let size = h * 0.8;
+
+    display.style.fontSize = size + "px";
+
+    for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
+
+      size *= w / digits.offsetWidth;
+
+      display.style.fontSize = size + "px";
+
+    }
+
+    display.style.fontSize = Math.max(16, size) + "px";
+
+  }
+
+
+
+  function reset() {
+
+    state.elapsed = 0;
+
+    state.startedAt = state.startedAt ? Date.now() : null;
+
+  }
+
+
+
+  toggleBtn.addEventListener("click", () => {
+
+    if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
+
+    else {
+
+      if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
+
+      state.startedAt = Date.now();
+
+    }
+
+    save(); render();
+
+  });
+
+  box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
+
+  box.querySelector(".ft-close").addEventListener("click", () => {
+
+    state.visible = false; save(); render();
+
+  });
+
+  box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
+
+    if (state.mode !== b.dataset.mode) {
+
+      state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
+
+      save(); render();
+
+    }
+
+  }));
+
+  const setMinutes = m => {
+
+    state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
+
+    save(); render();
+
+  };
+
+  minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
+
+  box.querySelectorAll("[data-preset]").forEach(b =>
+
+    b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
+
+
+
+  // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
+
+  document.addEventListener("click", e => {
+
+    if (e.target.closest('a[href$="#timer"]')) {
+
+      e.preventDefault();
+
+      state.visible = !state.visible;
+
+      save(); render();
+
+    }
+
+  });
+
+
+
+  // dragging by the header (mouse and touch)
+
+  const header = box.querySelector(".ft-header");
+
+  header.addEventListener("pointerdown", e => {
+
+    if (e.target.closest("button")) return;
+
+    const r = box.getBoundingClientRect();
+
+    const dx = e.clientX - r.left, dy = e.clientY - r.top;
+
+    header.setPointerCapture(e.pointerId);
+
+    const move = ev => {
+
+      state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
+
+      state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
+
+      render();
+
+    };
+
+    const up = () => {
+
+      header.removeEventListener("pointermove", move);
+
+      header.removeEventListener("pointerup", up);
+
+      save();
+
+    };
+
+    header.addEventListener("pointermove", move);
+
+    header.addEventListener("pointerup", up);
+
+  });
+
+
+
+  // remember the size after resizing (via the bottom-right corner) and rescale the digits
+
+  new ResizeObserver(() => {
+
+    if (!state.visible) return;
+
+    state.width = box.offsetWidth; state.height = box.offsetHeight;
+
+    fitText(); save();
+
+  }).observe(box);
+
+
+
+  // the digital font loads asynchronously: refit once it arrives
+
+  if (document.fonts) {
+
+    document.fonts.ready.then(fitText);
+
+    document.fonts.addEventListener("loadingdone", fitText);
+
+  }
+
+
+
+  render();
+
+  setInterval(() => { if (state.startedAt) render(); }, 200);
+
+})();
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../assignments/A02.html" class="pagination-link" aria-label="A2: Stability &amp; simple iterations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A2: Stability &amp; simple iterations</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../appendix/calculus.html" class="pagination-link" aria-label="Calculus">
+        <span class="nav-page-text">Calculus</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/assignments/A03.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
