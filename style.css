@@ -254,7 +254,14 @@ details summary {
 details[open] summary {
   margin-bottom: 0.5em;
 }
-/* space below animated figures */
-.cell.animation {
+/* space below figures produced by code cells (static plots and animations) */
+.cell:has(.cell-output-display) {
   margin-bottom: 1.5em;
+}
+
+/* wide display equations (e.g. divided difference tables) scroll sideways on narrow screens */
+mjx-container[display="true"] {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.2em 0;
 }

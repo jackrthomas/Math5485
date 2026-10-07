@@ -1,0 +1,2278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Hermite interpolation – Math5485</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../exercises/bank.html" rel="next">
+<link href="../lectures/L08.html" rel="prev">
+<link href="../images/pi.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/L01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/L09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Math5485</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
+    <a href="../#timer" title="Timer" class="quarto-navigation-tool px-1" aria-label="Timer"><i class="bi bi-stopwatch"></i></a>
+    <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How computers add</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conditioning &amp; stability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Simple iterations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, secant</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial interpolation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chebyshev polynomials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Barycentric formula and divided differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L09.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise bank</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1: Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Admin</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#previously.." id="toc-previously.." class="nav-link active" data-scroll-target="#previously.."><span class="header-section-number">9.1</span> Previously…..</a></li>
+  <li><a href="#hermite-interpolation" id="toc-hermite-interpolation" class="nav-link" data-scroll-target="#hermite-interpolation"><span class="header-section-number">9.2</span> Hermite Interpolation</a></li>
+  <li><a href="#extra-exercises" id="toc-extra-exercises" class="nav-link" data-scroll-target="#extra-exercises"><span class="header-section-number">9.3</span> Extra exercises</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/lectures/L09.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+    <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
+
+      <span class="banner-label">📢 <strong>Updates</strong></span>
+
+      <div class="banner-ticker">
+
+        <div class="banner-ticker-track">
+
+          <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
+
+                 * Order doesn't matter: updates are sorted by date (newest first).
+
+                 * Updates dated in the future are hidden until that day (so you can schedule them).
+
+                 * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
+
+          <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
+
+          <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
+
+          <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
+
+          <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
+
+          <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
+
+          <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
+
+        </div>
+
+      </div>
+
+      <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
+
+      <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
+
+      <div id="banner-all-updates" class="banner-all" hidden="">
+
+        <div class="banner-all-title">All updates</div>
+
+        <ul class="banner-all-list"></ul>
+
+      </div>
+
+    </div>
+
+    <style>
+
+      .announcement-banner {
+
+        background-color: #007bff;
+
+        color: white;
+
+        padding: 8px 12px;
+
+        position: relative;
+
+        font-size: 0.95rem;
+
+        z-index: 1000;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 0.75rem;   /* space between the banner and the page below */
+
+      }
+
+      .banner-label {
+
+        flex-shrink: 0;
+
+        white-space: nowrap;
+
+      }
+
+      /* scrolling area: fades out at both ends */
+
+      .banner-ticker {
+
+        flex-grow: 1;
+
+        overflow: hidden;
+
+        white-space: nowrap;
+
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+
+                mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+
+      }
+
+      .banner-ticker-track {
+
+        display: inline-flex;
+
+        white-space: nowrap;
+
+        will-change: transform;
+
+      }
+
+      .banner-ticker.scrolling .banner-ticker-track {
+
+        animation: banner-scroll var(--banner-duration, 30s) linear infinite;
+
+      }
+
+      /* pause while the mouse is over the text, so it can be read */
+
+      .banner-ticker:hover .banner-ticker-track {
+
+        animation-play-state: paused;
+
+      }
+
+      .banner-item {
+
+        padding: 0 1.5rem;
+
+      }
+
+      .banner-date {
+
+        display: inline-block;
+
+        font-size: 0.8em;
+
+        font-weight: 600;
+
+        background: rgba(255, 255, 255, 0.2);
+
+        border-radius: 4px;
+
+        padding: 0 6px;
+
+        margin-right: 6px;
+
+      }
+
+      .banner-item::before {
+
+        content: "•";
+
+        margin-right: 1.5rem;
+
+        opacity: 0.7;
+
+      }
+
+      @keyframes banner-scroll {
+
+        from { transform: translateX(0); }
+
+        to   { transform: translateX(-50%); }   /* the track holds two identical halves */
+
+      }
+
+      /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
+
+      @media (prefers-reduced-motion: reduce) {
+
+        .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
+
+        .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
+
+      }
+
+      /* "All updates" button and drop-down list */
+
+      .banner-more-btn {
+
+        flex-shrink: 0;
+
+        background: rgba(255, 255, 255, 0.15);
+
+        border: 1px solid rgba(255, 255, 255, 0.6);
+
+        color: white;
+
+        border-radius: 999px;
+
+        font-size: 0.8rem;
+
+        padding: 2px 10px;
+
+        cursor: pointer;
+
+        white-space: nowrap;
+
+      }
+
+      .banner-more-btn:hover,
+
+      .banner-more-btn[aria-expanded="true"] {
+
+        background: white;
+
+        color: #007bff;
+
+      }
+
+      .banner-all {
+
+        position: absolute;
+
+        top: 100%;
+
+        right: 12px;
+
+        margin-top: 6px;
+
+        width: min(420px, calc(100vw - 24px));
+
+        max-height: 60vh;
+
+        overflow-y: auto;
+
+        background: white;
+
+        color: #212529;
+
+        border: 1px solid #dee2e6;
+
+        border-radius: 8px;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+        padding: 10px 14px;
+
+        text-align: left;
+
+        z-index: 1001;
+
+      }
+
+      .banner-all[hidden] { display: none; }
+
+      .banner-all-title {
+
+        font-weight: 600;
+
+        margin-bottom: 6px;
+
+      }
+
+      .banner-all-list {
+
+        list-style: none;
+
+        margin: 0;
+
+        padding: 0;
+
+      }
+
+      .banner-all-list li {
+
+        padding: 5px 0;
+
+        border-top: 1px solid #f1f3f5;
+
+      }
+
+      .banner-all-list li:first-child { border-top: none; }
+
+      .banner-all-list li.banner-all-date {
+
+        font-size: 0.78rem;
+
+        font-weight: 600;
+
+        color: #6c757d;
+
+        border-top: none;
+
+        padding: 8px 0 2px;
+
+      }
+
+      .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
+
+      .banner-close-btn {
+
+        flex-shrink: 0;
+
+        background: none;
+
+        border: none;
+
+        color: white;
+
+        font-size: 1.4rem;
+
+        cursor: pointer;
+
+        line-height: 1;
+
+        padding: 0 8px;
+
+        opacity: 0.8;
+
+      }
+
+      .banner-close-btn:hover {
+
+        opacity: 1;
+
+      }
+
+    </style>
+
+    <script>
+
+      // Hide immediately if already dismissed in this browser session
+
+      if (sessionStorage.getItem('hideCourseBanner') === 'true') {
+
+        document.write('<style>#course-announcement-banner { display: none !important; }</style>');
+
+      }
+
+
+
+      function closeBanner() {
+
+        var banner = document.getElementById('course-announcement-banner');
+
+        if (banner) {
+
+          banner.style.display = 'none';
+
+        }
+
+        // Remember that the user closed it during this browser session
+
+        sessionStorage.setItem('hideCourseBanner', 'true');
+
+      }
+
+
+
+      // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
+
+      // the whole set so the animation (which moves the track by half its width) loops seamlessly.
+
+      (function () {
+
+        var SPEED = 60;          // pixels per second
+
+        var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
+
+
+
+        // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
+
+        function parseDate(str) {
+
+          var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
+
+          return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+
+        }
+
+        function dateLabel(d) {
+
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+
+          var days = Math.round((today - d) / 86400000);
+
+          if (days === 0) return 'Today';
+
+          if (days === 1) return 'Yesterday';
+
+          var opts = { weekday: 'short', month: 'short', day: 'numeric' };
+
+          if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
+
+          return d.toLocaleDateString('en-US', opts);
+
+        }
+
+
+
+        // Sort the updates by date, hide future ones, keep the newest few in the ticker
+
+        // (with a date label) and list all of them, grouped by date, under "All updates".
+
+        function setupUpdates(track) {
+
+          var banner = document.getElementById('course-announcement-banner');
+
+          var btn = banner.querySelector('.banner-more-btn');
+
+          var panel = banner.querySelector('.banner-all');
+
+          var list = panel.querySelector('.banner-all-list');
+
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+
+
+
+          var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
+
+            return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
+
+          }).filter(function (u) {
+
+            return !u.date || u.date <= today;                       // scheduled updates stay hidden
+
+          }).sort(function (a, b) {
+
+            if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
+
+            if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
+
+            return a.order - b.order;                                              // same day: file order
+
+          });
+
+
+
+          // ticker: the newest MAX_SCROLLING updates, each with its date
+
+          track.innerHTML = '';
+
+          updates.slice(0, MAX_SCROLLING).forEach(function (u) {
+
+            var span = document.createElement('span');
+
+            span.className = 'banner-item';
+
+            span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
+
+            track.appendChild(span);
+
+          });
+
+          if (updates.length === 0) { banner.style.display = 'none'; return; }
+
+
+
+          // drop-down: everything, grouped by date
+
+          var lastLabel = null;
+
+          updates.forEach(function (u) {
+
+            var label = u.date ? dateLabel(u.date) : 'Other';
+
+            if (label !== lastLabel) {
+
+              var h = document.createElement('li');
+
+              h.className = 'banner-all-date';
+
+              h.textContent = label;
+
+              list.appendChild(h);
+
+              lastLabel = label;
+
+            }
+
+            var li = document.createElement('li');
+
+            li.innerHTML = u.html;
+
+            list.appendChild(li);
+
+          });
+
+          if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
+
+
+
+          btn.textContent = 'All updates (' + updates.length + ')';
+
+          btn.hidden = false;
+
+
+
+          function setOpen(open) {
+
+            panel.hidden = !open;
+
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+          }
+
+          btn.addEventListener('click', function (e) {
+
+            e.stopPropagation();
+
+            setOpen(panel.hidden);
+
+          });
+
+          panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
+          document.addEventListener('click', function () { setOpen(false); });
+
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+
+        }
+
+
+
+        function startTicker() {
+
+          var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
+
+          if (!ticker) return;
+
+          var track = ticker.querySelector('.banner-ticker-track');
+
+          setupUpdates(track);
+
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+
+
+          var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
+
+          if (items.length === 0) return;
+
+
+
+          // one "half": the updates repeated until they are at least as wide as the banner
+
+          var guard = 0;
+
+          while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
+
+            items.forEach(function (item) {
+
+              var copy = item.cloneNode(true);
+
+              copy.setAttribute('aria-hidden', 'true');
+
+              track.appendChild(copy);
+
+            });
+
+          }
+
+          // second half: an exact copy of the first
+
+          Array.prototype.slice.call(track.children).forEach(function (el) {
+
+            var copy = el.cloneNode(true);
+
+            copy.setAttribute('aria-hidden', 'true');
+
+            track.appendChild(copy);
+
+          });
+
+
+
+          var halfWidth = track.scrollWidth / 2;
+
+          ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
+
+          ticker.classList.add('scrolling');
+
+        }
+
+
+
+        if (document.readyState === 'complete') startTicker();
+
+        else window.addEventListener('load', startTicker);
+
+      })();
+
+    </script>
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/L01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/L09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></h1>
+<p class="subtitle lead">Lecture 9: Chapter 3: Polynomial interpolation</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled" style="margin-bottom: 0.25rem; margin-top: 0.0rem;">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>These lecture notes are mainly a record of what we discussed in class. They should not be used as a replacement for attending lectures or reading books. Please let me know if you find any errors or have any questions about the material.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" style="margin-top: 0.25rem; margin-bottom: 0.25rem;">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Hypothesis
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can use the Hypothesis commenting system available on the right side panel (you can login with your U/Google account). This allows you annotate the notes (private) and leave comments or reply to other people’s comments (public).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" style="margin-top: 0.25rem;">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>I encourage you to download the lecture notes and play around with the Julia code.</p>
+</div>
+</div>
+</div>
+<div class="custom-lecture-buttons my-3 d-flex gap-2">
+<p><a href="#" class="btn-download-ipynb btn btn-outline-primary btn-sm" target="_blank"> <i class="bi bi-journal-code"></i> Download (.ipynb) </a> <a href="#" class="btn-ask-question btn btn-outline-secondary btn-sm" target="_blank"> <i class="bi bi-question-circle"></i> Ask a Question </a> <a href="https://chimein.cla.umn.edu/join/330276" class="btn btn-outline-success btn-sm" target="_blank" rel="noopener noreferrer"> <i class="bi bi-asterisk me-1" aria-hidden="true"></i> ChimeIn <span class="visually-hidden">(opens in a new tab)</span> </a></p>
+</div>
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn btn-dark btn-sm rounded-circle shadow position-fixed bottom-0 end-0 m-4 d-flex align-items-center justify-content-center" style="width: 42px; height: 42px; z-index: 1050;" title="Go to Top">
+<i class="bi bi-arrow-up fs-5"></i>
+</button>
+<script>
+(function() {
+  // Extract notebook file name from current page
+  var path = window.location.pathname.replace(/\/$/, "");
+  var page = path.split("/").pop().replace(/\.html$/, "") || "L01";
+  
+  // 1. Set Raw Notebook Download URL
+  var rawNotebookUrl = "https://raw.githubusercontent.com/jackrthomas/Math5485/main/lectures/" + page + ".ipynb";
+  var downloadBtn = document.querySelector(".btn-download-ipynb");
+  if (downloadBtn) {
+    downloadBtn.setAttribute("href", rawNotebookUrl);
+  }
+
+  // 2. Set Ask a Question URL with current page title & URL pre-filled
+  var pageTitle = encodeURIComponent("[Question] " + (document.title || page));
+  var currentUrl = encodeURIComponent(window.location.href);
+  var issueBody = encodeURIComponent("**Reference Page:** " + decodeURIComponent(currentUrl) + "\n\n**Question/comment:**\n[Your question/query/suggestion/comment here]");
+  
+  var issueUrl = "https://github.com/jackrthomas/Math5485/issues/new?template=question.md&title=" + pageTitle + "&body=" + issueBody;
+  
+  var questionBtn = document.querySelector(".btn-ask-question");
+  if (questionBtn) {
+    questionBtn.setAttribute("href", issueUrl);
+  }
+})();
+</script>
+<section id="previously.." class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="previously.."><span class="header-section-number">9.1</span> Previously…..</h2>
+<ul>
+<li>Barycentric formula: for <span class="math inline">\(x \not\in X\)</span>, <span class="math inline">\(I_Xf(x) = \sum_{j=0}^n \frac{\lambda_j f(x_j)}{x - x_j} \Big/ \sum_{j=0}^n \frac{\lambda_j}{x - x_j}\)</span> where <span class="math inline">\(\lambda_j = \prod_{k\not=j} (x_j - x_k)^{-1}\)</span>,</li>
+<li>Barycentric formula requires <span class="math inline">\(O(n)\)</span> operations per evaluation and is numerically stable for Chebyshev nodes (with weights <span class="math inline">\((-1)^j\)</span>, halved for <span class="math inline">\(j = 0, n\)</span>),</li>
+<li>Divided differences: <span class="math inline">\(f[x_0,\dots,x_n]\)</span> is the leading coefficient of <span class="math inline">\(I_Xf\)</span>; it doesn’t depend on the ordering of the nodes and is linear in <span class="math inline">\(f\)</span>,</li>
+<li>Recursion: <span class="math inline">\(f[x_0,\dots,x_n] = \frac{f[x_1,\dots,x_n] - f[x_0,\dots,x_{n-1}]}{x_n - x_0}\)</span> (<a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a>),</li>
+<li>Newton form: <span class="math inline">\(I_Xf = \sum_{k=0}^n f[x_0,\dots,x_k] \, \pi_k\)</span> where <span class="math inline">\(\pi_k(x) = (x-x_0)\cdots(x-x_{k-1})\)</span> (<a href="L08.html#thm-Newton-form" class="quarto-xref">Theorem&nbsp;<span>8.3</span></a>),</li>
+<li>The coefficients can be read off from the <em>divided difference table</em>; adding a new node only adds one new term.</li>
+</ul>
+<div class="box">
+<p><strong>Exercise.</strong> <a href="L08.html#exr-l08-bary-weights" class="quarto-xref">Exercise&nbsp;<span>8.6</span></a></p>
+</div>
+</section>
+<section id="hermite-interpolation" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="hermite-interpolation"><span class="header-section-number">9.2</span> Hermite Interpolation</h2>
+<p>Now consider distinct nodes <span class="math inline">\(z_0, \dots, z_k\)</span> with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span> and let <span class="math inline">\(X = \{\{ x_0, \dots, x_n \}\}\)</span> be the <em>multiset</em> in which each <span class="math inline">\(z_j\)</span> appears <span class="math inline">\(m_j\)</span> times (so that <span class="math inline">\(n+1 = \sum_{j=0}^k m_j\)</span>).</p>
+<p>Hermite: find <span class="math inline">\(p\)</span> such that, for <span class="math inline">\(j = 0, \dots, k\)</span>,</p>
+<p><span class="math display">\[
+\begin{align}
+    p(z_j) &amp;= f(z_j),  \nonumber\\
+    p'(z_j) &amp;= f'(z_j),  \nonumber\\
+    &amp;\vdots \nonumber\\
+    p^{(m_j-1)}(z_j) &amp;= f^{(m_j-1)}(z_j).
+\end{align}
+\]</span></p>
+<div id="exr-Taylor-Hermite" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.1</strong></span> What is the least degree polynomial interpolant on <span class="math inline">\(X = \{\{x_0, x_0, \dots, x_0\}\}\)</span> (where <span class="math inline">\(x_0\)</span> is repeated <span class="math inline">\(n+1\)</span> times)?</p>
+</div>
+<div id="thm-Hermite" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.1</strong></span> There exists a unique polynomial of degree at most <span class="math inline">\(n\)</span> solving the Hermite interpolation problem.</p>
+</div>
+<p><strong>Proof.</strong> See <a href="#exr-l09-hermite-exist" class="quarto-xref">Exercise&nbsp;<span>9.3</span></a>.</p>
+<p>Again, we define the divided differences (but now for the more general case where we may have repeated interpolation nodes):</p>
+<div id="def-divided-diffs-repeated" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 9.1</strong></span> We define the divided difference <span class="math inline">\(f[x_{0}, \dots, x_n]\)</span> to be the leading coefficient in the polynomial interpolation <span class="math inline">\(p\in \mathcal P_n\)</span> solving the Hermite interpolation problem for <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+    p(x) = f[x_0,\dots,x_n] x^n + q(x)
+\end{align}
+\]</span></p>
+<p>where <span class="math inline">\(q \in \mathcal P_{n-1}\)</span> and <span class="math inline">\(p^{(l)}(z_j) = f^{(l)}(z_j)\)</span> for <span class="math inline">\(l = 0,\dots,m_j-1\)</span> and <span class="math inline">\(j = 0, \dots, k\)</span>.</p>
+</div>
+<div id="thm-divided-diffs-recursion" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.2</strong></span> Suppose that <span class="math inline">\(f\)</span> is sufficiently differentiable (<span class="math inline">\(f \in C^{m-1}\)</span> where <span class="math inline">\(m := \max_j m_j\)</span>). Then, we have</p>
+<p><span class="math display">\[
+\begin{align}
+    f[x_0, \dots, x_n] &amp;= \begin{cases}
+    \frac{f^{(n)}(x_0)}{n!} &amp; \text{if } x_0 = x_1 = \dots = x_n \\
+    \frac
+        {f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}]}
+        {x_n - x_0} &amp;\text{if } x_0 \not= x_n
+    \end{cases}
+\end{align}
+\]</span></p>
+<p>If the nodes are not all equal, we can always reorder <span class="math inline">\(X\)</span> so that <span class="math inline">\(x_0 \not= x_n\)</span> (the divided difference does not depend on the ordering of the nodes).</p>
+</div>
+<p><strong>Proof.</strong> You have seen above that the Taylor polynomial</p>
+<p><span class="math display">\[
+\begin{align}
+    T_f(x) =\sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j
+\end{align}
+\]</span></p>
+<p>solves the Hermite interpolation problem on <span class="math inline">\(X = \{\{x_0,\dots,x_n\}\}\)</span> in the case where <span class="math inline">\(x_0 = \dots = x_n\)</span>. For such <span class="math inline">\(X\)</span>, the leading coefficient in this expression is <span class="math inline">\(f[x_{0}, \dots, x_n] = \frac{f^{(n)}(x_0)}{n!}\)</span>.</p>
+<p>For the second case, one can adapt the proof of <a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a> (see <a href="#exr-l09-hermite-recursion" class="quarto-xref">Exercise&nbsp;<span>9.4</span></a>). <span class="math inline">\(\square\)</span></p>
+<div id="exr-Hermite-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.2</strong></span> What is the Hermite interpolant of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(\{\{ 0,0,\pi, \pi\}\}\)</span>? Hint: you can compute the divided difference tables in the same way as before.</p>
+</div>
+<p>More coming soon….</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>TO-DO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Exercises throughout the notes,</li>
+<li>(Sign-up to office hours if you like)</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="extra-exercises" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">9.3</span> Extra exercises</h2>
+<div id="exr-l09-hermite-exist" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.3</strong></span> In this exercise, we prove <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>. As in the notes, let <span class="math inline">\(z_0, \dots, z_k\)</span> be distinct nodes with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span>, and let <span class="math inline">\(n + 1 = \sum_{j=0}^k m_j\)</span>.</p>
+<ol type="1">
+<li>Let <span class="math inline">\(r \in \mathcal P_n\)</span> and suppose that <span class="math inline">\(r^{(l)}(z) = 0\)</span> for <span class="math inline">\(l = 0, \dots, m-1\)</span>. Show that <span class="math inline">\(r(x) = (x - z)^m s(x)\)</span> for some polynomial <span class="math inline">\(s\)</span>.</li>
+<li>Suppose that <span class="math inline">\(r \in \mathcal P_n\)</span> satisfies <span class="math inline">\(r^{(l)}(z_j) = 0\)</span> for all <span class="math inline">\(l = 0,\dots,m_j - 1\)</span> and <span class="math inline">\(j = 0,\dots,k\)</span>. Show that <span class="math inline">\(r = 0\)</span>.</li>
+<li>Deduce that the Hermite interpolation problem has at most one solution in <span class="math inline">\(\mathcal P_n\)</span>.</li>
+<li>Consider the map <span class="math inline">\(L : \mathcal P_n \to \mathbb R^{n+1}\)</span> defined by <span class="math inline">\(L p := \big( p^{(l)}(z_j) \big)_{j = 0,\dots,k, \; l = 0, \dots, m_j - 1}\)</span>. Show that <span class="math inline">\(L\)</span> is linear and injective, and conclude that the Hermite interpolation problem has exactly one solution in <span class="math inline">\(\mathcal P_n\)</span>.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<p>For 1, write <span class="math inline">\(r\)</span> as its Taylor polynomial about <span class="math inline">\(z\)</span> (which is exact because <span class="math inline">\(r\)</span> is a polynomial). For 2, apply 1 at <span class="math inline">\(z_0\)</span> and then show that <span class="math inline">\(s\)</span> still has zeros of order <span class="math inline">\(m_j\)</span> at <span class="math inline">\(z_j\)</span> for <span class="math inline">\(j \geq 1\)</span>. For 4, recall that an injective linear map between vector spaces of the same finite dimension is also surjective.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>Since <span class="math inline">\(r \in \mathcal P_n\)</span>, Taylor’s theorem is exact: <span class="math inline">\(r(x) = \sum_{l=0}^n \frac{r^{(l)}(z)}{l!} (x - z)^l = \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^l = (x-z)^m s(x)\)</span> where <span class="math inline">\(s(x) := \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^{l-m}\)</span>.</p></li>
+<li><p>By 1, <span class="math inline">\(r(x) = (x - z_0)^{m_0} s_0(x)\)</span>. Fix <span class="math inline">\(j \geq 1\)</span> and write <span class="math inline">\(u(x) := (x - z_0)^{m_0}\)</span> (so that <span class="math inline">\(u(z_j) \not= 0\)</span> because the nodes are distinct). By the Leibniz rule, <span class="math display">\[
+r^{(l)}(z_j) = \sum_{i=0}^l \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j) = u(z_j) \, s_0^{(l)}(z_j) + \sum_{i=0}^{l-1} \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j).
+\]</span> By induction on <span class="math inline">\(l = 0, \dots, m_j - 1\)</span>, we obtain <span class="math inline">\(s_0^{(l)}(z_j) = 0\)</span>. Therefore, <span class="math inline">\(s_0\)</span> satisfies the same conditions at <span class="math inline">\(z_1, \dots, z_k\)</span> and, repeating the argument, we have <span class="math display">\[
+r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
+\]</span> for some polynomial <span class="math inline">\(s\)</span>. If <span class="math inline">\(s \not= 0\)</span>, then <span class="math inline">\(r\)</span> has degree at least <span class="math inline">\(\sum_j m_j = n+1\)</span>, which contradicts <span class="math inline">\(r \in \mathcal P_n\)</span>. Therefore <span class="math inline">\(s = 0\)</span> and <span class="math inline">\(r = 0\)</span>.</p></li>
+<li><p>If <span class="math inline">\(p, q \in \mathcal P_n\)</span> both solve the Hermite interpolation problem, then <span class="math inline">\(r := p - q \in \mathcal P_n\)</span> satisfies <span class="math inline">\(r^{(l)}(z_j) = f^{(l)}(z_j) - f^{(l)}(z_j) = 0\)</span> for all <span class="math inline">\(j\)</span> and <span class="math inline">\(l = 0, \dots, m_j-1\)</span>. By 2, <span class="math inline">\(r = 0\)</span> and so <span class="math inline">\(p = q\)</span>.</p></li>
+<li><p>Differentiation and evaluation are linear and so <span class="math inline">\(L\)</span> is linear. If <span class="math inline">\(L p = 0\)</span>, then <span class="math inline">\(p = 0\)</span> by 2, and so <span class="math inline">\(L\)</span> is injective. Since <span class="math inline">\(\dim \mathcal P_n = n + 1 = \dim \mathbb R^{n+1}\)</span>, the rank-nullity theorem shows that <span class="math inline">\(L\)</span> is also surjective. In particular, there exists <span class="math inline">\(p \in \mathcal P_n\)</span> with <span class="math inline">\(L p = \big( f^{(l)}(z_j) \big)_{j,l}\)</span>, which is exactly a solution to the Hermite interpolation problem. By 3, this solution is unique.</p></li>
+</ol>
+</div>
+</div>
+<div id="exr-l09-hermite-recursion" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9.4</strong></span> In this exercise, we prove the second case of <a href="#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a>: if <span class="math inline">\(X = \{\{x_0, \dots, x_n\}\}\)</span> is a multiset with <span class="math inline">\(x_0 \not= x_n\)</span> and <span class="math inline">\(f\)</span> is sufficiently differentiable, then <span class="math display">\[
+    f[x_0, \dots, x_n] = \frac{f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}]}{x_n - x_0}.
+\]</span></p>
+<ol type="1">
+<li>Explain why the (Hermite) divided difference <span class="math inline">\(f[x_0,\dots,x_n]\)</span> does not depend on the ordering of the nodes and why <span class="math inline">\((f + c g)[x_0,\dots,x_n] = f[x_0,\dots,x_n] + c\, g[x_0,\dots,x_n]\)</span>.</li>
+<li>Let <span class="math inline">\(p \in \mathcal P_{n-1}\)</span> be the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X' := \{\{x_0, \dots, x_{n-1}\}\}\)</span> and define <span class="math inline">\(g(x) := (x - x_n) f(x)\)</span> and <span class="math inline">\(q(x) := (x - x_n) p(x)\)</span>. Show that <span class="math inline">\(q\)</span> is the Hermite interpolant of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>.</li>
+<li>Deduce that <span class="math inline">\(\big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_0, \dots, x_{n-1}]\)</span> and <span class="math inline">\(\big( (x - x_0) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n]\)</span>.</li>
+<li>Conclude.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<p>For 2, use the product rule <span class="math inline">\(\frac{\mathrm d^l}{\mathrm dx^l} \big[ (x - a) u(x) \big] = (x - a) u^{(l)}(x) + l \, u^{(l-1)}(x)\)</span> with <span class="math inline">\(u = p - f\)</span>. Treat the nodes <span class="math inline">\(z \not= x_n\)</span> and the node <span class="math inline">\(z = x_n\)</span> separately: if <span class="math inline">\(x_n\)</span> appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X'\)</span>, then it appears <span class="math inline">\(m+1\)</span> times in <span class="math inline">\(X\)</span>. For 4, copy the end of the proof of <a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a>.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>The Hermite interpolation problem (and therefore its unique solution, by <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>) only depends on the multiset <span class="math inline">\(X\)</span>, not on how we label its elements. If <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the Hermite interpolants of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, then <span class="math inline">\(p + c q \in \mathcal P_n\)</span> satisfies <span class="math inline">\((p + cq)^{(l)}(z_j) = (f + cg)^{(l)}(z_j)\)</span> for all the required <span class="math inline">\(j, l\)</span>, and so it is the Hermite interpolant of <span class="math inline">\(f + cg\)</span>. Comparing the coefficients of <span class="math inline">\(x^n\)</span> gives linearity.</p></li>
+<li><p>Since <span class="math inline">\(q \in \mathcal P_n\)</span>, by <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a> it is enough to show that <span class="math inline">\(q\)</span> satisfies the Hermite conditions for <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Let <span class="math inline">\(u := p - f\)</span>. By the product rule, <span class="math display">\[
+q^{(l)}(x) - g^{(l)}(x) = \frac{\mathrm d^l}{\mathrm dx^l} \big[ (x - x_n) u(x) \big] = (x - x_n) u^{(l)}(x) + l \, u^{(l-1)}(x)
+\]</span> (where the second term is absent when <span class="math inline">\(l = 0\)</span>). Let <span class="math inline">\(z\)</span> be a node which appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X'\)</span> (so that <span class="math inline">\(u^{(i)}(z) = 0\)</span> for <span class="math inline">\(i = 0, \dots, m-1\)</span>).</p></li>
+</ol>
+<ul>
+<li>If <span class="math inline">\(z \not= x_n\)</span>, then <span class="math inline">\(z\)</span> also appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X\)</span>. For <span class="math inline">\(l \leq m - 1\)</span>, we have <span class="math inline">\(u^{(l)}(z) = 0\)</span> and <span class="math inline">\(u^{(l-1)}(z) = 0\)</span> and so <span class="math inline">\(q^{(l)}(z) = g^{(l)}(z)\)</span>.</li>
+<li>If <span class="math inline">\(z = x_n\)</span>, then <span class="math inline">\(z\)</span> appears <span class="math inline">\(m + 1\)</span> times in <span class="math inline">\(X\)</span> (with <span class="math inline">\(m = 0\)</span> if <span class="math inline">\(x_n \not\in X'\)</span>). For <span class="math inline">\(l \leq m\)</span>, the first term vanishes because <span class="math inline">\(z - x_n = 0\)</span>, and the second term vanishes because <span class="math inline">\(l - 1 \leq m - 1\)</span> (or <span class="math inline">\(l = 0\)</span>). Therefore <span class="math inline">\(q^{(l)}(x_n) = g^{(l)}(x_n)\)</span> for <span class="math inline">\(l = 0, \dots, m\)</span>.</li>
+</ul>
+<ol start="3" type="1">
+<li><p>By 2, the leading coefficient (of <span class="math inline">\(x^n\)</span>) of <span class="math inline">\(q\)</span> is <span class="math inline">\(g[x_0,\dots,x_n]\)</span>. On the other hand, <span class="math inline">\(q(x) = (x - x_n) p(x)\)</span> and the coefficient of <span class="math inline">\(x^{n-1}\)</span> in <span class="math inline">\(p\)</span> is <span class="math inline">\(f[x_0,\dots,x_{n-1}]\)</span>. Therefore, <span class="math inline">\(\big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_0, \dots, x_{n-1}]\)</span>. Applying this to the reordered multiset <span class="math inline">\(\{\{x_1, \dots, x_n, x_0\}\}\)</span> (allowed by 1) gives <span class="math inline">\(\big( (x - x_0) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n]\)</span>.</p></li>
+<li><p>Since <span class="math inline">\((x - x_0) f(x) - (x - x_n) f(x) = (x_n - x_0) f(x)\)</span>, linearity and 3 give <span class="math display">\[
+(x_n - x_0) f[x_0,\dots,x_n] = \big( (x - x_0) f \big)[x_0, \dots, x_n] - \big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}].
+\]</span> Dividing by <span class="math inline">\(x_n - x_0 \not= 0\)</span> gives the result.</p></li>
+</ol>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<style>
+
+  /* Change cursor on equation tags to signal interactivity */
+
+  .mjx-tag, .katex-tag, [id^="eq-"] .tag {
+
+    cursor: pointer !important;
+
+  }
+
+  .mjx-tag:hover, .katex-tag:hover {
+
+    opacity: 0.7;
+
+  }
+
+</style>
+
+
+
+<script>
+
+window.addEventListener("load", function() {
+
+  const setupEquationCopy = () => {
+
+    // Find all equation containers generated by Quarto with an 'eq-' ID
+
+    document.querySelectorAll('[id^="eq-"]').forEach(container => {
+
+      const eqId = container.getAttribute('id');
+
+      const labelText = `@${eqId}`;
+
+      
+
+      // Locate the rendered tag element inside MathJax or KaTeX
+
+      const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
+
+      
+
+      // Set hover title to display the label name
+
+      tag.setAttribute('title', `📋 ${labelText}`);
+
+      
+
+      // Copy label to clipboard on click
+
+      tag.addEventListener('click', (e) => {
+
+        e.stopPropagation();
+
+        navigator.clipboard.writeText(labelText).then(() => {
+
+          showToast(`Copied ${labelText} to clipboard!`);
+
+        });
+
+      });
+
+    });
+
+  };
+
+
+
+  // Wait for MathJax/KaTeX rendering before attaching listeners
+
+  if (window.MathJax && window.MathJax.startup) {
+
+    window.MathJax.startup.promise.then(setupEquationCopy);
+
+  } else {
+
+    setupEquationCopy();
+
+  }
+
+
+
+  function showToast(message) {
+
+    let toast = document.getElementById('eq-copy-toast');
+
+    if (!toast) {
+
+      toast = document.createElement('div');
+
+      toast.id = 'eq-copy-toast';
+
+      toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
+
+      document.body.appendChild(toast);
+
+    }
+
+    toast.textContent = message;
+
+    toast.style.opacity = '1';
+
+    setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+
+  }
+
+});
+
+</script>
+<style>
+
+  /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
+
+  @font-face {
+
+    font-family: "DSEG7 Classic";
+
+    src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
+
+    font-weight: 700;
+
+    font-display: swap;
+
+  }
+
+  /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
+
+  #float-timer {
+
+    position: fixed;
+
+    top: 80px;
+
+    right: 24px;
+
+    z-index: 2000;
+
+    display: none;
+
+    flex-direction: column;
+
+    width: 390px;
+
+    height: 230px;
+
+    min-width: 280px;
+
+    max-width: calc(100vw - 16px);   /* keep it on small screens */
+
+    min-height: 190px;
+
+    resize: both;                /* drag the bottom-right corner to resize */
+
+    container: ft / inline-size; /* lets the contents react to the timer's own width */
+
+    overflow: hidden;
+
+    background: var(--bs-body-bg, #fff);
+
+    color: var(--bs-body-color, #212529);
+
+    border: 2px solid #2780e3;
+
+    border-radius: 8px;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+
+    user-select: none;
+
+    font-family: inherit;
+
+  }
+
+  #float-timer.visible { display: flex; }
+
+  #float-timer .ft-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 4px 8px;
+
+    background: #2780e3;
+
+    color: #fff;
+
+    cursor: move;
+
+    font-size: .95rem;
+
+    touch-action: none;
+
+  }
+
+  #float-timer .ft-modes button {
+
+    background: none;
+
+    border: 1px solid rgba(255, 255, 255, .6);
+
+    color: #fff;
+
+    border-radius: 4px;
+
+    font-size: .8rem;
+
+    padding: 0 6px;
+
+    cursor: pointer;
+
+  }
+
+  #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
+
+  #float-timer .ft-close {
+
+    background: none;
+
+    border: none;
+
+    color: #fff;
+
+    font-size: 1.3rem;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+  }
+
+  #float-timer .ft-display {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: "DSEG7 Classic", "Courier New", monospace;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+  }
+
+  #float-timer .ft-controls {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 4px 10px 10px 10px;
+
+  }
+
+  #float-timer .ft-controls .btn { font-size: 1rem; }
+
+  #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
+
+  #float-timer:not(.countdown) .ft-countdown-only { display: none; }
+
+  /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
+
+  /* drop the preset buttons and the title when the timer is too narrow for them */
+
+  @container ft (max-width: 382px) {
+
+    [data-preset] { display: none; }
+
+  }
+
+  @container ft (max-width: 290px) {
+
+    .ft-title { display: none; }
+
+  }
+
+  @media (max-width: 575.98px) {
+
+    #float-timer { right: 8px; }
+
+  }
+
+  #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
+
+  @keyframes ft-flash { to { visibility: hidden; } }
+
+</style>
+
+
+
+<div id="float-timer" aria-label="Timer">
+
+  <div class="ft-header">
+
+    <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
+
+    <span class="ft-modes">
+
+      <button data-mode="up" title="Count up">Stopwatch</button>
+
+      <button data-mode="down" title="Count down">Countdown</button>
+
+    </span>
+
+    <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
+
+  </div>
+
+  <div class="ft-display"><span class="ft-digits">00:00</span></div>
+
+  <div class="ft-controls">
+
+    <button class="btn btn-primary ft-toggle">Start</button>
+
+    <button class="btn btn-outline-secondary ft-reset">Reset</button>
+
+    <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
+
+    <span class="ft-countdown-only">min</span>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
+
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
+
+  </div>
+
+</div>
+
+
+
+<script>
+
+(function () {
+
+  const KEY = "math5485-timer";
+
+  const box = document.getElementById("float-timer");
+
+  const display = box.querySelector(".ft-display");
+
+  const digits = box.querySelector(".ft-digits");
+
+  const toggleBtn = box.querySelector(".ft-toggle");
+
+  const minutesInput = box.querySelector(".ft-minutes");
+
+
+
+  // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
+
+  // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
+
+  let state = {
+
+    visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
+
+    left: null, top: null, width: null, height: null
+
+  };
+
+  try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+
+
+  const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
+
+  const pad = n => String(n).padStart(2, "0");
+
+  const fmt = ms => {
+
+    const s = Math.ceil(ms / 1000);
+
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+
+    return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
+
+  };
+
+
+
+  function render() {
+
+    let shown = elapsed(), timesUp = false;
+
+    if (state.mode === "down") {
+
+      const remaining = state.minutes * 60000 - shown;
+
+      if (remaining <= 0 && state.startedAt) {
+
+        // stop exactly at zero
+
+        state.elapsed = state.minutes * 60000; state.startedAt = null; save();
+
+      }
+
+      shown = Math.max(0, state.minutes * 60000 - elapsed());
+
+      timesUp = shown === 0 && state.minutes > 0;
+
+    } else {
+
+      shown = Math.floor(shown / 1000) * 1000;
+
+    }
+
+    digits.textContent = fmt(shown);
+
+    toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
+
+    box.classList.toggle("visible", state.visible);
+
+    box.classList.toggle("countdown", state.mode === "down");
+
+    box.classList.toggle("times-up", timesUp);
+
+    box.querySelectorAll(".ft-modes button").forEach(b =>
+
+      b.classList.toggle("active", b.dataset.mode === state.mode));
+
+    if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
+
+    if (state.left !== null) {
+
+      box.style.left = state.left + "px";
+
+      box.style.top = state.top + "px";
+
+      box.style.right = "auto";
+
+    }
+
+    if (state.width) {
+
+      box.style.width = state.width + "px";
+
+      box.style.height = state.height + "px";
+
+    }
+
+    fitText();
+
+  }
+
+
+
+  // scale the digits to fill the display area
+
+  function fitText() {
+
+    if (!state.visible) return;
+
+    // start from the available height, then shrink until the digits fit the width
+
+    const w = display.clientWidth - 16, h = display.clientHeight;
+
+    let size = h * 0.8;
+
+    display.style.fontSize = size + "px";
+
+    for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
+
+      size *= w / digits.offsetWidth;
+
+      display.style.fontSize = size + "px";
+
+    }
+
+    display.style.fontSize = Math.max(16, size) + "px";
+
+  }
+
+
+
+  function reset() {
+
+    state.elapsed = 0;
+
+    state.startedAt = state.startedAt ? Date.now() : null;
+
+  }
+
+
+
+  toggleBtn.addEventListener("click", () => {
+
+    if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
+
+    else {
+
+      if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
+
+      state.startedAt = Date.now();
+
+    }
+
+    save(); render();
+
+  });
+
+  box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
+
+  box.querySelector(".ft-close").addEventListener("click", () => {
+
+    state.visible = false; save(); render();
+
+  });
+
+  box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
+
+    if (state.mode !== b.dataset.mode) {
+
+      state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
+
+      save(); render();
+
+    }
+
+  }));
+
+  const setMinutes = m => {
+
+    state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
+
+    save(); render();
+
+  };
+
+  minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
+
+  box.querySelectorAll("[data-preset]").forEach(b =>
+
+    b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
+
+
+
+  // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
+
+  document.addEventListener("click", e => {
+
+    if (e.target.closest('a[href$="#timer"]')) {
+
+      e.preventDefault();
+
+      state.visible = !state.visible;
+
+      save(); render();
+
+    }
+
+  });
+
+
+
+  // dragging by the header (mouse and touch)
+
+  const header = box.querySelector(".ft-header");
+
+  header.addEventListener("pointerdown", e => {
+
+    if (e.target.closest("button")) return;
+
+    const r = box.getBoundingClientRect();
+
+    const dx = e.clientX - r.left, dy = e.clientY - r.top;
+
+    header.setPointerCapture(e.pointerId);
+
+    const move = ev => {
+
+      state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
+
+      state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
+
+      render();
+
+    };
+
+    const up = () => {
+
+      header.removeEventListener("pointermove", move);
+
+      header.removeEventListener("pointerup", up);
+
+      save();
+
+    };
+
+    header.addEventListener("pointermove", move);
+
+    header.addEventListener("pointerup", up);
+
+  });
+
+
+
+  // remember the size after resizing (via the bottom-right corner) and rescale the digits
+
+  new ResizeObserver(() => {
+
+    if (!state.visible) return;
+
+    state.width = box.offsetWidth; state.height = box.offsetHeight;
+
+    fitText(); save();
+
+  }).observe(box);
+
+
+
+  // the digital font loads asynchronously: refit once it arrives
+
+  if (document.fonts) {
+
+    document.fonts.ready.then(fitText);
+
+    document.fonts.addEventListener("loadingdone", fitText);
+
+  }
+
+
+
+  render();
+
+  setInterval(() => { if (state.startedAt) render(); }, 200);
+
+})();
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../lectures/L08.html" class="pagination-link" aria-label="Barycentric formula and divided differences">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Barycentric formula and divided differences</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../exercises/bank.html" class="pagination-link" aria-label="Exercise bank">
+        <span class="nav-page-text">Exercise bank</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/lectures/L09.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
