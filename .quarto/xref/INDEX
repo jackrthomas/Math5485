@@ -103,5 +103,116 @@
   },
   "assignments/A03.ipynb": {
     "A03.html": "759c1c69"
+  },
+  "private/exercise-report/exercise-report.qmd": {
+    "exercise-report.html": "37d9e29e"
+  },
+  "private/lectures/L08.ipynb": {
+    "L08.html": "b3c2daa3"
+  },
+  "private/lectures/L09.ipynb": {
+    "L09.html": "851fa81f"
+  },
+  "private/lectures/L10.ipynb": {
+    "L10.html": "0bba171e"
+  },
+  "private/lectures/L11.ipynb": {
+    "L11.html": "87bff0c1"
+  },
+  "private/lectures/L12.ipynb": {
+    "L12.html": "67a0af3c"
+  },
+  "private/lectures/L13.ipynb": {
+    "L13.html": "374cddd8"
+  },
+  "private/lectures/L14.ipynb": {
+    "L14.html": "c8d42c3d"
+  },
+  "private/assignments/answers-A01.ipynb": {
+    "answers-A01.html": "25b18b03"
+  },
+  "private/assignments/answers-A02.ipynb": {
+    "answers-A02.html": "a2ca811d"
+  },
+  "private/lecture-errata.md": {
+    "lecture-errata.html": "24df5709"
+  },
+  "private/Claude answers/answers-L01.ipynb": {
+    "answers-L01.html": "d6190967"
+  },
+  "private/Claude answers/answers-L02.ipynb": {
+    "answers-L02.html": "05122128"
+  },
+  "private/Claude answers/answers-L03.ipynb": {
+    "answers-L03.html": "fbcfdbd5"
+  },
+  "private/Claude answers/answers-L04.ipynb": {
+    "answers-L04.html": "ba45994a"
+  },
+  "private/Claude answers/answers-L05.ipynb": {
+    "answers-L05.html": "dc4ae7fa"
+  },
+  "private/Claude answers/answers-L06.ipynb": {
+    "answers-L06.html": "58236610"
+  },
+  "private/Claude answers/answers-L07.ipynb": {
+    "answers-L07.html": "345ed6c6"
+  },
+  "private/Claude answers/answers-L08.ipynb": {
+    "answers-L08.html": "28bd6c1a"
+  },
+  "private/Claude answers/answers-L09.ipynb": {
+    "answers-L09.html": "af8d6480"
+  },
+  "private/Claude answers/answers-L10.ipynb": {
+    "answers-L10.html": "eec31b2f"
+  },
+  "private/Claude answers/answers-L11.ipynb": {
+    "answers-L11.html": "9137fca2"
+  },
+  "private/Claude answers/answers-L12.ipynb": {
+    "answers-L12.html": "f3768bd0"
+  },
+  "private/Claude answers/answers-L13.ipynb": {
+    "answers-L13.html": "bd53f51a"
+  },
+  "private/Claude answers/answers-L14.ipynb": {
+    "answers-L14.html": "e29544f5"
+  },
+  "private/lectures/answers-L06.ipynb": {
+    "answers-L06.html": "f58ad684"
+  },
+  "private/assignments/answers-A03.ipynb": {
+    "answers-A03.html": "2222bbd8"
+  },
+  "private/assignments/A02.ipynb": {
+    "A02.html": "f1f8f9ba"
+  },
+  "private/assignments/A03.ipynb": {
+    "A03.html": "2e0f2c6d"
+  },
+  "private/quizzes/answers-Q1.ipynb": {
+    "answers-Q1.html": "42aa75fe"
+  },
+  "private/quizzes/Q2.ipynb": {
+    "Q2.html": "95a0ba69"
+  },
+  "private/quizzes/answers-Q2.ipynb": {
+    "answers-Q2.html": "0d1d2a04"
+  },
+  "private/projects/presentation-topics.ipynb": {
+    "presentation-topics.html": "71e7da7e"
+  },
+  "private/projects/project-ideas-Runge-Chebyshev.ipynb": {
+    "project-ideas-Runge-Chebyshev.html": "2946dccb"
+  },
+  "private/projects/project-ideas-secant-order.ipynb": {
+    "project-ideas-secant-order.html": "2b7e558d"
+  },
+  "private/projects/bonus questions.ipynb": {
+    "bonus questions.html": "4aa3bb4b"
+  },
+  "exercises/quizzes/Q2.qmd": {
+    "Q2.html": "9094f97a"
   }
 }

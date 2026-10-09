@@ -1,0 +1,104 @@
+---
+title: "Quiz 2"
+date: "2026-10-07"
+after-lecture: 7
+---
+
+<!--
+Quiz questions for the exercise bank (collected by extras/collect_exercises.ipynb).
+See Q1.qmd for how quiz files work.
+-->
+
+::: {.quiz-question}
+
+Recall that $g : [a,b] \to \mathbb R$ is a *contraction* if there exists $L < 1$ such that $|g(x) - g(y)| \leq L |x-y|$ for all $x,y \in [a,b]$.
+
+Prove the uniqueness part of the contraction mapping theorem. That is, suppose that $g :[a,b] \to [a,b]$ is a contraction with a fixed point $\xi = g(\xi) \in [a,b]$ and show that $\xi$ is the only fixed point of $g$ in $[a,b]$.
+
+::: {.exercise-solution style="display: none;"}
+
+Suppose $\zeta = g(\zeta) \in [a,b]$ is a fixed point. Then
+
+\begin{align}
+    |\xi - \zeta| = |g(\xi) - g(\zeta)| \leq L |\xi-\zeta|
+    \nonumber
+\end{align}
+
+and so $(1 - L)|\xi - \zeta| \leq 0$. Since $L < 1$, we must have $|\xi - \zeta| = 0$ and thus $\xi = \zeta$.
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+Show that $g(x) = \cos x$ maps $[0,\tfrac\pi3]$ to $[0,\tfrac\pi3]$ and is a contraction on $[0,\tfrac\pi3]$. What does this tell you about the iteration $x_{n+1} = \cos x_n$ with $x_1 = 0$?
+
+::: {.exercise-solution style="display: none;"}
+
+Since $\cos$ is decreasing on $[0,\tfrac\pi3]$, we have $0 < \tfrac12 = \cos \tfrac\pi3 \leq g(x) \leq \cos 0 = 1 < \tfrac\pi3$ for all $x \in [0, \tfrac\pi3]$ and so $g : [0,\tfrac\pi3] \to [\tfrac12, 1] \subset [0,\tfrac\pi3]$.
+
+Moreover, $|g'(x)| = |\sin x| \leq \sin \tfrac\pi3 = \frac{\sqrt{3}}{2} < 1$ for all $x \in [0,\tfrac\pi3]$ and so, by the mean value theorem, $g$ is a contraction with $L = \frac{\sqrt3}{2}$.
+
+By the contraction mapping theorem, there exists a unique fixed point $\xi = \cos \xi \in [0,\tfrac\pi3]$ and, since $x_1 = 0 \in [0,\tfrac\pi3]$, the iteration $x_{n+1} = \cos x_n$ converges to $\xi$ (at least linearly, with asymptotic error constant $\mu = |g'(\xi)| = \sin \xi$).
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+Recall that if $f$ is $n+1$ times continuously differentiable and $X = \{x_0 < \dots < x_n\}$, then, for all $x$, there exists $\xi_x$ (between the smallest and largest of $x, x_0, \dots, x_n$) such that
+
+\begin{align}
+   f(x) - I_Xf(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} (x - x_0)(x-x_1) \cdots (x-x_n). \nonumber
+\end{align}
+
+Let $f(x) = x^3$ and $X = \{ x_0 < x_1 < x_2 \} := \{-1, 0, 1\}$. Find a polynomial interpolant $p$ of $f$ on $X$. Write down the interpolation error formula (above) in this case.
+
+::: {.exercise-solution style="display: none;"}
+
+We have $f(-1) = -1$, $f(0) = 0$, $f(1) = 1$. The polynomial $p(x) = x \in \mathcal P_2$ satisfies $p(x_j) = f(x_j)$ for $j = 0,1,2$ and so, by uniqueness, $I_Xf(x) = x$. (Alternatively, use the Lagrange polynomials: $I_Xf(x) = -\ell_0(x) + \ell_2(x) = -\frac{x(x-1)}{2} + \frac{x(x+1)}{2} = x$.)
+
+Here $n = 2$ and $f'''(x) = 6$ for all $x$, so the error formula gives
+
+\begin{align}
+   f(x) - I_Xf(x) = \frac{6}{3!}(x+1)x(x-1) = x^3 - x, \nonumber
+\end{align}
+
+which agrees with $x^3 - x$ (for any choice of $\xi_x$).
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+Let $f(x) = \frac1x$ and $X = \{1, 2\}$.
+
+(a) Find the linear interpolant $I_Xf$.
+(b) Use the interpolation error formula to show that $|f(x) - I_Xf(x)| \leq \frac14$ for all $x \in [1,2]$.
+*Hint:* $|(x-1)(x-2)|$ is largest on $[1,2]$ at $x = \frac32$.
+(c) Compute the actual error at $x = \frac32$.
+
+::: {.exercise-solution style="display: none;"}
+
+(a) Using the Lagrange polynomials $\ell_0(x) = \frac{x-2}{1-2} = 2 - x$ and $\ell_1(x) = \frac{x-1}{2-1} = x - 1$, we have
+
+\begin{align}
+   I_Xf(x) = f(1) \ell_0(x) + f(2) \ell_1(x) = (2 - x) + \tfrac12 (x-1) = \frac{3 - x}{2}. \nonumber
+\end{align}
+
+(b) Here $n = 1$ and $f''(x) = \frac{2}{x^3}$, so $\max_{\xi \in [1,2]} |f''(\xi)| = 2$. Moreover, $|(x-1)(x-2)|$ is maximised on $[1,2]$ at the midpoint $x = \frac32$ where it equals $\frac14$. Therefore,
+
+\begin{align}
+   |f(x) - I_Xf(x)| \leq \frac{\max_{[1,2]}|f''|}{2!} |(x-1)(x-2)| \leq \frac{2}{2} \cdot \frac14 = \frac14. \nonumber
+\end{align}
+
+(c) $f(\frac32) = \frac23$ and $I_Xf(\frac32) = \frac34$, so the error is $|\frac23 - \frac34| = \frac1{12} \leq \frac14$.
+
+(In fact, $f(x) - I_Xf(x) = \frac{(x-1)(x-2)}{2x}$, which agrees with the error formula with $\xi_x = \sqrt[3]{2x}$, e.g. $\xi_{3/2} = \sqrt[3]{3} \in [1,2]$.)
+
+:::
+
+:::
