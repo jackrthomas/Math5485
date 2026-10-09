@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>A1: Notebooks – Math5485</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -70,15 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -114,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -168,9 +173,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Math5485</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -366,593 +369,299 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
-
       <span class="banner-label">📢 <strong>Updates</strong></span>
-
       <div class="banner-ticker">
-
         <div class="banner-ticker-track">
-
           <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
-
                  * Order doesn't matter: updates are sorted by date (newest first).
-
                  * Updates dated in the future are hidden until that day (so you can schedule them).
-
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
-
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
-
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
-
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
-
           <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
-
           <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
-
           <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
-
           <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
-
           <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
-
           <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
-
         </div>
-
       </div>
-
       <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
-
       <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
-
       <div id="banner-all-updates" class="banner-all" hidden="">
-
         <div class="banner-all-title">All updates</div>
-
         <ul class="banner-all-list"></ul>
-
       </div>
-
     </div>
-
     <style>
-
       .announcement-banner {
-
         background-color: #007bff;
-
         color: white;
-
         padding: 8px 12px;
-
         position: relative;
-
         font-size: 0.95rem;
-
         z-index: 1000;
-
         display: flex;
-
         align-items: center;
-
         gap: 12px;
-
         margin-bottom: 0.75rem;   /* space between the banner and the page below */
-
       }
-
       .banner-label {
-
         flex-shrink: 0;
-
         white-space: nowrap;
-
       }
-
       /* scrolling area: fades out at both ends */
-
       .banner-ticker {
-
         flex-grow: 1;
-
         overflow: hidden;
-
         white-space: nowrap;
-
         -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-
                 mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-
       }
-
       .banner-ticker-track {
-
         display: inline-flex;
-
         white-space: nowrap;
-
         will-change: transform;
-
       }
-
       .banner-ticker.scrolling .banner-ticker-track {
-
         animation: banner-scroll var(--banner-duration, 30s) linear infinite;
-
       }
-
       /* pause while the mouse is over the text, so it can be read */
-
       .banner-ticker:hover .banner-ticker-track {
-
         animation-play-state: paused;
-
       }
-
       .banner-item {
-
         padding: 0 1.5rem;
-
       }
-
       .banner-date {
-
         display: inline-block;
-
         font-size: 0.8em;
-
         font-weight: 600;
-
         background: rgba(255, 255, 255, 0.2);
-
         border-radius: 4px;
-
         padding: 0 6px;
-
         margin-right: 6px;
-
       }
-
       .banner-item::before {
-
         content: "•";
-
         margin-right: 1.5rem;
-
         opacity: 0.7;
-
       }
-
       @keyframes banner-scroll {
-
         from { transform: translateX(0); }
-
         to   { transform: translateX(-50%); }   /* the track holds two identical halves */
-
       }
-
       /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
-
       @media (prefers-reduced-motion: reduce) {
-
         .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
-
         .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
-
       }
-
       /* "All updates" button and drop-down list */
-
       .banner-more-btn {
-
         flex-shrink: 0;
-
         background: rgba(255, 255, 255, 0.15);
-
         border: 1px solid rgba(255, 255, 255, 0.6);
-
         color: white;
-
         border-radius: 999px;
-
         font-size: 0.8rem;
-
         padding: 2px 10px;
-
         cursor: pointer;
-
         white-space: nowrap;
-
       }
-
       .banner-more-btn:hover,
-
       .banner-more-btn[aria-expanded="true"] {
-
         background: white;
-
         color: #007bff;
-
       }
-
       .banner-all {
-
         position: absolute;
-
         top: 100%;
-
         right: 12px;
-
         margin-top: 6px;
-
         width: min(420px, calc(100vw - 24px));
-
         max-height: 60vh;
-
         overflow-y: auto;
-
         background: white;
-
         color: #212529;
-
         border: 1px solid #dee2e6;
-
         border-radius: 8px;
-
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-
         padding: 10px 14px;
-
         text-align: left;
-
         z-index: 1001;
-
       }
-
       .banner-all[hidden] { display: none; }
-
       .banner-all-title {
-
         font-weight: 600;
-
         margin-bottom: 6px;
-
       }
-
       .banner-all-list {
-
         list-style: none;
-
         margin: 0;
-
         padding: 0;
-
       }
-
       .banner-all-list li {
-
         padding: 5px 0;
-
         border-top: 1px solid #f1f3f5;
-
       }
-
       .banner-all-list li:first-child { border-top: none; }
-
       .banner-all-list li.banner-all-date {
-
         font-size: 0.78rem;
-
         font-weight: 600;
-
         color: #6c757d;
-
         border-top: none;
-
         padding: 8px 0 2px;
-
       }
-
       .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
-
       .banner-close-btn {
-
         flex-shrink: 0;
-
         background: none;
-
         border: none;
-
         color: white;
-
         font-size: 1.4rem;
-
         cursor: pointer;
-
         line-height: 1;
-
         padding: 0 8px;
-
         opacity: 0.8;
-
       }
-
       .banner-close-btn:hover {
-
         opacity: 1;
-
       }
-
     </style>
-
     <script>
-
       // Hide immediately if already dismissed in this browser session
-
       if (sessionStorage.getItem('hideCourseBanner') === 'true') {
-
         document.write('<style>#course-announcement-banner { display: none !important; }</style>');
-
       }
-
-
 
       function closeBanner() {
-
         var banner = document.getElementById('course-announcement-banner');
-
         if (banner) {
-
           banner.style.display = 'none';
-
         }
-
         // Remember that the user closed it during this browser session
-
         sessionStorage.setItem('hideCourseBanner', 'true');
-
       }
 
-
-
       // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
-
       // the whole set so the animation (which moves the track by half its width) loops seamlessly.
-
       (function () {
-
         var SPEED = 60;          // pixels per second
-
         var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
 
-
-
         // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
-
         function parseDate(str) {
-
           var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
-
           return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
-
         }
-
         function dateLabel(d) {
-
           var today = new Date(); today.setHours(0, 0, 0, 0);
-
           var days = Math.round((today - d) / 86400000);
-
           if (days === 0) return 'Today';
-
           if (days === 1) return 'Yesterday';
-
           var opts = { weekday: 'short', month: 'short', day: 'numeric' };
-
           if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
-
           return d.toLocaleDateString('en-US', opts);
-
         }
-
-
 
         // Sort the updates by date, hide future ones, keep the newest few in the ticker
-
         // (with a date label) and list all of them, grouped by date, under "All updates".
-
         function setupUpdates(track) {
-
           var banner = document.getElementById('course-announcement-banner');
-
           var btn = banner.querySelector('.banner-more-btn');
-
           var panel = banner.querySelector('.banner-all');
-
           var list = panel.querySelector('.banner-all-list');
-
           var today = new Date(); today.setHours(0, 0, 0, 0);
 
-
-
           var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
-
             return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
-
           }).filter(function (u) {
-
             return !u.date || u.date <= today;                       // scheduled updates stay hidden
-
           }).sort(function (a, b) {
-
             if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
-
             if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
-
             return a.order - b.order;                                              // same day: file order
-
           });
-
-
 
           // ticker: the newest MAX_SCROLLING updates, each with its date
-
           track.innerHTML = '';
-
           updates.slice(0, MAX_SCROLLING).forEach(function (u) {
-
             var span = document.createElement('span');
-
             span.className = 'banner-item';
-
             span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
-
             track.appendChild(span);
-
           });
-
           if (updates.length === 0) { banner.style.display = 'none'; return; }
 
-
-
           // drop-down: everything, grouped by date
-
           var lastLabel = null;
-
           updates.forEach(function (u) {
-
             var label = u.date ? dateLabel(u.date) : 'Other';
-
             if (label !== lastLabel) {
-
               var h = document.createElement('li');
-
               h.className = 'banner-all-date';
-
               h.textContent = label;
-
               list.appendChild(h);
-
               lastLabel = label;
-
             }
-
             var li = document.createElement('li');
-
             li.innerHTML = u.html;
-
             list.appendChild(li);
-
           });
-
           if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
 
-
-
           btn.textContent = 'All updates (' + updates.length + ')';
-
           btn.hidden = false;
 
-
-
           function setOpen(open) {
-
             panel.hidden = !open;
-
             btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-
           }
-
           btn.addEventListener('click', function (e) {
-
             e.stopPropagation();
-
             setOpen(panel.hidden);
-
           });
-
           panel.addEventListener('click', function (e) { e.stopPropagation(); });
-
           document.addEventListener('click', function () { setOpen(false); });
-
           document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
-
         }
-
-
 
         function startTicker() {
-
           var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
-
           if (!ticker) return;
-
           var track = ticker.querySelector('.banner-ticker-track');
-
           setupUpdates(track);
-
           if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-
-
           var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
-
           if (items.length === 0) return;
 
-
-
           // one "half": the updates repeated until they are at least as wide as the banner
-
           var guard = 0;
-
           while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
-
             items.forEach(function (item) {
-
               var copy = item.cloneNode(true);
-
               copy.setAttribute('aria-hidden', 'true');
-
               track.appendChild(copy);
-
             });
-
           }
-
           // second half: an exact copy of the first
-
           Array.prototype.slice.call(track.children).forEach(function (el) {
-
             var copy = el.cloneNode(true);
-
             copy.setAttribute('aria-hidden', 'true');
-
             track.appendChild(copy);
-
           });
 
-
-
           var halfWidth = track.scrollWidth / 2;
-
           ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
-
           ticker.classList.add('scrolling');
-
         }
 
-
-
         if (document.readyState === 'complete') startTicker();
-
         else window.addEventListener('load', startTicker);
-
       })();
-
     </script>
-
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments/A01.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/A01.html">A1: Notebooks</a></li></ol></nav>
 <div class="quarto-title">
@@ -1162,656 +871,331 @@ The use of GenAI is prohibited as outlined in the course syllabus. If suspected 
 
 </main> <!-- /main -->
 <style>
-
   /* Change cursor on equation tags to signal interactivity */
-
   .mjx-tag, .katex-tag, [id^="eq-"] .tag {
-
     cursor: pointer !important;
-
   }
-
   .mjx-tag:hover, .katex-tag:hover {
-
     opacity: 0.7;
-
   }
-
 </style>
 
-
-
 <script>
-
 window.addEventListener("load", function() {
-
   const setupEquationCopy = () => {
-
     // Find all equation containers generated by Quarto with an 'eq-' ID
-
     document.querySelectorAll('[id^="eq-"]').forEach(container => {
-
       const eqId = container.getAttribute('id');
-
       const labelText = `@${eqId}`;
-
       
-
       // Locate the rendered tag element inside MathJax or KaTeX
-
       const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
-
       
-
       // Set hover title to display the label name
-
       tag.setAttribute('title', `📋 ${labelText}`);
-
       
-
       // Copy label to clipboard on click
-
       tag.addEventListener('click', (e) => {
-
         e.stopPropagation();
-
         navigator.clipboard.writeText(labelText).then(() => {
-
           showToast(`Copied ${labelText} to clipboard!`);
-
         });
-
       });
-
     });
-
   };
-
-
 
   // Wait for MathJax/KaTeX rendering before attaching listeners
-
   if (window.MathJax && window.MathJax.startup) {
-
     window.MathJax.startup.promise.then(setupEquationCopy);
-
   } else {
-
     setupEquationCopy();
-
   }
-
-
 
   function showToast(message) {
-
     let toast = document.getElementById('eq-copy-toast');
-
     if (!toast) {
-
       toast = document.createElement('div');
-
       toast.id = 'eq-copy-toast';
-
       toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
-
       document.body.appendChild(toast);
-
     }
-
     toast.textContent = message;
-
     toast.style.opacity = '1';
-
     setTimeout(() => { toast.style.opacity = '0'; }, 2000);
-
   }
-
 });
-
 </script>
 <style>
-
   /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
-
   @font-face {
-
     font-family: "DSEG7 Classic";
-
     src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
-
     font-weight: 700;
-
     font-display: swap;
-
   }
-
   /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
-
   #float-timer {
-
     position: fixed;
-
     top: 80px;
-
     right: 24px;
-
     z-index: 2000;
-
     display: none;
-
     flex-direction: column;
-
     width: 390px;
-
     height: 230px;
-
     min-width: 280px;
-
     max-width: calc(100vw - 16px);   /* keep it on small screens */
-
     min-height: 190px;
-
     resize: both;                /* drag the bottom-right corner to resize */
-
     container: ft / inline-size; /* lets the contents react to the timer's own width */
-
     overflow: hidden;
-
     background: var(--bs-body-bg, #fff);
-
     color: var(--bs-body-color, #212529);
-
     border: 2px solid #2780e3;
-
     border-radius: 8px;
-
     box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
-
     user-select: none;
-
     font-family: inherit;
-
   }
-
   #float-timer.visible { display: flex; }
-
   #float-timer .ft-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 4px 8px;
-
     background: #2780e3;
-
     color: #fff;
-
     cursor: move;
-
     font-size: .95rem;
-
     touch-action: none;
-
   }
-
   #float-timer .ft-modes button {
-
     background: none;
-
     border: 1px solid rgba(255, 255, 255, .6);
-
     color: #fff;
-
     border-radius: 4px;
-
     font-size: .8rem;
-
     padding: 0 6px;
-
     cursor: pointer;
-
   }
-
   #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
-
   #float-timer .ft-close {
-
     background: none;
-
     border: none;
-
     color: #fff;
-
     font-size: 1.3rem;
-
     line-height: 1;
-
     cursor: pointer;
-
   }
-
   #float-timer .ft-display {
-
     flex: 1;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-family: "DSEG7 Classic", "Courier New", monospace;
-
     font-weight: 700;
-
     line-height: 1;
-
     white-space: nowrap;
-
   }
-
   #float-timer .ft-controls {
-
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 6px;
-
     justify-content: center;
-
     align-items: center;
-
     padding: 4px 10px 10px 10px;
-
   }
-
   #float-timer .ft-controls .btn { font-size: 1rem; }
-
   #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
-
   #float-timer:not(.countdown) .ft-countdown-only { display: none; }
-
   /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
-
   /* drop the preset buttons and the title when the timer is too narrow for them */
-
   @container ft (max-width: 382px) {
-
     [data-preset] { display: none; }
-
   }
-
   @container ft (max-width: 290px) {
-
     .ft-title { display: none; }
-
   }
-
   @media (max-width: 575.98px) {
-
     #float-timer { right: 8px; }
-
   }
-
   #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
-
   @keyframes ft-flash { to { visibility: hidden; } }
-
 </style>
 
-
-
 <div id="float-timer" aria-label="Timer">
-
   <div class="ft-header">
-
     <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
-
     <span class="ft-modes">
-
       <button data-mode="up" title="Count up">Stopwatch</button>
-
       <button data-mode="down" title="Count down">Countdown</button>
-
     </span>
-
     <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
-
   </div>
-
   <div class="ft-display"><span class="ft-digits">00:00</span></div>
-
   <div class="ft-controls">
-
     <button class="btn btn-primary ft-toggle">Start</button>
-
     <button class="btn btn-outline-secondary ft-reset">Reset</button>
-
     <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
-
     <span class="ft-countdown-only">min</span>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
-
   </div>
-
 </div>
 
-
-
 <script>
-
 (function () {
-
   const KEY = "math5485-timer";
-
   const box = document.getElementById("float-timer");
-
   const display = box.querySelector(".ft-display");
-
   const digits = box.querySelector(".ft-digits");
-
   const toggleBtn = box.querySelector(".ft-toggle");
-
   const minutesInput = box.querySelector(".ft-minutes");
 
-
-
   // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
-
   // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
-
   let state = {
-
     visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
-
     left: null, top: null, width: null, height: null
-
   };
-
   try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
-
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
-
-
   const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
-
   const pad = n => String(n).padStart(2, "0");
-
   const fmt = ms => {
-
     const s = Math.ceil(ms / 1000);
-
     const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
-
     return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
-
   };
-
-
 
   function render() {
-
     let shown = elapsed(), timesUp = false;
-
     if (state.mode === "down") {
-
       const remaining = state.minutes * 60000 - shown;
-
       if (remaining <= 0 && state.startedAt) {
-
         // stop exactly at zero
-
         state.elapsed = state.minutes * 60000; state.startedAt = null; save();
-
       }
-
       shown = Math.max(0, state.minutes * 60000 - elapsed());
-
       timesUp = shown === 0 && state.minutes > 0;
-
     } else {
-
       shown = Math.floor(shown / 1000) * 1000;
-
     }
-
     digits.textContent = fmt(shown);
-
     toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
-
     box.classList.toggle("visible", state.visible);
-
     box.classList.toggle("countdown", state.mode === "down");
-
     box.classList.toggle("times-up", timesUp);
-
     box.querySelectorAll(".ft-modes button").forEach(b =>
-
       b.classList.toggle("active", b.dataset.mode === state.mode));
-
     if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
-
     if (state.left !== null) {
-
       box.style.left = state.left + "px";
-
       box.style.top = state.top + "px";
-
       box.style.right = "auto";
-
     }
-
     if (state.width) {
-
       box.style.width = state.width + "px";
-
       box.style.height = state.height + "px";
-
     }
-
     fitText();
-
   }
-
-
 
   // scale the digits to fill the display area
-
   function fitText() {
-
     if (!state.visible) return;
-
     // start from the available height, then shrink until the digits fit the width
-
     const w = display.clientWidth - 16, h = display.clientHeight;
-
     let size = h * 0.8;
-
     display.style.fontSize = size + "px";
-
     for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
-
       size *= w / digits.offsetWidth;
-
       display.style.fontSize = size + "px";
-
     }
-
     display.style.fontSize = Math.max(16, size) + "px";
-
   }
-
-
 
   function reset() {
-
     state.elapsed = 0;
-
     state.startedAt = state.startedAt ? Date.now() : null;
-
   }
-
-
 
   toggleBtn.addEventListener("click", () => {
-
     if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
-
     else {
-
       if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
-
       state.startedAt = Date.now();
-
     }
-
     save(); render();
-
   });
-
   box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
-
   box.querySelector(".ft-close").addEventListener("click", () => {
-
     state.visible = false; save(); render();
-
   });
-
   box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
-
     if (state.mode !== b.dataset.mode) {
-
       state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
-
       save(); render();
-
     }
-
   }));
-
   const setMinutes = m => {
-
     state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
-
     save(); render();
-
   };
-
   minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
-
   box.querySelectorAll("[data-preset]").forEach(b =>
-
     b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
 
-
-
   // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
-
   document.addEventListener("click", e => {
-
     if (e.target.closest('a[href$="#timer"]')) {
-
       e.preventDefault();
-
       state.visible = !state.visible;
-
       save(); render();
-
     }
-
   });
-
-
 
   // dragging by the header (mouse and touch)
-
   const header = box.querySelector(".ft-header");
-
   header.addEventListener("pointerdown", e => {
-
     if (e.target.closest("button")) return;
-
     const r = box.getBoundingClientRect();
-
     const dx = e.clientX - r.left, dy = e.clientY - r.top;
-
     header.setPointerCapture(e.pointerId);
-
     const move = ev => {
-
       state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
-
       state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
-
       render();
-
     };
-
     const up = () => {
-
       header.removeEventListener("pointermove", move);
-
       header.removeEventListener("pointerup", up);
-
       save();
-
     };
-
     header.addEventListener("pointermove", move);
-
     header.addEventListener("pointerup", up);
-
   });
 
-
-
   // remember the size after resizing (via the bottom-right corner) and rescale the digits
-
   new ResizeObserver(() => {
-
     if (!state.visible) return;
-
     state.width = box.offsetWidth; state.height = box.offsetHeight;
-
     fitText(); save();
-
   }).observe(box);
 
-
-
   // the digital font loads asynchronously: refit once it arrives
-
   if (document.fonts) {
-
     document.fonts.ready.then(fitText);
-
     document.fonts.addEventListener("loadingdone", fitText);
-
   }
 
-
-
   render();
-
   setInterval(() => { if (state.startedAt) render(); }, 200);
-
 })();
-
 </script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1904,16 +1288,16 @@ window.addEventListener("load", function() {
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
