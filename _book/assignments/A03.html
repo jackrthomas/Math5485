@@ -328,7 +328,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -341,6 +341,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,6 +384,7 @@ window.Quarto = {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -1498,6 +1505,21 @@ window.addEventListener("load", function() {
   render();
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

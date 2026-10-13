@@ -5,7 +5,7 @@ after-lecture: 7
 ---
 
 <!--
-Quiz questions for the exercise bank (collected by extras/collect_exercises.ipynb).
+Quiz questions for the exercise bank (collected by extras/collect_exercises.jl, run automatically before each render).
 See Q1.qmd for how quiz files work.
 -->
 

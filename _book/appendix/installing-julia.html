@@ -36,7 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
+<link href="../appendix/presentation-topics.html" rel="next">
 <link href="../appendix/schedule.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -261,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -274,6 +274,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,6 +308,7 @@ ul.task-list li input[type="checkbox"] {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -1004,6 +1011,21 @@ window.addEventListener("load", function() {
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
 </script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1462,8 +1484,8 @@ window.addEventListener("load", function() {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="Resources">
-        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/presentation-topics.html" class="pagination-link" aria-label="Presentation Topics">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

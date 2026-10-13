@@ -328,7 +328,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -341,6 +341,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -377,6 +383,7 @@ window.Quarto = {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -1132,7 +1139,8 @@ Note
 <div id="thm-banach" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 4.1 (Contraction Mapping Theorem (Banach fixed point theorem))</strong></span> Suppose <span class="math inline">\(g:[a,b] \to[a,b]\)</span> is a contraction. Then, there exists a unique fixed point <span class="math inline">\(\xi = g(\xi) \in [a,b]\)</span>. Moreover, the iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> converges to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [a,b]\)</span></p>
 </div>
-<p><strong>Proof.</strong> By Brouwer’s fixed point theorem (<span class="math inline">\(g:[a,b] \to [a,b]\)</span> is continuous), there exists a fixed point <span class="math inline">\(\xi \in [a,b]\)</span>. If <span class="math inline">\(\zeta\)</span> is another fixed point, then there exists <span class="math inline">\(L \in (0,1)\)</span> such that</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>By Brouwer’s fixed point theorem (<span class="math inline">\(g:[a,b] \to [a,b]\)</span> is continuous), there exists a fixed point <span class="math inline">\(\xi \in [a,b]\)</span>. If <span class="math inline">\(\zeta\)</span> is another fixed point, then there exists <span class="math inline">\(L \in (0,1)\)</span> such that</p>
 <p><span class="math display">\[\begin{align}
     |\xi - \zeta| &amp;= |g(\xi) - g(\zeta)|
     \nonumber\\
@@ -1149,6 +1157,7 @@ Note
     &amp;\leq L^n |x_1 - \xi|.
 \end{align}\]</span></p>
 <p>Since <span class="math inline">\(L \in (0,1)\)</span>, we have <span class="math inline">\(L^n \to 0\)</span> as <span class="math inline">\(n \to \infty\)</span> and thus <span class="math inline">\((x_n) \to \xi\)</span>.</p>
+</div>
 <div id="exr-contraction-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 4.2</strong></span> <a href="../exercises/bank.html#bank-exr-contraction-2"></a></p>
 <p>Take the simple iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span> for some contraction <span class="math inline">\(g : [a,b] \to [a,b]\)</span>. Show that <span class="math inline">\((x_n)\)</span> converges to the fixed point of <span class="math inline">\(g\)</span> in <span class="math inline">\([a,b]\)</span> at least linearly with asymptotic error constant <span class="math inline">\(\mu = |g'(\xi)|\)</span>.</p>
@@ -1347,8 +1356,8 @@ Note
 </div>
 </div>
 </div>
-<div id="exr-Lambert-W-2" class="theorem exercise" title="Lambert W function">
-<p><span class="theorem-title"><strong>Exercise 4.5</strong></span> <a href="../exercises/bank.html#bank-exr-Lambert-W-2"></a></p>
+<div id="exr-Lambert-W-2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.5 (Lambert W function)</strong></span> <a href="../exercises/bank.html#bank-exr-Lambert-W-2"></a></p>
 <p><em>Assignment 3, Fall 2025.</em> The <em>Lambert W function</em> (also called the <em>product-log function</em>) <span class="math inline">\(W : [0,\infty) \to [0,\infty)\)</span> satisfies <span class="math inline">\(W(a) e^{W(a)} = a\)</span>. Define <span class="math inline">\(\Omega := W(1)\)</span>.</p>
 <ol type="1">
 <li>✍ Show that <span class="math inline">\(\Omega \in [0.56, 0.58]\)</span>.</li>
@@ -1370,8 +1379,8 @@ Note
 <p><a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/A3%20Solutions.html">Solution</a></p>
 </div>
 </div>
-<div id="exr-simple-iteration" class="theorem exercise" title="Simple iteration">
-<p><span class="theorem-title"><strong>Exercise 4.6</strong></span> <a href="../exercises/bank.html#bank-exr-simple-iteration"></a></p>
+<div id="exr-simple-iteration" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4.6 (Simple iteration)</strong></span> <a href="../exercises/bank.html#bank-exr-simple-iteration"></a></p>
 <p><em>Midterm, Fall 2025, Optional section, 30 pts.</em> Define <span class="math inline">\(g(x) = 1 + \frac{1}{1 + x}\)</span> and <span class="math inline">\(I := [1,2]\)</span>.</p>
 <ol type="1">
 <li><strong>[3 points]</strong> Show that <span class="math inline">\(g(x) \in I\)</span> for all <span class="math inline">\(x \in I\)</span>.</li>
@@ -1717,6 +1726,21 @@ window.addEventListener("load", function() {
   render();
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

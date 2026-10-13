@@ -1,0 +1,15 @@
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
+</script>

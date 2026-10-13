@@ -347,7 +347,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -360,6 +360,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -398,6 +404,7 @@ window.Quarto = {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -938,7 +945,8 @@ Note
 <div id="thm-unstable" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 5.1</strong></span> Suppose <span class="math inline">\(h'\)</span> is continuous with <span class="math inline">\(|h'(x)| &gt; L &gt;  1\)</span> for all <span class="math inline">\(x \in I\)</span> where <span class="math inline">\(I\)</span> is an interval containing <span class="math inline">\(\xi = h(\xi)\)</span>. For <span class="math inline">\(x_{1}\in I \setminus \{\xi\}\)</span>, define <span class="math inline">\(x_{n+1} = h(x_n)\)</span>. Then, there exists <span class="math inline">\(N\)</span> such that <span class="math inline">\(x_N \not\in I\)</span>.</p>
 </div>
-<p><strong>Proof.</strong> Let <span class="math inline">\(I = [\xi-\delta,\xi+\delta]\)</span> be such that <span class="math inline">\(|h'| &gt; L\)</span> on <span class="math inline">\(I\)</span>. If <span class="math inline">\(x_n \in I\)</span> then there exists <span class="math inline">\(\eta \in I\)</span> such that</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Let <span class="math inline">\(I = [\xi-\delta,\xi+\delta]\)</span> be such that <span class="math inline">\(|h'| &gt; L\)</span> on <span class="math inline">\(I\)</span>. If <span class="math inline">\(x_n \in I\)</span> then there exists <span class="math inline">\(\eta \in I\)</span> such that</p>
 <p><span class="math display">\[\begin{align}
     |x_{n+1} - \xi| &amp;= |h(x_{n}) - h(\xi)| \nonumber\\
     %
@@ -947,6 +955,7 @@ Note
     &amp;&gt; L |x_{n} - \xi|.
 \end{align}\]</span></p>
 <p>Similarly, if <span class="math inline">\(x_{n+1} \in I\)</span>, then <span class="math inline">\(|x_{n+2} - \xi| &gt; L^2|x_{n} - \xi|\)</span>. Since <span class="math inline">\(L&gt; 1\)</span> (and so <span class="math inline">\(L^n\to\infty\)</span> as <span class="math inline">\(n\to\infty\)</span>), there exists <span class="math inline">\(N\)</span> such that <span class="math inline">\(x_{n+N} \not\in I\)</span>.</p>
+</div>
 <p>If one can additionally prove that no <span class="math inline">\(x\not\in I\)</span> maps to <span class="math inline">\(\xi\)</span>, then the sequence <span class="math inline">\((x_n)\)</span> does not converge to <span class="math inline">\(\xi\)</span>.</p>
 <div id="exm-h-unstable" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5.2</strong></span> <span class="math inline">\(\xi = 1.26...\)</span> is an unstable fixed point of <span class="math inline">\(h(x) = \frac{e^x -1}{2}\)</span>. In fact, for <span class="math inline">\(x_1 &gt; \xi\)</span>, <span class="math inline">\(x_{n+1}= h(x_n)\)</span> diverges to infinity.</p>
@@ -1108,7 +1117,8 @@ Note
 Theoretical asymptotic error constant μ = 1 - λf'(ξ) = 0.9</code></pre>
 </div>
 </div>
-<p><strong>Proof.</strong> Relaxation is a simple iteration with <span class="math inline">\(g(x) = x - \lambda f(x)\)</span>. We wish to apply the contraction mapping theorem and thus it is sufficient to check <span class="math inline">\(|g'(\xi)| \leq L &lt; 1\)</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Relaxation is a simple iteration with <span class="math inline">\(g(x) = x - \lambda f(x)\)</span>. We wish to apply the contraction mapping theorem and thus it is sufficient to check <span class="math inline">\(|g'(\xi)| \leq L &lt; 1\)</span>.</p>
 <p>Suppose that <span class="math inline">\(f'(\xi) &gt; 0\)</span> (the proof is very similar in the other case). Since <span class="math inline">\(f'\)</span> is continuous, there exists <span class="math inline">\(\delta&gt; 0\)</span> such that</p>
 <p><span class="math display">\[\begin{align*}
    m := \frac12 f'(\xi) \leq f'(x) \leq M := \max_{y\in [a,b]} f'(y).
@@ -1117,6 +1127,7 @@ Theoretical asymptotic error constant μ = 1 - λf'(ξ) = 0.9</code></pre>
 <p><span class="math display">\[\begin{align*}
     L = 1 - \frac{2m}{m + M} = \frac{M-m}{M+m} &lt; 1.
 \end{align*}\]</span></p>
+</div>
 </section>
 <section id="newton" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="newton"><span class="header-section-number">5.3</span> Newton</h2>
@@ -1239,7 +1250,8 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
 <p>⬆️ Lecture 5 ⬆️</p>
 <p><hrule></hrule></p>
 <p>⬇️ Lecture 6 ⬇️</p>
-<p><strong>Proof.</strong> First, notice that <span class="math inline">\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_{n})}\)</span> and so</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>First, notice that <span class="math inline">\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_{n})}\)</span> and so</p>
 <p><span class="math display">\[\begin{align}
     -f(x_n) &amp;= f'(x_{n}) (x_{n+1} - x_{n}) \nonumber\\
         &amp;= f'(x_{n}) (\xi - x_n) + f'(x_{n}) (x_{n+1} - \xi).
@@ -1261,6 +1273,7 @@ theoretical value of μ (for α=2) = 0.35355339059327373</code></pre>
     \frac{\left| x_{n+1} - \xi \right|}{|x_n - \xi|^2} = \frac{1}{2} \left| \frac{f''(\eta_n)}{f'(x_n)} \right| \to \frac12 \left| \frac{f''(\xi)}{f'(\xi)} \right|
 \end{align}\]</span></p>
 <p>as <span class="math inline">\(n\to\infty\)</span>.</p>
+</div>
 <div id="exm-Kepler-3" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5.5 (Kepler cont.)</strong></span> Recall that</p>
 <p><span class="math display">\[\begin{align*}
@@ -1386,7 +1399,8 @@ theoretical values of (α, μ) = (1.618033988749895, 0.5259323034521867)</code><
 </div>
 </div>
 </div>
-<p><strong>Proof.</strong> Again, we may apply Taylor’s remainder theorem: there exists <span class="math inline">\(\eta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(x_{n-1}\)</span> such that <span class="math inline">\(f[x_n, x_{n-1}] = f'(\eta_n)\)</span> and <span class="math inline">\(\theta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span> such that <span class="math inline">\(f(x_n) = f'(\xi)(x_n - \xi)\)</span>. As a result, we have</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Again, we may apply Taylor’s remainder theorem: there exists <span class="math inline">\(\eta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(x_{n-1}\)</span> such that <span class="math inline">\(f[x_n, x_{n-1}] = f'(\eta_n)\)</span> and <span class="math inline">\(\theta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span> such that <span class="math inline">\(f(x_n) = f'(\xi)(x_n - \xi)\)</span>. As a result, we have</p>
 <p><span class="math display">\[\begin{align}
     x_{n+1} - \xi &amp;= x_n - \xi - \frac{f(x_n)}{ f[x_n, x_{n-1}] } \nonumber\\
     %
@@ -1401,6 +1415,7 @@ theoretical values of (α, μ) = (1.618033988749895, 0.5259323034521867)</code><
     |x_{n+1} - \xi| \leq \frac23 |x_{n}-\xi| \leq \cdots \leq \left(\frac23\right)^n |x_1 - \xi|.
 \end{align}\]</span></p>
 <p>That is, the sequence converges at least linearly. Moreover, by (1), we have <span class="math inline">\(|x_{n+1}-\xi|/|x_n - \xi| \to 0\)</span> as <span class="math inline">\(n\to\infty\)</span>.</p>
+</div>
 <div id="def-efficiency" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 5.2 (Efficiency index)</strong></span> The efficiency index is <span class="math inline">\(E := \alpha^{1/\theta}\)</span> where <span class="math inline">\(\theta\)</span> is the number of function evaluations at each step of the iteration. This measures the order of the method <em>per function evaluation</em></p>
 </div>
@@ -1438,8 +1453,8 @@ Note
 </section>
 <section id="extra-exercises" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">5.5</span> Extra exercises</h2>
-<div id="exr-faster-linear" class="theorem exercise" title="Faster than linear convergence">
-<p><span class="theorem-title"><strong>Exercise 5.4</strong></span> <a href="../exercises/bank.html#bank-exr-faster-linear"></a></p>
+<div id="exr-faster-linear" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.4 (Faster than linear convergence)</strong></span> <a href="../exercises/bank.html#bank-exr-faster-linear"></a></p>
 <p>Suppose that <span class="math inline">\(g\)</span> is twice continuously differentiable with <span class="math inline">\(g(\xi) = \xi\)</span> and <span class="math inline">\(g'(\xi) = 0\)</span>.</p>
 <ol type="1">
 <li>✍️ Show that there exists <span class="math inline">\(\delta &gt; 0\)</span> such that <span class="math inline">\(x_{n+1} = g(x_n)\)</span> converges to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [\xi - \delta, \xi + \delta]\)</span>.<br>
@@ -1451,16 +1466,16 @@ Note
 \end{align}\]</span></p>
 <p>(whenever <span class="math inline">\(x_n \not= \xi\)</span> for all <span class="math inline">\(n\)</span>). What is the order of convergence when <span class="math inline">\(g''(\xi) \not= 0\)</span>?</p>
 </div>
-<div id="exr-Newton-1" class="theorem exercise" title="Newton">
-<p><span class="theorem-title"><strong>Exercise 5.5</strong></span> <a href="../exercises/bank.html#bank-exr-Newton-1"></a></p>
+<div id="exr-Newton-1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.5 (Newton)</strong></span> <a href="../exercises/bank.html#bank-exr-Newton-1"></a></p>
 <p><em>Newton’s method</em> <span class="math inline">\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\)</span> is the simple iteration with <span class="math inline">\(g(x) := x - \frac{f(x)}{f'(x)}\)</span>.</p>
 <p>✍️ Suppose that <span class="math inline">\(f\)</span> is three times continuously differentiable with <span class="math inline">\(f(\xi) = 0\)</span> and <span class="math inline">\(f'(\xi) \not= 0\)</span>. Show that <span class="math inline">\(g'(\xi) = 0\)</span> and <span class="math inline">\(g''(\xi) = \frac{f''(\xi)}{f'(\xi)}\)</span>. What does this tell you about Newton’s method?</p>
 <div class="exercise-hint" style="display: none;">
 <p>Taylor’s theorem.</p>
 </div>
 </div>
-<div id="exr-division-iter" class="theorem exercise" title="Division without dividing">
-<p><span class="theorem-title"><strong>Exercise 5.6</strong></span> <a href="../exercises/bank.html#bank-exr-division-iter"></a></p>
+<div id="exr-division-iter" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5.6 (Division without dividing)</strong></span> <a href="../exercises/bank.html#bank-exr-division-iter"></a></p>
 <p>Fix <span class="math inline">\(a &gt; 0\)</span>.</p>
 <ol type="1">
 <li>✍️ Show that Newton’s method applied to <span class="math inline">\(f(x) := \frac1x - a\)</span> is given by <span class="math inline">\(x_{n+1} = x_n(2 - a x_n)\)</span>.<br>
@@ -1840,6 +1855,21 @@ window.addEventListener("load", function() {
   render();
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

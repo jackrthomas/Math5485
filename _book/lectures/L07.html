@@ -328,7 +328,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -341,6 +341,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -379,6 +385,7 @@ window.Quarto = {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -878,7 +885,8 @@ T_n( \cos \theta ) = \cos n\theta.
 <li><span class="math inline">\(T_{n+1} = 0\)</span> on <span class="math inline">\(\big\{ \cos \frac{(2j+1)\pi}{2(n+1)} \big\}_{j=0}^{n}\)</span> (zeros; Chebyshev nodes of the first kind).</li>
 </ul>
 </div>
-<p><strong><em>Proof.</em></strong> Firstly, <span class="math inline">\(T_0(\cos\theta) =\cos 0 = 1\)</span> and so <span class="math inline">\(T_0 = 1\)</span>. Moreover, <span class="math inline">\(T_{1}(\cos \theta) = \cos\theta\)</span> and so <span class="math inline">\(T_1 = x\)</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Firstly, <span class="math inline">\(T_0(\cos\theta) =\cos 0 = 1\)</span> and so <span class="math inline">\(T_0 = 1\)</span>. Moreover, <span class="math inline">\(T_{1}(\cos \theta) = \cos\theta\)</span> and so <span class="math inline">\(T_1 = x\)</span>.</p>
 <p>Using the fact that <span class="math inline">\(\cos(x+y) = \cos x \cos y - \sin x \sin y\)</span> (which follows from e.g.&nbsp;<span class="math inline">\(e^{i(x+y)} = e^{ix} e^{iy}\)</span>), we find that</p>
 <p><span class="math display">\[\begin{align}
     T_{n\pm1}(\cos\theta) &amp;= \cos( n\theta \pm \theta) \nonumber\\
@@ -888,7 +896,8 @@ T_n( \cos \theta ) = \cos n\theta.
 <p>The sum of these equations is therefore <span class="math inline">\(T_{n+1}(\cos\theta) + T_{n-1}(\cos\theta) = 2 \cos \theta \cos n\theta = 2 \cos(\theta) T_n(\cos\theta)\)</span> and thus the recursion relation follows.</p>
 <p>One can therefore show inductively that <span class="math inline">\(T_n\)</span> is a polynomial of degree <span class="math inline">\(n\)</span>. Using the recursion, the coeficient of <span class="math inline">\(x^{n+1}\)</span> in <span class="math inline">\(T_{n+1}\)</span> is <span class="math inline">\(2\)</span> times the coefficient of <span class="math inline">\(x^n\)</span> in <span class="math inline">\(T_{n}\)</span>. You can therefore argue inductively that the coeficient of <span class="math inline">\(x^n\)</span> in <span class="math inline">\(T_{n}\)</span> is <span class="math inline">\(2^{n-1}\)</span>.</p>
 <p>We have <span class="math inline">\(|T_n(\cos\theta)| = |\cos n\theta| \leq 1\)</span> and this maximum is achieved when <span class="math inline">\(n\theta = j\pi\)</span> for some <span class="math inline">\(j \in \mathbb Z\)</span>. Restricting this to <span class="math inline">\(\theta = \frac{j\pi}{n} \in [0,\pi]\)</span> gives <span class="math inline">\(j = 0,\dots,n\)</span>. At these values, we have <span class="math inline">\(T_n( \cos\tfrac{j\pi}{n} ) = \cos j\pi = (-1)^j\)</span>.</p>
-<p><span class="math inline">\(T_{n+1}\)</span> is a polynomial of degree <span class="math inline">\(n+1\)</span> and thus has at most <span class="math inline">\(n+1\)</span> zeros in the interval <span class="math inline">\([-1,1]\)</span>. We have <span class="math inline">\(T_{n+1}(\cos\theta) = \cos (n+1)\theta = 0\)</span> when <span class="math inline">\((n+1)\theta = \frac{\pi}{2} + j \pi\)</span> for <span class="math inline">\(j \in \mathbb Z\)</span> such that <span class="math inline">\(\theta = \frac{ (2j+1) \pi }{ 2(n+1) } \in [0,\pi]\)</span>. That is, for <span class="math inline">\(j = 0,\dots,n\)</span>. <span class="math inline">\(\square\)</span></p>
+<p><span class="math inline">\(T_{n+1}\)</span> is a polynomial of degree <span class="math inline">\(n+1\)</span> and thus has at most <span class="math inline">\(n+1\)</span> zeros in the interval <span class="math inline">\([-1,1]\)</span>. We have <span class="math inline">\(T_{n+1}(\cos\theta) = \cos (n+1)\theta = 0\)</span> when <span class="math inline">\((n+1)\theta = \frac{\pi}{2} + j \pi\)</span> for <span class="math inline">\(j \in \mathbb Z\)</span> such that <span class="math inline">\(\theta = \frac{ (2j+1) \pi }{ 2(n+1) } \in [0,\pi]\)</span>. That is, for <span class="math inline">\(j = 0,\dots,n\)</span>.</p>
+</div>
 <p>Here, we plot the first <span class="math inline">\(5\)</span> Chebyshev polynomials on <span class="math inline">\([-1,1]\)</span> together with <span class="math inline">\((x, T_n(x))\)</span> for <span class="math inline">\(x \in X_{\mathrm{II}}\)</span> with <span class="math inline">\(n=5\)</span></p>
 <div id="53454b29" class="cell" data-execution_count="2">
 <details class="code-fold">
@@ -915,7 +924,8 @@ T_n( \cos \theta ) = \cos n\theta.
     \|t_{n+1} \|_{L^\infty([-1,1])} \leq \min_{p = x^{n+1} + q : \,\, q \in \mathcal P_n  } \big\| p \big\|_{L^\infty([-1,1])}.
 \end{align}\]</span></p>
 </div>
-<p><strong><em>Proof.</em></strong> Here, we just write <span class="math inline">\(\|\,\cdot\,\|_{L^\infty}\)</span> for <span class="math inline">\(\|\,\cdot\,\|_{L^\infty([-1,1])}\)</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Here, we just write <span class="math inline">\(\|\,\cdot\,\|_{L^\infty}\)</span> for <span class="math inline">\(\|\,\cdot\,\|_{L^\infty([-1,1])}\)</span>.</p>
 <p>Suppose that <span class="math inline">\(p\)</span> minimises the right hand side of (1). Then, because <span class="math inline">\(t_{n+1}\)</span> is a monic polynomial of degree <span class="math inline">\(n+1\)</span>, we must have</p>
 <p><span class="math display">\[\begin{align*}
     \big\|p \big\|_{L^\infty} \leq \| t_{n+1} \|_{L^\infty} = 2^{1-(n+1)} \| T_{n+1} \|_{L^\infty} = 2^{-n}
@@ -930,7 +940,8 @@ T_n( \cos \theta ) = \cos n\theta.
     r( z_j ) &amp;= 2^{-n} - p( z_j ) \geq 0 \qquad &amp;\text{for even } j \\
     r( z_j ) &amp;= (-1) 2^{-n} - p( z_j ) \leq 0 \qquad &amp;\text{for odd } j.
 \end{align}\]</span></p>
-<p>By the change of sign theorem, there exists <span class="math inline">\(x_1,\dots,x_{n+1}\)</span> such that <span class="math inline">\(z_j \leq x_{j+1} \leq z_{j+1}\)</span> and <span class="math inline">\(r(x_j) = 0\)</span>. As a result, <span class="math inline">\(r\)</span> is a polynomial of degree at most <span class="math inline">\(n\)</span> with <span class="math inline">\(n+1\)</span> zeros and thus <span class="math inline">\(r = 0\)</span> and <span class="math inline">\(p = t_{n+1}\)</span>. <span class="math inline">\(\square\)</span></p>
+<p>By the change of sign theorem, there exists <span class="math inline">\(x_1,\dots,x_{n+1}\)</span> such that <span class="math inline">\(z_j \leq x_{j+1} \leq z_{j+1}\)</span> and <span class="math inline">\(r(x_j) = 0\)</span>. As a result, <span class="math inline">\(r\)</span> is a polynomial of degree at most <span class="math inline">\(n\)</span> with <span class="math inline">\(n+1\)</span> zeros and thus <span class="math inline">\(r = 0\)</span> and <span class="math inline">\(p = t_{n+1}\)</span>.</p>
+</div>
 <p>We have therefore shown that, choosing <span class="math inline">\(X =X_{\mathrm{I}}=  \{ \text{zeros of }t_{n+1} \}\)</span> minimises the node polynomial in the following sense</p>
 <p><span class="math display">\[\begin{align}
     \min_{ y_0 &lt; \dots &lt; y_n } \| \ell_{Y} \|_{L^\infty([-1,1])} \geq \| \ell_X \|_{L^\infty([-1,1])} = 2^{-n}
@@ -1320,6 +1331,21 @@ window.addEventListener("load", function() {
   render();
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

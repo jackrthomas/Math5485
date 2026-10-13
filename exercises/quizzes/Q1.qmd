@@ -5,7 +5,7 @@ after-lecture: 4
 ---
 
 <!--
-Quiz questions for the exercise bank (collected by extras/collect_exercises.ipynb).
+Quiz questions for the exercise bank (collected by extras/collect_exercises.jl, run automatically before each render).
 
 * Each question is a top-level `::: {.quiz-question}` block. They are labelled
   "Quiz 1: Exercise 1", "Quiz 1: Exercise 2", ... in the order they appear.

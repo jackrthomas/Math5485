@@ -347,7 +347,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -360,6 +360,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -399,6 +405,7 @@ window.Quarto = {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -1176,7 +1183,9 @@ Note
 <div id="thm-change-sign" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.2 (Change of sign)</strong></span> If <span class="math inline">\(f\)</span> is continuous on <span class="math inline">\([a,b]\)</span> and <span class="math inline">\(f(a) f(b) \leq 0\)</span> then there exists <span class="math inline">\(\xi \in [a,b]\)</span> with <span class="math inline">\(f(\xi) = 0\)</span>.</p>
 </div>
-<p><em>Proof.</em> If <span class="math inline">\(f(a) f(b) = 0\)</span> then either <span class="math inline">\(a\)</span> or <span class="math inline">\(b\)</span> is a root. We can therefore suppose that <span class="math inline">\(f(a) f(b) &lt; 0\)</span> and so either <span class="math inline">\(f(a) &lt; 0 &lt; f(b)\)</span> or <span class="math inline">\(f(b) &lt; 0 &lt; f(a)\)</span>. Since <span class="math inline">\(f\)</span> is continuous, we can apply the intermediate value theorem on <span class="math inline">\(f\)</span> to conclude there exists a root <span class="math inline">\(c \in [a,b]\)</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>If <span class="math inline">\(f(a) f(b) = 0\)</span> then either <span class="math inline">\(a\)</span> or <span class="math inline">\(b\)</span> is a root. We can therefore suppose that <span class="math inline">\(f(a) f(b) &lt; 0\)</span> and so either <span class="math inline">\(f(a) &lt; 0 &lt; f(b)\)</span> or <span class="math inline">\(f(b) &lt; 0 &lt; f(a)\)</span>. Since <span class="math inline">\(f\)</span> is continuous, we can apply the intermediate value theorem on <span class="math inline">\(f\)</span> to conclude there exists a root <span class="math inline">\(c \in [a,b]\)</span>.</p>
+</div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1223,7 +1232,9 @@ Warning
 <div id="thm-Brouwer" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 3.3 (Brouwer’s fixed point theorem)</strong></span> Suppose <span class="math inline">\(g : [a,b]\to\mathbb R\)</span> is continuous with <span class="math inline">\(g(x) \in [a,b]\)</span> for all <span class="math inline">\(x \in [a,b]\)</span>. Then, there exists <span class="math inline">\(\xi\in [a,b]\)</span> with <span class="math inline">\(g(\xi) = \xi\)</span>.</p>
 </div>
-<p><em>Proof.</em> We can apply the change of sign theorem to <span class="math inline">\(f(x) := g(x) - x\)</span>. Indeed, because <span class="math inline">\(g(a), g(b) \in [a,b]\)</span>, we have <span class="math inline">\(f(a) = g(a) - a \geq 0\)</span> and <span class="math inline">\(f(b) = g(b) - b \leq 0\)</span> and thus <span class="math inline">\(f\)</span> is continuous with <span class="math inline">\(f(a) f(b) \leq 0\)</span>. All roots <span class="math inline">\(\xi\in[a,b]\)</span> of <span class="math inline">\(f\)</span> are fixed points of <span class="math inline">\(g\)</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>We can apply the change of sign theorem to <span class="math inline">\(f(x) := g(x) - x\)</span>. Indeed, because <span class="math inline">\(g(a), g(b) \in [a,b]\)</span>, we have <span class="math inline">\(f(a) = g(a) - a \geq 0\)</span> and <span class="math inline">\(f(b) = g(b) - b \leq 0\)</span> and thus <span class="math inline">\(f\)</span> is continuous with <span class="math inline">\(f(a) f(b) \leq 0\)</span>. All roots <span class="math inline">\(\xi\in[a,b]\)</span> of <span class="math inline">\(f\)</span> are fixed points of <span class="math inline">\(g\)</span>.</p>
+</div>
 <div id="exr-change-sign-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 3.6</strong></span> <a href="../exercises/bank.html#bank-exr-change-sign-2"></a></p>
 <p>Let’s return to <a href="#exr-change-sign-1" class="quarto-xref">Exercise&nbsp;<span>3.5</span></a>. You showed that <span class="math inline">\(f(x) = e^x - 2x - 1\)</span> has a root <span class="math inline">\(\xi \in [1,2]\)</span>.</p>
@@ -1300,8 +1311,8 @@ Warning
 </section>
 <section id="extra-exercises" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">3.6</span> Extra exercises</h2>
-<div id="exr-LambertW" class="theorem exercise" title="Lambert W function">
-<p><span class="theorem-title"><strong>Exercise 3.7</strong></span> <a href="../exercises/bank.html#bank-exr-LambertW"></a></p>
+<div id="exr-LambertW" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3.7 (Lambert W function)</strong></span> <a href="../exercises/bank.html#bank-exr-LambertW"></a></p>
 <p><em>Assignment 1, Fall 2025, [30 pts].</em> Prove that, for <span class="math inline">\(x \geq 0\)</span>, there exists a unique <span class="math inline">\(W(x) \geq 0\)</span> for which <span class="math inline">\(W(x) e^{W(x)} = x\)</span>. Show that <span class="math inline">\(\Omega := W(1)\)</span> satisfies <span class="math inline">\(0.56 &lt; \Omega &lt; 0.58\)</span>.</p>
 <div class="exercise-hint" style="display: none;">
 <p>Intermediate value theorem is useful!</p>
@@ -1793,6 +1804,21 @@ window.addEventListener("load", function() {
   render();
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,4 +1,210 @@
 # Resources {.unnumbered}
 
+## Who's who: a timeline {.unnumbered}
+
+Many of the methods and theorems in this course are named after people. Click on a name to see when they lived and where their work appears in the lectures (you can also link to a person, e.g. `references.html#who-newton`).
+
+```{=html}
+<div class="hist-timeline" id="hist-timeline">
+  <div class="ht-filters" role="group" aria-label="Filter by topic"></div>
+  <div class="ht-chart">
+    <div class="ht-axis" aria-hidden="true"></div>
+    <div class="ht-rows"></div>
+  </div>
+  <div class="ht-card" aria-live="polite"></div>
+</div>
+
+<style>
+  .hist-timeline {
+    --ht-errors: #2780e3;  --ht-nonlinear: #1a8a4a;  --ht-interp: #e06a00;  --ht-analysis: #8e44ad;
+    --ht-grid: #e9ecef;  --ht-muted: #6c757d;  --ht-name-w: 12.5rem;
+    margin: 1rem 0 2rem;
+  }
+  .ht-filters { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+  .ht-chip {
+    border: 1px solid #ced4da; background: #fff; border-radius: 999px; padding: .2rem .7rem;
+    font-size: .85rem; cursor: pointer; display: inline-flex; align-items: center; gap: .35rem;
+  }
+  .ht-chip .dot { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; }
+  .ht-chip[aria-pressed="true"] { border-color: #343a40; background: #343a40; color: #fff; }
+  .ht-chart { position: relative; }
+  .ht-axis { position: relative; height: 1.4rem; margin-left: var(--ht-name-w); border-bottom: 1px solid #adb5bd; }
+  .ht-tick { position: absolute; bottom: 0; transform: translateX(-50%); font-size: .7rem; color: var(--ht-muted); padding-bottom: .15rem; }
+  .ht-rows { position: relative; }
+  .ht-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ht-grid); pointer-events: none; }
+  .ht-row {
+    display: grid; grid-template-columns: var(--ht-name-w) 1fr; align-items: center; width: 100%;
+    border: 0; background: transparent; padding: .1rem 0; cursor: pointer; text-align: left; font: inherit;
+  }
+  .ht-row:hover .ht-name, .ht-row.selected .ht-name { font-weight: 700; }
+  .ht-row:focus-visible { outline: 2px solid #2780e3; outline-offset: 1px; }
+  .ht-name { font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: .5rem; }
+  .ht-track { position: relative; height: 1.05rem; }
+  .ht-bar { position: absolute; top: 0; bottom: 0; border-radius: 4px; opacity: .85; transition: opacity .15s; }
+  .ht-row:hover .ht-bar, .ht-row.selected .ht-bar { opacity: 1; box-shadow: 0 0 0 2px rgba(0,0,0,.25); }
+  .ht-years { position: absolute; top: 50%; transform: translateY(-50%); font-size: .68rem; color: var(--ht-muted); white-space: nowrap; padding-left: .3rem; }
+  .ht-card {
+    margin-top: 1rem; border-left: 5px solid var(--ht-accent, #adb5bd); background: #f8f9fa;
+    border-radius: 4px; padding: .85rem 1.1rem; min-height: 3rem;
+  }
+  .ht-card h4 { margin: 0 0 .15rem; font-size: 1.1rem; }
+  .ht-card .meta { color: var(--ht-muted); font-size: .85rem; margin-bottom: .5rem; }
+  .ht-card ul { margin: 0; padding-left: 1.2rem; }
+  .ht-card li { margin-bottom: .25rem; }
+  .ht-card .lec { font-size: .8rem; white-space: nowrap; }
+  .ht-name .short { display: none; }
+  @media (max-width: 576px) {
+    .hist-timeline { --ht-name-w: 5.5rem; }
+    .ht-name { font-size: .75rem; }
+    .ht-name .full { display: none; }
+    .ht-name .short { display: inline; }
+    .ht-years, .ht-tick.minor { display: none; }
+  }
+</style>
+
+<script>
+(function () {
+  // ── Data: add people here. `lectures` are lecture numbers (links to lectures/Lnn.html). ──
+  const AREAS = {
+    errors:    { label: 'Errors & floating point', color: 'var(--ht-errors)' },
+    nonlinear: { label: 'Nonlinear equations',     color: 'var(--ht-nonlinear)' },
+    interp:    { label: 'Interpolation',           color: 'var(--ht-interp)' },
+    analysis:  { label: 'Analysis tools',          color: 'var(--ht-analysis)' },
+  };
+  const PEOPLE = [
+    { name: 'Johannes Kepler', born: 1571, died: 1630, area: 'nonlinear',
+      items: [ { text: "Kepler's equation for planetary orbits, solved with relaxation and Newton's method", lectures: [5] } ] },
+    { name: 'Isaac Newton', born: 1643, died: 1727, area: 'nonlinear',
+      items: [ { text: "Newton's method for solving nonlinear equations", lectures: [5] },
+               { text: 'Newton form of the interpolating polynomial and divided differences', lectures: [8, 9] } ] },
+    { name: 'Gottfried Wilhelm Leibniz', born: 1646, died: 1716, area: 'analysis',
+      items: [ { text: 'Leibniz rule for derivatives of a product (used in the Hermite existence proof)', lectures: [9] } ] },
+    { name: 'Michel Rolle', born: 1652, died: 1719, area: 'analysis',
+      items: [ { text: "Rolle's theorem, the key step in the interpolation error estimate", lectures: [6, 9] } ] },
+    { name: 'Brook Taylor', born: 1685, died: 1731, area: 'analysis',
+      items: [ { text: "Taylor's theorem and Taylor polynomials: used throughout, e.g. for convergence of iterations and as Hermite interpolation at a single node", lectures: [1, 3, 4, 5, 6, 9] } ] },
+    { name: 'James Stirling', born: 1692, died: 1770, area: 'analysis',
+      items: [ { text: "Stirling's formula for n!, used to estimate the equispaced node polynomial", lectures: [6] } ] },
+    { name: 'Leonhard Euler', born: 1707, died: 1783, area: 'errors',
+      items: [ { text: "Euler's number e and the Euler–Mascheroni constant γ: first examples of approximation and rates of convergence", lectures: [1] } ] },
+    { name: 'Johann Heinrich Lambert', born: 1728, died: 1777, area: 'nonlinear',
+      items: [ { text: 'The Lambert W function, computed by fixed-point iteration', lectures: [3, 4] } ] },
+    { name: 'Alexandre-Théophile Vandermonde', born: 1735, died: 1796, area: 'interp',
+      items: [ { text: 'Vandermonde matrices and their (bad) conditioning', lectures: [3] } ] },
+    { name: 'Joseph-Louis Lagrange', born: 1736, died: 1813, area: 'interp',
+      items: [ { text: 'Lagrange interpolation and the Lagrange polynomials', lectures: [6, 7, 8] } ] },
+    { name: 'Lorenzo Mascheroni', born: 1750, died: 1800, area: 'errors',
+      items: [ { text: 'The Euler–Mascheroni constant γ', lectures: [1] } ] },
+    { name: 'Bernard Bolzano', born: 1781, died: 1848, area: 'analysis',
+      items: [ { text: 'The intermediate value theorem, behind the change of sign theorem and bisection', lectures: [3] } ] },
+    { name: 'Augustin-Louis Cauchy', born: 1789, died: 1857, area: 'analysis',
+      items: [ { text: 'Cauchy sequences, used to show the Euler–Mascheroni sequence converges', lectures: [1] } ] },
+    { name: 'Pafnuty Chebyshev', born: 1821, died: 1894, area: 'interp',
+      items: [ { text: 'Chebyshev polynomials and Chebyshev nodes: the best choice of interpolation nodes', lectures: [6, 7, 8] } ] },
+    { name: 'Charles Hermite', born: 1822, died: 1901, area: 'interp',
+      items: [ { text: 'Hermite interpolation: matching values and derivatives', lectures: [9] } ] },
+    { name: 'Carl Runge', born: 1856, died: 1927, area: 'interp',
+      items: [ { text: 'The Runge phenomenon: interpolation at equispaced nodes can diverge', lectures: [6, 7, 8] } ] },
+    { name: 'Max Planck', born: 1858, died: 1947, area: 'errors',
+      items: [ { text: "Planck's constant, an example of relative error and scientific notation", lectures: [1, 2] } ] },
+    { name: 'L. E. J. Brouwer', born: 1881, died: 1966, area: 'nonlinear',
+      items: [ { text: "Brouwer's fixed point theorem (in 1d): existence of fixed points", lectures: [3, 4] } ] },
+    { name: 'Stefan Banach', born: 1892, died: 1945, area: 'nonlinear',
+      items: [ { text: 'The contraction mapping (Banach fixed point) theorem: when simple iteration converges', lectures: [4] } ] },
+    { name: 'James H. Wilkinson', born: 1919, died: 1986, area: 'errors',
+      items: [ { text: "Wilkinson's polynomial, a famous example of ill-conditioned roots (presentation topic)", lectures: [3] } ] },
+  ];
+
+  const root = document.getElementById('hist-timeline');
+  if (!root) return;
+  const START = 1550, END = 2000;
+  const pos = y => ((y - START) / (END - START) * 100) + '%';
+  // surname = last word (keeps "de"/"von" style names short enough for phones); also the #who-<surname> link key
+  const surname = p => p.name.split(' ').pop();
+  const key = p => surname(p).toLowerCase().normalize('NFD').replace(/[^a-z]/g, '');
+  const lectureLink = n => `<a class="lec" href="lectures/L${String(n).padStart(2, '0')}.html">Lecture ${n}</a>`;
+
+  // axis + gridlines
+  const axis = root.querySelector('.ht-axis'), rows = root.querySelector('.ht-rows');
+  for (let y = START; y <= END; y += 50) {
+    axis.insertAdjacentHTML('beforeend', `<span class="ht-tick${y % 100 ? ' minor' : ''}" style="left:${pos(y)}">${y}</span>`);
+  }
+
+  let filter = 'all', selected = null;
+
+  function showCard(p) {
+    const card = root.querySelector('.ht-card');
+    if (!p) { card.innerHTML = '<span class="meta">Click on a name or bar for details.</span>'; card.style.removeProperty('--ht-accent'); return; }
+    const a = AREAS[p.area];
+    card.style.setProperty('--ht-accent', a.color);
+    card.innerHTML = `<h4>${p.name}</h4>
+      <div class="meta">${p.born}–${p.died} (aged about ${p.died - p.born}) · ${a.label}</div>
+      <ul>${p.items.map(it => `<li>${it.text} <span class="text-muted">(${it.lectures.map(lectureLink).join(', ')})</span></li>`).join('')}</ul>`;
+  }
+
+  function render() {
+    rows.innerHTML = '';
+    // gridlines span the rows (inside the track area)
+    const grid = document.createElement('div');
+    grid.style.cssText = 'position:absolute;top:0;bottom:0;right:0;left:var(--ht-name-w);pointer-events:none;';
+    for (let y = START; y <= END; y += 50) grid.insertAdjacentHTML('beforeend', `<div class="ht-gridline" style="left:${pos(y)}"></div>`);
+    rows.appendChild(grid);
+
+    PEOPLE.filter(p => filter === 'all' || p.area === filter)
+      .sort((a, b) => a.born - b.born)
+      .forEach(p => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ht-row' + (selected === p ? ' selected' : '');
+        btn.setAttribute('aria-label', `${p.name}, ${p.born} to ${p.died}`);
+        btn.innerHTML = `<span class="ht-name" title="${p.name}"><span class="full">${p.name}</span><span class="short">${surname(p)}</span></span>
+          <span class="ht-track">
+            <span class="ht-bar" style="left:${pos(p.born)};width:calc(${pos(p.died)} - ${pos(p.born)});background:${AREAS[p.area].color}"></span>
+            ${(p.died - START) / (END - START) > 0.8
+              ? `<span class="ht-years" style="right:calc(100% - ${pos(p.born)});padding:0 .3rem 0 0">${p.born}–${p.died}</span>`
+              : `<span class="ht-years" style="left:${pos(p.died)}">${p.born}–${p.died}</span>`}
+          </span>`;
+        btn.addEventListener('click', () => { selected = p; render(); showCard(p); });
+        rows.appendChild(btn);
+      });
+  }
+
+  // filter chips
+  const chips = root.querySelector('.ht-filters');
+  const addChip = (key, label, color) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'ht-chip'; b.dataset.key = key;
+    b.setAttribute('aria-pressed', key === filter);
+    b.innerHTML = (color ? `<span class="dot" style="background:${color}"></span>` : '') + label;
+    b.addEventListener('click', () => {
+      filter = key;
+      chips.querySelectorAll('.ht-chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.key === key));
+      if (selected && filter !== 'all' && selected.area !== filter) { selected = null; showCard(null); }
+      render();
+    });
+    chips.appendChild(b);
+  };
+  addChip('all', 'All');
+  Object.entries(AREAS).forEach(([k, a]) => addChip(k, a.label, a.color));
+
+  // link straight to a person: references.html#who-newton
+  function fromHash() {
+    const m = location.hash.match(/^#who-([a-z]+)$/);
+    const p = m && PEOPLE.find(q => key(q) === m[1]);
+    if (!p) return false;
+    filter = 'all';
+    chips.querySelectorAll('.ht-chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.key === 'all'));
+    selected = p; render(); showCard(p);
+    root.scrollIntoView({ block: 'start' });
+    return true;
+  }
+  window.addEventListener('hashchange', fromHash);
+  if (!fromHash()) { render(); showCard(null); }
+})();
+</script>
+```
+
+## References {.unnumbered}
+
 ::: {#refs}
 :::

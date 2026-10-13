@@ -1,6 +1,7 @@
 project:
   type: book
   output-dir: _book
+  pre-render: extras/run-collect-exercises.py   # rebuilds exercises/exercises.qmd
 
 comments: 
   hypothesis:
@@ -61,6 +62,7 @@ book:
       - appendix/syllabus.ipynb
       - appendix/schedule.qmd 
       - appendix/installing-julia.ipynb
+      - appendix/presentation-topics.ipynb
     
     - references.qmd
 
@@ -81,8 +83,14 @@ crossref:
   eq-prefix: ""
 
 filters:
+  - at: pre-ast
+    path: extras/collapse-proofs.lua
+  - at: pre-ast
+    path: extras/ai-solutions.lua
   - at: post-quarto
     path: extras/eq-parens.lua
+  - at: post-quarto
+    path: extras/split-refs.lua   # books and papers as separate lists
 
 format:
   html:
@@ -93,6 +101,7 @@ format:
     include-after-body:
       - extras/tags.html
       - extras/timer.html
+      - extras/theorem-titles.html
     code-tools:
       source: true           
       toggle: true

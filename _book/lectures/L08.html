@@ -347,7 +347,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -360,6 +360,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Presentation Topics</span></span></a>
   </div>
 </li>
       </ul>
@@ -401,6 +407,7 @@ window.Quarto = {
                  * Order doesn't matter: updates are sorted by date (newest first).
                  * Updates dated in the future are hidden until that day (so you can schedule them).
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
@@ -1149,8 +1156,10 @@ Note
 <div id="thm-divided-diffs-1" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 8.1</strong></span> The divided difference <span class="math inline">\(f[x_{0}, \dots, x_n]\)</span> doesn’t depend on the ordering of the interpolation nodes. Moreover, we have <em>linearity</em>: <span class="math inline">\((f + c g)[x_0,...,x_n] = f[x_0,...,x_n] + c g[x_0,...,x_n]\)</span>.</p>
 </div>
-<p><strong>Proof.</strong> The polynomial interpolant <span class="math inline">\(p\in \mathcal P_n\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> is independent of the ordering of the nodes.</p>
-<p>Moreover, if <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the polynomial interpolants of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, respectively, then <span class="math inline">\(p + c q\)</span> is a polynomial interpolant of <span class="math inline">\(f+ c g\)</span>. <span class="math inline">\(\square\)</span></p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>The polynomial interpolant <span class="math inline">\(p\in \mathcal P_n\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> is independent of the ordering of the nodes.</p>
+<p>Moreover, if <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the polynomial interpolants of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>, respectively, then <span class="math inline">\(p + c q\)</span> is a polynomial interpolant of <span class="math inline">\(f+ c g\)</span>.</p>
+</div>
 <div id="thm-divided-diffs-2" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 8.2</strong></span> Suppose <span class="math inline">\(X = \{x_0,\cdots,x_n\}\)</span> is a set of <span class="math inline">\(n+1\)</span> distinct interpolation nodes. Then, we have the recursion</p>
 <p><span class="math display">\[
@@ -1161,7 +1170,8 @@ Note
 \end{align}
 \]</span></p>
 </div>
-<p><strong>Proof.</strong> Let <span class="math inline">\(p \in \mathcal P_{n-1}\)</span> be the polynomial interpolation of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{x_0,\dots, x_{n-1}\}\)</span> and define <span class="math inline">\(g(x) := (x-x_{n})f(x)\)</span> and <span class="math inline">\(q(x) := (x - x_{n}) p(x)\)</span>. Then <span class="math inline">\(q(x_j) = g(x_j)\)</span> for <span class="math inline">\(j = 0, \dots, n-1\)</span> (because <span class="math inline">\(p(x_j) = f(x_j)\)</span>) and <span class="math inline">\(q(x_n) = 0 = g(x_n)\)</span>. Since <span class="math inline">\(q \in \mathcal P_n\)</span>, <span class="math inline">\(q\)</span> is the polynomial interpolation of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Therefore, the leading coefficient of <span class="math inline">\(q\)</span> is both <span class="math inline">\(g[x_0,\dots,x_{n}]\)</span> (because <span class="math inline">\(q\)</span> interpolates <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>) and <span class="math inline">\(f[x_0,\dots,x_{n-1}]\)</span> (because <span class="math inline">\(q\)</span> is <span class="math inline">\((x-x_{n})\)</span> times <span class="math inline">\(p\)</span>).</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Let <span class="math inline">\(p \in \mathcal P_{n-1}\)</span> be the polynomial interpolation of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{x_0,\dots, x_{n-1}\}\)</span> and define <span class="math inline">\(g(x) := (x-x_{n})f(x)\)</span> and <span class="math inline">\(q(x) := (x - x_{n}) p(x)\)</span>. Then <span class="math inline">\(q(x_j) = g(x_j)\)</span> for <span class="math inline">\(j = 0, \dots, n-1\)</span> (because <span class="math inline">\(p(x_j) = f(x_j)\)</span>) and <span class="math inline">\(q(x_n) = 0 = g(x_n)\)</span>. Since <span class="math inline">\(q \in \mathcal P_n\)</span>, <span class="math inline">\(q\)</span> is the polynomial interpolation of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Therefore, the leading coefficient of <span class="math inline">\(q\)</span> is both <span class="math inline">\(g[x_0,\dots,x_{n}]\)</span> (because <span class="math inline">\(q\)</span> interpolates <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>) and <span class="math inline">\(f[x_0,\dots,x_{n-1}]\)</span> (because <span class="math inline">\(q\)</span> is <span class="math inline">\((x-x_{n})\)</span> times <span class="math inline">\(p\)</span>).</p>
 <p>That is, we have <span class="math inline">\(\big( (x - x_n) f \big) [x_0,\dots,x_n] = f[x_0,\dots,x_{n-1}]\)</span>. By relabeling the indices (which is allowed because <span class="math inline">\(f[x_0,\dots,x_n]\)</span> does not depend on the ordering of the interpolation nodes), we also have <span class="math inline">\(\big( (x - x_0) f \big) [x_0,\dots,x_n] = f[x_1,\dots,x_{n}]\)</span>. Therefore, by linearity we have</p>
 <p><span class="math display">\[
 \begin{align}
@@ -1172,7 +1182,7 @@ Note
     &amp;= f [x_1,\dots,x_n] - f [x_0,\dots,x_{n-1}] \nonumber
 \end{align}
 \]</span></p>
-<p><span class="math inline">\(\square\)</span></p>
+</div>
 <section id="divided-difference-table" class="level3" data-number="8.3.1">
 <h3 data-number="8.3.1" class="anchored" data-anchor-id="divided-difference-table"><span class="header-section-number">8.3.1</span> Divided difference table</h3>
 <p>Using <a href="#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a>, we can compute all of the divided differences of <span class="math inline">\(f\)</span> on <span class="math inline">\(X = \{x_0, \dots, x_n\}\)</span> column by column in a <em>divided difference table</em>. For example, when <span class="math inline">\(n = 3\)</span>:</p>
@@ -1200,7 +1210,9 @@ Note
     I_X f(x) = \sum_{k=0}^n f[x_0, \dots, x_k] \, \pi_k(x).
 \]</span></p>
 </div>
-<p><strong>Proof.</strong> Let <span class="math inline">\(p_k \in \mathcal P_k\)</span> be the polynomial interpolation of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{x_0, \dots, x_k\}\)</span>. For <span class="math inline">\(k \geq 1\)</span>, <span class="math inline">\(p_k - p_{k-1} \in \mathcal P_k\)</span> vanishes at <span class="math inline">\(x_0, \dots, x_{k-1}\)</span>, and so <span class="math inline">\(p_k - p_{k-1} = c_k \pi_k\)</span> for some constant <span class="math inline">\(c_k\)</span>. Since <span class="math inline">\(p_{k-1} \in \mathcal P_{k-1}\)</span>, comparing the coefficients of <span class="math inline">\(x^k\)</span> gives <span class="math inline">\(c_k = f[x_0, \dots, x_k]\)</span>. Moreover, <span class="math inline">\(p_0 = f(x_0) = f[x_0] \pi_0\)</span>. Therefore, <span class="math inline">\(I_X f = p_n = p_0 + \sum_{k=1}^n (p_k - p_{k-1}) = \sum_{k=0}^n f[x_0,\dots,x_k] \pi_k\)</span>. <span class="math inline">\(\square\)</span></p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>Let <span class="math inline">\(p_k \in \mathcal P_k\)</span> be the polynomial interpolation of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{x_0, \dots, x_k\}\)</span>. For <span class="math inline">\(k \geq 1\)</span>, <span class="math inline">\(p_k - p_{k-1} \in \mathcal P_k\)</span> vanishes at <span class="math inline">\(x_0, \dots, x_{k-1}\)</span>, and so <span class="math inline">\(p_k - p_{k-1} = c_k \pi_k\)</span> for some constant <span class="math inline">\(c_k\)</span>. Since <span class="math inline">\(p_{k-1} \in \mathcal P_{k-1}\)</span>, comparing the coefficients of <span class="math inline">\(x^k\)</span> gives <span class="math inline">\(c_k = f[x_0, \dots, x_k]\)</span>. Moreover, <span class="math inline">\(p_0 = f(x_0) = f[x_0] \pi_0\)</span>. Therefore, <span class="math inline">\(I_X f = p_n = p_0 + \sum_{k=1}^n (p_k - p_{k-1}) = \sum_{k=0}^n f[x_0,\dots,x_k] \pi_k\)</span>.</p>
+</div>
 <div id="exm-sin-Newton-table" class="theorem example">
 <p><span class="theorem-title"><strong>Example 8.2</strong></span> Let’s go back to interpolating <span class="math inline">\(f(x) =\sin x\)</span> on <span class="math inline">\(\{0, \frac\pi2, \pi\}\)</span>. Now add <span class="math inline">\(-2\pi\)</span> as an interpolation node and compute the new polynomial interpolant.</p>
 <p>We compute the divided difference table with <span class="math inline">\(x_0 = 0\)</span>, <span class="math inline">\(x_1 = \frac\pi2\)</span>, <span class="math inline">\(x_2 = \pi\)</span>, and <span class="math inline">\(x_3 = -2\pi\)</span>:</p>
@@ -1770,6 +1782,21 @@ window.addEventListener("load", function() {
   render();
   setInterval(() => { if (state.startedAt) render(); }, 200);
 })();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

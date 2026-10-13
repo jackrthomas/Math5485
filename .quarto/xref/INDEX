@@ -214,5 +214,59 @@
   },
   "exercises/quizzes/Q2.qmd": {
     "Q2.html": "9094f97a"
+  },
+  "private/lectures/L15.ipynb": {
+    "L15.html": "a2e33dfb"
+  },
+  "private/lecture-answers/answers-L01.ipynb": {
+    "answers-L01.html": "cd880e0f"
+  },
+  "private/lecture-answers/answers-L02.ipynb": {
+    "answers-L02.html": "babd1393"
+  },
+  "private/lecture-answers/answers-L03.ipynb": {
+    "answers-L03.html": "4b461ef0"
+  },
+  "private/lecture-answers/answers-L04.ipynb": {
+    "answers-L04.html": "392877fe"
+  },
+  "private/lecture-answers/answers-L05.ipynb": {
+    "answers-L05.html": "87da9ab3"
+  },
+  "private/lecture-answers/answers-L06.ipynb": {
+    "answers-L06.html": "91bfc620"
+  },
+  "private/lecture-answers/answers-L06-original.ipynb": {
+    "answers-L06-original.html": "a64e48ed"
+  },
+  "private/lecture-answers/answers-L07.ipynb": {
+    "answers-L07.html": "f854974a"
+  },
+  "private/lecture-answers/answers-L08.ipynb": {
+    "answers-L08.html": "9f6e4c2f"
+  },
+  "private/lecture-answers/answers-L09.ipynb": {
+    "answers-L09.html": "4b0a1fb2"
+  },
+  "private/lecture-answers/answers-L11.ipynb": {
+    "answers-L11.html": "e156d722"
+  },
+  "private/lecture-answers/answers-L12.ipynb": {
+    "answers-L12.html": "888be36e"
+  },
+  "private/lecture-answers/answers-L13.ipynb": {
+    "answers-L13.html": "0d7c81a6"
+  },
+  "private/lecture-answers/answers-L14.ipynb": {
+    "answers-L14.html": "e0ebad8f"
+  },
+  "private/lecture-answers/answers-L15.ipynb": {
+    "answers-L15.html": "ed1d5e21"
+  },
+  "appendix/presentation-topics.ipynb": {
+    "presentation-topics.html": "daa9da63"
+  },
+  "private/errata.md": {
+    "errata.html": "a534165b"
   }
 }
