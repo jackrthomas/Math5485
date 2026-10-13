@@ -2,7 +2,7 @@
 
 ## Who's who: a timeline {.unnumbered}
 
-Many of the methods and theorems in this course are named after people. Click on a name to see when they lived and where their work appears in the lectures (you can also link to a person, e.g. `references.html#who-newton`).
+Many of the methods and theorems in this course are named after people. Click on a name to see when they lived and where their work appears in the lecture notes.
 
 ```{=html}
 <div class="hist-timeline" id="hist-timeline">
