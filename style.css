@@ -12,6 +12,16 @@
   background-color: rgba(229, 254, 4,.1);
 }
 
+/* Title alone in its paragraph (the exercise starts with a list): no gap before the list.
+   The class is added by extras/theorem-titles.html */
+.theorem > p.title-only {
+  margin-bottom: 0;
+}
+
+.theorem > p.title-only .theorem-title {
+  margin-bottom: 0.25rem;
+}
+
 .example {
   border-left: 5px solid #2780e3; 
   background-color: rgba(39,128,227,.1);
@@ -23,6 +33,18 @@
   border-radius: 4px;
   border-left: 5px solid rgb(1, 230, 255); 
   background-color: rgb(1, 230, 255,.1); 
+}
+
+/* Remarks are proof-like in Quarto ("*Remark 1.1* (Name). "): give them an example-style
+   title (the trailing ". " is removed by extras/theorem-titles.html) */
+.remark .proof-title {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.remark .proof-title em {
+  font-style: normal;
 }
 
 .exercise {
@@ -67,8 +89,53 @@
   background-color: #f8f9fa;
 }
 
-.proof {
+/* ── Proofs ──────────────────────────────────────────────────────────────── */
+
+.proof:not(.remark) {
+  border-left: 3px solid #adb5bd;
+  padding: 0.1em 0 0.1em 1em;
+  margin: 1em 0 1.2em;
+}
+
+.proof:not(.remark) .proof-title {
+  font-weight: 600;
+}
+
+/* QED box at the end of every proof (the PDF gets one from amsthm) */
+.proof:not(.remark) > :last-child::after {
+  content: "\220E";
+  float: right;
+  color: #6c757d;
+}
+
+.proof > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Collapsible proofs: ::: {.proof collapse="true"} (see extras/collapse-proofs.lua) */
+details.proof-details {
+  margin: 1em 0 1.2em;
+}
+
+details.proof-details > summary {
+  cursor: pointer;
   font-style: italic;
+  font-weight: 600;
+  color: #495057;
+}
+
+details.proof-details > summary:hover {
+  color: #2780e3;
+}
+
+details.proof-details > .proof {
+  margin-top: 0.5em;
+  border-left: none;   /* the <details> box already has a rule */
+  padding-left: 0;
+}
+
+details.proof-details .proof-title {
+  display: none;   /* the summary already says "Proof" */
 }
 
 .exercise-box {

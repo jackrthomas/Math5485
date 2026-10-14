@@ -2,23 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Resources – Math5485</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -90,18 +84,19 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./appendix/installing-julia.html" rel="prev">
+<link href="./appendix/presentation-topics.html" rel="prev">
 <link href="./images/pi.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -162,7 +157,9 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Math5485</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -314,7 +311,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix/syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Syllabus</span></a>
+ <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -327,6 +324,12 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="./appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentation topics</span></a>
   </div>
 </li>
       </ul>
@@ -342,305 +345,608 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#whos-who-a-timeline" id="toc-whos-who-a-timeline" class="nav-link active" data-scroll-target="#whos-who-a-timeline">Who’s who: a timeline</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
+
       <span class="banner-label">📢 <strong>Updates</strong></span>
+
       <div class="banner-ticker">
+
         <div class="banner-ticker-track">
+
           <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
+
                  * Order doesn't matter: updates are sorted by date (newest first).
+
                  * Updates dated in the future are hidden until that day (so you can schedule them).
+
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
+
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
+
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
+
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
+
           <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
+
           <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
+
           <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
+
           <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
+
           <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
+
           <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
+
         </div>
+
       </div>
+
       <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
+
       <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
+
       <div id="banner-all-updates" class="banner-all" hidden="">
+
         <div class="banner-all-title">All updates</div>
+
         <ul class="banner-all-list"></ul>
+
       </div>
+
     </div>
+
     <style>
+
       .announcement-banner {
+
         background-color: #007bff;
+
         color: white;
+
         padding: 8px 12px;
+
         position: relative;
+
         font-size: 0.95rem;
+
         z-index: 1000;
+
         display: flex;
+
         align-items: center;
+
         gap: 12px;
+
         margin-bottom: 0.75rem;   /* space between the banner and the page below */
+
       }
+
       .banner-label {
+
         flex-shrink: 0;
+
         white-space: nowrap;
+
       }
+
       /* scrolling area: fades out at both ends */
+
       .banner-ticker {
+
         flex-grow: 1;
+
         overflow: hidden;
+
         white-space: nowrap;
+
         -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+
                 mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+
       }
+
       .banner-ticker-track {
+
         display: inline-flex;
+
         white-space: nowrap;
+
         will-change: transform;
+
       }
+
       .banner-ticker.scrolling .banner-ticker-track {
+
         animation: banner-scroll var(--banner-duration, 30s) linear infinite;
+
       }
+
       /* pause while the mouse is over the text, so it can be read */
+
       .banner-ticker:hover .banner-ticker-track {
+
         animation-play-state: paused;
+
       }
+
       .banner-item {
+
         padding: 0 1.5rem;
+
       }
+
       .banner-date {
+
         display: inline-block;
+
         font-size: 0.8em;
+
         font-weight: 600;
+
         background: rgba(255, 255, 255, 0.2);
+
         border-radius: 4px;
+
         padding: 0 6px;
+
         margin-right: 6px;
+
       }
+
       .banner-item::before {
+
         content: "•";
+
         margin-right: 1.5rem;
+
         opacity: 0.7;
+
       }
+
       @keyframes banner-scroll {
+
         from { transform: translateX(0); }
+
         to   { transform: translateX(-50%); }   /* the track holds two identical halves */
+
       }
+
       /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
+
       @media (prefers-reduced-motion: reduce) {
+
         .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
+
         .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
+
       }
+
       /* "All updates" button and drop-down list */
+
       .banner-more-btn {
+
         flex-shrink: 0;
+
         background: rgba(255, 255, 255, 0.15);
+
         border: 1px solid rgba(255, 255, 255, 0.6);
+
         color: white;
+
         border-radius: 999px;
+
         font-size: 0.8rem;
+
         padding: 2px 10px;
+
         cursor: pointer;
+
         white-space: nowrap;
+
       }
+
       .banner-more-btn:hover,
+
       .banner-more-btn[aria-expanded="true"] {
+
         background: white;
+
         color: #007bff;
+
       }
+
       .banner-all {
+
         position: absolute;
+
         top: 100%;
+
         right: 12px;
+
         margin-top: 6px;
+
         width: min(420px, calc(100vw - 24px));
+
         max-height: 60vh;
+
         overflow-y: auto;
+
         background: white;
+
         color: #212529;
+
         border: 1px solid #dee2e6;
+
         border-radius: 8px;
+
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
         padding: 10px 14px;
+
         text-align: left;
+
         z-index: 1001;
+
       }
+
       .banner-all[hidden] { display: none; }
+
       .banner-all-title {
+
         font-weight: 600;
+
         margin-bottom: 6px;
+
       }
+
       .banner-all-list {
+
         list-style: none;
+
         margin: 0;
+
         padding: 0;
+
       }
+
       .banner-all-list li {
+
         padding: 5px 0;
+
         border-top: 1px solid #f1f3f5;
+
       }
+
       .banner-all-list li:first-child { border-top: none; }
+
       .banner-all-list li.banner-all-date {
+
         font-size: 0.78rem;
+
         font-weight: 600;
+
         color: #6c757d;
+
         border-top: none;
+
         padding: 8px 0 2px;
+
       }
+
       .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
+
       .banner-close-btn {
+
         flex-shrink: 0;
+
         background: none;
+
         border: none;
+
         color: white;
+
         font-size: 1.4rem;
+
         cursor: pointer;
+
         line-height: 1;
+
         padding: 0 8px;
+
         opacity: 0.8;
+
       }
+
       .banner-close-btn:hover {
+
         opacity: 1;
+
       }
+
     </style>
+
     <script>
+
       // Hide immediately if already dismissed in this browser session
+
       if (sessionStorage.getItem('hideCourseBanner') === 'true') {
+
         document.write('<style>#course-announcement-banner { display: none !important; }</style>');
+
       }
+
+
 
       function closeBanner() {
+
         var banner = document.getElementById('course-announcement-banner');
+
         if (banner) {
+
           banner.style.display = 'none';
+
         }
+
         // Remember that the user closed it during this browser session
+
         sessionStorage.setItem('hideCourseBanner', 'true');
+
       }
 
+
+
       // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
+
       // the whole set so the animation (which moves the track by half its width) loops seamlessly.
+
       (function () {
+
         var SPEED = 60;          // pixels per second
+
         var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
 
+
+
         // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
+
         function parseDate(str) {
+
           var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
+
           return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+
         }
+
         function dateLabel(d) {
+
           var today = new Date(); today.setHours(0, 0, 0, 0);
+
           var days = Math.round((today - d) / 86400000);
+
           if (days === 0) return 'Today';
+
           if (days === 1) return 'Yesterday';
+
           var opts = { weekday: 'short', month: 'short', day: 'numeric' };
+
           if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
+
           return d.toLocaleDateString('en-US', opts);
+
         }
+
+
 
         // Sort the updates by date, hide future ones, keep the newest few in the ticker
+
         // (with a date label) and list all of them, grouped by date, under "All updates".
+
         function setupUpdates(track) {
+
           var banner = document.getElementById('course-announcement-banner');
+
           var btn = banner.querySelector('.banner-more-btn');
+
           var panel = banner.querySelector('.banner-all');
+
           var list = panel.querySelector('.banner-all-list');
+
           var today = new Date(); today.setHours(0, 0, 0, 0);
 
+
+
           var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
+
             return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
+
           }).filter(function (u) {
+
             return !u.date || u.date <= today;                       // scheduled updates stay hidden
+
           }).sort(function (a, b) {
+
             if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
+
             if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
+
             return a.order - b.order;                                              // same day: file order
+
           });
+
+
 
           // ticker: the newest MAX_SCROLLING updates, each with its date
+
           track.innerHTML = '';
+
           updates.slice(0, MAX_SCROLLING).forEach(function (u) {
+
             var span = document.createElement('span');
+
             span.className = 'banner-item';
+
             span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
+
             track.appendChild(span);
+
           });
+
           if (updates.length === 0) { banner.style.display = 'none'; return; }
 
+
+
           // drop-down: everything, grouped by date
+
           var lastLabel = null;
+
           updates.forEach(function (u) {
+
             var label = u.date ? dateLabel(u.date) : 'Other';
+
             if (label !== lastLabel) {
+
               var h = document.createElement('li');
+
               h.className = 'banner-all-date';
+
               h.textContent = label;
+
               list.appendChild(h);
+
               lastLabel = label;
+
             }
+
             var li = document.createElement('li');
+
             li.innerHTML = u.html;
+
             list.appendChild(li);
+
           });
+
           if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
 
+
+
           btn.textContent = 'All updates (' + updates.length + ')';
+
           btn.hidden = false;
 
+
+
           function setOpen(open) {
+
             panel.hidden = !open;
+
             btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+
           }
+
           btn.addEventListener('click', function (e) {
+
             e.stopPropagation();
+
             setOpen(panel.hidden);
+
           });
+
           panel.addEventListener('click', function (e) { e.stopPropagation(); });
+
           document.addEventListener('click', function () { setOpen(false); });
+
           document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+
         }
+
+
 
         function startTicker() {
+
           var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
+
           if (!ticker) return;
+
           var track = ticker.querySelector('.banner-ticker-track');
+
           setupUpdates(track);
+
           if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+
+
           var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
+
           if (items.length === 0) return;
 
+
+
           // one "half": the updates repeated until they are at least as wide as the banner
+
           var guard = 0;
+
           while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
+
             items.forEach(function (item) {
+
               var copy = item.cloneNode(true);
+
               copy.setAttribute('aria-hidden', 'true');
+
               track.appendChild(copy);
+
             });
+
           }
+
           // second half: an exact copy of the first
+
           Array.prototype.slice.call(track.children).forEach(function (el) {
+
             var copy = el.cloneNode(true);
+
             copy.setAttribute('aria-hidden', 'true');
+
             track.appendChild(copy);
+
           });
 
+
+
           var halfWidth = track.scrollWidth / 2;
+
           ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
+
           ticker.classList.add('scrolling');
+
         }
 
+
+
         if (document.readyState === 'complete') startTicker();
+
         else window.addEventListener('load', startTicker);
+
       })();
+
     </script>
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -661,14 +967,236 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<section id="whos-who-a-timeline" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="whos-who-a-timeline">Who’s who: a timeline</h2>
+<p>Many of the methods and theorems in this course are named after people. Click on a name to see when they lived and where their work appears in the lecture notes.</p>
+<div class="hist-timeline" id="hist-timeline">
+  <div class="ht-filters" role="group" aria-label="Filter by topic"></div>
+  <div class="ht-chart">
+    <div class="ht-axis" aria-hidden="true"></div>
+    <div class="ht-rows"></div>
+  </div>
+  <div class="ht-card" aria-live="polite"></div>
+</div>
+
+<style>
+  .hist-timeline {
+    --ht-errors: #2780e3;  --ht-nonlinear: #1a8a4a;  --ht-interp: #e06a00;  --ht-analysis: #8e44ad;
+    --ht-grid: #e9ecef;  --ht-muted: #6c757d;  --ht-name-w: 12.5rem;
+    margin: 1rem 0 2rem;
+  }
+  .ht-filters { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+  .ht-chip {
+    border: 1px solid #ced4da; background: #fff; border-radius: 999px; padding: .2rem .7rem;
+    font-size: .85rem; cursor: pointer; display: inline-flex; align-items: center; gap: .35rem;
+  }
+  .ht-chip .dot { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; }
+  .ht-chip[aria-pressed="true"] { border-color: #343a40; background: #343a40; color: #fff; }
+  .ht-chart { position: relative; }
+  .ht-axis { position: relative; height: 1.4rem; margin-left: var(--ht-name-w); border-bottom: 1px solid #adb5bd; }
+  .ht-tick { position: absolute; bottom: 0; transform: translateX(-50%); font-size: .7rem; color: var(--ht-muted); padding-bottom: .15rem; }
+  .ht-rows { position: relative; }
+  .ht-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ht-grid); pointer-events: none; }
+  .ht-row {
+    display: grid; grid-template-columns: var(--ht-name-w) 1fr; align-items: center; width: 100%;
+    border: 0; background: transparent; padding: .1rem 0; cursor: pointer; text-align: left; font: inherit;
+  }
+  .ht-row:hover .ht-name, .ht-row.selected .ht-name { font-weight: 700; }
+  .ht-row:focus-visible { outline: 2px solid #2780e3; outline-offset: 1px; }
+  .ht-name { font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: .5rem; }
+  .ht-track { position: relative; height: 1.05rem; }
+  .ht-bar { position: absolute; top: 0; bottom: 0; border-radius: 4px; opacity: .85; transition: opacity .15s; }
+  .ht-row:hover .ht-bar, .ht-row.selected .ht-bar { opacity: 1; box-shadow: 0 0 0 2px rgba(0,0,0,.25); }
+  .ht-years { position: absolute; top: 50%; transform: translateY(-50%); font-size: .68rem; color: var(--ht-muted); white-space: nowrap; padding-left: .3rem; }
+  .ht-card {
+    margin-top: 1rem; border-left: 5px solid var(--ht-accent, #adb5bd); background: #f8f9fa;
+    border-radius: 4px; padding: .85rem 1.1rem; min-height: 3rem;
+  }
+  .ht-card h4 { margin: 0 0 .15rem; font-size: 1.1rem; }
+  .ht-card .meta { color: var(--ht-muted); font-size: .85rem; margin-bottom: .5rem; }
+  .ht-card ul { margin: 0; padding-left: 1.2rem; }
+  .ht-card li { margin-bottom: .25rem; }
+  .ht-card .lec { font-size: .8rem; white-space: nowrap; }
+  .ht-name .short { display: none; }
+  @media (max-width: 576px) {
+    .hist-timeline { --ht-name-w: 5.5rem; }
+    .ht-name { font-size: .75rem; }
+    .ht-name .full { display: none; }
+    .ht-name .short { display: inline; }
+    .ht-years, .ht-tick.minor { display: none; }
+  }
+</style>
+
+<script>
+(function () {
+  // ── Data: add people here. `lectures` are lecture numbers (links to lectures/Lnn.html). ──
+  const AREAS = {
+    errors:    { label: 'Errors & floating point', color: 'var(--ht-errors)' },
+    nonlinear: { label: 'Nonlinear equations',     color: 'var(--ht-nonlinear)' },
+    interp:    { label: 'Interpolation',           color: 'var(--ht-interp)' },
+    analysis:  { label: 'Analysis tools',          color: 'var(--ht-analysis)' },
+  };
+  const PEOPLE = [
+    { name: 'Johannes Kepler', born: 1571, died: 1630, area: 'nonlinear',
+      items: [ { text: "Kepler's equation for planetary orbits, solved with relaxation and Newton's method", lectures: [5] } ] },
+    { name: 'Isaac Newton', born: 1643, died: 1727, area: 'nonlinear',
+      items: [ { text: "Newton's method for solving nonlinear equations", lectures: [5] },
+               { text: 'Newton form of the interpolating polynomial and divided differences', lectures: [8, 9] } ] },
+    { name: 'Gottfried Wilhelm Leibniz', born: 1646, died: 1716, area: 'analysis',
+      items: [ { text: 'Leibniz rule for derivatives of a product (used in the Hermite existence proof)', lectures: [9] } ] },
+    { name: 'Michel Rolle', born: 1652, died: 1719, area: 'analysis',
+      items: [ { text: "Rolle's theorem, the key step in the interpolation error estimate", lectures: [6, 9] } ] },
+    { name: 'Brook Taylor', born: 1685, died: 1731, area: 'analysis',
+      items: [ { text: "Taylor's theorem and Taylor polynomials: used throughout, e.g. for convergence of iterations and as Hermite interpolation at a single node", lectures: [1, 3, 4, 5, 6, 9] } ] },
+    { name: 'James Stirling', born: 1692, died: 1770, area: 'analysis',
+      items: [ { text: "Stirling's formula for n!, used to estimate the equispaced node polynomial", lectures: [6] } ] },
+    { name: 'Leonhard Euler', born: 1707, died: 1783, area: 'errors',
+      items: [ { text: "Euler's number e and the Euler–Mascheroni constant γ: first examples of approximation and rates of convergence", lectures: [1] } ] },
+    { name: 'Johann Heinrich Lambert', born: 1728, died: 1777, area: 'nonlinear',
+      items: [ { text: 'The Lambert W function, computed by fixed-point iteration', lectures: [3, 4] } ] },
+    { name: 'Alexandre-Théophile Vandermonde', born: 1735, died: 1796, area: 'interp',
+      items: [ { text: 'Vandermonde matrices and their (bad) conditioning', lectures: [3] } ] },
+    { name: 'Joseph-Louis Lagrange', born: 1736, died: 1813, area: 'interp',
+      items: [ { text: 'Lagrange interpolation and the Lagrange polynomials', lectures: [6, 7, 8] } ] },
+    { name: 'Lorenzo Mascheroni', born: 1750, died: 1800, area: 'errors',
+      items: [ { text: 'The Euler–Mascheroni constant γ', lectures: [1] } ] },
+    { name: 'Bernard Bolzano', born: 1781, died: 1848, area: 'analysis',
+      items: [ { text: 'The intermediate value theorem, behind the change of sign theorem and bisection', lectures: [3] } ] },
+    { name: 'Augustin-Louis Cauchy', born: 1789, died: 1857, area: 'analysis',
+      items: [ { text: 'Cauchy sequences, used to show the Euler–Mascheroni sequence converges', lectures: [1] } ] },
+    { name: 'Pafnuty Chebyshev', born: 1821, died: 1894, area: 'interp',
+      items: [ { text: 'Chebyshev polynomials and Chebyshev nodes: the best choice of interpolation nodes', lectures: [6, 7, 8] } ] },
+    { name: 'Charles Hermite', born: 1822, died: 1901, area: 'interp',
+      items: [ { text: 'Hermite interpolation: matching values and derivatives', lectures: [9] } ] },
+    { name: 'Carl Runge', born: 1856, died: 1927, area: 'interp',
+      items: [ { text: 'The Runge phenomenon: interpolation at equispaced nodes can diverge', lectures: [6, 7, 8] } ] },
+    { name: 'Max Planck', born: 1858, died: 1947, area: 'errors',
+      items: [ { text: "Planck's constant, an example of relative error and scientific notation", lectures: [1, 2] } ] },
+    { name: 'L. E. J. Brouwer', born: 1881, died: 1966, area: 'nonlinear',
+      items: [ { text: "Brouwer's fixed point theorem (in 1d): existence of fixed points", lectures: [3, 4] } ] },
+    { name: 'Stefan Banach', born: 1892, died: 1945, area: 'nonlinear',
+      items: [ { text: 'The contraction mapping (Banach fixed point) theorem: when simple iteration converges', lectures: [4] } ] },
+    { name: 'James H. Wilkinson', born: 1919, died: 1986, area: 'errors',
+      items: [ { text: "Wilkinson's polynomial, a famous example of ill-conditioned roots (presentation topic)", lectures: [3] } ] },
+  ];
+
+  const root = document.getElementById('hist-timeline');
+  if (!root) return;
+  const START = 1550, END = 2000;
+  const pos = y => ((y - START) / (END - START) * 100) + '%';
+  // surname = last word (keeps "de"/"von" style names short enough for phones); also the #who-<surname> link key
+  const surname = p => p.name.split(' ').pop();
+  const key = p => surname(p).toLowerCase().normalize('NFD').replace(/[^a-z]/g, '');
+  const lectureLink = n => `<a class="lec" href="lectures/L${String(n).padStart(2, '0')}.html">Lecture ${n}</a>`;
+
+  // axis + gridlines
+  const axis = root.querySelector('.ht-axis'), rows = root.querySelector('.ht-rows');
+  for (let y = START; y <= END; y += 50) {
+    axis.insertAdjacentHTML('beforeend', `<span class="ht-tick${y % 100 ? ' minor' : ''}" style="left:${pos(y)}">${y}</span>`);
+  }
+
+  let filter = 'all', selected = null;
+
+  function showCard(p) {
+    const card = root.querySelector('.ht-card');
+    if (!p) { card.innerHTML = '<span class="meta">Click on a name or bar for details.</span>'; card.style.removeProperty('--ht-accent'); return; }
+    const a = AREAS[p.area];
+    card.style.setProperty('--ht-accent', a.color);
+    card.innerHTML = `<h4>${p.name}</h4>
+      <div class="meta">${p.born}–${p.died} (aged about ${p.died - p.born}) · ${a.label}</div>
+      <ul>${p.items.map(it => `<li>${it.text} <span class="text-muted">(${it.lectures.map(lectureLink).join(', ')})</span></li>`).join('')}</ul>`;
+  }
+
+  function render() {
+    rows.innerHTML = '';
+    // gridlines span the rows (inside the track area)
+    const grid = document.createElement('div');
+    grid.style.cssText = 'position:absolute;top:0;bottom:0;right:0;left:var(--ht-name-w);pointer-events:none;';
+    for (let y = START; y <= END; y += 50) grid.insertAdjacentHTML('beforeend', `<div class="ht-gridline" style="left:${pos(y)}"></div>`);
+    rows.appendChild(grid);
+
+    PEOPLE.filter(p => filter === 'all' || p.area === filter)
+      .sort((a, b) => a.born - b.born)
+      .forEach(p => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'ht-row' + (selected === p ? ' selected' : '');
+        btn.setAttribute('aria-label', `${p.name}, ${p.born} to ${p.died}`);
+        btn.innerHTML = `<span class="ht-name" title="${p.name}"><span class="full">${p.name}</span><span class="short">${surname(p)}</span></span>
+          <span class="ht-track">
+            <span class="ht-bar" style="left:${pos(p.born)};width:calc(${pos(p.died)} - ${pos(p.born)});background:${AREAS[p.area].color}"></span>
+            ${(p.died - START) / (END - START) > 0.8
+              ? `<span class="ht-years" style="right:calc(100% - ${pos(p.born)});padding:0 .3rem 0 0">${p.born}–${p.died}</span>`
+              : `<span class="ht-years" style="left:${pos(p.died)}">${p.born}–${p.died}</span>`}
+          </span>`;
+        btn.addEventListener('click', () => { selected = p; render(); showCard(p); });
+        rows.appendChild(btn);
+      });
+  }
+
+  // filter chips
+  const chips = root.querySelector('.ht-filters');
+  const addChip = (key, label, color) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'ht-chip'; b.dataset.key = key;
+    b.setAttribute('aria-pressed', key === filter);
+    b.innerHTML = (color ? `<span class="dot" style="background:${color}"></span>` : '') + label;
+    b.addEventListener('click', () => {
+      filter = key;
+      chips.querySelectorAll('.ht-chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.key === key));
+      if (selected && filter !== 'all' && selected.area !== filter) { selected = null; showCard(null); }
+      render();
+    });
+    chips.appendChild(b);
+  };
+  addChip('all', 'All');
+  Object.entries(AREAS).forEach(([k, a]) => addChip(k, a.label, a.color));
+
+  // link straight to a person: references.html#who-newton
+  function fromHash() {
+    const m = location.hash.match(/^#who-([a-z]+)$/);
+    const p = m && PEOPLE.find(q => key(q) === m[1]);
+    if (!p) return false;
+    filter = 'all';
+    chips.querySelectorAll('.ht-chip').forEach(c => c.setAttribute('aria-pressed', c.dataset.key === 'all'));
+    selected = p; render(); showCard(p);
+    root.scrollIntoView({ block: 'start' });
+    return true;
+  }
+  window.addEventListener('hashchange', fromHash);
+  if (!fromHash()) { render(); showCard(null); }
+})();
+</script>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-ArnoldDisasters" class="csl-entry" role="listitem">
+Arnold, Douglas N. n.d. <span>“Some Disasters Attributable to Bad
+Numerical Computing.”</span> <a href="https://www-users.cse.umn.edu/~arnold/disasters/" class="uri">https://www-users.cse.umn.edu/~arnold/disasters/</a>. <a href="https://www-users.cse.umn.edu/~arnold/disasters/">https://www-users.cse.umn.edu/~arnold/disasters/</a>.
+</div>
 <div id="ref-BerrutTrefethen2004" class="csl-entry" role="listitem">
 Berrut, Jean-Paul, and Lloyd N. Trefethen. 2004. <span>“Barycentric
 Lagrange Interpolation.”</span> <em>SIAM Review</em> 46 (3): 501–17. <a href="https://doi.org/10.1137/S0036144502417715">https://doi.org/10.1137/S0036144502417715</a>.
 </div>
+<div id="ref-Brent1971" class="csl-entry" role="listitem">
+Brent, Richard P. 1971. <span>“An Algorithm with Guaranteed Convergence
+for Finding a Zero of a Function.”</span> <em>The Computer Journal</em>
+14 (4): 422–25. <a href="https://doi.org/10.1093/comjnl/14.4.422">https://doi.org/10.1093/comjnl/14.4.422</a>.
+</div>
+<div id="ref-BryanLeise2006" class="csl-entry" role="listitem">
+Bryan, Kurt, and Tanya Leise. 2006. <span>“The $25,000,000,000
+Eigenvector: The Linear Algebra Behind <span>Google</span>.”</span>
+<em>SIAM Review</em> 48 (3): 569–81. <a href="https://doi.org/10.1137/050623280">https://doi.org/10.1137/050623280</a>.
+</div>
 <div id="ref-Burden" class="csl-entry" role="listitem">
 Burden, Richard L., J. Douglas Faires, and Annette M. Burden. 2016.
 <em>Numerical Analysis</em>. 10th ed. Cengage Learning. <a href="https://doi.org/10.13140/2.1.4830.2406">https://doi.org/10.13140/2.1.4830.2406</a>.
+</div>
+<div id="ref-Caflisch1998" class="csl-entry" role="listitem">
+Caflisch, Russel E. 1998. <span>“<span>Monte Carlo</span> and
+Quasi-<span>Monte Carlo</span> Methods.”</span> <em>Acta Numerica</em>
+7: 1–49. <a href="https://doi.org/10.1017/S0962492900002804">https://doi.org/10.1017/S0962492900002804</a>.
 </div>
 <div id="ref-fnc" class="csl-entry" role="listitem">
 Driscoll, Tobin A., and Richard J. Braun. 2017. <em>Fundamentals of
@@ -680,353 +1208,811 @@ Epperson, James F. 1987. <span>“On the <span>Runge</span>
 Example.”</span> <em>The American Mathematical Monthly</em> 94 (4):
 329–41. <a href="https://doi.org/10.2307/2323093">https://doi.org/10.2307/2323093</a>.
 </div>
+<div id="ref-FloaterHormann2007" class="csl-entry" role="listitem">
+Floater, Michael S., and Kai Hormann. 2007. <span>“Barycentric Rational
+Interpolation with No Poles and High Rates of Approximation.”</span>
+<em>Numerische Mathematik</em> 107 (2): 315–31. <a href="https://doi.org/10.1007/s00211-007-0093-y">https://doi.org/10.1007/s00211-007-0093-y</a>.
+</div>
+<div id="ref-Goldberg1991" class="csl-entry" role="listitem">
+Goldberg, David. 1991. <span>“What Every Computer Scientist Should Know
+about Floating-Point Arithmetic.”</span> <em>ACM Computing Surveys</em>
+23 (1): 5–48. <a href="https://doi.org/10.1145/103162.103163">https://doi.org/10.1145/103162.103163</a>.
+</div>
+<div id="ref-GolubVanLoan" class="csl-entry" role="listitem">
+Golub, Gene H., and Charles F. Van Loan. 2013. <em>Matrix
+Computations</em>. 4th ed. Baltimore, MD: Johns Hopkins University
+Press.
+</div>
+<div id="ref-GolubWelsch1969" class="csl-entry" role="listitem">
+Golub, Gene H., and John H. Welsch. 1969. <span>“Calculation of
+<span>Gauss</span> Quadrature Rules.”</span> <em>Mathematics of
+Computation</em> 23 (106): 221–30. <a href="https://doi.org/10.1090/S0025-5718-69-99647-1">https://doi.org/10.1090/S0025-5718-69-99647-1</a>.
+</div>
+<div id="ref-Gray2006" class="csl-entry" role="listitem">
+Gray, Robert M. 2006. <span>“<span>Toeplitz</span> and Circulant
+Matrices: A Review.”</span> <em>Foundations and Trends in Communications
+and Information Theory</em> 2 (3): 155–239. <a href="https://doi.org/10.1561/0100000006">https://doi.org/10.1561/0100000006</a>.
+</div>
+<div id="ref-HairerLubichWanner2003" class="csl-entry" role="listitem">
+Hairer, Ernst, Christian Lubich, and Gerhard Wanner. 2003.
+<span>“Geometric Numerical Integration Illustrated by the
+<span>Störmer–Verlet</span> Method.”</span> <em>Acta Numerica</em> 12:
+399–450. <a href="https://doi.org/10.1017/S0962492902000144">https://doi.org/10.1017/S0962492902000144</a>.
+</div>
+<div id="ref-HighamASNA" class="csl-entry" role="listitem">
+Higham, Nicholas J. 2002. <em>Accuracy and Stability of Numerical
+Algorithms</em>. 2nd ed. Philadelphia, PA: Society for Industrial;
+Applied Mathematics. <a href="https://doi.org/10.1137/1.9780898718027">https://doi.org/10.1137/1.9780898718027</a>.
+</div>
 <div id="ref-Higham2004" class="csl-entry" role="listitem">
-Higham, Nicholas J. 2004. <span>“The Numerical Stability of Barycentric
+———. 2004. <span>“The Numerical Stability of Barycentric
 <span>Lagrange</span> Interpolation.”</span> <em>IMA Journal of
 Numerical Analysis</em> 24 (4): 547–56. <a href="https://doi.org/10.1093/imanum/24.4.547">https://doi.org/10.1093/imanum/24.4.547</a>.
 </div>
+<div id="ref-HighamMary2022" class="csl-entry" role="listitem">
+Higham, Nicholas J., and Theo Mary. 2022. <span>“Mixed Precision
+Algorithms in Numerical Linear Algebra.”</span> <em>Acta Numerica</em>
+31: 347–414. <a href="https://doi.org/10.1017/S0962492922000022">https://doi.org/10.1017/S0962492922000022</a>.
+</div>
+<div id="ref-Kahan1965" class="csl-entry" role="listitem">
+Kahan, William. 1965. <span>“Pracniques: Further Remarks on Reducing
+Truncation Errors.”</span> <em>Communications of the ACM</em> 8 (1): 40.
+<a href="https://doi.org/10.1145/363707.363723">https://doi.org/10.1145/363707.363723</a>.
+</div>
+<div id="ref-Muller2006" class="csl-entry" role="listitem">
+Muller, Jean-Michel. 2006. <em>Elementary Functions: Algorithms and
+Implementation</em>. 2nd ed. Boston, MA: Birkhäuser. <a href="https://doi.org/10.1007/b137928">https://doi.org/10.1007/b137928</a>.
+</div>
+<div id="ref-Osada1994" class="csl-entry" role="listitem">
+Osada, Naoki. 1994. <span>“An Optimal Multiple Root-Finding Method of
+Order Three.”</span> <em>Journal of Computational and Applied
+Mathematics</em> 51 (1): 131–33. <a href="https://doi.org/10.1016/0377-0427(94)00044-1">https://doi.org/10.1016/0377-0427(94)00044-1</a>.
+</div>
+<div id="ref-ScavoThoo1995" class="csl-entry" role="listitem">
+Scavo, T. R., and J. B. Thoo. 1995. <span>“On the Geometry of <span class="nocase">Halley’s</span> Method.”</span> <em>The American
+Mathematical Monthly</em> 102 (5): 417–26. <a href="https://doi.org/10.1080/00029890.1995.12004594">https://doi.org/10.1080/00029890.1995.12004594</a>.
+</div>
 <div id="ref-Suli" class="csl-entry" role="listitem">
 Süli, Endre, and David F. Mayers. 2003. <em>An Introduction to Numerical
-Analysis</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511801181">https://doi.org/10.1017/CBO9780511801181</a>.
+Analysis</em>. Cambridge, England: Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511801181">https://doi.org/10.1017/CBO9780511801181</a>.
+</div>
+<div id="ref-Traub1964" class="csl-entry" role="listitem">
+Traub, Joe F. 1964. <em>Iterative Methods for the Solution of
+Equations</em>. Englewood Cliffs, NJ: Prentice-Hall.
+</div>
+<div id="ref-Trefethen2008" class="csl-entry" role="listitem">
+Trefethen, Lloyd N. 2008. <span>“Is <span>Gauss</span> Quadrature Better
+Than <span>Clenshaw–Curtis</span>?”</span> <em>SIAM Review</em> 50 (1):
+67–87. <a href="https://doi.org/10.1137/060659831">https://doi.org/10.1137/060659831</a>.
 </div>
 <div id="ref-Trefethen" class="csl-entry" role="listitem">
-Trefethen, Lloyd N. 2019. <em>Approximation Theory and Approximation
-Practice, Extended Edition</em>. Society for Industrial; Applied
+———. 2019. <em>Approximation Theory and Approximation Practice, Extended
+Edition</em>. Philadelphia, PA: Society for Industrial; Applied
 Mathematics. <a href="https://doi.org/10.1137/1.9781611975949">https://doi.org/10.1137/1.9781611975949</a>.
+</div>
+<div id="ref-TrefethenBau" class="csl-entry" role="listitem">
+Trefethen, Lloyd N., and David Bau III. 1997. <em>Numerical Linear
+Algebra</em>. Philadelphia, PA: Society for Industrial; Applied
+Mathematics. <a href="https://doi.org/10.1137/1.9780898719574">https://doi.org/10.1137/1.9780898719574</a>.
+</div>
+<div id="ref-TrefethenWeideman2014" class="csl-entry" role="listitem">
+Trefethen, Lloyd N., and J. A. C. Weideman. 2014. <span>“The
+Exponentially Convergent Trapezoidal Rule.”</span> <em>SIAM Review</em>
+56 (3): 385–458. <a href="https://doi.org/10.1137/130932132">https://doi.org/10.1137/130932132</a>.
+</div>
+<div id="ref-Wallace1992" class="csl-entry" role="listitem">
+Wallace, Gregory K. 1992. <span>“The <span>JPEG</span> Still Picture
+Compression Standard.”</span> <em>IEEE Transactions on Consumer
+Electronics</em> 38 (1): xviii–xxxiv. <a href="https://doi.org/10.1109/30.125072">https://doi.org/10.1109/30.125072</a>.
 </div>
 </div>
 
 
 <!-- -->
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var types = {"ArnoldDisasters":"misc","BerrutTrefethen2004":"article","Brent1971":"article","BryanLeise2006":"article","Burden":"book","Caflisch1998":"article","Epperson":"article","FloaterHormann2007":"article","Goldberg1991":"article","GolubVanLoan":"book","GolubWelsch1969":"article","Gray2006":"article","HairerLubichWanner2003":"article","Higham2004":"article","HighamASNA":"book","HighamMary2022":"article","Kahan1965":"article","Muller2006":"book","Osada1994":"article","ScavoThoo1995":"article","Suli":"book","Traub1964":"book","Trefethen":"book","Trefethen2008":"article","TrefethenBau":"book","TrefethenWeideman2014":"article","Wallace1992":"article","fnc":"book"};
+  var refs = document.getElementById('refs');
+  if (!refs) return;
+  var entries = Array.prototype.slice.call(refs.querySelectorAll(':scope > .csl-entry'));
+  var books = entries.filter(function (e) { return types[e.id.replace(/^ref-/, '')] === 'book'; });
+  var others = entries.filter(function (e) { return books.indexOf(e) < 0; });
+  if (!books.length || !others.length) return;
+  function heading(text, id) {
+    var h = document.createElement('h3'); h.textContent = text; h.id = id; h.className = 'refs-group';
+    return h;
+  }
+  refs.appendChild(heading('Books', 'refs-books'));
+  books.forEach(function (e) { refs.appendChild(e); });
+  refs.appendChild(heading('Papers and other sources', 'refs-papers'));
+  others.forEach(function (e) { refs.appendChild(e); });
+});
+</script>
+</section>
 
 </main> <!-- /main -->
 <style>
+
   /* Change cursor on equation tags to signal interactivity */
+
   .mjx-tag, .katex-tag, [id^="eq-"] .tag {
+
     cursor: pointer !important;
+
   }
+
   .mjx-tag:hover, .katex-tag:hover {
+
     opacity: 0.7;
+
   }
+
 </style>
 
+
+
 <script>
+
 window.addEventListener("load", function() {
+
   const setupEquationCopy = () => {
+
     // Find all equation containers generated by Quarto with an 'eq-' ID
+
     document.querySelectorAll('[id^="eq-"]').forEach(container => {
+
       const eqId = container.getAttribute('id');
+
       const labelText = `@${eqId}`;
+
       
+
       // Locate the rendered tag element inside MathJax or KaTeX
+
       const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
+
       
+
       // Set hover title to display the label name
+
       tag.setAttribute('title', `📋 ${labelText}`);
+
       
+
       // Copy label to clipboard on click
+
       tag.addEventListener('click', (e) => {
+
         e.stopPropagation();
+
         navigator.clipboard.writeText(labelText).then(() => {
+
           showToast(`Copied ${labelText} to clipboard!`);
+
         });
+
       });
+
     });
+
   };
+
+
 
   // Wait for MathJax/KaTeX rendering before attaching listeners
+
   if (window.MathJax && window.MathJax.startup) {
+
     window.MathJax.startup.promise.then(setupEquationCopy);
+
   } else {
+
     setupEquationCopy();
+
   }
+
+
 
   function showToast(message) {
+
     let toast = document.getElementById('eq-copy-toast');
+
     if (!toast) {
+
       toast = document.createElement('div');
+
       toast.id = 'eq-copy-toast';
+
       toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
+
       document.body.appendChild(toast);
+
     }
+
     toast.textContent = message;
+
     toast.style.opacity = '1';
+
     setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+
   }
+
 });
+
 </script>
 <style>
+
   /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
+
   @font-face {
+
     font-family: "DSEG7 Classic";
+
     src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
+
     font-weight: 700;
+
     font-display: swap;
+
   }
+
   /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
+
   #float-timer {
+
     position: fixed;
+
     top: 80px;
+
     right: 24px;
+
     z-index: 2000;
+
     display: none;
+
     flex-direction: column;
+
     width: 390px;
+
     height: 230px;
+
     min-width: 280px;
+
     max-width: calc(100vw - 16px);   /* keep it on small screens */
+
     min-height: 190px;
+
     resize: both;                /* drag the bottom-right corner to resize */
+
     container: ft / inline-size; /* lets the contents react to the timer's own width */
+
     overflow: hidden;
+
     background: var(--bs-body-bg, #fff);
+
     color: var(--bs-body-color, #212529);
+
     border: 2px solid #2780e3;
+
     border-radius: 8px;
+
     box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+
     user-select: none;
+
     font-family: inherit;
+
   }
+
   #float-timer.visible { display: flex; }
+
   #float-timer .ft-header {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 8px;
+
     padding: 4px 8px;
+
     background: #2780e3;
+
     color: #fff;
+
     cursor: move;
+
     font-size: .95rem;
+
     touch-action: none;
+
   }
+
   #float-timer .ft-modes button {
+
     background: none;
+
     border: 1px solid rgba(255, 255, 255, .6);
+
     color: #fff;
+
     border-radius: 4px;
+
     font-size: .8rem;
+
     padding: 0 6px;
+
     cursor: pointer;
+
   }
+
   #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
+
   #float-timer .ft-close {
+
     background: none;
+
     border: none;
+
     color: #fff;
+
     font-size: 1.3rem;
+
     line-height: 1;
+
     cursor: pointer;
+
   }
+
   #float-timer .ft-display {
+
     flex: 1;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-family: "DSEG7 Classic", "Courier New", monospace;
+
     font-weight: 700;
+
     line-height: 1;
+
     white-space: nowrap;
+
   }
+
   #float-timer .ft-controls {
+
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 6px;
+
     justify-content: center;
+
     align-items: center;
+
     padding: 4px 10px 10px 10px;
+
   }
+
   #float-timer .ft-controls .btn { font-size: 1rem; }
+
   #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
+
   #float-timer:not(.countdown) .ft-countdown-only { display: none; }
+
   /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
+
   /* drop the preset buttons and the title when the timer is too narrow for them */
+
   @container ft (max-width: 382px) {
+
     [data-preset] { display: none; }
+
   }
+
   @container ft (max-width: 290px) {
+
     .ft-title { display: none; }
+
   }
+
   @media (max-width: 575.98px) {
+
     #float-timer { right: 8px; }
+
   }
+
   #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
+
   @keyframes ft-flash { to { visibility: hidden; } }
+
 </style>
 
+
+
 <div id="float-timer" aria-label="Timer">
+
   <div class="ft-header">
+
     <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
+
     <span class="ft-modes">
+
       <button data-mode="up" title="Count up">Stopwatch</button>
+
       <button data-mode="down" title="Count down">Countdown</button>
+
     </span>
+
     <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
+
   </div>
+
   <div class="ft-display"><span class="ft-digits">00:00</span></div>
+
   <div class="ft-controls">
+
     <button class="btn btn-primary ft-toggle">Start</button>
+
     <button class="btn btn-outline-secondary ft-reset">Reset</button>
+
     <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
+
     <span class="ft-countdown-only">min</span>
+
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
+
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
+
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
+
   </div>
+
 </div>
 
+
+
 <script>
+
 (function () {
+
   const KEY = "math5485-timer";
+
   const box = document.getElementById("float-timer");
+
   const display = box.querySelector(".ft-display");
+
   const digits = box.querySelector(".ft-digits");
+
   const toggleBtn = box.querySelector(".ft-toggle");
+
   const minutesInput = box.querySelector(".ft-minutes");
 
+
+
   // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
+
   // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
+
   let state = {
+
     visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
+
     left: null, top: null, width: null, height: null
+
   };
+
   try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
+
+
   const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
+
   const pad = n => String(n).padStart(2, "0");
+
   const fmt = ms => {
+
     const s = Math.ceil(ms / 1000);
+
     const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+
     return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
+
   };
+
+
 
   function render() {
+
     let shown = elapsed(), timesUp = false;
+
     if (state.mode === "down") {
+
       const remaining = state.minutes * 60000 - shown;
+
       if (remaining <= 0 && state.startedAt) {
+
         // stop exactly at zero
+
         state.elapsed = state.minutes * 60000; state.startedAt = null; save();
+
       }
+
       shown = Math.max(0, state.minutes * 60000 - elapsed());
+
       timesUp = shown === 0 && state.minutes > 0;
+
     } else {
+
       shown = Math.floor(shown / 1000) * 1000;
+
     }
+
     digits.textContent = fmt(shown);
+
     toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
+
     box.classList.toggle("visible", state.visible);
+
     box.classList.toggle("countdown", state.mode === "down");
+
     box.classList.toggle("times-up", timesUp);
+
     box.querySelectorAll(".ft-modes button").forEach(b =>
+
       b.classList.toggle("active", b.dataset.mode === state.mode));
+
     if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
+
     if (state.left !== null) {
+
       box.style.left = state.left + "px";
+
       box.style.top = state.top + "px";
+
       box.style.right = "auto";
+
     }
+
     if (state.width) {
+
       box.style.width = state.width + "px";
+
       box.style.height = state.height + "px";
+
     }
+
     fitText();
+
   }
+
+
 
   // scale the digits to fill the display area
+
   function fitText() {
+
     if (!state.visible) return;
+
     // start from the available height, then shrink until the digits fit the width
+
     const w = display.clientWidth - 16, h = display.clientHeight;
+
     let size = h * 0.8;
+
     display.style.fontSize = size + "px";
+
     for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
+
       size *= w / digits.offsetWidth;
+
       display.style.fontSize = size + "px";
+
     }
+
     display.style.fontSize = Math.max(16, size) + "px";
+
   }
+
+
 
   function reset() {
+
     state.elapsed = 0;
+
     state.startedAt = state.startedAt ? Date.now() : null;
+
   }
+
+
 
   toggleBtn.addEventListener("click", () => {
+
     if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
+
     else {
+
       if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
+
       state.startedAt = Date.now();
+
     }
+
     save(); render();
+
   });
+
   box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
+
   box.querySelector(".ft-close").addEventListener("click", () => {
+
     state.visible = false; save(); render();
+
   });
+
   box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
+
     if (state.mode !== b.dataset.mode) {
+
       state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
+
       save(); render();
+
     }
+
   }));
+
   const setMinutes = m => {
+
     state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
+
     save(); render();
+
   };
+
   minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
+
   box.querySelectorAll("[data-preset]").forEach(b =>
+
     b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
 
+
+
   // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
+
   document.addEventListener("click", e => {
+
     if (e.target.closest('a[href$="#timer"]')) {
+
       e.preventDefault();
+
       state.visible = !state.visible;
+
       save(); render();
+
     }
+
   });
+
+
 
   // dragging by the header (mouse and touch)
+
   const header = box.querySelector(".ft-header");
+
   header.addEventListener("pointerdown", e => {
+
     if (e.target.closest("button")) return;
+
     const r = box.getBoundingClientRect();
+
     const dx = e.clientX - r.left, dy = e.clientY - r.top;
+
     header.setPointerCapture(e.pointerId);
+
     const move = ev => {
+
       state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
+
       state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
+
       render();
+
     };
+
     const up = () => {
+
       header.removeEventListener("pointermove", move);
+
       header.removeEventListener("pointerup", up);
+
       save();
+
     };
+
     header.addEventListener("pointermove", move);
+
     header.addEventListener("pointerup", up);
+
   });
 
+
+
   // remember the size after resizing (via the bottom-right corner) and rescale the digits
+
   new ResizeObserver(() => {
+
     if (!state.visible) return;
+
     state.width = box.offsetWidth; state.height = box.offsetHeight;
+
     fitText(); save();
+
   }).observe(box);
 
+
+
   // the digital font loads asynchronously: refit once it arrives
+
   if (document.fonts) {
+
     document.fonts.ready.then(fitText);
+
     document.fonts.addEventListener("loadingdone", fitText);
+
   }
 
+
+
   render();
+
   setInterval(() => { if (state.startedAt) render(); }, 200);
+
 })();
+
 </script>
+
+<script>
+
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+
+  var last = t.lastChild;
+
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+
+});
+
+
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+
+  var p = t.parentNode, rest = '';
+
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+
+});
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1119,16 +2105,16 @@ window.addEventListener("load", function() {
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
-        for (let i=0; i<cellDetails.length; i++) {
-          const details = cellDetails[i];
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -1480,8 +2466,8 @@ window.addEventListener("load", function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./appendix/installing-julia.html" class="pagination-link" aria-label="Installing Julia &amp; Jupyter">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Installing Julia &amp; Jupyter</span>
+      <a href="./appendix/presentation-topics.html" class="pagination-link" aria-label="Presentation topics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Presentation topics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1489,12 +2475,218 @@ window.addEventListener("load", function() {
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resources {.unnumbered}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Who's who: a timeline {.unnumbered}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Many of the methods and theorems in this course are named after people. Click on a name to see when they lived and where their work appears in the lecture notes.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;div class="hist-timeline" id="hist-timeline"&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ht-filters" role="group" aria-label="Filter by topic"&gt;&lt;/div&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ht-chart"&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ht-axis" aria-hidden="true"&gt;&lt;/div&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">    &lt;div class="ht-rows"&gt;&lt;/div&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;/div&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="in">  &lt;div class="ht-card" aria-live="polite"&gt;&lt;/div&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/div&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">  .hist-timeline {</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="in">    --ht-errors: #2780e3;  --ht-nonlinear: #1a8a4a;  --ht-interp: #e06a00;  --ht-analysis: #8e44ad;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="in">    --ht-grid: #e9ecef;  --ht-muted: #6c757d;  --ht-name-w: 12.5rem;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="in">    margin: 1rem 0 2rem;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-filters { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-chip {</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">    border: 1px solid #ced4da; background: #fff; border-radius: 999px; padding: .2rem .7rem;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="in">    font-size: .85rem; cursor: pointer; display: inline-flex; align-items: center; gap: .35rem;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-chip .dot { width: .6rem; height: .6rem; border-radius: 50%; display: inline-block; }</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-chip[aria-pressed="true"] { border-color: #343a40; background: #343a40; color: #fff; }</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-chart { position: relative; }</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-axis { position: relative; height: 1.4rem; margin-left: var(--ht-name-w); border-bottom: 1px solid #adb5bd; }</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-tick { position: absolute; bottom: 0; transform: translateX(-50%); font-size: .7rem; color: var(--ht-muted); padding-bottom: .15rem; }</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-rows { position: relative; }</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ht-grid); pointer-events: none; }</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-row {</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="in">    display: grid; grid-template-columns: var(--ht-name-w) 1fr; align-items: center; width: 100%;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="in">    border: 0; background: transparent; padding: .1rem 0; cursor: pointer; text-align: left; font: inherit;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-row:hover .ht-name, .ht-row.selected .ht-name { font-weight: 700; }</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-row:focus-visible { outline: 2px solid #2780e3; outline-offset: 1px; }</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-name { font-size: .85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: .5rem; }</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-track { position: relative; height: 1.05rem; }</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-bar { position: absolute; top: 0; bottom: 0; border-radius: 4px; opacity: .85; transition: opacity .15s; }</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-row:hover .ht-bar, .ht-row.selected .ht-bar { opacity: 1; box-shadow: 0 0 0 2px rgba(0,0,0,.25); }</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-years { position: absolute; top: 50%; transform: translateY(-50%); font-size: .68rem; color: var(--ht-muted); white-space: nowrap; padding-left: .3rem; }</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-card {</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="in">    margin-top: 1rem; border-left: 5px solid var(--ht-accent, #adb5bd); background: #f8f9fa;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="in">    border-radius: 4px; padding: .85rem 1.1rem; min-height: 3rem;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-card h4 { margin: 0 0 .15rem; font-size: 1.1rem; }</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-card .meta { color: var(--ht-muted); font-size: .85rem; margin-bottom: .5rem; }</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-card ul { margin: 0; padding-left: 1.2rem; }</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-card li { margin-bottom: .25rem; }</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-card .lec { font-size: .8rem; white-space: nowrap; }</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="in">  .ht-name .short { display: none; }</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="in">  @media (max-width: 576px) {</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="in">    .hist-timeline { --ht-name-w: 5.5rem; }</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="in">    .ht-name { font-size: .75rem; }</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">    .ht-name .full { display: none; }</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">    .ht-name .short { display: inline; }</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">    .ht-years, .ht-tick.minor { display: none; }</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;script&gt;</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="in">(function () {</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="in">  // ── Data: add people here. `lectures` are lecture numbers (links to lectures/Lnn.html). ──</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="in">  const AREAS = {</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="in">    errors:    { label: 'Errors &amp; floating point', color: 'var(--ht-errors)' },</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="in">    nonlinear: { label: 'Nonlinear equations',     color: 'var(--ht-nonlinear)' },</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="in">    interp:    { label: 'Interpolation',           color: 'var(--ht-interp)' },</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="in">    analysis:  { label: 'Analysis tools',          color: 'var(--ht-analysis)' },</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="in">  };</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">  const PEOPLE = [</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Johannes Kepler', born: 1571, died: 1630, area: 'nonlinear',</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Kepler's equation for planetary orbits, solved with relaxation and Newton's method", lectures: [5] } ] },</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Isaac Newton', born: 1643, died: 1727, area: 'nonlinear',</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Newton's method for solving nonlinear equations", lectures: [5] },</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="in">               { text: 'Newton form of the interpolating polynomial and divided differences', lectures: [8, 9] } ] },</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Gottfried Wilhelm Leibniz', born: 1646, died: 1716, area: 'analysis',</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'Leibniz rule for derivatives of a product (used in the Hermite existence proof)', lectures: [9] } ] },</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Michel Rolle', born: 1652, died: 1719, area: 'analysis',</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Rolle's theorem, the key step in the interpolation error estimate", lectures: [6, 9] } ] },</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Brook Taylor', born: 1685, died: 1731, area: 'analysis',</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Taylor's theorem and Taylor polynomials: used throughout, e.g. for convergence of iterations and as Hermite interpolation at a single node", lectures: [1, 3, 4, 5, 6, 9] } ] },</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'James Stirling', born: 1692, died: 1770, area: 'analysis',</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Stirling's formula for n!, used to estimate the equispaced node polynomial", lectures: [6] } ] },</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Leonhard Euler', born: 1707, died: 1783, area: 'errors',</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Euler's number e and the Euler–Mascheroni constant γ: first examples of approximation and rates of convergence", lectures: [1] } ] },</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Johann Heinrich Lambert', born: 1728, died: 1777, area: 'nonlinear',</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'The Lambert W function, computed by fixed-point iteration', lectures: [3, 4] } ] },</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Alexandre-Théophile Vandermonde', born: 1735, died: 1796, area: 'interp',</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'Vandermonde matrices and their (bad) conditioning', lectures: [3] } ] },</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Joseph-Louis Lagrange', born: 1736, died: 1813, area: 'interp',</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'Lagrange interpolation and the Lagrange polynomials', lectures: [6, 7, 8] } ] },</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Lorenzo Mascheroni', born: 1750, died: 1800, area: 'errors',</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'The Euler–Mascheroni constant γ', lectures: [1] } ] },</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Bernard Bolzano', born: 1781, died: 1848, area: 'analysis',</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'The intermediate value theorem, behind the change of sign theorem and bisection', lectures: [3] } ] },</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Augustin-Louis Cauchy', born: 1789, died: 1857, area: 'analysis',</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'Cauchy sequences, used to show the Euler–Mascheroni sequence converges', lectures: [1] } ] },</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Pafnuty Chebyshev', born: 1821, died: 1894, area: 'interp',</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'Chebyshev polynomials and Chebyshev nodes: the best choice of interpolation nodes', lectures: [6, 7, 8] } ] },</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Charles Hermite', born: 1822, died: 1901, area: 'interp',</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'Hermite interpolation: matching values and derivatives', lectures: [9] } ] },</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Carl Runge', born: 1856, died: 1927, area: 'interp',</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'The Runge phenomenon: interpolation at equispaced nodes can diverge', lectures: [6, 7, 8] } ] },</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Max Planck', born: 1858, died: 1947, area: 'errors',</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Planck's constant, an example of relative error and scientific notation", lectures: [1, 2] } ] },</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'L. E. J. Brouwer', born: 1881, died: 1966, area: 'nonlinear',</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Brouwer's fixed point theorem (in 1d): existence of fixed points", lectures: [3, 4] } ] },</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'Stefan Banach', born: 1892, died: 1945, area: 'nonlinear',</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: 'The contraction mapping (Banach fixed point) theorem: when simple iteration converges', lectures: [4] } ] },</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a><span class="in">    { name: 'James H. Wilkinson', born: 1919, died: 1986, area: 'errors',</span></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in">      items: [ { text: "Wilkinson's polynomial, a famous example of ill-conditioned roots (presentation topic)", lectures: [3] } ] },</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">  ];</span></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a><span class="in">  const root = document.getElementById('hist-timeline');</span></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a><span class="in">  if (!root) return;</span></span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a><span class="in">  const START = 1550, END = 2000;</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="in">  const pos = y =&gt; ((y - START) / (END - START) * 100) + '%';</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a><span class="in">  // surname = last word (keeps "de"/"von" style names short enough for phones); also the #who-&lt;surname&gt; link key</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a><span class="in">  const surname = p =&gt; p.name.split(' ').pop();</span></span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a><span class="in">  const key = p =&gt; surname(p).toLowerCase().normalize('NFD').replace(/[^a-z]/g, '');</span></span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="in">  const lectureLink = n =&gt; `&lt;a class="lec" href="lectures/L${String(n).padStart(2, '0')}.html"&gt;Lecture ${n}&lt;/a&gt;`;</span></span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="in">  // axis + gridlines</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="in">  const axis = root.querySelector('.ht-axis'), rows = root.querySelector('.ht-rows');</span></span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="in">  for (let y = START; y &lt;= END; y += 50) {</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a><span class="in">    axis.insertAdjacentHTML('beforeend', `&lt;span class="ht-tick${y % 100 ? ' minor' : ''}" style="left:${pos(y)}"&gt;${y}&lt;/span&gt;`);</span></span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">  let filter = 'all', selected = null;</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a><span class="in">  function showCard(p) {</span></span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a><span class="in">    const card = root.querySelector('.ht-card');</span></span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="in">    if (!p) { card.innerHTML = '&lt;span class="meta"&gt;Click on a name or bar for details.&lt;/span&gt;'; card.style.removeProperty('--ht-accent'); return; }</span></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="in">    const a = AREAS[p.area];</span></span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="in">    card.style.setProperty('--ht-accent', a.color);</span></span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="in">    card.innerHTML = `&lt;h4&gt;${p.name}&lt;/h4&gt;</span></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;div class="meta"&gt;${p.born}–${p.died} (aged about ${p.died - p.born}) · ${a.label}&lt;/div&gt;</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a><span class="in">      &lt;ul&gt;${p.items.map(it =&gt; `&lt;li&gt;${it.text} &lt;span class="text-muted"&gt;(${it.lectures.map(lectureLink).join(', ')})&lt;/span&gt;&lt;/li&gt;`).join('')}&lt;/ul&gt;`;</span></span>
+<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">  function render() {</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="in">    rows.innerHTML = '';</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a><span class="in">    // gridlines span the rows (inside the track area)</span></span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a><span class="in">    const grid = document.createElement('div');</span></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="in">    grid.style.cssText = 'position:absolute;top:0;bottom:0;right:0;left:var(--ht-name-w);pointer-events:none;';</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a><span class="in">    for (let y = START; y &lt;= END; y += 50) grid.insertAdjacentHTML('beforeend', `&lt;div class="ht-gridline" style="left:${pos(y)}"&gt;&lt;/div&gt;`);</span></span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="in">    rows.appendChild(grid);</span></span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a><span class="in">    PEOPLE.filter(p =&gt; filter === 'all' || p.area === filter)</span></span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a><span class="in">      .sort((a, b) =&gt; a.born - b.born)</span></span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="in">      .forEach(p =&gt; {</span></span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a><span class="in">        const btn = document.createElement('button');</span></span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a><span class="in">        btn.type = 'button';</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a><span class="in">        btn.className = 'ht-row' + (selected === p ? ' selected' : '');</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="in">        btn.setAttribute('aria-label', `${p.name}, ${p.born} to ${p.died}`);</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a><span class="in">        btn.innerHTML = `&lt;span class="ht-name" title="${p.name}"&gt;&lt;span class="full"&gt;${p.name}&lt;/span&gt;&lt;span class="short"&gt;${surname(p)}&lt;/span&gt;&lt;/span&gt;</span></span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;span class="ht-track"&gt;</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a><span class="in">            &lt;span class="ht-bar" style="left:${pos(p.born)};width:calc(${pos(p.died)} - ${pos(p.born)});background:${AREAS[p.area].color}"&gt;&lt;/span&gt;</span></span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a><span class="in">            ${(p.died - START) / (END - START) &gt; 0.8</span></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a><span class="in">              ? `&lt;span class="ht-years" style="right:calc(100% - ${pos(p.born)});padding:0 .3rem 0 0"&gt;${p.born}–${p.died}&lt;/span&gt;`</span></span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="in">              : `&lt;span class="ht-years" style="left:${pos(p.died)}"&gt;${p.born}–${p.died}&lt;/span&gt;`}</span></span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a><span class="in">          &lt;/span&gt;`;</span></span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a><span class="in">        btn.addEventListener('click', () =&gt; { selected = p; render(); showCard(p); });</span></span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a><span class="in">        rows.appendChild(btn);</span></span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a><span class="in">      });</span></span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a><span class="in">  // filter chips</span></span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a><span class="in">  const chips = root.querySelector('.ht-filters');</span></span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a><span class="in">  const addChip = (key, label, color) =&gt; {</span></span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a><span class="in">    const b = document.createElement('button');</span></span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a><span class="in">    b.type = 'button'; b.className = 'ht-chip'; b.dataset.key = key;</span></span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a><span class="in">    b.setAttribute('aria-pressed', key === filter);</span></span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a><span class="in">    b.innerHTML = (color ? `&lt;span class="dot" style="background:${color}"&gt;&lt;/span&gt;` : '') + label;</span></span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a><span class="in">    b.addEventListener('click', () =&gt; {</span></span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a><span class="in">      filter = key;</span></span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="in">      chips.querySelectorAll('.ht-chip').forEach(c =&gt; c.setAttribute('aria-pressed', c.dataset.key === key));</span></span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a><span class="in">      if (selected &amp;&amp; filter !== 'all' &amp;&amp; selected.area !== filter) { selected = null; showCard(null); }</span></span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a><span class="in">      render();</span></span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a><span class="in">    });</span></span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="in">    chips.appendChild(b);</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a><span class="in">  };</span></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="in">  addChip('all', 'All');</span></span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a><span class="in">  Object.entries(AREAS).forEach(([k, a]) =&gt; addChip(k, a.label, a.color));</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a><span class="in">  // link straight to a person: references.html#who-newton</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a><span class="in">  function fromHash() {</span></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a><span class="in">    const m = location.hash.match(/^#who-([a-z]+)$/);</span></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="in">    const p = m &amp;&amp; PEOPLE.find(q =&gt; key(q) === m[1]);</span></span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="in">    if (!p) return false;</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a><span class="in">    filter = 'all';</span></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a><span class="in">    chips.querySelectorAll('.ht-chip').forEach(c =&gt; c.setAttribute('aria-pressed', c.dataset.key === 'all'));</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a><span class="in">    selected = p; render(); showCard(p);</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a><span class="in">    root.scrollIntoView({ block: 'start' });</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a><span class="in">    return true;</span></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="in">  }</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a><span class="in">  window.addEventListener('hashchange', fromHash);</span></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a><span class="in">  if (!fromHash()) { render(); showCard(null); }</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a><span class="in">})();</span></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/script&gt;</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="fu">## References {.unnumbered}</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/jackrthomas/Math5485/edit/main/references.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
