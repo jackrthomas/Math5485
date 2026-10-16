@@ -87,6 +87,8 @@ filters:
     path: extras/collapse-proofs.lua
   - at: pre-ast
     path: extras/ai-solutions.lua
+  - at: pre-ast
+    path: extras/difficult.lua   # ◆ on exercises marked .difficult
   - at: post-quarto
     path: extras/eq-parens.lua
   - at: post-quarto

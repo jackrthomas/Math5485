@@ -131,7 +131,7 @@ end
 Pull every `::: {#exr-...}` block out of markdown and re-wrap as
 `::: {.exercise-box #bank-exr-...}` with a bold cross-reference label.
 Extra attributes are kept, e.g. `::: {#exr-1 .no-solution}` marks an exercise
-that doesn't need a solution (it is not counted as missing in the exercise report).
+that doesn't need a solution (it is not counted as missing in the private sidebar counts).
 Nested `:::` blocks (hints, solutions) are preserved.
 Trailing outputs immediately after closing ::: are pulled into the block.
 """

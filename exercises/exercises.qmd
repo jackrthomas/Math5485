@@ -1536,7 +1536,7 @@ We could have also numerically approximated $\alpha$ by computing $\frac{\log |x
 :::
 
 <!-- L04 -->
-::: {.exercise-box #bank-exr-Lambert-W-2 name="Lambert W function"}
+::: {.exercise-box #bank-exr-Lambert-W-2 name="Lambert W function" .difficult}
 **@exr-Lambert-W-2**
 
 *Assignment 3, Fall 2025.* The *Lambert W function* (also called the *product-log function*) $W : [0,\infty) \to [0,\infty)$ satisfies $W(a) e^{W(a)} = a$. Define $\Omega := W(1)$. 
@@ -1799,7 +1799,7 @@ theoretical value of μ (for α=2) = 0.35355339059327373
 :::
 
 <!-- L05 -->
-::: {.exercise-box #bank-exr-2025-A5-B}
+::: {.exercise-box #bank-exr-2025-A5-B .no-solution}
 **@exr-2025-A5-B**
 
 [Assignment 5, Fall 2025, Section B](https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/A5%20Solution.html#b.-keplers-equation)
@@ -1821,6 +1821,50 @@ Suppose that $g$ is twice continuously differentiable with $g(\xi) = \xi$ and $g
 \end{align}
 
 (whenever $x_n \not= \xi$ for all $n$). What is the order of convergence when $g''(\xi) \not= 0$?  
+
+:::{.exercise-solution style="display:none;"}
+
+1. Since $g'$ is continuous and $g'(\xi) = 0$, there exists $\delta > 0$ such that
+   
+$$
+|g'(x)| \leq \tfrac12 \qquad \text{for all } x \in I := [\xi-\delta, \xi+\delta].
+$$
+
+For $x \in I$ the mean value theorem gives some $\eta$ between $x$ and $\xi$ (so $\eta\in I$) with
+
+$$
+|g(x) - \xi| = |g(x) - g(\xi)| = |g'(\eta)|\,|x-\xi| \leq \tfrac12 |x - \xi| \le \tfrac12\delta,
+$$
+
+so $g(I) \subseteq I$. The same argument applied to any $x,y\in I$ gives $|g(x)-g(y)| \le \frac12|x-y|$, so $g : I \to I$ is a contraction with $L = \frac12$. By the contraction mapping theorem, $x_{n+1} = g(x_n)$ converges to the unique fixed point of $g$ in $I$, which is $\xi$, for every $x_1 \in I$. 
+
+The contraction mapping theorem is proved by writing $|x_{n+1}-\xi| \leq 2^{-n}|x_1-\xi| \to 0$ as $n\to \infty$.
+
+2. Take $x_1\in I$, so $x_n\in I$ for all $n$. By Taylor's theorem about $\xi$, there exists $\eta_n$ between $x_n$ and $\xi$ with
+   
+\begin{align}
+x_{n+1} &= g(x_n) \nonumber\\
+%
+&= g(\xi) + g'(\xi)(x_n-\xi) + \tfrac12 g''(\eta_n)(x_n-\xi)^2 \nonumber\\
+%
+&= \xi + \tfrac12 g''(\eta_n)(x_n-\xi)^2 .
+\end{align}
+
+Hence, as $x_n \neq \xi$,
+
+$$
+\frac{|x_{n+1} - \xi|}{|x_n - \xi|^2} = \tfrac12 |g''(\eta_n)| .
+$$
+
+Since $x_n \to \xi$ and $\eta_n$ is between $x_n$ and $\xi$, $\eta_n \to \xi$. By continuity of $g''$ we have 
+
+$$
+\lim_{n\to\infty}\frac{|x_{n+1} - \xi|}{|x_n - \xi|^2} = \tfrac12 |g''(\xi)| .
+$$
+
+*Order of convergence.* If $g''(\xi) \not= 0$, the limit above is finite and nonzero, so the convergence is **quadratic** ($\alpha = 2$) with asymptotic error constant $\mu = \frac12|g''(\xi)|$.
+
+:::
 :::
 
 <!-- L05 -->
@@ -1833,6 +1877,47 @@ Suppose that $g$ is twice continuously differentiable with $g(\xi) = \xi$ and $g
 
 ::: {.exercise-hint style="display: none;"}
 Taylor's theorem.
+:::
+
+::: {.exercise-solution style="display:none;"}
+
+Since $f'$ is continuous and $f'(\xi)\neq0$, $f' \neq 0$ on some interval $I$ around $\xi$. As a result, $g$ is defined on $I$. Since $f\in C^3$, we have $g \in C^2(I)$. By the quotient rule (or product rule),
+
+\begin{align}
+g'(x) &= 1 - \frac{f'(x)^2 - f(x)f''(x)}{f'(x)^2} 
+%
+\nonumber\\
+&= \frac{f(x)\,f''(x)}{f'(x)^2}.
+\end{align}
+
+At $x=\xi$ the numerator contains $f(\xi) = 0$, so $g'(\xi) = 0$. Differentiating $g' = f f'' \,(f')^{-2}$ once more gives
+
+$$
+g''(x) = \frac{f'(x)f''(x) + f(x)f'''(x)}{f'(x)^2} - \frac{2 f(x) f''(x)^2}{f'(x)^3}.
+$$
+
+At $x = \xi$ every term containing $f(\xi)=0$ vanishes, leaving
+
+\begin{align}
+g''(\xi) &= \frac{f'(\xi)f''(\xi)}{f'(\xi)^2} 
+%
+\nonumber\\
+%
+&= \frac{f''(\xi)}{f'(\xi)} .
+\end{align}
+
+Since $g$ is $C^2$ near $\xi$ with $g(\xi) = \xi$ and $g'(\xi) = 0$, @exr-faster-linear applies:
+
+* Newton converges for all $x_1$ sufficiently close to $\xi$;
+* the convergence is at least quadratic, with
+  
+$$
+\lim_{n\to\infty}\frac{|x_{n+1} - \xi|}{|x_n - \xi|^2} = \tfrac12|g''(\xi)| = \frac12\left|\frac{f''(\xi)}{f'(\xi)}\right| ,
+$$
+
+which is exactly the asymptotic error constant in @thm-Newton;
+* if $f''(\xi)\neq 0$ the order is exactly $2$; if $f''(\xi) = 0$ the convergence is faster than quadratic.
+
 :::
 :::
 
@@ -1870,7 +1955,7 @@ e_{n+1} &= 1 - a x_{n+1} \nonumber\\
 &= (1 - a x_n)^2 = e_n^2.
 \end{align} 
 
-We have $x_n \to \frac1a$ if and only if $e_n \to 0$. Since $e_{n+1} = e_n^2 = e_1^{2^n}$, we have $e_n \to 0$ for all $x_1$ with $|e_n| = |1 - a x_1| < 1$. That is, if $0 < x_1 < 2/a$.
+We have $x_n \to \frac1a$ if and only if $e_n \to 0$. Since $e_{n+1} = e_n^2 = e_1^{2^n}$, we have $e_n \to 0$ for all $x_1$ with $|e_1| = |1 - a x_1| < 1$. That is, if $0 < x_1 < 2/a$.
 
 3. We have 
 
@@ -1948,6 +2033,24 @@ Recall that
 is the degree $m_0$ Taylor polynomial of $f$ about $x_0$.
 
 :::
+
+::: {.exercise-solution style="display: none;"}
+
+Let
+$$
+p(x) = \sum_{k=0}^{m_0} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k .
+$$
+Fix $0 \le j \le m_0$ and differentiate $j$ times. Terms with $k<j$ have degree $<j$ and thus vanish, and $\frac{d^j}{dx^j}(x-x_0)^k = \frac{k!}{(k-j)!}(x-x_0)^{k-j}$ for $k \ge j$, so
+$$
+p^{(j)}(x) = \sum_{k=j}^{m_0} \frac{f^{(k)}(x_0)}{(k-j)!}(x-x_0)^{k-j}.
+$$
+At $x=x_0$ every term with $k>j$ contains a positive power of $(x-x_0)$ and so vanishes, leaving only $k=j$:
+$$
+p^{(j)}(x_0) = \frac{f^{(j)}(x_0)}{0!} = f^{(j)}(x_0).
+$$
+As $j\in\{0,\dots,m_0\}$ was arbitrary, $p$ satisfies all conditions of @eq-interpolation for $X=\{x_0\}$, and $p$ has degree at most $m_0$. 
+
+:::
 :::
 
 <!-- L06 -->
@@ -1955,6 +2058,23 @@ is the degree $m_0$ Taylor polynomial of $f$ about $x_0$.
 **@exr-l06-1**
 
 Write down the polynomial of least degree interpolating $f(x) = \sin(x)$ at the points $0, \frac{\pi}{2}, \pi$
+
+::: {.exercise-solution style="display:none;"}
+
+The nodes are $x_0=0$, $x_1=\tfrac\pi2$, $x_2=\pi$ with data $f(x_0)=0$, $f(x_1)=1$, $f(x_2)=0$. In the Lagrange form $p(x) = \sum_{j=0}^2 f(x_j)\,\ell_j(x)$ the terms with $f(x_j)=0$ drop out, leaving
+
+\begin{align}
+p(x) &= \ell_1(x) \nonumber\\
+%
+&= \frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)} 
+\nonumber\\
+%
+&= \frac{x(x-\pi)}{\left(\frac\pi2\right)\left(-\frac\pi2\right)} \nonumber\\
+%
+&= -\frac{4}{\pi^2}\,x(x-\pi).
+\end{align}
+
+:::
 :::
 
 <!-- L06 -->
@@ -1962,6 +2082,32 @@ Write down the polynomial of least degree interpolating $f(x) = \sin(x)$ at the 
 **@exr-Lagrange-int-1**
 
 Write down an error estimate for approximating $f(x) = \sin(x)$ by $I_{\{0, \frac\pi2, \pi\}}f(x) = - \frac4{\pi^2} x (x - \pi)$.
+
+::: {.exercise-solution style="display:none;"}
+
+Here $n=2$, so @thm-Lagrange-interpolation gives, for each $x\in[0,\pi]$, some $\xi_x\in[0,\pi]$ with
+
+\begin{align}
+\sin x - p(x) &= \frac{f^{(3)}(\xi_x)}{3!}\,q(x), \nonumber\\ 
+%
+q(x) &:= x\big(x-\tfrac\pi2\big)(x-\pi).
+\end{align}
+
+Since $f^{(3)}(x) = -\cos x$, $|f^{(3)}(\xi_x)| \le 1$, so
+
+$$
+|\sin x - p(x)| \;\le\; \frac{|q(x)|}{6}
+$$
+
+for all $x\in [0,\pi]$.
+
+The maximum of $|q(x)|$ on $[0,\pi]$ is attained at a critial point of $q(x)$. Since $q'(x) = (x-\tfrac\pi2)(x-π) + x(x-\pi) + x(x-\tfrac\pi2) = 3x^2 -3\pi x + \tfrac{\pi^2}{2}$, the maxima are obtained at $x_{\pm} = \left( \frac12 \pm \frac16 \sqrt{3} \right) \pi$ with $q(x_{\pm}) = \frac{\pi^3}{12\sqrt3}$ and so 
+
+$$
+|\sin x - p(x)| \;\le\; \frac{\pi^3}{72\sqrt3}.
+$$
+
+:::
 :::
 
 <!-- L06 -->
@@ -1973,13 +2119,47 @@ Consider $f(x) = e^{-x}$ on $[-1,1]$.
 1. Find a Lagrange interpolating polynomial $p$ of $f$ on $\{ -1, 0 , 1\}$,
 
 2. Write down an error estimate for approximating $f$ with $p$ on $[-1,1]$.
+
+::: {.exercise-solution style="display:none;"}
+
+*1.* With $x_0=-1, x_1=0, x_2=1$ and $f(x_0)=e, f(x_1)=1, f(x_2)=e^{-1}$, the Lagrange polynomials are
+
+\begin{align}
+\ell_0(x) &= \frac{x(x-1)}{2}, \nonumber\\
+%
+\ell_1(x) &= 1-x^2, \nonumber\\
+%
+\ell_2(x) &= \frac{x(x+1)}{2},
+\end{align}
+
+so
+
+\begin{align}
+p(x) &= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
+    &= \left(\frac{e+e^{-1}}{2}-1\right)x^2 - \frac{e-e^{-1}}{2}\,x + 1.
+\end{align}
+
+1. Here $n=2$ and $f^{(3)}(x) = -e^{-x}$, so $\max_{[-1,1]}|f^{(3)}| = e$. The node polynomial is $\ell_X(x) = (x+1)x(x-1) = x^3-x$; it vanishes at $\pm1$ and its critical points are $x=\pm1/\sqrt3$, where $|x^3-x| = \frac{1}{\sqrt3}\left(1-\frac13\right) = \frac{2}{3\sqrt3}$. By @thm-Lagrange-interpolation,
+
+\begin{align}
+|f(x)-p(x)| &\leq \frac{e}{3!}\,|x^3-x| \nonumber\\
+%
+&\leq \frac{e}{6}\cdot\frac{2}{3\sqrt3} 
+\nonumber\\
+%
+&= \frac{e}{9\sqrt3} \;\approx\; 0.174 
+\end{align}
+
+for all $x\in [-1,1]$.
+
+(The actual maximum error is about $0.079$.)
+
+:::
 :::
 
 <!-- L06 -->
-::: {.exercise-box #bank-exr-equispaced-node-poly name="Growth of the equispaced node polynomial"}
+::: {.exercise-box #bank-exr-equispaced-node-poly name="Growth of the equispaced node polynomial" .difficult}
 **@exr-equispaced-node-poly**
-
-**($\star$ more difficult)**
 
 Let $X = \{x_0 < \cdots < x_n\}$ be $n+1$ equispaced nodes on $[-1,1]$, i.e. $x_j = -1 + jh$ with $h = 2/n$, and let $\ell_X(x) = (x-x_0)(x-x_1)\cdots(x-x_n)$ be the node polynomial.
 
@@ -2007,10 +2187,8 @@ Note that $2/e \approx 0.736$: parts 2 and 3 together show that $\max\limits_{x\
 :::
 
 <!-- L06 -->
-::: {.exercise-box #bank-exr-Runge-threshold name="A convergence threshold for Runge's example"}
+::: {.exercise-box #bank-exr-Runge-threshold name="A convergence threshold for Runge's example" .difficult}
 **@exr-Runge-threshold**
-
-**($\star$ more difficult)**
 
 Fix $\alpha > 0$ and let $f(x) = \dfrac{1}{1+\alpha x^2}$, as in @exm-Runge (with $\alpha=25$).
 
@@ -2381,7 +2559,7 @@ With $n = 2$, @eq-Barycentric-Chebyshev-II gives $\lambda_0 = \frac{2^2}{8} = \f
 :::
 
 <!-- L08 -->
-::: {.exercise-box #bank-exr-l08-bary-weights}
+::: {.exercise-box #bank-exr-l08-bary-weights .difficult}
 **@exr-l08-bary-weights**
 
 In the notes, we claimed that for the Chebyshev nodes $X_{\mathrm{II}} = \big\{ x_j = \cos\frac{j\pi}{n} \big\}_{j=0}^n$ the barycentric weights $\lambda_j := \big( \prod_{k\not=j} (x_j - x_k) \big)^{-1}$ are given by
@@ -2588,7 +2766,7 @@ for some polynomial $s$. If $s \not= 0$, then $r$ has degree at least $\sum_j m_
 :::
 
 <!-- L09 -->
-::: {.exercise-box #bank-exr-l09-hermite-error}
+::: {.exercise-box #bank-exr-l09-hermite-error .difficult}
 **@exr-l09-hermite-error**
 
 In this exercise, we prove the error estimate for Hermite interpolation (compare with the Lagrange case in Lecture 6). We say that $g$ has a *zero of order $m$* at $z$ if $g(z) = g'(z) = \dots = g^{(m-1)}(z) = 0$.
@@ -2616,7 +2794,7 @@ $$
 :::
 
 <!-- L09 -->
-::: {.exercise-box #bank-exr-l09-dd-mean-value}
+::: {.exercise-box #bank-exr-l09-dd-mean-value .difficult}
 **@exr-l09-dd-mean-value**
 
 1. Let $f \in C^n([a,b])$ and let $X = \{\{x_0, \dots, x_n\}\} \subset [a,b]$ be a multiset. Show that there exists $\xi \in [\min X, \max X]$ with
