@@ -243,6 +243,89 @@ details.proof-details .proof-title {
   text-decoration: none;
 }
 
+/* ── More difficult exercises: ◆ in the top-right corner (see extras/difficult.lua) ── */
+
+.exr-difficult {
+  position: absolute;
+  top: 0.45em;
+  right: 2.75em;   /* just left of the question bank link */
+  z-index: 5;
+  font-size: 1rem;
+  line-height: 1.3;
+  color: #7b1fa2;
+  cursor: help;
+  outline: none;
+}
+
+.exercise-box > .exr-difficult,
+.exercise:not(:has(a[href*="bank.html"])) > .exr-difficult {
+  right: 0.75em;   /* no question bank link (e.g. in the exercise bank itself): use the corner */
+}
+
+.exr-difficult-icon {
+  opacity: 0.75;
+  transition: opacity 0.15s;
+}
+
+.exr-difficult:hover .exr-difficult-icon,
+.exr-difficult:focus-visible .exr-difficult-icon {
+  opacity: 1;
+}
+
+.exr-difficult-tip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: -0.5em;
+  width: max-content;
+  max-width: min(20rem, 80vw);
+  padding: 0.5em 0.75em;
+  background: #ffffff;
+  color: #212529;
+  border: 1px solid rgba(123, 31, 162, 0.25);
+  border-left: 4px solid #7b1fa2;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-size: 0.85rem;
+  font-weight: normal;
+  text-align: left;
+  cursor: auto;
+}
+
+.exr-difficult:hover .exr-difficult-tip,
+.exr-difficult:focus .exr-difficult-tip {
+  display: block;
+}
+
+.exr-difficult-tip p {
+  margin: 0;
+}
+
+.exr-difficult-tip p + p {
+  margin-top: 0.35em;
+}
+
+/* Exercise bank question box: move the difficulty-rating stars left to make room for the ◆ */
+#random-exercise-display .exercise-box:has(> .exr-difficult) > .exr-difficulty {
+  right: 2.2rem;
+}
+
+#random-exercise-display .exercise-box:has(> .exr-difficult) > p:first-of-type {
+  padding-right: 12rem;
+}
+
+@media (max-width: 575.98px) {
+  #random-exercise-display .exercise-box:has(> .exr-difficult) > p:first-of-type {
+    padding-right: 8rem;
+  }
+}
+
+@media print {
+  .exr-difficult-tip {
+    display: none !important;
+  }
+}
+
 /* ── "Exercise bank" in the sidebar: a pill button with the same icon as the bank links ── */
 
 #quarto-sidebar .sidebar-item a.sidebar-link[href$="bank.html"] {
