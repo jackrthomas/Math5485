@@ -279,6 +279,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Newton–Cotes quadrature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -412,6 +424,8 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
 
           <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
 
@@ -1121,7 +1135,8 @@ Note
 <h2 data-number="8.2" class="anchored" data-anchor-id="barycentric-formula"><span class="header-section-number">8.2</span> Barycentric formula</h2>
 <p>See e.g. <span class="citation" data-cites="BerrutTrefethen2004">Berrut and Trefethen (<a href="../references.html#ref-BerrutTrefethen2004" role="doc-biblioref">2004</a>)</span> <a href="https://people.maths.ox.ac.uk/trefethen/barycentric.pdf">link</a> for more details.</p>
 <div id="exr-Bary-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.1</strong></span> Let’s use the formula</p>
+<p><span class="theorem-title"><strong>Exercise 8.1</strong></span> <a href="../exercises/bank.html#bank-exr-Bary-1"></a></p>
+<p>Let’s use the formula</p>
 <p><span id="eq-interpolation-naive"><span class="math display">\[
 \begin{align}
     I_Xf(x) &amp;= \sum_{j=0}^n f(x_j) \ell_j(x), \\
@@ -1202,7 +1217,8 @@ Note
 \]</span></p>
 <p>This is sometimes referred to as the <em>first form of the Barycentric formula</em>.</p>
 <div id="exr-sum-lagrange-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.2</strong></span> Suppose that <span class="math inline">\(X = \{ x_0 &lt; ... &lt; x_n \}\)</span> and let <span class="math inline">\(\ell_j\)</span> be the corresponding Lagrange polynomials. Show that <span class="math inline">\(\sum_{j=0}^n \ell_j(x) = 1\)</span> for all <span class="math inline">\(x\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 8.2</strong></span> <a href="../exercises/bank.html#bank-exr-sum-lagrange-1"></a></p>
+<p>Suppose that <span class="math inline">\(X = \{ x_0 &lt; ... &lt; x_n \}\)</span> and let <span class="math inline">\(\ell_j\)</span> be the corresponding Lagrange polynomials. Show that <span class="math inline">\(\sum_{j=0}^n \ell_j(x) = 1\)</span> for all <span class="math inline">\(x\)</span>.</p>
 </div>
 <p>Therefore, using (<a href="#eq-ell-j" class="quarto-xref"><span>8.2</span></a>) and dividing by <span class="math inline">\(\sum_{j=0}^n \ell_j(x) = 1\)</span>, we obtain (for <span class="math inline">\(x \not\in X\)</span>)</p>
 <p><span id="eq-Barycentric"><span class="math display">\[
@@ -1223,7 +1239,8 @@ Note
     \end{cases}
 \tag{8.4}\]</span></span></p>
 <div id="exr-Bary-weights" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.3</strong></span> Explain why one may instead consider any weights of the form <span class="math inline">\(w_j := C \lambda_j\)</span> in the Barycentric formula (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>). Why might this be a good idea? See (<a href="#eq-Barycentric-Chebyshev-II" class="quarto-xref"><span>8.4</span></a>) for the weights appearing in the Barycentric formula for Chebyshev nodes of the second kind.</p>
+<p><span class="theorem-title"><strong>Exercise 8.3</strong></span> <a href="../exercises/bank.html#bank-exr-Bary-weights"></a></p>
+<p>Explain why one may instead consider any weights of the form <span class="math inline">\(w_j := C \lambda_j\)</span> in the Barycentric formula (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>). Why might this be a good idea? See (<a href="#eq-Barycentric-Chebyshev-II" class="quarto-xref"><span>8.4</span></a>) for the weights appearing in the Barycentric formula for Chebyshev nodes of the second kind.</p>
 </div>
 <p>In particular, for Chebyshev nodes of the second kind, we can use (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>) with the weights <span class="math inline">\(w_j := (-1)^j \tau_j\)</span> where <span class="math inline">\(\tau_j = \frac12\)</span> for <span class="math inline">\(j=0, n\)</span> and <span class="math inline">\(\tau_j = 1\)</span> otherwise. Moreover, this formula has been proved to be numerically stable (<span class="citation" data-cites="Higham2004">Higham (<a href="../references.html#ref-Higham2004" role="doc-biblioref">2004</a>)</span>) which we demonstrate in the following:</p>
 <div id="23b11076" class="cell animation">
@@ -1275,7 +1292,8 @@ Note
 </div>
 </div>
 <div id="exr-Bary-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.4</strong></span> Recall that the degree <span class="math inline">\(2\)</span> polynomial interpolation of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(X = \{ x_0 &lt; x_1 &lt; x_2 \} = \{ 0, \frac\pi2, \pi \}\)</span> is <span class="math inline">\(I_X f(x) = -\frac4{\pi^2} x(x-\pi)\)</span>. Write the Barycentric version of this formula (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>).</p>
+<p><span class="theorem-title"><strong>Exercise 8.4</strong></span> <a href="../exercises/bank.html#bank-exr-Bary-2"></a></p>
+<p>Recall that the degree <span class="math inline">\(2\)</span> polynomial interpolation of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(X = \{ x_0 &lt; x_1 &lt; x_2 \} = \{ 0, \frac\pi2, \pi \}\)</span> is <span class="math inline">\(I_X f(x) = -\frac4{\pi^2} x(x-\pi)\)</span>. Write the Barycentric version of this formula (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>).</p>
 <p>Explain how you would have to update this formula if we added an extra point <span class="math inline">\(x_{3} = -2\pi\)</span> to the interpolation set.</p>
 <div class="exercise-solution" style="display: none;">
 <p>The Barycentric formula (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>) depends on the weights <span class="math inline">\(\lambda_j = \prod_{k\not=j} (x_j-x_k)^{-1}\)</span> which in this case are given by</p>
@@ -1587,7 +1605,8 @@ Note
 <section id="extra-exercises" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">8.5</span> Extra exercises</h2>
 <div id="exr-l08-bary-small" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.5</strong></span> Let <span class="math inline">\(n = 2\)</span> and let <span class="math inline">\(X = X_{\mathrm{II}} = \big\{ \cos\frac{j\pi}{2} \big\}_{j=0}^2\)</span> be the Chebyshev nodes of the second kind, so that <span class="math inline">\(x_0 = 1\)</span>, <span class="math inline">\(x_1 = 0\)</span>, and <span class="math inline">\(x_2 = -1\)</span>. Compute <span class="math inline">\(\lambda_0, \lambda_1, \lambda_2\)</span> directly from the definition <span class="math inline">\(\lambda_j = \big( \prod_{k\not=j} (x_j - x_k) \big)^{-1}\)</span> and check that they agree with (<a href="#eq-Barycentric-Chebyshev-II" class="quarto-xref"><span>8.4</span></a>).</p>
+<p><span class="theorem-title"><strong>Exercise 8.5</strong></span> <a href="../exercises/bank.html#bank-exr-l08-bary-small"></a></p>
+<p>Let <span class="math inline">\(n = 2\)</span> and let <span class="math inline">\(X = X_{\mathrm{II}} = \big\{ \cos\frac{j\pi}{2} \big\}_{j=0}^2\)</span> be the Chebyshev nodes of the second kind, so that <span class="math inline">\(x_0 = 1\)</span>, <span class="math inline">\(x_1 = 0\)</span>, and <span class="math inline">\(x_2 = -1\)</span>. Compute <span class="math inline">\(\lambda_0, \lambda_1, \lambda_2\)</span> directly from the definition <span class="math inline">\(\lambda_j = \big( \prod_{k\not=j} (x_j - x_k) \big)^{-1}\)</span> and check that they agree with (<a href="#eq-Barycentric-Chebyshev-II" class="quarto-xref"><span>8.4</span></a>).</p>
 <div class="exercise-solution" style="display: none;">
 <p>We have <span class="math display">\[
 \begin{align}
@@ -1599,7 +1618,8 @@ Note
 </div>
 </div>
 <div id="exr-l08-bary-weights" class="difficult theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.6</strong></span> In the notes, we claimed that for the Chebyshev nodes <span class="math inline">\(X_{\mathrm{II}} = \big\{ x_j = \cos\frac{j\pi}{n} \big\}_{j=0}^n\)</span> the barycentric weights <span class="math inline">\(\lambda_j := \big( \prod_{k\not=j} (x_j - x_k) \big)^{-1}\)</span> are given by</p>
+<p><span class="theorem-title"><strong>Exercise 8.6</strong></span> <a href="../exercises/bank.html#bank-exr-l08-bary-weights"></a></p>
+<p>In the notes, we claimed that for the Chebyshev nodes <span class="math inline">\(X_{\mathrm{II}} = \big\{ x_j = \cos\frac{j\pi}{n} \big\}_{j=0}^n\)</span> the barycentric weights <span class="math inline">\(\lambda_j := \big( \prod_{k\not=j} (x_j - x_k) \big)^{-1}\)</span> are given by</p>
 <p><span class="math display">\[
     \lambda_j = \begin{cases}
         \frac{2^{n}}{4n}  &amp; \text{if } j = 0 \\
@@ -1655,7 +1675,8 @@ w'(x) = x T_n'(x) + n^2 T_n(x).
 </div>
 </div>
 <div id="exr-l08-bary-equi" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 8.7</strong></span> Let <span class="math inline">\(X = \{x_0 &lt; \dots &lt; x_n\}\)</span> be the equispaced nodes on <span class="math inline">\([-1,1]\)</span>: <span class="math inline">\(x_j = -1 + jh\)</span> for <span class="math inline">\(j = 0, \dots, n\)</span>, where <span class="math inline">\(h = \frac2n\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 8.7</strong></span> <a href="../exercises/bank.html#bank-exr-l08-bary-equi"></a></p>
+<p>Let <span class="math inline">\(X = \{x_0 &lt; \dots &lt; x_n\}\)</span> be the equispaced nodes on <span class="math inline">\([-1,1]\)</span>: <span class="math inline">\(x_j = -1 + jh\)</span> for <span class="math inline">\(j = 0, \dots, n\)</span>, where <span class="math inline">\(h = \frac2n\)</span>.</p>
 <ol type="1">
 <li>Show that <span class="math inline">\(\prod_{k\not= j} (x_j - x_k) = (-1)^{n-j} h^n \, j!\, (n-j)!\)</span>, and deduce that the barycentric weights are <span class="math display">\[
 \lambda_j = \frac{(-1)^{n-j}}{h^n\, n!} \binom{n}{j}.

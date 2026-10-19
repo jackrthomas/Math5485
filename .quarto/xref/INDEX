@@ -268,5 +268,14 @@
   },
   "private/errata.md": {
     "errata.html": "a534165b"
+  },
+  "lectures/L10.ipynb": {
+    "L10.html": "0b41cfaf"
+  },
+  "lectures/L11.ipynb": {
+    "L11.html": "458e7548"
+  },
+  "private/lectures/L16.ipynb": {
+    "L16.html": "b18b8596"
   }
 }

@@ -279,6 +279,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Newton–Cotes quadrature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -409,6 +421,8 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
 
           <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
 
@@ -1144,7 +1158,8 @@ Note
 \end{align}\]</span></p>
 </div>
 <div id="exr-L6-Taylor" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.1</strong></span> Show that the degree <span class="math inline">\(m_0\)</span> Taylor polynomial of <span class="math inline">\(f\)</span> about <span class="math inline">\(x_0\)</span> solves (<a href="#eq-interpolation" class="quarto-xref"><span>6.1</span></a>) when <span class="math inline">\(X = \{ x_0 \}\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 6.1</strong></span> <a href="../exercises/bank.html#bank-exr-L6-Taylor"></a></p>
+<p>Show that the degree <span class="math inline">\(m_0\)</span> Taylor polynomial of <span class="math inline">\(f\)</span> about <span class="math inline">\(x_0\)</span> solves (<a href="#eq-interpolation" class="quarto-xref"><span>6.1</span></a>) when <span class="math inline">\(X = \{ x_0 \}\)</span>.</p>
 <div class="exercise-hint" style="display:none;">
 <p>Recall that</p>
 <p><span class="math display">\[\begin{align}
@@ -1245,7 +1260,8 @@ p^{(j)}(x_0) = \frac{f^{(j)}(x_0)}{0!} = f^{(j)}(x_0).
 </div>
 </div>
 <div id="exr-l06-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.2</strong></span> Write down the polynomial of least degree interpolating <span class="math inline">\(f(x) = \sin(x)\)</span> at the points <span class="math inline">\(0, \frac{\pi}{2}, \pi\)</span></p>
+<p><span class="theorem-title"><strong>Exercise 6.2</strong></span> <a href="../exercises/bank.html#bank-exr-l06-1"></a></p>
+<p>Write down the polynomial of least degree interpolating <span class="math inline">\(f(x) = \sin(x)\)</span> at the points <span class="math inline">\(0, \frac{\pi}{2}, \pi\)</span></p>
 <div class="exercise-solution" style="display:none;">
 <p>The nodes are <span class="math inline">\(x_0=0\)</span>, <span class="math inline">\(x_1=\tfrac\pi2\)</span>, <span class="math inline">\(x_2=\pi\)</span> with data <span class="math inline">\(f(x_0)=0\)</span>, <span class="math inline">\(f(x_1)=1\)</span>, <span class="math inline">\(f(x_2)=0\)</span>. In the Lagrange form <span class="math inline">\(p(x) = \sum_{j=0}^2 f(x_j)\,\ell_j(x)\)</span> the terms with <span class="math inline">\(f(x_j)=0\)</span> drop out, leaving</p>
 <p><span class="math display">\[\begin{align}
@@ -1324,7 +1340,8 @@ p(x) &amp;= \ell_1(x) \nonumber\\
 </div>
 </details>
 <div id="exr-Lagrange-int-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.3</strong></span> Write down an error estimate for approximating <span class="math inline">\(f(x) = \sin(x)\)</span> by <span class="math inline">\(I_{\{0, \frac\pi2, \pi\}}f(x) = - \frac4{\pi^2} x (x - \pi)\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 6.3</strong></span> <a href="../exercises/bank.html#bank-exr-Lagrange-int-1"></a></p>
+<p>Write down an error estimate for approximating <span class="math inline">\(f(x) = \sin(x)\)</span> by <span class="math inline">\(I_{\{0, \frac\pi2, \pi\}}f(x) = - \frac4{\pi^2} x (x - \pi)\)</span>.</p>
 <div class="exercise-solution" style="display:none;">
 <p>Here <span class="math inline">\(n=2\)</span>, so <a href="#thm-Lagrange-interpolation" class="quarto-xref">Theorem&nbsp;<span>6.2</span></a> gives, for each <span class="math inline">\(x\in[0,\pi]\)</span>, some <span class="math inline">\(\xi_x\in[0,\pi]\)</span> with</p>
 <p><span class="math display">\[\begin{align}
@@ -1548,7 +1565,8 @@ q(x) &amp;:= x\big(x-\tfrac\pi2\big)(x-\pi).
 <section id="extra-exercises" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">6.5</span> Extra exercises</h2>
 <div id="exr-poly-interpolation-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.4</strong></span> Consider <span class="math inline">\(f(x) = e^{-x}\)</span> on <span class="math inline">\([-1,1]\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 6.4</strong></span> <a href="../exercises/bank.html#bank-exr-poly-interpolation-2"></a></p>
+<p>Consider <span class="math inline">\(f(x) = e^{-x}\)</span> on <span class="math inline">\([-1,1]\)</span>.</p>
 <ol type="1">
 <li><p>Find a Lagrange interpolating polynomial <span class="math inline">\(p\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{ -1, 0 , 1\}\)</span>,</p></li>
 <li><p>Write down an error estimate for approximating <span class="math inline">\(f\)</span> with <span class="math inline">\(p\)</span> on <span class="math inline">\([-1,1]\)</span>.</p></li>
@@ -1583,7 +1601,8 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 </div>
 </div>
 <div id="exr-equispaced-node-poly" class="difficult theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.5 (Growth of the equispaced node polynomial)</strong></span> Let <span class="math inline">\(X = \{x_0 &lt; \cdots &lt; x_n\}\)</span> be <span class="math inline">\(n+1\)</span> equispaced nodes on <span class="math inline">\([-1,1]\)</span>, i.e.&nbsp;<span class="math inline">\(x_j = -1 + jh\)</span> with <span class="math inline">\(h = 2/n\)</span>, and let <span class="math inline">\(\ell_X(x) = (x-x_0)(x-x_1)\cdots(x-x_n)\)</span> be the node polynomial.</p>
+<p><span class="theorem-title"><strong>Exercise 6.5 (Growth of the equispaced node polynomial)</strong></span> <a href="../exercises/bank.html#bank-exr-equispaced-node-poly"></a></p>
+<p>Let <span class="math inline">\(X = \{x_0 &lt; \cdots &lt; x_n\}\)</span> be <span class="math inline">\(n+1\)</span> equispaced nodes on <span class="math inline">\([-1,1]\)</span>, i.e.&nbsp;<span class="math inline">\(x_j = -1 + jh\)</span> with <span class="math inline">\(h = 2/n\)</span>, and let <span class="math inline">\(\ell_X(x) = (x-x_0)(x-x_1)\cdots(x-x_n)\)</span> be the node polynomial.</p>
 <ol type="1">
 <li><p>Fix <span class="math inline">\(x \in [x_k, x_{k+1}]\)</span> for some <span class="math inline">\(0 \leq k \leq n-1\)</span>. By bounding <span class="math inline">\(|x - x_j|\)</span> for <span class="math inline">\(j &lt; k\)</span> and <span class="math inline">\(j &gt; k+1\)</span> and using <span class="math inline">\(|x-x_k|\,|x-x_{k+1}| \leq h^2/4\)</span>, show that</p>
 <p><span class="math display">\[
@@ -1608,7 +1627,8 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 </div>
 </div>
 <div id="exr-Runge-threshold" class="difficult theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 6.6 (A convergence threshold for Runge’s example)</strong></span> Fix <span class="math inline">\(\alpha &gt; 0\)</span> and let <span class="math inline">\(f(x) = \dfrac{1}{1+\alpha x^2}\)</span>, as in <a href="#exm-Runge" class="quarto-xref">Example&nbsp;<span>6.2</span></a> (with <span class="math inline">\(\alpha=25\)</span>).</p>
+<p><span class="theorem-title"><strong>Exercise 6.6 (A convergence threshold for Runge’s example)</strong></span> <a href="../exercises/bank.html#bank-exr-Runge-threshold"></a></p>
+<p>Fix <span class="math inline">\(\alpha &gt; 0\)</span> and let <span class="math inline">\(f(x) = \dfrac{1}{1+\alpha x^2}\)</span>, as in <a href="#exm-Runge" class="quarto-xref">Example&nbsp;<span>6.2</span></a> (with <span class="math inline">\(\alpha=25\)</span>).</p>
 <ol type="1">
 <li><p>Using the geometric series <span class="math inline">\(f(x) = \sum_{k=0}^\infty (-\alpha)^k x^{2k}\)</span> for <span class="math inline">\(|x| &lt; 1/\sqrt\alpha\)</span>, show that</p>
 <p><span class="math display">\[\begin{align}

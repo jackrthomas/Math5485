@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../exercises/bank.html" rel="next">
+<link href="../lectures/L10.html" rel="next">
 <link href="../lectures/L08.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -221,6 +221,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Newton–Cotes quadrature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -350,6 +362,8 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
 
           <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
 
@@ -1054,10 +1068,12 @@ Note
 \]</span></p>
 <p>When <span class="math inline">\(m_j = 1\)</span> for all <span class="math inline">\(j\)</span>, this is the Lagrange interpolation problem.</p>
 <div id="exr-Hermite-1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.1</strong></span> Let <span class="math inline">\(f(x) = e^x\)</span> and <span class="math inline">\(X = \{\{0, 0, 1\}\}\)</span> (so that <span class="math inline">\(z_0 = 0\)</span> with <span class="math inline">\(m_0 = 2\)</span>, <span class="math inline">\(z_1 = 1\)</span> with <span class="math inline">\(m_1 = 1\)</span>, and <span class="math inline">\(n = 2\)</span>). Find the Hermite interpolant <span class="math inline">\(p \in \mathcal P_2\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> by writing <span class="math inline">\(p(x) = a_0 + a_1 x + a_2 x^2\)</span> and solving for the coefficients. Compare <span class="math inline">\(p\)</span> with the Taylor polynomial of degree <span class="math inline">\(1\)</span> about <span class="math inline">\(0\)</span> and with the Lagrange interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{0, 1\}\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 9.1</strong></span> <a href="../exercises/bank.html#bank-exr-Hermite-1"></a></p>
+<p>Let <span class="math inline">\(f(x) = e^x\)</span> and <span class="math inline">\(X = \{\{0, 0, 1\}\}\)</span> (so that <span class="math inline">\(z_0 = 0\)</span> with <span class="math inline">\(m_0 = 2\)</span>, <span class="math inline">\(z_1 = 1\)</span> with <span class="math inline">\(m_1 = 1\)</span>, and <span class="math inline">\(n = 2\)</span>). Find the Hermite interpolant <span class="math inline">\(p \in \mathcal P_2\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> by writing <span class="math inline">\(p(x) = a_0 + a_1 x + a_2 x^2\)</span> and solving for the coefficients. Compare <span class="math inline">\(p\)</span> with the Taylor polynomial of degree <span class="math inline">\(1\)</span> about <span class="math inline">\(0\)</span> and with the Lagrange interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{0, 1\}\)</span>.</p>
 </div>
 <div id="exr-Taylor-Hermite" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.2</strong></span> What is the least degree polynomial interpolant on <span class="math inline">\(X = \{\{x_0, x_0, \dots, x_0\}\}\)</span> (where <span class="math inline">\(x_0\)</span> is repeated <span class="math inline">\(n+1\)</span> times)?</p>
+<p><span class="theorem-title"><strong>Exercise 9.2</strong></span> <a href="../exercises/bank.html#bank-exr-Taylor-Hermite"></a></p>
+<p>What is the least degree polynomial interpolant on <span class="math inline">\(X = \{\{x_0, x_0, \dots, x_0\}\}\)</span> (where <span class="math inline">\(x_0\)</span> is repeated <span class="math inline">\(n+1\)</span> times)?</p>
 </div>
 <div id="thm-Hermite" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 9.1</strong></span> There exists a unique polynomial of degree at most <span class="math inline">\(n\)</span> solving the Hermite interpolation problem.</p>
@@ -1130,10 +1146,12 @@ Note
 </div>
 <p>To compute the divided difference table, list the nodes so that equal nodes are next to each other. Then every entry <span class="math inline">\(f[x_j,\dots,x_{j+k}]\)</span> is computed using <a href="#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a>: if <span class="math inline">\(x_j = x_{j+k}\)</span> (so that all of the nodes involved are equal), it is <span class="math inline">\(\frac{f^{(k)}(x_j)}{k!}\)</span>; otherwise it is the usual difference quotient of its two neighbours in the previous column. In particular, the first column contains <span class="math inline">\(f[x_j, x_{j+1}] = f'(x_j)\)</span> whenever <span class="math inline">\(x_j = x_{j+1}\)</span>.</p>
 <div id="exr-Hermite-1-Newton" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.3</strong></span> Return to <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a>: compute the Hermite interpolant of <span class="math inline">\(f(x) = e^x\)</span> on <span class="math inline">\(\{\{0, 0, 1\}\}\)</span> again, this time using the divided difference table and <a href="#thm-Newton-form-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.3</span></a>.</p>
+<p><span class="theorem-title"><strong>Exercise 9.3</strong></span> <a href="../exercises/bank.html#bank-exr-Hermite-1-Newton"></a></p>
+<p>Return to <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a>: compute the Hermite interpolant of <span class="math inline">\(f(x) = e^x\)</span> on <span class="math inline">\(\{\{0, 0, 1\}\}\)</span> again, this time using the divided difference table and <a href="#thm-Newton-form-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.3</span></a>.</p>
 </div>
 <div id="exr-Hermite-2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.4</strong></span> What is the Hermite interpolant of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(\{\{ 0,0,\pi, \pi\}\}\)</span>? Hint: you can compute the divided difference tables in the same way as before.</p>
+<p><span class="theorem-title"><strong>Exercise 9.4</strong></span> <a href="../exercises/bank.html#bank-exr-Hermite-2"></a></p>
+<p>What is the Hermite interpolant of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(\{\{ 0,0,\pi, \pi\}\}\)</span>? Hint: you can compute the divided difference tables in the same way as before.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1155,7 +1173,8 @@ Note
 <section id="extra-exercises" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">9.4</span> Extra exercises</h2>
 <div id="exr-l09-hermite-exist" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.5</strong></span> In this exercise, we prove <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>. As in the notes, let <span class="math inline">\(z_0, \dots, z_k\)</span> be distinct nodes with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span>, and let <span class="math inline">\(n + 1 = \sum_{j=0}^k m_j\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 9.5</strong></span> <a href="../exercises/bank.html#bank-exr-l09-hermite-exist"></a></p>
+<p>In this exercise, we prove <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>. As in the notes, let <span class="math inline">\(z_0, \dots, z_k\)</span> be distinct nodes with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span>, and let <span class="math inline">\(n + 1 = \sum_{j=0}^k m_j\)</span>.</p>
 <ol type="1">
 <li>Let <span class="math inline">\(r \in \mathcal P_n\)</span> and suppose that <span class="math inline">\(r^{(l)}(z) = 0\)</span> for <span class="math inline">\(l = 0, \dots, m-1\)</span>. Show that <span class="math inline">\(r(x) = (x - z)^m s(x)\)</span> for some polynomial <span class="math inline">\(s\)</span>.</li>
 <li>Suppose that <span class="math inline">\(r \in \mathcal P_n\)</span> satisfies <span class="math inline">\(r^{(l)}(z_j) = 0\)</span> for all <span class="math inline">\(l = 0,\dots,m_j - 1\)</span> and <span class="math inline">\(j = 0,\dots,k\)</span>. Show that <span class="math inline">\(r = 0\)</span>.</li>
@@ -1179,7 +1198,8 @@ r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
 </div>
 </div>
 <div id="exr-l09-hermite-error" class="difficult theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.6</strong></span> In this exercise, we prove the error estimate for Hermite interpolation (compare with the Lagrange case in Lecture 6). We say that <span class="math inline">\(g\)</span> has a <em>zero of order <span class="math inline">\(m\)</span></em> at <span class="math inline">\(z\)</span> if <span class="math inline">\(g(z) = g'(z) = \dots = g^{(m-1)}(z) = 0\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 9.6</strong></span> <a href="../exercises/bank.html#bank-exr-l09-hermite-error"></a></p>
+<p>In this exercise, we prove the error estimate for Hermite interpolation (compare with the Lagrange case in Lecture 6). We say that <span class="math inline">\(g\)</span> has a <em>zero of order <span class="math inline">\(m\)</span></em> at <span class="math inline">\(z\)</span> if <span class="math inline">\(g(z) = g'(z) = \dots = g^{(m-1)}(z) = 0\)</span>.</p>
 <ol type="1">
 <li>(Rolle’s theorem with multiplicities) Suppose that <span class="math inline">\(g \in C^1([a,b])\)</span> has zeros at distinct points <span class="math inline">\(w_1 &lt; \dots &lt; w_r\)</span> in <span class="math inline">\([a,b]\)</span> of orders <span class="math inline">\(k_1, \dots, k_r\)</span>, and let <span class="math inline">\(N := k_1 + \dots + k_r\)</span>. Show that <span class="math inline">\(g'\)</span> has zeros in <span class="math inline">\([w_1, w_r]\)</span> whose orders add up to at least <span class="math inline">\(N - 1\)</span>.</li>
 <li>Let <span class="math inline">\(f \in C^{n+1}([a,b])\)</span>, let <span class="math inline">\(X = \{\{x_0, \dots, x_n\}\} \subset [a,b]\)</span> be a multiset, and let <span class="math inline">\(p \in \mathcal P_n\)</span> be the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span>. Define the node polynomial <span class="math inline">\(\ell_X(x) := (x - x_0)(x - x_1) \cdots (x - x_n)\)</span> (so repeated nodes give repeated factors). Show that, for every <span class="math inline">\(x \in [a,b]\)</span>, there exists <span class="math inline">\(\xi_x \in [\min (\{x\} \cup X), \max (\{x\} \cup X)]\)</span> with <span class="math display">\[
@@ -1194,7 +1214,8 @@ f(x) - p(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x).
 </div>
 </div>
 <div id="exr-l09-hermite-cubic" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.7 (Cubic Hermite interpolation)</strong></span> Let <span class="math inline">\(X = \{\{0, 0, 1, 1\}\}\)</span> and suppose that we know <span class="math inline">\(f(0) = y_0\)</span>, <span class="math inline">\(f'(0) = s_0\)</span>, <span class="math inline">\(f(1) = y_1\)</span> and <span class="math inline">\(f'(1) = s_1\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 9.7 (Cubic Hermite interpolation)</strong></span> <a href="../exercises/bank.html#bank-exr-l09-hermite-cubic"></a></p>
+<p>Let <span class="math inline">\(X = \{\{0, 0, 1, 1\}\}\)</span> and suppose that we know <span class="math inline">\(f(0) = y_0\)</span>, <span class="math inline">\(f'(0) = s_0\)</span>, <span class="math inline">\(f(1) = y_1\)</span> and <span class="math inline">\(f'(1) = s_1\)</span>.</p>
 <ol type="1">
 <li>Compute the divided difference table and show that the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> is <span class="math display">\[
 p(x) = y_0 + s_0 x + (d - s_0) x^2 + (s_0 + s_1 - 2d) \, x^2 (x - 1), \qquad \text{where } d := y_1 - y_0.
@@ -1205,7 +1226,7 @@ p(x) = y_0 + s_0 x + (d - s_0) x^2 + (s_0 + s_1 - 2d) \, x^2 (x - 1), \qquad \te
 </ol>
 </div>
 <div id="exr-l09-dd-mean-value" class="difficult theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.8</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 9.8</strong></span> <a href="../exercises/bank.html#bank-exr-l09-dd-mean-value"></a></p>
 <ol type="1">
 <li>Let <span class="math inline">\(f \in C^n([a,b])\)</span> and let <span class="math inline">\(X = \{\{x_0, \dots, x_n\}\} \subset [a,b]\)</span> be a multiset. Show that there exists <span class="math inline">\(\xi \in [\min X, \max X]\)</span> with <span class="math display">\[
 f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
@@ -1220,7 +1241,7 @@ f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 </div>
 </div>
 <div id="exr-l09-hermite-code" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 9.9</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 9.9</strong></span> <a href="../exercises/bank.html#bank-exr-l09-hermite-code"></a></p>
 <ol type="1">
 <li>Write a Julia function <code>hermite_dd(x, df)</code> which takes a vector of nodes <code>x</code> (sorted so that equal nodes are next to each other) and a function <code>df(l, z)</code> returning <span class="math inline">\(f^{(l)}(z)\)</span>, and returns the Newton coefficients <span class="math inline">\(f[x_0], f[x_0,x_1], \dots, f[x_0,\dots,x_n]\)</span> using the divided difference table.</li>
 <li>Write a function <code>newton_eval(c, x, t)</code> which evaluates <span class="math inline">\(\sum_{k=0}^n c_k \pi_k(t)\)</span> using <span class="math inline">\(O(n)\)</span> operations.</li>
@@ -2371,8 +2392,8 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../exercises/bank.html" class="pagination-link" aria-label="Exercise bank">
-        <span class="nav-page-text">Exercise bank</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/L10.html" class="pagination-link" aria-label="Newton–Cotes quadrature">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Newton–Cotes quadrature</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

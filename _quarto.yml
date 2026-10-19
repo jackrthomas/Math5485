@@ -43,6 +43,8 @@ book:
       - lectures/L07.ipynb
       - lectures/L08.ipynb
       - lectures/L09.ipynb
+      - lectures/L10.ipynb
+      - lectures/L11.ipynb
 
     - exercises/bank.ipynb
 
@@ -86,7 +88,7 @@ filters:
   - at: pre-ast
     path: extras/collapse-proofs.lua
   - at: pre-ast
-    path: extras/ai-solutions.lua
+    path: extras/draft-solutions.lua   # .draft hints/solutions: private build only
   - at: pre-ast
     path: extras/difficult.lua   # ◆ on exercises marked .difficult
   - at: post-quarto

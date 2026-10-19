@@ -86,7 +86,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assignments/A01.html" rel="next">
-<link href="../lectures/L09.html" rel="prev">
+<link href="../lectures/L11.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -276,6 +276,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Newton–Cotes quadrature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -396,6 +408,8 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
 
           <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
 
@@ -3155,6 +3169,705 @@ f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 </ol>
 </div>
 </section>
+<section id="lecture-10" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-10">Lecture 10</h2>
+<!-- L10 -->
+<div id="bank-exr-l10-recap" class="exercise-box" name="Recap of last week">
+<p><strong><a href="../lectures/L10.html#exr-l10-recap" class="quarto-xref">Exercise&nbsp;<span>10.1</span></a></strong></p>
+<ol type="1">
+<li>Compute the divided difference table for <span class="math inline">\(f(x) = x^2\)</span> on <span class="math inline">\(\{0, 1, 2\}\)</span> and write down the Newton form of the interpolant. What do you notice?</li>
+<li>What are <span class="math inline">\(f[x_0, x_0]\)</span> and <span class="math inline">\(f[x_0, x_0, x_0]\)</span>?</li>
+<li>Why do we prefer the barycentric formula (<a href="../lectures/L08.html#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>) to the naive Lagrange formula?</li>
+<li>What is the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{\{a, a\}\}\)</span>? How many conditions does the Hermite interpolant on <span class="math inline">\(\{\{0, 0, 1\}\}\)</span> satisfy, and what is its degree?</li>
+<li>The next iterate of Newton’s method is the root of which interpolant of <span class="math inline">\(f\)</span>? What about the secant method?</li>
+</ol>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><span class="math inline">\(f[0] = f(0) = 0\)</span>, <span class="math inline">\(f[1] = f(1) = 1\)</span>, <span class="math inline">\(f[2] = f(2) = 4\)</span>; <span class="math inline">\(f[0,1] = \frac{f(1)-f(0)}{1-0} = 1\)</span>, <span class="math inline">\(f[1,2] = \frac{f(1)-f(2)}{1-2} = 3\)</span>; <span class="math inline">\(f[0,1,2] = \frac{f[1,2] - f[0,1]}{2-0} = \frac{3 - 1}{2 - 0} = 1\)</span>. So <span class="math inline">\(p(x) = 0 + 1 \cdot x + 1 \cdot x(x-1) = x^2\)</span>: the interpolant is <span class="math inline">\(f\)</span> itself, as it must be since <span class="math inline">\(f \in \mathcal P_2\)</span>.</li>
+<li><span class="math inline">\(f[x_0, x_0] = f'(x_0)\)</span> and <span class="math inline">\(f[x_0, x_0, x_0] = \frac{f''(x_0)}{2}\)</span>.</li>
+<li>Once the weights are known, the barycentric formula costs <span class="math inline">\(O(n)\)</span> operations per evaluation (the naive formula costs <span class="math inline">\(O(n^2)\)</span>), it is numerically stable, and the weights may be rescaled to avoid overflow/underflow (<a href="../lectures/L08.html#exr-Bary-1" class="quarto-xref">Exercise&nbsp;<span>8.1</span></a>, <a href="../lectures/L08.html#exr-Bary-weights" class="quarto-xref">Exercise&nbsp;<span>8.3</span></a>).</li>
+<li>The tangent line <span class="math inline">\(p(x) = f(a) + f'(a)(x - a)\)</span> (the degree <span class="math inline">\(1\)</span> Taylor polynomial). On <span class="math inline">\(\{\{0,0,1\}\}\)</span> there are <span class="math inline">\(3\)</span> conditions (<span class="math inline">\(p(0) = f(0)\)</span>, <span class="math inline">\(p'(0) = f'(0)\)</span>, <span class="math inline">\(p(1) = f(1)\)</span>) and <span class="math inline">\(p \in \mathcal P_2\)</span>.</li>
+<li>Newton: <span class="math inline">\(x_{n+1}\)</span> is the root of the Hermite interpolant on <span class="math inline">\(\{\{x_n, x_n\}\}\)</span> (the tangent line). Secant: <span class="math inline">\(x_{n+1}\)</span> is the root of the Lagrange interpolant on <span class="math inline">\(\{x_{n-1}, x_n\}\)</span> (the secant line).</li>
+</ol>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-why-quadrature" class="exercise-box" name="Why approximate integrals?">
+<p><strong><a href="../lectures/L10.html#exr-l10-why-quadrature" class="quarto-xref">Exercise&nbsp;<span>10.2</span></a></strong></p>
+<p>Can you compute <span class="math inline">\(\int_0^1 e^{-x^2} \,\mathrm{d}x\)</span> or <span class="math inline">\(\int_0^1 \frac{\sin x}{x} \,\mathrm{d}x\)</span> exactly?</p>
+<div class="exercise-solution" style="display: none;">
+<p>No: neither integrand has an antiderivative that can be written in terms of elementary functions. (Also, in practice we may only know <span class="math inline">\(f\)</span> at some points.) This is why we need quadrature rules.</p>
+<p>(One defines</p>
+<p><span class="math display">\[\begin{align}
+    \mathrm{erf}(x) &amp;:= \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} \mathrm{d}t \nonumber\\
+    %
+    \mathrm{Si}(x) &amp;:= \int_0^x \frac{\sin t}{t} \mathrm{d}t
+\end{align}\]</span></p>
+<p>with <span class="math inline">\(\lim_{x\to\infty}\mathrm{erf}(x)=1\)</span> and <span class="math inline">\(\mathrm{Si}(x) \to \frac{\pi}{2}\)</span>.)</p>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-model-integral" class="exercise-box">
+<p><strong><a href="../lectures/L10.html#exr-l10-model-integral" class="quarto-xref">Exercise&nbsp;<span>10.3</span></a></strong></p>
+<p>Show that <span class="math inline">\(\int_0^{2\pi} \frac{1}{2\pi}(x + x \sin x) \,\mathrm{d}x = \pi - 1\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Integrating by parts gives</p>
+<p><span class="math display">\[\begin{align}
+\int_0^{2\pi} x \sin x \,\mathrm{d}x
+%
+&amp;= \int_0^{2\pi} x (-\cos' x) \,\mathrm{d}x \nonumber\\
+%
+&amp;= \big[ -x \cos x \big]_0^{2\pi} + \int_0^{2\pi} \cos x \,\mathrm{d}x \nonumber\\
+%
+&amp;= -2\pi.
+\end{align}\]</span></p>
+<p>Therefore the integral of <span class="math inline">\((x+x\sin x)/2\pi\)</span> on <span class="math inline">\([0,2\pi]\)</span> is <span class="math inline">\(\frac{1}{2\pi} \big( 2\pi^2 - 2\pi \big) = \pi - 1\)</span>.</p>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-mvt" class="exercise-box" name="Interpolation error with one node">
+<p><strong><a href="../lectures/L10.html#exr-l10-mvt" class="quarto-xref">Exercise&nbsp;<span>10.4</span></a></strong></p>
+<p>Write down the interpolation error formula for <span class="math inline">\(f - p\)</span> when <span class="math inline">\(p\)</span> interpolates <span class="math inline">\(f\)</span> on <span class="math inline">\(n+1\)</span> nodes (<a href="../lectures/L06.html#thm-Lagrange-interpolation" class="quarto-xref">Theorem&nbsp;<span>6.2</span></a>). What does it say when <span class="math inline">\(n = 0\)</span> and <span class="math inline">\(X = \{a\}\)</span>?</p>
+<div class="exercise-solution" style="display: none;">
+<p>We have: for <span class="math inline">\(x\)</span>, there exists <span class="math inline">\(\xi_x\)</span> between <span class="math inline">\(\min\{ x, \min X\}\)</span> and <span class="math inline">\(\max\{x,\max X\}\)</span> such that</p>
+<p><span class="math display">\[\begin{align}
+f(x) - p(x) &amp;= \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x)
+\end{align}\]</span></p>
+<p>where <span class="math inline">\(\ell_X\)</span> is the node polynomial on <span class="math inline">\(X\)</span>. For <span class="math inline">\(n = 0\)</span> and <span class="math inline">\(X = \{a\}\)</span>, <span class="math inline">\(p = f(a)\)</span> and this reads <span class="math inline">\(f(x) - f(a) = f'(\xi_x)(x - a)\)</span> for some <span class="math inline">\(\xi_x\)</span> between <span class="math inline">\(a\)</span> and <span class="math inline">\(x\)</span> (which is just the mean value theorem)</p>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-rectangular-error" class="exercise-box" name="Error estimate">
+<p><strong><a href="../lectures/L10.html#exr-l10-rectangular-error" class="quarto-xref">Exercise&nbsp;<span>10.5</span></a></strong></p>
+<p>Suppose <span class="math inline">\(f \in C^1([a,b])\)</span>. Show that</p>
+<p><span class="math display">\[
+\begin{align}
+    \left| \int_{a}^b f - (b-a) f(a) \right| \leq \| f'\|_{L^\infty([a,b])} \frac{(b-a)^2}{2}.
+\end{align}
+\]</span></p>
+<div class="exercise-solution" style="display: none;">
+<p>Since <span class="math inline">\(p_0\)</span> is a degree zero interpolating polynomial, we may apply the error bound we had for interpolation (<a href="../lectures/L06.html#thm-Lagrange-interpolation" class="quarto-xref">Theorem&nbsp;<span>6.2</span></a>):</p>
+<p><span class="math display">\[
+\begin{align}
+    f(x) - p_0(x) = f'(\xi_x) (x - a)
+\end{align}
+\]</span></p>
+<p>for some <span class="math inline">\(\xi_x \in [a, x]\)</span> (in this case, this is just the mean value theorem). Therefore, integrating this over <span class="math inline">\([a,b]\)</span>, we have the bound</p>
+<p><span class="math display">\[
+\begin{align}
+    \left| \int_{a}^b \big[ f(x) - p_0(x) \big] \mathrm{d}x \right|
+    %
+    &amp;\leq \| f'\|_{L^\infty([a,b])} \int_a^b |x - a| \mathrm{d}x \nonumber\\
+    &amp;= \| f'\|_{L^\infty([a,b])} \int_{0}^{b-a} t \,\mathrm{d}t \nonumber\\
+    %
+    &amp;= \| f'\|_{L^\infty([a,b])} \frac{(b-a)^2}{2}. \nonumber
+\end{align}
+\]</span></p>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-riemann" class="exercise-box">
+<p><strong><a href="../lectures/L10.html#exr-l10-riemann" class="quarto-xref">Exercise&nbsp;<span>10.6</span></a></strong></p>
+<p>Approximate <span class="math inline">\(\int_0^1 x \,\mathrm{d}x\)</span> by the composite rectangular rule with <span class="math inline">\(n\)</span> subintervals of equal length. What is the error?</p>
+<div class="exercise-solution" style="display: none;">
+<p>First, note that <span class="math inline">\(\int_0^1 x \mathrm{d}x = \frac12\)</span>.</p>
+<p>The composite rectangular rule on <span class="math inline">\([0,1]\)</span> is <span class="math inline">\(\frac1n \sum_{j=0}^{n-1} \frac{j}{n} = \frac{n-1}{2n} = \frac12 - \frac{1}{2n}\)</span>, so the error is exactly <span class="math inline">\(\frac{1}{2n}\)</span>: the rate <span class="math inline">\(O(n^{-1})\)</span> of <a href="../lectures/L10.html#thm-rectangular-composite" class="quarto-xref">Theorem&nbsp;<span>10.1</span></a> (and the constant <span class="math inline">\(\frac{\|f'\|_{L^\infty}}{2}(b-a)^2 = \frac12\)</span> is attained).</p>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-trapezoid-rule" class="exercise-box">
+<p><strong><a href="../lectures/L10.html#exr-l10-trapezoid-rule" class="quarto-xref">Exercise&nbsp;<span>10.7</span></a></strong></p>
+<ol type="1">
+<li>Write down the polynomial <span class="math inline">\(p_1\)</span> of degree at most <span class="math inline">\(1\)</span> interpolating <span class="math inline">\(f\)</span> on <span class="math inline">\(X = \{a, b\}\)</span>.</li>
+<li>Show that <span class="math inline">\(\int_a^b p_1(x) \,\mathrm{d}x = \frac{b-a}{2} \big( f(a) + f(b) \big)\)</span>.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<p>You can either go through the details in the integration, or draw a picture and calculate the area of the trapezium with points <span class="math inline">\((a,0), (a,f(a)), (b, f(b)), (b,0)\)</span>. If you do the integration explicitly, the Newton form is probably slightly easier…</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p><em>Lagrange form</em>:</p>
+<ol type="1">
+<li><p>We have <span class="math inline">\(p_1(x) = \frac{x-b}{a-b}f(a) + \frac{x-a}{b-a} f(b)\)</span>.</p></li>
+<li><p>We have <span class="math display">\[
+\begin{align}
+\int_a^b \frac{x-b}{a-b} \,\mathrm{d}x
+%
+&amp;= \frac{1}{a-b} \Big[ \frac{(x-b)^2}{2} \Big]_a^b
+%
+\nonumber\\
+%
+&amp;= - \frac{(a-b)^2}{2(a-b)} = \frac{b-a}{2}
+\nonumber\\
+\int_a^b \frac{x-a}{b-a} \,\mathrm{d}x &amp;= \frac{1}{b-a} \Big[ \frac{(x-a)^2}{2} \Big]_a^b
+\nonumber\\
+&amp;= \frac{b-a}{2}, \nonumber
+\end{align}
+\]</span> and so <span class="math inline">\(\int_a^b p_1 = \frac{b-a}{2} f(a) + \frac{b-a}{2} f(b)\)</span>.</p></li>
+</ol>
+<p><em>Newton form</em>:</p>
+<ol type="1">
+<li><span class="math inline">\(p_1(x) = f(a) + \frac{f(b)-f(a)}{b-a} (x-a)\)</span>,</li>
+<li>Integrating gives <span class="math display">\[
+\begin{align}
+\int_a^b (x-a) \mathrm{d}x &amp;= \frac12 (x-a)^2\Big|_a^b \nonumber\\
+%
+&amp;= \frac12 (b-a)^2
+\end{align}
+\]</span> and the result follows.</li>
+</ol>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-node-sign" class="exercise-box">
+<p><strong><a href="../lectures/L10.html#exr-l10-node-sign" class="quarto-xref">Exercise&nbsp;<span>10.8</span></a></strong></p>
+<p>What is the sign of <span class="math inline">\((x-a)(x-b)\)</span> on <span class="math inline">\([a,b]\)</span>? Compute <span class="math inline">\(\int_a^b |(x-a)(x-b)| \,\mathrm{d}x\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Make the substitution <span class="math inline">\(t := x - \frac{a+b}{2}\)</span> and define <span class="math inline">\(h := b-a\)</span>.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>We have <span class="math inline">\((x-a)(x-b) \leq 0\)</span> on <span class="math inline">\([a,b]\)</span>, so</p>
+<p><span class="math display">\[\begin{align}
+\int_a^b |(x-a)(x-b)| \,\mathrm{d}x
+%
+&amp;= -\int_a^b (x-a)(x-b) \,\mathrm{d}x \nonumber\\
+%
+&amp;= \int_{-h/2}^{h/2} \big( \tfrac{h^2}{4} -t^2 \big) \mathrm{d}t \nonumber\\
+%
+&amp;= \tfrac{h^3}{4} - \Big[ \frac{t^3}{3} \Big]_{-h/2}^{h/2} \nonumber\\
+%
+&amp;= \tfrac{h^3}{4} - \frac{h^3}{12}
+\nonumber\\
+%
+&amp;= \frac{(b-a)^3}{6}.
+\end{align}\]</span></p>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-midpoint" class="exercise-box" name="Midpoint rule">
+<p><strong><a href="../lectures/L10.html#exr-l10-midpoint" class="quarto-xref">Exercise&nbsp;<span>10.9</span></a></strong></p>
+<p>The <em>midpoint rule</em> is <span class="math inline">\(\int_a^b f \approx (b-a) f\big(\tfrac{a+b}{2}\big)\)</span>.</p>
+<ol type="1">
+<li>Show that the midpoint rule is exact for all polynomials of degree at most <span class="math inline">\(1\)</span>.</li>
+<li>Suppose <span class="math inline">\(f \in C^2([a,b])\)</span>. Show that <span class="math display">\[
+\left| \int_a^b f - (b-a) f\big(\tfrac{a+b}{2}\big) \right| \leq \frac{\|f''\|_{L^\infty([a,b])}}{24} (b-a)^3.
+\]</span></li>
+<li>Write down the composite midpoint rule on <span class="math inline">\(n\)</span> subintervals of equal length and show that its error is bounded by <span class="math inline">\(\frac{\|f''\|_{L^\infty([a,b])}}{24} \frac{(b-a)^3}{n^2}\)</span>. Compare with <a href="../lectures/L10.html#thm-trapezoid-composite" class="quarto-xref">Theorem&nbsp;<span>10.3</span></a>.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<p>For 2, use Taylor’s theorem about <span class="math inline">\(m = \frac{a+b}{2}\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+    f(x) = f(m) + f'(m)(x - m) + \frac{f''(\xi_x)}{2}(x-m)^2.
+\end{align}\]</span></p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>Let <span class="math inline">\(m = \frac{a+b}{2}\)</span>.</p>
+<ol type="1">
+<li><p>For <span class="math inline">\(f = 1\)</span>: <span class="math inline">\(\int_a^b 1 = b - a = (b-a) \cdot 1\)</span>. For <span class="math inline">\(f = x - m\)</span>: <span class="math display">\[
+\begin{align}
+\int_a^b (x - m) \,\mathrm{d}x &amp;= 0
+\nonumber\\
+%
+&amp;= (b-a)(m - m).
+\end{align}
+\]</span></p></li>
+<li><p>By Taylor’s theorem, <span class="math display">\[
+\begin{align}
+f(x) = f(m) + f'(m)(x-m) + \frac{f''(\xi_x)}{2} (x-m)^2
+\end{align}
+\]</span> for some <span class="math inline">\(\xi_x\)</span> between <span class="math inline">\(m\)</span> and <span class="math inline">\(x\)</span>. Integrating and using <span class="math inline">\(\int_a^b (x - m) \,\mathrm{d}x = 0\)</span>, <span class="math display">\[
+\begin{align}
+\left| \int_a^b f - (b-a) f(m) \right|
+%
+&amp;= \left| \int_a^b \frac{f''(\xi_x)}{2} (x-m)^2 \,\mathrm{d}x \right| \nonumber\\
+%
+&amp;\leq \frac{\|f''\|_{L^\infty([a,b])}}{2} \int_a^b (x - m)^2 \,\mathrm{d}x
+\nonumber\\
+%
+&amp;= \frac{\|f''\|_{L^\infty([a,b])}}{2} \frac{(b-a)^3}{12}.
+\end{align}
+\]</span></p></li>
+<li><p>With <span class="math inline">\(x_j = a + j \frac{b-a}{n}\)</span>, the composite rule is <span class="math inline">\(\frac{b-a}{n} \sum_{j=0}^{n-1} f\big( \frac{x_j + x_{j+1}}{2} \big)\)</span>. Applying 2 on each subinterval of length <span class="math inline">\(\frac{b-a}{n}\)</span> and summing the <span class="math inline">\(n\)</span> errors gives <span class="math display">\[
+\begin{align}
+n \cdot \frac{\|f''\|_{L^\infty([a,b])}}{24} \Big( \frac{b-a}{n} \Big)^3
+%
+&amp;= \frac{\|f''\|_{L^\infty([a,b])}}{24} \frac{(b-a)^3}{n^2}.
+\end{align}
+\]</span> This is the same rate <span class="math inline">\(O(n^{-2})\)</span> as the composite trapezoid rule, but with half the constant (and one fewer function evaluation).</p></li>
+</ol>
+</div>
+</div>
+<!-- L10 -->
+<div id="bank-exr-l10-weights" class="exercise-box difficult" name="Properties of interpolatory weights">
+<p><strong><a href="../lectures/L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a></strong></p>
+<p>Let <span class="math inline">\(x_0, \dots, x_n \in [a,b]\)</span> be distinct and let <span class="math inline">\(w_j = \int_a^b \ell_j\)</span> be the weights in (<a href="../lectures/L10.html#eq-interpolatory-quadrature" class="quarto-xref"><span>10.2</span></a>).</p>
+<ol type="1">
+<li>Show that <span class="math inline">\(\{w_j\}\)</span> are the <em>unique</em> weights for which <span class="math inline">\(\sum_{j=0}^n w_j f(x_j)\)</span> is exact for all <span class="math inline">\(f \in \mathcal P_n\)</span>.</li>
+<li>Show that <span class="math inline">\(\sum_{j=0}^n w_j = b - a\)</span>.</li>
+<li>Let <span class="math inline">\(\hat x_j \in [0,1]\)</span> and let <span class="math inline">\(\hat w_j\)</span> be the corresponding weights on <span class="math inline">\([0,1]\)</span>. Show that the nodes <span class="math inline">\(x_j = a + (b-a) \hat x_j\)</span> on <span class="math inline">\([a,b]\)</span> have weights <span class="math inline">\(w_j = (b-a) \hat w_j\)</span>.</li>
+<li>Suppose the nodes are symmetric: <span class="math inline">\(x_{n-j} = a + b - x_j\)</span> for all <span class="math inline">\(j\)</span>. Show that <span class="math inline">\(w_{n-j} = w_j\)</span>.</li>
+</ol>
+<div class="exercise-hint" style="display: none;">
+<ol type="1">
+<li>What happens if you apply the rule to <span class="math inline">\(f(x) = \ell_j(x)\)</span>?</li>
+<li>What happens if you apply the rule to <span class="math inline">\(f(x) = 1\)</span>?</li>
+<li>Use <span class="math inline">\(w_j = \int_a^b \ell_j\)</span>,</li>
+<li>Show that <span class="math inline">\(\ell_{n-j}(x) = \ell_j(a + b - x)\)</span> by checking the values of both sides at the nodes.</li>
+</ol>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>If <span class="math inline">\(f \in \mathcal P_n\)</span> then <span class="math inline">\(f\)</span> is its own interpolant, <span class="math inline">\(f = \sum_j \ell_j f(x_j)\)</span>, and so <span class="math inline">\(\int_a^b f = \sum_j w_j f(x_j)\)</span> and the rule is exact. Conversely, if <span class="math inline">\(\sum_j w_j f(x_j)\)</span> is exact on <span class="math inline">\(\mathcal P_n\)</span>, then applying it to <span class="math inline">\(\ell_j \in \mathcal P_n\)</span> gives <span class="math inline">\(w_j = \int_a^b \ell_j = \sum_k w_k \ell_j(x_k) = w_j\)</span>, as required.</p></li>
+<li><p>Apply 1 to <span class="math inline">\(f = 1\)</span>: <span class="math inline">\(b - a = \int_a^b 1 = \sum_j w_j\)</span>.</p></li>
+<li><p>Write <span class="math inline">\(x = a + (b-a) t\)</span>. Since <span class="math inline">\(x - x_j = (b-a)(t - \hat x_j)\)</span>, we have <span class="math display">\[
+\begin{align}
+\ell_j(x) &amp;= \prod_{k \not= j} \frac{x - x_k}{x_j - x_k}
+\nonumber\\
+%
+&amp;= \prod_{k\not=j} \frac{t - \hat x_k}{\hat x_j - \hat x_k}
+\nonumber\\
+%
+&amp;= \hat \ell_j(t).
+\end{align}
+\]</span> Therefore <span class="math display">\[
+\begin{align}
+w_j = \int_a^b \ell_j(x) \,\mathrm{d}x = (b-a) \int_0^1 \hat\ell_j(t) \,\mathrm{d}t = (b-a) \hat w_j.
+\end{align}
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(q(x) := \ell_j(a + b - x) \in \mathcal P_n\)</span>. Then <span class="math inline">\(q(x_{n-k}) = \ell_j(x_k) = \delta_{jk}\)</span>. That is, <span class="math inline">\(q(x_k) = \delta_{k, n-j}\)</span>, so <span class="math inline">\(q = \ell_{n-j}\)</span>. Substituting <span class="math inline">\(y = a + b - x\)</span>, <span class="math display">\[
+\begin{align}
+w_{n-j} &amp;= \int_a^b \ell_j(a+b-x) \,\mathrm{d}x \nonumber\\
+%
+&amp;= \int_a^b \ell_j(y) \,\mathrm{d}y \nonumber\\
+%
+&amp;= w_j.
+\end{align}
+\]</span></p></li>
+</ol>
+</div>
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<span class="exr-difficult-icon" aria-hidden="true">◆</span>
+<div class="exr-difficult-tip" role="tooltip">
+<p><strong>This exercise is more difficult</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="lecture-11" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-11">Lecture 11</h2>
+<!-- L11 -->
+<div id="bank-exr-l11-guess-simpson" class="exercise-box">
+<p><strong><a href="../lectures/L11.html#exr-l11-guess-simpson" class="quarto-xref">Exercise&nbsp;<span>11.1</span></a></strong></p>
+<p>Suppose you know <span class="math inline">\(f(0)\)</span>, <span class="math inline">\(f(\tfrac12)\)</span> and <span class="math inline">\(f(1)\)</span>. Find weights <span class="math inline">\(\hat w_0, \hat w_1, \hat w_2\)</span> so that</p>
+<p><span class="math display">\[\begin{align}
+    \int_0^1 f(x) \mathrm{d}x
+    %
+    &amp;\approx \hat w_0 f(0) + \hat w_1 f(\tfrac{1}2) + \hat w_2 f(1)
+\end{align}\]</span></p>
+<p>is exact for <span class="math inline">\(f = 1\)</span>, <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Notice that</p>
+<p><span class="math display">\[\begin{align}
+    \int_0^1 f(x)\mathrm{d}x = \begin{cases}
+        1 &amp;\text{if } f = 1, \nonumber\\
+        1/2 &amp;\text{if } f = x, \nonumber\\
+        1/3 &amp;\text{if } f = x^2
+    \end{cases}
+\end{align}\]</span></p>
+<p>and solve the resulting linear system of equations.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>Exactness for <span class="math inline">\(1, x, x^2\)</span> gives</p>
+<p><span class="math display">\[
+\begin{align}
+    1 &amp;= \hat w_0 + \hat w_1 + \hat w_2 , \nonumber\\
+    \tfrac12 &amp;= 0 \cdot \hat w_0 + \tfrac12 \hat w_1 + 1 \cdot \hat w_2, \nonumber\\
+    \tfrac13 &amp;= 0^2 \hat w_0 + (\tfrac12)^2 \hat w_1 + 1^2 \hat w_2 \nonumber
+\end{align}
+\]</span></p>
+<p>Subtracting the last two equations gives <span class="math inline">\(\frac14 \hat w_1 = \frac16\)</span>, so <span class="math inline">\(\hat w_1 = \frac23\)</span>, then <span class="math inline">\(\hat w_2 = \frac16\)</span> and <span class="math inline">\(\hat w_0 = \frac16\)</span>.</p>
+<p>This is Simpson’s rule (it was already known to Kepler in 1615 as his <em>barrel rule</em> for the volume of wine barrels).</p>
+</div>
+</div>
+<!-- L11 -->
+<div id="bank-exr-l11-cubic-preview" class="exercise-box">
+<p><strong><a href="../lectures/L11.html#exr-l11-cubic-preview" class="quarto-xref">Exercise&nbsp;<span>11.2</span></a></strong></p>
+<ol type="1">
+<li>What is the quadratic interpolant of <span class="math inline">\(f(x) = x^2\)</span> on <span class="math inline">\(\{-1, 0, 1\}\)</span>?</li>
+<li>What is the cubic interpolant <span class="math inline">\(p\)</span> of <span class="math inline">\(f(x) = x^3\)</span> on <span class="math inline">\(\{-1, 0, 1\}\)</span>? Compare <span class="math inline">\(\int_{-1}^1 f\)</span> and <span class="math inline">\(\int_{-1}^1 p\)</span>.</li>
+<li>Why is <span class="math inline">\(\int_a^b \big(x - \tfrac{a+b}{2}\big)^3 \,\mathrm{d}x = 0\)</span>?</li>
+</ol>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><span class="math inline">\(p(x) = x^2\)</span>: since <span class="math inline">\(f \in \mathcal P_2\)</span>, the interpolant is <span class="math inline">\(f\)</span> itself.</li>
+<li><span class="math inline">\(f(-1) = -1\)</span>, <span class="math inline">\(f(0) = 0\)</span>, <span class="math inline">\(f(1) = 1\)</span>, so <span class="math inline">\(p(x) = x\)</span>. Both integrals vanish: <span class="math inline">\(\int_{-1}^1 x^3 = 0 = \int_{-1}^1 x\)</span>. So integrating the quadratic interpolant gives the exact integral of this cubic.</li>
+<li>With <span class="math inline">\(t = x - \frac{a+b}{2}\)</span> the integral is <span class="math inline">\(\int_{-h}^{h} t^3 \,\mathrm{d}t\)</span> with <span class="math inline">\(h = \frac{b-a}{2}\)</span>, and <span class="math inline">\(t \mapsto t^3\)</span> is odd.</li>
+</ol>
+</div>
+</div>
+<!-- L11 -->
+<div id="bank-exr-l11-sharp" class="exercise-box" name="The error bounds are sharp">
+<p><strong><a href="../lectures/L11.html#exr-l11-sharp" class="quarto-xref">Exercise&nbsp;<span>11.3</span></a></strong></p>
+<ol type="1">
+<li>Compute the error of the trapezoid rule for <span class="math inline">\(f(x) = x^2\)</span> on <span class="math inline">\([0,1]\)</span> and compare it with the bound in <a href="../lectures/L10.html#thm-trapezoid-error" class="quarto-xref">Theorem&nbsp;<span>10.2</span></a>.</li>
+<li>Compute the error of Simpson’s rule for <span class="math inline">\(f(x) = x^4\)</span> on <span class="math inline">\([0,1]\)</span> and compare it with the bound in <a href="../lectures/L11.html#thm-simpson-error" class="quarto-xref">Theorem&nbsp;<span>11.4</span></a>.</li>
+<li>Explain why this shows that Simpson’s rule is not exact for all polynomials of degree <span class="math inline">\(4\)</span>.</li>
+</ol>
+</div>
+<!-- L11 -->
+<div id="bank-exr-l11-simpson-38" class="exercise-box" name="Simpson's 3/8 rule">
+<p><strong><a href="../lectures/L11.html#exr-l11-simpson-38" class="quarto-xref">Exercise&nbsp;<span>11.4</span></a></strong></p>
+<p>Let <span class="math inline">\(h = \frac{b-a}{3}\)</span> and consider the Newton–Cotes rule with the four nodes <span class="math inline">\(a, a + h, a + 2h, b\)</span>.</p>
+<ol type="1">
+<li>Show that the rule is <span class="math display">\[
+\int_a^b f \approx \frac{b-a}{8} \big[ f(a) + 3 f(a+h) + 3 f(a+2h) + f(b) \big].
+\]</span></li>
+<li>Show that this rule is exact for all polynomials of degree at most <span class="math inline">\(3\)</span>, but not for <span class="math inline">\(x^4\)</span>.</li>
+<li>Compute the error of this rule for <span class="math inline">\(f(x) = x^4\)</span> on <span class="math inline">\([0,1]\)</span> and compare it with the error of Simpson’s rule from <a href="../lectures/L11.html#exr-l11-sharp" class="quarto-xref">Exercise&nbsp;<span>11.3</span></a>.</li>
+</ol>
+</div>
+<!-- L11 -->
+<div id="bank-exr-l11-radau" class="exercise-box" name="Choosing the nodes as well">
+<p><strong><a href="../lectures/L11.html#exr-l11-radau" class="quarto-xref">Exercise&nbsp;<span>11.5</span></a></strong></p>
+<p>Consider rules on <span class="math inline">\([0,1]\)</span> of the form <span class="math inline">\(\int_0^1 f \approx w_0 f(0) + w_1 f(x_1)\)</span> where <span class="math inline">\(w_0, w_1\)</span> <strong>and</strong> <span class="math inline">\(x_1 \in (0,1]\)</span> are free.</p>
+<ol type="1">
+<li>Find <span class="math inline">\(w_0, w_1, x_1\)</span> so that the rule is exact for all polynomials of degree at most <span class="math inline">\(2\)</span>.</li>
+<li>Show that the resulting rule is not exact for <span class="math inline">\(x^3\)</span>.</li>
+<li>Compare with the trapezoid rule (which also uses two nodes, one of which is <span class="math inline">\(0\)</span>). What is the largest degree <span class="math inline">\(d\)</span> for which you could hope to find a rule <span class="math inline">\(w_0 f(y_0) + w_1 f(y_1)\)</span> (with both nodes free) that is exact on <span class="math inline">\(\mathcal P_d\)</span>?</li>
+</ol>
+</div>
+<!-- L11 -->
+<div id="bank-exr-l11-high-order" class="exercise-box difficult">
+<p><strong><a href="../lectures/L11.html#exr-l11-high-order" class="quarto-xref">Exercise&nbsp;<span>11.6</span></a></strong></p>
+<p>In this exercise, we see why we use composite rules rather than Newton–Cotes rules with many nodes.</p>
+<ol type="1">
+<li>Write a Julia function <code>nc_weights(n)</code> which returns the weights <span class="math inline">\(\hat w_0, \dots, \hat w_n\)</span> of the Newton–Cotes rule on <span class="math inline">\([0,1]\)</span> with nodes <span class="math inline">\(\hat x_j = \frac{j}{n}\)</span>. (You may solve the linear system obtained from exactness on <span class="math inline">\(1, x, \dots, x^n\)</span>, or integrate the Lagrange polynomials using <code>Polynomials.jl</code>.)</li>
+<li>For <span class="math inline">\(n = 1, \dots, 12\)</span>, print the weights. For which <span class="math inline">\(n\)</span> do negative weights first appear? Plot <span class="math inline">\(\sum_j |\hat w_j|\)</span> against <span class="math inline">\(n\)</span>.</li>
+<li>Suppose that the values <span class="math inline">\(f(x_j)\)</span> are only known up to errors <span class="math inline">\(|\varepsilon_j| \leq \varepsilon\)</span>. Show that the computed quadrature differs from <span class="math inline">\(\sum_j w_j f(x_j)\)</span> by at most <span class="math inline">\(\varepsilon \sum_j |w_j|\)</span>. Why is it desirable to have positive weights?</li>
+<li>Apply the Newton–Cotes rule with <span class="math inline">\(n + 1\)</span> nodes on <span class="math inline">\([-1,1]\)</span> to Runge’s function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span> (<a href="../lectures/L06.html#exm-Runge" class="quarto-xref">Example&nbsp;<span>6.2</span></a>) for <span class="math inline">\(n = 2, 4, \dots, 20\)</span> and plot the error (the exact integral is <span class="math inline">\(\frac25 \arctan 5\)</span>). Compare with the composite Simpson rule using the same nodes.</li>
+</ol>
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<span class="exr-difficult-icon" aria-hidden="true">◆</span>
+<div class="exr-difficult-tip" role="tooltip">
+<p><strong>This exercise is more difficult</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="midterm-fall-2025" class="level2">
+<h2 class="anchored" data-anchor-id="midterm-fall-2025">Midterm (Fall 2025)</h2>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a1" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A1</strong></p>
+<p><em>Compulsory section, 2 pts.</em> Suppose that a quantity <span class="math inline">\(x \not= 0\)</span> is approximated by <span class="math inline">\(\widetilde{x}\)</span>. What is the relative error in this approximation?</p>
+<div class="exercise-solution" style="display: none;">
+<p><span class="math display">\[\begin{align}
+    \frac{|x - \widetilde{x}|}{|x|}
+\end{align}\]</span></p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a3" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A3</strong></p>
+<p><em>Compulsory section, 3 pts.</em> How many floating point numbers are there in the interval <span class="math inline">\([1,2)\)</span> with binary precision <span class="math inline">\(k = 3\)</span>?</p>
+<div class="exercise-solution" style="display: none;">
+<p>Floating point numbers are of the form <span class="math inline">\((-1)^s( 1 + f ) 2^{n}\)</span> where <span class="math inline">\(f = 0 . b_1 b_2 \dots b_k\)</span> in binary. Therefore, there are <span class="math inline">\(2^k\)</span> floating point numbers in the interval <span class="math inline">\([1,2)\)</span>. When the binary precision is <span class="math inline">\(3\)</span>, there are <span class="math inline">\(8\)</span> floating point numbers in the interval.</p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a4" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A4</strong></p>
+<p><em>Compulsory section, 3 pts.</em> What is the relative condition number of the function <span class="math inline">\(f(x) = x - 1\)</span>?</p>
+<div class="exercise-solution" style="display: none;">
+<p><span class="math display">\[\begin{align}
+    \kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right| = \left| \frac{x}{x-1} \right|
+\end{align}\]</span></p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a5" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A5</strong></p>
+<p><em>Compulsory section, 3 pts.</em> What scaling would you use in a graph to verify algebraic decay (i.e.&nbsp;<span class="math inline">\(O(n^{-\alpha})\)</span> for some <span class="math inline">\(\alpha &gt; 0\)</span>)?</p>
+<p>(a). Linear scale, (b). Semi-logarithmic with the x-axis scaled, (c). Semi-logarithmic with the y-axis scaled, (d). Log-log plot (logarithmic scaling in both x- and y-axes).</p>
+<div class="exercise-solution" style="display: none;">
+<p>(d). I would use a log-log scale. If <span class="math inline">\(y = n^{-\alpha}\)</span>, then <span class="math inline">\(\log y = - \alpha \log n\)</span> which is linear on a log-log plot.</p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a7" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A7</strong></p>
+<p><em>Compulsory section, 4 pts.</em> Let <span class="math inline">\(f : [ 0, \tfrac\pi2 ] \to \mathbb R\)</span> be given by <span class="math inline">\(f(x) = x^2\sin x - 1\)</span>. Show that there is a <span class="math inline">\(\xi \in [0,\tfrac\pi2]\)</span> for which <span class="math inline">\(f(\xi) = 0\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p><span class="math inline">\(f\)</span> is a continuous function with <span class="math inline">\(f(0) = -1 &lt; 0\)</span> and <span class="math inline">\(f(\pi/2) = \pi^2/4 - 1 &gt; 0\)</span>. By the change of sign theorem, there exists some <span class="math inline">\(\xi \in [0,\pi/2]\)</span> such that <span class="math inline">\(f(\xi) = 0\)</span>.</p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a8" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A8</strong></p>
+<p><em>Compulsory section, 2 pts.</em> Here, we apply Newton’s method to <span class="math inline">\(f(x) = x^2\sin x - 1\)</span> (from Question A7):</p>
+<pre><code>Newton iteration on f(x) = x^2 sin(x) - 1 with x1 = π/2
+┌───────────┬──────────┬────────────────┬─────────────────────┐
+│ iteration │ sequence │       residual │       approximate α │
+│         n │     x[n] │ r[n]=|f(x[n])| │ log r[n]/log r[n-1] │
+├───────────┼──────────┼────────────────┼─────────────────────┤
+│       1.0 │   1.5708 │         1.4674 │                 NaN │
+│       2.0 │  1.10371 │      0.0876848 │            -6.34694 │
+│       3.0 │  1.06891 │     0.00165227 │             2.63171 │
+│       4.0 │  1.06822 │     6.52732e-7 │             2.22338 │
+│       5.0 │  1.06822 │    1.01918e-13 │             2.10043 │
+└───────────┴──────────┴────────────────┴─────────────────────┘</code></pre>
+<p>Why do we use the residuals <span class="math inline">\(r_n := |f(x_n)|\)</span> instead of the errors <span class="math inline">\(|x_n - \xi|\)</span> when we are approximating the order of convergence (<span class="math inline">\(\alpha\)</span>) in this method?</p>
+<div class="exercise-solution" style="display: none;">
+<p><span class="math inline">\(\xi\)</span> is unknown in advance.</p>
+<p><strong><em>Remark.</em></strong> Suppose that <span class="math inline">\((x_n) \to \xi\)</span>. Then, since <span class="math inline">\(f(x_n) = f(x_n) - f(\xi) = f'(\eta_n) (x_n - \xi)\)</span> for some <span class="math inline">\(\eta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span>, we have</p>
+<p><span class="math display">\[\begin{align}
+    \lim_{n\to\infty} \frac{ \log |f(x_{n+1})| }{ \log |f(x_n)| }
+    %
+    &amp;= \lim_{n\to\infty}\frac{ \log |f'(\eta_{n+1})| +  \log |x_{n+1} - \xi| }{  \log |f'(\eta_{n})| +  \log |x_{n} - \xi| } \nonumber\\
+    %
+    &amp;= \lim_{n\to\infty}\frac{ \frac{\log |f'(\eta_{n+1})|}{\log |x_{n} - \xi|} +  \frac{\log |x_{n+1} - \xi|}{\log |x_{n} - \xi|} }{  \frac{\log |f'(\eta_{n})|}{\log |x_{n} - \xi|} + 1 } \nonumber\\
+    %
+    &amp;= \lim_{n\to\infty} \frac{\log |x_{n+1} - \xi|}{\log |x_{n} - \xi|}.
+\end{align}\]</span></p>
+<p>As a result, we may use the residuals to estimate the order of convergence.</p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a9" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A9</strong></p>
+<p><em>Compulsory section, 4 pts.</em> Let <span class="math inline">\(g(x) := 1 + \frac{1}{x}\)</span> and define <span class="math inline">\(x_1 = 1\)</span> and <span class="math inline">\(x_{n+1} = g(x_n)\)</span>. Suppose that <span class="math inline">\((x_n) \to \xi\)</span>. What is the value of <span class="math inline">\(\xi\)</span>?</p>
+<div class="exercise-solution" style="display: none;">
+<p>We have <span class="math inline">\(x_{n+1}\to \xi\)</span> as <span class="math inline">\(n \to \infty\)</span>. Since <span class="math inline">\(g\)</span> is continuous, we have <span class="math inline">\(g(x_n)\to g(\xi)\)</span> as <span class="math inline">\(n \to \infty\)</span>. Therefore, <span class="math inline">\(\xi = 1+ \frac{1}\xi\)</span> which is equivalent to <span class="math inline">\(\xi^2 - \xi - 1 = 0\)</span> and so <span class="math inline">\(\xi = \frac{1 \pm \sqrt{5}}2\)</span>. If <span class="math inline">\(x_n &gt; 0\)</span> then <span class="math inline">\(x_{n+1} &gt;0\)</span>. Since <span class="math inline">\(x_1 &gt; 0\)</span> we have <span class="math inline">\(x_n &gt; 0\)</span> for all <span class="math inline">\(n\)</span> and thus <span class="math inline">\(\xi \geq 0\)</span>. Therefore, <span class="math inline">\(\xi = \frac{1+\sqrt{5}}{2}\)</span> (the golden ratio).</p>
+<p><strong><em>Remark.</em></strong> It turns out the the sequence does indeed converge (can you find an interval on which <span class="math inline">\(g\)</span> is a contraction and apply the contraction mapping theorem?)</p>
+<pre><code>x[n+1] = g(x[n]) with x_1 = 1.0
+┌───────────┬──────────┬────────────────┬─────────────────────┐
+│ iteration │ sequence │       residual │       approximate α │
+│         n │     x[n] │ r[n]=|f(x[n])| │ log r[n]/log r[n-1] │
+├───────────┼──────────┼────────────────┼─────────────────────┤
+│       1.0 │      1.0 │            1.0 │                 NaN │
+│       2.0 │      2.0 │            0.5 │                -Inf │
+│       3.0 │      1.5 │       0.166667 │             2.58496 │
+│       4.0 │  1.66667 │      0.0666667 │             1.51139 │
+│       5.0 │      1.6 │          0.025 │             1.36219 │
+│       6.0 │    1.625 │     0.00961538 │             1.25902 │
+│       7.0 │  1.61538 │       0.003663 │             1.20779 │
+│       8.0 │  1.61905 │     0.00140056 │             1.17139 │
+│       9.0 │  1.61765 │    0.000534759 │             1.14653 │
+│      10.0 │  1.61818 │     0.00020429 │             1.12773 │
+│      11.0 │  1.61798 │     7.80275e-5 │             1.11329 │
+└───────────┴──────────┴────────────────┴─────────────────────┘
+ξ = 1.618033988749895</code></pre>
+<p><strong><em>Remark.</em></strong> Notice that the first few terms of the sequence <span class="math inline">\((x_n)\)</span> are given by</p>
+<p><span class="math display">\[\begin{align*}
+    x_2 &amp;= 1 + \frac{1}{x_1}, \qquad
+    x_{3} = 1 + \frac{1}{x_2} = 1 + \frac{1}{1 + \frac{1}{x_1}}, \qquad
+    x_{4} = 1 + \frac{1}{x_3} =  1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{x_1}}}, \cdots.
+\end{align*}\]</span></p>
+<p>As a result, you have given meaning to the <em>infinite continued fraction</em></p>
+<p><span class="math display">\[\begin{align*}
+    \xi := 1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \ddots}}}
+\end{align*}\]</span></p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a10" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A10</strong></p>
+<p><em>Compulsory section, 4 pts.</em> Write down the Lagrange form of the polynomial of degree at most <span class="math inline">\(n\)</span> interpolating <span class="math inline">\(f\)</span> on <span class="math inline">\(X = \{ x_0, \dots, x_n \}\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>The Lagrange polynomials are <span class="math inline">\(\ell_j(x) := \prod_{0\leq k \leq n \, : \, k\not= j} \frac{x-x_k}{x_j - x_k}\)</span> and the polynomial interpolation, <span class="math inline">\(p\)</span>, of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> is given by the following linear combination:</p>
+<p><span class="math display">\[\begin{align}
+    p(x) = \sum_{j=0}^n \ell_j(x) f(x_j)
+\end{align}\]</span></p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a11" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A11</strong></p>
+<p><em>Compulsory section, 4 pts.</em> Consider the following finite difference table</p>
+<p><span class="math display">\[\begin{align}
+    x_0:    \quad &amp; f[x_0] = 0,  \quad &amp; f[x_0, x_1] = 1, \nonumber\\
+    x_1:    \quad &amp; f[x_1] = 0.            \nonumber
+\end{align}\]</span></p>
+<p>Which of the following statements are true? Select all that apply.</p>
+<p>(a). The table does not correspond to any function <span class="math inline">\(f\)</span>, (b). The table determines a polynomial interpolant <span class="math inline">\(p\)</span> of degree at least <span class="math inline">\(2\)</span>, (c). We must have <span class="math inline">\(f'(x_1) = 1\)</span>, (d). We must have <span class="math inline">\(x_0 = x_1\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<ol start="3" type="a">
+<li>and (d). By the definition of divided differences, we have <span class="math inline">\(f(x_0) = f(x_1) = 0\)</span> and</li>
+</ol>
+<p><span class="math display">\[\begin{align}
+    1 = f[x_0,x_1] = \begin{cases}
+        \frac{f(x_0) - f(x_1)}{x_0 - x_1} &amp;\text{if } x_0 \not= x_1 \\
+        f'(x_0) &amp;\text{if } x_0 = x_1.
+    \end{cases}
+\end{align}\]</span></p>
+<ul>
+<li>Therefore, we must have <span class="math inline">\(x_0 = x_1\)</span> and <span class="math inline">\(f'(x_0) = f'(x_1) = 1\)</span> (third and fourth options should have been selected).</li>
+<li>This table only determines a polynomial, <span class="math inline">\(p\)</span>, of degree at most 1 (and so the second option does not apply):</li>
+</ul>
+<p><span class="math display">\[\begin{align}
+    p(x) = f[x_0] + f[x_0,x_1] (x - x_0) = x - x_0.
+\end{align}\]</span></p>
+<p>One can indeed show that <span class="math inline">\(p'(x_0) = 1 = f'(x_0)\)</span> and <span class="math inline">\(p(x_0) = 0 = f(x_0)\)</span>.</p>
+<ul>
+<li><span class="math inline">\(f(x) = x-x_0\)</span> is an example of a function with the divided difference table as shown (so the first option does not apply).</li>
+</ul>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-a12" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question A12</strong></p>
+<p><em>Compulsory section, 5 pts.</em> Write down the Trapezoid rule on <span class="math inline">\([-1,1]\)</span> and show that it is exact for all polynomials of degree at most <span class="math inline">\(1\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>The trapezoid rule has weights <span class="math inline">\(w_0 = w_1 = 1\)</span> and nodes <span class="math inline">\(x_0 = -1\)</span> and <span class="math inline">\(x_1 = 1\)</span>: i.e.</p>
+<p><span class="math display">\[\begin{align}
+    \int^{1}_{-1} f \approx f(-1) + f(1).
+\end{align}\]</span></p>
+<p>When <span class="math inline">\(f(x) = \alpha\)</span>, the integral is <span class="math inline">\(2 \alpha = f(-1) + f(+1)\)</span>,</p>
+<p>When <span class="math inline">\(f(x) = x\)</span>, since <span class="math inline">\(f\)</span> is odd, the integral is <span class="math inline">\(0 = -1 + 1 = f(-1) + f(1)\)</span>.</p>
+<p>Therefore, taking linear combinations, the rule is exact for all polynomials of degree <span class="math inline">\(1\)</span>.</p>
+</div>
+</div>
+<!-- midterm-2025 -->
+<div id="bank-midterm-2025-d" class="exercise-box" data-release="now">
+<p><strong>Midterm (Fall 2025): Question D</strong></p>
+<p><em>Optional section, 30 pts.</em> <strong>Newton’s method for repeated roots.</strong></p>
+<ol type="1">
+<li><strong>[2 points]</strong> Show that <span class="math inline">\(f(x) = e^x - x - 1\)</span> satisfies <span class="math inline">\(f(0) = f'(0) = 0\)</span> and <span class="math inline">\(f''(0) \not= 0\)</span>.</li>
+<li><strong>[2 points]</strong> Here, we apply Newton’s method to <span class="math inline">\(f(x) = e^x - x - 1\)</span>. What is the order of convergence?</li>
+</ol>
+<pre><code>┌───────────┬─────────────┬───────────────┬─────────────────────┐
+│ iteration │    sequence │         error │       approximate α │
+│         n │        x[n] │ e[n]=|x[n]-ξ| │ log e[n]/log e[n-1] │
+├───────────┼─────────────┼───────────────┼─────────────────────┤
+│       1.0 │         3.1 │           3.1 │                 NaN │
+│       2.0 │     2.24624 │       2.24624 │             0.71527 │
+│       3.0 │       1.512 │         1.512 │             0.51088 │
+│       4.0 │    0.939627 │      0.939627 │           -0.150621 │
+│       5.0 │    0.542328 │      0.542328 │               9.826 │
+│       6.0 │    0.295555 │      0.295555 │             1.99205 │
+│       7.0 │    0.155046 │      0.155046 │             1.52927 │
+│       8.0 │   0.0795256 │     0.0795256 │             1.35817 │
+    ...           ...             ...                 ...
+│      12.0 │   0.0050958 │     0.0050958 │             1.15071 │
+│      13.0 │  0.00255006 │    0.00255006 │             1.13113 │
+│      14.0 │  0.00127557 │    0.00127557 │               1.116 │
+│      15.0 │ 0.000637923 │   0.000637923 │             1.10398 │
+│      16.0 │ 0.000318995 │   0.000318995 │              1.0942 │
+│      17.0 │ 0.000159506 │   0.000159506 │              1.0861 │
+│      18.0 │  7.97552e-5 │    7.97552e-5 │             1.07927 │
+│      19.0 │  3.98781e-5 │    3.98781e-5 │             1.07345 │
+│      20.0 │  1.99392e-5 │    1.99392e-5 │             1.06843 │
+│      21.0 │  9.96963e-6 │    9.96963e-6 │             1.06404 │
+└───────────┴─────────────┴───────────────┴─────────────────────┘</code></pre>
+<p>Consider the modified Newton’s method</p>
+<p><span class="math display">\[\begin{align*}
+    x_{n+1} = x_n - 2 \frac{f(x_n)}{f'(x_n)}.
+\end{align*}\]</span></p>
+<ol start="3" type="1">
+<li><strong>[2 points]</strong> We apply this method to <span class="math inline">\(f(x) = e^x - x - 1\)</span>. Compare the table to that of the standard Newton method.</li>
+</ol>
+<pre><code>┌───────────┬─────────────┬───────────────┬─────────────────────┐
+│ iteration │    sequence │         error │       approximate α │
+│         n │        x[n] │ e[n]=|x[n]-ξ| │ log e[n]/log e[n-1] │
+├───────────┼─────────────┼───────────────┼─────────────────────┤
+│       1.0 │         3.1 │           3.1 │                 NaN │
+│       2.0 │     1.39248 │       1.39248 │            0.292634 │
+│       3.0 │    0.313183 │      0.313183 │            -3.50653 │
+│       4.0 │   0.0163206 │     0.0163206 │             3.54474 │
+│       5.0 │  4.43937e-5 │    4.43937e-5 │             2.43539 │
+│       6.0 │ 3.27151e-10 │   3.27151e-10 │             2.17918 │
+└───────────┴─────────────┴───────────────┴─────────────────────┘</code></pre>
+<p>Now suppose that <span class="math inline">\(f:[a,b]\to\mathbb R\)</span> is four times continuously differentiable with root <span class="math inline">\(\xi \in (a,b)\)</span> of multiplicity <span class="math inline">\(2\)</span>: that is, <span class="math inline">\(f(\xi) = f'(\xi) = 0\)</span> and <span class="math inline">\(f''(\xi) \not= 0\)</span>. Further, we suppose that there exists <span class="math inline">\(A &gt; 0\)</span> such that</p>
+<p><span class="math display">\[\begin{align*}
+    \left| \frac{f'''(x) + f^{(4)}(x) (x - \xi)}{f''(y)} \right| \leq A
+\end{align*}\]</span></p>
+<p>for all <span class="math inline">\(x,y \in [a,b]\)</span>. The aim of this section is to show that the modified Newton method converges at least quadratically to <span class="math inline">\(\xi\)</span> for all <span class="math inline">\(x_1 \in [a,b]\)</span> with <span class="math inline">\(|x_1 - \xi| \leq A^{-1}\)</span>. Notice that the modified Newton method can be written</p>
+<p><span class="math display">\[\begin{align*}
+    x_{n+1} - \xi &amp;= \frac{ f'(x_n)(x_n - \xi) - 2 f(x_n) }{ f'(x_n) }.
+\end{align*}\]</span></p>
+<ol start="4" type="1">
+<li><strong>[8 points]</strong> By expanding the numerator <span class="math inline">\(g(x) := f'(x) (x - \xi) - 2 f(x)\)</span> and denominator <span class="math inline">\(h(x) := f'(x)\)</span>, show that there exist <span class="math inline">\(\eta_n, \theta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span> such that <span class="math display">\[\begin{align*}
+x_{n+1} - \xi &amp;=
+\frac
+     {\frac1{3!} g'''(\eta_n) (x_n - \xi)^3}
+     {h'(\theta_n) (x_n - \xi) }
+%
+= \frac16
+\left[ \frac
+     {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+     {f''(\theta_n)}
+\right]
+(x_n - \xi)^2.
+\end{align*}\]</span></li>
+<li><strong>[4 points]</strong> Hence show that, if <span class="math inline">\(|x_1 - \xi| \leq A^{-1}\)</span>, then <span class="math inline">\(|x_{n+1} - \xi| \leq 6^{-n} |x_1 - \xi|\)</span> and thus the modified Newton’s method converges.</li>
+<li><strong>[4 points]</strong> Show that <span class="math inline">\((x_n)\)</span> converges at least quadratically to <span class="math inline">\(\xi\)</span>.</li>
+<li><strong>[4 points]</strong> What is the theoretical value of the asymptotic error constant when the modified Newton method is applied to <span class="math inline">\(f(x) = e^x - x - 1\)</span>?</li>
+<li><strong>[4 points]</strong> Show that the modified Newton method converges in <span class="math inline">\(1\)</span> iteration for functions of the form <span class="math inline">\(f(x) = (x - \xi)^2\)</span>.</li>
+</ol>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>We have <span class="math inline">\(f'(x) = e^x - 1\)</span> and <span class="math inline">\(f''(x) = f'''(x) = \cdots = e^x\)</span>. Therefore, <span class="math inline">\(f(0) = e^0 - 0 - 1 = 0\)</span> and <span class="math inline">\(f'(0) = e^0 - 1 = 0\)</span> and <span class="math inline">\(f''(0) = e^0 = 1\)</span>.</p></li>
+<li><p>The computational order of convergence appears to approach <span class="math inline">\(1\)</span>.</p></li>
+<li><p>We have convergence in fewer iterations (<span class="math inline">\(21\)</span> vs <span class="math inline">\(6\)</span>) and the computational order of convergence seems to be around <span class="math inline">\(2\)</span>.</p></li>
+<li><p>We take derivatives of <span class="math inline">\(g\)</span>: <span class="math display">\[\begin{align}
+g(x) &amp;= f'(x) (x - \xi) - 2 f(x)\nonumber\\
+g'(x) &amp;= f''(x) (x - \xi) - f'(x) \nonumber\\
+g''(x) &amp;= f'''(x) (x - \xi) \nonumber\\
+g'''(x) &amp;= f^{(4)}(x) (x - \xi) + f'''(x).
+\end{align}\]</span> Notice that <span class="math inline">\(g(\xi) = g'(\xi) = g''(\xi) = 0\)</span> and so there exists <span class="math inline">\(\eta_n\)</span> between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span> such that <span class="math display">\[\begin{align}
+g(x_n) &amp;= g(\xi) + g'(\xi) (x_n - \xi) + \frac{1}2 g''(\xi) (x_n - \xi)^2 + \frac{1}{6} g'''(\eta_n) (x_n - \xi)^3 \nonumber\\
+%
+&amp;= \frac{1}{6} \Big[ f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) \Big] (x_n-\xi)^3.
+\end{align}\]</span> Moreover, there exists <span class="math inline">\(\theta_n\)</span> such that <span class="math inline">\(f'(x_n) = f'(\xi) + f''(\theta_n) (x_n - \xi) = f''(\theta_n) (x_n - \xi)\)</span> and so <span class="math display">\[\begin{align}
+x_{n+1} - \xi &amp;=
+\frac16
+\left[ \frac
+     {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+     {f''(\theta_n)}
+\right]
+(x_n - \xi)^2
+\end{align}\]</span></p></li>
+<li><p>By assumption, <span class="math display">\[\begin{align}
+\left| \frac
+     {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi)}
+     {f''(\theta_n)}
+\right| \leq A,
+\end{align}\]</span> and so, if <span class="math inline">\(|x_n - \xi| \leq A^{-1}\)</span>, then <span class="math display">\[\begin{align}
+|x_{n+1} - \xi|
+\leq
+\frac16
+A |x_n - \xi|
+|x_n - \xi|
+%
+\leq \frac16 |x_{n} - \xi|.
+\end{align}\]</span> In particular, <span class="math inline">\(|x_{n+1} - \xi| \leq A^{-1}\)</span> and we may apply the bound inductively to obtain <span class="math inline">\(|x_{n+1} - \xi| \leq 6^{-n} |x_1 - \xi|\)</span> and so this modified Newton’s method converges.</p></li>
+<li><p>Since <span class="math inline">\(\eta_n, \theta_n\)</span> are between <span class="math inline">\(x_n\)</span> and <span class="math inline">\(\xi\)</span>, and <span class="math inline">\((x_n) \to \xi\)</span>, we have <span class="math display">\[\begin{align}
+\lim_{n\to\infty}
+\frac{|x_{n+1} - \xi|}{|x_n - \xi|^2} &amp;=
+\lim_{n\to\infty}
+\frac16
+\left| \frac
+     {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+     {f''(\theta_n)}
+\right| \nonumber\\
+%
+&amp;=
+\frac16
+\left| \frac
+     {f'''(\xi)}
+     {f''(\xi)}
+\right|
+\end{align}\]</span></p></li>
+<li><p>Recall that, in this case, <span class="math inline">\(\xi = 0\)</span>, and <span class="math inline">\(f'(x) = e^x - 1\)</span>, <span class="math inline">\(f''(x) = f'''(x) = e^x\)</span>. Therefore, the asymptotic error constant is <span class="math inline">\(\frac16 \frac{e^0}{e^0} = \frac16\)</span>.</p></li>
+<li><p>Note that <span class="math inline">\(f(x)= (x - \xi)^2\)</span> has a root of multiplicity <span class="math inline">\(2\)</span> at <span class="math inline">\(\xi\)</span>. We have <span class="math inline">\(x_{n+1} = x_n - 2 \frac{  (x_n - \xi)^2 }{ 2(x_n - \xi)} = x_n - (x_n - \xi) = \xi\)</span> so that <span class="math inline">\(x_{n+1} = \xi\)</span> for all <span class="math inline">\(n \geq 1\)</span> regardless of <span class="math inline">\(x_1 \in \mathbb R\)</span>.</p></li>
+</ol>
+<p><strong><em>Remark.</em></strong> In general, if <span class="math inline">\(\xi\)</span> is a root of <span class="math inline">\(f\)</span> of multiplicity <span class="math inline">\(m\)</span>, one can define the following <em>modified Newton method</em>: <span class="math display">\[\begin{align}
+    x_{n+1} = x_n - m \frac{f(x_n)}{f'(x_n)}.
+\end{align}\]</span> Then, if <span class="math inline">\(f\)</span> is sufficiently smooth and <span class="math inline">\(x_1\)</span> is sufficiently close to <span class="math inline">\(\xi\)</span>, the modified Newton method converges quadratically with asymptotic error constant <span class="math display">\[\begin{align}
+\mu = \frac{1}{m(m+1)} \left|\frac{f^{(m+1)}(\xi)}{f^{(m)}(\xi)} \right|.
+\end{align}\]</span></p>
+</div>
+</div>
+</section>
 </div>
 <div id="exercise-app-root" class="my-4">
 
@@ -5268,8 +5981,8 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
   </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/L09.html" class="pagination-link" aria-label="Hermite interpolation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span>
+      <a href="../lectures/L11.html" class="pagination-link" aria-label="Simpson's rule">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

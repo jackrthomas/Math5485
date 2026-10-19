@@ -23,6 +23,11 @@ cross-references to it wouldn't resolve) and carry `release-date="<date>"` from 
 front matter's `date:` field, so the bank releases their solutions a week after the
 problem class.
 
+Past papers: every `.qmd` in exercises/past-papers is inserted after the lecture given by
+its `after-lecture:` front matter field, in a section named after its `title:` (e.g.
+"Midterm (Fall 2025)"). Each top-level `::: {.exam-question label="A1"}` block becomes an
+exercise labelled "<title>: Question A1" whose solution is available immediately.
+
 Embeds all code cell outputs (plots, text, HTML) as inline content.
 
 Runs automatically before every `quarto render` (pre-render in _quarto.yml, via
@@ -42,6 +47,7 @@ const root          = joinpath(@__DIR__, "..")
 lectures_dir        = joinpath(root, "lectures")
 quizzes_dir         = joinpath(root, "exercises", "quizzes")
 problem_classes_dir = joinpath(root, "exercises", "Problem classes")
+past_papers_dir     = joinpath(root, "exercises", "past-papers")
 output_file         = joinpath(root, "exercises", "exercises.qmd")
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -283,6 +289,69 @@ function read_quiz(path::String)
 end
 
 """
+    read_past_paper(path) -> (after_lecture, title, blocks)
+
+Read a past exam `<name>.qmd` and turn each top-level `::: {.exam-question label="..."}`
+block into an exercise-box labelled "<title>: Question <label>" (solutions released immediately).
+"""
+function read_past_paper(path::String)
+    name          = splitext(basename(path))[1]
+    text          = replace(read(path, String), "
+" => "
+")
+    after_lecture = parse_after_lecture(text, basename(path))
+
+    fm    = match(r"^---
+(.*?)
+---
+"s, text)
+    title = fm === nothing ? nothing : match(r"^title:\s*[\"']?(.*?)[\"']?\s*$"m, fm.captures[1])
+    title === nothing && error("$(basename(path)): missing `title:` in the front matter")
+    title = title.captures[1]
+    body  = text[length(fm.match)+1:end]
+    body  = replace(body, r"<!--.*?-->"s => "")      # drop comments
+
+    blocks = String[]
+    lines  = split(body, '
+')
+    i      = 1
+    while i <= length(lines)
+        m = match(r"^:::\s*\{\s*\.exam-question\s+label=\"([^\"]+)\"", lines[i])
+        if m !== nothing
+            label, depth, inner = m.captures[1], 1, String[]
+            i += 1
+            while i <= length(lines) && depth > 0
+                l = lines[i]
+                if occursin(r"^:::\s*\{", l)
+                    depth += 1
+                elseif strip(l) == ":::"
+                    depth -= 1
+                end
+                depth > 0 && push!(inner, l)
+                i += 1
+            end
+            while !isempty(inner) && isempty(strip(first(inner))); popfirst!(inner); end
+            while !isempty(inner) && isempty(strip(last(inner)));  pop!(inner);      end
+
+            push!(blocks, "<!-- $name -->
+" *
+                          "::: {.exercise-box #bank-$name-$(lowercase(label)) release=\"now\"}
+" *
+                          "**$title: Question $label**
+
+" *
+                          join(inner, '
+') * "
+" *
+                          ":::")
+        else
+            i += 1
+        end
+    end
+    return after_lecture, title, blocks
+end
+
+"""
     read_problem_class(path) -> (number, after_lecture, exercises)
 
 Read a problem-class notebook `PC<n>.ipynb` the same way a lecture notebook is
@@ -354,6 +423,23 @@ function write_problem_classes(io, problem_classes)
     end
 end
 
+"""
+    write_past_papers(io, papers)
+
+Write each past paper as a `## <title>` section.
+"""
+function write_past_papers(io, papers)
+    for (_, title, blocks) in papers
+        println("  $title: $(length(blocks)) question(s)")
+        println(io, "## $title
+")
+        for b in blocks
+            println(io, b)
+            println(io)
+        end
+    end
+end
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 function main()
@@ -376,6 +462,10 @@ function main()
     pc_files        = isdir(problem_classes_dir) ? filter(f -> occursin(r"^PC\d+\.ipynb$", f), readdir(problem_classes_dir)) : String[]
     problem_classes = sort([read_problem_class(joinpath(problem_classes_dir, f)) for f in pc_files])
     println("Found $(length(problem_classes)) problem class notebook(s)")
+
+    paper_files = isdir(past_papers_dir) ? filter(f -> endswith(f, ".qmd"), readdir(past_papers_dir)) : String[]
+    past_papers = sort([read_past_paper(joinpath(past_papers_dir, f)) for f in paper_files])
+    println("Found $(length(past_papers)) past paper(s)")
 
     written    = Set{Int}()
     written_pc = Set{Int}()
@@ -421,11 +511,15 @@ format:
             pc_after_this = filter(p -> p[2] == lec_num, problem_classes)
             write_problem_classes(io, pc_after_this)
             union!(written_pc, first.(pc_after_this))
+
+            write_past_papers(io, filter(p -> p[1] == lec_num, past_papers))
         end
 
         # quizzes/problem classes after a lecture that doesn't exist (yet) go at the end
         write_quizzes(io, filter(q -> !(q[1] in written), quizzes))
         write_problem_classes(io, filter(p -> !(p[1] in written_pc), problem_classes))
+        last_lecture = maximum(f -> parse(Int, match(r"\d+", f).match), all_files)
+        write_past_papers(io, filter(p -> p[1] > last_lecture, past_papers))
     end
 
     # only touch the file when something changed (avoids needless re-renders in quarto preview)

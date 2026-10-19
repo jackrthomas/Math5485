@@ -2184,6 +2184,75 @@ Let $X = \{x_0 < \cdots < x_n\}$ be $n+1$ equispaced nodes on $[-1,1]$, i.e. $x_
    $$
 
 Note that $2/e \approx 0.736$: parts 2 and 3 together show that $\max\limits_{x\in[-1,1]} |\ell_X(x)|$ decays exponentially, but at a rate no better than $(2/e)^n$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**Part 1.** Fix $x\in[x_k,x_{k+1}]$ and split $\prod_{j=0}^n|x-x_j|$ into three groups.
+
+* $j\le k-1$: since $x_j < x \le x_{k+1}$, $|x-x_j| \le x_{k+1}-x_j = (k+1-j)h$. As $j$ runs over $0,\dots,k-1$, $k+1-j$ runs over $k+1,\dots,2$, so $\prod_{j=0}^{k-1}|x-x_j| \le h^k\,(k+1)!$.
+* $j\ge k+2$: since $x_k \le x < x_j$, $|x-x_j| \le x_j-x_k = (j-k)h$, and $j-k$ runs over $2,\dots,n-k$, so $\prod_{j=k+2}^{n}|x-x_j| \le h^{\,n-k-1}\,(n-k)!$.
+* $j\in\{k,k+1\}$: with $a=x-x_k\ge0$, $b=x_{k+1}-x\ge0$, $a+b=h$, AM–GM gives $ab \le (h/2)^2 = h^2/4$.
+
+Multiplying (the powers of $h$ add to $k+(n-k-1)+2=n+1$):
+$$
+|\ell_X(x)| \;\le\; \frac{h^{n+1}}{4}(k+1)!\,(n-k)!.
+$$
+For the uniform bound write
+$$
+(k+1)!\,(n-k)! = \frac{(n+1)!}{\binom{n+1}{k+1}} .
+$$
+For $0\le k\le n-1$ we have $1\le k+1\le n$, and $\binom{n+1}{m}\ge \binom{n+1}{1} = n+1$ for $1\le m\le n$ (binomial coefficients increase towards the middle of each row). Hence $(k+1)!(n-k)! \le (n+1)!/(n+1) = n!$, with equality for $k=0$ and $k=n-1$, and since every $x\in[-1,1]$ lies in some $[x_k,x_{k+1}]$,
+$$
+\max_{x\in[-1,1]}|\ell_X(x)| \;\le\; \frac{n!}{4}h^{n+1}.
+$$
+
+**Part 2.** We use Stirling's formula in the form of the two-sided bound
+$$
+\sqrt{2\pi n}\left(\frac ne\right)^n \;\le\; n! \;\le\; e\sqrt n\left(\frac ne\right)^n \qquad (n\ge1),
+$$
+which makes the constants explicit (the asymptotic statement $n!\sim\sqrt{2\pi n}(n/e)^n$ alone gives the same conclusion with some constant, since a convergent sequence of ratios is bounded). With $h=2/n$,
+$$
+\frac{n!}{4}h^{n+1} \;\le\; \frac{e\sqrt n\, n^n e^{-n}}{4}\cdot\frac{2^{n+1}}{n^{n+1}} \;=\; \frac{e}{2}\,\frac{(2/e)^n}{\sqrt n}.
+$$
+So Part 2 holds with $C = e/2$; this is exactly the bound $|\ell_X(x)| \le \frac{e}{2\sqrt n}(2/e)^n$ quoted in the lecture. (Asymptotically, $\frac{n!}{4}h^{n+1}\sim\sqrt{\pi/2}\,\frac{(2/e)^n}{\sqrt n}$.)
+
+**Part 3.** At $x^* = -1+h/2$ we have $x^*-x_j = h\left(\tfrac12-j\right)$, so
+$$
+|\ell_X(x^*)| = h^{n+1}\prod_{j=0}^n\left|j-\tfrac12\right| = h^{n+1}\cdot\frac12\prod_{j=1}^n\frac{2j-1}{2} = \frac{h^{n+1}}{2^{n+1}}\prod_{j=1}^n(2j-1) = \frac{h^{n+1}}{2^{2n+1}}\cdot\frac{(2n)!}{n!},
+$$
+using $\prod_{j=1}^n(2j-1) = \frac{(2n)!}{2\cdot4\cdots(2n)} = \frac{(2n)!}{2^n n!}$. The lower Stirling bound for $(2n)!$ and the upper one for $n!$ give
+$$
+\frac{(2n)!}{n!} \;\ge\; \frac{\sqrt{4\pi n}\,(2n)^{2n}e^{-2n}}{e\sqrt n\, n^n e^{-n}} = \frac{2\sqrt\pi}{e}\,4^n n^n e^{-n},
+$$
+so, with $h^{n+1} = 2^{n+1}/n^{n+1}$,
+$$
+\max_{x\in[-1,1]}|\ell_X(x)| \;\ge\; |\ell_X(x^*)| \;\ge\; \frac{2^{n+1}}{n^{n+1}}\cdot\frac{4^n}{2^{2n+1}}\cdot\frac{2\sqrt\pi}{e}\,n^n e^{-n} \;=\; \frac{2\sqrt\pi}{e}\,\frac{(2/e)^n}{n}.
+$$
+So Part 3 holds with $c = 2\sqrt\pi/e\approx1.30$. (Asymptotically $|\ell_X(x^*)|\sim\sqrt2\,(2/e)^n/n$.)
+
+Parts 2 and 3 together show that $\max|\ell_X|$ decays like $(2/e)^n\approx(0.736)^n$, up to a factor between $1/n$ and $1/\sqrt n$. The code below checks all of the bounds numerically.
+
+
+```julia
+xg = -1:1e-5:1
+for n in [5, 10, 20, 40]
+    h = 2/n
+    x = @. -1 + (0:n)*h
+    ℓX = t -> prod(t .- x)
+
+    actual = maximum(@. abs(ℓX(xg)))
+    upper1 = factorial(big(n))/4 * h^(n+1)            # part 1
+    upper2 = (ℯ/2) * (2/ℯ)^n / sqrt(n)                # part 2, C = e/2
+    lower  = (2sqrt(π)/ℯ) * (2/ℯ)^n / n               # part 3, c = 2√π/e
+    println("n=", n, ":  lower=", round(lower, sigdigits=4),
+            "  |ℓ(x*)|=", round(abs(ℓX(x[1]+h/2)), sigdigits=4),
+            "  max|ℓ|=", round(actual, sigdigits=4),
+            "  n!h^(n+1)/4=", round(Float64(upper1), sigdigits=4),
+            "  upper=", round(upper2, sigdigits=4))
+end
+```
+
+:::
 :::
 
 <!-- L06 -->
@@ -2224,6 +2293,102 @@ $$
 $$
 
 which converges to $0$ whenever $\alpha < 4$. (A sharper argument, using that $f$ is analytic throughout a neighbourhood of $[-1,1]$ in $\mathbb C$ rather than just bounding derivatives along the real axis shows that Chebyshev interpolation converges for *all* $\alpha > 0$.)
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**Note on the lecture statement.** Part 2 as stated is only true for **even** $n$. For odd $n$, $f^{(n)}(0) = 0$ (by Part 1), and the maximum of $|f^{(n)}|$ on $[-1,1]$ is strictly smaller than $n!\,\alpha^{n/2}$ (e.g. $n=1$: $\max|f'| = \frac{3\sqrt3}{8}\sqrt\alpha < \sqrt\alpha$ when $\alpha\ge 1/3$). What is true for every $n$, and all that Part 3 needs, is the upper bound $\max_{[-1,1]}|f^{(n)}| \le n!\,\alpha^{n/2}$, with equality (at $x=0$) for even $n$. We prove this below.
+
+**Part 1.** For $|x|<1/\sqrt\alpha$ we have $|\alpha x^2|<1$, so
+$$
+f(x) = \frac{1}{1-(-\alpha x^2)} = \sum_{k=0}^\infty(-\alpha)^kx^{2k}.
+$$
+A convergent power series is the Taylor series of its sum, so its coefficients are $f^{(m)}(0)/m!$. Comparing coefficients of $x^{2k}$ and $x^{2k+1}$:
+$$
+\frac{f^{(2k)}(0)}{(2k)!} = (-\alpha)^k \;\Longrightarrow\; f^{(2k)}(0) = (2k)!\,(-\alpha)^k, \qquad f^{(2k+1)}(0)=0.
+$$
+
+**Part 2.** Let $a := 1/\sqrt\alpha$, so $1+\alpha x^2 = \alpha(x-ia)(x+ia)$ and
+$$
+f(x) = \frac{1}{2i\sqrt\alpha}\left(\frac{1}{x-ia}-\frac{1}{x+ia}\right)
+$$
+(check: the bracket equals $\frac{2ia}{x^2+a^2}$ and $\frac{2ia}{2i\sqrt\alpha} = \frac1\alpha$). Using $\frac{d^n}{dx^n}(x-c)^{-1} = (-1)^nn!\,(x-c)^{-(n+1)}$,
+$$
+f^{(n)}(x) = \frac{(-1)^nn!}{2i\sqrt\alpha}\Big((x-ia)^{-(n+1)} - (x+ia)^{-(n+1)}\Big).
+$$
+Write $x+ia = re^{i\theta}$ with $r = \sqrt{x^2+a^2}$ and $\theta = \arg(x+ia)\in(0,\pi)$, so $x-ia = re^{-i\theta}$ and the bracket equals $r^{-(n+1)}\big(e^{i(n+1)\theta}-e^{-i(n+1)\theta}\big) = 2i\,r^{-(n+1)}\sin((n+1)\theta)$. Hence
+$$
+f^{(n)}(x) = \frac{(-1)^n\,n!\,\sin\big((n+1)\theta\big)}{\sqrt\alpha\;r^{n+1}} .
+$$
+Since $r\ge a = \alpha^{-1/2}$ and $|\sin|\le1$, for every real $x$
+$$
+|f^{(n)}(x)| \;\le\; \frac{n!}{\sqrt\alpha}\,\alpha^{(n+1)/2} = n!\,\alpha^{n/2}. 
+$$
+Equality requires $r=a$, i.e. $x=0$, where $\theta=\pi/2$ and $|\sin((n+1)\pi/2)|$ is $1$ for $n$ even and $0$ for $n$ odd. So for even $n$ the bound is attained at $x=0$ (consistent with Part 1: $|f^{(2k)}(0)| = (2k)!\,\alpha^k$), and for odd $n$ it is never attained.
+
+**Part 3.** Let $X$ be the $n+1$ equispaced nodes. By @thm-Lagrange-interpolation, $(\ast)$ with $n+1$ in place of $n$, and Part 2 of @exr-equispaced-node-poly,
+$$
+|f(x)-I_Xf(x)| \;\le\; \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\cdot C\,\frac{(2/e)^n}{\sqrt n} \;=\; C\sqrt\alpha\,\frac{1}{\sqrt n}\left(\frac{2\sqrt\alpha}{e}\right)^n ,
+$$
+since $\alpha^{(n+1)/2}(2/e)^n = \sqrt\alpha\,(2\sqrt\alpha/e)^n$. If $\alpha < e^2/4$ then $\rho := 2\sqrt\alpha/e<1$ and the bound is at most $C\sqrt\alpha\,\rho^n\to0$; so $\max_{[-1,1]}|f-I_Xf|\to0$ (in fact the bound also tends to $0$ when $\alpha = e^2/4$, thanks to the $1/\sqrt n$, and it blows up for $\alpha>e^2/4$).
+
+**Remark 1 (why the true threshold is $\alpha_{\rm c}\approx3.621$).** The value $e^2/4\approx1.847$ is a limitation of this proof, which chains two worst-case bounds; failure of the bound for $\alpha>e^2/4$ does not by itself mean divergence. The sharp threshold comes from potential theory: for equispaced nodes and $z\in\mathbb C$, $\frac{1}{n+1}\log|\ell_X(z)| = \frac1{n+1}\sum_j\log|z-x_j|$ is a Riemann sum converging to
+$$
+U(z) := \frac12\int_{-1}^1\log|z-t|\,dt ,
+$$
+and (roughly, $|f-I_Xf|$ behaves like $|\ell_X(x)|/|\ell_X(z_{\rm pole})|$) interpolation converges uniformly on $[-1,1]$ if $f$ is analytic on the closed region $\{z\in\mathbb C: U(z)\le U(1)\}$ (the region bounded by the level curve of $U$ through $\pm1$), and diverges near the endpoints if $f$ has a singularity strictly inside it. Here $U(1) = \log2-1$, and for the pole $z=iy$ (with $y = 1/\sqrt\alpha$)
+$$
+U(iy) = \frac12\int_0^1\log(t^2+y^2)\,dt = \frac12\log(1+y^2) - 1 + \frac\pi2 y - y\arctan y .
+$$
+The poles lie on the boundary when $U(iy)=U(1)$, i.e.
+$$
+\tfrac12\log(1+y^2) + \tfrac\pi2 y - y\arctan y = \log 2,
+$$
+whose root is $y_{\rm c}\approx0.52552$, giving $\alpha_{\rm c} = 1/y_{\rm c}^2 \approx 3.6209$ (computed below). Since $U(iy)$ increases with $y$, we get convergence for $\alpha<\alpha_{\rm c}$ and divergence for $\alpha>\alpha_{\rm c}$. The numerics below show $\alpha=1$ converging and $\alpha=25$ diverging, as in `Runge.gif`.
+
+**Remark 2 (Chebyshev nodes).** Replacing the equispaced bound by $|\ell_X(x)|\le2^{1-n}$ in the same calculation gives
+$$
+|f(x)-I_Xf(x)| \;\le\; \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\,2^{1-n} = 2\sqrt\alpha\left(\frac{\sqrt\alpha}{2}\right)^n \to 0 \quad\text{for } \alpha<4,
+$$
+as stated in the lecture.
+
+
+```julia
+# equispaced interpolation of f₃(⋅, α): α = 1 (< e²/4) versus α = 25 (> α_c)
+egrid = -1:0.001:1
+
+for α in (1, 25)
+    println("α = ", α)
+    for n in (10, 20, 30)
+        x = range(-1, 1, n+1)
+        pn = fit(x, f₃.(x, α))
+        err = maximum(@. abs(pn(egrid) - f₃(egrid, α)))
+        println("  n = ", n, "   max error = ", err)
+    end
+end
+```
+
+```julia
+# U(iy) = U(1)  ⟺  g(y) = 0;  then α_c = 1/y_c²
+g(y) = 0.5*log(1+y^2) + (π/2)*y - y*atan(y) - log(2)
+
+function bisect(g, a, b; iters=60)
+    for _ in 1:iters
+        m = (a+b)/2
+        if sign(g(m)) == sign(g(a))
+            a = m
+        else
+            b = m
+        end
+    end
+    return (a+b)/2
+end
+
+yc = bisect(g, 0.1, 1.0)
+println("y_c          = ", yc)
+println("α_c = 1/y_c² = ", 1/yc^2)
+```
+
+:::
 :::
 
 ## Lecture 7
@@ -2233,6 +2398,16 @@ which converges to $0$ whenever $\alpha < 4$. (A sharper argument, using that $f
 **@exr-Chebyshev-1**
 
 Show that $T_0(x) = 1$ and $T_1(x) = x$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+For $x\in[-1,1]$ let $\theta = \arccos x\in[0,\pi]$, the unique angle in $[0,\pi]$ with $\cos\theta = x$, so that $T_n(x) = \cos(n\theta)$ is well defined. Then
+$$
+T_0(x) = \cos(0\cdot\theta) = 1, \qquad T_1(x) = \cos\theta = x,
+$$
+for every $x\in[-1,1]$.
+
+:::
 :::
 
 <!-- L07 -->
@@ -2244,6 +2419,38 @@ Use $\cos(x+y) = \cos x \cos y - \sin x \sin y$ to show that
 * $T_{n+1}(x) = 2x T_{n}(x) - T_{n-1}(x)$ for $n =1,2,\dots$,
 * Hence show that $T_n$ is a polynomial of degree $n$,
 * Show that the coefficent of $x^n$ in $T_n$ is $2^{n-1}$ for $n \geq 1$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**(i)** Let $x=\cos\theta$ with $\theta\in[0,\pi]$. By the addition formula (and $\cos$ even, $\sin$ odd),
+$$
+\begin{aligned}
+T_{n+1}(x) &= \cos(n\theta+\theta) = \cos n\theta\cos\theta - \sin n\theta\sin\theta,\\
+T_{n-1}(x) &= \cos(n\theta-\theta) = \cos n\theta\cos\theta + \sin n\theta\sin\theta .
+\end{aligned}
+$$
+Adding, $T_{n+1}(x) + T_{n-1}(x) = 2\cos\theta\cos n\theta = 2x\,T_n(x)$, which is the recursion. It holds for every $x\in[-1,1]$ and $n\ge1$.
+
+**(ii) and (iii)** We prove by strong induction the statement
+
+> $P(n)$: $T_n$ is a polynomial of degree exactly $n$, with leading coefficient $2^{n-1}$ if $n\ge1$.
+
+$T_0 = 1$ has degree $0$, and $T_1 = x$ has degree $1$ and leading coefficient $1 = 2^0$ (by @exr-Chebyshev-1). Suppose $P(n-1)$ and $P(n)$ hold for some $n\ge1$. Then $2xT_n$ is a polynomial of degree $n+1$ with leading coefficient $2\cdot 2^{n-1} = 2^n$, while $T_{n-1}$ has degree $n-1 < n+1$. So by (i), $T_{n+1} = 2xT_n - T_{n-1}$ is a polynomial of degree exactly $n+1$, and its $x^{n+1}$ coefficient is $2^{n}$, which is $P(n+1)$.
+
+(For $n=0$ the leading coefficient is $1$, not $2^{-1}$. This is why the monic polynomials are defined as $t_0 = 1$ and $t_n = 2^{1-n}T_n$ for $n\ge1$.) The code below builds $T_n$ by the recursion and checks it against $\cos(n\theta)$.
+
+
+```julia
+θ = range(0, π, 201)
+for n in 0:6
+    Tn = cheb(n)[end]
+    err = maximum(@. abs(Tn(cos(θ)) - cos(n*θ)))
+    println("n=", n, "  deg=", degree(Tn), "  leading coeff=", Tn[degree(Tn)],
+            "  max|T_n(cosθ) - cos(nθ)| = ", err)
+end
+```
+
+:::
 :::
 
 <!-- L07 -->
@@ -2255,6 +2462,38 @@ Show that
 * $\|T_n\|_{L^\infty([-1,1])} = 1$,
 * $T_{n}\big( \cos\tfrac{j\pi}{n} \big) = (-1)^j$ for $j = 0,\dots,n$ (extreme points; Chebyshev nodes of the second kind),
 * $T_{n+1} = 0$ on $\big\{ \cos \frac{(2j+1)\pi}{2(n+1)} \big\}_{j=0}^{n}$ (zeros; Chebyshev nodes of the first kind).
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**(i)** Every $x\in[-1,1]$ is $\cos\theta$ for some $\theta\in[0,\pi]$, so $|T_n(x)| = |\cos n\theta|\le1$. Also $T_n(1) = \cos 0 = 1$. Hence $\max_{[-1,1]}|T_n| = 1$.
+
+**(ii)** Let $n\ge1$. For $j=0,\dots,n$, $\theta_j = j\pi/n\in[0,\pi]$, so $T_n(\cos\theta_j) = \cos(n\theta_j) = \cos(j\pi) = (-1)^j$. Since $\cos$ is strictly decreasing on $[0,\pi]$, these are $n+1$ distinct points, and by (i) they are points where $|T_n|$ attains its maximum $1$. They are the only such points in $[-1,1]$, because $|\cos n\theta|=1$ with $\theta\in[0,\pi]$ forces $n\theta\in\{0,\pi,\dots,n\pi\}$.
+
+**(iii)** For $j=0,\dots,n$, $\theta_j = \frac{(2j+1)\pi}{2(n+1)}\in(0,\pi)$ and
+$$
+T_{n+1}(\cos\theta_j) = \cos\big((n+1)\theta_j\big) = \cos\Big(\frac{(2j+1)\pi}{2}\Big) = 0 .
+$$
+Again these $n+1$ points are distinct (strict monotonicity of $\cos$ on $[0,\pi]$). Since $T_{n+1}$ has degree $n+1$ (@exr-Chebyshev-2), it has at most $n+1$ roots, so these are **all** the zeros of $T_{n+1}$. Hence
+$$
+T_{n+1}(x) = 2^n\prod_{j=0}^n\Big(x-\cos\tfrac{(2j+1)\pi}{2(n+1)}\Big), \qquad\text{i.e.}\qquad \ell_{X_{\rm I}} = 2^{-n}T_{n+1} = t_{n+1}.
+$$
+
+The lecture's proof covers all of these points and is correct. It leaves implicit only that the listed points are distinct, which follows from strict monotonicity of $\cos$ on $[0,\pi]$.
+
+
+```julia
+n  = 5
+Tn  = cheb(n+1)[n+1]           # T_5
+Tn1 = cheb(n+1)[n+2]           # T_6
+xII = @. cos((0:n)*π/n)
+xI  = @. cos((2*(0:n)+1)*π/(2(n+1)))
+
+println("max over grid |T_5|  = ", maximum(abs.(Tn.(-1:1e-5:1))))
+println("T_5 on X_II          = ", Tn.(xII))
+println("T_6 on X_I           = ", Tn1.(xI))
+```
+
+:::
 :::
 
 <!-- L07 -->
@@ -2266,6 +2505,50 @@ Recall that $T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)$ for $n=1,2,...$.
 1. Use the recursion to write down $T_2$, $T_3$ and $T_4$ in the monomial basis.
 2. Write down the Chebyshev nodes of the first kind $X_{\mathrm I}$ for $n = 2$ (i.e. the zeros of $T_3$) and check directly that $\ell_{X_{\mathrm I}}(x) = t_3(x) = x^3 - \tfrac34 x$.
 3. Find $\| \ell_{X_{\mathrm I}} \|_{L^\infty([-1,1])}$ for $n=2$ by calculus, and compare with the equispaced nodes $\{-1, 0, 1\}$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**1.** Starting from $T_0=1$, $T_1=x$:
+$$
+\begin{aligned}
+T_2 &= 2x\cdot x - 1 = 2x^2-1,\\
+T_3 &= 2x(2x^2-1) - x = 4x^3-3x,\\
+T_4 &= 2x(4x^3-3x) - (2x^2-1) = 8x^4-8x^2+1 .
+\end{aligned}
+$$
+(Leading coefficients $2,4,8$, as predicted by @exr-Chebyshev-2.)
+
+**2.** For $n=2$, $X_{\rm I} = \big\{\cos\frac{(2j+1)\pi}{6}\big\}_{j=0}^2 = \big\{\cos\frac\pi6,\cos\frac\pi2,\cos\frac{5\pi}6\big\} = \big\{\tfrac{\sqrt3}{2},\,0,\,-\tfrac{\sqrt3}{2}\big\}$. Then
+$$
+\ell_{X_{\rm I}}(x) = \Big(x-\tfrac{\sqrt3}2\Big)\,x\,\Big(x+\tfrac{\sqrt3}2\Big) = x\Big(x^2-\tfrac34\Big) = x^3-\tfrac34x = \tfrac14(4x^3-3x) = 2^{1-3}\,T_3(x) = t_3(x).
+$$
+
+**3.** Let $g(x) = x^3-\frac34x$. Then $g'(x) = 3x^2-\frac34 = 0 \iff x=\pm\frac12$. Comparing values at the critical points and endpoints:
+$$
+g\big(\tfrac12\big) = \tfrac18-\tfrac38 = -\tfrac14,\quad g\big(-\tfrac12\big) = \tfrac14,\quad g(1) = \tfrac14,\quad g(-1) = -\tfrac14 .
+$$
+So $\|\ell_{X_{\rm I}}\|_{L^\infty} = \frac14 = 2^{-2}$, attained at the four points $\pm\frac12,\pm1$ with alternating signs. These are $\cos\frac{j\pi}{3}$, $j=0,\dots,3$, the extreme points of $T_3$.
+
+For the equispaced nodes, $\ell(x) = x^3-x$ has critical points $x=\pm\frac1{\sqrt3}$ and vanishes at $\pm1$, so
+$$
+\|\ell_{\{-1,0,1\}}\|_{L^\infty} = \frac1{\sqrt3}\Big(1-\frac13\Big) = \frac{2}{3\sqrt3}\approx0.385,
+$$
+about $1.54$ times larger than $\frac14$. Because the factor $\frac{\max|f^{(3)}|}{3!}$ in the error bound is the same for both node sets, the Chebyshev nodes give an error bound about $35\%$ smaller (e.g. for $e^{-x}$: $\frac{e}{24}\approx0.113$ instead of $\frac{e}{9\sqrt3}\approx0.174$).
+
+
+```julia
+T = cheb(4)
+println("T_2 = ", T[3], "\nT_3 = ", T[4], "\nT_4 = ", T[5])
+
+XI = [cos(π/6), cos(π/2), cos(5π/6)]          # zeros of T_3
+println("ℓ_XI = ", fromroots(XI), "    t_3 = T_3/4 = ", T[4]/4)
+
+xg = -1:1e-5:1
+println("‖ℓ_XI‖  = ", maximum(abs.(fromroots(XI).(xg))), "   (1/4)")
+println("‖ℓ_equi‖ = ", maximum(abs.(fromroots([-1,0,1]).(xg))), "   (2/(3√3) = ", 2/(3sqrt(3)), ")")
+```
+
+:::
 :::
 
 <!-- L07 -->
@@ -2279,6 +2562,39 @@ Prove the claim as follows:
 1. Show that $T_{n+1}(\cos\theta) - T_{n-1}(\cos\theta) = -2 \sin\theta \sin n\theta$.
 2. Deduce that $T_{n+1} - T_{n-1}$ vanishes on $X_{\mathrm{II}} = \big\{ \cos\frac{j\pi}{n} \big\}_{j=0}^n$.
 3. Show that $2^{-n} \big( T_{n+1} - T_{n-1} \big)$ is monic of degree $n+1$, and conclude.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**1.** From the two addition-formula identities in @exr-Chebyshev-2, subtracting instead of adding:
+$$
+T_{n+1}(\cos\theta) - T_{n-1}(\cos\theta) = \big(\cos n\theta\cos\theta - \sin n\theta\sin\theta\big) - \big(\cos n\theta\cos\theta + \sin n\theta\sin\theta\big) = -2\sin\theta\,\sin n\theta .
+$$
+
+**2.** At $x_j = \cos\theta_j$ with $\theta_j = j\pi/n$, $j=0,\dots,n$, we have $\sin(n\theta_j) = \sin(j\pi) = 0$, so $(T_{n+1}-T_{n-1})(x_j) = 0$. (At the endpoints $j=0,n$ the factor $\sin\theta_j$ vanishes too.) The $n+1$ points $x_j$ are distinct, since $\cos$ is strictly decreasing on $[0,\pi]$.
+
+**3.** By @exr-Chebyshev-2, $T_{n+1}$ has degree $n+1$ and leading coefficient $2^n$, and $T_{n-1}$ has degree $n-1<n+1$. So $P := 2^{-n}(T_{n+1}-T_{n-1})$ is a monic polynomial of degree $n+1$. Both $P$ and $\ell_{X_{\rm II}}$ are monic of degree $n+1$, so $P-\ell_{X_{\rm II}}\in\mathcal P_n$. This difference vanishes at the $n+1$ distinct points of $X_{\rm II}$, so it is the zero polynomial (a nonzero polynomial of degree $\le n$ has at most $n$ roots). Hence
+$$
+\ell_{X_{\rm II}} = 2^{-n}\big(T_{n+1}-T_{n-1}\big).
+$$
+Finally, $\|\ell_{X_{\rm II}}\|_{L^\infty} \le 2^{-n}\big(\|T_{n+1}\|_{L^\infty}+\|T_{n-1}\|_{L^\infty}\big) = 2^{1-n}$.
+
+*Remark.* By Part 1, $|\ell_{X_{\rm II}}(\cos\theta)| = 2^{1-n}|\sin\theta\sin n\theta|$. This equals $2^{1-n}$ only if $\theta=\pi/2$ and $|\sin(n\pi/2)|=1$. So the bound is attained exactly when $n$ is odd, and is strict for $n$ even. For $n=2$, $X_{\rm II} = \{-1,0,1\}$, which gives $\|\ell\| = \frac{2}{3\sqrt3}\approx0.385<\frac12$, as in @exr-l07-cheb-small. The code checks this for $n=1,\dots,8$.
+
+
+```julia
+xg = -1:1e-5:1
+for n in 1:8
+    Tc  = cheb(n+1)
+    XII = @. cos((0:n)*π/n)
+    ℓ   = fromroots(XII)
+    claim = 2.0^(-n)*(Tc[n+2] - Tc[n])
+    println("n=", n, "  max|ℓ_XII - claim| = ", round(maximum(@. abs(ℓ(xg) - claim(xg))), sigdigits=2),
+            "   ‖ℓ_XII‖ = ", round(maximum(abs.(ℓ.(xg))), sigdigits=6),
+            "   2^(1-n) = ", 2.0^(1-n))
+end
+```
+
+:::
 :::
 
 <!-- L07 -->
@@ -2293,6 +2609,48 @@ Suppose we want to interpolate on a general interval $[a,b]$ rather than $[-1,1]
    $$
 2. Deduce that, if $X$ is the image of $X_{\mathrm I}$ under $\phi$, then $\max_{x \in [a,b]} |\ell_X(x)| = 2 \left( \frac{b-a}{4} \right)^{n+1}$.
 3. Let $f(x) = \sin x$ on $[0, \pi]$, interpolated at the image of $X_{\mathrm I}$. Write down an error bound and find the smallest $n$ that guarantees $\max_{x\in[0,\pi]} |f(x) - I_Xf(x)| \leq 10^{-6}$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**1.** $\phi$ is affine: $\phi(t)-\phi(y_j) = \frac{b-a}{2}(t-y_j)$. Therefore
+$$
+\ell_X(\phi(t)) = \prod_{j=0}^n\big(\phi(t)-\phi(y_j)\big) = \prod_{j=0}^n\frac{b-a}{2}(t-y_j) = \left(\frac{b-a}{2}\right)^{n+1}\ell_Y(t).
+$$
+
+**2.** By @exr-Chebyshev-3, $\ell_{X_{\rm I}} = t_{n+1} = 2^{-n}T_{n+1}$, so $\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = 2^{-n}$. Since $\phi$ is a bijection from $[-1,1]$ onto $[a,b]$ (assuming $a<b$), every $x\in[a,b]$ is $\phi(t)$ for exactly one $t\in[-1,1]$, so by Part 1
+$$
+\max_{x\in[a,b]}|\ell_X(x)| = \left(\frac{b-a}{2}\right)^{n+1}\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = \frac{(b-a)^{n+1}}{2^{n+1}2^{n}} = 2\left(\frac{b-a}{4}\right)^{n+1}.
+$$
+
+**3.** All derivatives of $\sin$ are $\pm\sin$ or $\pm\cos$, so $|f^{(n+1)}|\le1$. With $b-a=\pi$, the Lagrange error formula and Part 2 give
+$$
+\max_{x\in[0,\pi]}|\sin x - I_Xf(x)| \;\le\; \frac{1}{(n+1)!}\cdot 2\left(\frac{\pi}{4}\right)^{n+1} =: B_n .
+$$
+Evaluating:
+$$
+B_6 \approx 7.3\times10^{-5},\qquad B_7 \approx 7.2\times10^{-6},\qquad B_8 \approx 6.3\times10^{-7},
+$$
+and $B_n$ decreases in $n$ (since $B_{n+1}/B_n = \frac{\pi/4}{n+2}<1$). So the smallest $n$ with $B_n\le10^{-6}$ is $n=8$, i.e. $9$ interpolation nodes. The true error for $n=8$ is about $9.3\times10^{-8}$ (computed below), so the bound is reasonably tight. (For $n=7$ the true error is about $6.8\times10^{-6}>10^{-6}$, so $n=8$ is also the smallest $n$ that actually achieves the tolerance.)
+
+
+```julia
+bound(n) = 2*(π/4)^(n+1)/factorial(n+1)
+for n in 6:9
+    println("n=", n, "  bound = ", bound(n))
+end
+
+# actual error: interpolate sin at the mapped Chebyshev nodes of the first kind
+a, b = 0, π
+ϕ  = t -> (a+b)/2 + (b-a)/2*t
+xg = range(a, b, 100001)
+for n in 7:8
+    X  = ϕ.(@. cos((2*(0:n)+1)*π/(2(n+1))))
+    pn = fit(X, sin.(X))
+    println("n=", n, "  actual max error = ", maximum(@. abs(sin(xg) - pn(xg))))
+end
+```
+
+:::
 :::
 
 ## Quiz 2
@@ -2468,6 +2826,49 @@ What is happening here?
 Underflow! The products $\prod_{k} (t - x_k)$ and $\prod_{k\not=j} (x_j - x_k)$ are of size roughly $2^{-n}$ (and the partial products computed in the code can be even smaller). Around $n \approx 800$, these partial products fall below the smallest normal double ($\approx 2.2 \times 10^{-308}$) into the subnormal range, where precision is lost.
 
 :::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Mathematically nothing goes wrong: Chebyshev interpolation of the Runge function converges (geometrically), so the *exact* interpolant only gets better as $n$ grows. The breakdown is a floating-point effect: **underflow**.
+
+*Sizes of the products.* For these nodes $|\ell_X(t)| \le 2^{1-n}$ (@exr-l07-XII), and $\prod_{k\ne j}|x_j-x_k| = 1/|\lambda_j| = \frac{2n}{2^n}$ (or $\frac{4n}{2^n}$ for $j=0,n$) by @eq-Barycentric-Chebyshev-II. So every product appearing in $\ell_j$ is of size roughly $2^{-n}$: about $10^{-235}$ for $n = 780$ and $10^{-307}$ for $n=1020$.
+
+*Where it breaks.* Double precision numbers have about 16 significant digits only down to the smallest normal number `floatmin(Float64)` $=2^{-1022}\approx 2.2\times10^{-308}$; below that come the *subnormal* numbers, which have fewer and fewer significant bits, and below $\approx 5\times10^{-324}$ everything rounds to $0$. The lecture code does not form $\prod_{k\ne j}(t-x_k)$ in one go; it computes the two one-sided products $\prod_{k<j}(t-x_k)$ and $\prod_{k>j}(t-x_k)$ separately and then multiplies them. A one-sided product leaves out factors that may be as large as $2$, so it can be *much* smaller than the full product (which is itself already $\lesssim 2^{1-n}$). In the code below, the first subnormal one-sided products appear at $n\approx 780$, and their number grows quickly with $n$. A subnormal result carries a large relative error (or is exactly $0$); it is then divided by denominators of size $\approx 2^{-n}$, so the error is amplified and the computed $\ell_j(t)$ is garbage. This is exactly where the error in the animation jumps from $\sim 10^{-14}$ to $10^{-12}$ ($n=780$), $10^{-4}$ ($n=800$) and $O(1)$–$O(10)$ ($n\ge 860$). The denominator products $\prod_{k\ne j}(x_j-x_k) \approx 2n/2^n$ stay normal up to $n = 1020$ (they would underflow a little later).
+
+Besides being unstable, the naive formula costs $O(n^2)$ flops per evaluation point. The barycentric formula @eq-Barycentric with the rescaled weights $(-1)^j\tau_j$ never forms these tiny products, costs $O(n)$ per point, and is stable (@Higham2004).
+
+***Note on the lecture solution.*** The hint ("underflow") is right. More precisely: the full products ($\approx 2^{-n}$) and the denominator products are still *normal* numbers for $n \le 1020$. What first becomes subnormal (at $n\approx780$) are the one-sided numerator products $\prod_{k<j}(t-x_k)$, $\prod_{k>j}(t-x_k)$ computed in the code.
+
+
+```julia
+Runge = t -> 1/(1 + 25t^2)
+
+function ℓⱼ( j, t, x )      # as in the lecture
+    if j == 0
+        return prod( @. t - x[2:end] ) / prod( @. x[1] - x[2:end] )
+    elseif j == length(x)-1
+        return prod( @. t - x[1:end-1] ) / prod( @. x[end] - x[1:end-1] )
+    else
+        return prod( @. t - x[1:j] ) * prod( @. t - x[(j+2):end] ) / ( prod( @. x[j+1] - x[1:j] ) * prod( @. x[j+1] - x[(j+2):end] ) )
+    end
+end
+p_naive( t, x, y ) = sum( ℓⱼ(j, t, x) * y[j+1] for j in 0:(length(x)-1) )
+
+egrid = range(-1, 1, length=401)      # as in the lecture
+for n in [700, 760, 780, 800, 860, 1000]
+    x = @. cos( π*(0:n)/n )
+    err = maximum( abs(p_naive(t, x, Runge.(x)) - Runge(t)) for t in egrid )
+    # one-sided numerator products computed inside ℓⱼ that are subnormal
+    nsub = count( issubnormal(prod(t .- x[1:j])) || issubnormal(prod(t .- x[(j+2):end])) for t in egrid, j in 1:(n-1) )
+    # smallest denominator product |∏_{k≠j}(x_j - x_k)|
+    dmin = minimum( abs(prod(x[j] .- x[1:j-1]) * prod(x[j] .- x[j+1:end])) for j in 1:(n+1) )
+    @printf("n = %4d: max error = %.1e,  #subnormal one-sided products = %5d,  smallest denominator = %.1e\n",
+            n, err, nsub, dmin)
+end
+println("floatmin(Float64) = ", floatmin(Float64))
+```
+
+:::
 :::
 
 <!-- L08 -->
@@ -2475,6 +2876,18 @@ Underflow! The products $\prod_{k} (t - x_k)$ and $\prod_{k\not=j} (x_j - x_k)$ 
 **@exr-sum-lagrange-1**
 
 Suppose that $X = \{ x_0 < ... < x_n \}$ and let $\ell_j$ be the corresponding Lagrange polynomials. Show that $\sum_{j=0}^n \ell_j(x) = 1$ for all $x$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Let $s(x) := \sum_{j=0}^n \ell_j(x)$. Each $\ell_j$ has degree $n$, so $s\in\mathcal P_n$. Since $\ell_j(x_i) = \delta_{ij}$,
+$$
+s(x_i) = \sum_{j=0}^n \delta_{ij} = 1 \qquad (i=0,\dots,n).
+$$
+Hence $s - 1 \in \mathcal P_n$ vanishes at the $n+1$ distinct points $x_0,\dots,x_n$, so $s-1 = 0$ (a nonzero polynomial of degree $\le n$ has at most $n$ roots). Thus $\sum_j \ell_j(x) = 1$ for **all** $x\in\mathbb R$, not only at the nodes.
+
+Equivalently: $s = \sum_j 1\cdot\ell_j = I_X 1$ is the interpolant of the constant function $1$, and $1\in\mathcal P_n$ interpolates itself, so $I_X1 = 1$ by uniqueness.
+
+:::
 :::
 
 <!-- L08 -->
@@ -2482,6 +2895,33 @@ Suppose that $X = \{ x_0 < ... < x_n \}$ and let $\ell_j$ be the corresponding L
 **@exr-Bary-weights**
 
 Explain why one may instead consider any weights of the form $w_j := C \lambda_j$ in the Barycentric formula @eq-Barycentric. Why might this be a good idea? See @eq-Barycentric-Chebyshev-II for the weights appearing in the Barycentric formula for Chebyshev nodes of the second kind.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+*Why it is allowed.* Let $C\ne0$ be a constant that does **not** depend on $j$. For $x\notin X$,
+$$
+\frac{\sum_{j}\frac{C\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{C\lambda_j}{x-x_j}}
+= \frac{C\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{C\sum_{j}\frac{\lambda_j}{x-x_j}}
+= \frac{\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{\lambda_j}{x-x_j}} = I_Xf(x),
+$$
+(the denominator is nonzero because it equals $1/\ell_X(x)$ by @exr-sum-lagrange-1), and at $x=x_j$ we use $I_Xf(x_j) = f(x_j)$ anyway. This works because the barycentric formula is a *ratio* in which the weights appear linearly in both the numerator and the denominator. (It does **not** work for the first form $\ell_X(x)\sum_j\frac{\lambda_jf(x_j)}{x-x_j}$, which needs the true $\lambda_j$.)
+
+*Why it is a good idea.*
+
+1. **Overflow/underflow.** The true weights can be astronomically large or small. For Chebyshev nodes of the second kind $|\lambda_j| = \frac{2^n}{2n}$ (or $\frac{2^n}{4n}$): already `2.0^1024 == Inf`, and $\frac{2^n}{2n}$ itself exceeds the largest double ($\approx1.8\times10^{308}$) once $n\gtrsim 1035$, after which the formula would compute $\mathrm{Inf}/\mathrm{Inf} = \mathrm{NaN}$. For nodes on an interval of length $L$, the $\lambda_j$ scale like $L^{-n}$, so even moderate $n$ can over- or underflow. Choosing $C = \frac{2n}{2^n}$ gives the weights $(-1)^j\tau_j$ ($\tau_j=\frac12$ at $j=0,n$, else $1$), all of size $\frac12$ or $1$.
+2. **Simplicity and accuracy.** The rescaled Chebyshev weights are known exactly in closed form: no $O(n^2)$ computation of products and no rounding error in the weights. They are also the same on every interval: the affine map $[-1,1]\to[a,b]$ multiplies every $\lambda_j$ by the same factor $\big(\frac{2}{b-a}\big)^n$, which cancels (compare @exr-Bary-2, where $\{0,\frac\pi2,\pi\}$ gets the weights $\frac12,-1,\frac12$).
+
+
+```julia
+n = 1100
+@show 2.0^n / (2n)                             # the true Chebyshev weight overflows
+x = @. cos( π*(0:n)/n )
+λ = @. (-1.0)^(0:n);  λ[1] /= 2;  λ[end] /= 2   # rescaled weights: no problem
+t = 0.3
+@show sum( @. λ * Runge(x) / (t - x) ) / sum( @. λ / (t - x) ) - Runge(t)
+```
+
+:::
 :::
 
 <!-- L08 -->
@@ -2704,6 +3144,36 @@ Here, the error bound is $\frac{e}{(n+1)!} \cdot \frac{e}{2\sqrt n} \big(\frac2e
 **@exr-Hermite-1**
 
 Let $f(x) = e^x$ and $X = \{\{0, 0, 1\}\}$ (so that $z_0 = 0$ with $m_0 = 2$, $z_1 = 1$ with $m_1 = 1$, and $n = 2$). Find the Hermite interpolant $p \in \mathcal P_2$ of $f$ on $X$ by writing $p(x) = a_0 + a_1 x + a_2 x^2$ and solving for the coefficients. Compare $p$ with the Taylor polynomial of degree $1$ about $0$ and with the Lagrange interpolant of $f$ on $\{0, 1\}$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+We look for $p(x) = a_0 + a_1 x + a_2 x^2 \in \mathcal P_2$ with
+$$
+\begin{align}
+    p(0) &= f(0) = 1, \nonumber\\
+    p'(0) &= f'(0) = 1, \nonumber\\
+    p(1) &= f(1) = e. \nonumber
+\end{align}
+$$
+Since $p'(x) = a_1 + 2a_2 x$, the first two conditions give $a_0 = 1$ and $a_1 = 1$. The third gives $1 + 1 + a_2 = e$, so $a_2 = e - 2$ and
+$$
+    p(x) = 1 + x + (e - 2) x^2.
+$$
+Compare this with the Taylor polynomial $1 + x$ (which only uses the information at $0$) and the Lagrange interpolant $1 + (e-1)x$ on $\{0, 1\}$ (which ignores the slope at $0$):
+
+```julia
+p_H = x -> 1 + x + (ℯ - 2)*x^2   # Hermite on {{0, 0, 1}}
+p_T = x -> 1 + x                  # Taylor at 0
+p_L = x -> 1 + (ℯ - 1)*x          # Lagrange on {0, 1}
+
+plot(exp, -0.5, 1.5; label=L"y = e^x", lw=2, linestyle=:dash)
+plot!(p_H, -0.5, 1.5; label="Hermite", lw=3)
+plot!(p_T, -0.5, 1.5; label="Taylor", lw=2)
+plot!(p_L, -0.5, 1.5; label="Lagrange", lw=2)
+scatter!([0, 1], [1, ℯ]; markersize=5, primary=false)
+```
+
+:::
 :::
 
 <!-- L09 -->
@@ -2711,6 +3181,16 @@ Let $f(x) = e^x$ and $X = \{\{0, 0, 1\}\}$ (so that $z_0 = 0$ with $m_0 = 2$, $z
 **@exr-Taylor-Hermite**
 
 What is the least degree polynomial interpolant on $X = \{\{x_0, x_0, \dots, x_0\}\}$ (where $x_0$ is repeated $n+1$ times)?
+
+::: {.exercise-solution .draft style="display: none;"}
+
+The Hermite conditions are $p^{(l)}(x_0) = f^{(l)}(x_0)$ for $l = 0, \dots, n$. The Taylor polynomial
+$$
+    T_f(x) = \sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!} (x - x_0)^j \in \mathcal P_n
+$$
+satisfies $T_f^{(l)}(x_0) = f^{(l)}(x_0)$ for $l = 0, \dots, n$ (differentiating $l$ times and setting $x = x_0$ kills every term except $j = l$). So Hermite interpolation on a single node repeated $n+1$ times is Taylor expansion, and Lagrange interpolation (all $m_j = 1$) is the other extreme.
+
+:::
 :::
 
 <!-- L09 -->
@@ -2718,6 +3198,29 @@ What is the least degree polynomial interpolant on $X = \{\{x_0, x_0, \dots, x_0
 **@exr-Hermite-1-Newton**
 
 Return to @exr-Hermite-1: compute the Hermite interpolant of $f(x) = e^x$ on $\{\{0, 0, 1\}\}$ again, this time using the divided difference table and @thm-Newton-form-Hermite.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+With $x_0 = x_1 = 0$ and $x_2 = 1$, the divided difference table is
+
+$$
+\begin{array}{c|ccc}
+    x_j & f(x_j) & \text{1st} & \text{2nd} \\ \hline
+    0 & 1 & & \\
+      & & 1 & \\
+    0 & 1 & & e - 2 \\
+      & & e - 1 & \\
+    1 & e & &
+\end{array}
+$$
+
+where $f[0,0] = f'(0) = 1$ (the nodes are equal), $f[0,1] = \frac{e - 1}{1 - 0} = e - 1$, and $f[0,0,1] = \frac{f[0,1] - f[0,0]}{1 - 0} = e - 2$. With $\pi_1(x) = x$ and $\pi_2(x) = x^2$, the Newton form is
+$$
+    p(x) = 1 + 1 \cdot x + (e - 2) x^2,
+$$
+which agrees with @exr-Hermite-1. This time we did not need to solve a linear system, and adding another condition (for example $p'(1) = f'(1)$) only adds one new row to the table and one new term to $p$ (see @exr-l09-hermite-cubic).
+
+:::
 :::
 
 <!-- L09 -->
@@ -2725,6 +3228,54 @@ Return to @exr-Hermite-1: compute the Hermite interpolant of $f(x) = e^x$ on $\{
 **@exr-Hermite-2**
 
 What is the Hermite interpolant of $f(x) = \sin x$ on $\{\{ 0,0,\pi, \pi\}\}$? Hint: you can compute the divided difference tables in the same way as before.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+With $x_0 = x_1 = 0$ and $x_2 = x_3 = \pi$, the divided difference table is
+
+$$
+\begin{array}{c|cccc}
+    x_j & f(x_j) & \text{1st} & \text{2nd} & \text{3rd} \\ \hline
+    0 & 0 & & & \\
+      & & 1 & & \\
+    0 & 0 & & -\frac{1}{\pi} & \\
+      & & 0 & & 0 \\
+    \pi & 0 & & -\frac{1}{\pi} & \\
+      & & -1 & & \\
+    \pi & 0 & & &
+\end{array}
+$$
+
+where
+
+$$
+\begin{align}
+    f[0,0] &= f'(0) = \cos 0 = 1, \nonumber\\
+    f[0,\pi] &= \frac{\sin \pi - \sin 0}{\pi - 0} = 0, \nonumber\\
+    f[\pi,\pi] &= f'(\pi) = \cos \pi = -1, \nonumber\\
+    f[0,0,\pi] &= \frac{f[0,\pi] - f[0,0]}{\pi - 0} = -\frac1\pi, \nonumber\\
+    f[0,\pi,\pi] &= \frac{f[\pi,\pi] - f[0,\pi]}{\pi - 0} = -\frac1\pi, \nonumber\\
+    f[0,0,\pi,\pi] &= \frac{f[0,\pi,\pi] - f[0,0,\pi]}{\pi - 0} = 0. \nonumber
+\end{align}
+$$
+
+By @thm-Newton-form-Hermite (with $\pi_1 = x$, $\pi_2 = x^2$, $\pi_3 = x^2(x-\pi)$),
+
+$$
+    p(x) = 0 + 1 \cdot x - \frac1\pi x^2 + 0 \cdot x^2(x-\pi) = x - \frac{x^2}{\pi}.
+$$
+
+Check: $p(0) = 0$, $p'(0) = 1$, $p(\pi) = 0$, and $p'(\pi) = 1 - 2 = -1$. The interpolant has degree $2$ (not $3$) because the leading divided difference happens to vanish (by symmetry of $\sin$ about $\frac\pi2$).
+
+```julia
+p = Polynomial([0, 1, -1/π])
+
+plot(sin, -π/2, 3π/2; label=L"y = \sin x", lw=2, linestyle=:dash)
+plot!(p, -π/2, 3π/2; label=L"y = p(x)", lw=3)
+scatter!([0, π], [0, 0]; markersize=5, primary=false)
+```
+
+:::
 :::
 
 <!-- L09 -->
@@ -2776,6 +3327,31 @@ In this exercise, we prove the error estimate for Hermite interpolation (compare
 $$
     f(x) - p(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x).
 $$
+
+::: {.exercise-hint .draft style="display: none;"}
+
+For 1, at each $w_i$ the derivative $g'$ has a zero of order $k_i - 1$, and Rolle's theorem gives one more zero strictly between each pair $w_i < w_{i+1}$. For 2, copy the proof from Lecture 6: for $x \not\in X$, consider $g(t) := f(t) - p(t) - \big[ f(x) - p(x) \big] \frac{\ell_X(t)}{\ell_X(x)}$ and count its zeros with their orders.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. At each $w_i$, $g'$ has a zero of order $k_i - 1$ (because $g', \dots, g^{(k_i-1)}$ vanish at $w_i$). Moreover, for each $i = 1, \dots, r-1$, $g(w_i) = g(w_{i+1}) = 0$ and so, by Rolle's theorem, $g'$ has a zero in $(w_i, w_{i+1})$, which is different from all of the $w_i$. Adding these up, the orders of the zeros of $g'$ in $[w_1, w_r]$ add up to at least
+$$
+    \sum_{i=1}^r (k_i - 1) + (r - 1) = N - 1.
+$$
+
+2. If $x \in X$, then both sides are zero (take any $\xi_x$). Otherwise $\ell_X(x) \not= 0$ and we can define
+$$
+    g(t) := f(t) - p(t) - \big[ f(x) - p(x) \big] \frac{\ell_X(t)}{\ell_X(x)}.
+$$
+Then $g \in C^{n+1}$. If $z$ appears $m$ times in $X$, then $f - p$ has a zero of order $m$ at $z$ (by the Hermite conditions) and so does $\ell_X$ (it contains the factor $(t - z)^m$). Therefore $g$ has a zero of order $m$ at $z$. Moreover, $g(x) = 0$. So the orders of the zeros of $g$ add up to (at least) $(n + 1) + 1 = n + 2$. Applying 1 $n+1$ times, $g^{(n+1)}$ has a zero $\xi_x$ in $[\min (\{x\} \cup X), \max (\{x\} \cup X)]$. Since $p \in \mathcal P_n$ and $\ell_X$ is monic of degree $n + 1$, we have $p^{(n+1)} = 0$ and $\ell_X^{(n+1)} = (n+1)!$, and so
+$$
+    0 = g^{(n+1)}(\xi_x) = f^{(n+1)}(\xi_x) - \big[ f(x) - p(x) \big] \frac{(n+1)!}{\ell_X(x)}.
+$$
+Rearranging gives the result.
+
+:::
 :::
 
 <!-- L09 -->
@@ -2791,6 +3367,35 @@ $$
 2. Write down $p$ for $f(x) = e^x$ and compare it with @exr-Hermite-1.
 3. Use @exr-l09-hermite-error to show that $\max_{x \in [0,1]} |e^x - p(x)| \leq \frac{e}{384}$.
 4. More generally, suppose that $p$ is the Hermite interpolant of $f$ on $\{\{a, a, b, b\}\}$. Show that $\max_{x \in [a,b]} |f(x) - p(x)| \leq \frac{(b-a)^4}{384} \max_{[a,b]} |f^{(4)}|$. What does this tell you about approximating $f$ on $[a,b]$ by a cubic Hermite interpolant on each of $N$ subintervals of length $h = \frac{b-a}{N}$?
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. With $x_0 = x_1 = 0$ and $x_2 = x_3 = 1$, the table is
+$$
+\begin{array}{c|cccc}
+    x_j & f(x_j) & \text{1st} & \text{2nd} & \text{3rd} \\ \hline
+    0 & y_0 & & & \\
+      & & s_0 & & \\
+    0 & y_0 & & d - s_0 & \\
+      & & d & & s_0 + s_1 - 2d \\
+    1 & y_1 & & s_1 - d & \\
+      & & s_1 & & \\
+    1 & y_1 & & &
+\end{array}
+$$
+since $f[0,0] = f'(0) = s_0$, $f[0,1] = \frac{y_1 - y_0}{1 - 0} = d$, $f[1,1] = f'(1) = s_1$, $f[0,0,1] = \frac{d - s_0}{1 - 0}$, $f[0,1,1] = \frac{s_1 - d}{1 - 0}$, and $f[0,0,1,1] = (s_1 - d) - (d - s_0)$. By @thm-Newton-form-Hermite with $\pi_1 = x$, $\pi_2 = x^2$ and $\pi_3 = x^2(x-1)$, we get the formula for $p$. (Check: $p(1) = y_0 + s_0 + d - s_0 = y_1$ and $p'(1) = s_0 + 2(d - s_0) + (s_0 + s_1 - 2d) = s_1$.)
+
+2. Here $y_0 = s_0 = 1$, $y_1 = s_1 = e$ and $d = e - 1$, so
+$$
+    p(x) = 1 + x + (e - 2) x^2 + (3 - e) \, x^2 (x - 1).
+$$
+The first three terms are exactly the interpolant from @exr-Hermite-1 on $\{\{0, 0, 1\}\}$: adding the condition $p'(1) = f'(1)$ only adds one new term to the Newton form.
+
+3. By @exr-l09-hermite-error, $e^x - p(x) = \frac{e^{\xi_x}}{4!} x^2 (x-1)^2$ for some $\xi_x \in [0,1]$. The function $x(1 - x)$ has maximum $\frac14$ on $[0,1]$ (at $x = \frac12$), and so $|e^x - p(x)| \leq \frac{e}{24} \cdot \frac{1}{16} = \frac{e}{384} \approx 7.1 \times 10^{-3}$. (Numerically, the maximum error is about $4.4 \times 10^{-3}$.)
+
+4. In the same way, $|f(x) - p(x)| \leq \frac{\max |f^{(4)}|}{24} (x - a)^2 (x - b)^2$ and $(x-a)(b-x) \leq \big(\frac{b - a}{2}\big)^2$, which gives the bound $\frac{(b-a)^4}{16 \cdot 24} \max |f^{(4)}|$. On $N$ subintervals of length $h$, the error is at most $\frac{h^4}{384} \max_{[a,b]} |f^{(4)}|$: halving $h$ divides the error bound by $16$. Moreover, neighbouring cubics share their values and slopes at the break points, so the resulting piecewise cubic is continuously differentiable. (This is *piecewise cubic Hermite interpolation*.)
+
+:::
 :::
 
 <!-- L09 -->
@@ -2802,6 +3407,20 @@ $$
     f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 $$
 2. Deduce that $f[x_0, x_0 + h] \to f'(x_0)$ and, more generally, $f[x_0, x_0 + h, \dots, x_0 + nh] \to \frac{f^{(n)}(x_0)}{n!}$ as $h \to 0$. Explain why this makes the first case of @thm-divided-diffs-recursion a natural definition.
+
+::: {.exercise-hint .draft style="display: none;"}
+
+For 1, let $p$ be the Hermite interpolant of $f$ on $X$ and apply part 1 of @exr-l09-hermite-error to $g := f - p$. What is $p^{(n)}$?
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. Let $p \in \mathcal P_n$ be the Hermite interpolant of $f$ on $X$. Then $g := f - p$ has zeros whose orders add up to $n + 1$ (a zero of order $m$ at each node appearing $m$ times). Applying part 1 of @exr-l09-hermite-error $n$ times, $g^{(n)}$ has a zero $\xi \in [\min X, \max X]$. Since $p(x) = f[x_0, \dots, x_n] x^n + q(x)$ with $q \in \mathcal P_{n-1}$, we have $p^{(n)} = n! \, f[x_0,\dots,x_n]$ and so $0 = f^{(n)}(\xi) - n! \, f[x_0, \dots, x_n]$. (If all the nodes are equal, then $\xi = x_0$ and this is the first case of @thm-divided-diffs-recursion.)
+
+2. By 1, $f[x_0, x_0 + h, \dots, x_0 + nh] = \frac{f^{(n)}(\xi_h)}{n!}$ for some $\xi_h$ between $x_0$ and $x_0 + nh$. As $h \to 0$, $\xi_h \to x_0$ and, since $f^{(n)}$ is continuous, $f^{(n)}(\xi_h) \to f^{(n)}(x_0)$. So the divided difference on $n+1$ nearby nodes converges to $\frac{f^{(n)}(x_0)}{n!}$ as the nodes merge. Defining $f[x_0, \dots, x_0] := \frac{f^{(n)}(x_0)}{n!}$ makes the divided difference continuous in the nodes, and Hermite interpolation is the limit of Lagrange interpolation as nodes come together.
+
+:::
 :::
 
 <!-- L09 -->
@@ -2811,5 +3430,1032 @@ $$
 1. Write a Julia function `hermite_dd(x, df)` which takes a vector of nodes `x` (sorted so that equal nodes are next to each other) and a function `df(l, z)` returning $f^{(l)}(z)$, and returns the Newton coefficients $f[x_0], f[x_0,x_1], \dots, f[x_0,\dots,x_n]$ using the divided difference table.
 2. Write a function `newton_eval(c, x, t)` which evaluates $\sum_{k=0}^n c_k \pi_k(t)$ using $O(n)$ operations.
 3. Check your code against @exr-Hermite-1, @exr-Hermite-2, and @exr-l09-hermite-cubic, and compute $\max_{t \in [0,1]} |e^t - p(t)|$ for the cubic Hermite interpolant of $e^x$ on $\{\{0,0,1,1\}\}$.
+
+::: {.exercise-hint .draft style="display: none;"}
+
+For 2, use nested multiplication (Horner's method): $c_0 + (t - x_0)\big(c_1 + (t - x_1)\big(c_2 + \cdots\big)\big)$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+```julia
+function hermite_dd( x, df )
+    n = length(x) - 1
+    T = zeros(n+1, n+1)              # T[j+1, k+1] = f[x_j, ..., x_{j+k}]
+    for j in 0:n
+        T[j+1, 1] = df(0, x[j+1])
+    end
+    for k in 1:n, j in 0:(n-k)
+        if x[j+k+1] == x[j+1]        # all nodes equal
+            T[j+1, k+1] = df(k, x[j+1]) / factorial(k)
+        else
+            T[j+1, k+1] = (T[j+2, k] - T[j+1, k]) / (x[j+k+1] - x[j+1])
+        end
+    end
+    return T[1, :]                   # top diagonal
+end
+
+function newton_eval( c, x, t )
+    p = c[end]
+    for k in (length(c)-1):-1:1
+        p = c[k] + (t - x[k]) * p
+    end
+    return p
+end
+
+dsin(l, z) = (sin(z), cos(z), -sin(z), -cos(z))[l % 4 + 1]
+dexp(l, z) = exp(z)
+
+hermite_dd([0, 0, π, π], dsin)   # [0, 1, -1/π, 0]
+hermite_dd([0, 0, 1], dexp)      # [1, 1, e - 2]
+c = hermite_dd([0, 0, 1, 1], dexp)   # [1, 1, e - 2, 3 - e]
+
+t = range(0, 1, length=10001)
+maximum( @. abs( exp(t) - newton_eval(Ref(c), Ref([0, 0, 1, 1]), t) ) )   # ≈ 4.4e-3
+```
+
+The table needs $O(n^2)$ operations and `newton_eval` needs $O(n)$ operations per point.
+
+:::
+:::
+
+## Lecture 10
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-recap name="Recap of last week"}
+**@exr-l10-recap**
+
+1. Compute the divided difference table for $f(x) = x^2$ on $\{0, 1, 2\}$ and write down the Newton form of the interpolant. What do you notice?
+2. What are $f[x_0, x_0]$ and $f[x_0, x_0, x_0]$?
+3. Why do we prefer the barycentric formula @eq-Barycentric to the naive Lagrange formula?
+4. What is the Hermite interpolant of $f$ on $\{\{a, a\}\}$? How many conditions does the Hermite interpolant on $\{\{0, 0, 1\}\}$ satisfy, and what is its degree?
+5. The next iterate of Newton's method is the root of which interpolant of $f$? What about the secant method?
+
+::: {.exercise-solution style="display: none;"}
+
+1. $f[0] = f(0) = 0$, $f[1] = f(1) = 1$, $f[2] = f(2) = 4$; $f[0,1] = \frac{f(1)-f(0)}{1-0} = 1$, $f[1,2] = \frac{f(1)-f(2)}{1-2} = 3$; $f[0,1,2] = \frac{f[1,2] - f[0,1]}{2-0} = \frac{3 - 1}{2 - 0} = 1$. So $p(x) = 0 + 1 \cdot x + 1 \cdot x(x-1) = x^2$: the interpolant is $f$ itself, as it must be since $f \in \mathcal P_2$.
+2. $f[x_0, x_0] = f'(x_0)$ and $f[x_0, x_0, x_0] = \frac{f''(x_0)}{2}$.
+3. Once the weights are known, the barycentric formula costs $O(n)$ operations per evaluation (the naive formula costs $O(n^2)$), it is numerically stable, and the weights may be rescaled to avoid overflow/underflow (@exr-Bary-1, @exr-Bary-weights).
+4. The tangent line $p(x) = f(a) + f'(a)(x - a)$ (the degree $1$ Taylor polynomial). On $\{\{0,0,1\}\}$ there are $3$ conditions ($p(0) = f(0)$, $p'(0) = f'(0)$, $p(1) = f(1)$) and $p \in \mathcal P_2$.
+5. Newton: $x_{n+1}$ is the root of the Hermite interpolant on $\{\{x_n, x_n\}\}$ (the tangent line). Secant: $x_{n+1}$ is the root of the Lagrange interpolant on $\{x_{n-1}, x_n\}$ (the secant line).
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-why-quadrature name="Why approximate integrals?"}
+**@exr-l10-why-quadrature**
+
+Can you compute $\int_0^1 e^{-x^2} \,\mathrm{d}x$ or $\int_0^1 \frac{\sin x}{x} \,\mathrm{d}x$ exactly?
+
+::: {.exercise-solution style="display: none;"}
+
+No: neither integrand has an antiderivative that can be written in terms of elementary functions. (Also, in practice we may only know $f$ at some points.) This is why we need quadrature rules.
+
+(One defines
+
+\begin{align}
+    \mathrm{erf}(x) &:= \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} \mathrm{d}t \nonumber\\
+    %
+    \mathrm{Si}(x) &:= \int_0^x \frac{\sin t}{t} \mathrm{d}t
+\end{align}
+
+with $\lim_{x\to\infty}\mathrm{erf}(x)=1$ and $\mathrm{Si}(x) \to \frac{\pi}{2}$.)
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-model-integral}
+**@exr-l10-model-integral**
+
+Show that $\int_0^{2\pi} \frac{1}{2\pi}(x + x \sin x) \,\mathrm{d}x = \pi - 1$.
+
+::: {.exercise-solution style="display: none;"}
+
+Integrating by parts gives 
+
+\begin{align}
+\int_0^{2\pi} x \sin x \,\mathrm{d}x 
+%
+&= \int_0^{2\pi} x (-\cos' x) \,\mathrm{d}x \nonumber\\
+%
+&= \big[ -x \cos x \big]_0^{2\pi} + \int_0^{2\pi} \cos x \,\mathrm{d}x \nonumber\\
+%
+&= -2\pi.
+\end{align}
+
+Therefore the integral of $(x+x\sin x)/2\pi$ on $[0,2\pi]$ is $\frac{1}{2\pi} \big( 2\pi^2 - 2\pi \big) = \pi - 1$.
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-mvt name="Interpolation error with one node"}
+**@exr-l10-mvt**
+
+Write down the interpolation error formula for $f - p$ when $p$ interpolates $f$ on $n+1$ nodes (@thm-Lagrange-interpolation). What does it say when $n = 0$ and $X = \{a\}$?
+
+::: {.exercise-solution style="display: none;"}
+
+We have: for $x$, there exists $\xi_x$ between $\min\{ x, \min X\}$ and $\max\{x,\max X\}$ such that 
+
+\begin{align}
+f(x) - p(x) &= \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x)
+\end{align}
+
+where $\ell_X$ is the node polynomial on $X$. For $n = 0$ and $X = \{a\}$, $p = f(a)$ and this reads $f(x) - f(a) = f'(\xi_x)(x - a)$ for some $\xi_x$ between $a$ and $x$ (which is just the mean value theorem)
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-rectangular-error name="Error estimate"}
+**@exr-l10-rectangular-error**
+
+Suppose $f \in C^1([a,b])$. Show that
+
+$$
+\begin{align}
+    \left| \int_{a}^b f - (b-a) f(a) \right| \leq \| f'\|_{L^\infty([a,b])} \frac{(b-a)^2}{2}.
+\end{align}
+$$
+
+::: {.exercise-solution style="display: none;"}
+
+Since $p_0$ is a degree zero interpolating polynomial, we may apply the error bound we had for interpolation (@thm-Lagrange-interpolation): 
+
+$$
+\begin{align}
+    f(x) - p_0(x) = f'(\xi_x) (x - a) 
+\end{align}
+$$
+
+for some $\xi_x \in [a, x]$ (in this case, this is just the mean value theorem). Therefore, integrating this over $[a,b]$, we have the bound
+
+$$
+\begin{align}
+    \left| \int_{a}^b \big[ f(x) - p_0(x) \big] \mathrm{d}x \right| 
+    %
+    &\leq \| f'\|_{L^\infty([a,b])} \int_a^b |x - a| \mathrm{d}x \nonumber\\
+    &= \| f'\|_{L^\infty([a,b])} \int_{0}^{b-a} t \,\mathrm{d}t \nonumber\\
+    %
+    &= \| f'\|_{L^\infty([a,b])} \frac{(b-a)^2}{2}. \nonumber
+\end{align}
+$$
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-riemann}
+**@exr-l10-riemann**
+
+Approximate $\int_0^1 x \,\mathrm{d}x$ by the composite rectangular rule with $n$ subintervals of equal length. What is the error?
+
+::: {.exercise-solution style="display: none;"}
+
+First, note that $\int_0^1 x \mathrm{d}x = \frac12$.
+
+The composite rectangular rule on $[0,1]$ is $\frac1n \sum_{j=0}^{n-1} \frac{j}{n} = \frac{n-1}{2n} = \frac12 - \frac{1}{2n}$, so the error is exactly $\frac{1}{2n}$: the rate $O(n^{-1})$ of @thm-rectangular-composite (and the constant $\frac{\|f'\|_{L^\infty}}{2}(b-a)^2 = \frac12$ is attained).
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-trapezoid-rule}
+**@exr-l10-trapezoid-rule**
+
+1. Write down the polynomial $p_1$ of degree at most $1$ interpolating $f$ on $X = \{a, b\}$.
+2. Show that $\int_a^b p_1(x) \,\mathrm{d}x = \frac{b-a}{2} \big( f(a) + f(b) \big)$.
+
+::: {.exercise-hint style="display: none;"}
+
+You can either go through the details in the integration, or draw a picture and calculate the area of the trapezium with points $(a,0), (a,f(a)), (b, f(b)), (b,0)$. If you do the integration explicitly, the Newton form is probably slightly easier...
+
+:::
+
+::: {.exercise-solution style="display: none;"}
+
+*Lagrange form*:
+
+1. We have $p_1(x) = \frac{x-b}{a-b}f(a) + \frac{x-a}{b-a} f(b)$.
+
+2. We have
+$$
+\begin{align}
+    \int_a^b \frac{x-b}{a-b} \,\mathrm{d}x 
+    %
+    &= \frac{1}{a-b} \Big[ \frac{(x-b)^2}{2} \Big]_a^b 
+    %
+    \nonumber\\
+    %
+    &= - \frac{(a-b)^2}{2(a-b)} = \frac{b-a}{2}
+    \nonumber\\
+    \int_a^b \frac{x-a}{b-a} \,\mathrm{d}x &= \frac{1}{b-a} \Big[ \frac{(x-a)^2}{2} \Big]_a^b 
+    \nonumber\\
+    &= \frac{b-a}{2}, \nonumber
+\end{align}
+$$
+and so $\int_a^b p_1 = \frac{b-a}{2} f(a) + \frac{b-a}{2} f(b)$. 
+
+*Newton form*:
+
+1. $p_1(x) = f(a) + \frac{f(b)-f(a)}{b-a} (x-a)$, 
+2. Integrating gives 
+$$
+\begin{align}
+    \int_a^b (x-a) \mathrm{d}x &= \frac12 (x-a)^2\Big|_a^b \nonumber\\
+    %
+    &= \frac12 (b-a)^2
+\end{align}
+$$
+and the result follows.
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-node-sign}
+**@exr-l10-node-sign**
+
+What is the sign of $(x-a)(x-b)$ on $[a,b]$? Compute $\int_a^b |(x-a)(x-b)| \,\mathrm{d}x$.
+
+::: {.exercise-hint style="display: none;"}
+
+Make the substitution $t := x - \frac{a+b}{2}$ and define $h := b-a$.
+
+:::
+
+::: {.exercise-solution style="display: none;"}
+
+We have $(x-a)(x-b) \leq 0$ on $[a,b]$, so 
+
+\begin{align}
+\int_a^b |(x-a)(x-b)| \,\mathrm{d}x 
+%
+&= -\int_a^b (x-a)(x-b) \,\mathrm{d}x \nonumber\\
+%
+&= \int_{-h/2}^{h/2} \big( \tfrac{h^2}{4} -t^2 \big) \mathrm{d}t \nonumber\\
+%
+&= \tfrac{h^3}{4} - \Big[ \frac{t^3}{3} \Big]_{-h/2}^{h/2} \nonumber\\
+%
+&= \tfrac{h^3}{4} - \frac{h^3}{12}
+\nonumber\\
+%
+&= \frac{(b-a)^3}{6}.
+\end{align}
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-midpoint name="Midpoint rule"}
+**@exr-l10-midpoint**
+
+The *midpoint rule* is $\int_a^b f \approx (b-a) f\big(\tfrac{a+b}{2}\big)$.
+
+1. Show that the midpoint rule is exact for all polynomials of degree at most $1$.
+2. Suppose $f \in C^2([a,b])$. Show that
+$$
+    \left| \int_a^b f - (b-a) f\big(\tfrac{a+b}{2}\big) \right| \leq \frac{\|f''\|_{L^\infty([a,b])}}{24} (b-a)^3.
+$$
+3. Write down the composite midpoint rule on $n$ subintervals of equal length and show that its error is bounded by $\frac{\|f''\|_{L^\infty([a,b])}}{24} \frac{(b-a)^3}{n^2}$. Compare with @thm-trapezoid-composite.
+
+::: {.exercise-hint style="display: none;"}
+
+For 2, use Taylor's theorem about $m = \frac{a+b}{2}$: 
+
+\begin{align}
+    f(x) = f(m) + f'(m)(x - m) + \frac{f''(\xi_x)}{2}(x-m)^2.
+\end{align}
+
+:::
+
+::: {.exercise-solution style="display: none;"}
+
+Let $m = \frac{a+b}{2}$.
+
+1. For $f = 1$: $\int_a^b 1 = b - a = (b-a) \cdot 1$. For $f = x - m$: 
+$$
+\begin{align}
+    \int_a^b (x - m) \,\mathrm{d}x &= 0 
+    \nonumber\\
+    %
+    &= (b-a)(m - m).
+\end{align}
+$$
+
+1. By Taylor's theorem, 
+$$
+\begin{align}
+    f(x) = f(m) + f'(m)(x-m) + \frac{f''(\xi_x)}{2} (x-m)^2
+\end{align}
+$$ 
+for some $\xi_x$ between $m$ and $x$. Integrating and using $\int_a^b (x - m) \,\mathrm{d}x = 0$,
+$$
+\begin{align}
+    \left| \int_a^b f - (b-a) f(m) \right| 
+    %
+    &= \left| \int_a^b \frac{f''(\xi_x)}{2} (x-m)^2 \,\mathrm{d}x \right| \nonumber\\
+    %
+    &\leq \frac{\|f''\|_{L^\infty([a,b])}}{2} \int_a^b (x - m)^2 \,\mathrm{d}x 
+    \nonumber\\
+    %
+    &= \frac{\|f''\|_{L^\infty([a,b])}}{2} \frac{(b-a)^3}{12}.
+\end{align}
+$$
+
+1. With $x_j = a + j \frac{b-a}{n}$, the composite rule is $\frac{b-a}{n} \sum_{j=0}^{n-1} f\big( \frac{x_j + x_{j+1}}{2} \big)$. Applying 2 on each subinterval of length $\frac{b-a}{n}$ and summing the $n$ errors gives
+$$
+\begin{align}
+    n \cdot \frac{\|f''\|_{L^\infty([a,b])}}{24} \Big( \frac{b-a}{n} \Big)^3 
+    %
+    &= \frac{\|f''\|_{L^\infty([a,b])}}{24} \frac{(b-a)^3}{n^2}.
+\end{align}
+$$
+This is the same rate $O(n^{-2})$ as the composite trapezoid rule, but with half the constant (and one fewer function evaluation).
+
+:::
+:::
+
+<!-- L10 -->
+::: {.exercise-box #bank-exr-l10-weights name="Properties of interpolatory weights" .difficult}
+**@exr-l10-weights**
+
+Let $x_0, \dots, x_n \in [a,b]$ be distinct and let $w_j = \int_a^b \ell_j$ be the weights in @eq-interpolatory-quadrature.
+
+1. Show that $\{w_j\}$ are the *unique* weights for which $\sum_{j=0}^n w_j f(x_j)$ is exact for all $f \in \mathcal P_n$.
+2. Show that $\sum_{j=0}^n w_j = b - a$.
+3. Let $\hat x_j \in [0,1]$ and let $\hat w_j$ be the corresponding weights on $[0,1]$. Show that the nodes $x_j = a + (b-a) \hat x_j$ on $[a,b]$ have weights $w_j = (b-a) \hat w_j$.
+4. Suppose the nodes are symmetric: $x_{n-j} = a + b - x_j$ for all $j$. Show that $w_{n-j} = w_j$.
+
+::: {.exercise-hint  style="display: none;"}
+
+1. What happens if you apply the rule to $f(x) = \ell_j(x)$?
+2. What happens if you apply the rule to $f(x) = 1$?
+3. Use $w_j = \int_a^b \ell_j$,
+4. Show that $\ell_{n-j}(x) = \ell_j(a + b - x)$ by checking the values of both sides at the nodes.
+
+:::
+
+::: {.exercise-solution style="display: none;"}
+
+1. If $f \in \mathcal P_n$ then $f$ is its own interpolant, $f = \sum_j \ell_j f(x_j)$, and so $\int_a^b f = \sum_j w_j f(x_j)$ and the rule is exact. Conversely, if $\sum_j w_j f(x_j)$ is exact on $\mathcal P_n$, then applying it to $\ell_j \in \mathcal P_n$ gives $w_j = \int_a^b \ell_j = \sum_k w_k \ell_j(x_k) = w_j$, as required.
+
+2. Apply 1 to $f = 1$: $b - a = \int_a^b 1 = \sum_j w_j$.
+
+3. Write $x = a + (b-a) t$. Since $x - x_j = (b-a)(t - \hat x_j)$, we have
+$$
+\begin{align}
+    \ell_j(x) &= \prod_{k \not= j} \frac{x - x_k}{x_j - x_k} 
+    \nonumber\\
+    %
+    &= \prod_{k\not=j} \frac{t - \hat x_k}{\hat x_j - \hat x_k} 
+    \nonumber\\
+    %
+    &= \hat \ell_j(t).
+\end{align}
+$$
+Therefore 
+$$
+\begin{align}
+    w_j = \int_a^b \ell_j(x) \,\mathrm{d}x = (b-a) \int_0^1 \hat\ell_j(t) \,\mathrm{d}t = (b-a) \hat w_j.
+\end{align}
+$$
+
+1. Let $q(x) := \ell_j(a + b - x) \in \mathcal P_n$. Then $q(x_{n-k}) = \ell_j(x_k) = \delta_{jk}$. That is, $q(x_k) = \delta_{k, n-j}$, so $q = \ell_{n-j}$. Substituting $y = a + b - x$,
+$$
+\begin{align}
+    w_{n-j} &= \int_a^b \ell_j(a+b-x) \,\mathrm{d}x \nonumber\\
+    %
+    &= \int_a^b \ell_j(y) \,\mathrm{d}y \nonumber\\
+    %
+    &= w_j.
+\end{align}
+$$
+
+:::
+:::
+
+## Lecture 11
+
+<!-- L11 -->
+::: {.exercise-box #bank-exr-l11-guess-simpson}
+**@exr-l11-guess-simpson**
+
+Suppose you know $f(0)$, $f(\tfrac12)$ and $f(1)$. Find weights $\hat w_0, \hat w_1, \hat w_2$ so that 
+
+\begin{align}
+    \int_0^1 f(x) \mathrm{d}x 
+    %
+    &\approx \hat w_0 f(0) + \hat w_1 f(\tfrac{1}2) + \hat w_2 f(1)
+\end{align} 
+
+is exact for $f = 1$, $x$ and $x^2$.
+
+::: {.exercise-hint style="display: none;"}
+
+Notice that 
+
+\begin{align}
+    \int_0^1 f(x)\mathrm{d}x = \begin{cases} 
+        1 &\text{if } f = 1, \nonumber\\
+        1/2 &\text{if } f = x, \nonumber\\
+        1/3 &\text{if } f = x^2 
+    \end{cases}
+\end{align}
+
+and solve the resulting linear system of equations.
+
+:::
+
+::: {.exercise-solution style="display: none;"}
+
+Exactness for $1, x, x^2$ gives
+
+$$
+\begin{align}
+    1 &= \hat w_0 + \hat w_1 + \hat w_2 , \nonumber\\
+    \tfrac12 &= 0 \cdot \hat w_0 + \tfrac12 \hat w_1 + 1 \cdot \hat w_2, \nonumber\\
+    \tfrac13 &= 0^2 \hat w_0 + (\tfrac12)^2 \hat w_1 + 1^2 \hat w_2 \nonumber
+\end{align}
+$$
+
+Subtracting the last two equations gives $\frac14 \hat w_1 = \frac16$, so $\hat w_1 = \frac23$, then $\hat w_2 = \frac16$ and $\hat w_0 = \frac16$. 
+
+This is Simpson's rule (it was already known to Kepler in 1615 as his *barrel rule* for the volume of wine barrels).
+
+:::
+:::
+
+<!-- L11 -->
+::: {.exercise-box #bank-exr-l11-cubic-preview}
+**@exr-l11-cubic-preview**
+
+1. What is the quadratic interpolant of $f(x) = x^2$ on $\{-1, 0, 1\}$?
+2. What is the cubic interpolant $p$ of $f(x) = x^3$ on $\{-1, 0, 1\}$? Compare $\int_{-1}^1 f$ and $\int_{-1}^1 p$.
+3. Why is $\int_a^b \big(x - \tfrac{a+b}{2}\big)^3 \,\mathrm{d}x = 0$?
+
+::: {.exercise-solution style="display: none;"}
+
+1. $p(x) = x^2$: since $f \in \mathcal P_2$, the interpolant is $f$ itself.
+2. $f(-1) = -1$, $f(0) = 0$, $f(1) = 1$, so $p(x) = x$. Both integrals vanish: $\int_{-1}^1 x^3 = 0 = \int_{-1}^1 x$. So integrating the quadratic interpolant gives the exact integral of this cubic.
+3. With $t = x - \frac{a+b}{2}$ the integral is $\int_{-h}^{h} t^3 \,\mathrm{d}t$ with $h = \frac{b-a}{2}$, and $t \mapsto t^3$ is odd.
+
+:::
+:::
+
+<!-- L11 -->
+::: {.exercise-box #bank-exr-l11-sharp name="The error bounds are sharp"}
+**@exr-l11-sharp**
+
+1. Compute the error of the trapezoid rule for $f(x) = x^2$ on $[0,1]$ and compare it with the bound in @thm-trapezoid-error.
+2. Compute the error of Simpson's rule for $f(x) = x^4$ on $[0,1]$ and compare it with the bound in @thm-simpson-error.
+3. Explain why this shows that Simpson's rule is not exact for all polynomials of degree $4$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. $\int_0^1 x^2 \,\mathrm{d}x = \frac13$ and the trapezoid rule gives $\frac12 (0 + 1) = \frac12$, so the error is $\frac12 - \frac13 = \frac16$. The bound is $\frac{\|f''\|_{L^\infty}}{12} (1 - 0)^3 = \frac{2}{12} = \frac16$, so the bound is attained.
+
+2. $\int_0^1 x^4 \,\mathrm{d}x = \frac15$ and Simpson's rule gives $\frac16 \big( 0 + 4 \cdot \frac1{16} + 1 \big) = \frac16 \cdot \frac54 = \frac{5}{24}$, so the error is $\frac{5}{24} - \frac15 = \frac{1}{120}$. The bound is $\frac{\|f''''\|_{L^\infty}}{2880} = \frac{24}{2880} = \frac{1}{120}$, so again the bound is attained.
+
+3. The error in 2 is non-zero, so Simpson's rule is not exact for $x^4 \in \mathcal P_4$. Together with @thm-simpson-cubic, Simpson's rule is exact on $\mathcal P_3$ but not on $\mathcal P_4$.
+
+:::
+:::
+
+<!-- L11 -->
+::: {.exercise-box #bank-exr-l11-simpson-38 name="Simpson's 3/8 rule"}
+**@exr-l11-simpson-38**
+
+Let $h = \frac{b-a}{3}$ and consider the Newton–Cotes rule with the four nodes $a, a + h, a + 2h, b$.
+
+1. Show that the rule is
+$$
+    \int_a^b f \approx \frac{b-a}{8} \big[ f(a) + 3 f(a+h) + 3 f(a+2h) + f(b) \big].
+$$
+2. Show that this rule is exact for all polynomials of degree at most $3$, but not for $x^4$.
+3. Compute the error of this rule for $f(x) = x^4$ on $[0,1]$ and compare it with the error of Simpson's rule from @exr-l11-sharp.
+
+::: {.exercise-hint .draft style="display: none;"}
+
+Use @exr-l10-weights: it is enough to find the weights on $[0,1]$, and the weights are symmetric, so there are only two unknowns $\hat w_0 = \hat w_3$ and $\hat w_1 = \hat w_2$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. By @exr-l10-weights (3), it is enough to work on $[0,1]$ with nodes $0, \frac13, \frac23, 1$. By @exr-l10-weights (4), $\hat w_0 = \hat w_3 =: \alpha$ and $\hat w_1 = \hat w_2 =: \beta$. Exactness on $1$ and $x^2$ gives
+$$
+    1 = 2\alpha + 2\beta, \qquad \frac13 = \alpha \Big(0 + 1\Big) + \beta \Big( \frac19 + \frac49 \Big) = \alpha + \frac59 \beta.
+$$
+From the first, $\alpha = \frac12 - \beta$, so $\frac13 = \frac12 - \frac49 \beta$, i.e. $\beta = \frac38$ and $\alpha = \frac18$. Scaling by $b-a$ gives the stated rule.
+
+2. The rule is interpolatory with $4$ nodes, so it is exact on $\mathcal P_3$ by @exr-l10-weights (1). For $x^4$, see 3.
+
+3. On $[0,1]$ the rule gives $\frac18 \big[ 0 + 3 \cdot \frac1{81} + 3 \cdot \frac{16}{81} + 1 \big] = \frac18 \cdot \frac{132}{81} = \frac{11}{54}$, whereas $\int_0^1 x^4 = \frac15$. The error is $\frac{11}{54} - \frac15 = \frac{1}{270} \not= 0$, so the rule is not exact on $\mathcal P_4$.
+
+Simpson's rule has error $\frac1{120}$ using $3$ function evaluations, while the 3/8 rule has the smaller error $\frac1{270}$ but uses $4$. Both rules are exact on $\mathcal P_3$ (but not $\mathcal P_4$), so their composite versions both converge at rate $O(n^{-4})$.
+
+:::
+:::
+
+<!-- L11 -->
+::: {.exercise-box #bank-exr-l11-radau name="Choosing the nodes as well"}
+**@exr-l11-radau**
+
+Consider rules on $[0,1]$ of the form $\int_0^1 f \approx w_0 f(0) + w_1 f(x_1)$ where $w_0, w_1$ **and** $x_1 \in (0,1]$ are free.
+
+1. Find $w_0, w_1, x_1$ so that the rule is exact for all polynomials of degree at most $2$.
+2. Show that the resulting rule is not exact for $x^3$.
+3. Compare with the trapezoid rule (which also uses two nodes, one of which is $0$). What is the largest degree $d$ for which you could hope to find a rule $w_0 f(y_0) + w_1 f(y_1)$ (with both nodes free) that is exact on $\mathcal P_d$?
+
+::: {.exercise-hint .draft style="display: none;"}
+
+Write down the three equations obtained from exactness on $1, x, x^2$. For 3, count the unknowns.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. Exactness on $1, x, x^2$ gives
+$$
+    w_0 + w_1 = 1, \qquad w_1 x_1 = \frac12, \qquad w_1 x_1^2 = \frac13.
+$$
+Dividing the third by the second gives $x_1 = \frac23$, then $w_1 = \frac34$ and $w_0 = \frac14$. The rule is $\int_0^1 f \approx \frac14 f(0) + \frac34 f\big(\frac23\big)$.
+
+2. $\frac34 \big(\frac23\big)^3 = \frac{2}{9} \not= \frac14 = \int_0^1 x^3$.
+
+3. The trapezoid rule $\frac12 \big( f(0) + f(1) \big)$ is exact on $\mathcal P_1$ only: by freeing the second node we gained one degree of exactness. With both nodes free there are $4$ unknowns $w_0, w_1, y_0, y_1$ and exactness on $\mathcal P_d$ imposes $d+1$ equations, so we may hope for $d = 3$. This is *Gaussian quadrature*, which we will see next time: the nodes $y_{0,1} = \frac12 \mp \frac{1}{2\sqrt3}$ with $w_0 = w_1 = \frac12$ give a rule exact on $\mathcal P_3$.
+
+:::
+:::
+
+<!-- L11 -->
+::: {.exercise-box #bank-exr-l11-high-order .difficult}
+**@exr-l11-high-order**
+
+In this exercise, we see why we use composite rules rather than Newton–Cotes rules with many nodes.
+
+1. Write a Julia function `nc_weights(n)` which returns the weights $\hat w_0, \dots, \hat w_n$ of the Newton–Cotes rule on $[0,1]$ with nodes $\hat x_j = \frac{j}{n}$. (You may solve the linear system obtained from exactness on $1, x, \dots, x^n$, or integrate the Lagrange polynomials using `Polynomials.jl`.)
+2. For $n = 1, \dots, 12$, print the weights. For which $n$ do negative weights first appear? Plot $\sum_j |\hat w_j|$ against $n$.
+3. Suppose that the values $f(x_j)$ are only known up to errors $|\varepsilon_j| \leq \varepsilon$. Show that the computed quadrature differs from $\sum_j w_j f(x_j)$ by at most $\varepsilon \sum_j |w_j|$. Why is it desirable to have positive weights?
+4. Apply the Newton–Cotes rule with $n + 1$ nodes on $[-1,1]$ to Runge's function $f(x) = \frac{1}{1 + 25x^2}$ (@exm-Runge) for $n = 2, 4, \dots, 20$ and plot the error (the exact integral is $\frac25 \arctan 5$). Compare with the composite Simpson rule using the same nodes.
+
+::: {.exercise-hint .draft style="display: none;"}
+
+For 1, exact rational arithmetic (e.g. `(0:n) .// n`) avoids the ill-conditioning of the Vandermonde matrix. For 4, use @exr-l10-weights (3) to convert the weights on $[0,1]$ to weights on $[-1,1]$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. For example, using the Vandermonde system in exact rational arithmetic:
+```julia
+function nc_weights(n)
+    x = (0:n) .// n
+    V = [ x[j+1]^k for k in 0:n, j in 0:n ]
+    m = [ 1 // (k+1) for k in 0:n ]
+    return V \ m
+end
+```
+
+2. Negative weights first appear for $n = 8$:
+$\hat w = \frac{1}{28350} (989, 5888, -928, 10496, -4540, 10496, -928, 5888, 989)$. The sum $\sum_j \hat w_j = 1$ always (@exr-l10-weights), but $\sum_j |\hat w_j|$ grows rapidly with $n$.
+
+3. $\big| \sum_j w_j (f(x_j) + \varepsilon_j) - \sum_j w_j f(x_j) \big| = \big| \sum_j w_j \varepsilon_j \big| \leq \varepsilon \sum_j |w_j|$. If all the weights are positive, then $\sum_j |w_j| = \sum_j w_j = b - a$ and so errors in the data are not amplified. With large negative weights, small errors in $f(x_j)$ (e.g. rounding errors) can be amplified enormously.
+
+4. The Newton–Cotes rule integrates the equispaced interpolant, which suffers from the Runge phenomenon, so the error does not go to zero as $n$ increases. The composite Simpson rule with the same nodes converges at rate $O(n^{-4})$ by @thm-simpson-error.
+
+:::
+:::
+
+## Midterm (Fall 2025)
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a1 release="now"}
+**Midterm (Fall 2025): Question A1**
+
+*Compulsory section, 2 pts.* Suppose that a quantity $x \not= 0$ is approximated by $\widetilde{x}$. What is the relative error in this approximation?
+
+::: {.exercise-solution style="display: none;"}
+
+\begin{align}
+    \frac{|x - \widetilde{x}|}{|x|}
+\end{align}
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a3 release="now"}
+**Midterm (Fall 2025): Question A3**
+
+*Compulsory section, 3 pts.* How many floating point numbers are there in the interval $[1,2)$ with binary precision $k = 3$?
+
+::: {.exercise-solution style="display: none;"}
+
+Floating point numbers are of the form $(-1)^s( 1 + f ) 2^{n}$ where $f = 0 . b_1 b_2 \dots b_k$ in binary. Therefore, there are $2^k$ floating point numbers in the interval $[1,2)$. When the binary precision is $3$, there are $8$ floating point numbers in the interval.
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a4 release="now"}
+**Midterm (Fall 2025): Question A4**
+
+*Compulsory section, 3 pts.* What is the relative condition number of the function $f(x) = x - 1$?
+
+::: {.exercise-solution style="display: none;"}
+
+\begin{align}
+    \kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right| = \left| \frac{x}{x-1} \right|
+\end{align}
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a5 release="now"}
+**Midterm (Fall 2025): Question A5**
+
+*Compulsory section, 3 pts.* What scaling would you use in a graph to verify algebraic decay (i.e. $O(n^{-\alpha})$ for some $\alpha > 0$)?
+
+(a). Linear scale,
+(b). Semi-logarithmic with the x-axis scaled,
+(c). Semi-logarithmic with the y-axis scaled,
+(d). Log-log plot (logarithmic scaling in both x- and y-axes).
+
+::: {.exercise-solution style="display: none;"}
+
+(d). I would use a log-log scale. If $y = n^{-\alpha}$, then $\log y = - \alpha \log n$ which is linear on a log-log plot.
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a7 release="now"}
+**Midterm (Fall 2025): Question A7**
+
+*Compulsory section, 4 pts.* Let $f : [ 0, \tfrac\pi2 ] \to \mathbb R$ be given by $f(x) = x^2\sin x - 1$. Show that there is a $\xi \in [0,\tfrac\pi2]$ for which $f(\xi) = 0$.
+
+::: {.exercise-solution style="display: none;"}
+
+$f$ is a continuous function with $f(0) = -1 < 0$ and $f(\pi/2) = \pi^2/4 - 1 > 0$. By the change of sign theorem, there exists some $\xi \in [0,\pi/2]$ such that $f(\xi) = 0$.
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a8 release="now"}
+**Midterm (Fall 2025): Question A8**
+
+*Compulsory section, 2 pts.* Here, we apply Newton's method to $f(x) = x^2\sin x - 1$ (from Question A7):
+
+```
+Newton iteration on f(x) = x^2 sin(x) - 1 with x1 = π/2
+┌───────────┬──────────┬────────────────┬─────────────────────┐
+│ iteration │ sequence │       residual │       approximate α │
+│         n │     x[n] │ r[n]=|f(x[n])| │ log r[n]/log r[n-1] │
+├───────────┼──────────┼────────────────┼─────────────────────┤
+│       1.0 │   1.5708 │         1.4674 │                 NaN │
+│       2.0 │  1.10371 │      0.0876848 │            -6.34694 │
+│       3.0 │  1.06891 │     0.00165227 │             2.63171 │
+│       4.0 │  1.06822 │     6.52732e-7 │             2.22338 │
+│       5.0 │  1.06822 │    1.01918e-13 │             2.10043 │
+└───────────┴──────────┴────────────────┴─────────────────────┘
+```
+
+Why do we use the residuals $r_n := |f(x_n)|$ instead of the errors $|x_n - \xi|$ when we are approximating the order of convergence ($\alpha$) in this method?
+
+::: {.exercise-solution style="display: none;"}
+
+$\xi$ is unknown in advance.
+
+***Remark.*** Suppose that $(x_n) \to \xi$. Then, since $f(x_n) = f(x_n) - f(\xi) = f'(\eta_n) (x_n - \xi)$ for some $\eta_n$ between $x_n$ and $\xi$, we have
+
+\begin{align}
+    \lim_{n\to\infty} \frac{ \log |f(x_{n+1})| }{ \log |f(x_n)| }
+    %
+    &= \lim_{n\to\infty}\frac{ \log |f'(\eta_{n+1})| +  \log |x_{n+1} - \xi| }{  \log |f'(\eta_{n})| +  \log |x_{n} - \xi| } \nonumber\\
+    %
+    &= \lim_{n\to\infty}\frac{ \frac{\log |f'(\eta_{n+1})|}{\log |x_{n} - \xi|} +  \frac{\log |x_{n+1} - \xi|}{\log |x_{n} - \xi|} }{  \frac{\log |f'(\eta_{n})|}{\log |x_{n} - \xi|} + 1 } \nonumber\\
+    %
+    &= \lim_{n\to\infty} \frac{\log |x_{n+1} - \xi|}{\log |x_{n} - \xi|}.
+\end{align}
+
+As a result, we may use the residuals to estimate the order of convergence.
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a9 release="now"}
+**Midterm (Fall 2025): Question A9**
+
+*Compulsory section, 4 pts.* Let $g(x) := 1 + \frac{1}{x}$ and define $x_1 = 1$ and $x_{n+1} = g(x_n)$. Suppose that $(x_n) \to \xi$. What is the value of $\xi$?
+
+::: {.exercise-solution style="display: none;"}
+
+We have $x_{n+1}\to \xi$ as $n \to \infty$. Since $g$ is continuous, we have $g(x_n)\to g(\xi)$ as $n \to \infty$. Therefore, $\xi = 1+ \frac{1}\xi$ which is equivalent to $\xi^2 - \xi - 1 = 0$ and so $\xi = \frac{1 \pm \sqrt{5}}2$. If $x_n > 0$ then $x_{n+1} >0$. Since $x_1 > 0$ we have $x_n > 0$ for all $n$ and thus $\xi \geq 0$. Therefore, $\xi = \frac{1+\sqrt{5}}{2}$ (the golden ratio).
+
+***Remark.*** It turns out the the sequence does indeed converge (can you find an interval on which $g$ is a contraction and apply the contraction mapping theorem?)
+
+```
+x[n+1] = g(x[n]) with x_1 = 1.0
+┌───────────┬──────────┬────────────────┬─────────────────────┐
+│ iteration │ sequence │       residual │       approximate α │
+│         n │     x[n] │ r[n]=|f(x[n])| │ log r[n]/log r[n-1] │
+├───────────┼──────────┼────────────────┼─────────────────────┤
+│       1.0 │      1.0 │            1.0 │                 NaN │
+│       2.0 │      2.0 │            0.5 │                -Inf │
+│       3.0 │      1.5 │       0.166667 │             2.58496 │
+│       4.0 │  1.66667 │      0.0666667 │             1.51139 │
+│       5.0 │      1.6 │          0.025 │             1.36219 │
+│       6.0 │    1.625 │     0.00961538 │             1.25902 │
+│       7.0 │  1.61538 │       0.003663 │             1.20779 │
+│       8.0 │  1.61905 │     0.00140056 │             1.17139 │
+│       9.0 │  1.61765 │    0.000534759 │             1.14653 │
+│      10.0 │  1.61818 │     0.00020429 │             1.12773 │
+│      11.0 │  1.61798 │     7.80275e-5 │             1.11329 │
+└───────────┴──────────┴────────────────┴─────────────────────┘
+ξ = 1.618033988749895
+```
+
+***Remark.*** Notice that the first few terms of the sequence $(x_n)$ are given by
+
+\begin{align*}
+    x_2 &= 1 + \frac{1}{x_1}, \qquad
+    x_{3} = 1 + \frac{1}{x_2} = 1 + \frac{1}{1 + \frac{1}{x_1}}, \qquad
+    x_{4} = 1 + \frac{1}{x_3} =  1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{x_1}}}, \cdots.
+\end{align*}
+
+As a result, you have given meaning to the *infinite continued fraction*
+
+\begin{align*}
+    \xi := 1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \ddots}}}
+\end{align*}
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a10 release="now"}
+**Midterm (Fall 2025): Question A10**
+
+*Compulsory section, 4 pts.* Write down the Lagrange form of the polynomial of degree at most $n$ interpolating $f$ on $X = \{ x_0, \dots, x_n \}$.
+
+::: {.exercise-solution style="display: none;"}
+
+The Lagrange polynomials are $\ell_j(x) := \prod_{0\leq k \leq n \, : \, k\not= j} \frac{x-x_k}{x_j - x_k}$ and the polynomial interpolation, $p$, of $f$ on $X$ is given by the following linear combination:
+
+\begin{align}
+    p(x) = \sum_{j=0}^n \ell_j(x) f(x_j)
+\end{align}
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a11 release="now"}
+**Midterm (Fall 2025): Question A11**
+
+*Compulsory section, 4 pts.* Consider the following finite difference table
+
+\begin{align}
+    x_0:    \quad & f[x_0] = 0,  \quad & f[x_0, x_1] = 1, \nonumber\\
+    x_1:    \quad & f[x_1] = 0.            \nonumber
+\end{align}
+
+Which of the following statements are true? Select all that apply.
+
+(a). The table does not correspond to any function $f$,
+(b). The table determines a polynomial interpolant $p$ of degree at least $2$,
+(c). We must have $f'(x_1) = 1$,
+(d). We must have $x_0 = x_1$.
+
+::: {.exercise-solution style="display: none;"}
+
+(c) and (d). By the definition of divided differences, we have $f(x_0) = f(x_1) = 0$ and
+
+\begin{align}
+    1 = f[x_0,x_1] = \begin{cases}
+        \frac{f(x_0) - f(x_1)}{x_0 - x_1} &\text{if } x_0 \not= x_1 \\
+        f'(x_0) &\text{if } x_0 = x_1.
+    \end{cases}
+\end{align}
+
+* Therefore, we must have $x_0 = x_1$ and $f'(x_0) = f'(x_1) = 1$ (third and fourth options should have been selected).
+* This table only determines a polynomial, $p$, of degree at most 1 (and so the second option does not apply):
+
+\begin{align}
+    p(x) = f[x_0] + f[x_0,x_1] (x - x_0) = x - x_0.
+\end{align}
+
+One can indeed show that $p'(x_0) = 1 = f'(x_0)$ and $p(x_0) = 0 = f(x_0)$.
+
+* $f(x) = x-x_0$ is an example of a function with the divided difference table as shown (so the first option does not apply).
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-a12 release="now"}
+**Midterm (Fall 2025): Question A12**
+
+*Compulsory section, 5 pts.* Write down the Trapezoid rule on $[-1,1]$ and show that it is exact for all polynomials of degree at most $1$.
+
+::: {.exercise-solution style="display: none;"}
+
+The trapezoid rule has weights $w_0 = w_1 = 1$ and nodes $x_0 = -1$ and $x_1 = 1$: i.e.
+
+\begin{align}
+    \int^{1}_{-1} f \approx f(-1) + f(1).
+\end{align}
+
+When $f(x) = \alpha$, the integral is $2 \alpha = f(-1) + f(+1)$,
+
+When $f(x) = x$, since $f$ is odd, the integral is $0 = -1 + 1 = f(-1) + f(1)$.
+
+Therefore, taking linear combinations, the rule is exact for all polynomials of degree $1$.
+
+:::
+:::
+
+<!-- midterm-2025 -->
+::: {.exercise-box #bank-midterm-2025-d release="now"}
+**Midterm (Fall 2025): Question D**
+
+*Optional section, 30 pts.* **Newton's method for repeated roots.**
+
+1. **[2 points]** Show that $f(x) = e^x - x - 1$ satisfies $f(0) = f'(0) = 0$ and $f''(0) \not= 0$.
+2. **[2 points]** Here, we apply Newton's method to $f(x) = e^x - x - 1$. What is the order of convergence?
+
+```
+┌───────────┬─────────────┬───────────────┬─────────────────────┐
+│ iteration │    sequence │         error │       approximate α │
+│         n │        x[n] │ e[n]=|x[n]-ξ| │ log e[n]/log e[n-1] │
+├───────────┼─────────────┼───────────────┼─────────────────────┤
+│       1.0 │         3.1 │           3.1 │                 NaN │
+│       2.0 │     2.24624 │       2.24624 │             0.71527 │
+│       3.0 │       1.512 │         1.512 │             0.51088 │
+│       4.0 │    0.939627 │      0.939627 │           -0.150621 │
+│       5.0 │    0.542328 │      0.542328 │               9.826 │
+│       6.0 │    0.295555 │      0.295555 │             1.99205 │
+│       7.0 │    0.155046 │      0.155046 │             1.52927 │
+│       8.0 │   0.0795256 │     0.0795256 │             1.35817 │
+    ...           ...             ...                 ...
+│      12.0 │   0.0050958 │     0.0050958 │             1.15071 │
+│      13.0 │  0.00255006 │    0.00255006 │             1.13113 │
+│      14.0 │  0.00127557 │    0.00127557 │               1.116 │
+│      15.0 │ 0.000637923 │   0.000637923 │             1.10398 │
+│      16.0 │ 0.000318995 │   0.000318995 │              1.0942 │
+│      17.0 │ 0.000159506 │   0.000159506 │              1.0861 │
+│      18.0 │  7.97552e-5 │    7.97552e-5 │             1.07927 │
+│      19.0 │  3.98781e-5 │    3.98781e-5 │             1.07345 │
+│      20.0 │  1.99392e-5 │    1.99392e-5 │             1.06843 │
+│      21.0 │  9.96963e-6 │    9.96963e-6 │             1.06404 │
+└───────────┴─────────────┴───────────────┴─────────────────────┘
+```
+
+Consider the modified Newton's method
+
+\begin{align*}
+    x_{n+1} = x_n - 2 \frac{f(x_n)}{f'(x_n)}.
+\end{align*}
+
+3. **[2 points]** We apply this method to $f(x) = e^x - x - 1$. Compare the table to that of the standard Newton method.
+
+```
+┌───────────┬─────────────┬───────────────┬─────────────────────┐
+│ iteration │    sequence │         error │       approximate α │
+│         n │        x[n] │ e[n]=|x[n]-ξ| │ log e[n]/log e[n-1] │
+├───────────┼─────────────┼───────────────┼─────────────────────┤
+│       1.0 │         3.1 │           3.1 │                 NaN │
+│       2.0 │     1.39248 │       1.39248 │            0.292634 │
+│       3.0 │    0.313183 │      0.313183 │            -3.50653 │
+│       4.0 │   0.0163206 │     0.0163206 │             3.54474 │
+│       5.0 │  4.43937e-5 │    4.43937e-5 │             2.43539 │
+│       6.0 │ 3.27151e-10 │   3.27151e-10 │             2.17918 │
+└───────────┴─────────────┴───────────────┴─────────────────────┘
+```
+
+Now suppose that $f:[a,b]\to\mathbb R$ is four times continuously differentiable with root $\xi \in (a,b)$ of multiplicity $2$: that is, $f(\xi) = f'(\xi) = 0$ and $f''(\xi) \not= 0$. Further, we suppose that there exists $A > 0$ such that
+
+\begin{align*}
+    \left| \frac{f'''(x) + f^{(4)}(x) (x - \xi)}{f''(y)} \right| \leq A
+\end{align*}
+
+for all $x,y \in [a,b]$. The aim of this section is to show that the modified Newton method converges at least quadratically to $\xi$ for all $x_1 \in [a,b]$ with $|x_1 - \xi| \leq A^{-1}$. Notice that the modified Newton method can be written
+
+\begin{align*}
+    x_{n+1} - \xi &= \frac{ f'(x_n)(x_n - \xi) - 2 f(x_n) }{ f'(x_n) }.
+\end{align*}
+
+4. **[8 points]** By expanding the numerator $g(x) := f'(x) (x - \xi) - 2 f(x)$ and denominator $h(x) := f'(x)$, show that there exist $\eta_n, \theta_n$ between $x_n$ and $\xi$ such that
+\begin{align*}
+    x_{n+1} - \xi &=
+    \frac
+        {\frac1{3!} g'''(\eta_n) (x_n - \xi)^3}
+        {h'(\theta_n) (x_n - \xi) }
+    %
+    = \frac16
+    \left[ \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+        {f''(\theta_n)}
+    \right]
+    (x_n - \xi)^2.
+\end{align*}
+5. **[4 points]** Hence show that, if $|x_1 - \xi| \leq A^{-1}$, then $|x_{n+1} - \xi| \leq 6^{-n} |x_1 - \xi|$ and thus the modified Newton's method converges.
+6. **[4 points]** Show that $(x_n)$ converges at least quadratically to $\xi$.
+7. **[4 points]** What is the theoretical value of the asymptotic error constant when the modified Newton method is applied to $f(x) = e^x - x - 1$?
+8. **[4 points]** Show that the modified Newton method converges in $1$ iteration for functions of the form $f(x) = (x - \xi)^2$.
+
+::: {.exercise-solution style="display: none;"}
+
+1. We have $f'(x) = e^x - 1$ and $f''(x) = f'''(x) = \cdots = e^x$. Therefore, $f(0) = e^0 - 0 - 1 = 0$ and $f'(0) = e^0 - 1 = 0$ and $f''(0) = e^0 = 1$.
+
+2. The computational order of convergence appears to approach $1$.
+
+3. We have convergence in fewer iterations ($21$ vs $6$) and the computational order of convergence seems to be around $2$.
+
+4. We take derivatives of $g$:
+\begin{align}
+    g(x) &= f'(x) (x - \xi) - 2 f(x)\nonumber\\
+    g'(x) &= f''(x) (x - \xi) - f'(x) \nonumber\\
+    g''(x) &= f'''(x) (x - \xi) \nonumber\\
+    g'''(x) &= f^{(4)}(x) (x - \xi) + f'''(x).
+\end{align}
+Notice that $g(\xi) = g'(\xi) = g''(\xi) = 0$ and so there exists $\eta_n$ between $x_n$ and $\xi$ such that
+\begin{align}
+    g(x_n) &= g(\xi) + g'(\xi) (x_n - \xi) + \frac{1}2 g''(\xi) (x_n - \xi)^2 + \frac{1}{6} g'''(\eta_n) (x_n - \xi)^3 \nonumber\\
+    %
+    &= \frac{1}{6} \Big[ f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) \Big] (x_n-\xi)^3.
+\end{align}
+Moreover, there exists $\theta_n$ such that $f'(x_n) = f'(\xi) + f''(\theta_n) (x_n - \xi) = f''(\theta_n) (x_n - \xi)$ and so
+\begin{align}
+    x_{n+1} - \xi &=
+    \frac16
+    \left[ \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+        {f''(\theta_n)}
+    \right]
+    (x_n - \xi)^2
+\end{align}
+
+5. By assumption,
+\begin{align}
+    \left| \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi)}
+        {f''(\theta_n)}
+    \right| \leq A,
+\end{align}
+and so, if $|x_n - \xi| \leq A^{-1}$, then
+\begin{align}
+    |x_{n+1} - \xi|
+    \leq
+    \frac16
+    A |x_n - \xi|
+    |x_n - \xi|
+    %
+    \leq \frac16 |x_{n} - \xi|.
+\end{align}
+In particular, $|x_{n+1} - \xi| \leq A^{-1}$ and we may apply the bound inductively to obtain $|x_{n+1} - \xi| \leq 6^{-n} |x_1 - \xi|$ and so this modified Newton's method converges.
+
+6. Since $\eta_n, \theta_n$ are between $x_n$ and $\xi$, and $(x_n) \to \xi$, we have
+\begin{align}
+    \lim_{n\to\infty}
+    \frac{|x_{n+1} - \xi|}{|x_n - \xi|^2} &=
+    \lim_{n\to\infty}
+    \frac16
+    \left| \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+        {f''(\theta_n)}
+    \right| \nonumber\\
+    %
+    &=
+    \frac16
+    \left| \frac
+        {f'''(\xi)}
+        {f''(\xi)}
+    \right|
+\end{align}
+
+7. Recall that, in this case, $\xi = 0$, and $f'(x) = e^x - 1$, $f''(x) = f'''(x) = e^x$. Therefore, the asymptotic error constant is $\frac16 \frac{e^0}{e^0} = \frac16$.
+
+8. Note that $f(x)= (x - \xi)^2$ has a root of multiplicity $2$ at $\xi$. We have $x_{n+1} = x_n - 2 \frac{  (x_n - \xi)^2 }{ 2(x_n - \xi)} = x_n - (x_n - \xi) = \xi$ so that $x_{n+1} = \xi$ for all $n \geq 1$ regardless of $x_1 \in \mathbb R$.
+
+***Remark.*** In general, if $\xi$ is a root of $f$ of multiplicity $m$, one can define the following *modified Newton method*:
+\begin{align}
+    x_{n+1} = x_n - m \frac{f(x_n)}{f'(x_n)}.
+\end{align}
+Then, if $f$ is sufficiently smooth and $x_1$ is sufficiently close to $\xi$, the modified Newton method converges quadratically with asymptotic error constant
+\begin{align}
+\mu = \frac{1}{m(m+1)} \left|\frac{f^{(m+1)}(\xi)}{f^{(m)}(\xi)} \right|.
+\end{align}
+
+:::
 :::
 

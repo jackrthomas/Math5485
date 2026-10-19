@@ -1,0 +1,430 @@
+---
+title: "Midterm (Fall 2025)"
+after-lecture: 11
+---
+
+<!--
+Past exam questions for the exercise bank (collected by extras/collect_exercises.jl, run automatically before each render).
+
+* Each question is a top-level `::: {.exam-question label="..."}` block, labelled
+  "Midterm (Fall 2025): Question <label>" in the bank (the section is named after `title:`).
+* `after-lecture: 11` places this paper after Lecture 11 in the bank.
+* Solutions (`::: {.exercise-solution style="display: none;"}`) are available in the
+  bank immediately.
+* Already in the bank (so not repeated here): A2 (Quiz 0), A6 (@exr-subtractive-cancellation-1, L02),
+  Section B (midpoint rule, @exr-l10-midpoint, L10), Section C (@exr-simple-iteration, L04).
+-->
+
+::: {.exam-question label="A1"}
+
+*Compulsory section, 2 pts.* Suppose that a quantity $x \not= 0$ is approximated by $\widetilde{x}$. What is the relative error in this approximation?
+
+::: {.exercise-solution style="display: none;"}
+
+\begin{align}
+    \frac{|x - \widetilde{x}|}{|x|}
+\end{align}
+
+:::
+
+:::
+
+::: {.exam-question label="A3"}
+
+*Compulsory section, 3 pts.* How many floating point numbers are there in the interval $[1,2)$ with binary precision $k = 3$?
+
+::: {.exercise-solution style="display: none;"}
+
+Floating point numbers are of the form $(-1)^s( 1 + f ) 2^{n}$ where $f = 0 . b_1 b_2 \dots b_k$ in binary. Therefore, there are $2^k$ floating point numbers in the interval $[1,2)$. When the binary precision is $3$, there are $8$ floating point numbers in the interval.
+
+:::
+
+:::
+
+::: {.exam-question label="A4"}
+
+*Compulsory section, 3 pts.* What is the relative condition number of the function $f(x) = x - 1$?
+
+::: {.exercise-solution style="display: none;"}
+
+\begin{align}
+    \kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right| = \left| \frac{x}{x-1} \right|
+\end{align}
+
+:::
+
+:::
+
+::: {.exam-question label="A5"}
+
+*Compulsory section, 3 pts.* What scaling would you use in a graph to verify algebraic decay (i.e. $O(n^{-\alpha})$ for some $\alpha > 0$)?
+
+(a). Linear scale,
+(b). Semi-logarithmic with the x-axis scaled,
+(c). Semi-logarithmic with the y-axis scaled,
+(d). Log-log plot (logarithmic scaling in both x- and y-axes).
+
+::: {.exercise-solution style="display: none;"}
+
+(d). I would use a log-log scale. If $y = n^{-\alpha}$, then $\log y = - \alpha \log n$ which is linear on a log-log plot.
+
+:::
+
+:::
+
+::: {.exam-question label="A7"}
+
+*Compulsory section, 4 pts.* Let $f : [ 0, \tfrac\pi2 ] \to \mathbb R$ be given by $f(x) = x^2\sin x - 1$. Show that there is a $\xi \in [0,\tfrac\pi2]$ for which $f(\xi) = 0$.
+
+::: {.exercise-solution style="display: none;"}
+
+$f$ is a continuous function with $f(0) = -1 < 0$ and $f(\pi/2) = \pi^2/4 - 1 > 0$. By the change of sign theorem, there exists some $\xi \in [0,\pi/2]$ such that $f(\xi) = 0$.
+
+:::
+
+:::
+
+::: {.exam-question label="A8"}
+
+*Compulsory section, 2 pts.* Here, we apply Newton's method to $f(x) = x^2\sin x - 1$ (from Question A7):
+
+```
+Newton iteration on f(x) = x^2 sin(x) - 1 with x1 = π/2
+┌───────────┬──────────┬────────────────┬─────────────────────┐
+│ iteration │ sequence │       residual │       approximate α │
+│         n │     x[n] │ r[n]=|f(x[n])| │ log r[n]/log r[n-1] │
+├───────────┼──────────┼────────────────┼─────────────────────┤
+│       1.0 │   1.5708 │         1.4674 │                 NaN │
+│       2.0 │  1.10371 │      0.0876848 │            -6.34694 │
+│       3.0 │  1.06891 │     0.00165227 │             2.63171 │
+│       4.0 │  1.06822 │     6.52732e-7 │             2.22338 │
+│       5.0 │  1.06822 │    1.01918e-13 │             2.10043 │
+└───────────┴──────────┴────────────────┴─────────────────────┘
+```
+
+Why do we use the residuals $r_n := |f(x_n)|$ instead of the errors $|x_n - \xi|$ when we are approximating the order of convergence ($\alpha$) in this method?
+
+::: {.exercise-solution style="display: none;"}
+
+$\xi$ is unknown in advance.
+
+***Remark.*** Suppose that $(x_n) \to \xi$. Then, since $f(x_n) = f(x_n) - f(\xi) = f'(\eta_n) (x_n - \xi)$ for some $\eta_n$ between $x_n$ and $\xi$, we have
+
+\begin{align}
+    \lim_{n\to\infty} \frac{ \log |f(x_{n+1})| }{ \log |f(x_n)| }
+    %
+    &= \lim_{n\to\infty}\frac{ \log |f'(\eta_{n+1})| +  \log |x_{n+1} - \xi| }{  \log |f'(\eta_{n})| +  \log |x_{n} - \xi| } \nonumber\\
+    %
+    &= \lim_{n\to\infty}\frac{ \frac{\log |f'(\eta_{n+1})|}{\log |x_{n} - \xi|} +  \frac{\log |x_{n+1} - \xi|}{\log |x_{n} - \xi|} }{  \frac{\log |f'(\eta_{n})|}{\log |x_{n} - \xi|} + 1 } \nonumber\\
+    %
+    &= \lim_{n\to\infty} \frac{\log |x_{n+1} - \xi|}{\log |x_{n} - \xi|}.
+\end{align}
+
+As a result, we may use the residuals to estimate the order of convergence.
+
+:::
+
+:::
+
+::: {.exam-question label="A9"}
+
+*Compulsory section, 4 pts.* Let $g(x) := 1 + \frac{1}{x}$ and define $x_1 = 1$ and $x_{n+1} = g(x_n)$. Suppose that $(x_n) \to \xi$. What is the value of $\xi$?
+
+::: {.exercise-solution style="display: none;"}
+
+We have $x_{n+1}\to \xi$ as $n \to \infty$. Since $g$ is continuous, we have $g(x_n)\to g(\xi)$ as $n \to \infty$. Therefore, $\xi = 1+ \frac{1}\xi$ which is equivalent to $\xi^2 - \xi - 1 = 0$ and so $\xi = \frac{1 \pm \sqrt{5}}2$. If $x_n > 0$ then $x_{n+1} >0$. Since $x_1 > 0$ we have $x_n > 0$ for all $n$ and thus $\xi \geq 0$. Therefore, $\xi = \frac{1+\sqrt{5}}{2}$ (the golden ratio).
+
+***Remark.*** It turns out the the sequence does indeed converge (can you find an interval on which $g$ is a contraction and apply the contraction mapping theorem?)
+
+```
+x[n+1] = g(x[n]) with x_1 = 1.0
+┌───────────┬──────────┬────────────────┬─────────────────────┐
+│ iteration │ sequence │       residual │       approximate α │
+│         n │     x[n] │ r[n]=|f(x[n])| │ log r[n]/log r[n-1] │
+├───────────┼──────────┼────────────────┼─────────────────────┤
+│       1.0 │      1.0 │            1.0 │                 NaN │
+│       2.0 │      2.0 │            0.5 │                -Inf │
+│       3.0 │      1.5 │       0.166667 │             2.58496 │
+│       4.0 │  1.66667 │      0.0666667 │             1.51139 │
+│       5.0 │      1.6 │          0.025 │             1.36219 │
+│       6.0 │    1.625 │     0.00961538 │             1.25902 │
+│       7.0 │  1.61538 │       0.003663 │             1.20779 │
+│       8.0 │  1.61905 │     0.00140056 │             1.17139 │
+│       9.0 │  1.61765 │    0.000534759 │             1.14653 │
+│      10.0 │  1.61818 │     0.00020429 │             1.12773 │
+│      11.0 │  1.61798 │     7.80275e-5 │             1.11329 │
+└───────────┴──────────┴────────────────┴─────────────────────┘
+ξ = 1.618033988749895
+```
+
+***Remark.*** Notice that the first few terms of the sequence $(x_n)$ are given by
+
+\begin{align*}
+    x_2 &= 1 + \frac{1}{x_1}, \qquad
+    x_{3} = 1 + \frac{1}{x_2} = 1 + \frac{1}{1 + \frac{1}{x_1}}, \qquad
+    x_{4} = 1 + \frac{1}{x_3} =  1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{x_1}}}, \cdots.
+\end{align*}
+
+As a result, you have given meaning to the *infinite continued fraction*
+
+\begin{align*}
+    \xi := 1 + \frac{1}{1 + \frac{1}{1 + \frac{1}{1 + \ddots}}}
+\end{align*}
+
+:::
+
+:::
+
+::: {.exam-question label="A10"}
+
+*Compulsory section, 4 pts.* Write down the Lagrange form of the polynomial of degree at most $n$ interpolating $f$ on $X = \{ x_0, \dots, x_n \}$.
+
+::: {.exercise-solution style="display: none;"}
+
+The Lagrange polynomials are $\ell_j(x) := \prod_{0\leq k \leq n \, : \, k\not= j} \frac{x-x_k}{x_j - x_k}$ and the polynomial interpolation, $p$, of $f$ on $X$ is given by the following linear combination:
+
+\begin{align}
+    p(x) = \sum_{j=0}^n \ell_j(x) f(x_j)
+\end{align}
+
+:::
+
+:::
+
+::: {.exam-question label="A11"}
+
+*Compulsory section, 4 pts.* Consider the following finite difference table
+
+\begin{align}
+    x_0:    \quad & f[x_0] = 0,  \quad & f[x_0, x_1] = 1, \nonumber\\
+    x_1:    \quad & f[x_1] = 0.            \nonumber
+\end{align}
+
+Which of the following statements are true? Select all that apply.
+
+(a). The table does not correspond to any function $f$,
+(b). The table determines a polynomial interpolant $p$ of degree at least $2$,
+(c). We must have $f'(x_1) = 1$,
+(d). We must have $x_0 = x_1$.
+
+::: {.exercise-solution style="display: none;"}
+
+(c) and (d). By the definition of divided differences, we have $f(x_0) = f(x_1) = 0$ and
+
+\begin{align}
+    1 = f[x_0,x_1] = \begin{cases}
+        \frac{f(x_0) - f(x_1)}{x_0 - x_1} &\text{if } x_0 \not= x_1 \\
+        f'(x_0) &\text{if } x_0 = x_1.
+    \end{cases}
+\end{align}
+
+* Therefore, we must have $x_0 = x_1$ and $f'(x_0) = f'(x_1) = 1$ (third and fourth options should have been selected).
+* This table only determines a polynomial, $p$, of degree at most 1 (and so the second option does not apply):
+
+\begin{align}
+    p(x) = f[x_0] + f[x_0,x_1] (x - x_0) = x - x_0.
+\end{align}
+
+One can indeed show that $p'(x_0) = 1 = f'(x_0)$ and $p(x_0) = 0 = f(x_0)$.
+
+* $f(x) = x-x_0$ is an example of a function with the divided difference table as shown (so the first option does not apply).
+
+:::
+
+:::
+
+::: {.exam-question label="A12"}
+
+*Compulsory section, 5 pts.* Write down the Trapezoid rule on $[-1,1]$ and show that it is exact for all polynomials of degree at most $1$.
+
+::: {.exercise-solution style="display: none;"}
+
+The trapezoid rule has weights $w_0 = w_1 = 1$ and nodes $x_0 = -1$ and $x_1 = 1$: i.e.
+
+\begin{align}
+    \int^{1}_{-1} f \approx f(-1) + f(1).
+\end{align}
+
+When $f(x) = \alpha$, the integral is $2 \alpha = f(-1) + f(+1)$,
+
+When $f(x) = x$, since $f$ is odd, the integral is $0 = -1 + 1 = f(-1) + f(1)$.
+
+Therefore, taking linear combinations, the rule is exact for all polynomials of degree $1$.
+
+:::
+
+:::
+
+::: {.exam-question label="D"}
+
+*Optional section, 30 pts.* **Newton's method for repeated roots.**
+
+1. **[2 points]** Show that $f(x) = e^x - x - 1$ satisfies $f(0) = f'(0) = 0$ and $f''(0) \not= 0$.
+2. **[2 points]** Here, we apply Newton's method to $f(x) = e^x - x - 1$. What is the order of convergence?
+
+```
+┌───────────┬─────────────┬───────────────┬─────────────────────┐
+│ iteration │    sequence │         error │       approximate α │
+│         n │        x[n] │ e[n]=|x[n]-ξ| │ log e[n]/log e[n-1] │
+├───────────┼─────────────┼───────────────┼─────────────────────┤
+│       1.0 │         3.1 │           3.1 │                 NaN │
+│       2.0 │     2.24624 │       2.24624 │             0.71527 │
+│       3.0 │       1.512 │         1.512 │             0.51088 │
+│       4.0 │    0.939627 │      0.939627 │           -0.150621 │
+│       5.0 │    0.542328 │      0.542328 │               9.826 │
+│       6.0 │    0.295555 │      0.295555 │             1.99205 │
+│       7.0 │    0.155046 │      0.155046 │             1.52927 │
+│       8.0 │   0.0795256 │     0.0795256 │             1.35817 │
+    ...           ...             ...                 ...
+│      12.0 │   0.0050958 │     0.0050958 │             1.15071 │
+│      13.0 │  0.00255006 │    0.00255006 │             1.13113 │
+│      14.0 │  0.00127557 │    0.00127557 │               1.116 │
+│      15.0 │ 0.000637923 │   0.000637923 │             1.10398 │
+│      16.0 │ 0.000318995 │   0.000318995 │              1.0942 │
+│      17.0 │ 0.000159506 │   0.000159506 │              1.0861 │
+│      18.0 │  7.97552e-5 │    7.97552e-5 │             1.07927 │
+│      19.0 │  3.98781e-5 │    3.98781e-5 │             1.07345 │
+│      20.0 │  1.99392e-5 │    1.99392e-5 │             1.06843 │
+│      21.0 │  9.96963e-6 │    9.96963e-6 │             1.06404 │
+└───────────┴─────────────┴───────────────┴─────────────────────┘
+```
+
+Consider the modified Newton's method
+
+\begin{align*}
+    x_{n+1} = x_n - 2 \frac{f(x_n)}{f'(x_n)}.
+\end{align*}
+
+3. **[2 points]** We apply this method to $f(x) = e^x - x - 1$. Compare the table to that of the standard Newton method.
+
+```
+┌───────────┬─────────────┬───────────────┬─────────────────────┐
+│ iteration │    sequence │         error │       approximate α │
+│         n │        x[n] │ e[n]=|x[n]-ξ| │ log e[n]/log e[n-1] │
+├───────────┼─────────────┼───────────────┼─────────────────────┤
+│       1.0 │         3.1 │           3.1 │                 NaN │
+│       2.0 │     1.39248 │       1.39248 │            0.292634 │
+│       3.0 │    0.313183 │      0.313183 │            -3.50653 │
+│       4.0 │   0.0163206 │     0.0163206 │             3.54474 │
+│       5.0 │  4.43937e-5 │    4.43937e-5 │             2.43539 │
+│       6.0 │ 3.27151e-10 │   3.27151e-10 │             2.17918 │
+└───────────┴─────────────┴───────────────┴─────────────────────┘
+```
+
+Now suppose that $f:[a,b]\to\mathbb R$ is four times continuously differentiable with root $\xi \in (a,b)$ of multiplicity $2$: that is, $f(\xi) = f'(\xi) = 0$ and $f''(\xi) \not= 0$. Further, we suppose that there exists $A > 0$ such that
+
+\begin{align*}
+    \left| \frac{f'''(x) + f^{(4)}(x) (x - \xi)}{f''(y)} \right| \leq A
+\end{align*}
+
+for all $x,y \in [a,b]$. The aim of this section is to show that the modified Newton method converges at least quadratically to $\xi$ for all $x_1 \in [a,b]$ with $|x_1 - \xi| \leq A^{-1}$. Notice that the modified Newton method can be written
+
+\begin{align*}
+    x_{n+1} - \xi &= \frac{ f'(x_n)(x_n - \xi) - 2 f(x_n) }{ f'(x_n) }.
+\end{align*}
+
+4. **[8 points]** By expanding the numerator $g(x) := f'(x) (x - \xi) - 2 f(x)$ and denominator $h(x) := f'(x)$, show that there exist $\eta_n, \theta_n$ between $x_n$ and $\xi$ such that
+\begin{align*}
+    x_{n+1} - \xi &=
+    \frac
+        {\frac1{3!} g'''(\eta_n) (x_n - \xi)^3}
+        {h'(\theta_n) (x_n - \xi) }
+    %
+    = \frac16
+    \left[ \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+        {f''(\theta_n)}
+    \right]
+    (x_n - \xi)^2.
+\end{align*}
+5. **[4 points]** Hence show that, if $|x_1 - \xi| \leq A^{-1}$, then $|x_{n+1} - \xi| \leq 6^{-n} |x_1 - \xi|$ and thus the modified Newton's method converges.
+6. **[4 points]** Show that $(x_n)$ converges at least quadratically to $\xi$.
+7. **[4 points]** What is the theoretical value of the asymptotic error constant when the modified Newton method is applied to $f(x) = e^x - x - 1$?
+8. **[4 points]** Show that the modified Newton method converges in $1$ iteration for functions of the form $f(x) = (x - \xi)^2$.
+
+::: {.exercise-solution style="display: none;"}
+
+1. We have $f'(x) = e^x - 1$ and $f''(x) = f'''(x) = \cdots = e^x$. Therefore, $f(0) = e^0 - 0 - 1 = 0$ and $f'(0) = e^0 - 1 = 0$ and $f''(0) = e^0 = 1$.
+
+2. The computational order of convergence appears to approach $1$.
+
+3. We have convergence in fewer iterations ($21$ vs $6$) and the computational order of convergence seems to be around $2$.
+
+4. We take derivatives of $g$:
+\begin{align}
+    g(x) &= f'(x) (x - \xi) - 2 f(x)\nonumber\\
+    g'(x) &= f''(x) (x - \xi) - f'(x) \nonumber\\
+    g''(x) &= f'''(x) (x - \xi) \nonumber\\
+    g'''(x) &= f^{(4)}(x) (x - \xi) + f'''(x).
+\end{align}
+Notice that $g(\xi) = g'(\xi) = g''(\xi) = 0$ and so there exists $\eta_n$ between $x_n$ and $\xi$ such that
+\begin{align}
+    g(x_n) &= g(\xi) + g'(\xi) (x_n - \xi) + \frac{1}2 g''(\xi) (x_n - \xi)^2 + \frac{1}{6} g'''(\eta_n) (x_n - \xi)^3 \nonumber\\
+    %
+    &= \frac{1}{6} \Big[ f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) \Big] (x_n-\xi)^3.
+\end{align}
+Moreover, there exists $\theta_n$ such that $f'(x_n) = f'(\xi) + f''(\theta_n) (x_n - \xi) = f''(\theta_n) (x_n - \xi)$ and so
+\begin{align}
+    x_{n+1} - \xi &=
+    \frac16
+    \left[ \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+        {f''(\theta_n)}
+    \right]
+    (x_n - \xi)^2
+\end{align}
+
+5. By assumption,
+\begin{align}
+    \left| \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi)}
+        {f''(\theta_n)}
+    \right| \leq A,
+\end{align}
+and so, if $|x_n - \xi| \leq A^{-1}$, then
+\begin{align}
+    |x_{n+1} - \xi|
+    \leq
+    \frac16
+    A |x_n - \xi|
+    |x_n - \xi|
+    %
+    \leq \frac16 |x_{n} - \xi|.
+\end{align}
+In particular, $|x_{n+1} - \xi| \leq A^{-1}$ and we may apply the bound inductively to obtain $|x_{n+1} - \xi| \leq 6^{-n} |x_1 - \xi|$ and so this modified Newton's method converges.
+
+6. Since $\eta_n, \theta_n$ are between $x_n$ and $\xi$, and $(x_n) \to \xi$, we have
+\begin{align}
+    \lim_{n\to\infty}
+    \frac{|x_{n+1} - \xi|}{|x_n - \xi|^2} &=
+    \lim_{n\to\infty}
+    \frac16
+    \left| \frac
+        {f'''(\eta_n) +  f^{(4)}(\eta_n) (\eta_n - \xi) }
+        {f''(\theta_n)}
+    \right| \nonumber\\
+    %
+    &=
+    \frac16
+    \left| \frac
+        {f'''(\xi)}
+        {f''(\xi)}
+    \right|
+\end{align}
+
+7. Recall that, in this case, $\xi = 0$, and $f'(x) = e^x - 1$, $f''(x) = f'''(x) = e^x$. Therefore, the asymptotic error constant is $\frac16 \frac{e^0}{e^0} = \frac16$.
+
+8. Note that $f(x)= (x - \xi)^2$ has a root of multiplicity $2$ at $\xi$. We have $x_{n+1} = x_n - 2 \frac{  (x_n - \xi)^2 }{ 2(x_n - \xi)} = x_n - (x_n - \xi) = \xi$ so that $x_{n+1} = \xi$ for all $n \geq 1$ regardless of $x_1 \in \mathbb R$.
+
+***Remark.*** In general, if $\xi$ is a root of $f$ of multiplicity $m$, one can define the following *modified Newton method*:
+\begin{align}
+    x_{n+1} = x_n - m \frac{f(x_n)}{f'(x_n)}.
+\end{align}
+Then, if $f$ is sufficiently smooth and $x_1$ is sufficiently close to $\xi$, the modified Newton method converges quadratically with asymptotic error constant
+\begin{align}
+\mu = \frac{1}{m(m+1)} \left|\frac{f^{(m+1)}(\xi)}{f^{(m)}(\xi)} \right|.
+\end{align}
+
+:::
+
+:::

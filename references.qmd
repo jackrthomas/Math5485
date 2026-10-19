@@ -16,7 +16,7 @@ Many of the methods and theorems in this course are named after people. Click on
 
 <style>
   .hist-timeline {
-    --ht-errors: #2780e3;  --ht-nonlinear: #1a8a4a;  --ht-interp: #e06a00;  --ht-analysis: #8e44ad;
+    --ht-errors: #2780e3;  --ht-nonlinear: #1a8a4a;  --ht-interp: #e06a00;  --ht-analysis: #8e44ad;  --ht-integration: #c0392b;
     --ht-grid: #e9ecef;  --ht-muted: #6c757d;  --ht-name-w: 12.5rem;
     margin: 1rem 0 2rem;
   }
@@ -69,14 +69,21 @@ Many of the methods and theorems in this course are named after people. Click on
     errors:    { label: 'Errors & floating point', color: 'var(--ht-errors)' },
     nonlinear: { label: 'Nonlinear equations',     color: 'var(--ht-nonlinear)' },
     interp:    { label: 'Interpolation',           color: 'var(--ht-interp)' },
+    integration: { label: 'Numerical integration', color: 'var(--ht-integration)' },
     analysis:  { label: 'Analysis tools',          color: 'var(--ht-analysis)' },
   };
   const PEOPLE = [
     { name: 'Johannes Kepler', born: 1571, died: 1630, area: 'nonlinear',
-      items: [ { text: "Kepler's equation for planetary orbits, solved with relaxation and Newton's method", lectures: [5] } ] },
+      items: [ { text: "Kepler's equation for planetary orbits, solved with relaxation and Newton's method", lectures: [5] },
+               { text: "Kepler's barrel rule (1615) for the volume of wine barrels: Simpson's rule, more than a century before Simpson", lectures: [11] } ] },
     { name: 'Isaac Newton', born: 1643, died: 1727, area: 'nonlinear',
       items: [ { text: "Newton's method for solving nonlinear equations", lectures: [5] },
-               { text: 'Newton form of the interpolating polynomial and divided differences', lectures: [8, 9] } ] },
+               { text: 'Newton form of the interpolating polynomial and divided differences', lectures: [8, 9] },
+               { text: 'Newton–Cotes quadrature: integrate the interpolating polynomial on equispaced nodes', lectures: [10] } ] },
+    { name: 'Roger Cotes', born: 1682, died: 1716, area: 'integration',
+      items: [ { text: 'Newton–Cotes quadrature rules (rectangular, trapezoid, Simpson, ...), whose weights he tabulated', lectures: [10, 11] } ] },
+    { name: 'Thomas Simpson', born: 1710, died: 1761, area: 'integration',
+      items: [ { text: "Simpson's rule: exact for cubics, and the composite rule converges at rate O(n⁻⁴)", lectures: [11] } ] },
     { name: 'Gottfried Wilhelm Leibniz', born: 1646, died: 1716, area: 'analysis',
       items: [ { text: 'Leibniz rule for derivatives of a product (used in the Hermite existence proof)', lectures: [9] } ] },
     { name: 'Michel Rolle', born: 1652, died: 1719, area: 'analysis',
@@ -92,7 +99,8 @@ Many of the methods and theorems in this course are named after people. Click on
     { name: 'Alexandre-Théophile Vandermonde', born: 1735, died: 1796, area: 'interp',
       items: [ { text: 'Vandermonde matrices and their (bad) conditioning', lectures: [3] } ] },
     { name: 'Joseph-Louis Lagrange', born: 1736, died: 1813, area: 'interp',
-      items: [ { text: 'Lagrange interpolation and the Lagrange polynomials', lectures: [6, 7, 8] } ] },
+      items: [ { text: 'Lagrange interpolation and the Lagrange polynomials', lectures: [6, 7, 8] },
+               { text: 'Quadrature weights as integrals of the Lagrange polynomials', lectures: [10] } ] },
     { name: 'Lorenzo Mascheroni', born: 1750, died: 1800, area: 'errors',
       items: [ { text: 'The Euler–Mascheroni constant γ', lectures: [1] } ] },
     { name: 'Bernard Bolzano', born: 1781, died: 1848, area: 'analysis',
@@ -102,7 +110,8 @@ Many of the methods and theorems in this course are named after people. Click on
     { name: 'Pafnuty Chebyshev', born: 1821, died: 1894, area: 'interp',
       items: [ { text: 'Chebyshev polynomials and Chebyshev nodes: the best choice of interpolation nodes', lectures: [6, 7, 8] } ] },
     { name: 'Charles Hermite', born: 1822, died: 1901, area: 'interp',
-      items: [ { text: 'Hermite interpolation: matching values and derivatives', lectures: [9] } ] },
+      items: [ { text: 'Hermite interpolation: matching values and derivatives', lectures: [9] },
+               { text: "Hermite interpolation gives the sharp O(n⁻⁴) error estimate for Simpson's rule", lectures: [11] } ] },
     { name: 'Carl Runge', born: 1856, died: 1927, area: 'interp',
       items: [ { text: 'The Runge phenomenon: interpolation at equispaced nodes can diverge', lectures: [6, 7, 8] } ] },
     { name: 'Max Planck', born: 1858, died: 1947, area: 'errors',

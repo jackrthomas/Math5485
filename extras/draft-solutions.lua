@@ -1,6 +1,6 @@
--- Hints/solutions marked .ai (AI-written, not yet checked) only appear in the private build:
---   ::: {.exercise-solution .ai style="display: none;"}
--- Remove the .ai class once you have checked it to make it public.
+-- Hints/solutions marked .draft (written but not yet checked) only appear in the private build:
+--   ::: {.exercise-solution .draft style="display: none;"}
+-- Remove the .draft class once you have checked it to make it public.
 local function is_private()
   local p = quarto.project and quarto.project.profile
   if p then
@@ -12,7 +12,7 @@ local function is_private()
 end
 
 function Div(el)
-  if el.classes:includes('ai') and not is_private() then
+  if el.classes:includes('draft') and not is_private() then
     return {}
   end
 end
