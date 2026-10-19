@@ -1079,19 +1079,6 @@ Note
   }
 })();
 </script>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Notes for this lecture have not been updated since we met (stay tuned for updates)</p>
-</div>
-</div>
 <section id="previously.." class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="previously.."><span class="header-section-number">7.1</span> Previously…..</h2>
 <ul>
@@ -1175,6 +1162,14 @@ T_n( \cos \theta ) = \cos n\theta.
 <div id="exr-Chebyshev-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.1</strong></span> <a href="../exercises/bank.html#bank-exr-Chebyshev-1"></a></p>
 <p>Show that <span class="math inline">\(T_0(x) = 1\)</span> and <span class="math inline">\(T_1(x) = x\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>For <span class="math inline">\(x\in[-1,1]\)</span> write <span class="math inline">\(\cos \theta = x\)</span> for some <span class="math inline">\(\theta\in[0,\pi]\)</span>. Then <span class="math display">\[
+\begin{align}
+T_0(x) &amp;= \cos(0\cdot\theta) = 1, \nonumber\\
+T_1(x) &amp;= \cos\theta = x.
+\end{align}
+\]</span></p>
+</div>
 </div>
 <div id="exr-Chebyshev-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.2</strong></span> <a href="../exercises/bank.html#bank-exr-Chebyshev-2"></a></p>
@@ -1184,6 +1179,17 @@ T_n( \cos \theta ) = \cos n\theta.
 <li>Hence show that <span class="math inline">\(T_n\)</span> is a polynomial of degree <span class="math inline">\(n\)</span>,</li>
 <li>Show that the coefficent of <span class="math inline">\(x^n\)</span> in <span class="math inline">\(T_n\)</span> is <span class="math inline">\(2^{n-1}\)</span> for <span class="math inline">\(n \geq 1\)</span>.</li>
 </ul>
+<div class="exercise-solution" style="display: none;">
+<p><strong>(i)</strong> Let <span class="math inline">\(x=\cos\theta\)</span> with <span class="math inline">\(\theta\in[0,\pi]\)</span>. Using the hint, we have <span class="math display">\[
+\begin{aligned}
+T_{n+1}(x) &amp;= \cos(n\theta+\theta) \nonumber\\
+&amp;= \cos n\theta\cos\theta - \sin n\theta\sin\theta,\\
+T_{n-1}(x) &amp;= \cos(n\theta-\theta) \nonumber\\
+&amp;= \cos n\theta\cos\theta + \sin n\theta\sin\theta .
+\end{aligned}
+\]</span> Adding, <span class="math inline">\(T_{n+1}(x) + T_{n-1}(x) = 2\cos\theta\cos n\theta = 2x\,T_n(x)\)</span>, which is the recursion. It holds for every <span class="math inline">\(x\in[-1,1]\)</span> and <span class="math inline">\(n\ge1\)</span>.</p>
+<p><strong>(ii) and (iii)</strong> If <span class="math inline">\(T_n\)</span> is a polynomial of degree <span class="math inline">\(n\)</span> with leading coefficient <span class="math inline">\(2^{n-1}\)</span>, <span class="math inline">\(T_{n+1} = 2x T_n - T_{n-1}\)</span> is a polynomial of degree <span class="math inline">\(n+1\)</span> with leading coefficient <span class="math inline">\(2^n\)</span>. This combined with the fact that <span class="math inline">\(T_0, T_1\)</span> are polynomials of degree <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> and the leading coefficient of <span class="math inline">\(T_1\)</span> is <span class="math inline">\(1 = 2^{1-1}\)</span> we can conclude (by induction).</p>
+</div>
 </div>
 <div id="exr-Chebyshev-3" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.3</strong></span> <a href="../exercises/bank.html#bank-exr-Chebyshev-3"></a></p>
@@ -1193,6 +1199,23 @@ T_n( \cos \theta ) = \cos n\theta.
 <li><span class="math inline">\(T_{n}\big( \cos\tfrac{j\pi}{n} \big) = (-1)^j\)</span> for <span class="math inline">\(j = 0,\dots,n\)</span> (extreme points; Chebyshev nodes of the second kind),</li>
 <li><span class="math inline">\(T_{n+1} = 0\)</span> on <span class="math inline">\(\big\{ \cos \frac{(2j+1)\pi}{2(n+1)} \big\}_{j=0}^{n}\)</span> (zeros; Chebyshev nodes of the first kind).</li>
 </ul>
+<div class="exercise-solution" style="display: none;">
+<p><strong>(i)</strong> We can write <span class="math inline">\(x\in[-1,1]\)</span> as <span class="math inline">\(\cos\theta\)</span> for some <span class="math inline">\(\theta\in[0,\pi]\)</span>, so <span class="math inline">\(|T_n(x)| = |\cos n\theta|\le1\)</span>. Also <span class="math inline">\(T_n(1) = \cos 0 = 1\)</span>. Hence <span class="math inline">\(\max_{x\in [-1,1]}|T_n(x)| = 1\)</span>.</p>
+<p><strong>(ii)</strong> Let <span class="math inline">\(n\ge1\)</span>. For <span class="math inline">\(j=0,\dots,n\)</span>, <span class="math inline">\(\theta_j = j\pi/n\in[0,\pi]\)</span>, so <span class="math inline">\(T_n(\cos\theta_j) = \cos(n\theta_j) = \cos(j\pi) = (-1)^j\)</span>. Since <span class="math inline">\(\cos\)</span> is strictly decreasing on <span class="math inline">\([0,\pi]\)</span>, these are <span class="math inline">\(n+1\)</span> distinct points, and by (i) they are points where <span class="math inline">\(|T_n|\)</span> attains its maximum <span class="math inline">\(1\)</span>. They are the only such points in <span class="math inline">\([-1,1]\)</span>, because <span class="math inline">\(|\cos n\theta|=1\)</span> with <span class="math inline">\(\theta\in[0,\pi]\)</span> forces <span class="math inline">\(n\theta\in\{0,\pi,\dots,n\pi\}\)</span>.</p>
+<p><strong>(iii)</strong> For <span class="math inline">\(j=0,\dots,n\)</span>, <span class="math inline">\(\theta_j = \frac{(2j+1)\pi}{2(n+1)}\in(0,\pi)\)</span> and <span class="math display">\[
+\begin{align}
+T_{n+1}(\cos\theta_j) &amp;= \cos\big((n+1)\theta_j\big) \nonumber\\
+%
+&amp;= \cos\Big(\frac{(2j+1)\pi}{2}\Big) = 0 .
+\end{align}
+\]</span> Again these <span class="math inline">\(n+1\)</span> points are distinct (as <span class="math inline">\(\cos\)</span> is strictly decreasing on <span class="math inline">\([0,\pi]\)</span>). Since <span class="math inline">\(T_{n+1}\)</span> has degree <span class="math inline">\(n+1\)</span> (<a href="#exr-Chebyshev-2" class="quarto-xref">Exercise&nbsp;<span>7.2</span></a>), it has at most <span class="math inline">\(n+1\)</span> roots, so these are <strong>all</strong> the zeros of <span class="math inline">\(T_{n+1}\)</span>. Hence <span class="math display">\[
+\begin{align}
+T_{n+1}(x) &amp;= 2^n\prod_{j=0}^n\Big(x-\cos\tfrac{(2j+1)\pi}{2(n+1)}\Big), \nonumber\\
+%
+\text{i.e.}\qquad \ell_{X_{\rm I}} &amp;= 2^{-n}T_{n+1} = t_{n+1}.
+\end{align}
+\]</span></p>
+</div>
 </div>
 <div class="proof">
 <p><span class="proof-title"><em>Proof</em>. </span>Firstly, <span class="math inline">\(T_0(\cos\theta) =\cos 0 = 1\)</span> and so <span class="math inline">\(T_0 = 1\)</span>. Moreover, <span class="math inline">\(T_{1}(\cos \theta) = \cos\theta\)</span> and so <span class="math inline">\(T_1 = x\)</span>.</p>
@@ -1291,6 +1314,43 @@ T_n( \cos \theta ) = \cos n\theta.
 <li>Write down the Chebyshev nodes of the first kind <span class="math inline">\(X_{\mathrm I}\)</span> for <span class="math inline">\(n = 2\)</span> (i.e.&nbsp;the zeros of <span class="math inline">\(T_3\)</span>) and check directly that <span class="math inline">\(\ell_{X_{\mathrm I}}(x) = t_3(x) = x^3 - \tfrac34 x\)</span>.</li>
 <li>Find <span class="math inline">\(\| \ell_{X_{\mathrm I}} \|_{L^\infty([-1,1])}\)</span> for <span class="math inline">\(n=2\)</span> by calculus, and compare with the equispaced nodes <span class="math inline">\(\{-1, 0, 1\}\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> Starting from <span class="math inline">\(T_0=1\)</span>, <span class="math inline">\(T_1=x\)</span>: <span class="math display">\[
+\begin{aligned}
+T_2 &amp;= 2x\cdot x - 1 \nonumber\\
+&amp;= 2x^2-1,\\
+T_3 &amp;= 2x(2x^2-1) - x \nonumber\\
+&amp;= 4x^3-3x,\\
+T_4 &amp;= 2x(4x^3-3x) - (2x^2-1) \nonumber\\
+&amp;= 8x^4-8x^2+1 .
+\end{aligned}
+\]</span></p>
+<p><strong>2.</strong> For <span class="math inline">\(n=2\)</span>, <span class="math inline">\(X_{\rm I} = \big\{\cos\frac{(2j+1)\pi}{6}\big\}_{j=0}^2 = \big\{\cos\frac\pi6,\cos\frac\pi2,\cos\frac{5\pi}6\big\} = \big\{\tfrac{\sqrt3}{2},\,0,\,-\tfrac{\sqrt3}{2}\big\}\)</span>. Then <span class="math display">\[
+\begin{align}
+\ell_{X_{\rm I}}(x) &amp;= \Big(x-\tfrac{\sqrt3}2\Big)\,x\,\Big(x+\tfrac{\sqrt3}2\Big)
+\nonumber\\
+&amp;= x\Big(x^2-\tfrac34\Big) \nonumber\\
+&amp;= x^3-\tfrac34x = \tfrac14(4x^3-3x)
+\nonumber\\
+&amp;= 2^{1-3}\,T_3(x) = t_3(x).
+\end{align}
+\]</span></p>
+<p><strong>3.</strong> Let <span class="math inline">\(g(x) = x^3-\frac34x\)</span>. Then <span class="math inline">\(g'(x) = 3x^2-\frac34 = 0 \iff x=\pm\frac12\)</span>. Comparing values at the critical points and endpoints: <span class="math display">\[
+\begin{align}
+g\big(\tfrac12\big) &amp;= \tfrac18-\tfrac38 = -\tfrac14,\nonumber\\
+g\big(-\tfrac12\big) &amp;= \tfrac14,\nonumber\\
+g(1) &amp;= \tfrac14,\nonumber\\
+g(-1) &amp;= -\tfrac14 .
+\end{align}
+\]</span> So <span class="math inline">\(\|\ell_{X_{\rm I}}\|_{L^\infty} = \frac14 = 2^{-2}\)</span>, attained at the four points <span class="math inline">\(\pm\frac12,\pm1\)</span> with alternating signs. These are <span class="math inline">\(\cos\frac{j\pi}{3}\)</span>, <span class="math inline">\(j=0,\dots,3\)</span>, the extreme points of <span class="math inline">\(T_3\)</span>.</p>
+<p>For the equispaced nodes, <span class="math inline">\(\ell(x) = x^3-x\)</span> has critical points <span class="math inline">\(x=\pm\frac1{\sqrt3}\)</span> and vanishes at <span class="math inline">\(\pm1\)</span>, so <span class="math display">\[
+\begin{align}
+\|\ell_{\{-1,0,1\}}\|_{L^\infty} &amp;= \frac1{\sqrt3}\Big(1-\frac13\Big) \nonumber\\
+%
+&amp;= \frac{2}{3\sqrt3}\approx0.385,
+\end{align}
+\]</span> about <span class="math inline">\(1.54\)</span> times larger than <span class="math inline">\(\frac14\)</span>. Because the factor <span class="math inline">\(\frac{\max|f^{(3)}|}{3!}\)</span> in the error bound is the same for both node sets, the Chebyshev nodes give an error bound about <span class="math inline">\(35\%\)</span> smaller.</p>
+</div>
 </div>
 <div id="exr-l07-XII" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.5</strong></span> <a href="../exercises/bank.html#bank-exr-l07-XII"></a></p>
@@ -1301,6 +1361,18 @@ T_n( \cos \theta ) = \cos n\theta.
 <li>Deduce that <span class="math inline">\(T_{n+1} - T_{n-1}\)</span> vanishes on <span class="math inline">\(X_{\mathrm{II}} = \big\{ \cos\frac{j\pi}{n} \big\}_{j=0}^n\)</span>.</li>
 <li>Show that <span class="math inline">\(2^{-n} \big( T_{n+1} - T_{n-1} \big)\)</span> is monic of degree <span class="math inline">\(n+1\)</span>, and conclude.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> From the two addition-formula identities in <a href="#exr-Chebyshev-2" class="quarto-xref">Exercise&nbsp;<span>7.2</span></a>, subtracting instead of adding: <span class="math display">\[
+\begin{align}
+T_{n+1}(\cos\theta) - T_{n-1}(\cos\theta) &amp;= \big(\cos n\theta\cos\theta - \sin n\theta\sin\theta\big) - \big(\cos n\theta\cos\theta + \sin n\theta\sin\theta\big) \nonumber\\
+&amp;= -2\sin\theta\,\sin n\theta .
+\end{align}
+\]</span></p>
+<p><strong>2.</strong> At <span class="math inline">\(x_j = \cos\theta_j\)</span> with <span class="math inline">\(\theta_j = j\pi/n\)</span>, <span class="math inline">\(j=0,\dots,n\)</span>, we have <span class="math inline">\(\sin(n\theta_j) = \sin(j\pi) = 0\)</span>, so <span class="math inline">\((T_{n+1}-T_{n-1})(x_j) = 0\)</span>. (At the endpoints <span class="math inline">\(j=0,n\)</span> the factor <span class="math inline">\(\sin\theta_j\)</span> vanishes too.) The <span class="math inline">\(n+1\)</span> points <span class="math inline">\(x_j\)</span> are distinct, since <span class="math inline">\(\cos\)</span> is strictly decreasing on <span class="math inline">\([0,\pi]\)</span>.</p>
+<p><strong>3.</strong> By <a href="#exr-Chebyshev-2" class="quarto-xref">Exercise&nbsp;<span>7.2</span></a>, <span class="math inline">\(T_{n+1}\)</span> has degree <span class="math inline">\(n+1\)</span> and leading coefficient <span class="math inline">\(2^n\)</span>, and <span class="math inline">\(T_{n-1}\)</span> has degree <span class="math inline">\(n-1&lt;n+1\)</span>. So <span class="math inline">\(P := 2^{-n}(T_{n+1}-T_{n-1})\)</span> is a monic polynomial of degree <span class="math inline">\(n+1\)</span>. Both <span class="math inline">\(P\)</span> and <span class="math inline">\(\ell_{X_{\rm II}}\)</span> are monic of degree <span class="math inline">\(n+1\)</span>, so <span class="math inline">\(P-\ell_{X_{\rm II}}\in\mathcal P_n\)</span>. This difference vanishes at the <span class="math inline">\(n+1\)</span> distinct points of <span class="math inline">\(X_{\rm II}\)</span>, so it is the zero polynomial (a nonzero polynomial of degree <span class="math inline">\(\le n\)</span> has at most <span class="math inline">\(n\)</span> roots). Hence <span class="math display">\[
+\ell_{X_{\rm II}} = 2^{-n}\big(T_{n+1}-T_{n-1}\big).
+\]</span> Finally, <span class="math inline">\(\|\ell_{X_{\rm II}}\|_{L^\infty} \le 2^{-n}\big(\|T_{n+1}\|_{L^\infty}+\|T_{n-1}\|_{L^\infty}\big) = 2^{1-n}\)</span>.</p>
+</div>
 </div>
 <div id="exr-l07-interval" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 7.6</strong></span> <a href="../exercises/bank.html#bank-exr-l07-interval"></a></p>
@@ -1312,6 +1384,33 @@ T_n( \cos \theta ) = \cos n\theta.
 <li>Deduce that, if <span class="math inline">\(X\)</span> is the image of <span class="math inline">\(X_{\mathrm I}\)</span> under <span class="math inline">\(\phi\)</span>, then <span class="math inline">\(\max_{x \in [a,b]} |\ell_X(x)| = 2 \left( \frac{b-a}{4} \right)^{n+1}\)</span>.</li>
 <li>Let <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\([0, \pi]\)</span>, interpolated at the image of <span class="math inline">\(X_{\mathrm I}\)</span>. Write down an error bound and find the smallest <span class="math inline">\(n\)</span> that guarantees <span class="math inline">\(\max_{x\in[0,\pi]} |f(x) - I_Xf(x)| \leq 10^{-6}\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> <span class="math inline">\(\phi\)</span> is linear: <span class="math inline">\(\phi(t)-\phi(y_j) = \frac{b-a}{2}(t-y_j)\)</span>. Therefore <span class="math display">\[
+\begin{align}
+\ell_X(\phi(t)) &amp;= \prod_{j=0}^n\big(\phi(t)-\phi(y_j)\big) \nonumber\\
+%
+&amp;= \prod_{j=0}^n\frac{b-a}{2}(t-y_j) \nonumber\\
+&amp;= \left(\frac{b-a}{2}\right)^{n+1}\ell_Y(t).
+\end{align}
+\]</span></p>
+<p><strong>2.</strong> By <a href="#exr-Chebyshev-3" class="quarto-xref">Exercise&nbsp;<span>7.3</span></a>, <span class="math inline">\(\ell_{X_{\rm I}} = t_{n+1} = 2^{-n}T_{n+1}\)</span>, so <span class="math inline">\(\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = 2^{-n}\)</span>. Since <span class="math inline">\(\phi\)</span> is a bijection from <span class="math inline">\([-1,1]\)</span> onto <span class="math inline">\([a,b]\)</span>, every <span class="math inline">\(x\in[a,b]\)</span> is <span class="math inline">\(\phi(t)\)</span> for exactly one <span class="math inline">\(t\in[-1,1]\)</span>, so by Part 1 <span class="math display">\[
+\begin{align}
+\max_{x\in[a,b]}|\ell_X(x)| &amp;= \left(\frac{b-a}{2}\right)^{n+1}\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| \nonumber\\
+%
+&amp;= \frac{(b-a)^{n+1}}{2^{n+1}2^{n}} \nonumber\\
+&amp;= 2\left(\frac{b-a}{4}\right)^{n+1}.
+\end{align}
+\]</span></p>
+<p><strong>3.</strong> All derivatives of <span class="math inline">\(\sin\)</span> are <span class="math inline">\(\pm\sin\)</span> or <span class="math inline">\(\pm\cos\)</span>, so <span class="math inline">\(|f^{(n+1)}|\le1\)</span>. With <span class="math inline">\(b-a=\pi\)</span>, the Lagrange error formula and Part 2 give <span class="math display">\[
+\max_{x\in[0,\pi]}|\sin x - I_Xf(x)| \;\le\; \frac{1}{(n+1)!}\cdot 2\left(\frac{\pi}{4}\right)^{n+1} =: B_n .
+\]</span> Evaluating: <span class="math display">\[
+\begin{align}
+B_6 &amp;\approx 7.3\times10^{-5},\nonumber\\
+B_7 &amp;\approx 7.2\times10^{-6},\nonumber\\
+B_8 &amp;\approx 6.3\times10^{-7},
+\end{align}
+\]</span> and <span class="math inline">\(B_n\)</span> decreases in <span class="math inline">\(n\)</span>. So the smallest <span class="math inline">\(n\)</span> with <span class="math inline">\(B_n\le10^{-6}\)</span> is <span class="math inline">\(n=8\)</span>, (that is, <span class="math inline">\(9\)</span> interpolation nodes).</p>
+</div>
 </div>
 
 

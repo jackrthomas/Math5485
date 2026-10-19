@@ -2128,7 +2128,7 @@ Code
 <div class="exercise-solution" style="display:none;">
 <p><a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/A3%20Solutions.html">Solution</a></p>
 </div>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -2612,7 +2612,59 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 \]</span></p></li>
 </ol>
 <p>Note that <span class="math inline">\(2/e \approx 0.736\)</span>: parts 2 and 3 together show that <span class="math inline">\(\max\limits_{x\in[-1,1]} |\ell_X(x)|\)</span> decays exponentially, but at a rate no better than <span class="math inline">\((2/e)^n\)</span>.</p>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> Fix <span class="math inline">\(x\in[x_k,x_{k+1}]\)</span> and split <span class="math inline">\(\prod_{j=0}^n|x-x_j|\)</span> into three groups.</p>
+<ul>
+<li><span class="math inline">\(j\le k-1\)</span>: since <span class="math inline">\(x_j &lt; x \le x_{k+1}\)</span>, <span class="math inline">\(|x-x_j| \le x_{k+1}-x_j = (k+1-j)h\)</span>. As <span class="math inline">\(j\)</span> runs over <span class="math inline">\(0,\dots,k-1\)</span>, we have <span class="math inline">\(k+1-j\)</span> runs over <span class="math inline">\(k+1,\dots,2\)</span> and so <span class="math inline">\(\prod_{j=0}^{k-1}|x-x_j| \le h^k\,(k+1)!\)</span>.</li>
+<li><span class="math inline">\(j\ge k+2\)</span>: since <span class="math inline">\(x_k \le x &lt; x_j\)</span>, <span class="math inline">\(|x-x_j| \le x_j-x_k = (j-k)h\)</span>, and <span class="math inline">\(j-k\)</span> runs over <span class="math inline">\(2,\dots,n-k\)</span>, so <span class="math inline">\(\prod_{j=k+2}^{n}|x-x_j| \le h^{\,n-k-1}\,(n-k)!\)</span>.</li>
+<li><span class="math inline">\(j\in\{k,k+1\}\)</span>: we have</li>
+</ul>
+<p><span class="math display">\[\begin{align}
+    (x-x_k) (x_{k+1}-x) \leq \left( \frac{(x-x_k) + (x_{k+1}-x)}{2} \right)^2 = \frac{h^2}{4}.
+\end{align}\]</span></p>
+<p>Multiplying (the powers of <span class="math inline">\(h\)</span> add to <span class="math inline">\(k+(n-k-1)+2=n+1\)</span>): <span class="math display">\[
+|\ell_X(x)| \;\le\; \frac{h^{n+1}}{4}(k+1)!\,(n-k)!.
+\]</span> For the uniform bound write <span class="math display">\[
+(k+1)!\,(n-k)! = \frac{(n+1)!}{\binom{n+1}{k+1}} .
+\]</span> For <span class="math inline">\(0\le k\le n-1\)</span> we have <span class="math inline">\(1\le k+1\le n\)</span>, and <span class="math inline">\(\binom{n+1}{m}\ge \binom{n+1}{1} = n+1\)</span> for <span class="math inline">\(1\le m\le n\)</span> (binomial coefficients increase towards the middle of each row). Hence <span class="math inline">\((k+1)!(n-k)! \le (n+1)!/(n+1) = n!\)</span>, with equality for <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=n-1\)</span>, and since every <span class="math inline">\(x\in[-1,1]\)</span> lies in some <span class="math inline">\([x_k,x_{k+1}]\)</span>, <span class="math display">\[
+\max_{x\in[-1,1]}|\ell_X(x)| \;\le\; \frac{n!}{4}h^{n+1}.
+\]</span></p>
+<p><strong>2.</strong> We use Stirling’s formula in the form of the two-sided bound <span class="math display">\[
+\sqrt{2\pi n}\left(\frac ne\right)^n \;\le\; n! \;\le\; e\sqrt n\left(\frac ne\right)^n,
+\]</span> (for <span class="math inline">\(n\ge1\)</span>), which makes the constants explicit. With <span class="math inline">\(h=2/n\)</span>, <span class="math display">\[
+\frac{n!}{4}h^{n+1} \;\le\; \frac{e\sqrt n\, n^n e^{-n}}{4}\cdot\frac{2^{n+1}}{n^{n+1}} \;=\; \frac{e}{2}\,\frac{(2/e)^n}{\sqrt n}.
+\]</span> So Part 2 holds with <span class="math inline">\(C = e/2\)</span>; this is exactly the bound <span class="math inline">\(|\ell_X(x)| \le \frac{e}{2\sqrt n}(2/e)^n\)</span> quoted in the lecture. (Asymptotically, <span class="math inline">\(\frac{n!}{4}h^{n+1}\sim\sqrt{\pi/2}\,\frac{(2/e)^n}{\sqrt n}\)</span>.)</p>
+<p><strong>3.</strong> At <span class="math inline">\(x^* = -1+h/2\)</span> we have <span class="math inline">\(x^*-x_j = h\left(\tfrac12-j\right)\)</span>, so <span class="math display">\[
+\begin{align}
+    |\ell_X(x^*)|
+    %
+    &amp;= h^{n+1}\prod_{j=0}^n\left|j-\tfrac12\right| \nonumber\\
+    %
+    &amp;= h^{n+1}\cdot\frac12\prod_{j=1}^n\frac{2j-1}{2} \nonumber\\
+    %
+    &amp;= \frac{h^{n+1}}{2^{n+1}}\prod_{j=1}^n(2j-1) \nonumber\\
+    %
+    &amp;= \frac{h^{n+1}}{2^{2n+1}}\cdot\frac{(2n)!}{n!},
+\end{align}
+\]</span> using <span class="math inline">\(\prod_{j=1}^n(2j-1) = \frac{(2n)!}{2\cdot4\cdots(2n)} = \frac{(2n)!}{2^n n!}\)</span>. The lower Stirling bound for <span class="math inline">\((2n)!\)</span> and the upper one for <span class="math inline">\(n!\)</span> give <span class="math display">\[
+\begin{align}
+\frac{(2n)!}{n!} &amp;\ge \frac{\sqrt{4\pi n}\,(2n)^{2n}e^{-2n}}{e\sqrt n\, n^n e^{-n}}
+\nonumber\\
+%
+&amp;= \frac{2\sqrt\pi}{e}\,4^n n^n e^{-n},
+\end{align}
+\]</span> so, with <span class="math inline">\(h^{n+1} = 2^{n+1}/n^{n+1}\)</span>, <span class="math display">\[
+\max_{x\in[-1,1]}|\ell_X(x)| &amp;\ge |\ell_X(x^*)| \nonumber\\
+%
+&amp;\ge \frac{2^{n+1}}{n^{n+1}}\cdot\frac{4^n}{2^{2n+1}}\cdot\frac{2\sqrt\pi}{e}\,n^n e^{-n}
+\nonumber\\
+%
+&amp;= \frac{2\sqrt\pi}{e}\,\frac{(2/e)^n}{n}.
+\end{align}
+\]</span> So Part 3 holds with <span class="math inline">\(c = 2\sqrt\pi/e\approx1.30\)</span>.</p>
+<p>Parts 2 and 3 together show that <span class="math inline">\(\max|\ell_X|\)</span> decays like <span class="math inline">\((2/e)^n\approx(0.736)^n\)</span>, up to a factor between <span class="math inline">\(1/n\)</span> and <span class="math inline">\(1/\sqrt n\)</span>.</p>
+</div>
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -2629,7 +2681,7 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
     f^{(2k)}(0) &amp;= (2k)!\,(-\alpha)^k, \nonumber\\
     f^{(2k+1)}(0) &amp;= 0. \nonumber
 \end{align}\]</span></p></li>
-<li><p>Using partial fractions (the poles of <span class="math inline">\(f\)</span> are at <span class="math inline">\(x = \pm i/\sqrt\alpha\)</span>), show more generally that</p>
+<li><p>Using partial fractions (the poles of <span class="math inline">\(f\)</span> are at <span class="math inline">\(x = \pm i/\sqrt\alpha\)</span>), show more generally that for <span class="math inline">\(n\)</span> even</p>
 <p><span class="math display">\[
     \max_{x \in [-1,1]} |f^{(n)}(x)| = n!\, \alpha^{n/2},
 \]</span></p>
@@ -2646,7 +2698,39 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
     |f(x) - I_Xf(x)| \leq 2\sqrt\alpha \left( \frac{\sqrt\alpha}{2} \right)^n,
 \]</span></p>
 <p>which converges to <span class="math inline">\(0\)</span> whenever <span class="math inline">\(\alpha &lt; 4\)</span>. (A sharper argument, using that <span class="math inline">\(f\)</span> is analytic throughout a neighbourhood of <span class="math inline">\([-1,1]\)</span> in <span class="math inline">\(\mathbb C\)</span> rather than just bounding derivatives along the real axis shows that Chebyshev interpolation converges for <em>all</em> <span class="math inline">\(\alpha &gt; 0\)</span>.)</p>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> For <span class="math inline">\(|x|&lt;1/\sqrt\alpha\)</span> we have <span class="math inline">\(|\alpha x^2|&lt;1\)</span>, so <span class="math display">\[
+\begin{align}
+f(x) &amp;= \frac{1}{1-(-\alpha x^2)} \nonumber\\
+%
+&amp;= \sum_{k=0}^\infty(-\alpha)^kx^{2k}.
+\end{align}
+\]</span> A convergent power series is the Taylor series of its sum, so its coefficients are <span class="math inline">\(f^{(m)}(0)/m!\)</span>. Comparing coefficients of <span class="math inline">\(x^{2k}\)</span> and <span class="math inline">\(x^{2k+1}\)</span>: <span class="math display">\[
+\begin{align}
+\frac{f^{(2k)}(0)}{(2k)!} &amp;= (-\alpha)^k \;\Longrightarrow\; f^{(2k)}(0) \nonumber\\
+%
+&amp;= (2k)!\,(-\alpha)^k
+\end{align}
+\]</span> and <span class="math inline">\(f^{(2k+1)}(0)=0\)</span>.</p>
+<p><strong>2.</strong> Let <span class="math inline">\(a := 1/\sqrt\alpha\)</span>, so <span class="math inline">\(1+\alpha x^2 = \alpha(x-ia)(x+ia)\)</span> and <span class="math display">\[
+f(x) = \frac{1}{2i\sqrt\alpha}\left(\frac{1}{x-ia}-\frac{1}{x+ia}\right).
+\]</span> Using <span class="math inline">\(\frac{d^n}{dx^n}(x-c)^{-1} = (-1)^nn!\,(x-c)^{-(n+1)}\)</span>, <span class="math display">\[
+f^{(n)}(x) = \frac{(-1)^nn!}{2i\sqrt\alpha}\Big((x-ia)^{-(n+1)} - (x+ia)^{-(n+1)}\Big).
+\]</span> Write <span class="math inline">\(x+ia = re^{i\theta}\)</span> with <span class="math inline">\(r = \sqrt{x^2+a^2}\)</span> and <span class="math inline">\(\theta = \arg(x+ia)\in(0,\pi)\)</span>, so <span class="math inline">\(x-ia = re^{-i\theta}\)</span> and the bracket equals <span class="math inline">\(r^{-(n+1)}\big(e^{i(n+1)\theta}-e^{-i(n+1)\theta}\big) = 2i\,r^{-(n+1)}\sin((n+1)\theta)\)</span>. Hence <span class="math display">\[
+f^{(n)}(x) = \frac{(-1)^n\,n!\,\sin\big((n+1)\theta\big)}{\sqrt\alpha\;r^{n+1}} .
+\]</span> Since <span class="math inline">\(r\ge a = \alpha^{-1/2}\)</span> and <span class="math inline">\(|\sin|\le1\)</span>, for every real <span class="math inline">\(x\)</span> <span class="math display">\[
+|f^{(n)}(x)| \;\le\; \frac{n!}{\sqrt\alpha}\,\alpha^{(n+1)/2} = n!\,\alpha^{n/2}.
+\]</span> Equality requires <span class="math inline">\(r=a\)</span>, i.e.&nbsp;<span class="math inline">\(x=0\)</span>, where <span class="math inline">\(\theta=\pi/2\)</span> and <span class="math inline">\(|\sin((n+1)\pi/2)|\)</span> is <span class="math inline">\(1\)</span> for <span class="math inline">\(n\)</span> even and <span class="math inline">\(0\)</span> for <span class="math inline">\(n\)</span> odd. So for even <span class="math inline">\(n\)</span> the bound is attained at <span class="math inline">\(x=0\)</span>.</p>
+<p><strong>3.</strong> Let <span class="math inline">\(X\)</span> be the <span class="math inline">\(n+1\)</span> equispaced nodes. By <a href="../lectures/L06.html#thm-Lagrange-interpolation" class="quarto-xref">Theorem&nbsp;<span>6.2</span></a>, <span class="math inline">\((\ast)\)</span> with <span class="math inline">\(n+1\)</span> in place of <span class="math inline">\(n\)</span>, and Part 2 of <a href="../lectures/L06.html#exr-equispaced-node-poly" class="quarto-xref">Exercise&nbsp;<span>6.5</span></a>, <span class="math display">\[
+\begin{align}
+|f(x)-I_Xf(x)| &amp;\le \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\cdot C\,\frac{(2/e)^n}{\sqrt n}
+%
+\nonumber\\
+&amp;= C\sqrt\alpha\,\frac{1}{\sqrt n}\left(\frac{2\sqrt\alpha}{e}\right)^n.
+\end{align}
+\]</span> If <span class="math inline">\(\alpha \leq e^2/4\)</span> then <span class="math inline">\(\max_{x\in[-1,1]}|f(x)-I_Xf(x)|\to0\)</span> (and this blows up for <span class="math inline">\(\alpha&gt;e^2/4\)</span>).</p>
+</div>
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -2660,6 +2744,14 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 <div id="bank-exr-Chebyshev-1" class="exercise-box">
 <p><strong><a href="../lectures/L07.html#exr-Chebyshev-1" class="quarto-xref">Exercise&nbsp;<span>7.1</span></a></strong></p>
 <p>Show that <span class="math inline">\(T_0(x) = 1\)</span> and <span class="math inline">\(T_1(x) = x\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>For <span class="math inline">\(x\in[-1,1]\)</span> write <span class="math inline">\(\cos \theta = x\)</span> for some <span class="math inline">\(\theta\in[0,\pi]\)</span>. Then <span class="math display">\[
+\begin{align}
+T_0(x) &amp;= \cos(0\cdot\theta) = 1, \nonumber\\
+T_1(x) &amp;= \cos\theta = x.
+\end{align}
+\]</span></p>
+</div>
 </div>
 <!-- L07 -->
 <div id="bank-exr-Chebyshev-2" class="exercise-box">
@@ -2670,6 +2762,17 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 <li>Hence show that <span class="math inline">\(T_n\)</span> is a polynomial of degree <span class="math inline">\(n\)</span>,</li>
 <li>Show that the coefficent of <span class="math inline">\(x^n\)</span> in <span class="math inline">\(T_n\)</span> is <span class="math inline">\(2^{n-1}\)</span> for <span class="math inline">\(n \geq 1\)</span>.</li>
 </ul>
+<div class="exercise-solution" style="display: none;">
+<p><strong>(i)</strong> Let <span class="math inline">\(x=\cos\theta\)</span> with <span class="math inline">\(\theta\in[0,\pi]\)</span>. Using the hint, we have <span class="math display">\[
+\begin{aligned}
+T_{n+1}(x) &amp;= \cos(n\theta+\theta) \nonumber\\
+&amp;= \cos n\theta\cos\theta - \sin n\theta\sin\theta,\\
+T_{n-1}(x) &amp;= \cos(n\theta-\theta) \nonumber\\
+&amp;= \cos n\theta\cos\theta + \sin n\theta\sin\theta .
+\end{aligned}
+\]</span> Adding, <span class="math inline">\(T_{n+1}(x) + T_{n-1}(x) = 2\cos\theta\cos n\theta = 2x\,T_n(x)\)</span>, which is the recursion. It holds for every <span class="math inline">\(x\in[-1,1]\)</span> and <span class="math inline">\(n\ge1\)</span>.</p>
+<p><strong>(ii) and (iii)</strong> If <span class="math inline">\(T_n\)</span> is a polynomial of degree <span class="math inline">\(n\)</span> with leading coefficient <span class="math inline">\(2^{n-1}\)</span>, <span class="math inline">\(T_{n+1} = 2x T_n - T_{n-1}\)</span> is a polynomial of degree <span class="math inline">\(n+1\)</span> with leading coefficient <span class="math inline">\(2^n\)</span>. This combined with the fact that <span class="math inline">\(T_0, T_1\)</span> are polynomials of degree <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> and the leading coefficient of <span class="math inline">\(T_1\)</span> is <span class="math inline">\(1 = 2^{1-1}\)</span> we can conclude (by induction).</p>
+</div>
 </div>
 <!-- L07 -->
 <div id="bank-exr-Chebyshev-3" class="exercise-box">
@@ -2680,6 +2783,23 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 <li><span class="math inline">\(T_{n}\big( \cos\tfrac{j\pi}{n} \big) = (-1)^j\)</span> for <span class="math inline">\(j = 0,\dots,n\)</span> (extreme points; Chebyshev nodes of the second kind),</li>
 <li><span class="math inline">\(T_{n+1} = 0\)</span> on <span class="math inline">\(\big\{ \cos \frac{(2j+1)\pi}{2(n+1)} \big\}_{j=0}^{n}\)</span> (zeros; Chebyshev nodes of the first kind).</li>
 </ul>
+<div class="exercise-solution" style="display: none;">
+<p><strong>(i)</strong> We can write <span class="math inline">\(x\in[-1,1]\)</span> as <span class="math inline">\(\cos\theta\)</span> for some <span class="math inline">\(\theta\in[0,\pi]\)</span>, so <span class="math inline">\(|T_n(x)| = |\cos n\theta|\le1\)</span>. Also <span class="math inline">\(T_n(1) = \cos 0 = 1\)</span>. Hence <span class="math inline">\(\max_{x\in [-1,1]}|T_n(x)| = 1\)</span>.</p>
+<p><strong>(ii)</strong> Let <span class="math inline">\(n\ge1\)</span>. For <span class="math inline">\(j=0,\dots,n\)</span>, <span class="math inline">\(\theta_j = j\pi/n\in[0,\pi]\)</span>, so <span class="math inline">\(T_n(\cos\theta_j) = \cos(n\theta_j) = \cos(j\pi) = (-1)^j\)</span>. Since <span class="math inline">\(\cos\)</span> is strictly decreasing on <span class="math inline">\([0,\pi]\)</span>, these are <span class="math inline">\(n+1\)</span> distinct points, and by (i) they are points where <span class="math inline">\(|T_n|\)</span> attains its maximum <span class="math inline">\(1\)</span>. They are the only such points in <span class="math inline">\([-1,1]\)</span>, because <span class="math inline">\(|\cos n\theta|=1\)</span> with <span class="math inline">\(\theta\in[0,\pi]\)</span> forces <span class="math inline">\(n\theta\in\{0,\pi,\dots,n\pi\}\)</span>.</p>
+<p><strong>(iii)</strong> For <span class="math inline">\(j=0,\dots,n\)</span>, <span class="math inline">\(\theta_j = \frac{(2j+1)\pi}{2(n+1)}\in(0,\pi)\)</span> and <span class="math display">\[
+\begin{align}
+T_{n+1}(\cos\theta_j) &amp;= \cos\big((n+1)\theta_j\big) \nonumber\\
+%
+&amp;= \cos\Big(\frac{(2j+1)\pi}{2}\Big) = 0 .
+\end{align}
+\]</span> Again these <span class="math inline">\(n+1\)</span> points are distinct (as <span class="math inline">\(\cos\)</span> is strictly decreasing on <span class="math inline">\([0,\pi]\)</span>). Since <span class="math inline">\(T_{n+1}\)</span> has degree <span class="math inline">\(n+1\)</span> (<a href="../lectures/L07.html#exr-Chebyshev-2" class="quarto-xref">Exercise&nbsp;<span>7.2</span></a>), it has at most <span class="math inline">\(n+1\)</span> roots, so these are <strong>all</strong> the zeros of <span class="math inline">\(T_{n+1}\)</span>. Hence <span class="math display">\[
+\begin{align}
+T_{n+1}(x) &amp;= 2^n\prod_{j=0}^n\Big(x-\cos\tfrac{(2j+1)\pi}{2(n+1)}\Big), \nonumber\\
+%
+\text{i.e.}\qquad \ell_{X_{\rm I}} &amp;= 2^{-n}T_{n+1} = t_{n+1}.
+\end{align}
+\]</span></p>
+</div>
 </div>
 <!-- L07 -->
 <div id="bank-exr-l07-cheb-small" class="exercise-box">
@@ -2690,6 +2810,43 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 <li>Write down the Chebyshev nodes of the first kind <span class="math inline">\(X_{\mathrm I}\)</span> for <span class="math inline">\(n = 2\)</span> (i.e.&nbsp;the zeros of <span class="math inline">\(T_3\)</span>) and check directly that <span class="math inline">\(\ell_{X_{\mathrm I}}(x) = t_3(x) = x^3 - \tfrac34 x\)</span>.</li>
 <li>Find <span class="math inline">\(\| \ell_{X_{\mathrm I}} \|_{L^\infty([-1,1])}\)</span> for <span class="math inline">\(n=2\)</span> by calculus, and compare with the equispaced nodes <span class="math inline">\(\{-1, 0, 1\}\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> Starting from <span class="math inline">\(T_0=1\)</span>, <span class="math inline">\(T_1=x\)</span>: <span class="math display">\[
+\begin{aligned}
+T_2 &amp;= 2x\cdot x - 1 \nonumber\\
+&amp;= 2x^2-1,\\
+T_3 &amp;= 2x(2x^2-1) - x \nonumber\\
+&amp;= 4x^3-3x,\\
+T_4 &amp;= 2x(4x^3-3x) - (2x^2-1) \nonumber\\
+&amp;= 8x^4-8x^2+1 .
+\end{aligned}
+\]</span></p>
+<p><strong>2.</strong> For <span class="math inline">\(n=2\)</span>, <span class="math inline">\(X_{\rm I} = \big\{\cos\frac{(2j+1)\pi}{6}\big\}_{j=0}^2 = \big\{\cos\frac\pi6,\cos\frac\pi2,\cos\frac{5\pi}6\big\} = \big\{\tfrac{\sqrt3}{2},\,0,\,-\tfrac{\sqrt3}{2}\big\}\)</span>. Then <span class="math display">\[
+\begin{align}
+\ell_{X_{\rm I}}(x) &amp;= \Big(x-\tfrac{\sqrt3}2\Big)\,x\,\Big(x+\tfrac{\sqrt3}2\Big)
+\nonumber\\
+&amp;= x\Big(x^2-\tfrac34\Big) \nonumber\\
+&amp;= x^3-\tfrac34x = \tfrac14(4x^3-3x)
+\nonumber\\
+&amp;= 2^{1-3}\,T_3(x) = t_3(x).
+\end{align}
+\]</span></p>
+<p><strong>3.</strong> Let <span class="math inline">\(g(x) = x^3-\frac34x\)</span>. Then <span class="math inline">\(g'(x) = 3x^2-\frac34 = 0 \iff x=\pm\frac12\)</span>. Comparing values at the critical points and endpoints: <span class="math display">\[
+\begin{align}
+g\big(\tfrac12\big) &amp;= \tfrac18-\tfrac38 = -\tfrac14,\nonumber\\
+g\big(-\tfrac12\big) &amp;= \tfrac14,\nonumber\\
+g(1) &amp;= \tfrac14,\nonumber\\
+g(-1) &amp;= -\tfrac14 .
+\end{align}
+\]</span> So <span class="math inline">\(\|\ell_{X_{\rm I}}\|_{L^\infty} = \frac14 = 2^{-2}\)</span>, attained at the four points <span class="math inline">\(\pm\frac12,\pm1\)</span> with alternating signs. These are <span class="math inline">\(\cos\frac{j\pi}{3}\)</span>, <span class="math inline">\(j=0,\dots,3\)</span>, the extreme points of <span class="math inline">\(T_3\)</span>.</p>
+<p>For the equispaced nodes, <span class="math inline">\(\ell(x) = x^3-x\)</span> has critical points <span class="math inline">\(x=\pm\frac1{\sqrt3}\)</span> and vanishes at <span class="math inline">\(\pm1\)</span>, so <span class="math display">\[
+\begin{align}
+\|\ell_{\{-1,0,1\}}\|_{L^\infty} &amp;= \frac1{\sqrt3}\Big(1-\frac13\Big) \nonumber\\
+%
+&amp;= \frac{2}{3\sqrt3}\approx0.385,
+\end{align}
+\]</span> about <span class="math inline">\(1.54\)</span> times larger than <span class="math inline">\(\frac14\)</span>. Because the factor <span class="math inline">\(\frac{\max|f^{(3)}|}{3!}\)</span> in the error bound is the same for both node sets, the Chebyshev nodes give an error bound about <span class="math inline">\(35\%\)</span> smaller.</p>
+</div>
 </div>
 <!-- L07 -->
 <div id="bank-exr-l07-XII" class="exercise-box">
@@ -2701,6 +2858,18 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 <li>Deduce that <span class="math inline">\(T_{n+1} - T_{n-1}\)</span> vanishes on <span class="math inline">\(X_{\mathrm{II}} = \big\{ \cos\frac{j\pi}{n} \big\}_{j=0}^n\)</span>.</li>
 <li>Show that <span class="math inline">\(2^{-n} \big( T_{n+1} - T_{n-1} \big)\)</span> is monic of degree <span class="math inline">\(n+1\)</span>, and conclude.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> From the two addition-formula identities in <a href="../lectures/L07.html#exr-Chebyshev-2" class="quarto-xref">Exercise&nbsp;<span>7.2</span></a>, subtracting instead of adding: <span class="math display">\[
+\begin{align}
+T_{n+1}(\cos\theta) - T_{n-1}(\cos\theta) &amp;= \big(\cos n\theta\cos\theta - \sin n\theta\sin\theta\big) - \big(\cos n\theta\cos\theta + \sin n\theta\sin\theta\big) \nonumber\\
+&amp;= -2\sin\theta\,\sin n\theta .
+\end{align}
+\]</span></p>
+<p><strong>2.</strong> At <span class="math inline">\(x_j = \cos\theta_j\)</span> with <span class="math inline">\(\theta_j = j\pi/n\)</span>, <span class="math inline">\(j=0,\dots,n\)</span>, we have <span class="math inline">\(\sin(n\theta_j) = \sin(j\pi) = 0\)</span>, so <span class="math inline">\((T_{n+1}-T_{n-1})(x_j) = 0\)</span>. (At the endpoints <span class="math inline">\(j=0,n\)</span> the factor <span class="math inline">\(\sin\theta_j\)</span> vanishes too.) The <span class="math inline">\(n+1\)</span> points <span class="math inline">\(x_j\)</span> are distinct, since <span class="math inline">\(\cos\)</span> is strictly decreasing on <span class="math inline">\([0,\pi]\)</span>.</p>
+<p><strong>3.</strong> By <a href="../lectures/L07.html#exr-Chebyshev-2" class="quarto-xref">Exercise&nbsp;<span>7.2</span></a>, <span class="math inline">\(T_{n+1}\)</span> has degree <span class="math inline">\(n+1\)</span> and leading coefficient <span class="math inline">\(2^n\)</span>, and <span class="math inline">\(T_{n-1}\)</span> has degree <span class="math inline">\(n-1&lt;n+1\)</span>. So <span class="math inline">\(P := 2^{-n}(T_{n+1}-T_{n-1})\)</span> is a monic polynomial of degree <span class="math inline">\(n+1\)</span>. Both <span class="math inline">\(P\)</span> and <span class="math inline">\(\ell_{X_{\rm II}}\)</span> are monic of degree <span class="math inline">\(n+1\)</span>, so <span class="math inline">\(P-\ell_{X_{\rm II}}\in\mathcal P_n\)</span>. This difference vanishes at the <span class="math inline">\(n+1\)</span> distinct points of <span class="math inline">\(X_{\rm II}\)</span>, so it is the zero polynomial (a nonzero polynomial of degree <span class="math inline">\(\le n\)</span> has at most <span class="math inline">\(n\)</span> roots). Hence <span class="math display">\[
+\ell_{X_{\rm II}} = 2^{-n}\big(T_{n+1}-T_{n-1}\big).
+\]</span> Finally, <span class="math inline">\(\|\ell_{X_{\rm II}}\|_{L^\infty} \le 2^{-n}\big(\|T_{n+1}\|_{L^\infty}+\|T_{n-1}\|_{L^\infty}\big) = 2^{1-n}\)</span>.</p>
+</div>
 </div>
 <!-- L07 -->
 <div id="bank-exr-l07-interval" class="exercise-box">
@@ -2713,6 +2882,33 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 <li>Deduce that, if <span class="math inline">\(X\)</span> is the image of <span class="math inline">\(X_{\mathrm I}\)</span> under <span class="math inline">\(\phi\)</span>, then <span class="math inline">\(\max_{x \in [a,b]} |\ell_X(x)| = 2 \left( \frac{b-a}{4} \right)^{n+1}\)</span>.</li>
 <li>Let <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\([0, \pi]\)</span>, interpolated at the image of <span class="math inline">\(X_{\mathrm I}\)</span>. Write down an error bound and find the smallest <span class="math inline">\(n\)</span> that guarantees <span class="math inline">\(\max_{x\in[0,\pi]} |f(x) - I_Xf(x)| \leq 10^{-6}\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> <span class="math inline">\(\phi\)</span> is linear: <span class="math inline">\(\phi(t)-\phi(y_j) = \frac{b-a}{2}(t-y_j)\)</span>. Therefore <span class="math display">\[
+\begin{align}
+\ell_X(\phi(t)) &amp;= \prod_{j=0}^n\big(\phi(t)-\phi(y_j)\big) \nonumber\\
+%
+&amp;= \prod_{j=0}^n\frac{b-a}{2}(t-y_j) \nonumber\\
+&amp;= \left(\frac{b-a}{2}\right)^{n+1}\ell_Y(t).
+\end{align}
+\]</span></p>
+<p><strong>2.</strong> By <a href="../lectures/L07.html#exr-Chebyshev-3" class="quarto-xref">Exercise&nbsp;<span>7.3</span></a>, <span class="math inline">\(\ell_{X_{\rm I}} = t_{n+1} = 2^{-n}T_{n+1}\)</span>, so <span class="math inline">\(\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = 2^{-n}\)</span>. Since <span class="math inline">\(\phi\)</span> is a bijection from <span class="math inline">\([-1,1]\)</span> onto <span class="math inline">\([a,b]\)</span>, every <span class="math inline">\(x\in[a,b]\)</span> is <span class="math inline">\(\phi(t)\)</span> for exactly one <span class="math inline">\(t\in[-1,1]\)</span>, so by Part 1 <span class="math display">\[
+\begin{align}
+\max_{x\in[a,b]}|\ell_X(x)| &amp;= \left(\frac{b-a}{2}\right)^{n+1}\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| \nonumber\\
+%
+&amp;= \frac{(b-a)^{n+1}}{2^{n+1}2^{n}} \nonumber\\
+&amp;= 2\left(\frac{b-a}{4}\right)^{n+1}.
+\end{align}
+\]</span></p>
+<p><strong>3.</strong> All derivatives of <span class="math inline">\(\sin\)</span> are <span class="math inline">\(\pm\sin\)</span> or <span class="math inline">\(\pm\cos\)</span>, so <span class="math inline">\(|f^{(n+1)}|\le1\)</span>. With <span class="math inline">\(b-a=\pi\)</span>, the Lagrange error formula and Part 2 give <span class="math display">\[
+\max_{x\in[0,\pi]}|\sin x - I_Xf(x)| \;\le\; \frac{1}{(n+1)!}\cdot 2\left(\frac{\pi}{4}\right)^{n+1} =: B_n .
+\]</span> Evaluating: <span class="math display">\[
+\begin{align}
+B_6 &amp;\approx 7.3\times10^{-5},\nonumber\\
+B_7 &amp;\approx 7.2\times10^{-6},\nonumber\\
+B_8 &amp;\approx 6.3\times10^{-7},
+\end{align}
+\]</span> and <span class="math inline">\(B_n\)</span> decreases in <span class="math inline">\(n\)</span>. So the smallest <span class="math inline">\(n\)</span> with <span class="math inline">\(B_n\le10^{-6}\)</span> is <span class="math inline">\(n=8\)</span>, (that is, <span class="math inline">\(9\)</span> interpolation nodes).</p>
+</div>
 </div>
 </section>
 <section id="quiz-2" class="level2">
@@ -2855,11 +3051,29 @@ Code
 <div id="bank-exr-sum-lagrange-1" class="exercise-box">
 <p><strong><a href="../lectures/L08.html#exr-sum-lagrange-1" class="quarto-xref">Exercise&nbsp;<span>8.2</span></a></strong></p>
 <p>Suppose that <span class="math inline">\(X = \{ x_0 &lt; ... &lt; x_n \}\)</span> and let <span class="math inline">\(\ell_j\)</span> be the corresponding Lagrange polynomials. Show that <span class="math inline">\(\sum_{j=0}^n \ell_j(x) = 1\)</span> for all <span class="math inline">\(x\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Let <span class="math inline">\(s(x) := \sum_{j=0}^n \ell_j(x)\)</span>. Each <span class="math inline">\(\ell_j\)</span> has degree <span class="math inline">\(n\)</span>, so <span class="math inline">\(s\in\mathcal P_n\)</span>. Since <span class="math inline">\(\ell_j(x_i) = \delta_{ij}\)</span>, <span class="math display">\[
+s(x_k) = \sum_{j=0}^n \delta_{jk} = 1.
+\]</span> for all <span class="math inline">\(k=0,\dots,n\)</span>. Hence <span class="math inline">\(s - 1 \in \mathcal P_n\)</span> vanishes at the <span class="math inline">\(n+1\)</span> distinct points <span class="math inline">\(x_0,\dots,x_n\)</span>, so <span class="math inline">\(s-1 = 0\)</span> (a nonzero polynomial of degree <span class="math inline">\(\le n\)</span> has at most <span class="math inline">\(n\)</span> roots). Thus <span class="math inline">\(\sum_j \ell_j(x) = 1\)</span> for <strong>all</strong> <span class="math inline">\(x\in\mathbb R\)</span>.</p>
+<p>Equivalently: <span class="math inline">\(s = \sum_j 1\cdot\ell_j = I_X 1\)</span> is the interpolant of the constant function <span class="math inline">\(1\)</span>, and <span class="math inline">\(1\in\mathcal P_n\)</span> interpolates itself, so <span class="math inline">\(I_X1 = 1\)</span> by uniqueness.</p>
+</div>
 </div>
 <!-- L08 -->
 <div id="bank-exr-Bary-weights" class="exercise-box">
 <p><strong><a href="../lectures/L08.html#exr-Bary-weights" class="quarto-xref">Exercise&nbsp;<span>8.3</span></a></strong></p>
 <p>Explain why one may instead consider any weights of the form <span class="math inline">\(w_j := C \lambda_j\)</span> in the Barycentric formula (<a href="../lectures/L08.html#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>). Why might this be a good idea? See (<a href="../lectures/L08.html#eq-Barycentric-Chebyshev-II" class="quarto-xref"><span>8.4</span></a>) for the weights appearing in the Barycentric formula for Chebyshev nodes of the second kind.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Let <span class="math inline">\(C\ne0\)</span> be a constant that does <strong>not</strong> depend on <span class="math inline">\(j\)</span>. The formula does not depend on <span class="math inline">\(C\)</span>: for <span class="math inline">\(x\not\in X\)</span>, <span class="math display">\[
+\frac{\sum_{j}\frac{C\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{C\lambda_j}{x-x_j}}
+= \frac{C\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{C\sum_{j}\frac{\lambda_j}{x-x_j}}
+= \frac{\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{\lambda_j}{x-x_j}} = I_Xf(x),
+\]</span> (the denominator is nonzero because it equals <span class="math inline">\(1/\ell_X(x)\)</span> by <a href="../lectures/L08.html#exr-sum-lagrange-1" class="quarto-xref">Exercise&nbsp;<span>8.2</span></a>).</p>
+<p><em>Why it is a good idea.</em></p>
+<ol type="1">
+<li><strong>Overflow/underflow.</strong> The true weights can be astronomically large or small. For Chebyshev nodes of the second kind <span class="math inline">\(|\lambda_j| = \frac{2^n}{2n}\)</span> (or <span class="math inline">\(\frac{2^n}{4n}\)</span>): already <code>2.0^1024 == Inf</code>, so for large <span class="math inline">\(n\)</span> the formula would compute <span class="math inline">\(\mathrm{Inf}/\mathrm{Inf} = \mathrm{NaN}\)</span>.</li>
+<li><strong>Simplicity.</strong> The rescaled Chebyshev weights are known exactly in closed form: no <span class="math inline">\(O(n^2)\)</span> computation of products and no rounding error in the weights. They are also the same on every interval: the affine map <span class="math inline">\([-1,1]\to[a,b]\)</span> multiplies every <span class="math inline">\(\lambda_j\)</span> by the same factor <span class="math inline">\(\big(\frac{2}{b-a}\big)^n\)</span>, which cancels (compare <a href="../lectures/L08.html#exr-Bary-2" class="quarto-xref">Exercise&nbsp;<span>8.4</span></a>, where <span class="math inline">\(\{0,\frac\pi2,\pi\}\)</span> gets the weights <span class="math inline">\(\frac12,-1,\frac12\)</span>).</li>
+</ol>
+</div>
 </div>
 <!-- L08 -->
 <div id="bank-exr-Bary-2" class="exercise-box">
@@ -2966,7 +3180,7 @@ w'(x) = x T_n'(x) + n^2 T_n(x).
 <li>The barycentric formula is unchanged if every <span class="math inline">\(\lambda_j\)</span> is multiplied by the same constant <span class="math inline">\(c \not= 0\)</span> (the factor <span class="math inline">\(c\)</span> cancels between the numerator and the denominator). Taking <span class="math inline">\(c = \frac{2n}{2^n}\)</span> gives the weights <span class="math inline">\((-1)^j\)</span>, halved for <span class="math inline">\(j = 0, n\)</span>. For large <span class="math inline">\(n\)</span>, <span class="math inline">\(2^n\)</span> overflows in floating point arithmetic (for example, <code>2.0^1024 == Inf</code>) whereas the rescaled weights are all of size <span class="math inline">\(1\)</span> or <span class="math inline">\(\frac12\)</span>.</li>
 </ol>
 </div>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -2998,70 +3212,7 @@ Compare your results with the error estimate from <a href="../lectures/L06.html#
 \lambda_j = \frac{(-1)^{n-j}}{h^n \, j! \, (n-j)!} = \frac{(-1)^{n-j}}{h^n \, n!} \binom{n}{j}.
 \]</span></p></li>
 <li><p>We have <span class="math inline">\(w_j = C \lambda_j\)</span> with the constant <span class="math inline">\(C = (-1)^n h^n n!\)</span> (which does not depend on <span class="math inline">\(j\)</span>), and so the factor <span class="math inline">\(C\)</span> cancels between the numerator and the denominator of (<a href="../lectures/L08.html#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>). The smallest weights are <span class="math inline">\(|w_0| = |w_n| = 1\)</span> and the largest is <span class="math inline">\(\binom{n}{\lfloor n/2 \rfloor} \approx 2^n \sqrt{\frac{2}{\pi n}}\)</span>. Therefore, the ratio grows exponentially: it is <span class="math inline">\(252\)</span> for <span class="math inline">\(n = 10\)</span>, about <span class="math inline">\(1.8 \times 10^5\)</span> for <span class="math inline">\(n = 20\)</span>, and about <span class="math inline">\(1.2 \times 10^{17}\)</span> for <span class="math inline">\(n = 60\)</span>. For Chebyshev nodes, the ratio is <span class="math inline">\(2\)</span> for all <span class="math inline">\(n\)</span>.</p></li>
-<li><p>For example:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">EquispacedInterpolant</span>( f, n )</span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span>n<span class="op">+</span><span class="fl">1</span>)</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">f</span>.(x)</span>
-<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> [ (<span class="op">-</span><span class="fl">1.0</span>)<span class="op">^</span>j <span class="op">*</span> <span class="fu">binomial</span>(n, j) for j <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>n ]</span>
-<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">function</span> ( t )</span>
-<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>        num <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>        den <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>(n<span class="op">+</span><span class="fl">1</span>)</span>
-<span id="cb74-10"><a href="#cb74-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> t <span class="op">==</span> x[j]</span>
-<span id="cb74-11"><a href="#cb74-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> y[j]</span>
-<span id="cb74-12"><a href="#cb74-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb74-13"><a href="#cb74-13" aria-hidden="true" tabindex="-1"></a>            num <span class="op">+=</span> w[j] <span class="op">*</span> y[j] <span class="op">/</span> (t <span class="op">-</span> x[j])</span>
-<span id="cb74-14"><a href="#cb74-14" aria-hidden="true" tabindex="-1"></a>            den <span class="op">+=</span> w[j] <span class="op">/</span> (t <span class="op">-</span> x[j])</span>
-<span id="cb74-15"><a href="#cb74-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb74-16"><a href="#cb74-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> num <span class="op">/</span> den</span>
-<span id="cb74-17"><a href="#cb74-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb74-18"><a href="#cb74-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This gives the following maximum errors:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><span class="math inline">\(n\)</span></th>
-<th>Runge</th>
-<th><span class="math inline">\(e^x\)</span></th>
-<th>error bound for <span class="math inline">\(e^x\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(10\)</span></td>
-<td><span class="math inline">\(1.9\)</span></td>
-<td><span class="math inline">\(2.4 \times 10^{-10}\)</span></td>
-<td><span class="math inline">\(1.4 \times 10^{-9}\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(20\)</span></td>
-<td><span class="math inline">\(6.0 \times 10^{1}\)</span></td>
-<td><span class="math inline">\(1.4 \times 10^{-12}\)</span></td>
-<td><span class="math inline">\(3.5 \times 10^{-23}\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(40\)</span></td>
-<td><span class="math inline">\(1.0 \times 10^{5}\)</span></td>
-<td><span class="math inline">\(3.9 \times 10^{-7}\)</span></td>
-<td><span class="math inline">\(8.2 \times 10^{-56}\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(60\)</span></td>
-<td></td>
-<td><span class="math inline">\(2.0 \times 10^{-1}\)</span></td>
-<td><span class="math inline">\(9.5 \times 10^{-93}\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Here, the error bound is <span class="math inline">\(\frac{e}{(n+1)!} \cdot \frac{e}{2\sqrt n} \big(\frac2e\big)^n\)</span> (using <span class="math inline">\(\max_{[-1,1]} |f^{(n+1)}| = e\)</span>). For the Runge function, the error grows exponentially: this is the Runge phenomenon from Lecture 6 (the derivatives of the Runge function grow too quickly for the error estimate to give convergence). For <span class="math inline">\(e^x\)</span>, the exact interpolant converges extremely quickly, and the computed error decreases until <span class="math inline">\(n \approx 20\)</span>. After that, the computed error <em>grows</em> even though the exact interpolant is more and more accurate. This is caused by rounding errors: perturbing the data <span class="math inline">\(f(x_j)\)</span> by <span class="math inline">\(\delta_j\)</span> changes the interpolant by <span class="math inline">\(\sum_j \delta_j \ell_j(x)\)</span>, and for equispaced nodes <span class="math inline">\(\max_x \sum_j |\ell_j(x)|\)</span> grows exponentially in <span class="math inline">\(n\)</span> (like the ratio of the weights in 2). Rounding errors of size <span class="math inline">\(10^{-16}\)</span> are therefore amplified by a factor of order <span class="math inline">\(2^n\)</span>. For Chebyshev nodes, this amplification factor only grows like <span class="math inline">\(\log n\)</span> (see <span class="citation" data-cites="BerrutTrefethen2004">Berrut and Trefethen (<a href="../references.html#ref-BerrutTrefethen2004" role="doc-biblioref">2004</a>)</span>).</p>
 </div>
 </div>
 </section>
@@ -3123,7 +3274,7 @@ r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
 f(x) - p(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x).
 \]</span></li>
 </ol>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3152,7 +3303,7 @@ f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 \]</span></li>
 <li>Deduce that <span class="math inline">\(f[x_0, x_0 + h] \to f'(x_0)\)</span> and, more generally, <span class="math inline">\(f[x_0, x_0 + h, \dots, x_0 + nh] \to \frac{f^{(n)}(x_0)}{n!}\)</span> as <span class="math inline">\(h \to 0\)</span>. Explain why this makes the first case of <a href="../lectures/L09.html#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a> a natural definition.</li>
 </ol>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3444,7 +3595,7 @@ w_{n-j} &amp;= \int_a^b \ell_j(a+b-x) \,\mathrm{d}x \nonumber\\
 \]</span></p></li>
 </ol>
 </div>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3545,7 +3696,7 @@ w_{n-j} &amp;= \int_a^b \ell_j(a+b-x) \,\mathrm{d}x \nonumber\\
 <li>Suppose that the values <span class="math inline">\(f(x_j)\)</span> are only known up to errors <span class="math inline">\(|\varepsilon_j| \leq \varepsilon\)</span>. Show that the computed quadrature differs from <span class="math inline">\(\sum_j w_j f(x_j)\)</span> by at most <span class="math inline">\(\varepsilon \sum_j |w_j|\)</span>. Why is it desirable to have positive weights?</li>
 <li>Apply the Newton–Cotes rule with <span class="math inline">\(n + 1\)</span> nodes on <span class="math inline">\([-1,1]\)</span> to Runge’s function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span> (<a href="../lectures/L06.html#exm-Runge" class="quarto-xref">Example&nbsp;<span>6.2</span></a>) for <span class="math inline">\(n = 2, 4, \dots, 20\)</span> and plot the error (the exact integral is <span class="math inline">\(\frac25 \arctan 5\)</span>). Compare with the composite Simpson rule using the same nodes.</li>
 </ol>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -4832,9 +4983,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-BerrutTrefethen2004" class="csl-entry" role="listitem">
-Berrut, Jean-Paul, and Lloyd N. Trefethen. 2004. <span>“Barycentric Lagrange Interpolation.”</span> <em>SIAM Review</em> 46 (3): 501–17. <a href="https://doi.org/10.1137/S0036144502417715">https://doi.org/10.1137/S0036144502417715</a>.
-</div>
 <div id="ref-fnc" class="csl-entry" role="listitem">
 Driscoll, Tobin A., and Richard J. Braun. 2017. <em>Fundamentals of Numerical Computation</em>. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611975086">https://doi.org/10.1137/1.9781611975086</a>.
 </div>

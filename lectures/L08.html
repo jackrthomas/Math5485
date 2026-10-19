@@ -1219,6 +1219,12 @@ Note
 <div id="exr-sum-lagrange-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.2</strong></span> <a href="../exercises/bank.html#bank-exr-sum-lagrange-1"></a></p>
 <p>Suppose that <span class="math inline">\(X = \{ x_0 &lt; ... &lt; x_n \}\)</span> and let <span class="math inline">\(\ell_j\)</span> be the corresponding Lagrange polynomials. Show that <span class="math inline">\(\sum_{j=0}^n \ell_j(x) = 1\)</span> for all <span class="math inline">\(x\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Let <span class="math inline">\(s(x) := \sum_{j=0}^n \ell_j(x)\)</span>. Each <span class="math inline">\(\ell_j\)</span> has degree <span class="math inline">\(n\)</span>, so <span class="math inline">\(s\in\mathcal P_n\)</span>. Since <span class="math inline">\(\ell_j(x_i) = \delta_{ij}\)</span>, <span class="math display">\[
+s(x_k) = \sum_{j=0}^n \delta_{jk} = 1.
+\]</span> for all <span class="math inline">\(k=0,\dots,n\)</span>. Hence <span class="math inline">\(s - 1 \in \mathcal P_n\)</span> vanishes at the <span class="math inline">\(n+1\)</span> distinct points <span class="math inline">\(x_0,\dots,x_n\)</span>, so <span class="math inline">\(s-1 = 0\)</span> (a nonzero polynomial of degree <span class="math inline">\(\le n\)</span> has at most <span class="math inline">\(n\)</span> roots). Thus <span class="math inline">\(\sum_j \ell_j(x) = 1\)</span> for <strong>all</strong> <span class="math inline">\(x\in\mathbb R\)</span>.</p>
+<p>Equivalently: <span class="math inline">\(s = \sum_j 1\cdot\ell_j = I_X 1\)</span> is the interpolant of the constant function <span class="math inline">\(1\)</span>, and <span class="math inline">\(1\in\mathcal P_n\)</span> interpolates itself, so <span class="math inline">\(I_X1 = 1\)</span> by uniqueness.</p>
+</div>
 </div>
 <p>Therefore, using (<a href="#eq-ell-j" class="quarto-xref"><span>8.2</span></a>) and dividing by <span class="math inline">\(\sum_{j=0}^n \ell_j(x) = 1\)</span>, we obtain (for <span class="math inline">\(x \not\in X\)</span>)</p>
 <p><span id="eq-Barycentric"><span class="math display">\[
@@ -1241,6 +1247,18 @@ Note
 <div id="exr-Bary-weights" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 8.3</strong></span> <a href="../exercises/bank.html#bank-exr-Bary-weights"></a></p>
 <p>Explain why one may instead consider any weights of the form <span class="math inline">\(w_j := C \lambda_j\)</span> in the Barycentric formula (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>). Why might this be a good idea? See (<a href="#eq-Barycentric-Chebyshev-II" class="quarto-xref"><span>8.4</span></a>) for the weights appearing in the Barycentric formula for Chebyshev nodes of the second kind.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Let <span class="math inline">\(C\ne0\)</span> be a constant that does <strong>not</strong> depend on <span class="math inline">\(j\)</span>. The formula does not depend on <span class="math inline">\(C\)</span>: for <span class="math inline">\(x\not\in X\)</span>, <span class="math display">\[
+\frac{\sum_{j}\frac{C\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{C\lambda_j}{x-x_j}}
+= \frac{C\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{C\sum_{j}\frac{\lambda_j}{x-x_j}}
+= \frac{\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{\lambda_j}{x-x_j}} = I_Xf(x),
+\]</span> (the denominator is nonzero because it equals <span class="math inline">\(1/\ell_X(x)\)</span> by <a href="#exr-sum-lagrange-1" class="quarto-xref">Exercise&nbsp;<span>8.2</span></a>).</p>
+<p><em>Why it is a good idea.</em></p>
+<ol type="1">
+<li><strong>Overflow/underflow.</strong> The true weights can be astronomically large or small. For Chebyshev nodes of the second kind <span class="math inline">\(|\lambda_j| = \frac{2^n}{2n}\)</span> (or <span class="math inline">\(\frac{2^n}{4n}\)</span>): already <code>2.0^1024 == Inf</code>, so for large <span class="math inline">\(n\)</span> the formula would compute <span class="math inline">\(\mathrm{Inf}/\mathrm{Inf} = \mathrm{NaN}\)</span>.</li>
+<li><strong>Simplicity.</strong> The rescaled Chebyshev weights are known exactly in closed form: no <span class="math inline">\(O(n^2)\)</span> computation of products and no rounding error in the weights. They are also the same on every interval: the affine map <span class="math inline">\([-1,1]\to[a,b]\)</span> multiplies every <span class="math inline">\(\lambda_j\)</span> by the same factor <span class="math inline">\(\big(\frac{2}{b-a}\big)^n\)</span>, which cancels (compare <a href="#exr-Bary-2" class="quarto-xref">Exercise&nbsp;<span>8.4</span></a>, where <span class="math inline">\(\{0,\frac\pi2,\pi\}\)</span> gets the weights <span class="math inline">\(\frac12,-1,\frac12\)</span>).</li>
+</ol>
+</div>
 </div>
 <p>In particular, for Chebyshev nodes of the second kind, we can use (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>) with the weights <span class="math inline">\(w_j := (-1)^j \tau_j\)</span> where <span class="math inline">\(\tau_j = \frac12\)</span> for <span class="math inline">\(j=0, n\)</span> and <span class="math inline">\(\tau_j = 1\)</span> otherwise. Moreover, this formula has been proved to be numerically stable (<span class="citation" data-cites="Higham2004">Higham (<a href="../references.html#ref-Higham2004" role="doc-biblioref">2004</a>)</span>) which we demonstrate in the following:</p>
 <div id="23b11076" class="cell animation">
@@ -1667,7 +1685,7 @@ w'(x) = x T_n'(x) + n^2 T_n(x).
 <li>The barycentric formula is unchanged if every <span class="math inline">\(\lambda_j\)</span> is multiplied by the same constant <span class="math inline">\(c \not= 0\)</span> (the factor <span class="math inline">\(c\)</span> cancels between the numerator and the denominator). Taking <span class="math inline">\(c = \frac{2n}{2^n}\)</span> gives the weights <span class="math inline">\((-1)^j\)</span>, halved for <span class="math inline">\(j = 0, n\)</span>. For large <span class="math inline">\(n\)</span>, <span class="math inline">\(2^n\)</span> overflows in floating point arithmetic (for example, <code>2.0^1024 == Inf</code>) whereas the rescaled weights are all of size <span class="math inline">\(1\)</span> or <span class="math inline">\(\frac12\)</span>.</li>
 </ol>
 </div>
-<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -1698,70 +1716,7 @@ Compare your results with the error estimate from <a href="L06.html#thm-Lagrange
 \lambda_j = \frac{(-1)^{n-j}}{h^n \, j! \, (n-j)!} = \frac{(-1)^{n-j}}{h^n \, n!} \binom{n}{j}.
 \]</span></p></li>
 <li><p>We have <span class="math inline">\(w_j = C \lambda_j\)</span> with the constant <span class="math inline">\(C = (-1)^n h^n n!\)</span> (which does not depend on <span class="math inline">\(j\)</span>), and so the factor <span class="math inline">\(C\)</span> cancels between the numerator and the denominator of (<a href="#eq-Barycentric" class="quarto-xref"><span>8.3</span></a>). The smallest weights are <span class="math inline">\(|w_0| = |w_n| = 1\)</span> and the largest is <span class="math inline">\(\binom{n}{\lfloor n/2 \rfloor} \approx 2^n \sqrt{\frac{2}{\pi n}}\)</span>. Therefore, the ratio grows exponentially: it is <span class="math inline">\(252\)</span> for <span class="math inline">\(n = 10\)</span>, about <span class="math inline">\(1.8 \times 10^5\)</span> for <span class="math inline">\(n = 20\)</span>, and about <span class="math inline">\(1.2 \times 10^{17}\)</span> for <span class="math inline">\(n = 60\)</span>. For Chebyshev nodes, the ratio is <span class="math inline">\(2\)</span> for all <span class="math inline">\(n\)</span>.</p></li>
-<li><p>For example:</p></li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">EquispacedInterpolant</span>( f, n )</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span>n<span class="op">+</span><span class="fl">1</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">f</span>.(x)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> [ (<span class="op">-</span><span class="fl">1.0</span>)<span class="op">^</span>j <span class="op">*</span> <span class="fu">binomial</span>(n, j) for j <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>n ]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">function</span> ( t )</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        num <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        den <span class="op">=</span> <span class="fl">0.0</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>(n<span class="op">+</span><span class="fl">1</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> t <span class="op">==</span> x[j]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> y[j]</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            num <span class="op">+=</span> w[j] <span class="op">*</span> y[j] <span class="op">/</span> (t <span class="op">-</span> x[j])</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>            den <span class="op">+=</span> w[j] <span class="op">/</span> (t <span class="op">-</span> x[j])</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> num <span class="op">/</span> den</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This gives the following maximum errors:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><span class="math inline">\(n\)</span></th>
-<th>Runge</th>
-<th><span class="math inline">\(e^x\)</span></th>
-<th>error bound for <span class="math inline">\(e^x\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(10\)</span></td>
-<td><span class="math inline">\(1.9\)</span></td>
-<td><span class="math inline">\(2.4 \times 10^{-10}\)</span></td>
-<td><span class="math inline">\(1.4 \times 10^{-9}\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(20\)</span></td>
-<td><span class="math inline">\(6.0 \times 10^{1}\)</span></td>
-<td><span class="math inline">\(1.4 \times 10^{-12}\)</span></td>
-<td><span class="math inline">\(3.5 \times 10^{-23}\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(40\)</span></td>
-<td><span class="math inline">\(1.0 \times 10^{5}\)</span></td>
-<td><span class="math inline">\(3.9 \times 10^{-7}\)</span></td>
-<td><span class="math inline">\(8.2 \times 10^{-56}\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(60\)</span></td>
-<td></td>
-<td><span class="math inline">\(2.0 \times 10^{-1}\)</span></td>
-<td><span class="math inline">\(9.5 \times 10^{-93}\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Here, the error bound is <span class="math inline">\(\frac{e}{(n+1)!} \cdot \frac{e}{2\sqrt n} \big(\frac2e\big)^n\)</span> (using <span class="math inline">\(\max_{[-1,1]} |f^{(n+1)}| = e\)</span>). For the Runge function, the error grows exponentially: this is the Runge phenomenon from Lecture 6 (the derivatives of the Runge function grow too quickly for the error estimate to give convergence). For <span class="math inline">\(e^x\)</span>, the exact interpolant converges extremely quickly, and the computed error decreases until <span class="math inline">\(n \approx 20\)</span>. After that, the computed error <em>grows</em> even though the exact interpolant is more and more accurate. This is caused by rounding errors: perturbing the data <span class="math inline">\(f(x_j)\)</span> by <span class="math inline">\(\delta_j\)</span> changes the interpolant by <span class="math inline">\(\sum_j \delta_j \ell_j(x)\)</span>, and for equispaced nodes <span class="math inline">\(\max_x \sum_j |\ell_j(x)|\)</span> grows exponentially in <span class="math inline">\(n\)</span> (like the ratio of the weights in 2). Rounding errors of size <span class="math inline">\(10^{-16}\)</span> are therefore amplified by a factor of order <span class="math inline">\(2^n\)</span>. For Chebyshev nodes, this amplification factor only grows like <span class="math inline">\(\log n\)</span> (see <span class="citation" data-cites="BerrutTrefethen2004">Berrut and Trefethen (<a href="../references.html#ref-BerrutTrefethen2004" role="doc-biblioref">2004</a>)</span>).</p>
 </div>
 </div>
 

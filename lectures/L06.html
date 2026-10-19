@@ -1619,6 +1619,58 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 \]</span></p></li>
 </ol>
 <p>Note that <span class="math inline">\(2/e \approx 0.736\)</span>: parts 2 and 3 together show that <span class="math inline">\(\max\limits_{x\in[-1,1]} |\ell_X(x)|\)</span> decays exponentially, but at a rate no better than <span class="math inline">\((2/e)^n\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> Fix <span class="math inline">\(x\in[x_k,x_{k+1}]\)</span> and split <span class="math inline">\(\prod_{j=0}^n|x-x_j|\)</span> into three groups.</p>
+<ul>
+<li><span class="math inline">\(j\le k-1\)</span>: since <span class="math inline">\(x_j &lt; x \le x_{k+1}\)</span>, <span class="math inline">\(|x-x_j| \le x_{k+1}-x_j = (k+1-j)h\)</span>. As <span class="math inline">\(j\)</span> runs over <span class="math inline">\(0,\dots,k-1\)</span>, we have <span class="math inline">\(k+1-j\)</span> runs over <span class="math inline">\(k+1,\dots,2\)</span> and so <span class="math inline">\(\prod_{j=0}^{k-1}|x-x_j| \le h^k\,(k+1)!\)</span>.</li>
+<li><span class="math inline">\(j\ge k+2\)</span>: since <span class="math inline">\(x_k \le x &lt; x_j\)</span>, <span class="math inline">\(|x-x_j| \le x_j-x_k = (j-k)h\)</span>, and <span class="math inline">\(j-k\)</span> runs over <span class="math inline">\(2,\dots,n-k\)</span>, so <span class="math inline">\(\prod_{j=k+2}^{n}|x-x_j| \le h^{\,n-k-1}\,(n-k)!\)</span>.</li>
+<li><span class="math inline">\(j\in\{k,k+1\}\)</span>: we have</li>
+</ul>
+<p><span class="math display">\[\begin{align}
+    (x-x_k) (x_{k+1}-x) \leq \left( \frac{(x-x_k) + (x_{k+1}-x)}{2} \right)^2 = \frac{h^2}{4}.
+\end{align}\]</span></p>
+<p>Multiplying (the powers of <span class="math inline">\(h\)</span> add to <span class="math inline">\(k+(n-k-1)+2=n+1\)</span>): <span class="math display">\[
+|\ell_X(x)| \;\le\; \frac{h^{n+1}}{4}(k+1)!\,(n-k)!.
+\]</span> For the uniform bound write <span class="math display">\[
+(k+1)!\,(n-k)! = \frac{(n+1)!}{\binom{n+1}{k+1}} .
+\]</span> For <span class="math inline">\(0\le k\le n-1\)</span> we have <span class="math inline">\(1\le k+1\le n\)</span>, and <span class="math inline">\(\binom{n+1}{m}\ge \binom{n+1}{1} = n+1\)</span> for <span class="math inline">\(1\le m\le n\)</span> (binomial coefficients increase towards the middle of each row). Hence <span class="math inline">\((k+1)!(n-k)! \le (n+1)!/(n+1) = n!\)</span>, with equality for <span class="math inline">\(k=0\)</span> and <span class="math inline">\(k=n-1\)</span>, and since every <span class="math inline">\(x\in[-1,1]\)</span> lies in some <span class="math inline">\([x_k,x_{k+1}]\)</span>, <span class="math display">\[
+\max_{x\in[-1,1]}|\ell_X(x)| \;\le\; \frac{n!}{4}h^{n+1}.
+\]</span></p>
+<p><strong>2.</strong> We use Stirling’s formula in the form of the two-sided bound <span class="math display">\[
+\sqrt{2\pi n}\left(\frac ne\right)^n \;\le\; n! \;\le\; e\sqrt n\left(\frac ne\right)^n,
+\]</span> (for <span class="math inline">\(n\ge1\)</span>), which makes the constants explicit. With <span class="math inline">\(h=2/n\)</span>, <span class="math display">\[
+\frac{n!}{4}h^{n+1} \;\le\; \frac{e\sqrt n\, n^n e^{-n}}{4}\cdot\frac{2^{n+1}}{n^{n+1}} \;=\; \frac{e}{2}\,\frac{(2/e)^n}{\sqrt n}.
+\]</span> So Part 2 holds with <span class="math inline">\(C = e/2\)</span>; this is exactly the bound <span class="math inline">\(|\ell_X(x)| \le \frac{e}{2\sqrt n}(2/e)^n\)</span> quoted in the lecture. (Asymptotically, <span class="math inline">\(\frac{n!}{4}h^{n+1}\sim\sqrt{\pi/2}\,\frac{(2/e)^n}{\sqrt n}\)</span>.)</p>
+<p><strong>3.</strong> At <span class="math inline">\(x^* = -1+h/2\)</span> we have <span class="math inline">\(x^*-x_j = h\left(\tfrac12-j\right)\)</span>, so <span class="math display">\[
+\begin{align}
+    |\ell_X(x^*)|
+    %
+    &amp;= h^{n+1}\prod_{j=0}^n\left|j-\tfrac12\right| \nonumber\\
+    %
+    &amp;= h^{n+1}\cdot\frac12\prod_{j=1}^n\frac{2j-1}{2} \nonumber\\
+    %
+    &amp;= \frac{h^{n+1}}{2^{n+1}}\prod_{j=1}^n(2j-1) \nonumber\\
+    %
+    &amp;= \frac{h^{n+1}}{2^{2n+1}}\cdot\frac{(2n)!}{n!},
+\end{align}
+\]</span> using <span class="math inline">\(\prod_{j=1}^n(2j-1) = \frac{(2n)!}{2\cdot4\cdots(2n)} = \frac{(2n)!}{2^n n!}\)</span>. The lower Stirling bound for <span class="math inline">\((2n)!\)</span> and the upper one for <span class="math inline">\(n!\)</span> give <span class="math display">\[
+\begin{align}
+\frac{(2n)!}{n!} &amp;\ge \frac{\sqrt{4\pi n}\,(2n)^{2n}e^{-2n}}{e\sqrt n\, n^n e^{-n}}
+\nonumber\\
+%
+&amp;= \frac{2\sqrt\pi}{e}\,4^n n^n e^{-n},
+\end{align}
+\]</span> so, with <span class="math inline">\(h^{n+1} = 2^{n+1}/n^{n+1}\)</span>, <span class="math display">\[
+\max_{x\in[-1,1]}|\ell_X(x)| &amp;\ge |\ell_X(x^*)| \nonumber\\
+%
+&amp;\ge \frac{2^{n+1}}{n^{n+1}}\cdot\frac{4^n}{2^{2n+1}}\cdot\frac{2\sqrt\pi}{e}\,n^n e^{-n}
+\nonumber\\
+%
+&amp;= \frac{2\sqrt\pi}{e}\,\frac{(2/e)^n}{n}.
+\end{align}
+\]</span> So Part 3 holds with <span class="math inline">\(c = 2\sqrt\pi/e\approx1.30\)</span>.</p>
+<p>Parts 2 and 3 together show that <span class="math inline">\(\max|\ell_X|\)</span> decays like <span class="math inline">\((2/e)^n\approx(0.736)^n\)</span>, up to a factor between <span class="math inline">\(1/n\)</span> and <span class="math inline">\(1/\sqrt n\)</span>.</p>
+</div>
 <div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
@@ -1635,7 +1687,7 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
     f^{(2k)}(0) &amp;= (2k)!\,(-\alpha)^k, \nonumber\\
     f^{(2k+1)}(0) &amp;= 0. \nonumber
 \end{align}\]</span></p></li>
-<li><p>Using partial fractions (the poles of <span class="math inline">\(f\)</span> are at <span class="math inline">\(x = \pm i/\sqrt\alpha\)</span>), show more generally that</p>
+<li><p>Using partial fractions (the poles of <span class="math inline">\(f\)</span> are at <span class="math inline">\(x = \pm i/\sqrt\alpha\)</span>), show more generally that for <span class="math inline">\(n\)</span> even</p>
 <p><span class="math display">\[
     \max_{x \in [-1,1]} |f^{(n)}(x)| = n!\, \alpha^{n/2},
 \]</span></p>
@@ -1652,6 +1704,38 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
     |f(x) - I_Xf(x)| \leq 2\sqrt\alpha \left( \frac{\sqrt\alpha}{2} \right)^n,
 \]</span></p>
 <p>which converges to <span class="math inline">\(0\)</span> whenever <span class="math inline">\(\alpha &lt; 4\)</span>. (A sharper argument, using that <span class="math inline">\(f\)</span> is analytic throughout a neighbourhood of <span class="math inline">\([-1,1]\)</span> in <span class="math inline">\(\mathbb C\)</span> rather than just bounding derivatives along the real axis shows that Chebyshev interpolation converges for <em>all</em> <span class="math inline">\(\alpha &gt; 0\)</span>.)</p>
+<div class="exercise-solution" style="display: none;">
+<p><strong>1.</strong> For <span class="math inline">\(|x|&lt;1/\sqrt\alpha\)</span> we have <span class="math inline">\(|\alpha x^2|&lt;1\)</span>, so <span class="math display">\[
+\begin{align}
+f(x) &amp;= \frac{1}{1-(-\alpha x^2)} \nonumber\\
+%
+&amp;= \sum_{k=0}^\infty(-\alpha)^kx^{2k}.
+\end{align}
+\]</span> A convergent power series is the Taylor series of its sum, so its coefficients are <span class="math inline">\(f^{(m)}(0)/m!\)</span>. Comparing coefficients of <span class="math inline">\(x^{2k}\)</span> and <span class="math inline">\(x^{2k+1}\)</span>: <span class="math display">\[
+\begin{align}
+\frac{f^{(2k)}(0)}{(2k)!} &amp;= (-\alpha)^k \;\Longrightarrow\; f^{(2k)}(0) \nonumber\\
+%
+&amp;= (2k)!\,(-\alpha)^k
+\end{align}
+\]</span> and <span class="math inline">\(f^{(2k+1)}(0)=0\)</span>.</p>
+<p><strong>2.</strong> Let <span class="math inline">\(a := 1/\sqrt\alpha\)</span>, so <span class="math inline">\(1+\alpha x^2 = \alpha(x-ia)(x+ia)\)</span> and <span class="math display">\[
+f(x) = \frac{1}{2i\sqrt\alpha}\left(\frac{1}{x-ia}-\frac{1}{x+ia}\right).
+\]</span> Using <span class="math inline">\(\frac{d^n}{dx^n}(x-c)^{-1} = (-1)^nn!\,(x-c)^{-(n+1)}\)</span>, <span class="math display">\[
+f^{(n)}(x) = \frac{(-1)^nn!}{2i\sqrt\alpha}\Big((x-ia)^{-(n+1)} - (x+ia)^{-(n+1)}\Big).
+\]</span> Write <span class="math inline">\(x+ia = re^{i\theta}\)</span> with <span class="math inline">\(r = \sqrt{x^2+a^2}\)</span> and <span class="math inline">\(\theta = \arg(x+ia)\in(0,\pi)\)</span>, so <span class="math inline">\(x-ia = re^{-i\theta}\)</span> and the bracket equals <span class="math inline">\(r^{-(n+1)}\big(e^{i(n+1)\theta}-e^{-i(n+1)\theta}\big) = 2i\,r^{-(n+1)}\sin((n+1)\theta)\)</span>. Hence <span class="math display">\[
+f^{(n)}(x) = \frac{(-1)^n\,n!\,\sin\big((n+1)\theta\big)}{\sqrt\alpha\;r^{n+1}} .
+\]</span> Since <span class="math inline">\(r\ge a = \alpha^{-1/2}\)</span> and <span class="math inline">\(|\sin|\le1\)</span>, for every real <span class="math inline">\(x\)</span> <span class="math display">\[
+|f^{(n)}(x)| \;\le\; \frac{n!}{\sqrt\alpha}\,\alpha^{(n+1)/2} = n!\,\alpha^{n/2}. \tag{$\ast$}
+\]</span> Equality requires <span class="math inline">\(r=a\)</span>, i.e.&nbsp;<span class="math inline">\(x=0\)</span>, where <span class="math inline">\(\theta=\pi/2\)</span> and <span class="math inline">\(|\sin((n+1)\pi/2)|\)</span> is <span class="math inline">\(1\)</span> for <span class="math inline">\(n\)</span> even and <span class="math inline">\(0\)</span> for <span class="math inline">\(n\)</span> odd. So for even <span class="math inline">\(n\)</span> the bound is attained at <span class="math inline">\(x=0\)</span>.</p>
+<p><strong>3.</strong> Let <span class="math inline">\(X\)</span> be the <span class="math inline">\(n+1\)</span> equispaced nodes. By <a href="#thm-Lagrange-interpolation" class="quarto-xref">Theorem&nbsp;<span>6.2</span></a>, <span class="math inline">\((\ast)\)</span> with <span class="math inline">\(n+1\)</span> in place of <span class="math inline">\(n\)</span>, and Part 2 of <a href="#exr-equispaced-node-poly" class="quarto-xref">Exercise&nbsp;<span>6.5</span></a>, <span class="math display">\[
+\begin{align}
+|f(x)-I_Xf(x)| &amp;\le \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\cdot C\,\frac{(2/e)^n}{\sqrt n}
+%
+\nonumber\\
+&amp;= C\sqrt\alpha\,\frac{1}{\sqrt n}\left(\frac{2\sqrt\alpha}{e}\right)^n.
+\end{align}
+\]</span> If <span class="math inline">\(\alpha \leq e^2/4\)</span> then <span class="math inline">\(\max_{x\in[-1,1]}|f(x)-I_Xf(x)|\to0\)</span> (and this blows up for <span class="math inline">\(\alpha&gt;e^2/4\)</span>).</p>
+</div>
 <div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
