@@ -2185,13 +2185,17 @@ Let $X = \{x_0 < \cdots < x_n\}$ be $n+1$ equispaced nodes on $[-1,1]$, i.e. $x_
 
 Note that $2/e \approx 0.736$: parts 2 and 3 together show that $\max\limits_{x\in[-1,1]} |\ell_X(x)|$ decays exponentially, but at a rate no better than $(2/e)^n$.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-**Part 1.** Fix $x\in[x_k,x_{k+1}]$ and split $\prod_{j=0}^n|x-x_j|$ into three groups.
+**1.** Fix $x\in[x_k,x_{k+1}]$ and split $\prod_{j=0}^n|x-x_j|$ into three groups.
 
-* $j\le k-1$: since $x_j < x \le x_{k+1}$, $|x-x_j| \le x_{k+1}-x_j = (k+1-j)h$. As $j$ runs over $0,\dots,k-1$, $k+1-j$ runs over $k+1,\dots,2$, so $\prod_{j=0}^{k-1}|x-x_j| \le h^k\,(k+1)!$.
+* $j\le k-1$: since $x_j < x \le x_{k+1}$, $|x-x_j| \le x_{k+1}-x_j = (k+1-j)h$. As $j$ runs over $0,\dots,k-1$, we have $k+1-j$ runs over $k+1,\dots,2$ and so $\prod_{j=0}^{k-1}|x-x_j| \le h^k\,(k+1)!$.
 * $j\ge k+2$: since $x_k \le x < x_j$, $|x-x_j| \le x_j-x_k = (j-k)h$, and $j-k$ runs over $2,\dots,n-k$, so $\prod_{j=k+2}^{n}|x-x_j| \le h^{\,n-k-1}\,(n-k)!$.
-* $j\in\{k,k+1\}$: with $a=x-x_k\ge0$, $b=x_{k+1}-x\ge0$, $a+b=h$, AM–GM gives $ab \le (h/2)^2 = h^2/4$.
+* $j\in\{k,k+1\}$: we have 
+
+\begin{align}
+    (x-x_k) (x_{k+1}-x) \leq \left( \frac{(x-x_k) + (x_{k+1}-x)}{2} \right)^2 = \frac{h^2}{4}.
+\end{align}
 
 Multiplying (the powers of $h$ add to $k+(n-k-1)+2=n+1$):
 $$
@@ -2206,51 +2210,52 @@ $$
 \max_{x\in[-1,1]}|\ell_X(x)| \;\le\; \frac{n!}{4}h^{n+1}.
 $$
 
-**Part 2.** We use Stirling's formula in the form of the two-sided bound
+**2.** We use Stirling's formula in the form of the two-sided bound
 $$
-\sqrt{2\pi n}\left(\frac ne\right)^n \;\le\; n! \;\le\; e\sqrt n\left(\frac ne\right)^n \qquad (n\ge1),
+\sqrt{2\pi n}\left(\frac ne\right)^n \;\le\; n! \;\le\; e\sqrt n\left(\frac ne\right)^n,
 $$
-which makes the constants explicit (the asymptotic statement $n!\sim\sqrt{2\pi n}(n/e)^n$ alone gives the same conclusion with some constant, since a convergent sequence of ratios is bounded). With $h=2/n$,
+(for $n\ge1$), which makes the constants explicit. With $h=2/n$,
 $$
 \frac{n!}{4}h^{n+1} \;\le\; \frac{e\sqrt n\, n^n e^{-n}}{4}\cdot\frac{2^{n+1}}{n^{n+1}} \;=\; \frac{e}{2}\,\frac{(2/e)^n}{\sqrt n}.
 $$
 So Part 2 holds with $C = e/2$; this is exactly the bound $|\ell_X(x)| \le \frac{e}{2\sqrt n}(2/e)^n$ quoted in the lecture. (Asymptotically, $\frac{n!}{4}h^{n+1}\sim\sqrt{\pi/2}\,\frac{(2/e)^n}{\sqrt n}$.)
 
-**Part 3.** At $x^* = -1+h/2$ we have $x^*-x_j = h\left(\tfrac12-j\right)$, so
+**3.** At $x^* = -1+h/2$ we have $x^*-x_j = h\left(\tfrac12-j\right)$, so
 $$
-|\ell_X(x^*)| = h^{n+1}\prod_{j=0}^n\left|j-\tfrac12\right| = h^{n+1}\cdot\frac12\prod_{j=1}^n\frac{2j-1}{2} = \frac{h^{n+1}}{2^{n+1}}\prod_{j=1}^n(2j-1) = \frac{h^{n+1}}{2^{2n+1}}\cdot\frac{(2n)!}{n!},
+\begin{align}
+    |\ell_X(x^*)| 
+    %
+    &= h^{n+1}\prod_{j=0}^n\left|j-\tfrac12\right| \nonumber\\
+    %
+    &= h^{n+1}\cdot\frac12\prod_{j=1}^n\frac{2j-1}{2} \nonumber\\
+    %
+    &= \frac{h^{n+1}}{2^{n+1}}\prod_{j=1}^n(2j-1) \nonumber\\
+    %
+    &= \frac{h^{n+1}}{2^{2n+1}}\cdot\frac{(2n)!}{n!},
+\end{align}
 $$
 using $\prod_{j=1}^n(2j-1) = \frac{(2n)!}{2\cdot4\cdots(2n)} = \frac{(2n)!}{2^n n!}$. The lower Stirling bound for $(2n)!$ and the upper one for $n!$ give
 $$
-\frac{(2n)!}{n!} \;\ge\; \frac{\sqrt{4\pi n}\,(2n)^{2n}e^{-2n}}{e\sqrt n\, n^n e^{-n}} = \frac{2\sqrt\pi}{e}\,4^n n^n e^{-n},
+\begin{align}
+\frac{(2n)!}{n!} &\ge \frac{\sqrt{4\pi n}\,(2n)^{2n}e^{-2n}}{e\sqrt n\, n^n e^{-n}} 
+\nonumber\\
+%
+&= \frac{2\sqrt\pi}{e}\,4^n n^n e^{-n},
+\end{align}
 $$
 so, with $h^{n+1} = 2^{n+1}/n^{n+1}$,
 $$
-\max_{x\in[-1,1]}|\ell_X(x)| \;\ge\; |\ell_X(x^*)| \;\ge\; \frac{2^{n+1}}{n^{n+1}}\cdot\frac{4^n}{2^{2n+1}}\cdot\frac{2\sqrt\pi}{e}\,n^n e^{-n} \;=\; \frac{2\sqrt\pi}{e}\,\frac{(2/e)^n}{n}.
+\max_{x\in[-1,1]}|\ell_X(x)| &\ge |\ell_X(x^*)| \nonumber\\
+%
+&\ge \frac{2^{n+1}}{n^{n+1}}\cdot\frac{4^n}{2^{2n+1}}\cdot\frac{2\sqrt\pi}{e}\,n^n e^{-n} 
+\nonumber\\
+%
+&= \frac{2\sqrt\pi}{e}\,\frac{(2/e)^n}{n}.
+\end{align}
 $$
-So Part 3 holds with $c = 2\sqrt\pi/e\approx1.30$. (Asymptotically $|\ell_X(x^*)|\sim\sqrt2\,(2/e)^n/n$.)
+So Part 3 holds with $c = 2\sqrt\pi/e\approx1.30$.
 
-Parts 2 and 3 together show that $\max|\ell_X|$ decays like $(2/e)^n\approx(0.736)^n$, up to a factor between $1/n$ and $1/\sqrt n$. The code below checks all of the bounds numerically.
-
-
-```julia
-xg = -1:1e-5:1
-for n in [5, 10, 20, 40]
-    h = 2/n
-    x = @. -1 + (0:n)*h
-    ℓX = t -> prod(t .- x)
-
-    actual = maximum(@. abs(ℓX(xg)))
-    upper1 = factorial(big(n))/4 * h^(n+1)            # part 1
-    upper2 = (ℯ/2) * (2/ℯ)^n / sqrt(n)                # part 2, C = e/2
-    lower  = (2sqrt(π)/ℯ) * (2/ℯ)^n / n               # part 3, c = 2√π/e
-    println("n=", n, ":  lower=", round(lower, sigdigits=4),
-            "  |ℓ(x*)|=", round(abs(ℓX(x[1]+h/2)), sigdigits=4),
-            "  max|ℓ|=", round(actual, sigdigits=4),
-            "  n!h^(n+1)/4=", round(Float64(upper1), sigdigits=4),
-            "  upper=", round(upper2, sigdigits=4))
-end
-```
+Parts 2 and 3 together show that $\max|\ell_X|$ decays like $(2/e)^n\approx(0.736)^n$, up to a factor between $1/n$ and $1/\sqrt n$. 
 
 :::
 :::
@@ -2268,7 +2273,7 @@ Fix $\alpha > 0$ and let $f(x) = \dfrac{1}{1+\alpha x^2}$, as in @exm-Runge (wit
        f^{(2k+1)}(0) &= 0. \nonumber
    \end{align}
 
-2. Using partial fractions (the poles of $f$ are at $x = \pm i/\sqrt\alpha$), show more generally that
+2. Using partial fractions (the poles of $f$ are at $x = \pm i/\sqrt\alpha$), show more generally that for $n$ even
 
    $$
        \max_{x \in [-1,1]} |f^{(n)}(x)| = n!\, \alpha^{n/2},
@@ -2294,24 +2299,31 @@ $$
 
 which converges to $0$ whenever $\alpha < 4$. (A sharper argument, using that $f$ is analytic throughout a neighbourhood of $[-1,1]$ in $\mathbb C$ rather than just bounding derivatives along the real axis shows that Chebyshev interpolation converges for *all* $\alpha > 0$.)
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-**Note on the lecture statement.** Part 2 as stated is only true for **even** $n$. For odd $n$, $f^{(n)}(0) = 0$ (by Part 1), and the maximum of $|f^{(n)}|$ on $[-1,1]$ is strictly smaller than $n!\,\alpha^{n/2}$ (e.g. $n=1$: $\max|f'| = \frac{3\sqrt3}{8}\sqrt\alpha < \sqrt\alpha$ when $\alpha\ge 1/3$). What is true for every $n$, and all that Part 3 needs, is the upper bound $\max_{[-1,1]}|f^{(n)}| \le n!\,\alpha^{n/2}$, with equality (at $x=0$) for even $n$. We prove this below.
-
-**Part 1.** For $|x|<1/\sqrt\alpha$ we have $|\alpha x^2|<1$, so
+**1.** For $|x|<1/\sqrt\alpha$ we have $|\alpha x^2|<1$, so
 $$
-f(x) = \frac{1}{1-(-\alpha x^2)} = \sum_{k=0}^\infty(-\alpha)^kx^{2k}.
+\begin{align}
+f(x) &= \frac{1}{1-(-\alpha x^2)} \nonumber\\
+%
+&= \sum_{k=0}^\infty(-\alpha)^kx^{2k}.
+\end{align}
 $$
 A convergent power series is the Taylor series of its sum, so its coefficients are $f^{(m)}(0)/m!$. Comparing coefficients of $x^{2k}$ and $x^{2k+1}$:
 $$
-\frac{f^{(2k)}(0)}{(2k)!} = (-\alpha)^k \;\Longrightarrow\; f^{(2k)}(0) = (2k)!\,(-\alpha)^k, \qquad f^{(2k+1)}(0)=0.
+\begin{align}
+\frac{f^{(2k)}(0)}{(2k)!} &= (-\alpha)^k \;\Longrightarrow\; f^{(2k)}(0) \nonumber\\
+%
+&= (2k)!\,(-\alpha)^k
+\end{align}
 $$
+and $f^{(2k+1)}(0)=0$.
 
-**Part 2.** Let $a := 1/\sqrt\alpha$, so $1+\alpha x^2 = \alpha(x-ia)(x+ia)$ and
+**2.** Let $a := 1/\sqrt\alpha$, so $1+\alpha x^2 = \alpha(x-ia)(x+ia)$ and
 $$
-f(x) = \frac{1}{2i\sqrt\alpha}\left(\frac{1}{x-ia}-\frac{1}{x+ia}\right)
+f(x) = \frac{1}{2i\sqrt\alpha}\left(\frac{1}{x-ia}-\frac{1}{x+ia}\right).
 $$
-(check: the bracket equals $\frac{2ia}{x^2+a^2}$ and $\frac{2ia}{2i\sqrt\alpha} = \frac1\alpha$). Using $\frac{d^n}{dx^n}(x-c)^{-1} = (-1)^nn!\,(x-c)^{-(n+1)}$,
+Using $\frac{d^n}{dx^n}(x-c)^{-1} = (-1)^nn!\,(x-c)^{-(n+1)}$,
 $$
 f^{(n)}(x) = \frac{(-1)^nn!}{2i\sqrt\alpha}\Big((x-ia)^{-(n+1)} - (x+ia)^{-(n+1)}\Big).
 $$
@@ -2323,70 +2335,18 @@ Since $r\ge a = \alpha^{-1/2}$ and $|\sin|\le1$, for every real $x$
 $$
 |f^{(n)}(x)| \;\le\; \frac{n!}{\sqrt\alpha}\,\alpha^{(n+1)/2} = n!\,\alpha^{n/2}. 
 $$
-Equality requires $r=a$, i.e. $x=0$, where $\theta=\pi/2$ and $|\sin((n+1)\pi/2)|$ is $1$ for $n$ even and $0$ for $n$ odd. So for even $n$ the bound is attained at $x=0$ (consistent with Part 1: $|f^{(2k)}(0)| = (2k)!\,\alpha^k$), and for odd $n$ it is never attained.
+Equality requires $r=a$, i.e. $x=0$, where $\theta=\pi/2$ and $|\sin((n+1)\pi/2)|$ is $1$ for $n$ even and $0$ for $n$ odd. So for even $n$ the bound is attained at $x=0$.
 
-**Part 3.** Let $X$ be the $n+1$ equispaced nodes. By @thm-Lagrange-interpolation, $(\ast)$ with $n+1$ in place of $n$, and Part 2 of @exr-equispaced-node-poly,
+**3.** Let $X$ be the $n+1$ equispaced nodes. By @thm-Lagrange-interpolation, $(\ast)$ with $n+1$ in place of $n$, and Part 2 of @exr-equispaced-node-poly,
 $$
-|f(x)-I_Xf(x)| \;\le\; \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\cdot C\,\frac{(2/e)^n}{\sqrt n} \;=\; C\sqrt\alpha\,\frac{1}{\sqrt n}\left(\frac{2\sqrt\alpha}{e}\right)^n ,
+\begin{align}
+|f(x)-I_Xf(x)| &\le \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\cdot C\,\frac{(2/e)^n}{\sqrt n} 
+%
+\nonumber\\
+&= C\sqrt\alpha\,\frac{1}{\sqrt n}\left(\frac{2\sqrt\alpha}{e}\right)^n.
+\end{align}
 $$
-since $\alpha^{(n+1)/2}(2/e)^n = \sqrt\alpha\,(2\sqrt\alpha/e)^n$. If $\alpha < e^2/4$ then $\rho := 2\sqrt\alpha/e<1$ and the bound is at most $C\sqrt\alpha\,\rho^n\to0$; so $\max_{[-1,1]}|f-I_Xf|\to0$ (in fact the bound also tends to $0$ when $\alpha = e^2/4$, thanks to the $1/\sqrt n$, and it blows up for $\alpha>e^2/4$).
-
-**Remark 1 (why the true threshold is $\alpha_{\rm c}\approx3.621$).** The value $e^2/4\approx1.847$ is a limitation of this proof, which chains two worst-case bounds; failure of the bound for $\alpha>e^2/4$ does not by itself mean divergence. The sharp threshold comes from potential theory: for equispaced nodes and $z\in\mathbb C$, $\frac{1}{n+1}\log|\ell_X(z)| = \frac1{n+1}\sum_j\log|z-x_j|$ is a Riemann sum converging to
-$$
-U(z) := \frac12\int_{-1}^1\log|z-t|\,dt ,
-$$
-and (roughly, $|f-I_Xf|$ behaves like $|\ell_X(x)|/|\ell_X(z_{\rm pole})|$) interpolation converges uniformly on $[-1,1]$ if $f$ is analytic on the closed region $\{z\in\mathbb C: U(z)\le U(1)\}$ (the region bounded by the level curve of $U$ through $\pm1$), and diverges near the endpoints if $f$ has a singularity strictly inside it. Here $U(1) = \log2-1$, and for the pole $z=iy$ (with $y = 1/\sqrt\alpha$)
-$$
-U(iy) = \frac12\int_0^1\log(t^2+y^2)\,dt = \frac12\log(1+y^2) - 1 + \frac\pi2 y - y\arctan y .
-$$
-The poles lie on the boundary when $U(iy)=U(1)$, i.e.
-$$
-\tfrac12\log(1+y^2) + \tfrac\pi2 y - y\arctan y = \log 2,
-$$
-whose root is $y_{\rm c}\approx0.52552$, giving $\alpha_{\rm c} = 1/y_{\rm c}^2 \approx 3.6209$ (computed below). Since $U(iy)$ increases with $y$, we get convergence for $\alpha<\alpha_{\rm c}$ and divergence for $\alpha>\alpha_{\rm c}$. The numerics below show $\alpha=1$ converging and $\alpha=25$ diverging, as in `Runge.gif`.
-
-**Remark 2 (Chebyshev nodes).** Replacing the equispaced bound by $|\ell_X(x)|\le2^{1-n}$ in the same calculation gives
-$$
-|f(x)-I_Xf(x)| \;\le\; \frac{(n+1)!\,\alpha^{(n+1)/2}}{(n+1)!}\,2^{1-n} = 2\sqrt\alpha\left(\frac{\sqrt\alpha}{2}\right)^n \to 0 \quad\text{for } \alpha<4,
-$$
-as stated in the lecture.
-
-
-```julia
-# equispaced interpolation of f₃(⋅, α): α = 1 (< e²/4) versus α = 25 (> α_c)
-egrid = -1:0.001:1
-
-for α in (1, 25)
-    println("α = ", α)
-    for n in (10, 20, 30)
-        x = range(-1, 1, n+1)
-        pn = fit(x, f₃.(x, α))
-        err = maximum(@. abs(pn(egrid) - f₃(egrid, α)))
-        println("  n = ", n, "   max error = ", err)
-    end
-end
-```
-
-```julia
-# U(iy) = U(1)  ⟺  g(y) = 0;  then α_c = 1/y_c²
-g(y) = 0.5*log(1+y^2) + (π/2)*y - y*atan(y) - log(2)
-
-function bisect(g, a, b; iters=60)
-    for _ in 1:iters
-        m = (a+b)/2
-        if sign(g(m)) == sign(g(a))
-            a = m
-        else
-            b = m
-        end
-    end
-    return (a+b)/2
-end
-
-yc = bisect(g, 0.1, 1.0)
-println("y_c          = ", yc)
-println("α_c = 1/y_c² = ", 1/yc^2)
-```
+If $\alpha \leq e^2/4$ then $\max_{x\in[-1,1]}|f(x)-I_Xf(x)|\to0$ (and this blows up for $\alpha>e^2/4$).
 
 :::
 :::
@@ -2399,13 +2359,15 @@ println("α_c = 1/y_c² = ", 1/yc^2)
 
 Show that $T_0(x) = 1$ and $T_1(x) = x$.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-For $x\in[-1,1]$ let $\theta = \arccos x\in[0,\pi]$, the unique angle in $[0,\pi]$ with $\cos\theta = x$, so that $T_n(x) = \cos(n\theta)$ is well defined. Then
+For $x\in[-1,1]$ write $\cos \theta = x$ for some $\theta\in[0,\pi]$. Then
 $$
-T_0(x) = \cos(0\cdot\theta) = 1, \qquad T_1(x) = \cos\theta = x,
+\begin{align}
+T_0(x) &= \cos(0\cdot\theta) = 1, \nonumber\\
+T_1(x) &= \cos\theta = x.
+\end{align}
 $$
-for every $x\in[-1,1]$.
 
 :::
 :::
@@ -2420,35 +2382,20 @@ Use $\cos(x+y) = \cos x \cos y - \sin x \sin y$ to show that
 * Hence show that $T_n$ is a polynomial of degree $n$,
 * Show that the coefficent of $x^n$ in $T_n$ is $2^{n-1}$ for $n \geq 1$.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-**(i)** Let $x=\cos\theta$ with $\theta\in[0,\pi]$. By the addition formula (and $\cos$ even, $\sin$ odd),
+**(i)** Let $x=\cos\theta$ with $\theta\in[0,\pi]$. Using the hint, we have
 $$
 \begin{aligned}
-T_{n+1}(x) &= \cos(n\theta+\theta) = \cos n\theta\cos\theta - \sin n\theta\sin\theta,\\
-T_{n-1}(x) &= \cos(n\theta-\theta) = \cos n\theta\cos\theta + \sin n\theta\sin\theta .
+T_{n+1}(x) &= \cos(n\theta+\theta) \nonumber\\
+&= \cos n\theta\cos\theta - \sin n\theta\sin\theta,\\
+T_{n-1}(x) &= \cos(n\theta-\theta) \nonumber\\
+&= \cos n\theta\cos\theta + \sin n\theta\sin\theta .
 \end{aligned}
 $$
 Adding, $T_{n+1}(x) + T_{n-1}(x) = 2\cos\theta\cos n\theta = 2x\,T_n(x)$, which is the recursion. It holds for every $x\in[-1,1]$ and $n\ge1$.
 
-**(ii) and (iii)** We prove by strong induction the statement
-
-> $P(n)$: $T_n$ is a polynomial of degree exactly $n$, with leading coefficient $2^{n-1}$ if $n\ge1$.
-
-$T_0 = 1$ has degree $0$, and $T_1 = x$ has degree $1$ and leading coefficient $1 = 2^0$ (by @exr-Chebyshev-1). Suppose $P(n-1)$ and $P(n)$ hold for some $n\ge1$. Then $2xT_n$ is a polynomial of degree $n+1$ with leading coefficient $2\cdot 2^{n-1} = 2^n$, while $T_{n-1}$ has degree $n-1 < n+1$. So by (i), $T_{n+1} = 2xT_n - T_{n-1}$ is a polynomial of degree exactly $n+1$, and its $x^{n+1}$ coefficient is $2^{n}$, which is $P(n+1)$.
-
-(For $n=0$ the leading coefficient is $1$, not $2^{-1}$. This is why the monic polynomials are defined as $t_0 = 1$ and $t_n = 2^{1-n}T_n$ for $n\ge1$.) The code below builds $T_n$ by the recursion and checks it against $\cos(n\theta)$.
-
-
-```julia
-θ = range(0, π, 201)
-for n in 0:6
-    Tn = cheb(n)[end]
-    err = maximum(@. abs(Tn(cos(θ)) - cos(n*θ)))
-    println("n=", n, "  deg=", degree(Tn), "  leading coeff=", Tn[degree(Tn)],
-            "  max|T_n(cosθ) - cos(nθ)| = ", err)
-end
-```
+**(ii) and (iii)** If $T_n$ is a polynomial of degree $n$ with leading coefficient $2^{n-1}$, $T_{n+1} = 2x T_n - T_{n-1}$ is a polynomial of degree $n+1$ with leading coefficient $2^n$. This combined with the fact that $T_0, T_1$ are polynomials of degree $0$ and $1$ and the leading coefficient of $T_1$ is $1 = 2^{1-1}$ we can conclude (by induction).
 
 :::
 :::
@@ -2463,35 +2410,28 @@ Show that
 * $T_{n}\big( \cos\tfrac{j\pi}{n} \big) = (-1)^j$ for $j = 0,\dots,n$ (extreme points; Chebyshev nodes of the second kind),
 * $T_{n+1} = 0$ on $\big\{ \cos \frac{(2j+1)\pi}{2(n+1)} \big\}_{j=0}^{n}$ (zeros; Chebyshev nodes of the first kind).
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-**(i)** Every $x\in[-1,1]$ is $\cos\theta$ for some $\theta\in[0,\pi]$, so $|T_n(x)| = |\cos n\theta|\le1$. Also $T_n(1) = \cos 0 = 1$. Hence $\max_{[-1,1]}|T_n| = 1$.
+**(i)** We can write $x\in[-1,1]$ as $\cos\theta$ for some $\theta\in[0,\pi]$, so $|T_n(x)| = |\cos n\theta|\le1$. Also $T_n(1) = \cos 0 = 1$. Hence $\max_{x\in [-1,1]}|T_n(x)| = 1$.
 
 **(ii)** Let $n\ge1$. For $j=0,\dots,n$, $\theta_j = j\pi/n\in[0,\pi]$, so $T_n(\cos\theta_j) = \cos(n\theta_j) = \cos(j\pi) = (-1)^j$. Since $\cos$ is strictly decreasing on $[0,\pi]$, these are $n+1$ distinct points, and by (i) they are points where $|T_n|$ attains its maximum $1$. They are the only such points in $[-1,1]$, because $|\cos n\theta|=1$ with $\theta\in[0,\pi]$ forces $n\theta\in\{0,\pi,\dots,n\pi\}$.
 
 **(iii)** For $j=0,\dots,n$, $\theta_j = \frac{(2j+1)\pi}{2(n+1)}\in(0,\pi)$ and
 $$
-T_{n+1}(\cos\theta_j) = \cos\big((n+1)\theta_j\big) = \cos\Big(\frac{(2j+1)\pi}{2}\Big) = 0 .
+\begin{align}
+T_{n+1}(\cos\theta_j) &= \cos\big((n+1)\theta_j\big) \nonumber\\
+%
+&= \cos\Big(\frac{(2j+1)\pi}{2}\Big) = 0 .
+\end{align}
 $$
-Again these $n+1$ points are distinct (strict monotonicity of $\cos$ on $[0,\pi]$). Since $T_{n+1}$ has degree $n+1$ (@exr-Chebyshev-2), it has at most $n+1$ roots, so these are **all** the zeros of $T_{n+1}$. Hence
+Again these $n+1$ points are distinct (as $\cos$ is strictly decreasing on $[0,\pi]$). Since $T_{n+1}$ has degree $n+1$ (@exr-Chebyshev-2), it has at most $n+1$ roots, so these are **all** the zeros of $T_{n+1}$. Hence
 $$
-T_{n+1}(x) = 2^n\prod_{j=0}^n\Big(x-\cos\tfrac{(2j+1)\pi}{2(n+1)}\Big), \qquad\text{i.e.}\qquad \ell_{X_{\rm I}} = 2^{-n}T_{n+1} = t_{n+1}.
+\begin{align}
+T_{n+1}(x) &= 2^n\prod_{j=0}^n\Big(x-\cos\tfrac{(2j+1)\pi}{2(n+1)}\Big), \nonumber\\
+%
+\text{i.e.}\qquad \ell_{X_{\rm I}} &= 2^{-n}T_{n+1} = t_{n+1}.
+\end{align}
 $$
-
-The lecture's proof covers all of these points and is correct. It leaves implicit only that the listed points are distinct, which follows from strict monotonicity of $\cos$ on $[0,\pi]$.
-
-
-```julia
-n  = 5
-Tn  = cheb(n+1)[n+1]           # T_5
-Tn1 = cheb(n+1)[n+2]           # T_6
-xII = @. cos((0:n)*π/n)
-xI  = @. cos((2*(0:n)+1)*π/(2(n+1)))
-
-println("max over grid |T_5|  = ", maximum(abs.(Tn.(-1:1e-5:1))))
-println("T_5 on X_II          = ", Tn.(xII))
-println("T_6 on X_I           = ", Tn1.(xI))
-```
 
 :::
 :::
@@ -2506,47 +2446,52 @@ Recall that $T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)$ for $n=1,2,...$.
 2. Write down the Chebyshev nodes of the first kind $X_{\mathrm I}$ for $n = 2$ (i.e. the zeros of $T_3$) and check directly that $\ell_{X_{\mathrm I}}(x) = t_3(x) = x^3 - \tfrac34 x$.
 3. Find $\| \ell_{X_{\mathrm I}} \|_{L^\infty([-1,1])}$ for $n=2$ by calculus, and compare with the equispaced nodes $\{-1, 0, 1\}$.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
 **1.** Starting from $T_0=1$, $T_1=x$:
 $$
 \begin{aligned}
-T_2 &= 2x\cdot x - 1 = 2x^2-1,\\
-T_3 &= 2x(2x^2-1) - x = 4x^3-3x,\\
-T_4 &= 2x(4x^3-3x) - (2x^2-1) = 8x^4-8x^2+1 .
+T_2 &= 2x\cdot x - 1 \nonumber\\
+&= 2x^2-1,\\
+T_3 &= 2x(2x^2-1) - x \nonumber\\
+&= 4x^3-3x,\\
+T_4 &= 2x(4x^3-3x) - (2x^2-1) \nonumber\\
+&= 8x^4-8x^2+1 .
 \end{aligned}
 $$
-(Leading coefficients $2,4,8$, as predicted by @exr-Chebyshev-2.)
 
 **2.** For $n=2$, $X_{\rm I} = \big\{\cos\frac{(2j+1)\pi}{6}\big\}_{j=0}^2 = \big\{\cos\frac\pi6,\cos\frac\pi2,\cos\frac{5\pi}6\big\} = \big\{\tfrac{\sqrt3}{2},\,0,\,-\tfrac{\sqrt3}{2}\big\}$. Then
 $$
-\ell_{X_{\rm I}}(x) = \Big(x-\tfrac{\sqrt3}2\Big)\,x\,\Big(x+\tfrac{\sqrt3}2\Big) = x\Big(x^2-\tfrac34\Big) = x^3-\tfrac34x = \tfrac14(4x^3-3x) = 2^{1-3}\,T_3(x) = t_3(x).
+\begin{align}
+\ell_{X_{\rm I}}(x) &= \Big(x-\tfrac{\sqrt3}2\Big)\,x\,\Big(x+\tfrac{\sqrt3}2\Big) 
+\nonumber\\
+&= x\Big(x^2-\tfrac34\Big) \nonumber\\
+&= x^3-\tfrac34x = \tfrac14(4x^3-3x) 
+\nonumber\\
+&= 2^{1-3}\,T_3(x) = t_3(x).
+\end{align}
 $$
 
 **3.** Let $g(x) = x^3-\frac34x$. Then $g'(x) = 3x^2-\frac34 = 0 \iff x=\pm\frac12$. Comparing values at the critical points and endpoints:
 $$
-g\big(\tfrac12\big) = \tfrac18-\tfrac38 = -\tfrac14,\quad g\big(-\tfrac12\big) = \tfrac14,\quad g(1) = \tfrac14,\quad g(-1) = -\tfrac14 .
+\begin{align}
+g\big(\tfrac12\big) &= \tfrac18-\tfrac38 = -\tfrac14,\nonumber\\
+g\big(-\tfrac12\big) &= \tfrac14,\nonumber\\
+g(1) &= \tfrac14,\nonumber\\
+g(-1) &= -\tfrac14 .
+\end{align}
 $$
 So $\|\ell_{X_{\rm I}}\|_{L^\infty} = \frac14 = 2^{-2}$, attained at the four points $\pm\frac12,\pm1$ with alternating signs. These are $\cos\frac{j\pi}{3}$, $j=0,\dots,3$, the extreme points of $T_3$.
 
 For the equispaced nodes, $\ell(x) = x^3-x$ has critical points $x=\pm\frac1{\sqrt3}$ and vanishes at $\pm1$, so
 $$
-\|\ell_{\{-1,0,1\}}\|_{L^\infty} = \frac1{\sqrt3}\Big(1-\frac13\Big) = \frac{2}{3\sqrt3}\approx0.385,
+\begin{align}
+\|\ell_{\{-1,0,1\}}\|_{L^\infty} &= \frac1{\sqrt3}\Big(1-\frac13\Big) \nonumber\\
+%
+&= \frac{2}{3\sqrt3}\approx0.385,
+\end{align}
 $$
-about $1.54$ times larger than $\frac14$. Because the factor $\frac{\max|f^{(3)}|}{3!}$ in the error bound is the same for both node sets, the Chebyshev nodes give an error bound about $35\%$ smaller (e.g. for $e^{-x}$: $\frac{e}{24}\approx0.113$ instead of $\frac{e}{9\sqrt3}\approx0.174$).
-
-
-```julia
-T = cheb(4)
-println("T_2 = ", T[3], "\nT_3 = ", T[4], "\nT_4 = ", T[5])
-
-XI = [cos(π/6), cos(π/2), cos(5π/6)]          # zeros of T_3
-println("ℓ_XI = ", fromroots(XI), "    t_3 = T_3/4 = ", T[4]/4)
-
-xg = -1:1e-5:1
-println("‖ℓ_XI‖  = ", maximum(abs.(fromroots(XI).(xg))), "   (1/4)")
-println("‖ℓ_equi‖ = ", maximum(abs.(fromroots([-1,0,1]).(xg))), "   (2/(3√3) = ", 2/(3sqrt(3)), ")")
-```
+about $1.54$ times larger than $\frac14$. Because the factor $\frac{\max|f^{(3)}|}{3!}$ in the error bound is the same for both node sets, the Chebyshev nodes give an error bound about $35\%$ smaller.
 
 :::
 :::
@@ -2563,11 +2508,14 @@ Prove the claim as follows:
 2. Deduce that $T_{n+1} - T_{n-1}$ vanishes on $X_{\mathrm{II}} = \big\{ \cos\frac{j\pi}{n} \big\}_{j=0}^n$.
 3. Show that $2^{-n} \big( T_{n+1} - T_{n-1} \big)$ is monic of degree $n+1$, and conclude.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
 **1.** From the two addition-formula identities in @exr-Chebyshev-2, subtracting instead of adding:
 $$
-T_{n+1}(\cos\theta) - T_{n-1}(\cos\theta) = \big(\cos n\theta\cos\theta - \sin n\theta\sin\theta\big) - \big(\cos n\theta\cos\theta + \sin n\theta\sin\theta\big) = -2\sin\theta\,\sin n\theta .
+\begin{align}
+T_{n+1}(\cos\theta) - T_{n-1}(\cos\theta) &= \big(\cos n\theta\cos\theta - \sin n\theta\sin\theta\big) - \big(\cos n\theta\cos\theta + \sin n\theta\sin\theta\big) \nonumber\\
+&= -2\sin\theta\,\sin n\theta .
+\end{align}
 $$
 
 **2.** At $x_j = \cos\theta_j$ with $\theta_j = j\pi/n$, $j=0,\dots,n$, we have $\sin(n\theta_j) = \sin(j\pi) = 0$, so $(T_{n+1}-T_{n-1})(x_j) = 0$. (At the endpoints $j=0,n$ the factor $\sin\theta_j$ vanishes too.) The $n+1$ points $x_j$ are distinct, since $\cos$ is strictly decreasing on $[0,\pi]$.
@@ -2577,22 +2525,6 @@ $$
 \ell_{X_{\rm II}} = 2^{-n}\big(T_{n+1}-T_{n-1}\big).
 $$
 Finally, $\|\ell_{X_{\rm II}}\|_{L^\infty} \le 2^{-n}\big(\|T_{n+1}\|_{L^\infty}+\|T_{n-1}\|_{L^\infty}\big) = 2^{1-n}$.
-
-*Remark.* By Part 1, $|\ell_{X_{\rm II}}(\cos\theta)| = 2^{1-n}|\sin\theta\sin n\theta|$. This equals $2^{1-n}$ only if $\theta=\pi/2$ and $|\sin(n\pi/2)|=1$. So the bound is attained exactly when $n$ is odd, and is strict for $n$ even. For $n=2$, $X_{\rm II} = \{-1,0,1\}$, which gives $\|\ell\| = \frac{2}{3\sqrt3}\approx0.385<\frac12$, as in @exr-l07-cheb-small. The code checks this for $n=1,\dots,8$.
-
-
-```julia
-xg = -1:1e-5:1
-for n in 1:8
-    Tc  = cheb(n+1)
-    XII = @. cos((0:n)*π/n)
-    ℓ   = fromroots(XII)
-    claim = 2.0^(-n)*(Tc[n+2] - Tc[n])
-    println("n=", n, "  max|ℓ_XII - claim| = ", round(maximum(@. abs(ℓ(xg) - claim(xg))), sigdigits=2),
-            "   ‖ℓ_XII‖ = ", round(maximum(abs.(ℓ.(xg))), sigdigits=6),
-            "   2^(1-n) = ", 2.0^(1-n))
-end
-```
 
 :::
 :::
@@ -2610,16 +2542,26 @@ Suppose we want to interpolate on a general interval $[a,b]$ rather than $[-1,1]
 2. Deduce that, if $X$ is the image of $X_{\mathrm I}$ under $\phi$, then $\max_{x \in [a,b]} |\ell_X(x)| = 2 \left( \frac{b-a}{4} \right)^{n+1}$.
 3. Let $f(x) = \sin x$ on $[0, \pi]$, interpolated at the image of $X_{\mathrm I}$. Write down an error bound and find the smallest $n$ that guarantees $\max_{x\in[0,\pi]} |f(x) - I_Xf(x)| \leq 10^{-6}$.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-**1.** $\phi$ is affine: $\phi(t)-\phi(y_j) = \frac{b-a}{2}(t-y_j)$. Therefore
+**1.** $\phi$ is linear: $\phi(t)-\phi(y_j) = \frac{b-a}{2}(t-y_j)$. Therefore
 $$
-\ell_X(\phi(t)) = \prod_{j=0}^n\big(\phi(t)-\phi(y_j)\big) = \prod_{j=0}^n\frac{b-a}{2}(t-y_j) = \left(\frac{b-a}{2}\right)^{n+1}\ell_Y(t).
+\begin{align}
+\ell_X(\phi(t)) &= \prod_{j=0}^n\big(\phi(t)-\phi(y_j)\big) \nonumber\\
+%
+&= \prod_{j=0}^n\frac{b-a}{2}(t-y_j) \nonumber\\
+&= \left(\frac{b-a}{2}\right)^{n+1}\ell_Y(t).
+\end{align}
 $$
 
-**2.** By @exr-Chebyshev-3, $\ell_{X_{\rm I}} = t_{n+1} = 2^{-n}T_{n+1}$, so $\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = 2^{-n}$. Since $\phi$ is a bijection from $[-1,1]$ onto $[a,b]$ (assuming $a<b$), every $x\in[a,b]$ is $\phi(t)$ for exactly one $t\in[-1,1]$, so by Part 1
+**2.** By @exr-Chebyshev-3, $\ell_{X_{\rm I}} = t_{n+1} = 2^{-n}T_{n+1}$, so $\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = 2^{-n}$. Since $\phi$ is a bijection from $[-1,1]$ onto $[a,b]$, every $x\in[a,b]$ is $\phi(t)$ for exactly one $t\in[-1,1]$, so by Part 1
 $$
-\max_{x\in[a,b]}|\ell_X(x)| = \left(\frac{b-a}{2}\right)^{n+1}\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| = \frac{(b-a)^{n+1}}{2^{n+1}2^{n}} = 2\left(\frac{b-a}{4}\right)^{n+1}.
+\begin{align}
+\max_{x\in[a,b]}|\ell_X(x)| &= \left(\frac{b-a}{2}\right)^{n+1}\max_{t\in[-1,1]}|\ell_{X_{\rm I}}(t)| \nonumber\\
+%
+&= \frac{(b-a)^{n+1}}{2^{n+1}2^{n}} \nonumber\\
+&= 2\left(\frac{b-a}{4}\right)^{n+1}.
+\end{align}
 $$
 
 **3.** All derivatives of $\sin$ are $\pm\sin$ or $\pm\cos$, so $|f^{(n+1)}|\le1$. With $b-a=\pi$, the Lagrange error formula and Part 2 give
@@ -2628,27 +2570,13 @@ $$
 $$
 Evaluating:
 $$
-B_6 \approx 7.3\times10^{-5},\qquad B_7 \approx 7.2\times10^{-6},\qquad B_8 \approx 6.3\times10^{-7},
+\begin{align}
+B_6 &\approx 7.3\times10^{-5},\nonumber\\
+B_7 &\approx 7.2\times10^{-6},\nonumber\\
+B_8 &\approx 6.3\times10^{-7},
+\end{align}
 $$
-and $B_n$ decreases in $n$ (since $B_{n+1}/B_n = \frac{\pi/4}{n+2}<1$). So the smallest $n$ with $B_n\le10^{-6}$ is $n=8$, i.e. $9$ interpolation nodes. The true error for $n=8$ is about $9.3\times10^{-8}$ (computed below), so the bound is reasonably tight. (For $n=7$ the true error is about $6.8\times10^{-6}>10^{-6}$, so $n=8$ is also the smallest $n$ that actually achieves the tolerance.)
-
-
-```julia
-bound(n) = 2*(π/4)^(n+1)/factorial(n+1)
-for n in 6:9
-    println("n=", n, "  bound = ", bound(n))
-end
-
-# actual error: interpolate sin at the mapped Chebyshev nodes of the first kind
-a, b = 0, π
-ϕ  = t -> (a+b)/2 + (b-a)/2*t
-xg = range(a, b, 100001)
-for n in 7:8
-    X  = ϕ.(@. cos((2*(0:n)+1)*π/(2(n+1))))
-    pn = fit(X, sin.(X))
-    println("n=", n, "  actual max error = ", maximum(@. abs(sin(xg) - pn(xg))))
-end
-```
+and $B_n$ decreases in $n$. So the smallest $n$ with $B_n\le10^{-6}$ is $n=8$, (that is, $9$ interpolation nodes).
 
 :::
 :::
@@ -2877,13 +2805,13 @@ println("floatmin(Float64) = ", floatmin(Float64))
 
 Suppose that $X = \{ x_0 < ... < x_n \}$ and let $\ell_j$ be the corresponding Lagrange polynomials. Show that $\sum_{j=0}^n \ell_j(x) = 1$ for all $x$.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
 Let $s(x) := \sum_{j=0}^n \ell_j(x)$. Each $\ell_j$ has degree $n$, so $s\in\mathcal P_n$. Since $\ell_j(x_i) = \delta_{ij}$,
 $$
-s(x_i) = \sum_{j=0}^n \delta_{ij} = 1 \qquad (i=0,\dots,n).
+s(x_k) = \sum_{j=0}^n \delta_{jk} = 1.
 $$
-Hence $s - 1 \in \mathcal P_n$ vanishes at the $n+1$ distinct points $x_0,\dots,x_n$, so $s-1 = 0$ (a nonzero polynomial of degree $\le n$ has at most $n$ roots). Thus $\sum_j \ell_j(x) = 1$ for **all** $x\in\mathbb R$, not only at the nodes.
+for all $k=0,\dots,n$. Hence $s - 1 \in \mathcal P_n$ vanishes at the $n+1$ distinct points $x_0,\dots,x_n$, so $s-1 = 0$ (a nonzero polynomial of degree $\le n$ has at most $n$ roots). Thus $\sum_j \ell_j(x) = 1$ for **all** $x\in\mathbb R$.
 
 Equivalently: $s = \sum_j 1\cdot\ell_j = I_X 1$ is the interpolant of the constant function $1$, and $1\in\mathcal P_n$ interpolates itself, so $I_X1 = 1$ by uniqueness.
 
@@ -2896,30 +2824,20 @@ Equivalently: $s = \sum_j 1\cdot\ell_j = I_X 1$ is the interpolant of the consta
 
 Explain why one may instead consider any weights of the form $w_j := C \lambda_j$ in the Barycentric formula @eq-Barycentric. Why might this be a good idea? See @eq-Barycentric-Chebyshev-II for the weights appearing in the Barycentric formula for Chebyshev nodes of the second kind.
 
-::: {.exercise-solution .draft style="display: none;"}
+::: {.exercise-solution style="display: none;"}
 
-*Why it is allowed.* Let $C\ne0$ be a constant that does **not** depend on $j$. For $x\notin X$,
+Let $C\ne0$ be a constant that does **not** depend on $j$. The formula does not depend on $C$: for $x\not\in X$,
 $$
 \frac{\sum_{j}\frac{C\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{C\lambda_j}{x-x_j}}
 = \frac{C\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{C\sum_{j}\frac{\lambda_j}{x-x_j}}
 = \frac{\sum_{j}\frac{\lambda_j f(x_j)}{x-x_j}}{\sum_{j}\frac{\lambda_j}{x-x_j}} = I_Xf(x),
 $$
-(the denominator is nonzero because it equals $1/\ell_X(x)$ by @exr-sum-lagrange-1), and at $x=x_j$ we use $I_Xf(x_j) = f(x_j)$ anyway. This works because the barycentric formula is a *ratio* in which the weights appear linearly in both the numerator and the denominator. (It does **not** work for the first form $\ell_X(x)\sum_j\frac{\lambda_jf(x_j)}{x-x_j}$, which needs the true $\lambda_j$.)
+(the denominator is nonzero because it equals $1/\ell_X(x)$ by @exr-sum-lagrange-1). 
 
 *Why it is a good idea.*
 
-1. **Overflow/underflow.** The true weights can be astronomically large or small. For Chebyshev nodes of the second kind $|\lambda_j| = \frac{2^n}{2n}$ (or $\frac{2^n}{4n}$): already `2.0^1024 == Inf`, and $\frac{2^n}{2n}$ itself exceeds the largest double ($\approx1.8\times10^{308}$) once $n\gtrsim 1035$, after which the formula would compute $\mathrm{Inf}/\mathrm{Inf} = \mathrm{NaN}$. For nodes on an interval of length $L$, the $\lambda_j$ scale like $L^{-n}$, so even moderate $n$ can over- or underflow. Choosing $C = \frac{2n}{2^n}$ gives the weights $(-1)^j\tau_j$ ($\tau_j=\frac12$ at $j=0,n$, else $1$), all of size $\frac12$ or $1$.
-2. **Simplicity and accuracy.** The rescaled Chebyshev weights are known exactly in closed form: no $O(n^2)$ computation of products and no rounding error in the weights. They are also the same on every interval: the affine map $[-1,1]\to[a,b]$ multiplies every $\lambda_j$ by the same factor $\big(\frac{2}{b-a}\big)^n$, which cancels (compare @exr-Bary-2, where $\{0,\frac\pi2,\pi\}$ gets the weights $\frac12,-1,\frac12$).
-
-
-```julia
-n = 1100
-@show 2.0^n / (2n)                             # the true Chebyshev weight overflows
-x = @. cos( π*(0:n)/n )
-λ = @. (-1.0)^(0:n);  λ[1] /= 2;  λ[end] /= 2   # rescaled weights: no problem
-t = 0.3
-@show sum( @. λ * Runge(x) / (t - x) ) / sum( @. λ / (t - x) ) - Runge(t)
-```
+1. **Overflow/underflow.** The true weights can be astronomically large or small. For Chebyshev nodes of the second kind $|\lambda_j| = \frac{2^n}{2n}$ (or $\frac{2^n}{4n}$): already `2.0^1024 == Inf`, so for large $n$ the formula would compute $\mathrm{Inf}/\mathrm{Inf} = \mathrm{NaN}$.
+2. **Simplicity.** The rescaled Chebyshev weights are known exactly in closed form: no $O(n^2)$ computation of products and no rounding error in the weights. They are also the same on every interval: the affine map $[-1,1]\to[a,b]$ multiplies every $\lambda_j$ by the same factor $\big(\frac{2}{b-a}\big)^n$, which cancels (compare @exr-Bary-2, where $\{0,\frac\pi2,\pi\}$ gets the weights $\frac12,-1,\frac12$).
 
 :::
 :::
@@ -3099,41 +3017,7 @@ $$
 $$
 
 2. We have $w_j = C \lambda_j$ with the constant $C = (-1)^n h^n n!$ (which does not depend on $j$), and so the factor $C$ cancels between the numerator and the denominator of @eq-Barycentric. The smallest weights are $|w_0| = |w_n| = 1$ and the largest is $\binom{n}{\lfloor n/2 \rfloor} \approx 2^n \sqrt{\frac{2}{\pi n}}$. Therefore, the ratio grows exponentially: it is $252$ for $n = 10$, about $1.8 \times 10^5$ for $n = 20$, and about $1.2 \times 10^{17}$ for $n = 60$. For Chebyshev nodes, the ratio is $2$ for all $n$.
-
-3. For example:
-
-```julia
-function EquispacedInterpolant( f, n )
-    x = range(-1, 1, length=n+1)
-    y = f.(x)
-    w = [ (-1.0)^j * binomial(n, j) for j in 0:n ]
-
-    return function ( t )
-        num = 0.0
-        den = 0.0
-        for j ∈ 1:(n+1)
-            if t == x[j]
-                return y[j]
-            end
-            num += w[j] * y[j] / (t - x[j])
-            den += w[j] / (t - x[j])
-        end
-        return num / den
-    end
-end
-```
-
-This gives the following maximum errors:
-
-| $n$ | Runge | $e^x$ | error bound for $e^x$ |
-|---|---|---|---|
-| $10$ | $1.9$ | $2.4 \times 10^{-10}$ | $1.4 \times 10^{-9}$ |
-| $20$ | $6.0 \times 10^{1}$ | $1.4 \times 10^{-12}$ | $3.5 \times 10^{-23}$ |
-| $40$ | $1.0 \times 10^{5}$ | $3.9 \times 10^{-7}$ | $8.2 \times 10^{-56}$ |
-| $60$ | | $2.0 \times 10^{-1}$ | $9.5 \times 10^{-93}$ |
-
-Here, the error bound is $\frac{e}{(n+1)!} \cdot \frac{e}{2\sqrt n} \big(\frac2e\big)^n$ (using $\max_{[-1,1]} |f^{(n+1)}| = e$). For the Runge function, the error grows exponentially: this is the Runge phenomenon from Lecture 6 (the derivatives of the Runge function grow too quickly for the error estimate to give convergence). For $e^x$, the exact interpolant converges extremely quickly, and the computed error decreases until $n \approx 20$. After that, the computed error *grows* even though the exact interpolant is more and more accurate. This is caused by rounding errors: perturbing the data $f(x_j)$ by $\delta_j$ changes the interpolant by $\sum_j \delta_j \ell_j(x)$, and for equispaced nodes $\max_x \sum_j |\ell_j(x)|$ grows exponentially in $n$ (like the ratio of the weights in 2). Rounding errors of size $10^{-16}$ are therefore amplified by a factor of order $2^n$. For Chebyshev nodes, this amplification factor only grows like $\log n$ (see @BerrutTrefethen2004).
-
+ 
 :::
 :::
 
