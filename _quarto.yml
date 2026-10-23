@@ -55,6 +55,11 @@ book:
       - assignments/A02.ipynb
       - assignments/A03.ipynb
 
+    - part: "Exams"
+      number-sections: false
+      chapters:
+      - appendix/studyguide.ipynb
+
     - part: "Appendix"
       chapters: 
       - appendix/calculus.ipynb

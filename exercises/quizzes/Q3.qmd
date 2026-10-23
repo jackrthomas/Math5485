@@ -1,0 +1,161 @@
+---
+title: "Quiz 3"
+date: "2026-10-21"
+after-lecture: 10
+---
+
+<!--
+Quiz questions for the exercise bank (collected by extras/collect_exercises.jl, run automatically before each render).
+See Q1.qmd for how quiz files work. Questions and answers from private/quizzes/answers-Q3.ipynb (without the marks).
+-->
+
+::: {.quiz-question}
+
+Let $f(x) = |x|$ and $X = \{x_0, x_1, x_2\} = \{-1, 0, 1\}$. Find the polynomial interpolant $I_Xf \in \mathcal P_2$ of $f$ on $X$ in (i) Lagrange form, (ii) Barycentric form, and (iii) Newton form.
+
+*Hints:* For $x \notin X$,
+
+\begin{align}
+ I_Xf(x) &= \sum_{j=0}^2 f(x_j)\, \ell_j(x) && \text{(Lagrange)} \nonumber\\
+ &= \left. \sum_{j=0}^2 \frac{\lambda_j f(x_j)}{x - x_j} \middle/ \sum_{j=0}^2 \frac{\lambda_j}{x - x_j} \right. && \text{(Barycentric)} \nonumber\\
+ &= f(x_0) + f[x_0, x_1]\,(x - x_0) + f[x_0, x_1, x_2]\,(x - x_0)(x - x_1) && \text{(Newton)} \nonumber
+\end{align}
+
+where $\ell_j(x) = \prod_{k \neq j} \frac{x - x_k}{x_j - x_k}$ are the Lagrange polynomials, $\lambda_j = \frac{1}{\prod_{k\neq j}(x_j - x_k)}$ are the Barycentric weights, and $f[x_j] = f(x_j)$, $f[x_0, \dots, x_n] = \frac{f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}]}{x_n - x_0}$ are the divided differences. You may use:
+$$
+\ell_0(x) = \frac{x(x-1)}{2}, \quad \ell_2(x) = \frac{x(x+1)}{2},
+\qquad
+\lambda_0 = \frac12, \quad \lambda_1 = -1, \quad \lambda_2 = \frac12,
+\qquad
+\begin{array}{c|ccc}
+ x_j & f(x_j) & \text{1st} & \text{2nd} \\ \hline
+ -1 & 1 & & \\
+    & & -1 & \\
+ 0 & 0 & & 1 \\
+   & & 1 & \\
+ 1 & 1 & &
+\end{array}
+$$
+
+::: {.exercise-solution style="display: none;"}
+
+We have $f(-1) = 1$, $f(0) = 0$, $f(1) = 1$. (In each case, the answer simplifies to $I_Xf(x) = x^2$.)
+
+(i) The Lagrange polynomials are
+$$
+\begin{align}
+    \ell_0(x) &= \frac{x(x-1)}{(-1)(-2)} = \frac{x(x-1)}{2}, \nonumber\\
+    \ell_1(x) &= \frac{(x+1)(x-1)}{(1)(-1)} = 1 - x^2, \nonumber\\
+    \ell_2(x) &= \frac{(x+1)x}{(2)(1)} = \frac{x(x+1)}{2}, \nonumber
+\end{align}
+$$
+and so $I_Xf(x) = 1 \cdot \ell_0(x) + 0 \cdot \ell_1(x) + 1 \cdot \ell_2(x) = \frac{x(x-1)}{2} + \frac{x(x+1)}{2} \;(= x^2)$.
+
+(ii) $\lambda_0 = \frac{1}{(-1-0)(-1-1)} = \frac12$, $\lambda_1 = \frac{1}{(0+1)(0-1)} = -1$, $\lambda_2 = \frac{1}{(1+1)(1-0)} = \frac12$, so for $x \notin X$,
+
+\begin{align}
+    I_Xf(x) = \frac{\frac{1/2}{x+1} + \frac{1/2}{x-1}}{\frac{1/2}{x+1} - \frac{1}{x} + \frac{1/2}{x-1}}
+    \qquad \Big( = \frac{\frac{x}{x^2-1}}{\frac{1}{x(x^2-1)}} = x^2 \Big). \nonumber
+\end{align}
+
+(Any multiple of the weights, e.g. $1, -2, 1$, is also fine.)
+
+(iii) $f[x_1, x_2] = \frac{1 - 0}{1 - 0} = 1$ and $f[x_0, x_1, x_2] = \frac{1 - (-1)}{1 - (-1)} = 1$:
+
+$$
+\begin{array}{c|ccc}
+    x_j & f(x_j) & \text{1st} & \text{2nd} \\ \hline
+    -1 & 1 & & \\
+       & & -1 & \\
+    0 & 0 & & 1 \\
+      & & 1 & \\
+    1 & 1 & &
+\end{array}
+$$
+
+So $I_Xf(x) = 1 - (x+1) + (x+1)x \;(= x^2)$.
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+In this question, we prove that $\cos\frac\pi8 = \frac{\sqrt{2 + \sqrt2}}{2}$. Recall that the Chebyshev polynomials satisfy $T_n(\cos\theta) = \cos n\theta$.
+
+(a) Show that $T_m\big(T_n(x)\big) = T_{mn}(x)$ for all $x \in [-1,1]$ and $m, n \geq 0$.
+
+We saw that $T_4\big(\cos\frac\pi8\big) = \cos\frac\pi2 = 0$.  
+Moreover, by using (a) and $T_2(x) = 2x^2 - 1$, we have $T_4(x) = T_2\big(T_2(x)\big) = 8x^4 - 8x^2 + 1$.
+
+(b) Show that the zeros of $8x^4 - 8x^2 + 1$ are $\pm\frac{\sqrt{2 \pm \sqrt2}}{2}$.  
+*Hint:* let $y = x^2$. You may use the fact that the solutions of $8y^2 - 8y + 1 = 0$ are $y = \frac{2 \pm \sqrt2}{4}$.  
+(c) The zeros of $T_4$ are $\cos\frac{(2j+1)\pi}{8}$ for $j = 0, 1, 2, 3$. Explain why $\cos\frac\pi8 = \frac{\sqrt{2 + \sqrt2}}{2}$.
+
+::: {.exercise-solution style="display: none;"}
+
+(a) Let $x = \cos\theta$. Then $T_n(x) = \cos n\theta$ and so
+
+\begin{align}
+    T_m\big(T_n(x)\big) = T_m(\cos n\theta) = \cos(mn\theta) = T_{mn}(\cos\theta) = T_{mn}(x). \nonumber
+\end{align}
+
+(Strictly, we use $T_m(\cos\varphi) = \cos m\varphi$ with $\varphi = n\theta$, which may lie outside $[0,\pi]$. This is fine: the identity holds for all real $\varphi$, since $\cos\varphi = \cos\varphi'$ for some $\varphi' = \pm\varphi + 2\pi k \in [0,\pi]$ and then $\cos m\varphi' = \cos m\varphi$.)
+
+(Given.) $T_4(x) = 2(2x^2 - 1)^2 - 1 = 8x^4 - 8x^2 + 1$ and $T_4(\cos\frac\pi8) = \cos\frac{4\pi}{8} = \cos\frac\pi2 = 0$.
+
+(b) With $y = x^2$, $8x^4 - 8x^2 + 1 = 8y^2 - 8y + 1 = 0$, so $y = \frac{8 \pm \sqrt{64 - 32}}{16} = \frac{2 \pm \sqrt2}{4}$. Both are positive, so $x = \pm\sqrt{y} = \pm\frac{\sqrt{2 \pm \sqrt2}}{2}$.
+
+(c) Since $T_4(\cos\frac\pi8) = 0$, $\cos\frac\pi8$ is one of the zeros in (b). Since $\cos$ is decreasing on $[0,\pi]$, $\cos\frac\pi8$ is the largest of the zeros $\cos\frac{(2j+1)\pi}{8}$, and the largest of $\pm\frac{\sqrt{2 \pm \sqrt2}}{2}$ is $\frac{\sqrt{2 + \sqrt2}}{2}$. Therefore $\cos\frac\pi8 = \frac{\sqrt{2+\sqrt2}}{2}$.
+
+:::
+
+:::
+
+::: {.quiz-question}
+
+(a) Write down the cubic polynomial $p \in \mathcal P_3$ with $p(0) = 1$, $p'(0) = 0$, $p(1) = 0$, and $p'(1) = 0$.  
+*Hint:* use the nodes $X = \{\{0, 0, 1, 1\}\}$. You may use the template:
+$$
+\begin{array}{c|cccc}
+    x_j & f(x_j) & \text{1st} & \text{2nd} & \text{3rd} \\ \hline
+    0 & \underline{\qquad} & & & \\
+      & & \underline{\qquad} & & \\
+    0 & \underline{\qquad} & & \underline{\qquad} & \\
+      & & \underline{\qquad} & & \underline{\qquad} \\
+    1 & \underline{\qquad} & & \underline{\qquad} & \\
+      & & \underline{\qquad} & & \\
+    1 & \underline{\qquad} & & &
+\end{array}
+$$
+(b) Explain why $q(x) = 1-p(x)$ satisfies $q \in \mathcal P_3$ with $q(0) = 0$, $q'(0) = 0$, $q(1) = 1$, $q'(1) = 0$.
+
+::: {.exercise-solution style="display: none;"}
+
+(a) This is the Hermite interpolant on $X = \{\{0,0,1,1\}\}$ of any $f$ with $f(0) = 1$, $f'(0) = 0$, $f(1) = 0$, $f'(1) = 0$:
+
+$$
+\begin{array}{c|cccc}
+    x_j & f(x_j) & \text{1st} & \text{2nd} & \text{3rd} \\ \hline
+    0 & 1 & & & \\
+      & & 0 & & \\
+    0 & 1 & & -1 & \\
+      & & -1 & & 2 \\
+    1 & 0 & & 1 & \\
+      & & 0 & & \\
+    1 & 0 & & &
+\end{array}
+$$
+
+where $f[0,0] = f'(0) = 0$, $f[0,1] = \frac{0 - 1}{1 - 0} = -1$, $f[1,1] = f'(1) = 0$, $f[0,0,1] = \frac{-1 - 0}{1 - 0} = -1$, $f[0,1,1] = \frac{0 - (-1)}{1 - 0} = 1$, $f[0,0,1,1] = \frac{1 - (-1)}{1 - 0} = 2$. Therefore
+
+\begin{align}
+    p(x) &= 1 + 0 \cdot x - x^2 + 2x^2(x-1) \nonumber\\
+    &= 1 - 3x^2 + 2x^3. \nonumber
+\end{align}
+
+(b) Since $p \in \mathcal P_3$, $q = 1 - p \in \mathcal P_3$ (here $q(x) = 3x^2 - 2x^3$). Moreover, $q' = -p'$ and so $q(0) = 1 - p(0) = 1 - 1 = 0$, $q'(0) = -p'(0) = 0$, $q(1) = 1 - p(1) = 1 - 0 = 1$ and $q'(1) = -p'(1) = 0$. (So, by uniqueness, $q$ is the Hermite interpolant of this data.)
+
+:::
+
+:::
