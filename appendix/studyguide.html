@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Midterm study guide – Math5485</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendix/calculus.html" rel="next">
+<link href="../assignments/A03.html" rel="prev">
+<link href="../images/pi.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/studyguide.html">Exams</a></li><li class="breadcrumb-item"><a href="../appendix/studyguide.html">Midterm study guide</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Math5485</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/jackrthomas/Math5485/issues/new?template=question.md" title="Ask a Question" class="quarto-navigation-tool px-1" aria-label="Ask a Question"><i class="bi bi-question-circle"></i></a>
+    <a href="../#timer" title="Timer" class="quarto-navigation-tool px-1" aria-label="Timer"><i class="bi bi-stopwatch"></i></a>
+    <a href="https://github.com/jackrthomas/Math5485" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome!</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Lectures</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">How computers add</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Conditioning &amp; stability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Simple iterations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Relaxation, Newton, secant</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Polynomial interpolation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chebyshev polynomials</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Barycentric formula and divided differences</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Newton–Cotes quadrature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../exercises/bank.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise bank</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A1: Notebooks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A2: Stability &amp; simple iterations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A3: Newton, secant &amp; interpolation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Exams</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/studyguide.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Midterm study guide</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Admin</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/installing-julia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Installing Julia &amp; Jupyter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentation topics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#errors-and-rates-of-convergence-lecture-1" id="toc-errors-and-rates-of-convergence-lecture-1" class="nav-link active" data-scroll-target="#errors-and-rates-of-convergence-lecture-1">Errors and rates of convergence (Lecture 1)</a></li>
+  <li><a href="#floating-point-arithmetic-lecture-2" id="toc-floating-point-arithmetic-lecture-2" class="nav-link" data-scroll-target="#floating-point-arithmetic-lecture-2">Floating point arithmetic (Lecture 2)</a></li>
+  <li><a href="#conditioning-and-stability-lecture-3" id="toc-conditioning-and-stability-lecture-3" class="nav-link" data-scroll-target="#conditioning-and-stability-lecture-3">Conditioning and stability (Lecture 3)</a></li>
+  <li><a href="#simple-iterations-lecture-4" id="toc-simple-iterations-lecture-4" class="nav-link" data-scroll-target="#simple-iterations-lecture-4">Simple iterations (Lecture 4)</a></li>
+  <li><a href="#relaxation-newtons-method-and-the-secant-method-lecture-5" id="toc-relaxation-newtons-method-and-the-secant-method-lecture-5" class="nav-link" data-scroll-target="#relaxation-newtons-method-and-the-secant-method-lecture-5">Relaxation, Newton’s method and the secant method (Lecture 5)</a></li>
+  <li><a href="#polynomial-interpolation-lectures-69" id="toc-polynomial-interpolation-lectures-69" class="nav-link" data-scroll-target="#polynomial-interpolation-lectures-69">Polynomial interpolation (Lectures 6–9)</a></li>
+  <li><a href="#quadrature-lectures-1011" id="toc-quadrature-lectures-1011" class="nav-link" data-scroll-target="#quadrature-lectures-1011">Quadrature (Lectures 10–11)</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/studyguide.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+    <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
+      <span class="banner-label">📢 <strong>Updates</strong></span>
+      <div class="banner-ticker">
+        <div class="banner-ticker-track">
+          <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
+                 * Order doesn't matter: updates are sorted by date (newest first).
+                 * Updates dated in the future are hidden until that day (so you can schedule them).
+                 * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+          <span class="banner-item" data-date="2026-10-23">Typos in L1-11 fixed, Quiz 3 in the exercise bank, solutions published, study guide available</span>
+          <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
+          <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
+          <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
+          <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
+          <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
+          <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
+          <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
+          <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
+          <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
+          <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
+          <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
+        </div>
+      </div>
+      <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
+      <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
+      <div id="banner-all-updates" class="banner-all" hidden="">
+        <div class="banner-all-title">All updates</div>
+        <ul class="banner-all-list"></ul>
+      </div>
+    </div>
+    <style>
+      .announcement-banner {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 12px;
+        position: relative;
+        font-size: 0.95rem;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 0.75rem;   /* space between the banner and the page below */
+      }
+      .banner-label {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
+      /* scrolling area: fades out at both ends */
+      .banner-ticker {
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+                mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+      }
+      .banner-ticker-track {
+        display: inline-flex;
+        white-space: nowrap;
+        will-change: transform;
+      }
+      .banner-ticker.scrolling .banner-ticker-track {
+        animation: banner-scroll var(--banner-duration, 30s) linear infinite;
+      }
+      /* pause while the mouse is over the text, so it can be read */
+      .banner-ticker:hover .banner-ticker-track {
+        animation-play-state: paused;
+      }
+      .banner-item {
+        padding: 0 1.5rem;
+      }
+      .banner-date {
+        display: inline-block;
+        font-size: 0.8em;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        padding: 0 6px;
+        margin-right: 6px;
+      }
+      .banner-item::before {
+        content: "•";
+        margin-right: 1.5rem;
+        opacity: 0.7;
+      }
+      @keyframes banner-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }   /* the track holds two identical halves */
+      }
+      /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
+      @media (prefers-reduced-motion: reduce) {
+        .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
+        .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
+      }
+      /* "All updates" button and drop-down list */
+      .banner-more-btn {
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        color: white;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        padding: 2px 10px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .banner-more-btn:hover,
+      .banner-more-btn[aria-expanded="true"] {
+        background: white;
+        color: #007bff;
+      }
+      .banner-all {
+        position: absolute;
+        top: 100%;
+        right: 12px;
+        margin-top: 6px;
+        width: min(420px, calc(100vw - 24px));
+        max-height: 60vh;
+        overflow-y: auto;
+        background: white;
+        color: #212529;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        padding: 10px 14px;
+        text-align: left;
+        z-index: 1001;
+      }
+      .banner-all[hidden] { display: none; }
+      .banner-all-title {
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .banner-all-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .banner-all-list li {
+        padding: 5px 0;
+        border-top: 1px solid #f1f3f5;
+      }
+      .banner-all-list li:first-child { border-top: none; }
+      .banner-all-list li.banner-all-date {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #6c757d;
+        border-top: none;
+        padding: 8px 0 2px;
+      }
+      .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
+      .banner-close-btn {
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+        padding: 0 8px;
+        opacity: 0.8;
+      }
+      .banner-close-btn:hover {
+        opacity: 1;
+      }
+    </style>
+    <script>
+      // Hide immediately if already dismissed in this browser session
+      if (sessionStorage.getItem('hideCourseBanner') === 'true') {
+        document.write('<style>#course-announcement-banner { display: none !important; }</style>');
+      }
+
+      function closeBanner() {
+        var banner = document.getElementById('course-announcement-banner');
+        if (banner) {
+          banner.style.display = 'none';
+        }
+        // Remember that the user closed it during this browser session
+        sessionStorage.setItem('hideCourseBanner', 'true');
+      }
+
+      // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
+      // the whole set so the animation (which moves the track by half its width) loops seamlessly.
+      (function () {
+        var SPEED = 60;          // pixels per second
+        var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
+
+        // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
+        function parseDate(str) {
+          var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
+          return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+        }
+        function dateLabel(d) {
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+          var days = Math.round((today - d) / 86400000);
+          if (days === 0) return 'Today';
+          if (days === 1) return 'Yesterday';
+          var opts = { weekday: 'short', month: 'short', day: 'numeric' };
+          if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
+          return d.toLocaleDateString('en-US', opts);
+        }
+
+        // Sort the updates by date, hide future ones, keep the newest few in the ticker
+        // (with a date label) and list all of them, grouped by date, under "All updates".
+        function setupUpdates(track) {
+          var banner = document.getElementById('course-announcement-banner');
+          var btn = banner.querySelector('.banner-more-btn');
+          var panel = banner.querySelector('.banner-all');
+          var list = panel.querySelector('.banner-all-list');
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+
+          var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
+            return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
+          }).filter(function (u) {
+            return !u.date || u.date <= today;                       // scheduled updates stay hidden
+          }).sort(function (a, b) {
+            if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
+            if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
+            return a.order - b.order;                                              // same day: file order
+          });
+
+          // ticker: the newest MAX_SCROLLING updates, each with its date
+          track.innerHTML = '';
+          updates.slice(0, MAX_SCROLLING).forEach(function (u) {
+            var span = document.createElement('span');
+            span.className = 'banner-item';
+            span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
+            track.appendChild(span);
+          });
+          if (updates.length === 0) { banner.style.display = 'none'; return; }
+
+          // drop-down: everything, grouped by date
+          var lastLabel = null;
+          updates.forEach(function (u) {
+            var label = u.date ? dateLabel(u.date) : 'Other';
+            if (label !== lastLabel) {
+              var h = document.createElement('li');
+              h.className = 'banner-all-date';
+              h.textContent = label;
+              list.appendChild(h);
+              lastLabel = label;
+            }
+            var li = document.createElement('li');
+            li.innerHTML = u.html;
+            list.appendChild(li);
+          });
+          if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
+
+          btn.textContent = 'All updates (' + updates.length + ')';
+          btn.hidden = false;
+
+          function setOpen(open) {
+            panel.hidden = !open;
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          }
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            setOpen(panel.hidden);
+          });
+          panel.addEventListener('click', function (e) { e.stopPropagation(); });
+          document.addEventListener('click', function () { setOpen(false); });
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+        }
+
+        function startTicker() {
+          var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
+          if (!ticker) return;
+          var track = ticker.querySelector('.banner-ticker-track');
+          setupUpdates(track);
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+          var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
+          if (items.length === 0) return;
+
+          // one "half": the updates repeated until they are at least as wide as the banner
+          var guard = 0;
+          while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
+            items.forEach(function (item) {
+              var copy = item.cloneNode(true);
+              copy.setAttribute('aria-hidden', 'true');
+              track.appendChild(copy);
+            });
+          }
+          // second half: an exact copy of the first
+          Array.prototype.slice.call(track.children).forEach(function (el) {
+            var copy = el.cloneNode(true);
+            copy.setAttribute('aria-hidden', 'true');
+            track.appendChild(copy);
+          });
+
+          var halfWidth = track.scrollWidth / 2;
+          ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
+          ticker.classList.add('scrolling');
+        }
+
+        if (document.readyState === 'complete') startTicker();
+        else window.addEventListener('load', startTicker);
+      })();
+    </script>
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/studyguide.html">Exams</a></li><li class="breadcrumb-item"><a href="../appendix/studyguide.html">Midterm study guide</a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Midterm study guide</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The midterm (<strong>Wed 28 Oct, 9:15–10:45</strong>) covers <strong>Lectures 1–11</strong>. This page lists the topics you should know and gives some worked numerical examples. You will be allowed <strong>two sides of letter</strong> of your own notes. Calculators and computers are <strong>not</strong> allowed.</p>
+<p><strong>How to revise.</strong></p>
+<ul>
+<li>Read through the lecture notes and make sure you can state the definitions and theorems <em>and</em> use them on examples by hand.</li>
+<li>Practice with the <a href="../exercises/bank.html">exercise bank</a>: you can go through it lecture by lecture. It also contains Quizzes 0–3 and the <strong>Fall 2025 midterm</strong>, all with solutions.</li>
+</ul>
+<section id="errors-and-rates-of-convergence-lecture-1" class="level2">
+<h2 class="anchored" data-anchor-id="errors-and-rates-of-convergence-lecture-1">Errors and rates of convergence (Lecture 1)</h2>
+<ul>
+<li>Absolute and relative errors.</li>
+<li>Big-O notation: <span class="math inline">\(x_n = O(\varepsilon_n)\)</span> as <span class="math inline">\(n \to \infty\)</span> means <span class="math inline">\(|x_n| \leq C |\varepsilon_n|\)</span> for some <span class="math inline">\(C\)</span> and all <span class="math inline">\(n\)</span> large enough.</li>
+<li><em>Algebraic</em> convergence <span class="math inline">\(O(n^{-\alpha})\)</span> (a straight line with slope <span class="math inline">\(-\alpha\)</span> on a <strong>log-log</strong> plot) vs <em>exponential</em> convergence <span class="math inline">\(O(e^{-cn})\)</span> (a straight line on a <strong>semi-log</strong> plot).</li>
+</ul>
+<div id="60386051" class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">LaTeXStrings</span>, <span class="bu">Printf</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">20</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>errs <span class="op">=</span> [ (@. <span class="fl">1</span> <span class="op">/</span> n<span class="op">^</span><span class="fl">2</span>) (@. <span class="fl">2.0</span><span class="op">^</span>(<span class="op">-</span>n)) ]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>p0 <span class="op">=</span> <span class="fu">plot</span>(n, errs; </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=:</span>circle, label<span class="op">=</span>[L<span class="st">"n^{-2}"</span> L<span class="st">"2^{-n}"</span>], </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"linear"</span>, xlabel<span class="op">=</span>L<span class="st">"n"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> <span class="fu">plot</span>(n, errs; </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=:</span>log, yaxis<span class="op">=:</span>log, marker<span class="op">=:</span>circle, </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span>[L<span class="st">"n^{-2}"</span> L<span class="st">"2^{-n}"</span>], title<span class="op">=</span><span class="st">"log-log"</span>, xlabel<span class="op">=</span>L<span class="st">"n"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    xticks<span class="op">=</span>([<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">20</span>], [<span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"5"</span>, <span class="st">"10"</span>, <span class="st">"20"</span>]))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> <span class="fu">plot</span>(n, errs; </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=:</span>log, marker<span class="op">=:</span>circle, label<span class="op">=</span>[L<span class="st">"n^{-2}"</span> L<span class="st">"2^{-n}"</span>], </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"semi-log"</span>, xlabel<span class="op">=</span>L<span class="st">"n"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p0, p1, p2, layout<span class="op">=</span>(<span class="fl">1</span>, <span class="fl">3</span>), size<span class="op">=</span>(<span class="fl">1050</span>, <span class="fl">320</span>), legend<span class="op">=</span>[<span class="op">:</span>topright <span class="op">:</span>bottomleft <span class="op">:</span>bottomleft], bottom_margin<span class="op">=</span><span class="fl">5</span>Plots.mm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+<figure class="figure">
+<p><img src="studyguide_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>On the linear plot, both errors just look like they go to <span class="math inline">\(0\)</span>, so you can’t tell the rates apart. The algebraic error <span class="math inline">\(n^{-2}\)</span> is a straight line (slope <span class="math inline">\(-2\)</span>) on the log-log plot, and the exponential error <span class="math inline">\(2^{-n}\)</span> is a straight line on the semi-log plot. On the “wrong” plot, each one curves.</p>
+</section>
+<section id="floating-point-arithmetic-lecture-2" class="level2">
+<h2 class="anchored" data-anchor-id="floating-point-arithmetic-lecture-2">Floating point arithmetic (Lecture 2)</h2>
+<ul>
+<li>Binary representation; floating point numbers with binary precision <span class="math inline">\(k\)</span>: the numbers in <span class="math inline">\([2^n, 2^{n+1})\)</span> are <span class="math inline">\((1 + z 2^{-k}) 2^n\)</span> for <span class="math inline">\(z = 0, 1, \dots, 2^k - 1\)</span>, so they are spaced <span class="math inline">\(2^{n-k}\)</span> apart.</li>
+<li>Machine precision <span class="math inline">\(\epsilon_{\rm mach} = 2^{-k}\)</span> (for <code>Float64</code>, <span class="math inline">\(k = 52\)</span> and <code>eps()</code> <span class="math inline">\(= 2^{-52} \approx 2.2 \times 10^{-16}\)</span>).</li>
+<li>Rounding: <span class="math inline">\(\mathrm{fl}(x) = x(1 + \delta)\)</span> with <span class="math inline">\(|\delta| \leq \frac12 \epsilon_{\rm mach}\)</span>; which numbers are exactly representable; why <span class="math inline">\(1 + x\)</span> can return exactly <span class="math inline">\(1\)</span>.</li>
+</ul>
+<p><strong>Example 1.</strong> Consider floating point numbers with binary precision <span class="math inline">\(k = 4\)</span>.</p>
+<ol type="1">
+<li>What is the spacing of the floating point numbers in <span class="math inline">\([2, 4)\)</span>? What is <span class="math inline">\(\epsilon_{\rm mach}\)</span>?</li>
+<li>Are <span class="math inline">\(2.625\)</span>, <span class="math inline">\(2.6\)</span> and <span class="math inline">\(3.0625\)</span> floating point numbers?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Here <span class="math inline">\(n = 1\)</span>, so the spacing is <span class="math inline">\(2^{1 - 4} = \frac18\)</span> (the numbers are <span class="math inline">\(2, 2.125, 2.25, \dots, 3.875\)</span>), and <span class="math inline">\(\epsilon_{\rm mach} = 2^{-4} = \frac1{16}\)</span>.</li>
+<li><span class="math inline">\(2.625 = 2 + \frac58\)</span> is a multiple of <span class="math inline">\(\frac18\)</span>, so it is a floating point number (<span class="math inline">\(2.625 = (1.0101)_2 \times 2^1\)</span>). <span class="math inline">\(2.6\)</span> is not: <span class="math inline">\(0.6\)</span> has an infinite binary expansion. <span class="math inline">\(3.0625 = 3 + \frac1{16}\)</span> is not a multiple of <span class="math inline">\(\frac18\)</span> (<span class="math inline">\(3.0625 = (1.10001)_2 \times 2^1\)</span> needs <span class="math inline">\(5\)</span> binary digits after the point).</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="03437d20" class="cell" data-execution_count="2">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"eps() = "</span>, <span class="fu">eps</span>(), <span class="st">" = 2^-52 = "</span>, <span class="fl">2.0</span><span class="op">^-</span><span class="fl">52</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"1 + 2^-54 == 1:    "</span>, <span class="fl">1</span> <span class="op">+</span> <span class="fl">2.0</span><span class="op">^-</span><span class="fl">54</span> <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"1 + 2^-52 == 1:    "</span>, <span class="fl">1</span> <span class="op">+</span> <span class="fl">2.0</span><span class="op">^-</span><span class="fl">52</span> <span class="op">==</span> <span class="fl">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"0.1 + 0.2 == 0.3:  "</span>, <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"spacing of the floats near 2^60: "</span>, <span class="fu">eps</span>(<span class="fl">2.0</span><span class="op">^</span><span class="fl">60</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>eps() = 2.220446049250313e-16 = 2^-52 = 2.220446049250313e-16
+1 + 2^-54 == 1:    true
+1 + 2^-52 == 1:    false
+0.1 + 0.2 == 0.3:  false
+spacing of the floats near 2^60: 256.0</code></pre>
+</div>
+</div>
+</section>
+<section id="conditioning-and-stability-lecture-3" class="level2">
+<h2 class="anchored" data-anchor-id="conditioning-and-stability-lecture-3">Conditioning and stability (Lecture 3)</h2>
+<ul>
+<li>The relative condition number <span class="math inline">\(\kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right|\)</span>; well-conditioned vs ill-conditioned problems.</li>
+<li>Conditioning is a property of the <strong>problem</strong>; stability is a property of the <strong>algorithm</strong>. A well-conditioned problem can still be computed badly by an unstable algorithm.</li>
+<li>Subtractive cancellation (subtracting nearly equal numbers) and how to avoid it by rewriting the formula.</li>
+</ul>
+<p><strong>Example 2.</strong></p>
+<ol type="1">
+<li>Compute <span class="math inline">\(\kappa_f(x)\)</span> for <span class="math inline">\(f(x) = \log x\)</span> and <span class="math inline">\(f(x) = e^x\)</span>. Where are these problems ill-conditioned?</li>
+<li>Let <span class="math inline">\(f(x) = \frac{1 - \cos x}{x^2}\)</span>. Show that <span class="math inline">\(f(x) = \frac{2 \sin^2(x/2)}{x^2}\)</span>. Which formula should you use for small <span class="math inline">\(x\)</span>? (See the table below.)</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>For <span class="math inline">\(f(x) = \log x\)</span>: <span class="math inline">\(\kappa_f(x) = \left| \frac{x \cdot \frac1x}{\log x} \right| = \frac{1}{|\log x|}\)</span>, which is large near <span class="math inline">\(x = 1\)</span> (where <span class="math inline">\(\log x \approx 0\)</span>). For <span class="math inline">\(f(x) = e^x\)</span>: <span class="math inline">\(\kappa_f(x) = \left| \frac{x e^x}{e^x} \right| = |x|\)</span>, which is large only for large <span class="math inline">\(|x|\)</span>.</li>
+<li><span class="math inline">\(1 - \cos x = 2 \sin^2 \frac{x}{2}\)</span> (double angle formula). For small <span class="math inline">\(x\)</span>, <span class="math inline">\(\cos x \approx 1\)</span>, so <span class="math inline">\(1 - \cos x\)</span> suffers from subtractive cancellation: for <span class="math inline">\(x = 10^{-8}\)</span>, <code>cos(x)</code> is exactly <code>1.0</code> and the first formula returns <span class="math inline">\(0\)</span>. The second formula has no cancellation and gives <span class="math inline">\(\approx \frac12\)</span>, which is correct (<span class="math inline">\(f(x) = \frac12 - \frac{x^2}{24} + \dots\)</span>). The problem itself is well-conditioned (<span class="math inline">\(\kappa_f(x) \approx \frac{x^2}{12}\)</span> for small <span class="math inline">\(x\)</span>): only the first <em>algorithm</em> is unstable.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="39565c9d" class="cell" data-execution_count="3">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> [<span class="fl">1e-2</span>, <span class="fl">1e-5</span>, <span class="fl">1e-8</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"x = %.0e:   (1 - cos x)/x^2 = %.16f,   2 sin^2(x/2)/x^2 = %.16f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            x, (<span class="fl">1</span> <span class="op">-</span> <span class="fu">cos</span>(x)) <span class="op">/</span> x<span class="op">^</span><span class="fl">2</span>, <span class="fl">2</span> <span class="op">*</span> <span class="fu">sin</span>(x<span class="op">/</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span> <span class="op">/</span> x<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 1e-02:   (1 - cos x)/x^2 = 0.4999958333473664,   2 sin^2(x/2)/x^2 = 0.4999958333472221
+x = 1e-05:   (1 - cos x)/x^2 = 0.5000000413701854,   2 sin^2(x/2)/x^2 = 0.4999999999958333
+x = 1e-08:   (1 - cos x)/x^2 = 0.0000000000000000,   2 sin^2(x/2)/x^2 = 0.5000000000000000</code></pre>
+</div>
+</div>
+</section>
+<section id="simple-iterations-lecture-4" class="level2">
+<h2 class="anchored" data-anchor-id="simple-iterations-lecture-4">Simple iterations (Lecture 4)</h2>
+<ul>
+<li>The change of sign (intermediate value) theorem for the existence of a root;</li>
+<li>Fixed points <span class="math inline">\(\xi = g(\xi)\)</span> and the iteration <span class="math inline">\(x_{n+1} = g(x_n)\)</span>.</li>
+<li>Contractions (<span class="math inline">\(|g(x) - g(y)| \leq L|x - y|\)</span> with <span class="math inline">\(L &lt; 1\)</span>); using the mean value theorem to show that <span class="math inline">\(g\)</span> is a contraction (<span class="math inline">\(|g'| \leq L &lt; 1\)</span>); checking that <span class="math inline">\(g\)</span> maps <span class="math inline">\([a,b]\)</span> to <span class="math inline">\([a,b]\)</span>.</li>
+<li>The contraction mapping theorem, and the bound <span class="math inline">\(|x_{n+1} - \xi| \leq L^n |x_1 - \xi|\)</span>.</li>
+<li>Order of convergence <span class="math inline">\(\alpha\)</span> and asymptotic error constant <span class="math inline">\(\mu\)</span>: <span class="math inline">\(\frac{|x_{n+1} - \xi|}{|x_n - \xi|^\alpha} \to \mu\)</span>. For simple iteration, <span class="math inline">\(\mu = |g'(\xi)|\)</span> (linear convergence if <span class="math inline">\(0 &lt; |g'(\xi)| &lt; 1\)</span>).</li>
+<li>Stable (<span class="math inline">\(|g'(\xi)| &lt; 1\)</span>) and unstable (<span class="math inline">\(|g'(\xi)| &gt; 1\)</span>) fixed points.</li>
+</ul>
+<p><strong>Example 3.</strong> Show that <span class="math inline">\(f(x) = e^x - 3x\)</span> has exactly one root in <span class="math inline">\([0,1]\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(f\)</span> is continuous with <span class="math inline">\(f(0) = 1 &gt; 0\)</span> and <span class="math inline">\(f(1) = e - 3 &lt; 0\)</span>, so by the change of sign theorem it has a root in <span class="math inline">\((0,1)\)</span>. Moreover, <span class="math inline">\(f'(x) = e^x - 3 \leq e - 3 &lt; 0\)</span> on <span class="math inline">\([0,1]\)</span>, so <span class="math inline">\(f\)</span> is strictly decreasing and has at most one root.</p>
+</div>
+</div>
+</div>
+<p><strong>Example 4.</strong> Let <span class="math inline">\(g(x) = \frac{1}{1+x}\)</span> and <span class="math inline">\(I = [\frac12, 1]\)</span>.</p>
+<ol type="1">
+<li>Show that <span class="math inline">\(g\)</span> maps <span class="math inline">\(I\)</span> to <span class="math inline">\(I\)</span> and is a contraction on <span class="math inline">\(I\)</span>. Find its fixed point <span class="math inline">\(\xi\)</span>.</li>
+<li>How many iterations guarantee <span class="math inline">\(|x_{n+1} - \xi| \leq 10^{-6}\)</span> for every <span class="math inline">\(x_1 \in I\)</span>?</li>
+<li>What are the order of convergence and the asymptotic error constant? Compare with the table below.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(g\)</span> is decreasing on <span class="math inline">\(I\)</span> with <span class="math inline">\(g(\frac12) = \frac23\)</span> and <span class="math inline">\(g(1) = \frac12\)</span>, so <span class="math inline">\(g(I) = [\frac12, \frac23] \subseteq I\)</span>. Moreover, <span class="math inline">\(|g'(x)| = \frac{1}{(1+x)^2} \leq \frac{1}{(3/2)^2} = \frac49\)</span> on <span class="math inline">\(I\)</span>, so (by the mean value theorem) <span class="math inline">\(g\)</span> is a contraction with <span class="math inline">\(L = \frac49\)</span>. The fixed point solves <span class="math inline">\(\xi(1 + \xi) = 1\)</span>, i.e.&nbsp;<span class="math inline">\(\xi^2 + \xi - 1 = 0\)</span>, so <span class="math inline">\(\xi = \frac{\sqrt5 - 1}{2} \approx 0.618\)</span>.</li>
+<li><span class="math inline">\(|x_{n+1} - \xi| \leq L^n |x_1 - \xi| \leq \left(\frac49\right)^n \cdot \frac12\)</span>, which is at most <span class="math inline">\(10^{-6}\)</span> when <span class="math inline">\(n \geq \frac{\log(2 \times 10^{-6})}{\log(4/9)} \approx 16.2\)</span>, i.e.&nbsp;<span class="math inline">\(n = 17\)</span>.</li>
+<li>Linear convergence with <span class="math inline">\(\mu = |g'(\xi)| = \frac{1}{(1 + \xi)^2} = \xi^2 \approx 0.382\)</span> (using <span class="math inline">\(\frac{1}{1+\xi} = \xi\)</span>). The ratios in the table converge to <span class="math inline">\(0.382\)</span>, which is better than <span class="math inline">\(L = \frac49\)</span>, so in practice fewer iterations are needed than the bound in 2 says.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="c9eb2556" class="cell" data-execution_count="4">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fl">1</span> <span class="op">/</span> (<span class="fl">1</span> <span class="op">+</span> x)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ξ <span class="op">=</span> (<span class="fu">sqrt</span>(<span class="fl">5</span>) <span class="op">-</span> <span class="fl">1</span>) <span class="op">/</span> <span class="fl">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    xnew <span class="op">=</span> <span class="fu">g</span>(x)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"n = %2d:  x_n = %.12f,  |x_n - ξ| = %.2e,  |x_{n+1} - ξ|/|x_n - ξ| = %.4f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            n, x, <span class="fu">abs</span>(x <span class="op">-</span> ξ), <span class="fu">abs</span>(xnew <span class="op">-</span> ξ) <span class="op">/</span> <span class="fu">abs</span>(x <span class="op">-</span> ξ))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> x <span class="op">=</span> xnew</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"μ = |g'(ξ)| = ξ^2 = "</span>, ξ<span class="op">^</span><span class="fl">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>n =  1:  x_n = 1.000000000000,  |x_n - ξ| = 3.82e-01,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3090
+n =  2:  x_n = 0.500000000000,  |x_n - ξ| = 1.18e-01,  |x_{n+1} - ξ|/|x_n - ξ| = 0.4120
+n =  3:  x_n = 0.666666666667,  |x_n - ξ| = 4.86e-02,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3708
+n =  4:  x_n = 0.600000000000,  |x_n - ξ| = 1.80e-02,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3863
+n =  5:  x_n = 0.625000000000,  |x_n - ξ| = 6.97e-03,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3803
+n =  6:  x_n = 0.615384615385,  |x_n - ξ| = 2.65e-03,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3826
+n =  7:  x_n = 0.619047619048,  |x_n - ξ| = 1.01e-03,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3817
+n =  8:  x_n = 0.617647058824,  |x_n - ξ| = 3.87e-04,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3821
+n =  9:  x_n = 0.618181818182,  |x_n - ξ| = 1.48e-04,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3819
+n = 10:  x_n = 0.617977528090,  |x_n - ξ| = 5.65e-05,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3820
+n = 11:  x_n = 0.618055555556,  |x_n - ξ| = 2.16e-05,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3820
+n = 12:  x_n = 0.618025751073,  |x_n - ξ| = 8.24e-06,  |x_{n+1} - ξ|/|x_n - ξ| = 0.3820
+μ = |g'(ξ)| = ξ^2 = 0.3819660112501052</code></pre>
+</div>
+</div>
+</section>
+<section id="relaxation-newtons-method-and-the-secant-method-lecture-5" class="level2">
+<h2 class="anchored" data-anchor-id="relaxation-newtons-method-and-the-secant-method-lecture-5">Relaxation, Newton’s method and the secant method (Lecture 5)</h2>
+<ul>
+<li>The relaxation method <span class="math inline">\(x_{n+1} = x_n - \lambda f(x_n)\)</span>: when it converges and how to choose <span class="math inline">\(\lambda\)</span>.</li>
+<li>Newton’s method <span class="math inline">\(x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\)</span>: derivation from the tangent line, quadratic convergence with <span class="math inline">\(\mu = \frac12 \left| \frac{f''(\xi)}{f'(\xi)} \right|\)</span>, the convergence theorem (with the constant <span class="math inline">\(A\)</span>), and what can go wrong (<span class="math inline">\(f'(x_n) = 0\)</span>, cycles, starting too far away).</li>
+<li>The secant method and its order of convergence <span class="math inline">\(\frac{1 + \sqrt5}{2} \approx 1.618\)</span>.</li>
+<li>Recognising the order of convergence from a table of errors (the number of correct digits roughly doubles each step for quadratic convergence).</li>
+</ul>
+<p><strong>Example 5.</strong> Let <span class="math inline">\(f(x) = x^2 - 3\)</span> (so <span class="math inline">\(\xi = \sqrt3\)</span>).</p>
+<ol type="1">
+<li>Compute two steps of Newton’s method with <span class="math inline">\(x_1 = 2\)</span>.</li>
+<li>What is the asymptotic error constant? Compare with the table below.</li>
+<li>For which <span class="math inline">\(\lambda\)</span> does the relaxation method converge for <span class="math inline">\(x_1\)</span> close to <span class="math inline">\(\sqrt3\)</span>? Which <span class="math inline">\(\lambda\)</span> gives faster than linear convergence?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(x_{n+1} = x_n - \frac{x_n^2 - 3}{2x_n} = \frac12\left(x_n + \frac{3}{x_n}\right)\)</span>, so <span class="math inline">\(x_2 = \frac12(2 + \frac32) = \frac74 = 1.75\)</span> and <span class="math inline">\(x_3 = \frac12\left(\frac74 + \frac{12}{7}\right) = \frac{97}{56} \approx 1.732143\)</span> (compare <span class="math inline">\(\sqrt3 \approx 1.732051\)</span>).</li>
+<li><span class="math inline">\(\mu = \frac12 \left| \frac{f''(\xi)}{f'(\xi)} \right| = \frac12 \cdot \frac{2}{2\sqrt3} = \frac{1}{2\sqrt3} \approx 0.289\)</span>, which matches the ratios <span class="math inline">\(|x_{n+1} - \xi|/|x_n - \xi|^2\)</span> in the table.</li>
+<li>Relaxation is simple iteration with <span class="math inline">\(g(x) = x - \lambda(x^2 - 3)\)</span> and <span class="math inline">\(g'(\sqrt3) = 1 - 2\sqrt3 \lambda\)</span>. It converges for <span class="math inline">\(x_1\)</span> close to <span class="math inline">\(\sqrt 3\)</span> if <span class="math inline">\(|1 - 2\sqrt3\lambda| &lt; 1\)</span>, i.e.&nbsp;<span class="math inline">\(0 &lt; \lambda &lt; \frac{1}{\sqrt3}\)</span>, and the convergence is faster than linear when <span class="math inline">\(g'(\sqrt3) = 0\)</span>, i.e.&nbsp;<span class="math inline">\(\lambda = \frac{1}{2\sqrt3}\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="18f1b485" class="cell" data-execution_count="5">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f  <span class="op">=</span> x <span class="op">-&gt;</span> x<span class="op">^</span><span class="fl">2</span> <span class="op">-</span> <span class="fl">3</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fl">2</span>x</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ξ  <span class="op">=</span> <span class="fu">sqrt</span>(<span class="fl">3</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Newton's method, x_1 = 2:"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    xnew <span class="op">=</span> x <span class="op">-</span> <span class="fu">f</span>(x) <span class="op">/</span> <span class="fu">df</span>(x)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"  n = %d:  x_n = %.15f,  |x_n - ξ| = %.2e,  |x_{n+1} - ξ|/|x_n - ξ|^2 = %.4f</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            n, x, <span class="fu">abs</span>(x <span class="op">-</span> ξ), <span class="fu">abs</span>(xnew <span class="op">-</span> ξ) <span class="op">/</span> <span class="fu">abs</span>(x <span class="op">-</span> ξ)<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> x <span class="op">=</span> xnew</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Secant method, x_0 = 1, x_1 = 2:"</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>x0, x1 <span class="op">=</span> <span class="fl">1.0</span>, <span class="fl">2.0</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    x2 <span class="op">=</span> x1 <span class="op">-</span> <span class="fu">f</span>(x1) <span class="op">*</span> (x1 <span class="op">-</span> x0) <span class="op">/</span> (<span class="fu">f</span>(x1) <span class="op">-</span> <span class="fu">f</span>(x0))</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"  n = %d:  x_n = %.15f,  |x_n - ξ| = %.2e</span><span class="sc">\n</span><span class="st">"</span>, n, x1, <span class="fu">abs</span>(x1 <span class="op">-</span> ξ))</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> x0, x1 <span class="op">=</span> x1, x2</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Newton's method, x_1 = 2:
+  n = 1:  x_n = 2.000000000000000,  |x_n - ξ| = 2.68e-01,  |x_{n+1} - ξ|/|x_n - ξ|^2 = 0.2500
+  n = 2:  x_n = 1.750000000000000,  |x_n - ξ| = 1.79e-02,  |x_{n+1} - ξ|/|x_n - ξ|^2 = 0.2857
+  n = 3:  x_n = 1.732142857142857,  |x_n - ξ| = 9.20e-05,  |x_{n+1} - ξ|/|x_n - ξ|^2 = 0.2887
+Secant method, x_0 = 1, x_1 = 2:
+  n = 1:  x_n = 2.000000000000000,  |x_n - ξ| = 2.68e-01
+  n = 2:  x_n = 1.666666666666667,  |x_n - ξ| = 6.54e-02
+  n = 3:  x_n = 1.727272727272727,  |x_n - ξ| = 4.78e-03
+  n = 4:  x_n = 1.732142857142857,  |x_n - ξ| = 9.20e-05
+  n = 5:  x_n = 1.732050680431722,  |x_n - ξ| = 1.27e-07
+  n = 6:  x_n = 1.732050807565499,  |x_n - ξ| = 3.38e-12</code></pre>
+</div>
+</div>
+</section>
+<section id="polynomial-interpolation-lectures-69" class="level2">
+<h2 class="anchored" data-anchor-id="polynomial-interpolation-lectures-69">Polynomial interpolation (Lectures 6–9)</h2>
+<p><strong>Lecture 6.</strong></p>
+<ul>
+<li>Existence and uniqueness of the interpolant <span class="math inline">\(I_Xf \in \mathcal P_n\)</span> on <span class="math inline">\(n + 1\)</span> distinct nodes (and why two interpolants <span class="math inline">\(p, q \in \mathcal P_n\)</span> must be equal).</li>
+<li>The Lagrange polynomials <span class="math inline">\(\ell_j\)</span> and the Lagrange form <span class="math inline">\(I_Xf = \sum_j f(x_j) \ell_j\)</span>.</li>
+<li>The interpolation error formula <span class="math inline">\(f(x) - I_Xf(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x)\)</span> with the node polynomial <span class="math inline">\(\ell_X(x) = (x - x_0) \cdots (x - x_n)\)</span>, and using it to bound the error.</li>
+<li>The Runge phenomenon for equispaced nodes.</li>
+</ul>
+<p><strong>Lecture 7.</strong></p>
+<ul>
+<li>Chebyshev polynomials: <span class="math inline">\(T_n(\cos\theta) = \cos n\theta\)</span>, the recursion <span class="math inline">\(T_{n+1} = 2xT_n - T_{n-1}\)</span>, the leading coefficient <span class="math inline">\(2^{n-1}\)</span>, the zeros and extrema of <span class="math inline">\(T_n\)</span>.</li>
+<li>Chebyshev nodes (zeros or extrema of <span class="math inline">\(T_n\)</span>), <span class="math inline">\(\max_{[-1,1]} |\ell_X| = 2^{-n}\)</span> for the zeros of <span class="math inline">\(T_{n+1}\)</span>, and why Chebyshev nodes are a good choice. Mapping nodes from <span class="math inline">\([-1,1]\)</span> to <span class="math inline">\([a,b]\)</span>.</li>
+</ul>
+<p><strong>Lecture 8.</strong></p>
+<ul>
+<li>The barycentric formula and the barycentric weights <span class="math inline">\(\lambda_j = \frac{1}{\prod_{k \not= j}(x_j - x_k)}\)</span> (and why we can rescale the weights).</li>
+<li>Divided differences: the table, the Newton form <span class="math inline">\(I_Xf(x) = \sum_k f[x_0, \dots, x_k] (x - x_0) \cdots (x - x_{k-1})\)</span>, and the properties of divided differences (symmetric in the nodes, linear in <span class="math inline">\(f\)</span>, <span class="math inline">\(f[x_0, \dots, x_n]\)</span> is the leading coefficient of <span class="math inline">\(I_Xf\)</span>, so it vanishes when <span class="math inline">\(f \in \mathcal P_{n-1}\)</span>).</li>
+</ul>
+<p><strong>Lecture 9.</strong></p>
+<ul>
+<li>Hermite interpolation on multisets of nodes (matching derivatives at repeated nodes), <span class="math inline">\(f[x_0, \dots, x_0] = \frac{f^{(m)}(x_0)}{m!}\)</span> (<span class="math inline">\(m + 1\)</span> copies), and the Hermite error formula.</li>
+</ul>
+<p><strong>Example 6.</strong> Let <span class="math inline">\(f(x) = \frac{1}{1 + x}\)</span> and <span class="math inline">\(X = \{0, 1, 2\}\)</span>.</p>
+<ol type="1">
+<li>Write down <span class="math inline">\(I_Xf\)</span> in Lagrange form.</li>
+<li>Compute the divided difference table and write down <span class="math inline">\(I_Xf\)</span> in Newton form.</li>
+<li>Compute the barycentric weights.</li>
+<li>Compare <span class="math inline">\(I_Xf(1.5)\)</span> with <span class="math inline">\(f(1.5)\)</span> and with the error formula.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(\ell_0(x) = \frac{(x-1)(x-2)}{2}\)</span>, <span class="math inline">\(\ell_1(x) = -x(x-2)\)</span>, <span class="math inline">\(\ell_2(x) = \frac{x(x-1)}{2}\)</span>, and <span class="math inline">\(I_Xf = \ell_0 + \frac12 \ell_1 + \frac13 \ell_2\)</span>.</li>
+<li>The table is <span class="math display">\[
+\begin{array}{c|ccc}
+x_j &amp; f(x_j) &amp; \text{1st} &amp; \text{2nd} \\ \hline
+0 &amp; 1 &amp; &amp; \\
+   &amp; &amp; -\frac12 &amp; \\
+1 &amp; \frac12 &amp; &amp; \frac16 \\
+   &amp; &amp; -\frac16 &amp; \\
+2 &amp; \frac13 &amp; &amp;
+\end{array}
+\]</span> so <span class="math inline">\(I_Xf(x) = 1 - \frac12 x + \frac16 x(x-1)\)</span>.</li>
+<li><span class="math inline">\(\lambda_0 = \frac{1}{(0-1)(0-2)} = \frac12\)</span>, <span class="math inline">\(\lambda_1 = \frac{1}{(1-0)(1-2)} = -1\)</span>, <span class="math inline">\(\lambda_2 = \frac{1}{(2-0)(2-1)} = \frac12\)</span>.</li>
+<li><span class="math inline">\(I_Xf(1.5) = 1 - 0.75 + 0.125 = 0.375\)</span> and <span class="math inline">\(f(1.5) = 0.4\)</span>, so the error is <span class="math inline">\(0.025\)</span>. Since <span class="math inline">\(f^{(3)}(x) = -\frac{6}{(1+x)^4}\)</span>, we have <span class="math inline">\(|f^{(3)}| \leq 6\)</span> on <span class="math inline">\([0,2]\)</span>, and the error formula gives <span class="math inline">\(|f(1.5) - I_Xf(1.5)| \leq \frac{6}{3!} |1.5 \cdot 0.5 \cdot (-0.5)| = 0.375\)</span>. (The bound holds, but it is pessimistic because <span class="math inline">\(|f^{(3)}|\)</span> is much smaller than <span class="math inline">\(6\)</span> away from <span class="math inline">\(x = 0\)</span>.)</li>
+</ol>
+</div>
+</div>
+</div>
+<p><strong>Example 7.</strong> Compare the node polynomials for <span class="math inline">\(4\)</span> equispaced nodes <span class="math inline">\(\{-1, -\frac13, \frac13, 1\}\)</span> and for the <span class="math inline">\(4\)</span> Chebyshev nodes (the zeros of <span class="math inline">\(T_4\)</span>) on <span class="math inline">\([-1,1]\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For the Chebyshev nodes, <span class="math inline">\(\ell_X = 2^{-3} T_4\)</span> and so <span class="math inline">\(\max_{[-1,1]} |\ell_X| = \frac18 = 0.125\)</span>. For the equispaced nodes, <span class="math inline">\(\ell_X(x) = (x^2 - 1)(x^2 - \frac19)\)</span>. With <span class="math inline">\(y = x^2 \in [0,1]\)</span>, <span class="math inline">\(h(y) = (y - 1)(y - \frac19)\)</span> has <span class="math inline">\(h'(y) = 2y - \frac{10}{9} = 0\)</span> at <span class="math inline">\(y = \frac59\)</span>, where <span class="math inline">\(|h| = \frac49 \cdot \frac49 = \frac{16}{81} \approx 0.198\)</span>; at the end points <span class="math inline">\(|h(0)| = \frac19\)</span> and <span class="math inline">\(h(1) = 0\)</span>. So <span class="math inline">\(\max |\ell_X| = \frac{16}{81}\)</span>, which is about <span class="math inline">\(1.6\)</span> times larger than for the Chebyshev nodes. The difference grows exponentially with <span class="math inline">\(n\)</span> (see the Runge example below).</p>
+</div>
+</div>
+</div>
+<p><strong>Example 8 (the Runge phenomenon).</strong> The maximum interpolation error of <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span> on <span class="math inline">\([-1,1]\)</span> using the barycentric formula with <span class="math inline">\(n+1\)</span> equispaced or Chebyshev nodes:</p>
+<div id="2b923138" class="cell" data-execution_count="6">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">barycentric</span>(x, y, t)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    λ <span class="op">=</span> [ <span class="fl">1</span> <span class="op">/</span> <span class="fu">prod</span>(x[j] <span class="op">-</span> x[k] for k <span class="kw">in</span> <span class="fu">eachindex</span>(x) if k <span class="op">!=</span> j) for j <span class="kw">in</span> <span class="fu">eachindex</span>(x) ]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="fu">findfirst</span>(<span class="op">==</span>(t), x)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    i <span class="op">===</span> <span class="cn">nothing</span> <span class="op">||</span> <span class="cf">return</span> y[i]</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> λ <span class="op">./</span> (t <span class="op">.-</span> x)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sum</span>(s <span class="op">.*</span> y) <span class="op">/</span> <span class="fu">sum</span>(s)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Runge <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fl">1</span> <span class="op">/</span> (<span class="fl">1</span> <span class="op">+</span> <span class="fl">25</span>x<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">2001</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">4</span><span class="op">:</span><span class="fl">4</span><span class="op">:</span><span class="fl">24</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    xe <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span>n<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    xc <span class="op">=</span> @. <span class="fu">cos</span>(<span class="cn">π</span> <span class="op">*</span> (<span class="fl">0</span><span class="op">:</span>n) <span class="op">/</span> n)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    Ee <span class="op">=</span> <span class="fu">maximum</span>(<span class="fu">abs</span>(<span class="fu">barycentric</span>(xe, <span class="fu">Runge</span>.(xe), t) <span class="op">-</span> <span class="fu">Runge</span>(t)) <span class="cf">for</span> t <span class="kw">in</span> grid)</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    Ec <span class="op">=</span> <span class="fu">maximum</span>(<span class="fu">abs</span>(<span class="fu">barycentric</span>(xc, <span class="fu">Runge</span>.(xc), t) <span class="op">-</span> <span class="fu">Runge</span>(t)) <span class="cf">for</span> t <span class="kw">in</span> grid)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"n = %2d:  equispaced error = %.2e,  Chebyshev error = %.2e</span><span class="sc">\n</span><span class="st">"</span>, n, Ee, Ec)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>n =  4:  equispaced error = 4.38e-01,  Chebyshev error = 4.60e-01
+n =  8:  equispaced error = 1.05e+00,  Chebyshev error = 2.05e-01
+n = 12:  equispaced error = 3.66e+00,  Chebyshev error = 8.44e-02
+n = 16:  equispaced error = 1.44e+01,  Chebyshev error = 3.67e-02
+n = 20:  equispaced error = 5.98e+01,  Chebyshev error = 1.77e-02
+n = 24:  equispaced error = 2.57e+02,  Chebyshev error = 8.17e-03</code></pre>
+</div>
+</div>
+<p><strong>Example 9 (Hermite interpolation).</strong> Find <span class="math inline">\(p \in \mathcal P_3\)</span> with <span class="math inline">\(p(0) = 0\)</span>, <span class="math inline">\(p'(0) = 1\)</span>, <span class="math inline">\(p(1) = 1\)</span> and <span class="math inline">\(p'(1) = 0\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Use the nodes <span class="math inline">\(\{\{0, 0, 1, 1\}\}\)</span> with <span class="math inline">\(f[0,0] = p'(0) = 1\)</span> and <span class="math inline">\(f[1,1] = p'(1) = 0\)</span>: <span class="math display">\[
+\begin{array}{c|cccc}
+    x_j &amp; f(x_j) &amp; \text{1st} &amp; \text{2nd} &amp; \text{3rd} \\ \hline
+    0 &amp; 0 &amp; &amp; &amp; \\
+      &amp; &amp; 1 &amp; &amp; \\
+    0 &amp; 0 &amp; &amp; 0 &amp; \\
+      &amp; &amp; 1 &amp; &amp; -1 \\
+    1 &amp; 1 &amp; &amp; -1 &amp; \\
+      &amp; &amp; 0 &amp; &amp; \\
+    1 &amp; 1 &amp; &amp; &amp;
+\end{array}
+\]</span> (<span class="math inline">\(f[0,1] = \frac{1 - 0}{1 - 0} = 1\)</span>, <span class="math inline">\(f[0,0,1] = \frac{1 - 1}{1} = 0\)</span>, <span class="math inline">\(f[0,1,1] = \frac{0 - 1}{1} = -1\)</span>, <span class="math inline">\(f[0,0,1,1] = \frac{-1 - 0}{1} = -1\)</span>.) So <span class="math inline">\(p(x) = 0 + 1 \cdot x + 0 \cdot x^2 - x^2(x-1) = x + x^2 - x^3\)</span>. Check: <span class="math inline">\(p(1) = 1\)</span> and <span class="math inline">\(p'(1) = 1 + 2 - 3 = 0\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="quadrature-lectures-1011" class="level2">
+<h2 class="anchored" data-anchor-id="quadrature-lectures-1011">Quadrature (Lectures 10–11)</h2>
+<ul>
+<li>Interpolatory quadrature: <span class="math inline">\(\int_a^b f \approx \sum_j w_j f(x_j)\)</span> with <span class="math inline">\(w_j = \int_a^b \ell_j\)</span>; the rule is exact on <span class="math inline">\(\mathcal P_n\)</span> if and only if it is interpolatory; the weights sum to <span class="math inline">\(b - a\)</span>; finding weights from exactness on <span class="math inline">\(1, x, x^2, \dots\)</span>,</li>
+<li>Newton–Cotes rules: the rectangular, trapezoid and Simpson’s rules, and their degrees of exactness (Simpson’s rule is exact for cubics).</li>
+<li>How to obtain error bounds, e.g.&nbsp;<span class="math inline">\(\frac{(b-a)^3}{12} \|f''\|\)</span> for the trapezoid rule and <span class="math inline">\(\frac{(b-a)^5}{2880} \|f^{(4)}\|\)</span> for Simpson’s rule,</li>
+<li>Composite rules with <span class="math inline">\(n\)</span> subintervals: rates <span class="math inline">\(O(n^{-1})\)</span> (rectangular), <span class="math inline">\(O(n^{-2})\)</span> (trapezoid) and <span class="math inline">\(O(n^{-4})\)</span> (Simpson, <span class="math inline">\(n\)</span> even),</li>
+</ul>
+<p><strong>Example 10.</strong> Let <span class="math inline">\(I = \int_0^1 \frac{1}{1+x} \, \mathrm{d}x = \log 2 \approx 0.693147\)</span>.</p>
+<ol type="1">
+<li>Approximate <span class="math inline">\(I\)</span> with the rectangular rule <span class="math inline">\((b-a) f(a)\)</span>, the trapezoid rule and Simpson’s rule.</li>
+<li>How many subintervals guarantee an error of at most <span class="math inline">\(10^{-6}\)</span> for the composite trapezoid rule? And for the composite Simpson rule?</li>
+<li>Find <span class="math inline">\(w_0, w_1\)</span> such that <span class="math inline">\(\int_0^1 f \approx w_0 f(\frac14) + w_1 f(\frac34)\)</span> is exact on <span class="math inline">\(\mathcal P_1\)</span>. Is it exact for <span class="math inline">\(x^2\)</span>?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Rectangular: <span class="math inline">\(f(0) = 1\)</span>. Midpoint: <span class="math inline">\(f(\frac12) = \frac23 \approx 0.6667\)</span>. Trapezoid: <span class="math inline">\(\frac12(1 + \frac12) = 0.75\)</span>. Simpson: <span class="math inline">\(\frac16\left(1 + 4 \cdot \frac23 + \frac12\right) = \frac{25}{36} \approx 0.69444\)</span> (error <span class="math inline">\(\approx 1.3 \times 10^{-3}\)</span>).</li>
+<li><span class="math inline">\(f''(x) = \frac{2}{(1+x)^3} \leq 2\)</span> and <span class="math inline">\(f^{(4)}(x) = \frac{24}{(1+x)^5} \leq 24\)</span> on <span class="math inline">\([0,1]\)</span>. Trapezoid: <span class="math inline">\(\frac{2}{12 n^2} \leq 10^{-6}\)</span> when <span class="math inline">\(n^2 \geq \frac{10^6}{6}\)</span>, i.e.&nbsp;<span class="math inline">\(n \geq 409\)</span>. Simpson: <span class="math inline">\(\frac{24}{180 n^4} \leq 10^{-6}\)</span> when <span class="math inline">\(n^4 \geq \frac{2 \times 10^6}{15} \approx 1.33 \times 10^5\)</span>, i.e.&nbsp;<span class="math inline">\(n \geq 19.1\)</span>, so <span class="math inline">\(n = 20\)</span> (even).</li>
+<li>Exactness for <span class="math inline">\(1\)</span> and <span class="math inline">\(x\)</span>: <span class="math inline">\(w_0 + w_1 = 1\)</span> and <span class="math inline">\(\frac14 w_0 + \frac34 w_1 = \frac12\)</span>, so <span class="math inline">\(w_0 = w_1 = \frac12\)</span>. For <span class="math inline">\(x^2\)</span>: <span class="math inline">\(\frac12\left(\frac1{16} + \frac9{16}\right) = \frac{5}{16} \not= \frac13\)</span>, so it is not exact for <span class="math inline">\(x^2\)</span>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="47add840" class="cell" data-execution_count="7">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fl">1</span> <span class="op">/</span> (<span class="fl">1</span> <span class="op">+</span> x)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> <span class="fu">log</span>(<span class="fl">2</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rectangular</span>(f, a, b, n) <span class="op">=</span> (h <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n; h <span class="op">*</span> <span class="fu">sum</span>(<span class="fu">f</span>(a <span class="op">+</span> j<span class="op">*</span>h) <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">trapezoid</span>(f, a, b, n)   <span class="op">=</span> (h <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n; h <span class="op">*</span> (<span class="fu">f</span>(a)<span class="op">/</span><span class="fl">2</span> <span class="op">+</span> <span class="fu">sum</span>((<span class="fu">f</span>(a <span class="op">+</span> j<span class="op">*</span>h) <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>); init<span class="op">=</span><span class="fl">0.0</span>) <span class="op">+</span> <span class="fu">f</span>(b)<span class="op">/</span><span class="fl">2</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">simpson</span>(f, a, b, n)     <span class="op">=</span> (h <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n; h<span class="op">/</span><span class="fl">3</span> <span class="op">*</span> (<span class="fu">f</span>(a) <span class="op">+</span> <span class="fl">4</span><span class="fu">sum</span>(<span class="fu">f</span>(a <span class="op">+</span> j<span class="op">*</span>h) <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                                                   <span class="op">+</span> <span class="fl">2</span><span class="fu">sum</span>((<span class="fu">f</span>(a <span class="op">+</span> j<span class="op">*</span>h) <span class="cf">for</span> j <span class="kw">in</span> <span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span>n<span class="op">-</span><span class="fl">2</span>); init<span class="op">=</span><span class="fl">0.0</span>) <span class="op">+</span> <span class="fu">f</span>(b)))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"errors of the composite rules for ∫_0^1 1/(1+x) dx:"</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">16</span>, <span class="fl">32</span>, <span class="fl">64</span>]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">@printf</span>(<span class="st">"  n = %2d:  rectangular %.2e,  trapezoid %.2e,  Simpson %.2e</span><span class="sc">\n</span><span class="st">"</span>, n,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">abs</span>(<span class="fu">rectangular</span>(f, <span class="fl">0</span>, <span class="fl">1</span>, n) <span class="op">-</span> I), <span class="fu">abs</span>(<span class="fu">trapezoid</span>(f, <span class="fl">0</span>, <span class="fl">1</span>, n) <span class="op">-</span> I), <span class="fu">abs</span>(<span class="fu">simpson</span>(f, <span class="fl">0</span>, <span class="fl">1</span>, n) <span class="op">-</span> I))</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>errors of the composite rules for ∫_0^1 1/(1+x) dx:
+  n =  2:  rectangular 1.40e-01,  trapezoid 1.52e-02,  Simpson 1.30e-03
+  n =  4:  rectangular 6.64e-02,  trapezoid 3.88e-03,  Simpson 1.07e-04
+  n =  8:  rectangular 3.22e-02,  trapezoid 9.75e-04,  Simpson 7.35e-06
+  n = 16:  rectangular 1.59e-02,  trapezoid 2.44e-04,  Simpson 4.72e-07
+  n = 32:  rectangular 7.87e-03,  trapezoid 6.10e-05,  Simpson 2.97e-08
+  n = 64:  rectangular 3.92e-03,  trapezoid 1.53e-05,  Simpson 1.86e-09</code></pre>
+</div>
+</div>
+<p>Doubling <span class="math inline">\(n\)</span> divides the errors by about <span class="math inline">\(2\)</span>, <span class="math inline">\(4\)</span> and <span class="math inline">\(16\)</span>: the rates are <span class="math inline">\(O(n^{-1})\)</span>, <span class="math inline">\(O(n^{-2})\)</span> and <span class="math inline">\(O(n^{-4})\)</span>, as the theory predicts.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<style>
+  /* Change cursor on equation tags to signal interactivity */
+  .mjx-tag, .katex-tag, [id^="eq-"] .tag {
+    cursor: pointer !important;
+  }
+  .mjx-tag:hover, .katex-tag:hover {
+    opacity: 0.7;
+  }
+</style>
+
+<script>
+window.addEventListener("load", function() {
+  const setupEquationCopy = () => {
+    // Find all equation containers generated by Quarto with an 'eq-' ID
+    document.querySelectorAll('[id^="eq-"]').forEach(container => {
+      const eqId = container.getAttribute('id');
+      const labelText = `@${eqId}`;
+      
+      // Locate the rendered tag element inside MathJax or KaTeX
+      const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
+      
+      // Set hover title to display the label name
+      tag.setAttribute('title', `📋 ${labelText}`);
+      
+      // Copy label to clipboard on click
+      tag.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(labelText).then(() => {
+          showToast(`Copied ${labelText} to clipboard!`);
+        });
+      });
+    });
+  };
+
+  // Wait for MathJax/KaTeX rendering before attaching listeners
+  if (window.MathJax && window.MathJax.startup) {
+    window.MathJax.startup.promise.then(setupEquationCopy);
+  } else {
+    setupEquationCopy();
+  }
+
+  function showToast(message) {
+    let toast = document.getElementById('eq-copy-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'eq-copy-toast';
+      toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+  }
+});
+</script>
+<style>
+  /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
+  @font-face {
+    font-family: "DSEG7 Classic";
+    src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+  }
+  /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
+  #float-timer {
+    position: fixed;
+    top: 80px;
+    right: 24px;
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    width: 390px;
+    height: 230px;
+    min-width: 280px;
+    max-width: calc(100vw - 16px);   /* keep it on small screens */
+    min-height: 190px;
+    resize: both;                /* drag the bottom-right corner to resize */
+    container: ft / inline-size; /* lets the contents react to the timer's own width */
+    overflow: hidden;
+    background: var(--bs-body-bg, #fff);
+    color: var(--bs-body-color, #212529);
+    border: 2px solid #2780e3;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+    user-select: none;
+    font-family: inherit;
+  }
+  #float-timer.visible { display: flex; }
+  #float-timer .ft-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 8px;
+    background: #2780e3;
+    color: #fff;
+    cursor: move;
+    font-size: .95rem;
+    touch-action: none;
+  }
+  #float-timer .ft-modes button {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, .6);
+    color: #fff;
+    border-radius: 4px;
+    font-size: .8rem;
+    padding: 0 6px;
+    cursor: pointer;
+  }
+  #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
+  #float-timer .ft-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  #float-timer .ft-display {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "DSEG7 Classic", "Courier New", monospace;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  #float-timer .ft-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px 10px 10px;
+  }
+  #float-timer .ft-controls .btn { font-size: 1rem; }
+  #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
+  #float-timer:not(.countdown) .ft-countdown-only { display: none; }
+  /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
+  /* drop the preset buttons and the title when the timer is too narrow for them */
+  @container ft (max-width: 382px) {
+    [data-preset] { display: none; }
+  }
+  @container ft (max-width: 290px) {
+    .ft-title { display: none; }
+  }
+  @media (max-width: 575.98px) {
+    #float-timer { right: 8px; }
+  }
+  #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
+  @keyframes ft-flash { to { visibility: hidden; } }
+</style>
+
+<div id="float-timer" aria-label="Timer">
+  <div class="ft-header">
+    <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
+    <span class="ft-modes">
+      <button data-mode="up" title="Count up">Stopwatch</button>
+      <button data-mode="down" title="Count down">Countdown</button>
+    </span>
+    <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
+  </div>
+  <div class="ft-display"><span class="ft-digits">00:00</span></div>
+  <div class="ft-controls">
+    <button class="btn btn-primary ft-toggle">Start</button>
+    <button class="btn btn-outline-secondary ft-reset">Reset</button>
+    <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
+    <span class="ft-countdown-only">min</span>
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
+    <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  const KEY = "math5485-timer";
+  const box = document.getElementById("float-timer");
+  const display = box.querySelector(".ft-display");
+  const digits = box.querySelector(".ft-digits");
+  const toggleBtn = box.querySelector(".ft-toggle");
+  const minutesInput = box.querySelector(".ft-minutes");
+
+  // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
+  // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
+  let state = {
+    visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
+    left: null, top: null, width: null, height: null
+  };
+  try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+  const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
+  const pad = n => String(n).padStart(2, "0");
+  const fmt = ms => {
+    const s = Math.ceil(ms / 1000);
+    const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
+    return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
+  };
+
+  function render() {
+    let shown = elapsed(), timesUp = false;
+    if (state.mode === "down") {
+      const remaining = state.minutes * 60000 - shown;
+      if (remaining <= 0 && state.startedAt) {
+        // stop exactly at zero
+        state.elapsed = state.minutes * 60000; state.startedAt = null; save();
+      }
+      shown = Math.max(0, state.minutes * 60000 - elapsed());
+      timesUp = shown === 0 && state.minutes > 0;
+    } else {
+      shown = Math.floor(shown / 1000) * 1000;
+    }
+    digits.textContent = fmt(shown);
+    toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
+    box.classList.toggle("visible", state.visible);
+    box.classList.toggle("countdown", state.mode === "down");
+    box.classList.toggle("times-up", timesUp);
+    box.querySelectorAll(".ft-modes button").forEach(b =>
+      b.classList.toggle("active", b.dataset.mode === state.mode));
+    if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
+    if (state.left !== null) {
+      box.style.left = state.left + "px";
+      box.style.top = state.top + "px";
+      box.style.right = "auto";
+    }
+    if (state.width) {
+      box.style.width = state.width + "px";
+      box.style.height = state.height + "px";
+    }
+    fitText();
+  }
+
+  // scale the digits to fill the display area
+  function fitText() {
+    if (!state.visible) return;
+    // start from the available height, then shrink until the digits fit the width
+    const w = display.clientWidth - 16, h = display.clientHeight;
+    let size = h * 0.8;
+    display.style.fontSize = size + "px";
+    for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
+      size *= w / digits.offsetWidth;
+      display.style.fontSize = size + "px";
+    }
+    display.style.fontSize = Math.max(16, size) + "px";
+  }
+
+  function reset() {
+    state.elapsed = 0;
+    state.startedAt = state.startedAt ? Date.now() : null;
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
+    else {
+      if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
+      state.startedAt = Date.now();
+    }
+    save(); render();
+  });
+  box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
+  box.querySelector(".ft-close").addEventListener("click", () => {
+    state.visible = false; save(); render();
+  });
+  box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
+    if (state.mode !== b.dataset.mode) {
+      state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
+      save(); render();
+    }
+  }));
+  const setMinutes = m => {
+    state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
+    save(); render();
+  };
+  minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
+  box.querySelectorAll("[data-preset]").forEach(b =>
+    b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
+
+  // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
+  document.addEventListener("click", e => {
+    if (e.target.closest('a[href$="#timer"]')) {
+      e.preventDefault();
+      state.visible = !state.visible;
+      save(); render();
+    }
+  });
+
+  // dragging by the header (mouse and touch)
+  const header = box.querySelector(".ft-header");
+  header.addEventListener("pointerdown", e => {
+    if (e.target.closest("button")) return;
+    const r = box.getBoundingClientRect();
+    const dx = e.clientX - r.left, dy = e.clientY - r.top;
+    header.setPointerCapture(e.pointerId);
+    const move = ev => {
+      state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
+      state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
+      render();
+    };
+    const up = () => {
+      header.removeEventListener("pointermove", move);
+      header.removeEventListener("pointerup", up);
+      save();
+    };
+    header.addEventListener("pointermove", move);
+    header.addEventListener("pointerup", up);
+  });
+
+  // remember the size after resizing (via the bottom-right corner) and rescale the digits
+  new ResizeObserver(() => {
+    if (!state.visible) return;
+    state.width = box.offsetWidth; state.height = box.offsetHeight;
+    fitText(); save();
+  }).observe(box);
+
+  // the digital font loads asynchronously: refit once it arrives
+  if (document.fonts) {
+    document.fonts.ready.then(fitText);
+    document.fonts.addEventListener("loadingdone", fitText);
+  }
+
+  render();
+  setInterval(() => { if (state.startedAt) render(); }, 200);
+})();
+</script>
+<script>
+// Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
+document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
+  var last = t.lastChild;
+  if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
+});
+
+// Exercises/theorems that start straight with a list render the title alone in a paragraph
+// ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
+document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
+  var p = t.parentNode, rest = '';
+  for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
+  if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../assignments/A03.html" class="pagination-link" aria-label="A3: Newton, secant &amp; interpolation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A3: Newton, secant &amp; interpolation</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../appendix/calculus.html" class="pagination-link" aria-label="Calculus">
+        <span class="nav-page-text">Calculus</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/studyguide.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>

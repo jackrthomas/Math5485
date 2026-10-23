@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>11&nbsp; Simpson’s rule – Math5485</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -70,15 +76,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -171,9 +176,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Math5485</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -311,12 +314,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
+ <span class="menu-text">Exams</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/studyguide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm study guide</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
@@ -327,13 +347,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Admin</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
@@ -388,597 +408,302 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
-
       <span class="banner-label">📢 <strong>Updates</strong></span>
-
       <div class="banner-ticker">
-
         <div class="banner-ticker-track">
-
           <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
-
                  * Order doesn't matter: updates are sorted by date (newest first).
-
                  * Updates dated in the future are hidden until that day (so you can schedule them).
-
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
-
+          <span class="banner-item" data-date="2026-10-23">Typos in L1-11 fixed, Quiz 3 in the exercise bank, solutions published, study guide available</span>
           <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
-
           <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
-
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
-
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
-
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
-
           <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
-
           <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
-
           <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
-
           <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
-
           <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
-
           <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
-
         </div>
-
       </div>
-
       <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
-
       <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
-
       <div id="banner-all-updates" class="banner-all" hidden="">
-
         <div class="banner-all-title">All updates</div>
-
         <ul class="banner-all-list"></ul>
-
       </div>
-
     </div>
-
     <style>
-
       .announcement-banner {
-
         background-color: #007bff;
-
         color: white;
-
         padding: 8px 12px;
-
         position: relative;
-
         font-size: 0.95rem;
-
         z-index: 1000;
-
         display: flex;
-
         align-items: center;
-
         gap: 12px;
-
         margin-bottom: 0.75rem;   /* space between the banner and the page below */
-
       }
-
       .banner-label {
-
         flex-shrink: 0;
-
         white-space: nowrap;
-
       }
-
       /* scrolling area: fades out at both ends */
-
       .banner-ticker {
-
         flex-grow: 1;
-
         overflow: hidden;
-
         white-space: nowrap;
-
         -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-
                 mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-
       }
-
       .banner-ticker-track {
-
         display: inline-flex;
-
         white-space: nowrap;
-
         will-change: transform;
-
       }
-
       .banner-ticker.scrolling .banner-ticker-track {
-
         animation: banner-scroll var(--banner-duration, 30s) linear infinite;
-
       }
-
       /* pause while the mouse is over the text, so it can be read */
-
       .banner-ticker:hover .banner-ticker-track {
-
         animation-play-state: paused;
-
       }
-
       .banner-item {
-
         padding: 0 1.5rem;
-
       }
-
       .banner-date {
-
         display: inline-block;
-
         font-size: 0.8em;
-
         font-weight: 600;
-
         background: rgba(255, 255, 255, 0.2);
-
         border-radius: 4px;
-
         padding: 0 6px;
-
         margin-right: 6px;
-
       }
-
       .banner-item::before {
-
         content: "•";
-
         margin-right: 1.5rem;
-
         opacity: 0.7;
-
       }
-
       @keyframes banner-scroll {
-
         from { transform: translateX(0); }
-
         to   { transform: translateX(-50%); }   /* the track holds two identical halves */
-
       }
-
       /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
-
       @media (prefers-reduced-motion: reduce) {
-
         .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
-
         .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
-
       }
-
       /* "All updates" button and drop-down list */
-
       .banner-more-btn {
-
         flex-shrink: 0;
-
         background: rgba(255, 255, 255, 0.15);
-
         border: 1px solid rgba(255, 255, 255, 0.6);
-
         color: white;
-
         border-radius: 999px;
-
         font-size: 0.8rem;
-
         padding: 2px 10px;
-
         cursor: pointer;
-
         white-space: nowrap;
-
       }
-
       .banner-more-btn:hover,
-
       .banner-more-btn[aria-expanded="true"] {
-
         background: white;
-
         color: #007bff;
-
       }
-
       .banner-all {
-
         position: absolute;
-
         top: 100%;
-
         right: 12px;
-
         margin-top: 6px;
-
         width: min(420px, calc(100vw - 24px));
-
         max-height: 60vh;
-
         overflow-y: auto;
-
         background: white;
-
         color: #212529;
-
         border: 1px solid #dee2e6;
-
         border-radius: 8px;
-
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-
         padding: 10px 14px;
-
         text-align: left;
-
         z-index: 1001;
-
       }
-
       .banner-all[hidden] { display: none; }
-
       .banner-all-title {
-
         font-weight: 600;
-
         margin-bottom: 6px;
-
       }
-
       .banner-all-list {
-
         list-style: none;
-
         margin: 0;
-
         padding: 0;
-
       }
-
       .banner-all-list li {
-
         padding: 5px 0;
-
         border-top: 1px solid #f1f3f5;
-
       }
-
       .banner-all-list li:first-child { border-top: none; }
-
       .banner-all-list li.banner-all-date {
-
         font-size: 0.78rem;
-
         font-weight: 600;
-
         color: #6c757d;
-
         border-top: none;
-
         padding: 8px 0 2px;
-
       }
-
       .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
-
       .banner-close-btn {
-
         flex-shrink: 0;
-
         background: none;
-
         border: none;
-
         color: white;
-
         font-size: 1.4rem;
-
         cursor: pointer;
-
         line-height: 1;
-
         padding: 0 8px;
-
         opacity: 0.8;
-
       }
-
       .banner-close-btn:hover {
-
         opacity: 1;
-
       }
-
     </style>
-
     <script>
-
       // Hide immediately if already dismissed in this browser session
-
       if (sessionStorage.getItem('hideCourseBanner') === 'true') {
-
         document.write('<style>#course-announcement-banner { display: none !important; }</style>');
-
       }
-
-
 
       function closeBanner() {
-
         var banner = document.getElementById('course-announcement-banner');
-
         if (banner) {
-
           banner.style.display = 'none';
-
         }
-
         // Remember that the user closed it during this browser session
-
         sessionStorage.setItem('hideCourseBanner', 'true');
-
       }
 
-
-
       // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
-
       // the whole set so the animation (which moves the track by half its width) loops seamlessly.
-
       (function () {
-
         var SPEED = 60;          // pixels per second
-
         var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
 
-
-
         // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
-
         function parseDate(str) {
-
           var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
-
           return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
-
         }
-
         function dateLabel(d) {
-
           var today = new Date(); today.setHours(0, 0, 0, 0);
-
           var days = Math.round((today - d) / 86400000);
-
           if (days === 0) return 'Today';
-
           if (days === 1) return 'Yesterday';
-
           var opts = { weekday: 'short', month: 'short', day: 'numeric' };
-
           if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
-
           return d.toLocaleDateString('en-US', opts);
-
         }
-
-
 
         // Sort the updates by date, hide future ones, keep the newest few in the ticker
-
         // (with a date label) and list all of them, grouped by date, under "All updates".
-
         function setupUpdates(track) {
-
           var banner = document.getElementById('course-announcement-banner');
-
           var btn = banner.querySelector('.banner-more-btn');
-
           var panel = banner.querySelector('.banner-all');
-
           var list = panel.querySelector('.banner-all-list');
-
           var today = new Date(); today.setHours(0, 0, 0, 0);
 
-
-
           var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
-
             return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
-
           }).filter(function (u) {
-
             return !u.date || u.date <= today;                       // scheduled updates stay hidden
-
           }).sort(function (a, b) {
-
             if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
-
             if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
-
             return a.order - b.order;                                              // same day: file order
-
           });
-
-
 
           // ticker: the newest MAX_SCROLLING updates, each with its date
-
           track.innerHTML = '';
-
           updates.slice(0, MAX_SCROLLING).forEach(function (u) {
-
             var span = document.createElement('span');
-
             span.className = 'banner-item';
-
             span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
-
             track.appendChild(span);
-
           });
-
           if (updates.length === 0) { banner.style.display = 'none'; return; }
 
-
-
           // drop-down: everything, grouped by date
-
           var lastLabel = null;
-
           updates.forEach(function (u) {
-
             var label = u.date ? dateLabel(u.date) : 'Other';
-
             if (label !== lastLabel) {
-
               var h = document.createElement('li');
-
               h.className = 'banner-all-date';
-
               h.textContent = label;
-
               list.appendChild(h);
-
               lastLabel = label;
-
             }
-
             var li = document.createElement('li');
-
             li.innerHTML = u.html;
-
             list.appendChild(li);
-
           });
-
           if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
 
-
-
           btn.textContent = 'All updates (' + updates.length + ')';
-
           btn.hidden = false;
 
-
-
           function setOpen(open) {
-
             panel.hidden = !open;
-
             btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-
           }
-
           btn.addEventListener('click', function (e) {
-
             e.stopPropagation();
-
             setOpen(panel.hidden);
-
           });
-
           panel.addEventListener('click', function (e) { e.stopPropagation(); });
-
           document.addEventListener('click', function () { setOpen(false); });
-
           document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
-
         }
-
-
 
         function startTicker() {
-
           var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
-
           if (!ticker) return;
-
           var track = ticker.querySelector('.banner-ticker-track');
-
           setupUpdates(track);
-
           if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-
-
           var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
-
           if (items.length === 0) return;
 
-
-
           // one "half": the updates repeated until they are at least as wide as the banner
-
           var guard = 0;
-
           while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
-
             items.forEach(function (item) {
-
               var copy = item.cloneNode(true);
-
               copy.setAttribute('aria-hidden', 'true');
-
               track.appendChild(copy);
-
             });
-
           }
-
           // second half: an exact copy of the first
-
           Array.prototype.slice.call(track.children).forEach(function (el) {
-
             var copy = el.cloneNode(true);
-
             copy.setAttribute('aria-hidden', 'true');
-
             track.appendChild(copy);
-
           });
 
-
-
           var halfWidth = track.scrollWidth / 2;
-
           ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
-
           ticker.classList.add('scrolling');
-
         }
 
-
-
         if (document.readyState === 'complete') startTicker();
-
         else window.addEventListener('load', startTicker);
-
       })();
-
     </script>
-
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/L01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/L11.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -1455,6 +1180,13 @@ Note
 <li>Compute the error of Simpson’s rule for <span class="math inline">\(f(x) = x^4\)</span> on <span class="math inline">\([0,1]\)</span> and compare it with the bound in <a href="#thm-simpson-error" class="quarto-xref">Theorem&nbsp;<span>11.4</span></a>.</li>
 <li>Explain why this shows that Simpson’s rule is not exact for all polynomials of degree <span class="math inline">\(4\)</span>.</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p><span class="math inline">\(\int_0^1 x^2 \,\mathrm{d}x = \frac13\)</span> and the trapezoid rule gives <span class="math inline">\(\frac12 (0 + 1) = \frac12\)</span>, so the error is <span class="math inline">\(\frac12 - \frac13 = \frac16\)</span>. The bound is <span class="math inline">\(\frac{\|f''\|_{L^\infty}}{12} (1 - 0)^3 = \frac{2}{12} = \frac16\)</span>, so the bound is attained.</p></li>
+<li><p><span class="math inline">\(\int_0^1 x^4 \,\mathrm{d}x = \frac15\)</span> and Simpson’s rule gives <span class="math inline">\(\frac16 \big( 0 + 4 \cdot \frac1{16} + 1 \big) = \frac16 \cdot \frac54 = \frac{5}{24}\)</span>, so the error is <span class="math inline">\(\frac{5}{24} - \frac15 = \frac{1}{120}\)</span>. The bound is <span class="math inline">\(\frac{\|f''''\|_{L^\infty}}{2880} = \frac{24}{2880} = \frac{1}{120}\)</span>, so again the bound is attained.</p></li>
+<li><p>The error in 2 is non-zero, so Simpson’s rule is not exact for <span class="math inline">\(x^4 \in \mathcal P_4\)</span>. Together with <a href="#thm-simpson-cubic" class="quarto-xref">Theorem&nbsp;<span>11.3</span></a>, Simpson’s rule is exact on <span class="math inline">\(\mathcal P_3\)</span> but not on <span class="math inline">\(\mathcal P_4\)</span>.</p></li>
+</ol>
+</div>
 </div>
 <div id="exr-l11-simpson-38" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 11.4 (Simpson’s 3/8 rule)</strong></span> <a href="../exercises/bank.html#bank-exr-l11-simpson-38"></a></p>
@@ -1466,6 +1198,23 @@ Note
 <li>Show that this rule is exact for all polynomials of degree at most <span class="math inline">\(3\)</span>, but not for <span class="math inline">\(x^4\)</span>.</li>
 <li>Compute the error of this rule for <span class="math inline">\(f(x) = x^4\)</span> on <span class="math inline">\([0,1]\)</span> and compare it with the error of Simpson’s rule from <a href="#exr-l11-sharp" class="quarto-xref">Exercise&nbsp;<span>11.3</span></a>.</li>
 </ol>
+<div class="exercise-hint" style="display: none;">
+<p>Use <a href="L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a>: it is enough to find the weights on <span class="math inline">\([0,1]\)</span>, and the weights are symmetric, so there are only two unknowns <span class="math inline">\(\hat w_0 = \hat w_3\)</span> and <span class="math inline">\(\hat w_1 = \hat w_2\)</span>.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>By <a href="L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a> (3), it is enough to work on <span class="math inline">\([0,1]\)</span> with nodes <span class="math inline">\(0, \frac13, \frac23, 1\)</span>. By <a href="L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a> (4), <span class="math inline">\(\hat w_0 = \hat w_3 =: \alpha\)</span> and <span class="math inline">\(\hat w_1 = \hat w_2 =: \beta\)</span>. Exactness on <span class="math inline">\(1\)</span> and <span class="math inline">\(x^2\)</span> gives <span class="math display">\[
+\begin{align}
+1 &amp;= 2\alpha + 2\beta, \nonumber\\
+\frac13 &amp;= \alpha \Big(0 + 1\Big) + \beta \Big( \frac19 + \frac49 \Big) \nonumber\\
+&amp;= \alpha + \frac59 \beta.
+\end{align}
+\]</span> From the first, <span class="math inline">\(\alpha = \frac12 - \beta\)</span>, so <span class="math inline">\(\frac13 = \frac12 - \frac49 \beta\)</span>, i.e.&nbsp;<span class="math inline">\(\beta = \frac38\)</span> and <span class="math inline">\(\alpha = \frac18\)</span>. Scaling by <span class="math inline">\(b-a\)</span> gives the stated rule.</p></li>
+<li><p>The rule is interpolatory with <span class="math inline">\(4\)</span> nodes, so it is exact on <span class="math inline">\(\mathcal P_3\)</span> by <a href="L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a> (1). For <span class="math inline">\(x^4\)</span>, see 3.</p></li>
+<li><p>On <span class="math inline">\([0,1]\)</span> the rule gives <span class="math inline">\(\frac18 \big[ 0 + 3 \cdot \frac1{81} + 3 \cdot \frac{16}{81} + 1 \big] = \frac18 \cdot \frac{132}{81} = \frac{11}{54}\)</span>, whereas <span class="math inline">\(\int_0^1 x^4 = \frac15\)</span>. The error is <span class="math inline">\(\frac{11}{54} - \frac15 = \frac{1}{270} \not= 0\)</span>, so the rule is not exact on <span class="math inline">\(\mathcal P_4\)</span>.</p></li>
+</ol>
+<p>Simpson’s rule has error <span class="math inline">\(\frac1{120}\)</span> using <span class="math inline">\(3\)</span> function evaluations, while the 3/8 rule has the smaller error <span class="math inline">\(\frac1{270}\)</span> but uses <span class="math inline">\(4\)</span>. Both rules are exact on <span class="math inline">\(\mathcal P_3\)</span> (but not <span class="math inline">\(\mathcal P_4\)</span>), so their composite versions both converge at rate <span class="math inline">\(O(n^{-4})\)</span>.</p>
+</div>
 </div>
 <div id="exr-l11-radau" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 11.5 (Choosing the nodes as well)</strong></span> <a href="../exercises/bank.html#bank-exr-l11-radau"></a></p>
@@ -1475,6 +1224,23 @@ Note
 <li>Show that the resulting rule is not exact for <span class="math inline">\(x^3\)</span>.</li>
 <li>Compare with the trapezoid rule (which also uses two nodes, one of which is <span class="math inline">\(0\)</span>). What is the largest degree <span class="math inline">\(d\)</span> for which you could hope to find a rule <span class="math inline">\(w_0 f(y_0) + w_1 f(y_1)\)</span> (with both nodes free) that is exact on <span class="math inline">\(\mathcal P_d\)</span>?</li>
 </ol>
+<div class="exercise-hint" style="display: none;">
+<ol type="1">
+<li>Write down the three equations obtained from exactness on <span class="math inline">\(1, x, x^2\)</span>.</li>
+<li>Count the unknowns.</li>
+</ol>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>Exactness on <span class="math inline">\(1, x, x^2\)</span> gives <span class="math display">\[
+\begin{align}
+w_0 + w_1 &amp;= 1, \nonumber\\ w_1 x_1 &amp;= \frac12, \nonumber\\ w_1 x_1^2 &amp;= \frac13.
+\end{align}
+\]</span> Dividing the third by the second gives <span class="math inline">\(x_1 = \frac23\)</span>, then <span class="math inline">\(w_1 = \frac34\)</span> and <span class="math inline">\(w_0 = \frac14\)</span>. The rule is <span class="math inline">\(\int_0^1 f \approx \frac14 f(0) + \frac34 f\big(\frac23\big)\)</span>.</p></li>
+<li><p><span class="math inline">\(\frac34 \big(\frac23\big)^3 = \frac{2}{9} \not= \frac14 = \int_0^1 x^3\)</span>.</p></li>
+<li><p>The trapezoid rule <span class="math inline">\(\frac12 \big( f(0) + f(1) \big)\)</span> is exact on <span class="math inline">\(\mathcal P_1\)</span> only: by freeing the second node we gained one degree of exactness. With both nodes free there are <span class="math inline">\(4\)</span> unknowns <span class="math inline">\(w_0, w_1, y_0, y_1\)</span> and exactness on <span class="math inline">\(\mathcal P_d\)</span> imposes <span class="math inline">\(d+1\)</span> equations, so we may hope for <span class="math inline">\(d = 3\)</span>. This is <em>Gaussian quadrature</em>, which we will see next time: the nodes <span class="math inline">\(y_{0,1} = \frac12 \mp \frac{1}{2\sqrt3}\)</span> with <span class="math inline">\(w_0 = w_1 = \frac12\)</span> give a rule exact on <span class="math inline">\(\mathcal P_3\)</span>.</p></li>
+</ol>
+</div>
 </div>
 <div id="exr-l11-high-order" class="difficult theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 11.6</strong></span> <a href="../exercises/bank.html#bank-exr-l11-high-order"></a></p>
@@ -1485,6 +1251,105 @@ Note
 <li>Suppose that the values <span class="math inline">\(f(x_j)\)</span> are only known up to errors <span class="math inline">\(|\varepsilon_j| \leq \varepsilon\)</span>. Show that the computed quadrature differs from <span class="math inline">\(\sum_j w_j f(x_j)\)</span> by at most <span class="math inline">\(\varepsilon \sum_j |w_j|\)</span>. Why is it desirable to have positive weights?</li>
 <li>Apply the Newton–Cotes rule with <span class="math inline">\(n + 1\)</span> nodes on <span class="math inline">\([-1,1]\)</span> to Runge’s function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span> (<a href="L06.html#exm-Runge" class="quarto-xref">Example&nbsp;<span>6.2</span></a>) for <span class="math inline">\(n = 2, 4, \dots, 20\)</span> and plot the error (the exact integral is <span class="math inline">\(\frac25 \arctan 5\)</span>). Compare with the composite Simpson rule using the same nodes.</li>
 </ol>
+<div class="exercise-hint" style="display: none;">
+<ol type="1">
+<li>Exactness on <span class="math inline">\(x^k\)</span> means <span class="math display">\[
+\begin{align}
+\sum_{j=0}^n \hat w_j \hat x_j^k &amp;= \int_0^1 x^k \, \mathrm{d}x
+\nonumber\\
+&amp;= \frac{1}{k+1}
+\end{align}
+\]</span> for <span class="math inline">\(k = 0, \dots, n\)</span>. In other words, <span class="math inline">\(V^T \hat w = m\)</span> where <span class="math inline">\(m = \big(1, \frac12, \dots, \frac{1}{n+1}\big)^T\)</span> and <span class="math inline">\(V\)</span> is the <em>Vandermonde matrix</em> <span class="math display">\[
+V = \begin{pmatrix} 1 &amp; \hat x_0 &amp; \hat x_0^2 &amp; \cdots &amp; \hat x_0^n \\ 1 &amp; \hat x_1 &amp; \hat x_1^2 &amp; \cdots &amp; \hat x_1^n \\ \vdots &amp; \vdots &amp; \vdots &amp; &amp; \vdots \\ 1 &amp; \hat x_n &amp; \hat x_n^2 &amp; \cdots &amp; \hat x_n^n \end{pmatrix}.
+\]</span> (<span class="math inline">\(V_{jk} = \hat x_j^k\)</span> for <span class="math inline">\(0 \leq j, k \leq n\)</span>). Exact rational arithmetic (e.g.&nbsp;<code>(0:n) .// big(n)</code>) avoids the ill-conditioning of <span class="math inline">\(V\)</span>.</li>
+<li>Use <a href="L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a> (3) to convert the weights on <span class="math inline">\([0,1]\)</span> to weights on <span class="math inline">\([-1,1]\)</span>.</li>
+</ol>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li>For example, using the Vandermonde system in exact rational arithmetic:</li>
+</ol>
+<div id="d57c12c3" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">nc_weights</span>(n)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> (<span class="fl">0</span><span class="op">:</span>n) <span class="op">.//</span> <span class="fu">big</span>(n)   <span class="co"># BigInt: Rational{Int64} overflows for n ≥ 11</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    V <span class="op">=</span> [ x[j<span class="op">+</span><span class="fl">1</span>]<span class="op">^</span>k for k <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>n, j <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>n ]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> [ <span class="fl">1</span> <span class="op">//</span> (k<span class="op">+</span><span class="fl">1</span>) for k <span class="kw">in</span> <span class="fl">0</span><span class="op">:</span>n ]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> V <span class="op">\</span> m</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<pre><code>nc_weights (generic function with 1 method)</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Negative weights first appear for <span class="math inline">\(n = 8\)</span>: <span class="math inline">\(\hat w = \frac{1}{28350} (989, 5888, -928, 10496, -4540, 10496, -928, 5888, 989)\)</span>. The sum <span class="math inline">\(\sum_j \hat w_j = 1\)</span> always (<a href="L10.html#exr-l10-weights" class="quarto-xref">Exercise&nbsp;<span>10.10</span></a>), but <span class="math inline">\(\sum_j |\hat w_j| &gt; 1\)</span> as soon as there are negative weights (<span class="math inline">\(n = 8\)</span> and <span class="math inline">\(n \geq 10\)</span>): it is about <span class="math inline">\(2.3\)</span> for <span class="math inline">\(n = 12\)</span> and grows exponentially as <span class="math inline">\(n \to \infty\)</span>.</li>
+</ol>
+<div id="cf4993ed" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> [ <span class="fu">nc_weights</span>(n) for n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span> ]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">println</span>(<span class="st">"n = "</span>, n, <span class="st">": "</span>, <span class="fu">join</span>(W[n], <span class="st">", "</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"negative weights first appear for n = "</span>, <span class="fu">findfirst</span>( w <span class="op">-&gt;</span> <span class="fu">any</span>(w <span class="op">.&lt;</span> <span class="fl">0</span>), W ))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>( <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, [ <span class="fu">Float64</span>(<span class="fu">sum</span>(<span class="fu">abs</span>.(w))) for w <span class="kw">in</span> W ], markersize<span class="op">=</span><span class="fl">5</span>, xlabel<span class="op">=</span>L<span class="st">"n"</span>, label<span class="op">=</span>L<span class="st">"\sum_j |\hat w_j|"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>n = 1: 1//2, 1//2
+n = 2: 1//6, 2//3, 1//6
+n = 3: 1//8, 3//8, 3//8, 1//8
+n = 4: 7//90, 16//45, 2//15, 16//45, 7//90
+n = 5: 19//288, 25//96, 25//144, 25//144, 25//96, 19//288
+n = 6: 41//840, 9//35, 9//280, 34//105, 9//280, 9//35, 41//840
+n = 7: 751//17280, 3577//17280, 49//640, 2989//17280, 2989//17280, 49//640, 3577//17280, 751//17280
+n = 8: 989//28350, 2944//14175, -464//14175, 5248//14175, -454//2835, 5248//14175, -464//14175, 2944//14175, 989//28350
+n = 9: 2857//89600, 15741//89600, 27//2240, 1209//5600, 2889//44800, 2889//44800, 1209//5600, 27//2240, 15741//89600, 2857//89600
+n = 10: 16067//598752, 26575//149688, -16175//199584, 5675//12474, -4825//11088, 17807//24948, -4825//11088, 5675//12474, -16175//199584, 26575//149688, 16067//598752
+n = 11: 434293//17418240, 4495513//29030400, -3237113//87091200, 560593//1935360, -1599257//14515200, 2582261//14515200, 2582261//14515200, -1599257//14515200, 560593//1935360, -3237113//87091200, 4495513//29030400, 434293//17418240
+n = 12: 1364651//63063000, 12504//79625, -105387//875875, 893128//1576575, -1144251//1401400, 1215504//875875, -522602//375375, 1215504//875875, -1144251//1401400, 893128//1576575, -105387//875875, 12504//79625, 1364651//63063000
+negative weights first appear for n = 8</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+<ol start="3" type="1">
+<li><p><span class="math inline">\(\big| \sum_j w_j (f(x_j) + \varepsilon_j) - \sum_j w_j f(x_j) \big| = \big| \sum_j w_j \varepsilon_j \big| \leq \varepsilon \sum_j |w_j|\)</span>. If all the weights are positive, then <span class="math inline">\(\sum_j |w_j| = \sum_j w_j = b - a\)</span> and so errors in the data are not amplified. With large negative weights, small errors in <span class="math inline">\(f(x_j)\)</span> (e.g.&nbsp;rounding errors) can be amplified enormously.</p></li>
+<li><p>The Newton–Cotes rule integrates the equispaced interpolant, which suffers from the Runge phenomenon, so the error does not go to zero as <span class="math inline">\(n\)</span> increases: in fact, it grows (to about <span class="math inline">\(6\)</span> for <span class="math inline">\(n = 20\)</span>). The composite Simpson rule with the same nodes converges at rate <span class="math inline">\(O(n^{-4})\)</span> by <a href="#thm-simpson-error" class="quarto-xref">Theorem&nbsp;<span>11.4</span></a>.</p></li>
+</ol>
+<div id="8ee573c3" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x <span class="op">-&gt;</span> <span class="fl">1</span> <span class="op">/</span> ( <span class="fl">1</span> <span class="op">+</span> <span class="fl">25</span>x<span class="op">^</span><span class="fl">2</span> )</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> (<span class="fl">2</span><span class="op">/</span><span class="fl">5</span>) <span class="op">*</span> <span class="fu">atan</span>(<span class="fl">5</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newton_cotes</span>(f, a, b, n)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">.*</span> <span class="fu">Float64</span>.( <span class="fu">nc_weights</span>(n) )   <span class="co"># weights on [a,b] (@exr-l10-weights (3))</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">range</span>(a, b, n<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">sum</span>( w <span class="op">.*</span> <span class="fu">f</span>.(x) )</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">simpson</span>(f, a, b, n)                   <span class="co"># composite Simpson rule on n subintervals (n even)</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="fu">range</span>(a, b, n<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> (b <span class="op">-</span> a) <span class="op">/</span> n</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> h<span class="op">/</span><span class="fl">3</span> <span class="op">*</span> ( <span class="fu">f</span>(x[<span class="fl">1</span>]) <span class="op">+</span> <span class="fl">4</span><span class="fu">sum</span>( <span class="fu">f</span>.(x[<span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span>n]) ) <span class="op">+</span> <span class="fl">2</span><span class="fu">sum</span>( <span class="fu">f</span>.(x[<span class="fl">3</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span>]) ) <span class="op">+</span> <span class="fu">f</span>(x[n<span class="op">+</span><span class="fl">1</span>]) )</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="fl">20</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>E_nc <span class="op">=</span> [ <span class="fu">abs</span>( <span class="fu">newton_cotes</span>(f, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, n) <span class="op">-</span> I ) for n <span class="kw">in</span> N ]</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>E_s  <span class="op">=</span> [ <span class="fu">abs</span>( <span class="fu">simpson</span>(f, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, n) <span class="op">-</span> I ) for n <span class="kw">in</span> N ]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter</span>( N, E_nc, yaxis<span class="op">=:</span>log, markersize<span class="op">=</span><span class="fl">5</span>, xlabel<span class="op">=</span>L<span class="st">"n"</span>, label<span class="op">=</span><span class="st">"Newton–Cotes"</span> )</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>( N, E_s, markersize<span class="op">=</span><span class="fl">5</span>, label<span class="op">=</span><span class="st">"composite Simpson"</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+</div>
 <div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
@@ -1498,686 +1363,346 @@ Note
 
 </main> <!-- /main -->
 <style>
-
   /* Change cursor on equation tags to signal interactivity */
-
   .mjx-tag, .katex-tag, [id^="eq-"] .tag {
-
     cursor: pointer !important;
-
   }
-
   .mjx-tag:hover, .katex-tag:hover {
-
     opacity: 0.7;
-
   }
-
 </style>
 
-
-
 <script>
-
 window.addEventListener("load", function() {
-
   const setupEquationCopy = () => {
-
     // Find all equation containers generated by Quarto with an 'eq-' ID
-
     document.querySelectorAll('[id^="eq-"]').forEach(container => {
-
       const eqId = container.getAttribute('id');
-
       const labelText = `@${eqId}`;
-
       
-
       // Locate the rendered tag element inside MathJax or KaTeX
-
       const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
-
       
-
       // Set hover title to display the label name
-
       tag.setAttribute('title', `📋 ${labelText}`);
-
       
-
       // Copy label to clipboard on click
-
       tag.addEventListener('click', (e) => {
-
         e.stopPropagation();
-
         navigator.clipboard.writeText(labelText).then(() => {
-
           showToast(`Copied ${labelText} to clipboard!`);
-
         });
-
       });
-
     });
-
   };
-
-
 
   // Wait for MathJax/KaTeX rendering before attaching listeners
-
   if (window.MathJax && window.MathJax.startup) {
-
     window.MathJax.startup.promise.then(setupEquationCopy);
-
   } else {
-
     setupEquationCopy();
-
   }
-
-
 
   function showToast(message) {
-
     let toast = document.getElementById('eq-copy-toast');
-
     if (!toast) {
-
       toast = document.createElement('div');
-
       toast.id = 'eq-copy-toast';
-
       toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
-
       document.body.appendChild(toast);
-
     }
-
     toast.textContent = message;
-
     toast.style.opacity = '1';
-
     setTimeout(() => { toast.style.opacity = '0'; }, 2000);
-
   }
-
 });
-
 </script>
 <style>
-
   /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
-
   @font-face {
-
     font-family: "DSEG7 Classic";
-
     src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
-
     font-weight: 700;
-
     font-display: swap;
-
   }
-
   /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
-
   #float-timer {
-
     position: fixed;
-
     top: 80px;
-
     right: 24px;
-
     z-index: 2000;
-
     display: none;
-
     flex-direction: column;
-
     width: 390px;
-
     height: 230px;
-
     min-width: 280px;
-
     max-width: calc(100vw - 16px);   /* keep it on small screens */
-
     min-height: 190px;
-
     resize: both;                /* drag the bottom-right corner to resize */
-
     container: ft / inline-size; /* lets the contents react to the timer's own width */
-
     overflow: hidden;
-
     background: var(--bs-body-bg, #fff);
-
     color: var(--bs-body-color, #212529);
-
     border: 2px solid #2780e3;
-
     border-radius: 8px;
-
     box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
-
     user-select: none;
-
     font-family: inherit;
-
   }
-
   #float-timer.visible { display: flex; }
-
   #float-timer .ft-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 4px 8px;
-
     background: #2780e3;
-
     color: #fff;
-
     cursor: move;
-
     font-size: .95rem;
-
     touch-action: none;
-
   }
-
   #float-timer .ft-modes button {
-
     background: none;
-
     border: 1px solid rgba(255, 255, 255, .6);
-
     color: #fff;
-
     border-radius: 4px;
-
     font-size: .8rem;
-
     padding: 0 6px;
-
     cursor: pointer;
-
   }
-
   #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
-
   #float-timer .ft-close {
-
     background: none;
-
     border: none;
-
     color: #fff;
-
     font-size: 1.3rem;
-
     line-height: 1;
-
     cursor: pointer;
-
   }
-
   #float-timer .ft-display {
-
     flex: 1;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-family: "DSEG7 Classic", "Courier New", monospace;
-
     font-weight: 700;
-
     line-height: 1;
-
     white-space: nowrap;
-
   }
-
   #float-timer .ft-controls {
-
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 6px;
-
     justify-content: center;
-
     align-items: center;
-
     padding: 4px 10px 10px 10px;
-
   }
-
   #float-timer .ft-controls .btn { font-size: 1rem; }
-
   #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
-
   #float-timer:not(.countdown) .ft-countdown-only { display: none; }
-
   /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
-
   /* drop the preset buttons and the title when the timer is too narrow for them */
-
   @container ft (max-width: 382px) {
-
     [data-preset] { display: none; }
-
   }
-
   @container ft (max-width: 290px) {
-
     .ft-title { display: none; }
-
   }
-
   @media (max-width: 575.98px) {
-
     #float-timer { right: 8px; }
-
   }
-
   #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
-
   @keyframes ft-flash { to { visibility: hidden; } }
-
 </style>
 
-
-
 <div id="float-timer" aria-label="Timer">
-
   <div class="ft-header">
-
     <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
-
     <span class="ft-modes">
-
       <button data-mode="up" title="Count up">Stopwatch</button>
-
       <button data-mode="down" title="Count down">Countdown</button>
-
     </span>
-
     <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
-
   </div>
-
   <div class="ft-display"><span class="ft-digits">00:00</span></div>
-
   <div class="ft-controls">
-
     <button class="btn btn-primary ft-toggle">Start</button>
-
     <button class="btn btn-outline-secondary ft-reset">Reset</button>
-
     <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
-
     <span class="ft-countdown-only">min</span>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
-
   </div>
-
 </div>
 
-
-
 <script>
-
 (function () {
-
   const KEY = "math5485-timer";
-
   const box = document.getElementById("float-timer");
-
   const display = box.querySelector(".ft-display");
-
   const digits = box.querySelector(".ft-digits");
-
   const toggleBtn = box.querySelector(".ft-toggle");
-
   const minutesInput = box.querySelector(".ft-minutes");
 
-
-
   // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
-
   // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
-
   let state = {
-
     visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
-
     left: null, top: null, width: null, height: null
-
   };
-
   try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
-
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
-
-
   const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
-
   const pad = n => String(n).padStart(2, "0");
-
   const fmt = ms => {
-
     const s = Math.ceil(ms / 1000);
-
     const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
-
     return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
-
   };
-
-
 
   function render() {
-
     let shown = elapsed(), timesUp = false;
-
     if (state.mode === "down") {
-
       const remaining = state.minutes * 60000 - shown;
-
       if (remaining <= 0 && state.startedAt) {
-
         // stop exactly at zero
-
         state.elapsed = state.minutes * 60000; state.startedAt = null; save();
-
       }
-
       shown = Math.max(0, state.minutes * 60000 - elapsed());
-
       timesUp = shown === 0 && state.minutes > 0;
-
     } else {
-
       shown = Math.floor(shown / 1000) * 1000;
-
     }
-
     digits.textContent = fmt(shown);
-
     toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
-
     box.classList.toggle("visible", state.visible);
-
     box.classList.toggle("countdown", state.mode === "down");
-
     box.classList.toggle("times-up", timesUp);
-
     box.querySelectorAll(".ft-modes button").forEach(b =>
-
       b.classList.toggle("active", b.dataset.mode === state.mode));
-
     if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
-
     if (state.left !== null) {
-
       box.style.left = state.left + "px";
-
       box.style.top = state.top + "px";
-
       box.style.right = "auto";
-
     }
-
     if (state.width) {
-
       box.style.width = state.width + "px";
-
       box.style.height = state.height + "px";
-
     }
-
     fitText();
-
   }
-
-
 
   // scale the digits to fill the display area
-
   function fitText() {
-
     if (!state.visible) return;
-
     // start from the available height, then shrink until the digits fit the width
-
     const w = display.clientWidth - 16, h = display.clientHeight;
-
     let size = h * 0.8;
-
     display.style.fontSize = size + "px";
-
     for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
-
       size *= w / digits.offsetWidth;
-
       display.style.fontSize = size + "px";
-
     }
-
     display.style.fontSize = Math.max(16, size) + "px";
-
   }
-
-
 
   function reset() {
-
     state.elapsed = 0;
-
     state.startedAt = state.startedAt ? Date.now() : null;
-
   }
-
-
 
   toggleBtn.addEventListener("click", () => {
-
     if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
-
     else {
-
       if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
-
       state.startedAt = Date.now();
-
     }
-
     save(); render();
-
   });
-
   box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
-
   box.querySelector(".ft-close").addEventListener("click", () => {
-
     state.visible = false; save(); render();
-
   });
-
   box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
-
     if (state.mode !== b.dataset.mode) {
-
       state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
-
       save(); render();
-
     }
-
   }));
-
   const setMinutes = m => {
-
     state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
-
     save(); render();
-
   };
-
   minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
-
   box.querySelectorAll("[data-preset]").forEach(b =>
-
     b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
 
-
-
   // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
-
   document.addEventListener("click", e => {
-
     if (e.target.closest('a[href$="#timer"]')) {
-
       e.preventDefault();
-
       state.visible = !state.visible;
-
       save(); render();
-
     }
-
   });
-
-
 
   // dragging by the header (mouse and touch)
-
   const header = box.querySelector(".ft-header");
-
   header.addEventListener("pointerdown", e => {
-
     if (e.target.closest("button")) return;
-
     const r = box.getBoundingClientRect();
-
     const dx = e.clientX - r.left, dy = e.clientY - r.top;
-
     header.setPointerCapture(e.pointerId);
-
     const move = ev => {
-
       state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
-
       state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
-
       render();
-
     };
-
     const up = () => {
-
       header.removeEventListener("pointermove", move);
-
       header.removeEventListener("pointerup", up);
-
       save();
-
     };
-
     header.addEventListener("pointermove", move);
-
     header.addEventListener("pointerup", up);
-
   });
 
-
-
   // remember the size after resizing (via the bottom-right corner) and rescale the digits
-
   new ResizeObserver(() => {
-
     if (!state.visible) return;
-
     state.width = box.offsetWidth; state.height = box.offsetHeight;
-
     fitText(); save();
-
   }).observe(box);
 
-
-
   // the digital font loads asynchronously: refit once it arrives
-
   if (document.fonts) {
-
     document.fonts.ready.then(fitText);
-
     document.fonts.addEventListener("loadingdone", fitText);
-
   }
 
-
-
   render();
-
   setInterval(() => { if (state.startedAt) render(); }, 200);
-
 })();
-
 </script>
-
 <script>
-
 // Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
-
 document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
-
   var last = t.lastChild;
-
   if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
-
 });
-
-
 
 // Exercises/theorems that start straight with a list render the title alone in a paragraph
-
 // ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
-
 document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
-
   var p = t.parentNode, rest = '';
-
   for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
-
   if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
-
 });
-
 </script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -2270,16 +1795,16 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {

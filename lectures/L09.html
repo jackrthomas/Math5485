@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>9&nbsp; Hermite interpolation – Math5485</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -20,10 +26,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -35,15 +76,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-e62bb8cbb98a4873992f2fc411f2675f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -77,9 +117,12 @@ ul.task-list li input[type="checkbox"] {
     document.body.classList.add('hypothesis-enabled');
   });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -133,9 +176,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Math5485</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -273,12 +314,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
+ <span class="menu-text">Exams</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/studyguide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm study guide</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
@@ -289,13 +347,13 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Admin</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
@@ -348,601 +406,306 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
-
       <span class="banner-label">📢 <strong>Updates</strong></span>
-
       <div class="banner-ticker">
-
         <div class="banner-ticker-track">
-
           <!-- ── Add updates here: one <span> per update with its date as data-date="YYYY-MM-DD".
-
                  * Order doesn't matter: updates are sorted by date (newest first).
-
                  * Updates dated in the future are hidden until that day (so you can schedule them).
-
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
-
+          <span class="banner-item" data-date="2026-10-23">Typos in L1-11 fixed, Quiz 3 in the exercise bank, solutions published, study guide available</span>
           <span class="banner-item" data-date="2026-10-18">Lecture 10/11: Newton-Cotes quadrature</span>
-
           <span class="banner-item" data-date="2026-10-13">Lecture 9: Hermite interpolation available</span>
-
           <span class="banner-item" data-date="2026-10-04">Assignment 3 available</span>
-
           <span class="banner-item" data-date="2026-10-06">Lecture 8 online</span>
-
           <span class="banner-item" data-date="2026-10-04">Lecture 7 online</span>
-
           <span class="banner-item" data-date="2026-10-04">Schedule now available in "Admin"</span>
-
           <span class="banner-item" data-date="2026-09-29">Problem class exercises now online</span>
-
           <span class="banner-item" data-date="2026-09-27">Lecture 6 online</span>
-
           <span class="banner-item" data-date="2026-09-24">Quiz 1 solutions online</span>
-
           <span class="banner-item" data-date="2026-09-24">Lectures 2-3 exercises have solutions!</span>
-
           <span class="banner-item" data-date="2026-09-23">Lecture 1 exercises have solutions!</span>
-
         </div>
-
       </div>
-
       <button class="banner-more-btn" type="button" aria-expanded="false" aria-controls="banner-all-updates" hidden="">All updates</button>
-
       <button class="banner-close-btn" onclick="closeBanner()" aria-label="Close updates">×</button>
-
       <div id="banner-all-updates" class="banner-all" hidden="">
-
         <div class="banner-all-title">All updates</div>
-
         <ul class="banner-all-list"></ul>
-
       </div>
-
     </div>
-
     <style>
-
       .announcement-banner {
-
         background-color: #007bff;
-
         color: white;
-
         padding: 8px 12px;
-
         position: relative;
-
         font-size: 0.95rem;
-
         z-index: 1000;
-
         display: flex;
-
         align-items: center;
-
         gap: 12px;
-
         margin-bottom: 0.75rem;   /* space between the banner and the page below */
-
       }
-
       .banner-label {
-
         flex-shrink: 0;
-
         white-space: nowrap;
-
       }
-
       /* scrolling area: fades out at both ends */
-
       .banner-ticker {
-
         flex-grow: 1;
-
         overflow: hidden;
-
         white-space: nowrap;
-
         -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-
                 mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-
       }
-
       .banner-ticker-track {
-
         display: inline-flex;
-
         white-space: nowrap;
-
         will-change: transform;
-
       }
-
       .banner-ticker.scrolling .banner-ticker-track {
-
         animation: banner-scroll var(--banner-duration, 30s) linear infinite;
-
       }
-
       /* pause while the mouse is over the text, so it can be read */
-
       .banner-ticker:hover .banner-ticker-track {
-
         animation-play-state: paused;
-
       }
-
       .banner-item {
-
         padding: 0 1.5rem;
-
       }
-
       .banner-date {
-
         display: inline-block;
-
         font-size: 0.8em;
-
         font-weight: 600;
-
         background: rgba(255, 255, 255, 0.2);
-
         border-radius: 4px;
-
         padding: 0 6px;
-
         margin-right: 6px;
-
       }
-
       .banner-item::before {
-
         content: "•";
-
         margin-right: 1.5rem;
-
         opacity: 0.7;
-
       }
-
       @keyframes banner-scroll {
-
         from { transform: translateX(0); }
-
         to   { transform: translateX(-50%); }   /* the track holds two identical halves */
-
       }
-
       /* visitors who prefer reduced motion: no scrolling, show the updates as a static list */
-
       @media (prefers-reduced-motion: reduce) {
-
         .banner-ticker { -webkit-mask-image: none; mask-image: none; white-space: normal; }
-
         .banner-ticker-track { display: flex; flex-wrap: wrap; animation: none !important; }
-
       }
-
       /* "All updates" button and drop-down list */
-
       .banner-more-btn {
-
         flex-shrink: 0;
-
         background: rgba(255, 255, 255, 0.15);
-
         border: 1px solid rgba(255, 255, 255, 0.6);
-
         color: white;
-
         border-radius: 999px;
-
         font-size: 0.8rem;
-
         padding: 2px 10px;
-
         cursor: pointer;
-
         white-space: nowrap;
-
       }
-
       .banner-more-btn:hover,
-
       .banner-more-btn[aria-expanded="true"] {
-
         background: white;
-
         color: #007bff;
-
       }
-
       .banner-all {
-
         position: absolute;
-
         top: 100%;
-
         right: 12px;
-
         margin-top: 6px;
-
         width: min(420px, calc(100vw - 24px));
-
         max-height: 60vh;
-
         overflow-y: auto;
-
         background: white;
-
         color: #212529;
-
         border: 1px solid #dee2e6;
-
         border-radius: 8px;
-
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-
         padding: 10px 14px;
-
         text-align: left;
-
         z-index: 1001;
-
       }
-
       .banner-all[hidden] { display: none; }
-
       .banner-all-title {
-
         font-weight: 600;
-
         margin-bottom: 6px;
-
       }
-
       .banner-all-list {
-
         list-style: none;
-
         margin: 0;
-
         padding: 0;
-
       }
-
       .banner-all-list li {
-
         padding: 5px 0;
-
         border-top: 1px solid #f1f3f5;
-
       }
-
       .banner-all-list li:first-child { border-top: none; }
-
       .banner-all-list li.banner-all-date {
-
         font-size: 0.78rem;
-
         font-weight: 600;
-
         color: #6c757d;
-
         border-top: none;
-
         padding: 8px 0 2px;
-
       }
-
       .banner-all-list li.banner-all-date:first-child { padding-top: 0; }
-
       .banner-close-btn {
-
         flex-shrink: 0;
-
         background: none;
-
         border: none;
-
         color: white;
-
         font-size: 1.4rem;
-
         cursor: pointer;
-
         line-height: 1;
-
         padding: 0 8px;
-
         opacity: 0.8;
-
       }
-
       .banner-close-btn:hover {
-
         opacity: 1;
-
       }
-
     </style>
-
     <script>
-
       // Hide immediately if already dismissed in this browser session
-
       if (sessionStorage.getItem('hideCourseBanner') === 'true') {
-
         document.write('<style>#course-announcement-banner { display: none !important; }</style>');
-
       }
-
-
 
       function closeBanner() {
-
         var banner = document.getElementById('course-announcement-banner');
-
         if (banner) {
-
           banner.style.display = 'none';
-
         }
-
         // Remember that the user closed it during this browser session
-
         sessionStorage.setItem('hideCourseBanner', 'true');
-
       }
 
-
-
       // Scrolling ticker: repeat the updates until they fill the banner, then duplicate
-
       // the whole set so the animation (which moves the track by half its width) loops seamlessly.
-
       (function () {
-
         var SPEED = 60;          // pixels per second
-
         var MAX_SCROLLING = 3;   // how many of the newest updates scroll; the rest are under "All updates"
 
-
-
         // Dates: "YYYY-MM-DD" → local date (no timezone shift); shown as Today / Yesterday / "Wed, Sep 23"
-
         function parseDate(str) {
-
           var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec((str || '').trim());
-
           return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
-
         }
-
         function dateLabel(d) {
-
           var today = new Date(); today.setHours(0, 0, 0, 0);
-
           var days = Math.round((today - d) / 86400000);
-
           if (days === 0) return 'Today';
-
           if (days === 1) return 'Yesterday';
-
           var opts = { weekday: 'short', month: 'short', day: 'numeric' };
-
           if (d.getFullYear() !== today.getFullYear()) opts.year = 'numeric';
-
           return d.toLocaleDateString('en-US', opts);
-
         }
-
-
 
         // Sort the updates by date, hide future ones, keep the newest few in the ticker
-
         // (with a date label) and list all of them, grouped by date, under "All updates".
-
         function setupUpdates(track) {
-
           var banner = document.getElementById('course-announcement-banner');
-
           var btn = banner.querySelector('.banner-more-btn');
-
           var panel = banner.querySelector('.banner-all');
-
           var list = panel.querySelector('.banner-all-list');
-
           var today = new Date(); today.setHours(0, 0, 0, 0);
 
-
-
           var updates = Array.prototype.slice.call(track.querySelectorAll('.banner-item')).map(function (el, i) {
-
             return { html: el.innerHTML, date: parseDate(el.getAttribute('data-date')), order: i };
-
           }).filter(function (u) {
-
             return !u.date || u.date <= today;                       // scheduled updates stay hidden
-
           }).sort(function (a, b) {
-
             if (a.date && b.date && +a.date !== +b.date) return b.date - a.date;   // newest first
-
             if (!a.date !== !b.date) return a.date ? -1 : 1;                       // undated last
-
             return a.order - b.order;                                              // same day: file order
-
           });
-
-
 
           // ticker: the newest MAX_SCROLLING updates, each with its date
-
           track.innerHTML = '';
-
           updates.slice(0, MAX_SCROLLING).forEach(function (u) {
-
             var span = document.createElement('span');
-
             span.className = 'banner-item';
-
             span.innerHTML = (u.date ? '<span class="banner-date">' + dateLabel(u.date) + '</span>' : '') + u.html;
-
             track.appendChild(span);
-
           });
-
           if (updates.length === 0) { banner.style.display = 'none'; return; }
 
-
-
           // drop-down: everything, grouped by date
-
           var lastLabel = null;
-
           updates.forEach(function (u) {
-
             var label = u.date ? dateLabel(u.date) : 'Other';
-
             if (label !== lastLabel) {
-
               var h = document.createElement('li');
-
               h.className = 'banner-all-date';
-
               h.textContent = label;
-
               list.appendChild(h);
-
               lastLabel = label;
-
             }
-
             var li = document.createElement('li');
-
             li.innerHTML = u.html;
-
             list.appendChild(li);
-
           });
-
           if (updates.length <= MAX_SCROLLING) return;   // everything already scrolls: no button needed
 
-
-
           btn.textContent = 'All updates (' + updates.length + ')';
-
           btn.hidden = false;
 
-
-
           function setOpen(open) {
-
             panel.hidden = !open;
-
             btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-
           }
-
           btn.addEventListener('click', function (e) {
-
             e.stopPropagation();
-
             setOpen(panel.hidden);
-
           });
-
           panel.addEventListener('click', function (e) { e.stopPropagation(); });
-
           document.addEventListener('click', function () { setOpen(false); });
-
           document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
-
         }
-
-
 
         function startTicker() {
-
           var ticker = document.querySelector('#course-announcement-banner .banner-ticker');
-
           if (!ticker) return;
-
           var track = ticker.querySelector('.banner-ticker-track');
-
           setupUpdates(track);
-
           if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-
-
           var items = Array.prototype.slice.call(track.querySelectorAll('.banner-item'));
-
           if (items.length === 0) return;
 
-
-
           // one "half": the updates repeated until they are at least as wide as the banner
-
           var guard = 0;
-
           while (track.scrollWidth < ticker.clientWidth && guard++ < 50) {
-
             items.forEach(function (item) {
-
               var copy = item.cloneNode(true);
-
               copy.setAttribute('aria-hidden', 'true');
-
               track.appendChild(copy);
-
             });
-
           }
-
           // second half: an exact copy of the first
-
           Array.prototype.slice.call(track.children).forEach(function (el) {
-
             var copy = el.cloneNode(true);
-
             copy.setAttribute('aria-hidden', 'true');
-
             track.appendChild(copy);
-
           });
 
-
-
           var halfWidth = track.scrollWidth / 2;
-
           ticker.style.setProperty('--banner-duration', (halfWidth / SPEED) + 's');
-
           ticker.classList.add('scrolling');
-
         }
 
-
-
         if (document.readyState === 'complete') startTicker();
-
         else window.addEventListener('load', startTicker);
-
       })();
-
     </script>
-
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../lectures/L01.html">Lectures</a></li><li class="breadcrumb-item"><a href="../lectures/L09.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></h1>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Hermite interpolation</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
 <p class="subtitle lead">Lecture 9: Chapter 3: Polynomial interpolation</p>
 </div>
 
@@ -1070,10 +833,43 @@ Note
 <div id="exr-Hermite-1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.1</strong></span> <a href="../exercises/bank.html#bank-exr-Hermite-1"></a></p>
 <p>Let <span class="math inline">\(f(x) = e^x\)</span> and <span class="math inline">\(X = \{\{0, 0, 1\}\}\)</span> (so that <span class="math inline">\(z_0 = 0\)</span> with <span class="math inline">\(m_0 = 2\)</span>, <span class="math inline">\(z_1 = 1\)</span> with <span class="math inline">\(m_1 = 1\)</span>, and <span class="math inline">\(n = 2\)</span>). Find the Hermite interpolant <span class="math inline">\(p \in \mathcal P_2\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> by writing <span class="math inline">\(p(x) = a_0 + a_1 x + a_2 x^2\)</span> and solving for the coefficients. Compare <span class="math inline">\(p\)</span> with the Taylor polynomial of degree <span class="math inline">\(1\)</span> about <span class="math inline">\(0\)</span> and with the Lagrange interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{0, 1\}\)</span>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>We look for <span class="math inline">\(p(x) = a_0 + a_1 x + a_2 x^2 \in \mathcal P_2\)</span> with <span class="math display">\[
+\begin{align}
+    p(0) &amp;= f(0) = 1, \nonumber\\
+    p'(0) &amp;= f'(0) = 1, \nonumber\\
+    p(1) &amp;= f(1) = e. \nonumber
+\end{align}
+\]</span> Since <span class="math inline">\(p'(x) = a_1 + 2a_2 x\)</span>, the first two conditions give <span class="math inline">\(a_0 = 1\)</span> and <span class="math inline">\(a_1 = 1\)</span>. The third gives <span class="math inline">\(1 + 1 + a_2 = e\)</span>, so <span class="math inline">\(a_2 = e - 2\)</span> and <span class="math display">\[
+    p(x) = 1 + x + (e - 2) x^2.
+\]</span></p>
+<div id="47eed460" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_H</span>(x) <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> x <span class="op">+</span> (<span class="cn">ℯ</span> <span class="op">-</span> <span class="fl">2</span>)<span class="op">*</span>x<span class="op">^</span><span class="fl">2</span>   <span class="co"># Hermite X = {{0, 0, 1}}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_T</span>(x) <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> x                 <span class="co"># Taylor (or Hermite on X = {{0,0}})</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_L</span>(x) <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> (<span class="fu">exp</span>(<span class="fl">1</span>) <span class="op">-</span> <span class="fl">1</span>)<span class="op">*</span>x    <span class="co"># Lagrange X ={0,1}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(exp, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>; label<span class="op">=</span>L<span class="st">"y = e^x"</span>, lw<span class="op">=</span><span class="fl">2</span>, linestyle<span class="op">=:</span>dash)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(p_H, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>; label<span class="op">=</span><span class="st">"Hermite"</span>, lw<span class="op">=</span><span class="fl">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(p_T, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>; label<span class="op">=</span><span class="st">"Taylor"</span>, lw<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(p_L, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>; label<span class="op">=</span><span class="st">"Lagrange"</span>, lw<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([<span class="fl">0</span>, <span class="fl">1</span>], [<span class="fl">1</span>, <span class="cn">ℯ</span>]; markersize<span class="op">=</span><span class="fl">5</span>, primary<span class="op">=</span><span class="cn">false</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+</div>
 </div>
 <div id="exr-Taylor-Hermite" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.2</strong></span> <a href="../exercises/bank.html#bank-exr-Taylor-Hermite"></a></p>
 <p>What is the least degree polynomial interpolant on <span class="math inline">\(X = \{\{x_0, x_0, \dots, x_0\}\}\)</span> (where <span class="math inline">\(x_0\)</span> is repeated <span class="math inline">\(n+1\)</span> times)?</p>
+<div class="exercise-solution" style="display: none;">
+<p>The Taylor polynomial <span class="math display">\[
+    T_f(x) = \sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!} (x - x_0)^j \in \mathcal P_n
+\]</span> satisfies <span class="math inline">\(T_f^{(l)}(x_0) = f^{(l)}(x_0)\)</span> for <span class="math inline">\(l = 0, \dots, n\)</span>. So Hermite interpolation on a single node repeated <span class="math inline">\(n+1\)</span> times is Taylor expansion, and Lagrange interpolation (all <span class="math inline">\(m_j = 1\)</span>) is the other extreme.</p>
+</div>
 </div>
 <div id="thm-Hermite" class="theorem">
 <p><span class="theorem-title"><strong>Theorem 9.1</strong></span> There exists a unique polynomial of degree at most <span class="math inline">\(n\)</span> solving the Hermite interpolation problem.</p>
@@ -1105,9 +901,9 @@ Note
 \]</span></p>
 <p>If the nodes are not all equal, we can always reorder <span class="math inline">\(X\)</span> so that <span class="math inline">\(x_0 \not= x_n\)</span> (the divided difference does not depend on the ordering of the nodes).</p>
 </div>
-<details class="proof-details"><summary>Proof</summary>
+<details class="proof-details"><summary>Proof <span class="proof-name">(non-examinable)</span></summary>
 <div class="proof">
-<p><span class="proof-title"><em>Proof</em>. </span>You have seen above that the Taylor polynomial</p>
+<p><span class="proof-title"><em>Proof</em> (non-examinable). </span>You have seen above that the Taylor polynomial</p>
 <p><span class="math display">\[
 \begin{align}
     T_f(x) =\sum_{j=0}^n \frac{f^{(j)}(x_0)}{j!}(x - x_0)^j
@@ -1115,19 +911,23 @@ Note
 \]</span></p>
 <p>solves the Hermite interpolation problem on <span class="math inline">\(X = \{\{x_0,\dots,x_n\}\}\)</span> in the case where <span class="math inline">\(x_0 = \dots = x_n\)</span>. For such <span class="math inline">\(X\)</span>, the leading coefficient in this expression is <span class="math inline">\(f[x_{0}, \dots, x_n] = \frac{f^{(n)}(x_0)}{n!}\)</span>.</p>
 <p>For the second case, suppose <span class="math inline">\(x_0 \not= x_n\)</span>. We adapt the proof of <a href="L08.html#thm-divided-diffs-2" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a>.</p>
-<p><em>Ordering and linearity.</em> The Hermite interpolation problem (and so, by <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>, its unique solution) only depends on the multiset <span class="math inline">\(X\)</span> and not on how we label its elements. Therefore <span class="math inline">\(f[x_0,\dots,x_n]\)</span> does not depend on the ordering of the nodes. Moreover, if <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the Hermite interpolants of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>, then <span class="math inline">\(p + cq \in \mathcal P_n\)</span> satisfies the Hermite conditions for <span class="math inline">\(f + cg\)</span>, and so <span class="math inline">\((f + cg)[x_0,\dots,x_n] = f[x_0,\dots,x_n] + c\, g[x_0,\dots,x_n]\)</span>.</p>
+<p><em>Ordering and linearity.</em> The Hermite interpolation problem only depends on the multiset <span class="math inline">\(X\)</span> and not on how we label its elements. Therefore <span class="math inline">\(f[x_0,\dots,x_n]\)</span> does not depend on the ordering of the nodes. Moreover, if <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the Hermite interpolants of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>, then <span class="math inline">\(p + cq \in \mathcal P_n\)</span> satisfies the Hermite conditions for <span class="math inline">\(f + cg\)</span>, and so <span class="math inline">\((f + cg)[x_0,\dots,x_n] = f[x_0,\dots,x_n] + c\, g[x_0,\dots,x_n]\)</span>.</p>
 <p><em>Multiplying by <span class="math inline">\((x - x_n)\)</span>.</em> Let <span class="math inline">\(p \in \mathcal P_{n-1}\)</span> be the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X' := \{\{x_0, \dots, x_{n-1}\}\}\)</span> and define <span class="math inline">\(g(x) := (x - x_n) f(x)\)</span> and <span class="math inline">\(q(x) := (x - x_n) p(x) \in \mathcal P_n\)</span>. We claim that <span class="math inline">\(q\)</span> is the Hermite interpolant of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Let <span class="math inline">\(u := p - f\)</span>. By the product rule, <span class="math display">\[
     q^{(l)}(x) - g^{(l)}(x) = \frac{\mathrm d^l}{\mathrm dx^l} \big[ (x - x_n) u(x) \big] = (x - x_n) u^{(l)}(x) + l \, u^{(l-1)}(x)
-\]</span> (where the second term is absent when <span class="math inline">\(l = 0\)</span>). Let <span class="math inline">\(z\)</span> be a node which appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X'\)</span>, so that <span class="math inline">\(u^{(i)}(z) = 0\)</span> for <span class="math inline">\(i = 0, \dots, m-1\)</span>.</p>
+\]</span> (drop the second term when <span class="math inline">\(l = 0\)</span>). Let <span class="math inline">\(z\)</span> be a node which appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X'\)</span>, so that <span class="math inline">\(u^{(i)}(z) = 0\)</span> for <span class="math inline">\(i = 0, \dots, m-1\)</span>.</p>
 <ul>
 <li>If <span class="math inline">\(z \not= x_n\)</span>, then <span class="math inline">\(z\)</span> also appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X\)</span>. For <span class="math inline">\(l \leq m - 1\)</span>, we have <span class="math inline">\(u^{(l)}(z) = u^{(l-1)}(z) = 0\)</span>, and so <span class="math inline">\(q^{(l)}(z) = g^{(l)}(z)\)</span>.</li>
 <li>If <span class="math inline">\(z = x_n\)</span>, then <span class="math inline">\(z\)</span> appears <span class="math inline">\(m + 1\)</span> times in <span class="math inline">\(X\)</span> (with <span class="math inline">\(m = 0\)</span> if <span class="math inline">\(x_n \not\in X'\)</span>). For <span class="math inline">\(l \leq m\)</span>, the first term vanishes because <span class="math inline">\(z - x_n = 0\)</span>, and the second term vanishes because <span class="math inline">\(l - 1 \leq m - 1\)</span> (or <span class="math inline">\(l = 0\)</span>). Therefore <span class="math inline">\(q^{(l)}(x_n) = g^{(l)}(x_n)\)</span> for <span class="math inline">\(l = 0, \dots, m\)</span>.</li>
 </ul>
-<p>So <span class="math inline">\(q\)</span> satisfies all of the Hermite conditions for <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span> and, by <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>, it is the Hermite interpolant of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Comparing leading coefficients, the coefficient of <span class="math inline">\(x^n\)</span> in <span class="math inline">\(q\)</span> is both <span class="math inline">\(g[x_0, \dots, x_n]\)</span> and the coefficient of <span class="math inline">\(x^{n-1}\)</span> in <span class="math inline">\(p\)</span>, that is, <span class="math inline">\(f[x_0,\dots,x_{n-1}]\)</span>. Therefore <span class="math display">\[
+<p>So <span class="math inline">\(q\)</span> satisfies all of the Hermite conditions for <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span> and it is the Hermite interpolant of <span class="math inline">\(g\)</span> on <span class="math inline">\(X\)</span>. Comparing leading coefficients, the coefficient of <span class="math inline">\(x^n\)</span> in <span class="math inline">\(q\)</span> is both <span class="math inline">\(g[x_0, \dots, x_n]\)</span> and the coefficient of <span class="math inline">\(x^{n-1}\)</span> in <span class="math inline">\(p\)</span>, that is, <span class="math inline">\(f[x_0,\dots,x_{n-1}]\)</span>. Therefore <span class="math display">\[
     \big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_0, \dots, x_{n-1}].
 \]</span> Applying this to the reordered multiset <span class="math inline">\(\{\{x_1, \dots, x_n, x_0\}\}\)</span> gives <span class="math inline">\(\big( (x - x_0) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n]\)</span>.</p>
-<p><em>Conclusion.</em> Since <span class="math inline">\((x - x_0) f(x) - (x - x_n) f(x) = (x_n - x_0) f(x)\)</span>, linearity gives <span class="math display">\[
-    (x_n - x_0) f[x_0,\dots,x_n] = \big( (x - x_0) f \big)[x_0, \dots, x_n] - \big( (x - x_n) f \big)[x_0, \dots, x_n] = f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}].
+<p>Since <span class="math inline">\((x - x_0) f(x) - (x - x_n) f(x) = (x_n - x_0) f(x)\)</span>, linearity gives <span class="math display">\[
+\begin{align}
+    &amp;(x_n - x_0) f[x_0,\dots,x_n] \nonumber\\
+    &amp;= \big( (x - x_0) f \big)[x_0, \dots, x_n] - \big( (x - x_n) f \big)[x_0, \dots, x_n] \nonumber\\
+    &amp;= f[x_1, \dots, x_n] - f[x_0, \dots, x_{n-1}].
+\end{align}
 \]</span> Dividing by <span class="math inline">\(x_n - x_0 \not= 0\)</span> gives the result.</p>
 </div>
 </details>
@@ -1148,10 +948,74 @@ Note
 <div id="exr-Hermite-1-Newton" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.3</strong></span> <a href="../exercises/bank.html#bank-exr-Hermite-1-Newton"></a></p>
 <p>Return to <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a>: compute the Hermite interpolant of <span class="math inline">\(f(x) = e^x\)</span> on <span class="math inline">\(\{\{0, 0, 1\}\}\)</span> again, this time using the divided difference table and <a href="#thm-Newton-form-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.3</span></a>.</p>
+<div class="exercise-solution" style="display: none;">
+<p>With <span class="math inline">\(x_0 = x_1 = 0\)</span> and <span class="math inline">\(x_2 = 1\)</span>, the divided difference table is</p>
+<p><span class="math display">\[
+\begin{array}{c|ccc}
+    x_j &amp; f(x_j) &amp; \text{1st} &amp; \text{2nd} \\ \hline
+    0 &amp; 1 &amp; &amp; \\
+      &amp; &amp; 1 &amp; \\
+    0 &amp; 1 &amp; &amp; e - 2 \\
+      &amp; &amp; e - 1 &amp; \\
+    1 &amp; e &amp; &amp;
+\end{array}
+\]</span></p>
+<p>where <span class="math inline">\(f[0,0] = f'(0) = 1\)</span> (the nodes are equal), <span class="math inline">\(f[0,1] = \frac{e - 1}{1 - 0} = e - 1\)</span>, and <span class="math inline">\(f[0,0,1] = \frac{f[0,1] - f[0,0]}{1 - 0} = e - 2\)</span>. With <span class="math inline">\(\pi_1(x) = x\)</span> and <span class="math inline">\(\pi_2(x) = x^2\)</span>, the Newton form is <span class="math display">\[
+    p(x) = 1 + 1 \cdot x + (e - 2) x^2,
+\]</span> which agrees with <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a>. This time we did not need to solve a linear system, and adding another condition (for example <span class="math inline">\(p'(1) = f'(1)\)</span>) only adds one new row to the table and one new term to <span class="math inline">\(p\)</span> (see <a href="#exr-l09-hermite-cubic" class="quarto-xref">Exercise&nbsp;<span>9.7</span></a>).</p>
+</div>
 </div>
 <div id="exr-Hermite-2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.4</strong></span> <a href="../exercises/bank.html#bank-exr-Hermite-2"></a></p>
 <p>What is the Hermite interpolant of <span class="math inline">\(f(x) = \sin x\)</span> on <span class="math inline">\(\{\{ 0,0,\pi, \pi\}\}\)</span>? Hint: you can compute the divided difference tables in the same way as before.</p>
+<div class="exercise-solution" style="display: none;">
+<p>With <span class="math inline">\(x_0 = x_1 = 0\)</span> and <span class="math inline">\(x_2 = x_3 = \pi\)</span>, the divided difference table is</p>
+<p><span class="math display">\[
+\begin{array}{c|cccc}
+    x_j &amp; f(x_j) &amp; \text{1st} &amp; \text{2nd} &amp; \text{3rd} \\ \hline
+    0 &amp; 0 &amp; &amp; &amp; \\
+      &amp; &amp; 1 &amp; &amp; \\
+    0 &amp; 0 &amp; &amp; -\frac{1}{\pi} &amp; \\
+      &amp; &amp; 0 &amp; &amp; 0 \\
+    \pi &amp; 0 &amp; &amp; -\frac{1}{\pi} &amp; \\
+      &amp; &amp; -1 &amp; &amp; \\
+    \pi &amp; 0 &amp; &amp; &amp;
+\end{array}
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+\begin{align}
+    f[0,0] &amp;= f'(0) = \cos 0 = 1, \nonumber\\
+    f[0,\pi] &amp;= \frac{\sin \pi - \sin 0}{\pi - 0} = 0, \nonumber\\
+    f[\pi,\pi] &amp;= f'(\pi) = \cos \pi = -1, \nonumber\\
+    f[0,0,\pi] &amp;= \frac{f[0,\pi] - f[0,0]}{\pi - 0} = -\frac1\pi, \nonumber\\
+    f[0,\pi,\pi] &amp;= \frac{f[\pi,\pi] - f[0,\pi]}{\pi - 0} = -\frac1\pi, \nonumber\\
+    f[0,0,\pi,\pi] &amp;= \frac{f[0,\pi,\pi] - f[0,0,\pi]}{\pi - 0} = 0. \nonumber
+\end{align}
+\]</span></p>
+<p>By <a href="#thm-Newton-form-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.3</span></a> (with <span class="math inline">\(\pi_1 = x\)</span>, <span class="math inline">\(\pi_2 = x^2\)</span>, <span class="math inline">\(\pi_3 = x^2(x-\pi)\)</span>),</p>
+<p><span class="math display">\[
+\begin{align}
+    p(x) &amp;= 0 + 1 \cdot x - \frac1\pi x^2 + 0 \cdot x^2(x-\pi)
+    \nonumber\\&amp;
+    = x - \frac{x^2}{\pi}.
+\end{align}
+\]</span></p>
+<p>Check: <span class="math inline">\(p(0) = 0\)</span>, <span class="math inline">\(p'(0) = 1\)</span>, <span class="math inline">\(p(\pi) = 0\)</span>, and <span class="math inline">\(p'(\pi) = 1 - 2 = -1\)</span>. The interpolant has degree <span class="math inline">\(2\)</span> (not <span class="math inline">\(3\)</span>) because the leading divided difference happens to vanish (by symmetry of <span class="math inline">\(\sin\)</span> about <span class="math inline">\(\frac\pi2\)</span>).</p>
+<div id="2d6070ef" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fu">Polynomial</span>([<span class="fl">0</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="cn">π</span>])</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sin, <span class="op">-</span><span class="cn">π</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">3</span>π<span class="op">/</span><span class="fl">2</span>; label<span class="op">=</span>L<span class="st">"y = \sin x"</span>, lw<span class="op">=</span><span class="fl">2</span>, linestyle<span class="op">=:</span>dash)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(p, <span class="op">-</span><span class="cn">π</span><span class="op">/</span><span class="fl">2</span>, <span class="fl">3</span>π<span class="op">/</span><span class="fl">2</span>; label<span class="op">=</span>L<span class="st">"y = p(x)"</span>, lw<span class="op">=</span><span class="fl">3</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([<span class="fl">0</span>, <span class="cn">π</span>], [<span class="fl">0</span>, <span class="fl">0</span>]; markersize<span class="op">=</span><span class="fl">5</span>, primary<span class="op">=</span><span class="cn">false</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1172,7 +1036,7 @@ Note
 </section>
 <section id="extra-exercises" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">9.4</span> Extra exercises</h2>
-<div id="exr-l09-hermite-exist" class="theorem exercise">
+<div id="exr-l09-hermite-exist" class="difficult theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.5</strong></span> <a href="../exercises/bank.html#bank-exr-l09-hermite-exist"></a></p>
 <p>In this exercise, we prove <a href="#thm-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a>. As in the notes, let <span class="math inline">\(z_0, \dots, z_k\)</span> be distinct nodes with multiplicities <span class="math inline">\(m_0, \dots, m_k \geq 1\)</span>, and let <span class="math inline">\(n + 1 = \sum_{j=0}^k m_j\)</span>.</p>
 <ol type="1">
@@ -1182,19 +1046,35 @@ Note
 <li>Consider the map <span class="math inline">\(L : \mathcal P_n \to \mathbb R^{n+1}\)</span> defined by <span class="math inline">\(L p := \big( p^{(l)}(z_j) \big)_{j = 0,\dots,k, \; l = 0, \dots, m_j - 1}\)</span>. Show that <span class="math inline">\(L\)</span> is linear and injective, and conclude that the Hermite interpolation problem has exactly one solution in <span class="math inline">\(\mathcal P_n\)</span>.</li>
 </ol>
 <div class="exercise-hint" style="display: none;">
-<p>For 1, write <span class="math inline">\(r\)</span> as its Taylor polynomial about <span class="math inline">\(z\)</span> (which is exact because <span class="math inline">\(r\)</span> is a polynomial). For 2, apply 1 at <span class="math inline">\(z_0\)</span> and then show that <span class="math inline">\(s\)</span> still has zeros of order <span class="math inline">\(m_j\)</span> at <span class="math inline">\(z_j\)</span> for <span class="math inline">\(j \geq 1\)</span>. For 4, recall that an injective linear map between vector spaces of the same finite dimension is also surjective.</p>
+<p><strong>1.</strong> Write <span class="math inline">\(r\)</span> as its Taylor polynomial about <span class="math inline">\(z\)</span> (which is exact because <span class="math inline">\(r\)</span> is a polynomial). <strong>2.</strong> Apply 1 at <span class="math inline">\(z_0\)</span> and then show that <span class="math inline">\(s\)</span> still has zeros of order <span class="math inline">\(m_j\)</span> at <span class="math inline">\(z_j\)</span> for <span class="math inline">\(j \geq 1\)</span>. <strong>4.</strong> Use the fact that injective linear maps between vector spaces of the same finite dimension is also surjective.</p>
 </div>
 <div class="exercise-solution" style="display: none;">
 <ol type="1">
-<li><p>Since <span class="math inline">\(r \in \mathcal P_n\)</span>, Taylor’s theorem is exact: <span class="math inline">\(r(x) = \sum_{l=0}^n \frac{r^{(l)}(z)}{l!} (x - z)^l = \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^l = (x-z)^m s(x)\)</span> where <span class="math inline">\(s(x) := \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^{l-m}\)</span>.</p></li>
-<li><p>By 1, <span class="math inline">\(r(x) = (x - z_0)^{m_0} s_0(x)\)</span>. Fix <span class="math inline">\(j \geq 1\)</span> and write <span class="math inline">\(u(x) := (x - z_0)^{m_0}\)</span> (so that <span class="math inline">\(u(z_j) \not= 0\)</span> because the nodes are distinct). By the Leibniz rule, <span class="math display">\[
-r^{(l)}(z_j) = \sum_{i=0}^l \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j) = u(z_j) \, s_0^{(l)}(z_j) + \sum_{i=0}^{l-1} \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j).
+<li><p>Since <span class="math inline">\(r \in \mathcal P_n\)</span>, Taylor’s theorem is exact: <span class="math display">\[
+\begin{align}
+r(x) &amp;= \sum_{l=0}^n \frac{r^{(l)}(z)}{l!} (x - z)^l \nonumber\\
+&amp;= \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^l \nonumber\\
+&amp;= (x-z)^m s(x)
+\end{align}
+\]</span> where <span class="math inline">\(s(x) := \sum_{l=m}^n \frac{r^{(l)}(z)}{l!} (x - z)^{l-m}\)</span>.</p></li>
+<li><p>By 1, <span class="math inline">\(r(x) = (x - z_0)^{m_0} s_0(x)\)</span>. Fix <span class="math inline">\(j \geq 1\)</span> and write <span class="math inline">\(u(x) := (x - z_0)^{m_0}\)</span> (with <span class="math inline">\(u(z_j) \not= 0\)</span>). By the Leibniz rule, <span class="math display">\[
+\begin{align}
+r^{(l)}(z_j) &amp;= \sum_{i=0}^l \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j)
+\nonumber\\
+&amp;= u(z_j) \, s_0^{(l)}(z_j) + \sum_{i=0}^{l-1} \binom{l}{i} u^{(l-i)}(z_j) \, s_0^{(i)}(z_j).
+\end{align}
 \]</span> By induction on <span class="math inline">\(l = 0, \dots, m_j - 1\)</span>, we obtain <span class="math inline">\(s_0^{(l)}(z_j) = 0\)</span>. Therefore, <span class="math inline">\(s_0\)</span> satisfies the same conditions at <span class="math inline">\(z_1, \dots, z_k\)</span> and, repeating the argument, we have <span class="math display">\[
 r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
 \]</span> for some polynomial <span class="math inline">\(s\)</span>. If <span class="math inline">\(s \not= 0\)</span>, then <span class="math inline">\(r\)</span> has degree at least <span class="math inline">\(\sum_j m_j = n+1\)</span>, which contradicts <span class="math inline">\(r \in \mathcal P_n\)</span>. Therefore <span class="math inline">\(s = 0\)</span> and <span class="math inline">\(r = 0\)</span>.</p></li>
 <li><p>If <span class="math inline">\(p, q \in \mathcal P_n\)</span> both solve the Hermite interpolation problem, then <span class="math inline">\(r := p - q \in \mathcal P_n\)</span> satisfies <span class="math inline">\(r^{(l)}(z_j) = f^{(l)}(z_j) - f^{(l)}(z_j) = 0\)</span> for all <span class="math inline">\(j\)</span> and <span class="math inline">\(l = 0, \dots, m_j-1\)</span>. By 2, <span class="math inline">\(r = 0\)</span> and so <span class="math inline">\(p = q\)</span>.</p></li>
 <li><p>Differentiation and evaluation are linear and so <span class="math inline">\(L\)</span> is linear. If <span class="math inline">\(L p = 0\)</span>, then <span class="math inline">\(p = 0\)</span> by 2, and so <span class="math inline">\(L\)</span> is injective. Since <span class="math inline">\(\dim \mathcal P_n = n + 1 = \dim \mathbb R^{n+1}\)</span>, the rank-nullity theorem shows that <span class="math inline">\(L\)</span> is also surjective. In particular, there exists <span class="math inline">\(p \in \mathcal P_n\)</span> with <span class="math inline">\(L p = \big( f^{(l)}(z_j) \big)_{j,l}\)</span>, which is exactly a solution to the Hermite interpolation problem. By 3, this solution is unique.</p></li>
 </ol>
+</div>
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
+<span class="exr-difficult-icon" aria-hidden="true">◆</span>
+<div class="exr-difficult-tip" role="tooltip">
+<p><strong>This exercise is more difficult</strong></p>
+</div>
 </div>
 </div>
 <div id="exr-l09-hermite-error" class="difficult theorem exercise">
@@ -1206,7 +1086,27 @@ r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
 f(x) - p(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x).
 \]</span></li>
 </ol>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exercise-hint" style="display: none;">
+<ol type="1">
+<li>At each <span class="math inline">\(w_i\)</span> the derivative <span class="math inline">\(g'\)</span> has a zero of order <span class="math inline">\(k_i - 1\)</span>, and Rolle’s theorem gives one more zero strictly between each pair <span class="math inline">\(w_i &lt; w_{i+1}\)</span>.</li>
+<li>Copy the proof from Lecture 6: for <span class="math inline">\(x \not\in X\)</span>, consider <span class="math display">\[
+g(t) := f(t) - p(t) - \big[ f(x) - p(x) \big] \frac{\ell_X(t)}{\ell_X(x)}
+\]</span> and count its zeros with their orders.</li>
+</ol>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>At each <span class="math inline">\(w_i\)</span>, <span class="math inline">\(g'\)</span> has a zero of order <span class="math inline">\(k_i - 1\)</span> (because <span class="math inline">\(g', \dots, g^{(k_i-1)}\)</span> vanish at <span class="math inline">\(w_i\)</span>). Moreover, for each <span class="math inline">\(i = 1, \dots, r-1\)</span>, <span class="math inline">\(g(w_i) = g(w_{i+1}) = 0\)</span> and so, by Rolle’s theorem, <span class="math inline">\(g'\)</span> has a zero in <span class="math inline">\((w_i, w_{i+1})\)</span>, which is different from all of the <span class="math inline">\(w_i\)</span>. Adding these up, the orders of the zeros of <span class="math inline">\(g'\)</span> in <span class="math inline">\([w_1, w_r]\)</span> add up to at least <span class="math display">\[
+\sum_{i=1}^r (k_i - 1) + (r - 1) = N - 1.
+\]</span></p></li>
+<li><p>If <span class="math inline">\(x \in X\)</span>, then both sides are zero (take any <span class="math inline">\(\xi_x\)</span>). Otherwise <span class="math inline">\(\ell_X(x) \not= 0\)</span> and we can define <span class="math display">\[
+g(t) := f(t) - p(t) - \big[ f(x) - p(x) \big] \frac{\ell_X(t)}{\ell_X(x)}.
+\]</span> Then <span class="math inline">\(g \in C^{n+1}\)</span>. If <span class="math inline">\(z\)</span> appears <span class="math inline">\(m\)</span> times in <span class="math inline">\(X\)</span>, then <span class="math inline">\(f - p\)</span> has a zero of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z\)</span> (by the Hermite conditions) and so does <span class="math inline">\(\ell_X\)</span> (it contains the factor <span class="math inline">\((t - z)^m\)</span>). Therefore <span class="math inline">\(g\)</span> has a zero of order <span class="math inline">\(m\)</span> at <span class="math inline">\(z\)</span>. Moreover, <span class="math inline">\(g(x) = 0\)</span>. So the orders of the zeros of <span class="math inline">\(g\)</span> add up to (at least) <span class="math inline">\((n + 1) + 1 = n + 2\)</span>. Applying 1 <span class="math inline">\(n+1\)</span> times, <span class="math inline">\(g^{(n+1)}\)</span> has a zero <span class="math inline">\(\xi_x\)</span> in <span class="math inline">\([\min (\{x\} \cup X), \max (\{x\} \cup X)]\)</span>. Since <span class="math inline">\(p \in \mathcal P_n\)</span> and <span class="math inline">\(\ell_X\)</span> is monic of degree <span class="math inline">\(n + 1\)</span>, we have <span class="math inline">\(p^{(n+1)} = 0\)</span> and <span class="math inline">\(\ell_X^{(n+1)} = (n+1)!\)</span>, and so <span class="math display">\[
+0 = g^{(n+1)}(\xi_x) = f^{(n+1)}(\xi_x) - \big[ f(x) - p(x) \big] \frac{(n+1)!}{\ell_X(x)}.
+\]</span> Rearranging gives the result.</p></li>
+</ol>
+</div>
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -1218,12 +1118,35 @@ f(x) - p(x) = \frac{f^{(n+1)}(\xi_x)}{(n+1)!} \ell_X(x).
 <p>Let <span class="math inline">\(X = \{\{0, 0, 1, 1\}\}\)</span> and suppose that we know <span class="math inline">\(f(0) = y_0\)</span>, <span class="math inline">\(f'(0) = s_0\)</span>, <span class="math inline">\(f(1) = y_1\)</span> and <span class="math inline">\(f'(1) = s_1\)</span>.</p>
 <ol type="1">
 <li>Compute the divided difference table and show that the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> is <span class="math display">\[
-p(x) = y_0 + s_0 x + (d - s_0) x^2 + (s_0 + s_1 - 2d) \, x^2 (x - 1), \qquad \text{where } d := y_1 - y_0.
-\]</span></li>
+\begin{align}
+p(x) &amp;= y_0 + s_0 x + (d - s_0) x^2 + (s_0 + s_1 - 2d) \, x^2 (x - 1)
+\end{align}
+\]</span> where <span class="math inline">\(d := y_1 - y_0\)</span>.</li>
 <li>Write down <span class="math inline">\(p\)</span> for <span class="math inline">\(f(x) = e^x\)</span> and compare it with <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a>.</li>
 <li>Use <a href="#exr-l09-hermite-error" class="quarto-xref">Exercise&nbsp;<span>9.6</span></a> to show that <span class="math inline">\(\max_{x \in [0,1]} |e^x - p(x)| \leq \frac{e}{384}\)</span>.</li>
-<li>More generally, suppose that <span class="math inline">\(p\)</span> is the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{\{a, a, b, b\}\}\)</span>. Show that <span class="math inline">\(\max_{x \in [a,b]} |f(x) - p(x)| \leq \frac{(b-a)^4}{384} \max_{[a,b]} |f^{(4)}|\)</span>. What does this tell you about approximating <span class="math inline">\(f\)</span> on <span class="math inline">\([a,b]\)</span> by a cubic Hermite interpolant on each of <span class="math inline">\(N\)</span> subintervals of length <span class="math inline">\(h = \frac{b-a}{N}\)</span>?</li>
+<li>More generally, suppose that <span class="math inline">\(p\)</span> is the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(\{\{a, a, b, b\}\}\)</span>. Show that <span class="math inline">\(\max_{x \in [a,b]} |f(x) - p(x)| \leq \frac{(b-a)^4}{384} \max_{[a,b]} |f^{(4)}|\)</span>. What does this tell you about approximating <span class="math inline">\(f\)</span> on <span class="math inline">\([a,b]\)</span> by a cubic Hermite interpolant on each <span class="math inline">\(n\)</span> subintervals of length <span class="math inline">\(h = \frac{b-a}{n}\)</span>?</li>
 </ol>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>With <span class="math inline">\(x_0 = x_1 = 0\)</span> and <span class="math inline">\(x_2 = x_3 = 1\)</span>, the table is <span class="math display">\[
+\begin{array}{c|cccc}
+x_j &amp; f(x_j) &amp; \text{1st} &amp; \text{2nd} &amp; \text{3rd} \\ \hline
+0 &amp; y_0 &amp; &amp; &amp; \\
+   &amp; &amp; s_0 &amp; &amp; \\
+0 &amp; y_0 &amp; &amp; d - s_0 &amp; \\
+   &amp; &amp; d &amp; &amp; s_0 + s_1 - 2d \\
+1 &amp; y_1 &amp; &amp; s_1 - d &amp; \\
+   &amp; &amp; s_1 &amp; &amp; \\
+1 &amp; y_1 &amp; &amp; &amp;
+\end{array}
+\]</span> since <span class="math inline">\(f[0,0] = f'(0) = s_0\)</span>, <span class="math inline">\(f[0,1] = \frac{y_1 - y_0}{1 - 0} = d\)</span>, <span class="math inline">\(f[1,1] = f'(1) = s_1\)</span>, <span class="math inline">\(f[0,0,1] = \frac{d - s_0}{1 - 0}\)</span>, <span class="math inline">\(f[0,1,1] = \frac{s_1 - d}{1 - 0}\)</span>, and <span class="math inline">\(f[0,0,1,1] = (s_1 - d) - (d - s_0)\)</span>. By <a href="#thm-Newton-form-Hermite" class="quarto-xref">Theorem&nbsp;<span>9.3</span></a> with <span class="math inline">\(\pi_1 = x\)</span>, <span class="math inline">\(\pi_2 = x^2\)</span> and <span class="math inline">\(\pi_3 = x^2(x-1)\)</span>, we get the formula for <span class="math inline">\(p\)</span>. (Check: <span class="math inline">\(p(1) = y_0 + s_0 + d - s_0 = y_1\)</span> and <span class="math inline">\(p'(1) = s_0 + 2(d - s_0) + (s_0 + s_1 - 2d) = s_1\)</span>.)</p></li>
+<li><p>Here <span class="math inline">\(y_0 = s_0 = 1\)</span>, <span class="math inline">\(y_1 = s_1 = e\)</span> and <span class="math inline">\(d = e - 1\)</span>, so <span class="math display">\[
+p(x) = 1 + x + (e - 2) x^2 + (3 - e) \, x^2 (x - 1).
+\]</span> The first three terms are exactly the interpolant from <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a> on <span class="math inline">\(\{\{0, 0, 1\}\}\)</span>: adding the condition <span class="math inline">\(p'(1) = f'(1)\)</span> only adds one new term to the Newton form.</p></li>
+<li><p>By <a href="#exr-l09-hermite-error" class="quarto-xref">Exercise&nbsp;<span>9.6</span></a>, <span class="math inline">\(e^x - p(x) = \frac{e^{\xi_x}}{4!} x^2 (x-1)^2\)</span> for some <span class="math inline">\(\xi_x \in [0,1]\)</span>. The function <span class="math inline">\(x(1 - x)\)</span> has maximum <span class="math inline">\(\frac14\)</span> on <span class="math inline">\([0,1]\)</span> (at <span class="math inline">\(x = \frac12\)</span>), and so <span class="math inline">\(|e^x - p(x)| \leq \frac{e}{24} \cdot \frac{1}{16} = \frac{e}{384} \approx 7.1 \times 10^{-3}\)</span>. (Numerically, the maximum error is about <span class="math inline">\(4.4 \times 10^{-3}\)</span>.)</p></li>
+<li><p>In the same way, <span class="math inline">\(|f(x) - p(x)| \leq \frac{\max |f^{(4)}|}{24} (x - a)^2 (x - b)^2\)</span> and <span class="math inline">\((x-a)(b-x) \leq \big(\frac{b - a}{2}\big)^2\)</span>, which gives the bound <span class="math inline">\(\frac{(b-a)^4}{16 \cdot 24} \max |f^{(4)}|\)</span>. On <span class="math inline">\(n\)</span> subintervals of length <span class="math inline">\(h\)</span>, the error is at most <span class="math inline">\(\frac{h^4}{384} \max_{[a,b]} |f^{(4)}|\)</span>: halving <span class="math inline">\(h\)</span> divides the error bound by <span class="math inline">\(16\)</span>. Moreover, neighbouring cubics share their values and slopes at the break points, so the resulting piecewise cubic is continuously differentiable. (This is <em>piecewise cubic Hermite interpolation</em>.)</p></li>
+</ol>
+</div>
 </div>
 <div id="exr-l09-dd-mean-value" class="difficult theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 9.8</strong></span> <a href="../exercises/bank.html#bank-exr-l09-dd-mean-value"></a></p>
@@ -1231,9 +1154,22 @@ p(x) = y_0 + s_0 x + (d - s_0) x^2 + (s_0 + s_1 - 2d) \, x^2 (x - 1), \qquad \te
 <li>Let <span class="math inline">\(f \in C^n([a,b])\)</span> and let <span class="math inline">\(X = \{\{x_0, \dots, x_n\}\} \subset [a,b]\)</span> be a multiset. Show that there exists <span class="math inline">\(\xi \in [\min X, \max X]\)</span> with <span class="math display">\[
 f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 \]</span></li>
-<li>Deduce that <span class="math inline">\(f[x_0, x_0 + h] \to f'(x_0)\)</span> and, more generally, <span class="math inline">\(f[x_0, x_0 + h, \dots, x_0 + nh] \to \frac{f^{(n)}(x_0)}{n!}\)</span> as <span class="math inline">\(h \to 0\)</span>. Explain why this makes the first case of <a href="#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a> a natural definition.</li>
+<li>Deduce that <span class="math inline">\(f[x_0, x_0 + h] \to f'(x_0)\)</span> and, more generally, <span class="math display">\[
+f[x_0, x_0 + h, \dots, x_0 + nh] \to \frac{f^{(n)}(x_0)}{n!}
+\]</span> as <span class="math inline">\(h \to 0\)</span>. Explain why this makes the first case of <a href="#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a> a natural definition.</li>
 </ol>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exercise-hint" style="display: none;">
+<ol type="1">
+<li>Let <span class="math inline">\(p\)</span> be the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span> and apply part 1 of <a href="#exr-l09-hermite-error" class="quarto-xref">Exercise&nbsp;<span>9.6</span></a> to <span class="math inline">\(g := f - p\)</span>. What is <span class="math inline">\(p^{(n)}\)</span>?</li>
+</ol>
+</div>
+<div class="exercise-solution" style="display: none;">
+<ol type="1">
+<li><p>Let <span class="math inline">\(p \in \mathcal P_n\)</span> be the Hermite interpolant of <span class="math inline">\(f\)</span> on <span class="math inline">\(X\)</span>. Then <span class="math inline">\(g := f - p\)</span> has zeros whose orders add up to <span class="math inline">\(n + 1\)</span> (a zero of order <span class="math inline">\(m\)</span> at each node appearing <span class="math inline">\(m\)</span> times). Applying part 1 of <a href="#exr-l09-hermite-error" class="quarto-xref">Exercise&nbsp;<span>9.6</span></a> <span class="math inline">\(n\)</span> times, <span class="math inline">\(g^{(n)}\)</span> has a zero <span class="math inline">\(\xi \in [\min X, \max X]\)</span>. Since <span class="math inline">\(p(x) = f[x_0, \dots, x_n] x^n + q(x)\)</span> with <span class="math inline">\(q \in \mathcal P_{n-1}\)</span>, we have <span class="math inline">\(p^{(n)} = n! \, f[x_0,\dots,x_n]\)</span> and so <span class="math inline">\(0 = f^{(n)}(\xi) - n! \, f[x_0, \dots, x_n]\)</span>. (If all the nodes are equal, then <span class="math inline">\(\xi = x_0\)</span> and this is the first case of <a href="#thm-divided-diffs-recursion" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a>.)</p></li>
+<li><p>By 1, <span class="math inline">\(f[x_0, x_0 + h, \dots, x_0 + nh] = \frac{f^{(n)}(\xi_h)}{n!}\)</span> for some <span class="math inline">\(\xi_h\)</span> between <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_0 + nh\)</span>. As <span class="math inline">\(h \to 0\)</span>, <span class="math inline">\(\xi_h \to x_0\)</span> and, since <span class="math inline">\(f^{(n)}\)</span> is continuous, <span class="math inline">\(f^{(n)}(\xi_h) \to f^{(n)}(x_0)\)</span>. So the divided difference on <span class="math inline">\(n+1\)</span> nearby nodes converges to <span class="math inline">\(\frac{f^{(n)}(x_0)}{n!}\)</span> as the nodes merge. Defining <span class="math inline">\(f[x_0, \dots, x_0] := \frac{f^{(n)}(x_0)}{n!}\)</span> makes the divided difference continuous in the nodes, and Hermite interpolation is the limit of Lagrange interpolation as nodes come together.</p></li>
+</ol>
+</div>
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -1247,6 +1183,73 @@ f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 <li>Write a function <code>newton_eval(c, x, t)</code> which evaluates <span class="math inline">\(\sum_{k=0}^n c_k \pi_k(t)\)</span> using <span class="math inline">\(O(n)\)</span> operations.</li>
 <li>Check your code against <a href="#exr-Hermite-1" class="quarto-xref">Exercise&nbsp;<span>9.1</span></a>, <a href="#exr-Hermite-2" class="quarto-xref">Exercise&nbsp;<span>9.4</span></a>, and <a href="#exr-l09-hermite-cubic" class="quarto-xref">Exercise&nbsp;<span>9.7</span></a>, and compute <span class="math inline">\(\max_{t \in [0,1]} |e^t - p(t)|\)</span> for the cubic Hermite interpolant of <span class="math inline">\(e^x\)</span> on <span class="math inline">\(\{\{0,0,1,1\}\}\)</span>.</li>
 </ol>
+<div class="exercise-hint" style="display: none;">
+<ol start="2" type="1">
+<li>Use nested multiplication (Horner’s method): <span class="math inline">\(c_0 + (t - x_0)\big(c_1 + (t - x_1)\big(c_2 + \cdots\big)\big)\)</span>.</li>
+</ol>
+</div>
+<div class="exercise-solution" style="display: none;">
+<div id="59133f69" class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">hermite_dd</span>( x, df )</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">length</span>(x) <span class="op">-</span> <span class="fl">1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    T <span class="op">=</span> <span class="fu">zeros</span>(n<span class="op">+</span><span class="fl">1</span>, n<span class="op">+</span><span class="fl">1</span>)              <span class="co"># T[j+1, k+1] = f[x_j, ..., x_{j+k}]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="op">∈</span> <span class="fl">0</span><span class="op">:</span>n</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        T[j<span class="op">+</span><span class="fl">1</span>, <span class="fl">1</span>] <span class="op">=</span> <span class="fu">df</span>(<span class="fl">0</span>, x[j<span class="op">+</span><span class="fl">1</span>])</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="op">∈</span> <span class="fl">1</span><span class="op">:</span>n, j <span class="op">∈</span> <span class="fl">0</span><span class="op">:</span>(n<span class="op">-</span>k)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x[j<span class="op">+</span>k<span class="op">+</span><span class="fl">1</span>] <span class="op">==</span> x[j<span class="op">+</span><span class="fl">1</span>]        <span class="co"># all nodes equal</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            T[j<span class="op">+</span><span class="fl">1</span>, k<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> <span class="fu">df</span>(k, x[j<span class="op">+</span><span class="fl">1</span>]) <span class="op">/</span> <span class="fu">factorial</span>(k)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>            T[j<span class="op">+</span><span class="fl">1</span>, k<span class="op">+</span><span class="fl">1</span>] <span class="op">=</span> (T[j<span class="op">+</span><span class="fl">2</span>, k] <span class="op">-</span> T[j<span class="op">+</span><span class="fl">1</span>, k]) <span class="op">/</span> (x[j<span class="op">+</span>k<span class="op">+</span><span class="fl">1</span>] <span class="op">-</span> x[j<span class="op">+</span><span class="fl">1</span>])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> T[<span class="fl">1</span>, <span class="op">:</span>]                   <span class="co"># top diagonal</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newton_eval</span>( c, x, t )</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> c[<span class="kw">end</span>]</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="op">∈</span> (<span class="fu">length</span>(c)<span class="op">-</span><span class="fl">1</span>)<span class="op">:-</span><span class="fl">1</span><span class="op">:</span><span class="fl">1</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        p <span class="op">=</span> c[k] <span class="op">+</span> (t <span class="op">-</span> x[k]) <span class="op">*</span> p</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">dsin</span>(l, z) <span class="op">=</span> (<span class="fu">sin</span>(z), <span class="fu">cos</span>(z), <span class="fu">-sin</span>(z), <span class="fu">-cos</span>(z))[l <span class="op">%</span> <span class="fl">4</span> <span class="op">+</span> <span class="fl">1</span>]</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="fu">dexp</span>(l, z) <span class="op">=</span> <span class="fu">exp</span>(z)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>]</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fu">hermite_dd</span>(X, dexp)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">10001</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>err <span class="op">=</span> <span class="fu">maximum</span>( <span class="fu">abs</span>.( <span class="fu">exp</span>.(t) <span class="op">.-</span> <span class="fu">newton_eval</span>.(<span class="fu">Ref</span>(c), <span class="fu">Ref</span>(X), t) ) )</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Hermite-1, e^x on {{0,0,1}}:"</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"  computed: "</span>, <span class="fu">hermite_dd</span>([<span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>], dexp))</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"  exact:    "</span>, [<span class="fl">1</span>, <span class="fl">1</span>, <span class="cn">ℯ</span> <span class="op">-</span> <span class="fl">2</span>])</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Hermite-2, sin x on {{0,0,π,π}}:"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"  computed: "</span>, <span class="fu">hermite_dd</span>([<span class="fl">0</span>, <span class="fl">0</span>, <span class="cn">π</span>, <span class="cn">π</span>], dsin))</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"  exact:    "</span>, [<span class="fl">0</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="cn">π</span>, <span class="fl">0</span>])</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Cubic Hermite, e^x on {{0,0,1,1}}:"</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"  computed: "</span>, c)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"  exact:    "</span>, [<span class="fl">1</span>, <span class="fl">1</span>, <span class="cn">ℯ</span> <span class="op">-</span> <span class="fl">2</span>, <span class="fl">3</span> <span class="op">-</span> <span class="cn">ℯ</span>])</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"max |e^t - p(t)| on [0,1] = "</span>, err, <span class="st">"  (bound e/384 = "</span>, <span class="cn">ℯ</span><span class="op">/</span><span class="fl">384</span>, <span class="st">")"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hermite-1, e^x on {{0,0,1}}:
+  computed: [1.0, 1.0, 0.7182818284590451]
+  exact:    [1.0, 1.0, 0.7182818284590451]
+Hermite-2, sin x on {{0,0,π,π}}:
+  computed: [0.0, 1.0, -0.3183098861837907, 0.0]
+  exact:    [0.0, 1.0, -0.3183098861837907, 0.0]
+Cubic Hermite, e^x on {{0,0,1,1}}:
+  computed: [1.0, 1.0, 0.7182818284590451, 0.2817181715409549]
+  exact:    [1.0, 1.0, 0.7182818284590451, 0.2817181715409549]
+max |e^t - p(t)| on [0,1] = 0.004371001067176472  (bound e/384 = 0.007078858928278763)</code></pre>
+</div>
+</div>
+<p>The table needs <span class="math inline">\(O(n^2)\)</span> operations and <code>newton_eval</code> needs <span class="math inline">\(O(n)\)</span> operations per point.</p>
+</div>
 </div>
 
 
@@ -1254,686 +1257,346 @@ f[x_0, \dots, x_n] = \frac{f^{(n)}(\xi)}{n!}.
 
 </main> <!-- /main -->
 <style>
-
   /* Change cursor on equation tags to signal interactivity */
-
   .mjx-tag, .katex-tag, [id^="eq-"] .tag {
-
     cursor: pointer !important;
-
   }
-
   .mjx-tag:hover, .katex-tag:hover {
-
     opacity: 0.7;
-
   }
-
 </style>
 
-
-
 <script>
-
 window.addEventListener("load", function() {
-
   const setupEquationCopy = () => {
-
     // Find all equation containers generated by Quarto with an 'eq-' ID
-
     document.querySelectorAll('[id^="eq-"]').forEach(container => {
-
       const eqId = container.getAttribute('id');
-
       const labelText = `@${eqId}`;
-
       
-
       // Locate the rendered tag element inside MathJax or KaTeX
-
       const tag = container.querySelector('.mjx-tag, .katex-tag, .tag') || container;
-
       
-
       // Set hover title to display the label name
-
       tag.setAttribute('title', `📋 ${labelText}`);
-
       
-
       // Copy label to clipboard on click
-
       tag.addEventListener('click', (e) => {
-
         e.stopPropagation();
-
         navigator.clipboard.writeText(labelText).then(() => {
-
           showToast(`Copied ${labelText} to clipboard!`);
-
         });
-
       });
-
     });
-
   };
-
-
 
   // Wait for MathJax/KaTeX rendering before attaching listeners
-
   if (window.MathJax && window.MathJax.startup) {
-
     window.MathJax.startup.promise.then(setupEquationCopy);
-
   } else {
-
     setupEquationCopy();
-
   }
-
-
 
   function showToast(message) {
-
     let toast = document.getElementById('eq-copy-toast');
-
     if (!toast) {
-
       toast = document.createElement('div');
-
       toast.id = 'eq-copy-toast';
-
       toast.style.cssText = 'position:fixed; bottom:20px; right:20px; background:#1e293b; color:#ffffff; padding:8px 14px; border-radius:6px; font-family:sans-serif; font-size:13px; z-index:9999; transition:opacity 0.3s; opacity:0; pointer-events:none; box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);';
-
       document.body.appendChild(toast);
-
     }
-
     toast.textContent = message;
-
     toast.style.opacity = '1';
-
     setTimeout(() => { toast.style.opacity = '0'; }, 2000);
-
   }
-
 });
-
 </script>
 <style>
-
   /* seven-segment "digital clock" font (DSEG, SIL Open Font License) */
-
   @font-face {
-
     font-family: "DSEG7 Classic";
-
     src: url("https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Bold.woff2") format("woff2");
-
     font-weight: 700;
-
     font-display: swap;
-
   }
-
   /* Floating, draggable, resizable timer (toggled by the stopwatch icon in the sidebar tools) */
-
   #float-timer {
-
     position: fixed;
-
     top: 80px;
-
     right: 24px;
-
     z-index: 2000;
-
     display: none;
-
     flex-direction: column;
-
     width: 390px;
-
     height: 230px;
-
     min-width: 280px;
-
     max-width: calc(100vw - 16px);   /* keep it on small screens */
-
     min-height: 190px;
-
     resize: both;                /* drag the bottom-right corner to resize */
-
     container: ft / inline-size; /* lets the contents react to the timer's own width */
-
     overflow: hidden;
-
     background: var(--bs-body-bg, #fff);
-
     color: var(--bs-body-color, #212529);
-
     border: 2px solid #2780e3;
-
     border-radius: 8px;
-
     box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
-
     user-select: none;
-
     font-family: inherit;
-
   }
-
   #float-timer.visible { display: flex; }
-
   #float-timer .ft-header {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 4px 8px;
-
     background: #2780e3;
-
     color: #fff;
-
     cursor: move;
-
     font-size: .95rem;
-
     touch-action: none;
-
   }
-
   #float-timer .ft-modes button {
-
     background: none;
-
     border: 1px solid rgba(255, 255, 255, .6);
-
     color: #fff;
-
     border-radius: 4px;
-
     font-size: .8rem;
-
     padding: 0 6px;
-
     cursor: pointer;
-
   }
-
   #float-timer .ft-modes button.active { background: #fff; color: #2780e3; }
-
   #float-timer .ft-close {
-
     background: none;
-
     border: none;
-
     color: #fff;
-
     font-size: 1.3rem;
-
     line-height: 1;
-
     cursor: pointer;
-
   }
-
   #float-timer .ft-display {
-
     flex: 1;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     font-family: "DSEG7 Classic", "Courier New", monospace;
-
     font-weight: 700;
-
     line-height: 1;
-
     white-space: nowrap;
-
   }
-
   #float-timer .ft-controls {
-
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 6px;
-
     justify-content: center;
-
     align-items: center;
-
     padding: 4px 10px 10px 10px;
-
   }
-
   #float-timer .ft-controls .btn { font-size: 1rem; }
-
   #float-timer .ft-minutes { width: 4em; font-size: 1rem; text-align: center; }
-
   #float-timer:not(.countdown) .ft-countdown-only { display: none; }
-
   /* no room for the preset buttons on small screens (Bootstrap's "sm" breakpoint) */
-
   /* drop the preset buttons and the title when the timer is too narrow for them */
-
   @container ft (max-width: 382px) {
-
     [data-preset] { display: none; }
-
   }
-
   @container ft (max-width: 290px) {
-
     .ft-title { display: none; }
-
   }
-
   @media (max-width: 575.98px) {
-
     #float-timer { right: 8px; }
-
   }
-
   #float-timer.times-up .ft-display { color: #ff0039; animation: ft-flash 1s steps(2, start) infinite; }
-
   @keyframes ft-flash { to { visibility: hidden; } }
-
 </style>
 
-
-
 <div id="float-timer" aria-label="Timer">
-
   <div class="ft-header">
-
     <span><i class="bi bi-stopwatch"></i> <span class="ft-title">Timer</span></span>
-
     <span class="ft-modes">
-
       <button data-mode="up" title="Count up">Stopwatch</button>
-
       <button data-mode="down" title="Count down">Countdown</button>
-
     </span>
-
     <button class="ft-close" title="Hide timer" aria-label="Hide timer">×</button>
-
   </div>
-
   <div class="ft-display"><span class="ft-digits">00:00</span></div>
-
   <div class="ft-controls">
-
     <button class="btn btn-primary ft-toggle">Start</button>
-
     <button class="btn btn-outline-secondary ft-reset">Reset</button>
-
     <input class="form-control form-control-sm ft-minutes ft-countdown-only" type="number" min="0" step="1" title="Minutes" aria-label="Countdown minutes">
-
     <span class="ft-countdown-only">min</span>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="5">5</button>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="10">10</button>
-
     <button class="btn btn-sm btn-outline-primary ft-countdown-only" data-preset="15">15</button>
-
   </div>
-
 </div>
 
-
-
 <script>
-
 (function () {
-
   const KEY = "math5485-timer";
-
   const box = document.getElementById("float-timer");
-
   const display = box.querySelector(".ft-display");
-
   const digits = box.querySelector(".ft-digits");
-
   const toggleBtn = box.querySelector(".ft-toggle");
-
   const minutesInput = box.querySelector(".ft-minutes");
 
-
-
   // elapsed: ms before the current run; startedAt: start of the current run (null if stopped)
-
   // mode: "up" (stopwatch) or "down" (countdown from `minutes`)
-
   let state = {
-
     visible: false, elapsed: 0, startedAt: null, mode: "up", minutes: 15,
-
     left: null, top: null, width: null, height: null
-
   };
-
   try { Object.assign(state, JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) {}
-
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
 
-
-
   const elapsed = () => state.elapsed + (state.startedAt ? Date.now() - state.startedAt : 0);
-
   const pad = n => String(n).padStart(2, "0");
-
   const fmt = ms => {
-
     const s = Math.ceil(ms / 1000);
-
     const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
-
     return (h ? h + ":" + pad(m) : pad(m)) + ":" + pad(sec);
-
   };
-
-
 
   function render() {
-
     let shown = elapsed(), timesUp = false;
-
     if (state.mode === "down") {
-
       const remaining = state.minutes * 60000 - shown;
-
       if (remaining <= 0 && state.startedAt) {
-
         // stop exactly at zero
-
         state.elapsed = state.minutes * 60000; state.startedAt = null; save();
-
       }
-
       shown = Math.max(0, state.minutes * 60000 - elapsed());
-
       timesUp = shown === 0 && state.minutes > 0;
-
     } else {
-
       shown = Math.floor(shown / 1000) * 1000;
-
     }
-
     digits.textContent = fmt(shown);
-
     toggleBtn.textContent = state.startedAt ? "Stop" : "Start";
-
     box.classList.toggle("visible", state.visible);
-
     box.classList.toggle("countdown", state.mode === "down");
-
     box.classList.toggle("times-up", timesUp);
-
     box.querySelectorAll(".ft-modes button").forEach(b =>
-
       b.classList.toggle("active", b.dataset.mode === state.mode));
-
     if (document.activeElement !== minutesInput) minutesInput.value = state.minutes;
-
     if (state.left !== null) {
-
       box.style.left = state.left + "px";
-
       box.style.top = state.top + "px";
-
       box.style.right = "auto";
-
     }
-
     if (state.width) {
-
       box.style.width = state.width + "px";
-
       box.style.height = state.height + "px";
-
     }
-
     fitText();
-
   }
-
-
 
   // scale the digits to fill the display area
-
   function fitText() {
-
     if (!state.visible) return;
-
     // start from the available height, then shrink until the digits fit the width
-
     const w = display.clientWidth - 16, h = display.clientHeight;
-
     let size = h * 0.8;
-
     display.style.fontSize = size + "px";
-
     for (let i = 0; i < 3 && digits.offsetWidth > w; i++) {
-
       size *= w / digits.offsetWidth;
-
       display.style.fontSize = size + "px";
-
     }
-
     display.style.fontSize = Math.max(16, size) + "px";
-
   }
-
-
 
   function reset() {
-
     state.elapsed = 0;
-
     state.startedAt = state.startedAt ? Date.now() : null;
-
   }
-
-
 
   toggleBtn.addEventListener("click", () => {
-
     if (state.startedAt) { state.elapsed = elapsed(); state.startedAt = null; }
-
     else {
-
       if (state.mode === "down" && elapsed() >= state.minutes * 60000) state.elapsed = 0;
-
       state.startedAt = Date.now();
-
     }
-
     save(); render();
-
   });
-
   box.querySelector(".ft-reset").addEventListener("click", () => { reset(); save(); render(); });
-
   box.querySelector(".ft-close").addEventListener("click", () => {
-
     state.visible = false; save(); render();
-
   });
-
   box.querySelectorAll(".ft-modes button").forEach(b => b.addEventListener("click", () => {
-
     if (state.mode !== b.dataset.mode) {
-
       state.mode = b.dataset.mode; state.elapsed = 0; state.startedAt = null;
-
       save(); render();
-
     }
-
   }));
-
   const setMinutes = m => {
-
     state.minutes = Math.max(0, m); state.elapsed = 0; state.startedAt = null;
-
     save(); render();
-
   };
-
   minutesInput.addEventListener("change", () => setMinutes(parseFloat(minutesInput.value) || 0));
-
   box.querySelectorAll("[data-preset]").forEach(b =>
-
     b.addEventListener("click", () => setMinutes(+b.dataset.preset)));
 
-
-
   // show/hide from the sidebar tool (Quarto rewrites its href to e.g. "./#timer" or "../#timer")
-
   document.addEventListener("click", e => {
-
     if (e.target.closest('a[href$="#timer"]')) {
-
       e.preventDefault();
-
       state.visible = !state.visible;
-
       save(); render();
-
     }
-
   });
-
-
 
   // dragging by the header (mouse and touch)
-
   const header = box.querySelector(".ft-header");
-
   header.addEventListener("pointerdown", e => {
-
     if (e.target.closest("button")) return;
-
     const r = box.getBoundingClientRect();
-
     const dx = e.clientX - r.left, dy = e.clientY - r.top;
-
     header.setPointerCapture(e.pointerId);
-
     const move = ev => {
-
       state.left = Math.min(Math.max(0, ev.clientX - dx), window.innerWidth - r.width);
-
       state.top = Math.min(Math.max(0, ev.clientY - dy), window.innerHeight - r.height);
-
       render();
-
     };
-
     const up = () => {
-
       header.removeEventListener("pointermove", move);
-
       header.removeEventListener("pointerup", up);
-
       save();
-
     };
-
     header.addEventListener("pointermove", move);
-
     header.addEventListener("pointerup", up);
-
   });
 
-
-
   // remember the size after resizing (via the bottom-right corner) and rescale the digits
-
   new ResizeObserver(() => {
-
     if (!state.visible) return;
-
     state.width = box.offsetWidth; state.height = box.offsetHeight;
-
     fitText(); save();
-
   }).observe(box);
 
-
-
   // the digital font loads asynchronously: refit once it arrives
-
   if (document.fonts) {
-
     document.fonts.ready.then(fitText);
-
     document.fonts.addEventListener("loadingdone", fitText);
-
   }
 
-
-
   render();
-
   setInterval(() => { if (state.startedAt) render(); }, 200);
-
 })();
-
 </script>
-
 <script>
-
 // Remarks render as "*Remark 1.1* (Name). " — drop the trailing ". " so the title matches examples
-
 document.querySelectorAll('.remark > p:first-child > .proof-title').forEach(function (t) {
-
   var last = t.lastChild;
-
   if (last && last.nodeType === Node.TEXT_NODE) last.textContent = last.textContent.replace(/\.\s*$/, '');
-
 });
-
-
 
 // Exercises/theorems that start straight with a list render the title alone in a paragraph
-
 // ("Exercise 9.8 &nbsp;"): mark it so the CSS can remove the gap before the list
-
 document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(function (t) {
-
   var p = t.parentNode, rest = '';
-
   for (var n = t.nextSibling; n; n = n.nextSibling) rest += n.textContent;
-
   if (rest.replace(/[\s\u00a0]/g, '') === '') p.classList.add('title-only');
-
 });
-
 </script>
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -2026,16 +1689,16 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
