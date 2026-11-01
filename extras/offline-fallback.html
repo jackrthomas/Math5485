@@ -1,0 +1,31 @@
+<script>
+// Local fallback for CDN files (MathJax, jQuery, require.js, highlight.js, DSEG clock font) when the
+// internet is down. Copies live in vendor/ (project `resources`). Runs after the page load, so it does
+// nothing when the CDN copies loaded fine.
+window.addEventListener('load', function () {
+  var s = document.querySelector('script[src*="site_libs/"]');
+  if (!s) return;   // not served from the built site
+  var base = new URL(s.getAttribute('src').replace(/site_libs\/.*$/, 'vendor/'), location.href).href;
+  var load = function (src) { return new Promise(function (ok, no) {
+    var e = document.createElement('script'); e.src = base + src; e.onload = ok; e.onerror = no; document.head.appendChild(e); }); };
+
+  if (!(window.MathJax && MathJax.version) && document.querySelector('.math')) {
+    load('mathjax/tex-chtml-full.js').catch(function () {});   // typesets the page itself on startup
+  }
+  var chain = Promise.resolve();
+  if (!window.jQuery && document.querySelector('script[src*="jquery"]')) chain = chain.then(function () { return load('jquery.min.js'); });
+  if (!window.require && document.querySelector('script[src*="require"]')) chain = chain.then(function () { return load('require.min.js'); });
+  if (!window.hljs && document.querySelector('script[src*="highlight.js"]')) {
+    chain.then(function () { return load('highlight/highlight.min.js'); })
+         .then(function () { return load('highlight/languages/julia.min.js'); })
+         .then(function () {
+           var l = document.createElement('link'); l.rel = 'stylesheet'; l.href = base + 'highlight/styles/github.min.css';
+           document.head.appendChild(l); hljs.highlightAll();
+         }).catch(function () {});
+  }
+  if (window.FontFace && document.fonts && !document.fonts.check('700 16px "DSEG7 Classic"')) {
+    var f = new FontFace('DSEG7 Classic', 'url(' + base + 'dseg/DSEG7Classic-Bold.woff2)', { weight: '700' });
+    f.load().then(function (ff) { document.fonts.add(ff); }).catch(function () {});
+  }
+});
+</script>

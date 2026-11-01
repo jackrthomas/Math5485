@@ -283,5 +283,14 @@
   },
   "appendix/studyguide.ipynb": {
     "studyguide.html": "c30233b4"
+  },
+  "assignments/A04.ipynb": {
+    "A04.html": "791d1618"
+  },
+  "appendix/trapezoid.ipynb": {
+    "trapezoid.html": "f995dfd8"
+  },
+  "private/assignments/answers-A04.ipynb": {
+    "answers-A04.html": "fad65d7f"
   }
 }
