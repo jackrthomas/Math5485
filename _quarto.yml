@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: _book
   pre-render: extras/run-collect-exercises.py   # rebuilds exercises/exercises.qmd
+  resources:
+    - vendor/   # local copies of the CDN files (MathJax, jQuery, ...), see extras/offline-fallback.html
 
 comments: 
   hypothesis:
@@ -54,6 +56,13 @@ book:
       - assignments/A01.ipynb
       - assignments/A02.ipynb
       - assignments/A03.ipynb
+      - assignments/A04.ipynb
+
+    - part: "Bonus content"
+      number-sections: false
+      chapters:
+      - appendix/presentation-topics.ipynb
+      - appendix/trapezoid.ipynb
 
     - part: "Exams"
       number-sections: false
@@ -69,7 +78,6 @@ book:
       - appendix/syllabus.ipynb
       - appendix/schedule.qmd 
       - appendix/installing-julia.ipynb
-      - appendix/presentation-topics.ipynb
     
     - references.qmd
 
@@ -105,7 +113,9 @@ format:
   html:
     theme: cosmo
     code-fold: show
+    code-overflow: wrap
     crossrefs-hover: true
+    include-in-header: extras/offline-fallback.html
     include-before-body: extras/_banner.html
     include-after-body:
       - extras/tags.html

@@ -415,3 +415,10 @@ mjx-container[display="true"] {
   overflow-y: hidden;
   padding: 0.2em 0;
 }
+
+/* wrap long lines in cell output */
+div.cell-output pre,
+div.cell-output-stdout pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
