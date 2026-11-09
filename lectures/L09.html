@@ -333,6 +333,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gaussian quadrature</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -502,6 +508,10 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-11-09">Lecture 12 (Gaussian quadrature) online</span>
+
+          <span class="banner-item" data-date="2026-11-01">A4 online</span>
 
           <span class="banner-item" data-date="2026-10-23">Typos in L1-11 fixed, Quiz 3 in the exercise bank, solutions published, study guide available</span>
 
@@ -1449,7 +1459,7 @@ r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
 <li><p>Differentiation and evaluation are linear and so <span class="math inline">\(L\)</span> is linear. If <span class="math inline">\(L p = 0\)</span>, then <span class="math inline">\(p = 0\)</span> by 2, and so <span class="math inline">\(L\)</span> is injective. Since <span class="math inline">\(\dim \mathcal P_n = n + 1 = \dim \mathbb R^{n+1}\)</span>, the rank-nullity theorem shows that <span class="math inline">\(L\)</span> is also surjective. In particular, there exists <span class="math inline">\(p \in \mathcal P_n\)</span> with <span class="math inline">\(L p = \big( f^{(l)}(z_j) \big)_{j,l}\)</span>, which is exactly a solution to the Hermite interpolation problem. By 3, this solution is unique.</p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -1485,7 +1495,7 @@ g(t) := f(t) - p(t) - \big[ f(x) - p(x) \big] \frac{\ell_X(t)}{\ell_X(x)}.
 \]</span> Rearranging gives the result.</p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -1548,7 +1558,7 @@ f[x_0, x_0 + h, \dots, x_0 + nh] \to \frac{f^{(n)}(x_0)}{n!}
 <li><p>By 1, <span class="math inline">\(f[x_0, x_0 + h, \dots, x_0 + nh] = \frac{f^{(n)}(\xi_h)}{n!}\)</span> for some <span class="math inline">\(\xi_h\)</span> between <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_0 + nh\)</span>. As <span class="math inline">\(h \to 0\)</span>, <span class="math inline">\(\xi_h \to x_0\)</span> and, since <span class="math inline">\(f^{(n)}\)</span> is continuous, <span class="math inline">\(f^{(n)}(\xi_h) \to f^{(n)}(x_0)\)</span>. So the divided difference on <span class="math inline">\(n+1\)</span> nearby nodes converges to <span class="math inline">\(\frac{f^{(n)}(x_0)}{n!}\)</span> as the nodes merge. Defining <span class="math inline">\(f[x_0, \dots, x_0] := \frac{f^{(n)}(x_0)}{n!}\)</span> makes the divided difference continuous in the nodes, and Hermite interpolation is the limit of Lagrange interpolation as nodes come together.</p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>

@@ -86,7 +86,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../assignments/A01.html" rel="next">
-<link href="../lectures/L11.html" rel="prev">
+<link href="../lectures/L12.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -350,6 +350,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gaussian quadrature</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -510,6 +516,10 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-11-09">Lecture 12 (Gaussian quadrature) online</span>
+
+          <span class="banner-item" data-date="2026-11-01">A4 online</span>
 
           <span class="banner-item" data-date="2026-10-23">Typos in L1-11 fixed, Quiz 3 in the exercise bank, solutions published, study guide available</span>
 
@@ -4625,6 +4635,235 @@ A |x_n - \xi|
 </div>
 </div>
 </section>
+<section id="lecture-12" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-12">Lecture 12</h2>
+<!-- L12 -->
+<div id="bank-exr-gauss-change-of-variables" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-gauss-change-of-variables" class="quarto-xref">Exercise&nbsp;<span>12.1</span></a></strong></p>
+<p>By considering the change of variables <span class="math inline">\(y = \frac{2}{b-a} \left( x - \frac{a + b}{2} \right)\)</span> and defining <span class="math inline">\(\tilde{f}(y) = \frac{b-a}{2} f\big(  \tfrac{b-a}2 y + \tfrac{a+b}2  \big)\)</span>, show that</p>
+<p><span class="math display">\[
+\begin{align}
+    \int_a^b f(x) \mathrm{d}x = \int_{-1}^1 \tilde{f}(y) \mathrm{d}y.
+\end{align}
+\]</span></p>
+<p>Moreover, show that, if <span class="math inline">\(p\)</span> is the polynomial interpolation of <span class="math inline">\(f\)</span> on <span class="math inline">\(X \subset [a,b]\)</span>, then <span class="math inline">\(\tilde{p}\)</span> is the polynomial interpolation of <span class="math inline">\(\tilde{f}\)</span> on <span class="math inline">\(\tilde{X} \subset [-1,1]\)</span> where <span class="math inline">\(\tilde{X} = \{ \frac{2}{b-a} \left( x - \frac{a + b}{2} \right) : x \in X \}\)</span>. As a result, we may without loss of generality consider the interval <span class="math inline">\([-1,1]\)</span>.</p>
+</div>
+<!-- L12 -->
+<div id="bank-exr-gauss-two-point" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-gauss-two-point" class="quarto-xref">Exercise&nbsp;<span>12.2</span></a></strong></p>
+<p>Choose <span class="math inline">\(w_0, w_1\)</span> and <span class="math inline">\(x_0, x_1\)</span> such that</p>
+<p><span class="math display">\[
+\begin{align}
+    \int_{-1}^1 f \approx w_0 f(x_0) + w_1 f(x_1)
+\end{align}
+\]</span></p>
+<p>is exact for all polynomials of degree <span class="math inline">\(3 = 2n+1\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Integrate the functions <span class="math inline">\(f = 1, x, x^2, x^3\)</span> and solve the resulting system of equations.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>Using the functions <span class="math inline">\(f = 1, x, x^2, x^3\)</span>, we want to solve</p>
+<p><span class="math display">\[
+\begin{align}
+    2 &amp;= w_0 + w_1 \nonumber \\
+    0 &amp;= w_0 x_0 + w_1 x_1 \nonumber \\
+    \frac{2}{3} &amp;= w_0 x_0^2 + w_1 x_1^2 \nonumber \\
+    0 &amp;= w_0 x_0^3 + w_1 x_1^3 \nonumber
+\end{align}
+\]</span></p>
+<p>We have</p>
+<p><span class="math display">\[
+\begin{align}
+    0 &amp;= ( w_0 x_0 + w_1 x_1 )( x_0 + x_1 ) \nonumber \\
+    &amp;= (w_0 x_0^2 + w_1 x_1^2) + ( w_0 + w_1 ) x_0 x_1 \nonumber \\
+    &amp;= \frac23 + 2 x_0 x_1 \nonumber
+\end{align}
+\]</span></p>
+<p>and so <span class="math inline">\(x_0 x_1 = -\frac13\)</span>. Similarly, we have</p>
+<p><span class="math display">\[
+\begin{align}
+    \frac23 (x_0 + x_1) &amp;= ( w_0 x_0^2 + w_1 x_1^2 )( x_0 + x_1 ) \nonumber \\
+    &amp;= (w_0 x_0^3 + w_1 x_1^3) + ( w_0 x_0 + w_1 x_1 ) x_0 x_1 \nonumber \\
+    &amp;= 0 + 0 \cdot x_0 x_1 = 0 \nonumber
+\end{align}
+\]</span></p>
+<p>and so <span class="math inline">\(x_0 = - x_1\)</span> and <span class="math inline">\(x_0 = - \frac{1}{\sqrt{3}}\)</span>, <span class="math inline">\(x_1 = \frac{1}{\sqrt{3}}\)</span>.</p>
+<p>Finally, we have <span class="math inline">\(0 = w_0 x_0 + w_1 x_1 = (w_0 - w_1) x_0\)</span> and so <span class="math inline">\(w_0 = w_1 = 1\)</span>.</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-L12-error-estimate" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-L12-error-estimate" class="quarto-xref">Exercise&nbsp;<span>12.3</span></a></strong></p>
+<p>For <span class="math inline">\(n=1\)</span>, use the fact that Gauss quadrature is exact for all polynomials of degree <span class="math inline">\(2n+1 = 2(1) + 1 = 3\)</span> to show that <span class="math display">\[
+\begin{align}
+    \left| \int_{-1}^1 f(x) \mathrm{d}x - \left( f(-\tfrac{\sqrt3}{3}) + f(\tfrac{\sqrt3}{3}) \right) \right|
+    %
+    \leq \frac{1}{135} \max_{x\in [-1,1]} \big| f^{(4)}(x) \big|.
+\end{align}
+\]</span></p>
+<div class="exercise-hint" style="display: none;">
+<p>We have <span class="math inline">\(X = \{x_0, x_1\} = \{ -\frac{\sqrt3}{3}, \frac{\sqrt3}3 \}\)</span>.</p>
+<p>Choose <span class="math inline">\(p\)</span> to be the Hermite interpolant on <span class="math inline">\(\{\{x_0,x_0, x_1,x_1\}\}\)</span> (that is, <span class="math inline">\(p\in\mathcal P_3\)</span> with <span class="math inline">\(p(x_j) = f(x_j)\)</span> and <span class="math inline">\(p'(x_j) = f'(x_j)\)</span> for <span class="math inline">\(j=0,1\)</span>).</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>Using the hint <span class="math inline">\(p = I_{\{\{x_0,x_0,x_1,x_1\}\}} f\)</span>, we have <span class="math display">\[
+\begin{align}
+    &amp;\left| \int_{-1}^1 f - \left( f(x_0) + f(x_1) \right) \right| \nonumber \\
+    %
+    &amp;= \left| \int_{-1}^1 f - \left( p(x_0) + p(x_1) \right) \right| \nonumber \\
+    %
+    &amp;= \left| \int_{-1}^1 (f - p) \right|. \nonumber
+\end{align}
+\]</span> Here, we have used the fact that Gauss quadrature is exact for all polynomials of degree <span class="math inline">\(3\)</span>.</p>
+<p>Using the error estimate for Hermite interpolation, there exist <span class="math inline">\(\xi_x \in [-1,1]\)</span> such that <span class="math inline">\(f(x) - p(x) = \frac{f^{(4)}(\xi_x)}{4!} (x-x_0)^2 (x-x_1)^2\)</span>. Therefore, <span class="math display">\[
+\begin{align}
+    &amp;\left| \int_{-1}^1 (f - p) \right| \nonumber \\
+    &amp;\leq \frac1{4!} \|f^{(4)}\|_{L^\infty}
+    %
+    \int_{-1}^1 (x-x_0)^2 (x-x_1)^2  \mathrm{d}x \nonumber \\
+    &amp;= \frac{8}{45} \frac{1}{4!} \| f^{(4)} \|_{L^\infty}\nonumber \\
+    &amp;=  \frac{1}{135} \| f^{(4)} \|_{L^\infty}, \nonumber
+\end{align}
+\]</span> as required.</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-gauss-log2" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-gauss-log2" class="quarto-xref">Exercise&nbsp;<span>12.4</span></a></strong></p>
+<p>Approximate <span class="math inline">\(\log 2 = \int_1^2 \frac{1}{x} \mathrm{d}x\)</span> using Gauss quadrature and evaluate an upper bound for the error.</p>
+<div class="exercise-solution" style="display: none;">
+<p>First notice that <span class="math display">\[
+\begin{align}
+    \log 2 &amp;= \int_1^2 \frac1x \mathrm{d}x \nonumber \\
+    %
+    &amp;= \frac{1}{2} \int_{-1}^1 \frac1{ \frac{1}2 x + \frac32 } \mathrm{d}x \nonumber \\
+    %
+    &amp;= \int_{-1}^1 \frac1{ 3 + x } \mathrm{d}x \nonumber \\
+    %
+    &amp;\approx \frac1{ 3 - \frac{\sqrt{3}}3 } + \frac1{ 3 + \frac{\sqrt{3}}3 } \nonumber \\
+    %
+    &amp;= \frac9{13}. \nonumber
+\end{align}
+\]</span> The error here is <span class="math inline">\(\log 2 - \tfrac{9}{13} \approx 8.39 \times 10^{-4}\)</span>.</p>
+<p>The error bound is <span class="math inline">\(\frac{1}{135} \|f^{(4)}\|_{L^\infty}\)</span> where <span class="math inline">\(f(x) = \frac{1}{3+x}\)</span>. Taking derivatives of <span class="math inline">\(f\)</span>, we find that <span class="math inline">\(f^{(4)}(x) =  \frac{24}{(3+x)^5}\)</span> and so the error between <span class="math inline">\(\log 2\)</span> and the approximation using Gauss quadrature with <span class="math inline">\(n=1\)</span> belongs to <span class="math display">\[
+\begin{align}
+&amp;\big[\tfrac{24}{135} \min_{x\in [-1,1]} (3+x)^{-5}, \tfrac{24}{135} \max_{x\in [-1,1]} (3+x)^{-5}\big] \nonumber\\
+%
+&amp;= \big[ \tfrac1{5760}, \tfrac{1}{180} \big]
+%
+\approx \big[ 1.74 \times 10^{-4}, 5.56 \times 10^{-3} \big].
+\end{align}
+\]</span> The actual error belongs to this interval!</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-l11-compare-nc" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-l11-compare-nc" class="quarto-xref">Exercise&nbsp;<span>12.5</span></a></strong></p>
+<p>Compare this to the rectangular rule and its composite rule with 2 sub-intervals, and the trapezoid and Simpson rules.</p>
+<div class="exercise-solution" style="display: none;">
+<p>Apply each rule to <span class="math inline">\(\int_1^2 g\)</span> with <span class="math inline">\(g(x) = \frac1x\)</span> (exact value <span class="math inline">\(\log 2 \approx 0.693147...\)</span>):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>rule</th>
+<th>approximation</th>
+<th>error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rectangular</td>
+<td><span class="math inline">\(g(1) = 1\)</span></td>
+<td><span class="math inline">\(-0.307\)</span></td>
+</tr>
+<tr class="even">
+<td>composite rectangular, <span class="math inline">\(K = 2\)</span></td>
+<td><span class="math inline">\(\frac12\big( g(1) + g(\frac32) \big) = \frac56\)</span></td>
+<td><span class="math inline">\(-0.140\)</span></td>
+</tr>
+<tr class="odd">
+<td>trapezoid</td>
+<td><span class="math inline">\(\frac12 \big( g(1) + g(2) \big) = \frac34\)</span></td>
+<td><span class="math inline">\(-0.0569\)</span></td>
+</tr>
+<tr class="even">
+<td>Simpson</td>
+<td><span class="math inline">\(\frac16\big( g(1) + 4 g(\frac32) + g(2) \big) = \frac{25}{36}\)</span></td>
+<td><span class="math inline">\(-1.30 \times 10^{-3}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Gauss, <span class="math inline">\(n = 1\)</span></td>
+<td><span class="math inline">\(\frac{9}{13}\)</span></td>
+<td><span class="math inline">\(8.39 \times 10^{-4}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Using the error estimates from last time (with <span class="math inline">\(g''(x) = 2x^{-3}\)</span> and <span class="math inline">\(g^{(4)}(x) = 24 x^{-5}\)</span> on <span class="math inline">\([1,2]\)</span>), the trapezoid error is <span class="math inline">\(-\frac{(b-a)^3}{12} g''(\xi) \in [-\frac16, -\frac1{48}]\)</span> and the Simpson error is <span class="math inline">\(-\frac{(b-a)^5}{2880} g^{(4)}(\xi) \in [-\frac1{120}, -\frac1{3840}]\)</span>; the actual errors lie in these intervals.</p>
+<p>Gaussian quadrature uses only two function values and beats the trapezoid rule (also two function values, but only exact on <span class="math inline">\(\mathcal P_1\)</span>) by a factor of about <span class="math inline">\(70\)</span>. It is even slightly more accurate than Simpson’s rule, which is also exact on <span class="math inline">\(\mathcal P_3\)</span> but needs three function values.</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-legendre-first" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-legendre-first" class="quarto-xref">Exercise&nbsp;<span>12.6</span></a></strong></p>
+<p>Show that <span class="math inline">\(P_0(x) = 1\)</span>, <span class="math inline">\(P_1(x) = x\)</span>, and <span class="math inline">\(P_2(x) = x^2 - \frac13\)</span>. What are the roots of <span class="math inline">\(P_2\)</span> and compare to the nodes in <a href="../lectures/L12.html#exr-gauss-two-point" class="quarto-xref">Exercise&nbsp;<span>12.2</span></a>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Write <span class="math inline">\(P_0(x) = 1\)</span>, <span class="math inline">\(P_1(x) = x + a\)</span>, and <span class="math inline">\(P_2(x) = x^2 + b x + c\)</span> and solve for <span class="math inline">\(a, b, c\)</span>.</p>
+</div>
+<div class="exercise-solution" style="display: none;">
+<p>When <span class="math inline">\(n=0\)</span>, there is only one monic polynomial: <span class="math inline">\(P_0(x) = 1\)</span>.</p>
+<p>When <span class="math inline">\(n=1\)</span>, we require <span class="math inline">\(P_1(x) = x + a\)</span> to satisfy</p>
+<p><span class="math display">\[
+\begin{align}
+    0 = \int_{-1}^1 P_1(x) \cdot 1 \, \mathrm{d}x = 2 a
+\end{align}
+\]</span></p>
+<p>and so <span class="math inline">\(P_1(x) = x\)</span>.</p>
+<p>When <span class="math inline">\(n=2\)</span>, we have <span class="math inline">\(P_2(x) = x^2 + a x + b\)</span> and so</p>
+<p><span class="math display">\[
+\begin{align}
+    0 &amp;= \int_{-1}^1 P_2(x) \cdot 1 \, \mathrm{d}x = 2b + \frac23 \nonumber \\
+    0 &amp;= \int_{-1}^1 P_2(x) x \, \mathrm{d}x = \frac{2a}3 \nonumber
+\end{align}
+\]</span></p>
+<p>therefore <span class="math inline">\(P_2(x) = x^2 - \frac13\)</span>.</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-legendre-equiv" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-legendre-equiv" class="quarto-xref">Exercise&nbsp;<span>12.7</span></a></strong></p>
+<p>Show that the two definitions in <a href="../lectures/L12.html#def-legendre" class="quarto-xref">Definition&nbsp;<span>12.2</span></a> are equivalent.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Suppose that <span class="math inline">\(p_k \in \mathcal P_k\)</span> are monic polynomials of degree exactly <span class="math inline">\(k\)</span>. Show that the <span class="math inline">\(p_k\)</span> are linearly independent: if <span class="math inline">\(\sum_{k=0}^n \alpha_k p_k = 0\)</span>, then all <span class="math inline">\(\alpha_k = 0\)</span>.</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-l11-max-degree" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-l11-max-degree" class="quarto-xref">Exercise&nbsp;<span>12.8</span></a></strong></p>
+<p>Show that Gauss quadrature with nodes <span class="math inline">\(X = \{x_0, \dots, x_n\}\)</span> is <strong>never</strong> exact for all polynomials of degree <span class="math inline">\(N &gt; 2n+1\)</span>.</p>
+<div class="exercise-hint" style="display: none;">
+<p>Apply the quadrature rule to <span class="math inline">\(\ell_X(x)^2\)</span>.</p>
+</div>
+</div>
+<!-- L12 -->
+<div id="bank-exr-l11-three-point" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-l11-three-point" class="quarto-xref">Exercise&nbsp;<span>12.9</span></a></strong></p>
+<ol type="1">
+<li>Write down the Gaussian quadrature rule with <span class="math inline">\(n=2\)</span>.</li>
+<li>What is the absolute error in approximating <span class="math inline">\(\log 2\)</span> using the <span class="math inline">\(n=2\)</span> scheme and following the same arguments as in class (see <a href="../lectures/L12.html#exr-gauss-log2" class="quarto-xref">Exercise&nbsp;<span>12.4</span></a>)?</li>
+<li>How would you prove an error bound for the <span class="math inline">\(n=2\)</span> rule in general?</li>
+</ol>
+</div>
+<!-- L12 -->
+<div id="bank-exr-l11-legendre-roots" class="exercise-box">
+<p><strong><a href="../lectures/L12.html#exr-l11-legendre-roots" class="quarto-xref">Exercise&nbsp;<span>12.10</span></a></strong></p>
+<p>Show that the roots of <span class="math inline">\(P_{n+1}\)</span> are real, distinct, and lie in the open interval <span class="math inline">\((-1,1)\)</span> (compare with the proof of <a href="../lectures/L12.html#lem-legendre-roots" class="quarto-xref">Lemma&nbsp;<span>12.1</span></a>).</p>
+</div>
+</section>
 </div>
 <div id="exercise-app-root" class="my-4">
 
@@ -4644,9 +4883,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const LECTURE_DATES = {
      1: '2026-09-09',  2: '2026-09-14',  3: '2026-09-16',  4: '2026-09-21',
      5: '2026-09-23',  6: '2026-09-28',  7: '2026-10-05',  8: '2026-10-07',
-     9: '2026-10-12', 10: '2026-10-14', 11: '2026-10-19', 12: '2026-10-21',
-    13: '2026-11-09', 14: '2026-11-11', 15: '2026-11-23', 16: '2026-11-30',
-    17: '2026-12-02', 18: '2026-12-07', 19: '2026-12-09', 20: '2026-12-14'
+     9: '2026-10-12', 10: '2026-10-14', 11: '2026-10-19', 12: '2026-11-09',
+    13: '2026-11-11', 14: '2026-11-23', 15: '2026-11-30', 16: '2026-12-02',
+    17: '2026-12-07', 18: '2026-12-09', 19: '2026-12-14'
   };
   // Lectures whose solutions are released now instead (L9-L11, before the midterm).
   const RELEASE_NOW = new Set([9, 10, 11]);
@@ -6740,8 +6979,8 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
   </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../lectures/L11.html" class="pagination-link" aria-label="Simpson's rule">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Simpson’s rule</span></span>
+      <a href="../lectures/L12.html" class="pagination-link" aria-label="Gaussian quadrature">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gaussian quadrature</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
