@@ -4666,3 +4666,341 @@ Then, if $f$ is sufficiently smooth and $x_1$ is sufficiently close to $\xi$, th
 :::
 :::
 
+## Lecture 12
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-gauss-change-of-variables}
+**@exr-gauss-change-of-variables**
+
+By considering the change of variables $y = \frac{2}{b-a} \left( x - \frac{a + b}{2} \right)$ and defining $\tilde{f}(y) = \frac{b-a}{2} f\big(  \tfrac{b-a}2 y + \tfrac{a+b}2  \big)$, show that 
+
+$$
+\begin{align}
+    \int_a^b f(x) \mathrm{d}x = \int_{-1}^1 \tilde{f}(y) \mathrm{d}y. 
+\end{align}
+$$
+
+Moreover, show that, if $p$ is the polynomial interpolation of $f$ on $X \subset [a,b]$, then $\tilde{p}$ is the polynomial interpolation of $\tilde{f}$ on $\tilde{X} \subset [-1,1]$ where $\tilde{X} = \{ \frac{2}{b-a} \left( x - \frac{a + b}{2} \right) : x \in X \}$. As a result, we may without loss of generality consider the interval $[-1,1]$.
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-gauss-two-point}
+**@exr-gauss-two-point**
+
+Choose $w_0, w_1$ and $x_0, x_1$ such that 
+
+$$
+\begin{align}
+    \int_{-1}^1 f \approx w_0 f(x_0) + w_1 f(x_1)
+\end{align}
+$$
+
+is exact for all polynomials of degree $3 = 2n+1$.
+
+::: {.exercise-hint style="display: none;"}
+
+Integrate the functions $f = 1, x, x^2, x^3$ and solve the resulting system of equations.
+
+:::
+
+::: {.exercise-solution style="display: none;"} 
+
+Using the functions $f = 1, x, x^2, x^3$, we want to solve
+
+$$
+\begin{align}
+    2 &= w_0 + w_1 \nonumber \\
+    0 &= w_0 x_0 + w_1 x_1 \nonumber \\
+    \frac{2}{3} &= w_0 x_0^2 + w_1 x_1^2 \nonumber \\
+    0 &= w_0 x_0^3 + w_1 x_1^3 \nonumber
+\end{align}
+$$
+
+We have 
+
+$$
+\begin{align}
+    0 &= ( w_0 x_0 + w_1 x_1 )( x_0 + x_1 ) \nonumber \\
+    &= (w_0 x_0^2 + w_1 x_1^2) + ( w_0 + w_1 ) x_0 x_1 \nonumber \\
+    &= \frac23 + 2 x_0 x_1 \nonumber
+\end{align}
+$$
+
+and so $x_0 x_1 = -\frac13$. Similarly, we have 
+
+$$
+\begin{align}
+    \frac23 (x_0 + x_1) &= ( w_0 x_0^2 + w_1 x_1^2 )( x_0 + x_1 ) \nonumber \\
+    &= (w_0 x_0^3 + w_1 x_1^3) + ( w_0 x_0 + w_1 x_1 ) x_0 x_1 \nonumber \\
+    &= 0 + 0 \cdot x_0 x_1 = 0 \nonumber
+\end{align}
+$$
+
+and so $x_0 = - x_1$ and $x_0 = - \frac{1}{\sqrt{3}}$, $x_1 = \frac{1}{\sqrt{3}}$.
+
+Finally, we have $0 = w_0 x_0 + w_1 x_1 = (w_0 - w_1) x_0$ and so $w_0 = w_1 = 1$.
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-L12-error-estimate}
+**@exr-L12-error-estimate**
+
+For $n=1$, use the fact that Gauss quadrature is exact for all polynomials of degree $2n+1 = 2(1) + 1 = 3$ to show that 
+$$
+\begin{align}
+    \left| \int_{-1}^1 f(x) \mathrm{d}x - \left( f(-\tfrac{\sqrt3}{3}) + f(\tfrac{\sqrt3}{3}) \right) \right|
+    %
+    \leq \frac{1}{135} \max_{x\in [-1,1]} \big| f^{(4)}(x) \big|. 
+\end{align}
+$$
+
+::: {.exercise-hint style="display: none;"}
+
+We have $X = \{x_0, x_1\} = \{ -\frac{\sqrt3}{3}, \frac{\sqrt3}3 \}$. 
+
+Choose $p$ to be the Hermite interpolant on $\{\{x_0,x_0, x_1,x_1\}\}$ (that is, $p\in\mathcal P_3$ with $p(x_j) = f(x_j)$ and $p'(x_j) = f'(x_j)$ for $j=0,1$). 
+
+:::
+
+::: {.exercise-solution style="display: none;"}
+
+Using the hint $p = I_{\{\{x_0,x_0,x_1,x_1\}\}} f$, we have 
+$$
+\begin{align}
+    &\left| \int_{-1}^1 f - \left( f(x_0) + f(x_1) \right) \right| \nonumber \\
+    %
+    &= \left| \int_{-1}^1 f - \left( p(x_0) + p(x_1) \right) \right| \nonumber \\
+    %
+    &= \left| \int_{-1}^1 (f - p) \right|. \nonumber
+\end{align}
+$$
+Here, we have used the fact that Gauss quadrature is exact for all polynomials of degree $3$. 
+
+Using the error estimate for Hermite interpolation, there exist $\xi_x \in [-1,1]$ such that $f(x) - p(x) = \frac{f^{(4)}(\xi_x)}{4!} (x-x_0)^2 (x-x_1)^2$. Therefore, 
+$$
+\begin{align}
+    &\left| \int_{-1}^1 (f - p) \right| \nonumber \\ 
+    &\leq \frac1{4!} \|f^{(4)}\|_{L^\infty} 
+    %
+    \int_{-1}^1 (x-x_0)^2 (x-x_1)^2  \mathrm{d}x \nonumber \\
+    &= \frac{8}{45} \frac{1}{4!} \| f^{(4)} \|_{L^\infty}\nonumber \\
+    &=  \frac{1}{135} \| f^{(4)} \|_{L^\infty}, \nonumber
+\end{align}
+$$
+as required.
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-gauss-log2}
+**@exr-gauss-log2**
+
+Approximate $\log 2 = \int_1^2 \frac{1}{x} \mathrm{d}x$ using Gauss quadrature and evaluate an upper bound for the error.
+
+::: {.exercise-solution style="display: none;"}
+
+First notice that 
+$$
+\begin{align}
+    \log 2 &= \int_1^2 \frac1x \mathrm{d}x \nonumber \\
+    %
+    &= \frac{1}{2} \int_{-1}^1 \frac1{ \frac{1}2 x + \frac32 } \mathrm{d}x \nonumber \\
+    %
+    &= \int_{-1}^1 \frac1{ 3 + x } \mathrm{d}x \nonumber \\
+    %
+    &\approx \frac1{ 3 - \frac{\sqrt{3}}3 } + \frac1{ 3 + \frac{\sqrt{3}}3 } \nonumber \\
+    %
+    &= \frac9{13}. \nonumber
+\end{align}
+$$
+The error here is $\log 2 - \tfrac{9}{13} \approx 8.39 \times 10^{-4}$. 
+
+The error bound is $\frac{1}{135} \|f^{(4)}\|_{L^\infty}$ where $f(x) = \frac{1}{3+x}$. Taking derivatives of $f$, we find that $f^{(4)}(x) =  \frac{24}{(3+x)^5}$ and so the error between $\log 2$ and the approximation using Gauss quadrature with $n=1$ belongs to 
+$$
+\begin{align}
+&\big[\tfrac{24}{135} \min_{x\in [-1,1]} (3+x)^{-5}, \tfrac{24}{135} \max_{x\in [-1,1]} (3+x)^{-5}\big] \nonumber\\ 
+%
+&= \big[ \tfrac1{5760}, \tfrac{1}{180} \big] 
+%
+\approx \big[ 1.74 \times 10^{-4}, 5.56 \times 10^{-3} \big].
+\end{align}
+$$ 
+The actual error belongs to this interval!
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-l11-compare-nc}
+**@exr-l11-compare-nc**
+
+Compare this to the rectangular rule and its composite rule with 2 sub-intervals, and the trapezoid and Simpson rules. 
+
+::: {.exercise-solution style="display: none;"}
+
+Apply each rule to $\int_1^2 g$ with $g(x) = \frac1x$ (exact value $\log 2 \approx 0.693147...$):
+
+| rule | approximation | error |
+|---|---|---|
+| rectangular | $g(1) = 1$ | $-0.307$ |
+| composite rectangular, $K = 2$ | $\frac12\big( g(1) + g(\frac32) \big) = \frac56$ | $-0.140$ |
+| trapezoid | $\frac12 \big( g(1) + g(2) \big) = \frac34$ | $-0.0569$ |
+| Simpson | $\frac16\big( g(1) + 4 g(\frac32) + g(2) \big) = \frac{25}{36}$ | $-1.30 \times 10^{-3}$ |
+| Gauss, $n = 1$ | $\frac{9}{13}$ | $8.39 \times 10^{-4}$ |
+
+Using the error estimates from last time (with $g''(x) = 2x^{-3}$ and $g^{(4)}(x) = 24 x^{-5}$ on $[1,2]$), the trapezoid error is $-\frac{(b-a)^3}{12} g''(\xi) \in [-\frac16, -\frac1{48}]$ and the Simpson error is $-\frac{(b-a)^5}{2880} g^{(4)}(\xi) \in [-\frac1{120}, -\frac1{3840}]$; the actual errors lie in these intervals.
+
+Gaussian quadrature uses only two function values and beats the trapezoid rule (also two function values, but only exact on $\mathcal P_1$) by a factor of about $70$. It is even slightly more accurate than Simpson's rule, which is also exact on $\mathcal P_3$ but needs three function values.
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-legendre-first}
+**@exr-legendre-first**
+
+Show that $P_0(x) = 1$, $P_1(x) = x$, and $P_2(x) = x^2 - \frac13$. What are the roots of $P_2$ and compare to the nodes in @exr-gauss-two-point.
+
+::: {.exercise-hint style="display: none;"} 
+
+Write $P_0(x) = 1$, $P_1(x) = x + a$, and $P_2(x) = x^2 + b x + c$ and solve for $a, b, c$.
+
+::: 
+
+::: {.exercise-solution style="display: none;"}
+
+When $n=0$, there is only one monic polynomial: $P_0(x) = 1$.
+
+When $n=1$, we require $P_1(x) = x + a$ to satisfy
+
+$$
+\begin{align}
+    0 = \int_{-1}^1 P_1(x) \cdot 1 \, \mathrm{d}x = 2 a
+\end{align}
+$$
+
+and so $P_1(x) = x$.
+
+When $n=2$, we have $P_2(x) = x^2 + a x + b$ and so 
+
+$$
+\begin{align}
+    0 &= \int_{-1}^1 P_2(x) \cdot 1 \, \mathrm{d}x = 2b + \frac23 \nonumber \\
+    0 &= \int_{-1}^1 P_2(x) x \, \mathrm{d}x = \frac{2a}3 \nonumber
+\end{align}
+$$
+
+therefore $P_2(x) = x^2 - \frac13$.
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-legendre-equiv}
+**@exr-legendre-equiv**
+
+Show that the two definitions in @def-legendre are equivalent.
+
+::: {.exercise-hint style="display: none;"}
+
+Suppose that $p_k \in \mathcal P_k$ are monic polynomials of degree exactly $k$. Show that the $p_k$ are linearly independent: if $\sum_{k=0}^n \alpha_k p_k = 0$, then all $\alpha_k = 0$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Let's use the hint: if $p_k$ are monic of degree exactly $k$ and $q = \sum_{k=0}^n \alpha_k p_k = 0$, then the coefficient of $x^n$ is $\alpha_n$ and must be zero and $q = \sum_{k=0}^{n-1} \alpha_k p_k = 0$. Continuing in this way, gives $\alpha_n = \alpha_{n-1} = ... = \alpha_0 = 0$.
+
+....
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-l11-max-degree}
+**@exr-l11-max-degree**
+
+Show that Gauss quadrature with nodes $X = \{x_0, \dots, x_n\}$ is **never** exact for all polynomials of degree $N > 2n+1$.
+
+::: {.exercise-hint style="display: none;"}
+
+Apply the quadrature rule to $\ell_X(x)^2$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Let $\ell_X(x) := \prod_{j=0}^n (x - x_j)$. Then $\ell_X^2$ has degree exactly $2n+2$, and so $\ell_X^2 \in \mathcal P_N$ whenever $N > 2n+1$. Applying the quadrature rule gives $\sum_{j=0}^n w_j \ell_X(x_j)^2 = 0$ since $\ell_X(x_j) = 0$ for every node. However, $\ell_X^2 \geq 0$ vanishes only at the $n+1$ nodes, so $\int_{-1}^1 \ell_X(x)^2 \mathrm{d}x > 0$. Therefore the rule is not exact for $\ell_X^2 \in \mathcal P_N$.
+
+This argument never uses the particular nodes or weights: **no** quadrature rule with $n+1$ nodes is exact on $\mathcal P_{2n+2}$, and so Gaussian quadrature has the maximal possible degree of exactness.
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-l11-three-point}
+**@exr-l11-three-point**
+
+1. Write down the Gaussian quadrature rule with $n=2$.
+2. What is the absolute error in approximating $\log 2$ using the $n=2$ scheme and following the same arguments as in class (see @exr-gauss-log2)? 
+3. How would you prove an error bound for the $n=2$ rule in general?
+
+::: {.exercise-hint .draft style="display: none;"}
+
+For 1, find the monic $P_3(x) = x^3 + a x^2 + bx + c$ orthogonal to $1, x, x^2$ and compute $w_j = \int_{-1}^1 \ell_j$. For 3, copy the argument for $n=1$ with the Hermite interpolant on $\{\{x_0,x_0,x_1,x_1,x_2,x_2\}\}$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. Orthogonality of $P_3(x) = x^3 + ax^2 + bx + c$ to $1, x, x^2$ gives $\frac{2a}{3} + 2c = 0$, $\frac25 + \frac{2b}{3} = 0$ and $\frac{2a}{5} + \frac{2c}{3} = 0$, so $a = c = 0$, $b = -\frac35$ and $P_3(x) = x\big( x^2 - \frac35 \big)$. The nodes are $\{-\sqrt{3/5}, 0, \sqrt{3/5}\}$. With $c := \sqrt{3/5}$,
+$$
+    w_1 = \int_{-1}^1 \frac{x^2 - c^2}{-c^2} \mathrm{d}x = \int_{-1}^1 \Big( 1 - \tfrac53 x^2 \Big) \mathrm{d}x = \frac89, \qquad w_0 = \int_{-1}^1 \frac{x(x-c)}{2c^2} \mathrm{d}x = \frac56 \cdot \frac23 = \frac59,
+$$
+and $w_2 = \frac59$ by symmetry (check: $\sum_j w_j = 2$, see @lem-gauss-weights). So
+$$
+    \int_{-1}^1 f \approx \frac59 f\Big( -\sqrt{\tfrac35} \Big) + \frac89 f(0) + \frac59 f\Big( \sqrt{\tfrac35} \Big),
+$$
+which is exact on $\mathcal P_5$ by @thm-gauss-exactness.
+
+2. With $f(t) = \frac{1}{3+t}$ (as in @exr-gauss-log2), and using $\frac{1}{3-c} + \frac{1}{3+c} = \frac{6}{9 - c^2} = \frac57$,
+$$
+    \log 2 \approx \frac89 \cdot \frac13 + \frac59 \cdot \frac57 = \frac{131}{189} \approx 0.6931217,
+$$
+with absolute error $\log 2 - \frac{131}{189} \approx 2.55 \times 10^{-5}$ (about $33$ times smaller than for $n=1$). Using part 3 with $f^{(6)}(t) = \frac{720}{(3+t)^7}$, the error is $\frac{8}{175} (3 + \xi)^{-7} \in \big[ \frac{8}{175 \cdot 4^7}, \frac{8}{175 \cdot 2^7} \big] \approx [2.79 \times 10^{-6}, 3.57 \times 10^{-4}]$, and the actual error lies in this interval.
+
+3. Let $p \in \mathcal P_5$ be the Hermite interpolant of $f$ with $p(x_j) = f(x_j)$ and $p'(x_j) = f'(x_j)$ for $j = 0,1,2$. Since the rule is exact on $\mathcal P_5$ and $f(x_j) = p(x_j)$, the error is $\int_{-1}^1 (f - p)$, and $f(x) - p(x) = \frac{f^{(6)}(\xi_x)}{6!} P_3(x)^2$ (@exr-l09-hermite-error). Since $P_3^2 \geq 0$, the mean value theorem gives
+$$
+    \int_{-1}^1 f - \sum_{j=0}^2 w_j f(x_j) = \frac{f^{(6)}(\xi)}{720} \int_{-1}^1 P_3(x)^2 \mathrm{d}x = \frac{8}{175} \cdot \frac{f^{(6)}(\xi)}{720},
+$$
+using $\int_{-1}^1 \big( x^6 - \frac65 x^4 + \frac{9}{25} x^2 \big) \mathrm{d}x = \frac27 - \frac{12}{25} + \frac{6}{25} = \frac{8}{175}$. Therefore the error is at most $\frac{1}{15750} \|f^{(6)}\|_{L^\infty([-1,1])}$.
+
+:::
+:::
+
+<!-- L12 -->
+::: {.exercise-box #bank-exr-l11-legendre-roots}
+**@exr-l11-legendre-roots**
+
+Show that the roots of $P_{n+1}$ are real, distinct, and lie in the open interval $(-1,1)$ (compare with the proof of @lem-legendre-roots).
+
+::: {.exercise-hint .draft style="display: none;"}
+
+Let $y_1 < \dots < y_m$ be the points in $(-1,1)$ where $P_{n+1}$ changes sign. If $m \leq n$, consider $q(x) := \prod_{i=1}^m (x - y_i)$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Let $y_1 < \dots < y_m$ be the roots of $P_{n+1}$ in $(-1,1)$ of odd multiplicity (i.e. the points where $P_{n+1}$ changes sign). Suppose, for contradiction, that $m \leq n$ and let $q(x) := \prod_{i=1}^m (x - y_i)$ ($q = 1$ if $m = 0$). Then $q \in \mathcal P_n$ and so $\int_{-1}^1 P_{n+1} q = 0$. On the other hand, $P_{n+1} = q g$ where every root of $g$ in $(-1,1)$ has even multiplicity, so $g$ does not change sign on $(-1,1)$. Therefore, $P_{n+1} q = q^2 g$ has one sign on $[-1,1]$ and vanishes only at finitely many points, so its integral is non-zero, a contradiction.
+
+Therefore $m = n+1$: $P_{n+1}$ has $n+1$ distinct roots in $(-1,1)$. Since $P_{n+1}$ has degree $n+1$, these are all of its roots, and they are real and simple.
+
+(The proof of @lem-legendre-roots assumes the roots are real. Without this argument, one can rule out non-real roots directly: they come in conjugate pairs $x_k, \overline{x_k}$, and $q := P_{n+1} / \big( (x - x_k)(x - \overline{x_k}) \big)$ is a real polynomial of degree $n-1$ with $0 = \int_{-1}^1 P_{n+1} q = \int_{-1}^1 \frac{P_{n+1}(x)^2}{|x - x_k|^2} \mathrm{d}x > 0$.)
+
+:::
+:::
+

@@ -47,6 +47,7 @@ book:
       - lectures/L09.ipynb
       - lectures/L10.ipynb
       - lectures/L11.ipynb
+      - lectures/L12.ipynb
 
     - exercises/bank.ipynb
 
