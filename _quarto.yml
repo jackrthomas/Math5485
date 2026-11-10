@@ -3,7 +3,7 @@ project:
   output-dir: _book
   pre-render: extras/run-collect-exercises.py   # rebuilds exercises/exercises.qmd
   resources:
-    - vendor/   # local copies of the CDN files (MathJax, jQuery, ...), see extras/offline-fallback.html
+    - /vendor/   # (leading / = only the project's own vendor/, else Quarto nests _book-private into _book) local copies of the CDN files (MathJax, jQuery, ...), see extras/offline-fallback.html
 
 comments: 
   hypothesis:
