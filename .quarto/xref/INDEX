@@ -298,5 +298,11 @@
   },
   "lectures/L12.ipynb": {
     "L12.html": "633efc9e"
+  },
+  "appendix/linear-algebra.ipynb": {
+    "linear-algebra.html": "e4f21139"
+  },
+  "lectures/L13.ipynb": {
+    "L13.html": "c89d0216"
   }
 }

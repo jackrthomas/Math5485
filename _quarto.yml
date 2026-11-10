@@ -48,6 +48,7 @@ book:
       - lectures/L10.ipynb
       - lectures/L11.ipynb
       - lectures/L12.ipynb
+      - lectures/L13.ipynb
 
     - exercises/bank.ipynb
 
@@ -73,6 +74,7 @@ book:
     - part: "Appendix"
       chapters: 
       - appendix/calculus.ipynb
+      - appendix/linear-algebra.ipynb
   
     - part: "Admin"
       chapters: 
@@ -115,6 +117,11 @@ format:
     theme: cosmo
     code-fold: show
     code-overflow: wrap
+    # MathJax 3 (as Quarto 1.8 uses), not Quarto 1.10's default MathJax 4: MathJax 4 typesets the
+    # exercise bank's question list about 3 times more slowly (first question after ~10 s instead of ~3.5 s)
+    html-math-method:
+      method: mathjax
+      url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
     crossrefs-hover: true
     include-in-header: extras/offline-fallback.html
     include-before-body: extras/_banner.html

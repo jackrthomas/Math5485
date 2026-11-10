@@ -1,0 +1,395 @@
+---
+title: "Midterm (Fall 2026)"
+after-lecture: 11
+---
+
+<!--
+Past exam questions for the exercise bank (collected by extras/collect_exercises.jl, run automatically before each render).
+
+* From the Fall 2026 midterm (28 Oct; source: private/exams/Midterm.ipynb, answers from
+  private/exams/Midterm-marking-scheme.md). The back-up questions are not included.
+* Each question is a top-level `::: {.exam-question label="..."}` block, labelled
+  "Midterm (Fall 2026): Question <label>" in the bank. Sections B, C and D are one block each,
+  as in midterm-2025.qmd.
+* `after-lecture: 11` places this paper after Lecture 11 in the bank (after the Fall 2025 midterm).
+* Plots are the saved outputs of the exam notebook, in past-papers/midterm-2026/ (paths are
+  relative to exercises/exercises.qmd).
+* The solutions are `.draft` (private build only) until checked: delete ` .draft` to publish one.
+-->
+
+::: {.exam-question label="A1"}
+
+*Compulsory section, 3 pts.* Consider floating point numbers with binary precision $k = 3$. What is the distance between consecutive floating point numbers in the interval $[4, 8)$? What is the machine precision $\epsilon_{\rm mach}$?
+
+::: {.exercise-solution .draft style="display: none;"}
+
+The floating point numbers in $[2^n, 2^{n+1})$ are $(1 + z 2^{-k}) 2^n$ for $z = 0, \dots, 2^k - 1$, so consecutive ones are $2^{n-k}$ apart. Here, $n = 2$ and $k = 3$, so the spacing is $2^{-1} = \frac12$ (the numbers are $4, 4.5, \dots, 7.5$). The machine precision is $\epsilon_{\rm mach} = 2^{-k} = \frac18$.
+
+:::
+
+:::
+
+::: {.exam-question label="A2"}
+
+*Compulsory section, 2 pts.* True or false: in ``Float64`` (binary precision $k = 52$), the computation $1 + 2^{-60}$ returns exactly $1$. Explain your answer.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+True. The next floating point number after $1$ is $1 + 2^{-52}$. Since $2^{-60}$ is much smaller than half of this spacing ($2^{-53}$), $1 + 2^{-60}$ is rounded to $1$.
+
+:::
+
+:::
+
+::: {.exam-question label="A3"}
+
+*Compulsory section, 2 pts.* What is the largest $d$ such that the rectangular rule $\int_a^b f \approx (b-a) f(a)$ is exact for all polynomials of degree at most $d$?
+
+(a) $d = 0$\
+(b) $d = 1$\
+(c) $d = 2$\
+(d) $d = 3$
+
+::: {.exercise-solution .draft style="display: none;"}
+
+(a) $d = 0$. The rule is exact for constants, but for $f(x) = x - a$ it gives $0$ while $\int_a^b f = \frac{(b-a)^2}{2}$.
+
+:::
+
+:::
+
+::: {.exam-question label="A4"}
+
+*Compulsory section, 7 pts.* Approximate $\int_{-1}^{+1} x^2 \, \mathrm{d}x = \frac23$ using (i) the rectangular rule, (ii) the trapezoid rule, and (iii) Simpson's rule. Compare with the exact value.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+(i) Rectangular rule: $2 \cdot (-1)^2 = 2$.
+
+(ii) Trapezoid rule: $\frac22 \big( (-1)^2 + 1^2 \big) = 2$.
+
+(iii) Simpson's rule: $\frac26 \big( (-1)^2 + 4 \cdot 0^2 + 1^2 \big) = \frac23$.
+
+Simpson's rule gives the exact value (it is exact for quadratics); the other two rules overestimate the integral by a factor of $3$.
+
+:::
+
+:::
+
+::: {.exam-question label="A5"}
+
+*Compulsory section, 4 pts.* Write down Newton's method for computing $\sqrt{2}$ (i.e. a root of $f(x) = x^2 - 2$). Compute $x_2$ when $x_1 = 1$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+\begin{align}
+    x_{n+1} = x_n - \frac{x_n^2 - 2}{2x_n} = \frac12 \Big( x_n + \frac{2}{x_n} \Big).
+\end{align}
+
+With $x_1 = 1$, we have $x_2 = 1 - \frac{1 - 2}{2} = \frac32$.
+
+:::
+
+:::
+
+::: {.exam-question label="A6"}
+
+*Compulsory section, 2 pts.* The following table shows an iterative method for solving $f(x) = x^2 - 2 = 0$ (here $\xi = \sqrt{2}$):
+
+```
+ n          x[n]      e[n]=|x[n]-ξ|    log e[n]/log e[n-1]
+------------------------------------------------------------
+ 1   1.000000000000   4.14214e-01
+ 2   2.000000000000   5.85786e-01         0.60678
+ 3   1.333333333333   8.08802e-02         4.70229
+ 4   1.400000000000   1.42136e-02         1.69142
+ 5   1.414634146341   4.20584e-04         1.82761
+ 6   1.414211438475   2.12390e-06         1.68028
+ 7   1.414213562057   3.15775e-10         1.67475
+ 8   1.414213562373   2.22045e-16         1.64764
+```
+
+Which of the following methods most likely produced this table?
+
+(a) Relaxation\
+(b) Secant method\
+(c) Newton's method
+
+::: {.exercise-solution .draft style="display: none;"}
+
+(b) The secant method (with $x_1 = 1$ and $x_2 = 2$). The ratios in the last column approach about $1.65$, close to the golden ratio $1.618\dots$, the order of the secant method. Relaxation converges linearly ($\alpha = 1$) and Newton's method quadratically ($\alpha = 2$).
+
+:::
+
+:::
+
+::: {.exam-question label="A7"}
+
+*Compulsory section, 4 pts.* Let $I_Xf \in \mathcal P_n$ be the polynomial interpolant of $f : [-1,1] \to \mathbb R$ on $n+1$ distinct nodes $X$. Which of the following statements are true? Please select all that apply.
+
+(a) $I_Xf$ may have degree strictly less than $n$\
+(b) If $f \in \mathcal P_n$, then $I_Xf = f$\
+(c) For the Chebyshev nodes $X = \{\cos\frac{j\pi}{n}\}_{j=0}^n$, the barycentric weights alternate in sign\
+(d) For equispaced nodes, $\max\limits_{x\in[-1,1]} |f(x) - I_Xf(x)| \to 0$ as $n\to\infty$ for every continuous $f$
+
+::: {.exercise-solution .draft style="display: none;"}
+
+(a), (b) and (c) are true; (d) is false.
+
+(a) For example, $f = 0$ gives $I_X f = 0$.
+
+(b) By uniqueness of the interpolant, since $f$ itself interpolates $f$ on $X$.
+
+(c) The barycentric weights for these nodes are proportional to $(-1)^j$ (halved at the end points $j = 0, n$).
+
+(d) Runge's function $f(x) = \frac{1}{1 + 25x^2}$ is a counterexample.
+
+:::
+
+:::
+
+::: {.exam-question label="A8"}
+
+*Compulsory section, 5 pts.* Find weights $w_0, w_1$ such that the quadrature rule $\int_0^1 f \approx w_0 f(0) + w_1 f(\tfrac13)$ is exact for all polynomials of degree at most $1$. Is it exact for $f(x) = x^2$? (You may use $\int_0^1 x^n \,\mathrm{d}x = \frac{1}{n+1}$ for $n=0,1,2,...$.)
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Exactness for $f = 1$ and $f = x$ gives $w_0 + w_1 = 1$ and $\frac{w_1}{3} = \frac12$. Therefore, $w_1 = \frac32$ and $w_0 = -\frac12$. For $f(x) = x^2$, the rule gives $\frac32 \cdot \frac19 = \frac16 \not= \frac13 = \int_0^1 x^2 \,\mathrm{d}x$, so it is not exact.
+
+:::
+
+:::
+
+::: {.exam-question label="A9"}
+
+*Compulsory section, 2 pts.* The following plots show the errors of two numerical methods, P and Q, as a function of the number $n$ of function evaluations. The same data is shown on a log-log plot (left) and a semi-log plot (right).
+
+![](past-papers/midterm-2026/A9.png){loading="lazy" width=100%}
+
+(i) Is the decay of the error of method P algebraic or exponential?
+
+(ii) Is the decay of the error of method Q algebraic or exponential?
+
+::: {.exercise-solution .draft style="display: none;"}
+
+(i) Exponential: the errors of P lie on a straight line on the semi-log plot.
+
+(ii) Algebraic: the errors of Q lie on a straight line on the log-log plot.
+
+***Remark.*** P is the trapezoid rule for the periodic integrand $\frac{1}{2 - \cos x}$ on $[0, 2\pi]$, and Q is the composite trapezoid rule for $\int_0^1 \sqrt{x} \,\mathrm{d}x$ (where $f''$ is unbounded at $0$), whose error is $O(n^{-3/2})$.
+
+:::
+
+:::
+
+::: {.exam-question label="A10"}
+
+*Compulsory section, 5 pts.* For $b > 1$, the equation $x^2 - 2bx + 1 = 0$ has roots
+
+$$
+    \xi_\pm = b \pm \sqrt{b^2 - 1} = \frac{1}{b \mp \sqrt{b^2 - 1}},
+$$
+
+Here, we compute $\xi_-$ in ``Float64`` using both formulas:
+
+```
+       b         b - sqrt(b^2 - 1)        1 / (b + sqrt(b^2 - 1))
+------------------------------------------------------------------
+  b = 1e+04      5.000000055588316e-5      5.000000012500001e-5
+  b = 1e+06       5.00003807246685e-7       5.00000000000125e-7
+  b = 1e+08                       0.0                    5.0e-9
+```
+
+Which column do you trust? Explain why the formulas give different results.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+We trust the second column ($\xi_- \approx \frac{1}{2b}$). The two formulas are equal in exact arithmetic (multiply $b - s$ by $b + s$ where $s = \sqrt{b^2 - 1}$). However, the first formula subtracts the nearly equal numbers $b$ and $s$: this is subtractive cancellation. The rounding error in $s$ (about $\epsilon_{\rm mach} b$) is large compared with the result $\approx \frac{1}{2b}$; for $b = 10^8$ the first formula even returns $0$. The second formula only adds positive numbers, so there is no cancellation.
+
+:::
+
+:::
+
+::: {.exam-question label="A11"}
+
+*Compulsory section, 4 pts.* Consider the following divided difference table:
+$$
+\begin{array}{c|cc}
+    \quad x_j \quad & \quad f(x_j) \quad & \quad f[x_0, x_1] \quad \\[4pt] \hline
+    \quad x_0 \quad & \quad 1 \quad & \\[8pt]
+        & & \quad -2 \quad \\[8pt]
+    \quad x_1 \quad & \quad 1 \quad &
+\end{array}
+$$
+Which of the following statements are true? Please select all that apply.
+
+(a) The table does not correspond to any function $f$\
+(b) We must have $x_0 = x_1$\
+(c) We must have $f'(x_0) = 1$\
+(d) The table determines a polynomial interpolant $p$ of degree at most $1$
+
+::: {.exercise-solution .draft style="display: none;"}
+
+(b) and (d) are true; (a) and (c) are false.
+
+(b) If $x_0 \not= x_1$, then $f[x_0, x_1] = \frac{f(x_1) - f(x_0)}{x_1 - x_0} = 0 \not= -2$. Therefore, the node is repeated.
+
+(d) $p(x) = 1 - 2(x - x_0)$ is the Hermite interpolant with $p(x_0) = 1$ and $p'(x_0) = -2$.
+
+(a) For example, $f(x) = 1 - 2(x - x_0)$ has this table.
+
+(c) $f'(x_0) = f[x_0, x_0] = -2$.
+
+:::
+
+:::
+
+::: {.exam-question label="B"}
+
+*Optional section, 30 pts.* **Polynomial Interpolation.** Let $f(x) = 2^x$ and $X = \{x_0, x_1, x_2\} = \{-1, 0, 1\}$.
+
+1. **[14 points]** Write down the polynomial interpolant $I_Xf \in \mathcal P_2$ of $f$ on $X$ in both Lagrange and Newton form. Now add the node $x_3 = 2$ and write down the polynomial $p \in \mathcal P_3$ interpolating $f$ on $\{-1, 0, 1, 2\}$. Compare $I_Xf(3)$ and $p(3)$ with $f(3)$.
+2. **[5 points]** Use the interpolation error formula
+$$
+f(x) - I_Xf(x) = \frac{f^{(3)}(\xi_x)}{3!} (x + 1) x (x - 1)
+$$
+to show that $|f(x) - I_Xf(x)| \leq \frac{2 (\log 2)^3}{3!} \cdot \frac{2}{3\sqrt3}$ for all $x \in [-1,1]$. *Hint:* $f^{(3)}(x) = (\log 2)^3 \, 2^x$, and $|(x+1) x (x-1)| = |x^3 - x|$ is largest on $[-1,1]$ at $x = \pm \frac{1}{\sqrt3}$.
+3. **[5 points]** Now let $Y = \{y_0, y_1, y_2\}$ with $y_0 = -\frac{\sqrt3}{2}, y_1 = 0, y_2 = \frac{\sqrt3}{2}$ (the zeros of the Chebyshev polynomial $T_3(x) = 4x^3 - 3x$). Show that $\max\limits_{x \in [-1,1]} |(x - y_0)(x - y_1)(x - y_2)| = \frac14$. What is the corresponding error bound for $|f(x) - I_Yf(x)|$? Does $X$ or $Y$ give the better error bound?
+4. **[6 points]** The following semi-log plot shows the maximum error $\max\limits_{x \in [-1,1]} |f(x) - I_Xf(x)|$ when interpolating $f(x) = 2^x$ on $n+1$ equispaced nodes and on $n+1$ Chebyshev nodes $\{\cos\frac{j\pi}{n}\}_{j=0}^n$ (computed with the barycentric formula in ``Float64``).
+
+    ![](past-papers/midterm-2026/B4-error.png){loading="lazy" width=60%}
+
+    (i) For small $n$ ($n \leq 10$), is the decay of the error algebraic or exponential (or faster)?
+
+    Next, we compare the time taken to evaluate $I_Xf$ at $1000$ points using two implementations: the naive implementation of the Lagrange form $I_Xf(x) = \sum_j f(x_j) \prod_{k \neq j} \frac{x - x_k}{x_j - x_k}$, and the barycentric formula.
+
+    ![](past-papers/midterm-2026/B4-timing.png){loading="lazy" width=60%}
+
+    (ii) Which of P and Q is the naive implementation? Explain why.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. *Lagrange form.* The Lagrange basis polynomials are $\ell_0(x) = \frac{x(x-1)}{2}$, $\ell_1(x) = 1 - x^2$ and $\ell_2(x) = \frac{x(x+1)}{2}$, and so $I_Xf = \frac12 \ell_0 + \ell_1 + 2\ell_2$.
+
+    *Newton form.* $f[-1] = \frac12$, $f[0] = 1$, $f[1] = 2$; $f[-1,0] = \frac12$, $f[0,1] = 1$; $f[-1,0,1] = \frac14$. Therefore, $I_Xf(x) = \frac12 + \frac12(x+1) + \frac14(x+1)x$.
+
+    *Adding $x_3 = 2$.* $f[1,2] = 2$, $f[0,1,2] = \frac{2 - 1}{2} = \frac12$ and $f[-1,0,1,2] = \frac{\frac12 - \frac14}{3} = \frac{1}{12}$, and so $p(x) = I_Xf(x) + \frac{1}{12}(x+1)x(x-1)$.
+
+    Finally, $I_Xf(3) = \frac12 + 2 + 3 = \frac{11}{2}$ and $p(3) = \frac{11}{2} + \frac{1}{12} \cdot 4 \cdot 3 \cdot 2 = \frac{15}{2}$, while $f(3) = 8$: the extra node improves the extrapolation. (All forms of $I_Xf$ are the same quadratic $\frac14 x^2 + \frac34 x + 1$.)
+
+2. On $[-1,1]$, we have $|f^{(3)}(\xi_x)| \leq (\log 2)^3 \, 2^1 = 2(\log 2)^3$, and $|x^3 - x| \leq \big| \frac{1}{3\sqrt3} - \frac{1}{\sqrt3} \big| = \frac{2}{3\sqrt3}$. Inserting both bounds into the error formula gives the result.
+
+3. $(x + \frac{\sqrt3}{2}) \, x \, (x - \frac{\sqrt3}{2}) = x^3 - \frac34 x = \frac14 T_3(x)$, and $|T_3(x)| \leq 1$ on $[-1,1]$ with equality at $x = \pm1$. Therefore, the maximum is $\frac14$ and $|f(x) - I_Yf(x)| \leq \frac{2(\log 2)^3}{3!} \cdot \frac14$. Since $\frac14 < \frac{2}{3\sqrt3} \approx 0.385$, the Chebyshev nodes $Y$ give the better bound.
+
+4. (i) Exponential or faster: the curves bend downwards even on the semi-log plot. (Since $2^x$ is entire, the error decays like $\frac{(\log 2)^{n+1}}{(n+1)!}$ times a factor depending on the nodes, which is faster than exponential.)
+
+    (ii) Q is the naive implementation. On the log-log plot, the time for Q grows like $n^2$ (slope $2$) while the time for P grows like $n$ (slope $1$). Evaluating the Lagrange form at one point costs $O(n^2)$ operations ($n+1$ products of $n$ factors), while the barycentric formula costs $O(n)$ once the weights are known.
+
+:::
+
+:::
+
+::: {.exam-question label="C"}
+
+*Optional section, 30 pts.* **Trapezoid Rule with End Point Derivatives.** Suppose $f$ is four times continuously differentiable. We will consider the following quadrature rule:
+
+\begin{align*}
+    \int_a^b f(x) \,\mathrm{d}x \approx \frac{b-a}{2} \big[ f(a) + f(b) \big] + \frac{(b-a)^2}{12} \big[ f'(a) - f'(b) \big].
+\end{align*}
+
+That is, we add a correction to the trapezoid rule which uses the derivative of $f$ at both end points.
+
+1. **[8 points]** Show that this rule is exact for all polynomials of degree at most $1$. Then show that it is exact for $f(x) = (x - a)^2$ and $f(x) = (x-a)^3$, and hence that it is exact for all polynomials of degree at most $3$. (You may use $\int_a^b (x-a)^n \,\mathrm{d}x = \frac{(b-a)^{n+1}}{n+1}$ for $n=0,1,2,...$.)
+2. **[3 points]** Let $p_3 \in \mathcal P_3$ be the Hermite interpolant of $f$ on $X = \{\{a, a, b, b\}\}$. Explain why $\int_a^b p_3$ is equal to the quadrature rule applied to $f$.
+3. **[8 points]** Recall that there exists $\xi_x \in [a,b]$ such that $f(x) - p_3(x) = \frac{f''''(\xi_x)}{4!} (x - a)^2 (x - b)^2$. Show that
+\begin{align*}
+    \left| \int_a^b f(x)\,\mathrm{d}x - \frac{b-a}{2} \big[ f(a) + f(b) \big] - \frac{(b-a)^2}{12} \big[ f'(a) - f'(b) \big] \right| \leq \frac{\|f''''\|_{L^\infty([a,b])}}{720} (b-a)^5.
+\end{align*}
+*Hint:* $\int_a^b (x-a)^2 (x-b)^2 \,\mathrm{d}x = \frac{(b-a)^5}{30}$.
+
+Let $x_j := a + j \frac{b-a}{n}$ for $j = 0, \dots, n$ and note that $\int_a^b f = \sum_{j=0}^{n-1} \int_{x_j}^{x_{j+1}} f$.
+
+4. **[9 points]** Apply the rule on each interval $[x_j, x_{j+1}]$ to show that the corresponding composite rule is
+\begin{align*}
+    \int_a^b f \approx I_n' := \frac{b-a}{n} \Big[ \tfrac12 f(x_0) + \sum_{j=1}^{n-1} f(x_j) + \tfrac12 f(x_n) \Big] + \frac{1}{12}\left(\frac{b-a}{n}\right)^2 \big[ f'(a) - f'(b) \big].
+\end{align*}
+Why do we only need the derivative of $f$ at $a$ and $b$? Use the error estimate from Question 3 to obtain an error estimate for $I_n'$.
+
+The following plot shows the errors in approximating $\int_0^1 e^x \,\mathrm{d}x$ with the composite trapezoid rule $I_n$ and the composite rule $I_n'$ from Question 4, together with the curves $C n^{-1}$, $C n^{-2}$, $C n^{-3}$ and $C n^{-4}$:
+
+![](past-papers/midterm-2026/C5.png){loading="lazy" width=70%}
+
+5. **[2 points]** What are the rates of convergence of $I_n$ and $I_n'$?
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Let $h := b - a$.
+
+1. The trapezoid rule is exact for polynomials of degree at most $1$ and, for $f(x) = \alpha + \beta x$, we have $f'(a) - f'(b) = \beta - \beta = 0$, so the correction vanishes. For $f(x) = (x-a)^2$, the integral is $\frac{h^3}{3}$ and the rule gives $\frac h2 (0 + h^2) + \frac{h^2}{12}(0 - 2h) = \frac{h^3}{2} - \frac{h^3}{6} = \frac{h^3}{3}$. For $f(x) = (x-a)^3$, the integral is $\frac{h^4}{4}$ and the rule gives $\frac h2 h^3 + \frac{h^2}{12}(0 - 3h^2) = \frac{h^4}{2} - \frac{h^4}{4} = \frac{h^4}{4}$. Since $1, (x-a), (x-a)^2, (x-a)^3$ span $\mathcal P_3$ and the rule is linear in $f$, it is exact for all polynomials of degree at most $3$.
+2. The rule only uses $f(a)$, $f(b)$, $f'(a)$ and $f'(b)$, and $p_3$ has the same values: $p_3(a) = f(a)$, $p_3'(a) = f'(a)$, $p_3(b) = f(b)$ and $p_3'(b) = f'(b)$. Therefore, the rule applied to $f$ equals the rule applied to $p_3$, which is $\int_a^b p_3$ by Question 1.
+3. By Question 2, the error is
+\begin{align*}
+    \left| \int_a^b (f - p_3) \right|
+    \leq \int_a^b \frac{|f''''(\xi_x)|}{4!} (x-a)^2(x-b)^2 \,\mathrm{d}x
+    \leq \frac{\|f''''\|_{L^\infty([a,b])}}{24} \cdot \frac{(b-a)^5}{30}
+    = \frac{\|f''''\|_{L^\infty([a,b])}}{720} (b-a)^5.
+\end{align*}
+4. Let $h := \frac{b-a}{n}$. Applying the rule on each $[x_j, x_{j+1}]$ and summing gives
+\begin{align*}
+    \sum_{j=0}^{n-1} \Big( \frac h2 \big[ f(x_j) + f(x_{j+1}) \big] + \frac{h^2}{12} \big[ f'(x_j) - f'(x_{j+1}) \big] \Big).
+\end{align*}
+The first part is the composite trapezoid rule. The derivative terms telescope: $\sum_{j=0}^{n-1} \big[ f'(x_j) - f'(x_{j+1}) \big] = f'(x_0) - f'(x_n) = f'(a) - f'(b)$, so the derivatives at the interior nodes cancel and we only need $f'(a)$ and $f'(b)$. By Question 3, the error on each subinterval is at most $\frac{\|f''''\|_{L^\infty([a,b])}}{720} h^5$, and summing over the $n$ subintervals gives
+\begin{align*}
+    \left| \int_a^b f - I_n' \right| \leq \frac{\|f''''\|_{L^\infty([a,b])}}{720} \frac{(b-a)^5}{n^4}.
+\end{align*}
+5. $I_n$ converges at the rate $O(n^{-2})$ (parallel to $C n^{-2}$) and $I_n'$ at the rate $O(n^{-4})$ (parallel to $C n^{-4}$), consistent with the trapezoid rule error estimate and Question 4.
+
+:::
+
+:::
+
+::: {.exam-question label="D"}
+
+*Optional section, 30 pts.* **Simple Iteration.** Define $g(x) = 1 + \frac12 \sin x$ and $I := [\frac12,\frac32]$.
+
+1. **[3 points]** Show that $g(x) \in I$ for all $x \in I$.
+2. **[4 points]** Show that $g$ is a contraction on $I$ with constant $L = \frac12$.
+3. **[4 points]** Which theorem guarantees that $g$ has a unique fixed point $\xi \in I$ and that $x_{n+1} = g(x_n)$ converges to $\xi$ for all $x_1 \in I$? Explain why $\xi \in [\frac12, \frac32]$.
+4. **[5 points]** Show that $|x_{n+1} - \xi| \leq L^n |x_1 - \xi|$. Find $n$ such that $|x_{n+1} - \xi| \leq 10^{-3}$ is guaranteed for every $x_1 \in I$. (You may use $2^{10} = 1024$.)
+
+Here, we apply the iteration with $x_1 = 1$ and compare with $x_N$ for $N = 100$:
+
+```
+ n         x_n        r_n := |x_n - x_N|       r_{n+1} / r_n
+------------------------------------------------------------
+ 1    1.000000000000      4.987e-01         0.1563
+ 2    1.420735492404      7.797e-02         0.0554
+ 3    1.494380992564      4.320e-03         0.0371
+ 4    1.498540884399      1.602e-04         0.0361
+ 5    1.498695355522      5.778e-06         0.0360
+ 6    1.498700925407      2.081e-07         0.0360
+ 7    1.498701126022      7.495e-09         0.0360
+ 8    1.498701133248      2.700e-10         0.0360
+```
+
+![](past-papers/midterm-2026/D5.png){loading="lazy" width=60%}
+
+5. **[9 points]** (a) Why do we plot $|x_n - x_N|$ instead of the errors $|x_n - \xi|$?\
+(b) What do the plot and the table suggest about the order of convergence?\
+(c) The theory predicts that $\frac{|x_{n+1} - \xi|}{|x_n - \xi|} \to \mu = |g'(\xi)| = \frac12 |\cos \xi|$. Estimate $\mu$ and $\xi$ from the table.
+6. **[5 points]** Show that $\xi$ is a root of $f(x) = 2x - 2 - \sin x$ and that $x_{n+1} = g(x_n)$ is the relaxation method $x_{n+1} = x_n - \lambda f(x_n)$ for some $\lambda$. Which value of $\lambda$ gives faster than linear convergence? Prove your answer.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. For $x \in I$, we have $0 < x < \pi$ and so $0 \leq \sin x \leq 1$. Therefore, $1 \leq g(x) \leq \frac32$, and so $g(x) \in I$.
+2. By the mean value theorem, for $x, y \in I$ there exists $\eta$ between $x$ and $y$ such that $|g(x) - g(y)| = |g'(\eta)| |x - y| = \frac12 |\cos \eta| |x - y| \leq \frac12 |x - y|$.
+3. The contraction mapping theorem (Banach fixed point theorem), whose hypotheses are Questions 1 and 2. The theorem gives $\xi \in I$. In fact, since $\xi = g(\xi) \in g(I) \subseteq [1, \frac32]$, we even have $\xi \in [1, \frac32]$.
+4. $|x_{n+1} - \xi| = |g(x_n) - g(\xi)| \leq L |x_n - \xi|$, and so, by induction, $|x_{n+1} - \xi| \leq L^n |x_1 - \xi|$. Since $x_1, \xi \in I$, we have $|x_1 - \xi| \leq 1$ and so $|x_{n+1} - \xi| \leq 2^{-n}$. Since $2^{-10} = \frac{1}{1024} < 10^{-3}$, $n = 10$ suffices (as does any $n \geq 10$).
+5. (a) We do not know $\xi$ (that is what we are computing). The convergence is fast (the ratios are about $0.036$), so $x_N$ with $N = 100$ equals $\xi$ to machine precision and $r_n = |x_n - x_N|$ is (up to rounding) the error.\
+(b) The errors lie on a straight line on the semi-log plot and the ratios $r_{n+1}/r_n$ tend to a constant: the convergence is linear.\
+(c) From the last row, $\mu \approx 0.0360$ and $\xi \approx x_8 \approx 1.4987$. Indeed, $\frac12 |\cos(1.4987)| \approx 0.036$. Since $\xi$ is close to $\frac\pi2$, $|\cos \xi|$ is small and $\mu$ is much smaller than $L = \frac12$.
+6. $g(\xi) = \xi$ if and only if $2\xi = 2 + \sin \xi$, i.e. $f(\xi) = 0$. Moreover, $x - \frac12 f(x) = x - x + 1 + \frac12 \sin x = g(x)$, so the iteration is the relaxation method with $\lambda = \frac12$. In general, the relaxation method is simple iteration with $g_\lambda(x) := x - \lambda f(x)$, and $g_\lambda'(\xi) = 1 - \lambda f'(\xi)$. The convergence is linear with asymptotic error constant $|1 - \lambda f'(\xi)|$ unless this vanishes, i.e. unless $\lambda = \frac{1}{f'(\xi)} = \frac{1}{2 - \cos \xi} \approx 0.519$. For this $\lambda$, $g_\lambda'(\xi) = 0$ and $\frac{|x_{n+1} - \xi|}{|x_n - \xi|} = |g_\lambda'(\eta_n)| \to 0$ (by the mean value theorem, with $\eta_n$ between $x_n$ and $\xi$), so the convergence is faster than linear.
+
+:::
+
+:::

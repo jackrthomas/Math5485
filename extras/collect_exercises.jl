@@ -28,7 +28,8 @@ its `after-lecture:` front matter field, in a section named after its `title:` (
 "Midterm (Fall 2025)"). Each top-level `::: {.exam-question label="A1"}` block becomes an
 exercise labelled "<title>: Question A1" whose solution is available immediately.
 
-Embeds all code cell outputs (plots, text, HTML) as inline content.
+Embeds all code cell outputs (plots, text, HTML) as inline content; images are saved to
+exercises/bank-media/ and loaded lazily (see extract_images).
 
 Runs automatically before every `quarto render` (pre-render in _quarto.yml, via
 extras/run-collect-exercises.py). exercises.qmd is only rewritten when it changes,
@@ -40,6 +41,7 @@ Usage (by hand, from anywhere):
 
 using JSON
 using Base64
+using SHA
 
 # ── Configuration ─────────────────────────────────────────────────────────────
 # paths are relative to this script, so it can be run from any directory
@@ -49,6 +51,7 @@ quizzes_dir         = joinpath(root, "exercises", "quizzes")
 problem_classes_dir = joinpath(root, "exercises", "Problem classes")
 past_papers_dir     = joinpath(root, "exercises", "past-papers")
 output_file         = joinpath(root, "exercises", "exercises.qmd")
+media_dir           = joinpath(root, "exercises", "bank-media")   # images, see extract_images
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -440,6 +443,32 @@ function write_past_papers(io, papers)
     end
 end
 
+"""
+    extract_images(text) -> String
+
+Move the base64 images (`<img src="data:image/...;base64,...">`) into files in exercises/bank-media/
+(named after a hash of their contents) and load them lazily. The bank's question list is hidden, so
+the browser then only downloads the images of the questions it shows, and the page is about 1 MB
+smaller. Files in bank-media that are no longer used are deleted.
+"""
+function extract_images(text::String)::String
+    exts = Dict("png" => "png", "gif" => "gif", "jpeg" => "jpg", "svg+xml" => "svg")
+    used = Set{String}()
+    mkpath(media_dir)
+    text = replace(text, r"<img src=\"data:image/(png|gif|jpeg|svg\+xml);base64,([A-Za-z0-9+/=]+)\"" => function (s)
+        m    = match(r"data:image/([^;]+);base64,([A-Za-z0-9+/=]+)", s)
+        name = bytes2hex(sha1(m.captures[2]))[1:16] * "." * exts[m.captures[1]]
+        path = joinpath(media_dir, name)
+        isfile(path) || write(path, base64decode(m.captures[2]))
+        push!(used, name)
+        return "<img loading=\"lazy\" src=\"bank-media/$name\""
+    end)
+    for f in readdir(media_dir)
+        f in used || rm(joinpath(media_dir, f))
+    end
+    return text
+end
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 function main()
@@ -523,7 +552,7 @@ format:
     end
 
     # only touch the file when something changed (avoids needless re-renders in quarto preview)
-    new = String(take!(io))
+    new = extract_images(String(take!(io)))
     if isfile(output_file) && read(output_file, String) == new
         println("\nExercises unchanged: $output_file")
     else
