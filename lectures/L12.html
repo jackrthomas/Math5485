@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../exercises/bank.html" rel="next">
+<link href="../lectures/L13.html" rel="next">
 <link href="../lectures/L11.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -359,6 +359,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gaussian quadrature</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Linear systems of equations</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -405,12 +411,29 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Bonus content</span></a>
+ <span class="menu-text">Appendix</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Bonus content</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link">
@@ -427,25 +450,8 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exams</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendix/studyguide.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Midterm study guide</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
+ <span class="menu-text">Exams</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -453,8 +459,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calculus</span></a>
+  <a href="../appendix/studyguide.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm study guide</span></a>
   </div>
 </li>
       </ul>
@@ -530,6 +536,8 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-11-11">Lecture 13 (Linear systems of equations) online</span>
 
           <span class="banner-item" data-date="2026-11-09">Lecture 12 (Gaussian quadrature) online</span>
 
@@ -1220,7 +1228,7 @@ Note
 <li><em>Quadrature rules</em>: <span class="math inline">\(\int_a^b f \approx \sum_j w_j f(x_j)\)</span> with <em>weights</em> <span class="math inline">\(\{w_j\}\)</span> and <em>nodes</em> <span class="math inline">\(\{x_j\}\)</span>,</li>
 <li>Interpolatory rules: integrate the polynomial interpolant <span class="math inline">\(p(x) = \sum_{j=0}^n f(x_j) \ell_j(x)\)</span> of <span class="math inline">\(f\)</span> on <span class="math inline">\(X = \{x_0,\dots,x_n\}\)</span>, which gives the weights <span class="math inline">\(w_j = \int_a^b \ell_j(x) \mathrm{d}x\)</span>; when <span class="math inline">\(X\)</span> is equispaced this is a <em>Newton-Cotes</em> rule,</li>
 <li>Examples: rectangular rule <span class="math inline">\((b-a) f(a)\)</span>, midpoint rule <span class="math inline">\((b-a) f\big(\tfrac{a+b}{2}\big)\)</span>, trapezoid rule <span class="math inline">\(\frac{b-a}{2}\big( f(a) + f(b) \big)\)</span>, and Simpson’s rule <span class="math inline">\(\frac{b-a}{6}\big( f(a) + 4 f\big(\tfrac{a+b}{2}\big) + f(b) \big)\)</span>,</li>
-<li>A rule is <em>exact for all polynomials of degree <span class="math inline">\(N\)</span></em> if <span class="math inline">\(\int_a^b p(x) \mathrm{d}x = \sum_j w_j p(x_j)\)</span> for all <span class="math inline">\(p \in \mathcal P_N\)</span>; interpolatory rules on <span class="math inline">\(n+1\)</span> nodes are exact on <span class="math inline">\(\mathcal P_n\)</span> (rectangular &amp; midpoint exact for degree <span class="math inline">\(0\)</span>, trapezoid degree <span class="math inline">\(2\)</span>, Simpson degree <span class="math inline">\(3\)</span>)</li>
+<li>A rule is <em>exact for all polynomials of degree <span class="math inline">\(N\)</span></em> if <span class="math inline">\(\int_a^b p(x) \mathrm{d}x = \sum_j w_j p(x_j)\)</span> for all <span class="math inline">\(p \in \mathcal P_N\)</span>; interpolatory rules on <span class="math inline">\(n+1\)</span> nodes are exact on <span class="math inline">\(\mathcal P_n\)</span> (rectangular &amp; midpoint exact for degree <span class="math inline">\(0\)</span>, trapezoid degree <span class="math inline">\(1\)</span>, Simpson degree <span class="math inline">\(2\)</span>)</li>
 <li>We also saw that, for <span class="math inline">\(n\)</span> even and with nodes symmetric about <span class="math inline">\(\tfrac{a+b}2\)</span>, the rule is exact on <span class="math inline">\(\mathcal P_{n+1}\)</span> (i.e.&nbsp;midpoint: degree <span class="math inline">\(1\)</span>, Simpson: degree <span class="math inline">\(3\)</span>). <em>Proof:</em> <span class="math inline">\(\int_{a}^b (x-\frac{a+b}2)^{n+1} \mathrm{d}x = 0\)</span> when <span class="math inline">\(n\)</span> is even.</li>
 <li>Error estimate: if the rule is exact on <span class="math inline">\(\mathcal P_N\)</span>, then use the error estimate for polynomial interpolation to obtain <span class="math display">\[
 \left| \int_a^b f - \sum_j w_j f(x_j) \right| \leq \frac{\|f^{(N+1)}\|_{L^\infty([a,b])}}{(N+1)!} \int_a^b |\ell_{\tilde X}(x)| \mathrm{d}x
@@ -1231,7 +1239,8 @@ Note
 <section id="gaussian-quadrature" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="gaussian-quadrature"><span class="header-section-number">12.2</span> Gaussian quadrature</h2>
 <div id="exr-gauss-change-of-variables" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.1</strong></span> By considering the change of variables <span class="math inline">\(y = \frac{2}{b-a} \left( x - \frac{a + b}{2} \right)\)</span> and defining <span class="math inline">\(\tilde{f}(y) = \frac{b-a}{2} f\big(  \tfrac{b-a}2 y + \tfrac{a+b}2  \big)\)</span>, show that</p>
+<p><span class="theorem-title"><strong>Exercise 12.1</strong></span> <a href="../exercises/bank.html#bank-exr-gauss-change-of-variables"></a></p>
+<p>By considering the change of variables <span class="math inline">\(y = \frac{2}{b-a} \left( x - \frac{a + b}{2} \right)\)</span> and defining <span class="math inline">\(\tilde{f}(y) = \frac{b-a}{2} f\big(  \tfrac{b-a}2 y + \tfrac{a+b}2  \big)\)</span>, show that</p>
 <p><span class="math display">\[
 \begin{align}
     \int_a^b f(x) \mathrm{d}x = \int_{-1}^1 \tilde{f}(y) \mathrm{d}y.
@@ -1248,7 +1257,8 @@ Note
 <p>is exact on <span class="math inline">\(\mathcal P_N\)</span> for maximal <span class="math inline">\(N\)</span>.</p>
 <p><strong>Idea:</strong> Choose <span class="math inline">\(X\)</span> <strong><em>and</em></strong> <span class="math inline">\(\{w_j\}\)</span>.</p>
 <div id="exr-gauss-two-point" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.2</strong></span> Choose <span class="math inline">\(w_0, w_1\)</span> and <span class="math inline">\(x_0, x_1\)</span> such that</p>
+<p><span class="theorem-title"><strong>Exercise 12.2</strong></span> <a href="../exercises/bank.html#bank-exr-gauss-two-point"></a></p>
+<p>Choose <span class="math inline">\(w_0, w_1\)</span> and <span class="math inline">\(x_0, x_1\)</span> such that</p>
 <p><span class="math display">\[
 \begin{align}
     \int_{-1}^1 f \approx w_0 f(x_0) + w_1 f(x_1)
@@ -1296,7 +1306,8 @@ Note
 \]</span></p>
 <p>which is exact for all polynomials of degree <span class="math inline">\(\leq 3\)</span>. This is <strong>Gauss (or Gaussian) quadrature</strong> with <span class="math inline">\(n=1\)</span>.</p>
 <div id="exr-L12-error-estimate" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.3</strong></span> For <span class="math inline">\(n=1\)</span>, use the fact that Gauss quadrature is exact for all polynomials of degree <span class="math inline">\(2n+1 = 2(1) + 1 = 3\)</span> to show that <span class="math display">\[
+<p><span class="theorem-title"><strong>Exercise 12.3</strong></span> <a href="../exercises/bank.html#bank-exr-L12-error-estimate"></a></p>
+<p>For <span class="math inline">\(n=1\)</span>, use the fact that Gauss quadrature is exact for all polynomials of degree <span class="math inline">\(2n+1 = 2(1) + 1 = 3\)</span> to show that <span class="math display">\[
 \begin{align}
     \left| \int_{-1}^1 f(x) \mathrm{d}x - \left( f(-\tfrac{\sqrt3}{3}) + f(\tfrac{\sqrt3}{3}) \right) \right|
     %
@@ -1330,7 +1341,8 @@ Note
 </div>
 </div>
 <div id="exr-gauss-log2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.4</strong></span> Approximate <span class="math inline">\(\log 2 = \int_1^2 \frac{1}{x} \mathrm{d}x\)</span> using Gauss quadrature and evaluate an upper bound for the error.</p>
+<p><span class="theorem-title"><strong>Exercise 12.4</strong></span> <a href="../exercises/bank.html#bank-exr-gauss-log2"></a></p>
+<p>Approximate <span class="math inline">\(\log 2 = \int_1^2 \frac{1}{x} \mathrm{d}x\)</span> using Gauss quadrature and evaluate an upper bound for the error.</p>
 <div class="exercise-solution" style="display: none;">
 <p>First notice that <span class="math display">\[
 \begin{align}
@@ -1357,7 +1369,8 @@ Note
 </div>
 </div>
 <div id="exr-l11-compare-nc" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.5</strong></span> Compare this to the rectangular rule and its composite rule with 2 sub-intervals, and the trapezoid and Simpson rules.</p>
+<p><span class="theorem-title"><strong>Exercise 12.5</strong></span> <a href="../exercises/bank.html#bank-exr-l11-compare-nc"></a></p>
+<p>Compare this to the rectangular rule and its composite rule with 2 sub-intervals, and the trapezoid and Simpson rules.</p>
 <div class="exercise-solution" style="display: none;">
 <p>Apply each rule to <span class="math inline">\(\int_1^2 g\)</span> with <span class="math inline">\(g(x) = \frac1x\)</span> (exact value <span class="math inline">\(\log 2 \approx 0.693147...\)</span>):</p>
 <table class="caption-top table">
@@ -1433,7 +1446,8 @@ Note
 </div>
 <p>It may not be immediately clear that such polynomials exist, but we can compute the first few explicitly:</p>
 <div id="exr-legendre-first" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.6</strong></span> Show that <span class="math inline">\(P_0(x) = 1\)</span>, <span class="math inline">\(P_1(x) = x\)</span>, and <span class="math inline">\(P_2(x) = x^2 - \frac13\)</span>. What are the roots of <span class="math inline">\(P_2\)</span> and compare to the nodes in <a href="#exr-gauss-two-point" class="quarto-xref">Exercise&nbsp;<span>12.2</span></a>.</p>
+<p><span class="theorem-title"><strong>Exercise 12.6</strong></span> <a href="../exercises/bank.html#bank-exr-legendre-first"></a></p>
+<p>Show that <span class="math inline">\(P_0(x) = 1\)</span>, <span class="math inline">\(P_1(x) = x\)</span>, and <span class="math inline">\(P_2(x) = x^2 - \frac13\)</span>. What are the roots of <span class="math inline">\(P_2\)</span> and compare to the nodes in <a href="#exr-gauss-two-point" class="quarto-xref">Exercise&nbsp;<span>12.2</span></a>.</p>
 <div class="exercise-hint" style="display: none;">
 <p>Write <span class="math inline">\(P_0(x) = 1\)</span>, <span class="math inline">\(P_1(x) = x + a\)</span>, and <span class="math inline">\(P_2(x) = x^2 + b x + c\)</span> and solve for <span class="math inline">\(a, b, c\)</span>.</p>
 </div>
@@ -1755,19 +1769,21 @@ Note
 <section id="extra-exercises" class="level2" data-number="12.6">
 <h2 data-number="12.6" class="anchored" data-anchor-id="extra-exercises"><span class="header-section-number">12.6</span> Extra exercises</h2>
 <div id="exr-legendre-equiv" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.7</strong></span> Show that the two definitions in <a href="#def-legendre" class="quarto-xref">Definition&nbsp;<span>12.2</span></a> are equivalent.</p>
+<p><span class="theorem-title"><strong>Exercise 12.7</strong></span> <a href="../exercises/bank.html#bank-exr-legendre-equiv"></a></p>
+<p>Show that the two definitions in <a href="#def-legendre" class="quarto-xref">Definition&nbsp;<span>12.2</span></a> are equivalent.</p>
 <div class="exercise-hint" style="display: none;">
 <p>Suppose that <span class="math inline">\(p_k \in \mathcal P_k\)</span> are monic polynomials of degree exactly <span class="math inline">\(k\)</span>. Show that the <span class="math inline">\(p_k\)</span> are linearly independent: if <span class="math inline">\(\sum_{k=0}^n \alpha_k p_k = 0\)</span>, then all <span class="math inline">\(\alpha_k = 0\)</span>.</p>
 </div>
 </div>
 <div id="exr-l11-max-degree" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.8</strong></span> Show that Gauss quadrature with nodes <span class="math inline">\(X = \{x_0, \dots, x_n\}\)</span> is <strong>never</strong> exact for all polynomials of degree <span class="math inline">\(N &gt; 2n+1\)</span>.</p>
+<p><span class="theorem-title"><strong>Exercise 12.8</strong></span> <a href="../exercises/bank.html#bank-exr-l11-max-degree"></a></p>
+<p>Show that Gauss quadrature with nodes <span class="math inline">\(X = \{x_0, \dots, x_n\}\)</span> is <strong>never</strong> exact for all polynomials of degree <span class="math inline">\(N &gt; 2n+1\)</span>.</p>
 <div class="exercise-hint" style="display: none;">
 <p>Apply the quadrature rule to <span class="math inline">\(\ell_X(x)^2\)</span>.</p>
 </div>
 </div>
 <div id="exr-l11-three-point" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.9</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Exercise 12.9</strong></span> <a href="../exercises/bank.html#bank-exr-l11-three-point"></a></p>
 <ol type="1">
 <li>Write down the Gaussian quadrature rule with <span class="math inline">\(n=2\)</span>.</li>
 <li>What is the absolute error in approximating <span class="math inline">\(\log 2\)</span> using the <span class="math inline">\(n=2\)</span> scheme and following the same arguments as in class (see <a href="#exr-gauss-log2" class="quarto-xref">Exercise&nbsp;<span>12.4</span></a>)?</li>
@@ -1775,7 +1791,8 @@ Note
 </ol>
 </div>
 <div id="exr-l11-legendre-roots" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 12.10</strong></span> Show that the roots of <span class="math inline">\(P_{n+1}\)</span> are real, distinct, and lie in the open interval <span class="math inline">\((-1,1)\)</span> (compare with the proof of <a href="#lem-legendre-roots" class="quarto-xref">Lemma&nbsp;<span>12.1</span></a>).</p>
+<p><span class="theorem-title"><strong>Exercise 12.10</strong></span> <a href="../exercises/bank.html#bank-exr-l11-legendre-roots"></a></p>
+<p>Show that the roots of <span class="math inline">\(P_{n+1}\)</span> are real, distinct, and lie in the open interval <span class="math inline">\((-1,1)\)</span> (compare with the proof of <a href="#lem-legendre-roots" class="quarto-xref">Lemma&nbsp;<span>12.1</span></a>).</p>
 </div>
 
 
@@ -2926,8 +2943,8 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../exercises/bank.html" class="pagination-link" aria-label="Exercise bank">
-        <span class="nav-page-text">Exercise bank</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../lectures/L13.html" class="pagination-link" aria-label="Linear systems of equations">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Linear systems of equations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
