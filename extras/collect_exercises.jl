@@ -32,11 +32,11 @@ Embeds all code cell outputs (plots, text, HTML) as inline content; images are s
 exercises/bank-media/ and loaded lazily (see extract_images).
 
 Runs automatically before every `quarto render` (pre-render in _quarto.yml, via
-extras/run-collect-exercises.py). exercises.qmd is only rewritten when it changes,
+extras/run-collect-exercises.jl). exercises.qmd is only rewritten when it changes,
 so `quarto preview` doesn't keep re-rendering.
 
-Usage (by hand, from anywhere):
-    julia extras/collect_exercises.jl
+Usage (by hand, from the course folder; JSON comes from the tools environment in extras/):
+    julia --project=extras extras/collect_exercises.jl
 """
 
 using JSON
@@ -299,15 +299,10 @@ block into an exercise-box labelled "<title>: Question <label>" (solutions relea
 """
 function read_past_paper(path::String)
     name          = splitext(basename(path))[1]
-    text          = replace(read(path, String), "
-" => "
-")
+    text          = replace(read(path, String), "\r\n" => "\n")
     after_lecture = parse_after_lecture(text, basename(path))
 
-    fm    = match(r"^---
-(.*?)
----
-"s, text)
+    fm    = match(r"^---\n(.*?)\n---\n"s, text)
     title = fm === nothing ? nothing : match(r"^title:\s*[\"']?(.*?)[\"']?\s*$"m, fm.captures[1])
     title === nothing && error("$(basename(path)): missing `title:` in the front matter")
     title = title.captures[1]
@@ -315,8 +310,7 @@ function read_past_paper(path::String)
     body  = replace(body, r"<!--.*?-->"s => "")      # drop comments
 
     blocks = String[]
-    lines  = split(body, '
-')
+    lines  = split(body, '\n')
     i      = 1
     while i <= length(lines)
         m = match(r"^:::\s*\{\s*\.exam-question\s+label=\"([^\"]+)\"", lines[i])
@@ -336,16 +330,10 @@ function read_past_paper(path::String)
             while !isempty(inner) && isempty(strip(first(inner))); popfirst!(inner); end
             while !isempty(inner) && isempty(strip(last(inner)));  pop!(inner);      end
 
-            push!(blocks, "<!-- $name -->
-" *
-                          "::: {.exercise-box #bank-$name-$(lowercase(label)) release=\"now\"}
-" *
-                          "**$title: Question $label**
-
-" *
-                          join(inner, '
-') * "
-" *
+            push!(blocks, "<!-- $name -->\n" *
+                          "::: {.exercise-box #bank-$name-$(lowercase(label)) release=\"now\"}\n" *
+                          "**$title: Question $label**\n\n" *
+                          join(inner, '\n') * "\n" *
                           ":::")
         else
             i += 1

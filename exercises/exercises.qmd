@@ -5585,38 +5585,6 @@ So $x = \big(\tfrac{19}{8}, -\tfrac{17}{2}, 1, \tfrac{13}{2}\big)^\intercal$, wh
 :::
 
 <!-- L13 -->
-::: {.exercise-box #bank-exr-l12-lu-by-hand}
-**@exr-l12-lu-by-hand**
-
-Compute the $LU$ decomposition of 
-$$
-\begin{align*}
-    A = \begin{pmatrix} 1 & 2 & -3 \\ 0 & 1 & -1 \\ 1 & 1 & 0 \end{pmatrix}
-\end{align*}
-$$
-by hand, and check your answer with `LU_decomp`.
-
-::: {.exercise-solution .draft style="display: none;"}
-
-Step 1: $\mathbf u_1 = (1, 2, -3)$ (first row) and $\mathbf l_1 = (1, 0, 1)^\intercal$ (first column divided by $u_{11} = 1$). Then
-$$
-\begin{align*}
-    A - \mathbf l_1 \mathbf u_1 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & -1 \\ 0 & -1 & 3 \end{pmatrix}.
-\end{align*}
-$$
-Step 2: $\mathbf u_2 = (0, 1, -1)$ and $\mathbf l_2 = (0, 1, -1)^\intercal$, leaving $u_{33} = 3 - 1 = 2$. Therefore
-$$
-\begin{align*}
-    L = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & -1 & 1 \end{pmatrix}, \qquad 
-    U = \begin{pmatrix} 1 & 2 & -3 \\ 0 & 1 & -1 \\ 0 & 0 & 2 \end{pmatrix},
-\end{align*}
-$$
-and one can check that $LU = A$.
-
-:::
-:::
-
-<!-- L13 -->
 ::: {.exercise-box #bank-exr-l12-forward-cost}
 **@exr-l12-forward-cost**
 
@@ -5666,6 +5634,268 @@ roots(Polynomial([-6, 11, -6, 1])) # 1, 2, 3
 ```
 
 Indeed $p(x) = (x-1)(x-2)(x-3)$.
+
+:::
+:::
+
+## Lecture 14
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l13-warmup name="Warm-up"}
+**@exr-l13-warmup**
+
+Use LU decomposition combined with forward and backwards substitution to solve the linear system of equations
+
+$$
+\begin{align}
+\begin{pmatrix}
+2 & 3 & 4 \\
+4 & 5 & 10 \\
+4 & 8 & 2
+\end{pmatrix}
+\begin{pmatrix}
+x\\y\\z
+\end{pmatrix}
+= \begin{pmatrix}
+1 \\ 0 \\ -1
+\end{pmatrix}. \nonumber
+\end{align}
+$$
+
+::: {.exercise-solution .draft style="display: none;"}
+
+*Step 1.* $u_1 = (2,3,4)$ and $\ell_1 = (1, 2, 2)^\intercal$ (the first column divided by $2$). Then
+$$
+A^{(2)} = A - \ell_1 u_1 = \begin{pmatrix} 2&3&4\\4&5&10\\4&8&2\end{pmatrix} - \begin{pmatrix} 2&3&4\\4&6&8\\4&6&8\end{pmatrix} = \begin{pmatrix} 0&0&0\\0&-1&2\\0&2&-6\end{pmatrix}.
+$$
+*Step 2.* $u_2 = (0,-1,2)$ and $\ell_2 = (0, 1, -2)^\intercal$ (the second column divided by $-1$), so that $A^{(3)} = A^{(2)} - \ell_2 u_2 = \mathrm{diag}(0,0,-2)$.
+
+*Step 3.* $u_3 = (0,0,-2)$ and $\ell_3 = (0,0,1)^\intercal$. Hence
+$$
+L = \begin{pmatrix} 1&0&0\\2&1&0\\2&-2&1\end{pmatrix},\qquad U = \begin{pmatrix} 2&3&4\\0&-1&2\\0&0&-2\end{pmatrix}.
+$$
+
+*Forwards substitution* ($Ly = b$): $y_1 = 1$, $y_2 = 0 - 2y_1 = -2$, $y_3 = -1 - 2y_1 + 2y_2 = -7$.
+
+*Backwards substitution* ($U(x,y,z)^\intercal = (y_1,y_2,y_3)^\intercal$): $z = \frac{-7}{-2} = \frac72$, then $-y + 2z = -2$ gives $y = 9$, and $2x + 3y + 4z = 1$ gives $x = \frac{1 - 27 - 14}{2} = -20$.
+
+So $(x,y,z) = (-20, 9, \frac72)$. Julia's `lu(A)` (below) returns a *different* factorisation because it pivots (see below): it chooses the largest entry, $4$, in the first column as the first pivot.
+
+:::
+:::
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l12-lu-by-hand}
+**@exr-l12-lu-by-hand**
+
+Compute the $LU$ decomposition of 
+$$
+\begin{align*}
+    A = \begin{pmatrix} 1 & 2 & -3 \\ 0 & 1 & -1 \\ 1 & 1 & 0 \end{pmatrix}
+\end{align*}
+$$
+by hand, and check your answer with `LU_decomp`.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+Step 1: $\mathbf u_1 = (1, 2, -3)$ (first row) and $\mathbf l_1 = (1, 0, 1)^\intercal$ (first column divided by $u_{11} = 1$). Then
+$$
+\begin{align*}
+    A - \mathbf l_1 \mathbf u_1 = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & -1 \\ 0 & -1 & 3 \end{pmatrix}.
+\end{align*}
+$$
+Step 2: $\mathbf u_2 = (0, 1, -1)$ and $\mathbf l_2 = (0, 1, -1)^\intercal$, leaving $u_{33} = 3 - 1 = 2$. Therefore
+$$
+\begin{align*}
+    L = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & -1 & 1 \end{pmatrix}, \qquad 
+    U = \begin{pmatrix} 1 & 2 & -3 \\ 0 & 1 & -1 \\ 0 & 0 & 2 \end{pmatrix},
+\end{align*}
+$$
+and one can check that $LU = A$.
+
+:::
+:::
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l13-lu-breakdown}
+**@exr-l13-lu-breakdown**
+
+What happens when you apply LU decomposition to the following matrix? 
+
+$$
+\begin{align}
+A = \begin{pmatrix} 2 & 0 & 4 & 3 \\ -2 & 0 & 2 & -13 \\ 1 & 15 & 2 & -4.5 \\ -4 & 5 & -7 & -10 \end{pmatrix}. \nonumber
+\end{align}
+$$
+
+::: {.exercise-solution style="display: none;"}
+
+The first row of $U$ is $u_1 = (2, 0, 4, 3)$ and so the first column of $L$ is $\ell_1 = (1, -1, 1/2, -2)^\intercal$ (the first column of $A$ divided by $(u_1)_1$). Therefore, we have 
+
+$$
+\begin{align}
+A^{(2)} := A - \ell_1 u_1 &= \begin{pmatrix} 2 & 0 & 4 & 3 \\ -2 & 0 & 2 & -13 \\ 1 & 15 & 2 & -4.5 \\ -4 & 5 & -7 & -10 \end{pmatrix}
+%
+- \begin{pmatrix} 2 & 0 & 4 & 3 \\ -2 & 0 & -4 & -3 \\ 1 & 0 & 2 & 3/2 \\ -4 & 0 & -8 & -6 \end{pmatrix} \nonumber\\
+%
+&= \begin{pmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 6 & -10 \\ 0 & 15 & 0 & -6 \\ 0 & 5 & 1 & -4 \end{pmatrix}. \nonumber
+\end{align}
+$$
+
+Now we have a problem! In the algorithm above, we would set $u_2 = (0, 0, 6, -10)$ and then let $\ell_2$ be the second column of $A^{(2)}$ divided by $(u_2)_2$ but this is zero! 
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+This is not just bad luck: $A$ has no factorisation $A = LU$ (with $L$ unit lower triangular and $U$ upper triangular) at all. If $A = LU$, then the leading $2\times 2$ blocks satisfy $A_{1:2,1:2} = L_{1:2,1:2} U_{1:2,1:2}$ and so
+$$
+u_{11}u_{22} = \det\begin{pmatrix} 2 & 0\\ -2 & 0\end{pmatrix} = 0.
+$$
+However, $\det A = \det L \det U = u_{11}u_{22}u_{33}u_{44}$ and $\det A = 60 \not= 0$, a contradiction.
+
+The fix is to *pivot* (see below): at step 2, use the row of $A^{(2)}$ with the largest entry (in absolute value) in column 2, which is row 3. This gives $u_2 = (0,15,0,-6)$ and $\ell_2 = (0,0,1,\frac13)^\intercal$. At step 3 the largest entry in column 3 of $A^{(3)} = A^{(2)} - \ell_2 u_2$ is $6$ in row 2, so $u_3 = (0,0,6,-10)$, $\ell_3 = (0,1,0,\frac16)^\intercal$, and finally $u_4 = (0,0,0,-\frac13)$, $\ell_4 = (0,0,0,1)^\intercal$ with $p = (1,3,2,4)$:
+$$
+PL = \begin{pmatrix} 1 & 0 & 0 & 0\\ \tfrac12 & 1 & 0 & 0\\ -1 & 0 & 1 & 0\\ -2 & \tfrac13 & \tfrac16 & 1\end{pmatrix},\qquad
+U = \begin{pmatrix} 2 & 0 & 4 & 3\\ 0 & 15 & 0 & -6\\ 0 & 0 & 6 & -10\\ 0 & 0 & 0 & -\tfrac13\end{pmatrix},\qquad PA = (PL)\,U .
+$$
+(Julia's `lu(A)` pivots from the very first step, choosing $-4$ in row 4, and so returns a different, equally valid, factorisation with $p = (4,3,2,1)$.)
+
+:::
+:::
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l13-plu-solve}
+**@exr-l13-plu-solve**
+
+Use the PLU decomposition as above to solve 
+
+$$
+\begin{align}\nonumber
+\begin{pmatrix}
+1 & 0 & 2 \\ 0 & 2 & 1 \\ 2 & 0 & 3
+\end{pmatrix} \begin{pmatrix} x\\y\\z\end{pmatrix} = \begin{pmatrix}0\\1\\-1\end{pmatrix}.
+\end{align}
+$$
+
+::: {.exercise-hint .draft style="display: none;"}
+
+$Pb = (b_{p(1)}, b_{p(2)}, b_{p(3)})^\intercal$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+By @exm-l13-plu, $p = (3,2,1)$ and so $Pb = (b_3, b_2, b_1)^\intercal = (-1, 1, 0)^\intercal$. 
+
+*Forwards substitution* ($(PL)y = Pb$): $y_1 = -1$, $y_2 = 1$, $y_3 = 0 - \frac12 y_1 = \frac12$.
+
+*Backwards substitution* ($U(x,y,z)^\intercal = (y_1,y_2,y_3)^\intercal$): $\frac12 z = \frac12$ gives $z = 1$, then $2y + z = 1$ gives $y = 0$, and $2x + 3z = -1$ gives $x = -2$.
+
+So $(x,y,z) = (-2, 0, 1)$. Check: $-2 + 2 = 0$, $0 + 1 = 1$, $-4 + 3 = -1$.
+
+:::
+:::
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l13-norms}
+**@exr-l13-norms**
+
+1. Use the definitions directly to show that the following matrices are ill-conditioned for small $\epsilon > 0$,
+$$
+\begin{align}\nonumber
+\begin{pmatrix}
+1 & 0 \\ -\epsilon^{-1} & 1
+\end{pmatrix}, \qquad
+\begin{pmatrix}
+-\epsilon & 1 \\ 0 & \epsilon^{-1}-1
+\end{pmatrix},
+\end{align}
+$$
+2. Show that $\|A\| = \max_{|x|=1} |Ax|$, 
+3. Show that $\|AB\| \leq \|A\|\|B\|$ and hence $\|A^k\| \leq \|A\|^k$, 
+4. What is $\|D\|$ for diagonal $D$?
+5. A real matrix $A$ is symmetric (i.e. $A^T = A$) if and only if there exists orthogonal $P$ (i.e. $P^{-1} = P^T$) and diagonal $\Lambda$ such that $A = P\Lambda P^T$. Show that the columns of $P$ are eigenvectors of $A$,
+6. Show that, for symmetric matrices $A$, the operator norm $\|A\|$ is equal to $\max_i |\lambda_i|$ where $(\lambda_i)$ are the eigenvalues of $A$.
+
+::: {.exercise-hint .draft style="display: none;"}
+
+For 1, $\|A\| \geq |Ae_j|$ for each standard basis vector $e_j$; apply this to $A$ and to $A^{-1}$. For 6, use that $|Px| = |x|$ for orthogonal $P$.
+
+:::
+
+::: {.exercise-solution .draft style="display: none;"}
+
+**1.** Let $0 < \epsilon < 1$. For $L_\epsilon = \begin{pmatrix} 1 & 0\\ -\epsilon^{-1} & 1\end{pmatrix}$ we have $L_\epsilon^{-1} = \begin{pmatrix} 1 & 0\\ \epsilon^{-1} & 1\end{pmatrix}$ and so
+$$
+\|L_\epsilon\| \geq |L_\epsilon e_1| = \sqrt{1 + \epsilon^{-2}}, \qquad \|L_\epsilon^{-1}\| \geq |L_\epsilon^{-1}e_1| = \sqrt{1+\epsilon^{-2}},
+$$
+which means $\kappa(L_\epsilon) \geq 1 + \epsilon^{-2} \to \infty$ as $\epsilon\to0$. For $U_\epsilon = \begin{pmatrix} -\epsilon & 1\\ 0 & \epsilon^{-1} - 1\end{pmatrix}$, we have
+$$
+U_\epsilon^{-1} = \begin{pmatrix} -\epsilon^{-1} & \frac{1}{1-\epsilon}\\ 0 & \frac{\epsilon}{1-\epsilon}\end{pmatrix}
+$$
+and so $\|U_\epsilon\| \geq |U_\epsilon e_2| > \epsilon^{-1} - 1$ and $\|U_\epsilon^{-1}\| \geq |U_\epsilon^{-1} e_1| = \epsilon^{-1}$. Therefore, $\kappa(U_\epsilon) > \epsilon^{-1}(\epsilon^{-1} - 1) \to\infty$. (In contrast, $\kappa(M(\epsilon)) \to \frac{3+\sqrt5}{2} \approx 2.618$ as $\epsilon \to 0$, by part 6.)
+
+**2.** For $x\not= 0$, $\hat x := x/|x|$ satisfies $|\hat x| = 1$ and $\frac{|Ax|}{|x|} = |A\hat x|$. Therefore, the set of values $\{ |Ax|/|x| : x \not= 0 \}$ is equal to $\{ |Ay| : |y| = 1\}$ and so the maxima agree.
+
+**3.** For all $x$, $|ABx| \leq \|A\|\,|Bx| \leq \|A\|\,\|B\|\,|x|$. Dividing by $|x|$ and maximising gives $\|AB\|\leq\|A\|\|B\|$. By induction, $\|A^{k}\| \leq \|A\|\,\|A^{k-1}\| \leq \|A\|^k$.
+
+**4.** Let $D = \mathrm{diag}(d_1,\dots,d_n)$. Then $|Dx|^2 = \sum_i d_i^2x_i^2 \leq (\max_i |d_i|)^2|x|^2$ and so $\|D\| \leq \max_i|d_i|$. Choosing $x = e_{i^\star}$ where $|d_{i^\star}| = \max_i |d_i|$ shows that $\|D\| = \max_i|d_i|$.
+
+**5.** If $A = P\Lambda P^T$ with $P^T = P^{-1}$, then $AP = P\Lambda$. The $i$-th column of this equation reads $A p_i = \Lambda_{ii} p_i$ where $p_i$ is the $i$-th column of $P$. Since $P$ is invertible, $p_i \not= 0$ and so $p_i$ is an eigenvector of $A$ with eigenvalue $\lambda_i = \Lambda_{ii}$. Moreover, $\det(\lambda I - A) = \det\big(P(\lambda I - \Lambda)P^T\big) = \prod_i(\lambda - \lambda_i)$, so these are all of the eigenvalues of $A$.
+
+**6.** For any $x$, let $y = P^Tx$. Then $|y|^2 = x^T P P^T x = |x|^2$ and $|Ax| = |P\Lambda y| = |\Lambda y|$. As $x$ runs over all nonzero vectors, so does $y$, and therefore $\|A\| = \|\Lambda\| = \max_i|\lambda_i|$ by 4 and 5.
+
+(The same proof works for *normal* matrices ($A^*A = AA^*$) over $\mathbb C$, which are exactly the matrices $A = U\Lambda U^*$ with $U$ unitary.)
+
+:::
+:::
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l13-plu-hand}
+**@exr-l13-plu-hand**
+
+Compute (by hand) the PLU decomposition of
+$$
+\begin{align}\nonumber
+C = \begin{pmatrix} 0 & 6 & -10 \\ 15 & 0 & -6 \\ 5 & 1 & -4 \end{pmatrix}
+\end{align}
+$$
+using the largest pivot at each step, and check your answer with `lu(C)`. Use your answer to compute $\det C$.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+*Step 1.* The largest entry in column 1 is $15$, so $p(1) = 2$, $u_1 = (15, 0, -6)$ and $\ell_1 = (0, 1, \frac13)^\intercal$. Then $A^{(2)} = C - \ell_1 u_1$ has rows $(0,6,-10)$, $(0,0,0)$, $(0,1,-2)$.
+
+*Step 2.* The largest entry in column 2 is $6$, so $p(2) = 1$, $u_2 = (0,6,-10)$ and $\ell_2 = (1, 0, \frac16)^\intercal$. Then $A^{(3)} = A^{(2)} - \ell_2 u_2$ has only one nonzero entry: $A^{(3)}_{33} = -2 + \frac{10}{6} = -\frac13$.
+
+*Step 3.* $p(3) = 3$, $u_3 = (0, 0, -\frac13)$ and $\ell_3 = (0,0,1)^\intercal$. Therefore, $p = (2,1,3)$ and
+$$
+PL = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ \frac13 & \frac16 & 1 \end{pmatrix}, \qquad
+U = \begin{pmatrix} 15 & 0 & -6 \\ 0 & 6 & -10 \\ 0 & 0 & -\frac13 \end{pmatrix},
+$$
+which agrees with `lu(C)` (`F.L` is $PL$, `F.U` is $U$ and `F.p` is $p$). Since $PC = (PL)U$ and $\det P = -1$ (one swap), $\det C = -15 \cdot 6 \cdot (-\frac13) = 30$.
+
+:::
+:::
+
+<!-- L14 -->
+::: {.exercise-box #bank-exr-l13-cond-properties}
+**@exr-l13-cond-properties**
+
+Let $A$ be invertible.
+
+1. Show that $\kappa(A) \geq 1$ and that $\kappa(\alpha A) = \kappa(A)$ for all $\alpha \not= 0$,
+2. Show that, if $A$ is symmetric with eigenvalues $(\lambda_i)$, then $\kappa(A) = \max_i |\lambda_i| / \min_i |\lambda_i|$,
+3. Compute $\kappa(A)$ for $A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ and check your answer with `cond(A)`.
+
+::: {.exercise-solution .draft style="display: none;"}
+
+1. By @exr-l13-norms, $1 = \|I\| = \|A A^{-1}\| \leq \|A\| \|A^{-1}\| = \kappa(A)$. Also $\|\alpha A\| = |\alpha| \|A\|$ and $(\alpha A)^{-1} = \alpha^{-1} A^{-1}$, so $\kappa(\alpha A) = |\alpha| |\alpha|^{-1} \|A\|\|A^{-1}\| = \kappa(A)$.
+
+2. If $A = P\Lambda P^T$, then $A^{-1} = P\Lambda^{-1}P^T$ is symmetric with eigenvalues $(\lambda_i^{-1})$. By @exr-l13-norms, $\|A\| = \max_i |\lambda_i|$ and $\|A^{-1}\| = \max_i |\lambda_i|^{-1} = 1/\min_i |\lambda_i|$.
+
+3. The eigenvalues are $3$ (eigenvector $(1,1)^\intercal$) and $1$ (eigenvector $(1,-1)^\intercal$), so $\kappa(A) = 3$.
 
 :::
 :::

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Presentation topics – Math5485</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -59,7 +65,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -86,19 +91,19 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../appendix/trapezoid.html" rel="next">
-<link href="../assignments/A04.html" rel="prev">
+<link href="../appendix/calculus.html" rel="prev">
 <link href="../images/pi.ico" rel="icon">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-56845be1c3e1e64cc04b6f7b628b8285.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-22a1e29afbd1cde91731f67dab52aa81.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -196,7 +201,7 @@ window.addEventListener('load', function () {
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -228,17 +233,17 @@ window.Quarto = {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="nav-sidebar floating quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Bonus content</a></li><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Presentation topics</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Bonus content</a></li><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Presentation topics</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -249,10 +254,8 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto" aria-label="Site">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Math5485</a> 
         <div class="sidebar-tools-main tools-wide">
@@ -277,13 +280,10 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Lectures</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Lectures</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../lectures/L01.html" class="sidebar-item-text sidebar-link">
@@ -356,6 +356,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Gaussian quadrature</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Linear systems of equations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../lectures/L14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Pivoted LU decomposition</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -366,13 +378,10 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Assignments</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Assignments</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../assignments/A01.html" class="sidebar-item-text sidebar-link">
@@ -397,17 +406,34 @@ window.Quarto = {
  <span class="menu-text">A4: Integrating differential equations (group project)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A5: Poisson’s equation and Gauss quadrature</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Bonus content</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Appendix</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Bonus content</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/presentation-topics.html" class="sidebar-item-text sidebar-link active">
@@ -424,13 +450,10 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Exams</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-controls="quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-5-label">Exams</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" aria-labelledby="quarto-sidebar-section-5-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/studyguide.html" class="sidebar-item-text sidebar-link">
@@ -441,30 +464,10 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-controls="quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-6-label">Admin</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendix/calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calculus</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Admin</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" aria-labelledby="quarto-sidebar-section-6-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../appendix/syllabus.html" class="sidebar-item-text sidebar-link">
@@ -497,7 +500,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -512,7 +515,7 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.dev/jackrthomas/Math5485/blob/main/appendix/presentation-topics.ipynb" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
     <div id="course-announcement-banner" class="announcement-banner" role="region" aria-label="Course updates">
 
       <span class="banner-label">📢 <strong>Updates</strong></span>
@@ -528,6 +531,12 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-11-24">Assignment 5 online</span>
+
+          <span class="banner-item" data-date="2026-11-23">Lecture 14 (Pivoted LU decomposition) online</span>
+
+          <span class="banner-item" data-date="2026-11-11">Lecture 13 (Linear systems of equations) online</span>
 
           <span class="banner-item" data-date="2026-11-09">Lecture 12 (Gaussian quadrature) online</span>
 
@@ -1112,7 +1121,7 @@ window.Quarto = {
     </script>
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Bonus content</a></li><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Presentation topics</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Bonus content</a></li><li class="breadcrumb-item"><a href="../appendix/presentation-topics.html">Presentation topics</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Presentation topics</h1>
 </div>
@@ -1396,9 +1405,9 @@ Plot code
 </div>
 </div>
 </div></li>
-<li><p><strong>Steffensen’s method.</strong> A derivative-free method which still converges quadratically. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 2.5</a>)</span></p></li>
+<li><p><strong>Steffensen’s method.</strong> A derivative-free method which still converges quadratically. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 2.5</a>)</span></p></li>
 <li><p><strong>Traub’s method.</strong> A two-step method (a Newton step followed by a corrected step) with cubic convergence. <span class="citation" data-cites="Traub1964">(<a href="../references.html#ref-Traub1964" role="doc-biblioref">Traub 1964</a>)</span></p></li>
-<li><p><strong>Aitken’s <span class="math inline">\(\Delta^2\)</span> method.</strong> Accelerate a linearly convergent sequence (e.g.&nbsp;from the simple iterations of Lecture 4). Also see how this is connected to Steffensen’s method. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 2.5</a>)</span></p>
+<li><p><strong>Aitken’s <span class="math inline">\(\Delta^2\)</span> method.</strong> Accelerate a linearly convergent sequence (e.g.&nbsp;from the simple iterations of Lecture 4). Also see how this is connected to Steffensen’s method. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 2.5</a>)</span></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1472,7 +1481,7 @@ Plot code
 </div>
 </div>
 </div></li>
-<li><p><strong>Efficient methods for finding zeros of polynomials.</strong> For example, the Durand–Kerner method finds all roots of a polynomial simultaneously. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 2.6</a>)</span></p></li>
+<li><p><strong>Efficient methods for finding zeros of polynomials.</strong> For example, the Durand–Kerner method finds all roots of a polynomial simultaneously. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 2.6</a>)</span></p></li>
 <li><p><strong>Solving nonlinear equations in <span class="math inline">\(d &gt; 1\)</span> dimensions.</strong> ★ Newton’s method for systems <span class="math inline">\(F(x) = 0\)</span>, the Jacobian, and quasi-Newton methods (e.g.&nbsp;Broyden’s method). <span class="citation" data-cites="Suli">(<a href="../references.html#ref-Suli" role="doc-biblioref">Süli and Mayers 2003</a>, Ch. 4)</span></p></li>
 </ol>
 </section>
@@ -1627,8 +1636,8 @@ Plot code
 </div>
 </div></li>
 <li><p><strong>Stability of the barycentric formula.</strong> ★ In Lecture 8, the naive Lagrange formula broke down for <span class="math inline">\(n \gtrsim 800\)</span> whereas the barycentric formula was accurate for <span class="math inline">\(n = 10\,000\)</span>. Explain why, and the difference between the “first” and “second” barycentric formulas. <span class="citation" data-cites="BerrutTrefethen2004 Higham2004">(<a href="../references.html#ref-BerrutTrefethen2004" role="doc-biblioref">Berrut and Trefethen 2004</a>; <a href="../references.html#ref-Higham2004" role="doc-biblioref">Higham 2004</a>)</span></p></li>
-<li><p><strong>Neville’s method.</strong> A recursive way of evaluating the interpolating polynomial at a single point, closely related to the divided differences of Lecture 8. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 3.2</a>)</span></p></li>
-<li><p><strong>Cubic spline interpolation.</strong> Piecewise cubic polynomials which avoid the Runge phenomenon. Constructing a spline requires solving a tridiagonal linear system. <span class="citation" data-cites="Suli Burden">(<a href="../references.html#ref-Suli" role="doc-biblioref">Süli and Mayers 2003</a>, Ch. 11; <a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 3.5</a>)</span></p></li>
+<li><p><strong>Neville’s method.</strong> A recursive way of evaluating the interpolating polynomial at a single point, closely related to the divided differences of Lecture 8. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 3.2</a>)</span></p></li>
+<li><p><strong>Cubic spline interpolation.</strong> Piecewise cubic polynomials which avoid the Runge phenomenon. Constructing a spline requires solving a tridiagonal linear system. <span class="citation" data-cites="Suli Burden">(<a href="../references.html#ref-Suli" role="doc-biblioref">Süli and Mayers 2003</a>, Ch. 11; <a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 3.5</a>)</span></p></li>
 <li><p><strong>Rational interpolation.</strong> Rational functions can capture poles and sharp features much better than polynomials. For example, Floater–Hormann interpolation is a barycentric formula with different weights which works well for equispaced points. <span class="citation" data-cites="FloaterHormann2007">(<a href="../references.html#ref-FloaterHormann2007" role="doc-biblioref">Floater and Hormann 2007</a>)</span></p></li>
 <li><p><strong>Companion matrices.</strong> The roots of a polynomial are the eigenvalues of its companion matrix (this is what <code>roots</code> in <code>Polynomials.jl</code> and MATLAB does). For polynomials written in the Chebyshev basis, there is a similar <em>colleague matrix</em>. <span class="citation" data-cites="Trefethen">(<a href="../references.html#ref-Trefethen" role="doc-biblioref">Trefethen 2019</a>, Ch. 18)</span></p></li>
 <li><p><strong>Computing with functions: Chebfun.</strong> ★ How the Chebfun software represents functions by their Chebyshev interpolants, chooses the degree <span class="math inline">\(n\)</span> automatically, and computes Chebyshev coefficients using the fast Fourier transform. <span class="citation" data-cites="Trefethen">(<a href="../references.html#ref-Trefethen" role="doc-biblioref">Trefethen 2019</a>, Ch. 3-4)</span></p></li>
@@ -1637,7 +1646,7 @@ Plot code
 <section id="chapter-4-numerical-integration" class="level2">
 <h2 class="anchored" data-anchor-id="chapter-4-numerical-integration">Chapter 4: Numerical integration</h2>
 <ol type="1">
-<li><p><strong>Richardson extrapolation.</strong> Combine approximations computed with different step sizes to cancel the leading order error term. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 4.2</a>)</span></p>
+<li><p><strong>Richardson extrapolation.</strong> Combine approximations computed with different step sizes to cancel the leading order error term. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 4.2</a>)</span></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1681,10 +1690,10 @@ Plot code
 </div>
 </div>
 </div></li>
-<li><p><strong>Romberg integration.</strong> Richardson extrapolation applied to the trapezoidal rule. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 4.5</a>)</span></p></li>
+<li><p><strong>Romberg integration.</strong> Richardson extrapolation applied to the trapezoidal rule. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 4.5</a>)</span></p></li>
 <li><p><strong>Gaussian quadrature with respect to more general weights <span class="math inline">\(w(x)\)</span>.</strong> E.g. Gauss–Chebyshev (<span class="math inline">\(w(x) = (1-x^2)^{-1/2}\)</span>), Gauss–Laguerre and Gauss–Hermite quadrature on unbounded intervals. <span class="citation" data-cites="Suli">(<a href="../references.html#ref-Suli" role="doc-biblioref">Süli and Mayers 2003</a>, Ch. 10)</span></p></li>
-<li><p><strong>How to deal with improper integrals?</strong> Integrands with singularities or infinite intervals of integration: change of variables, subtracting off the singularity, … <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 4.9</a>)</span></p></li>
-<li><p><strong>Adaptive quadrature.</strong> Refine the mesh only where the integrand needs it. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 4.6</a>)</span></p></li>
+<li><p><strong>How to deal with improper integrals?</strong> Integrands with singularities or infinite intervals of integration: change of variables, subtracting off the singularity, … <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 4.9</a>)</span></p></li>
+<li><p><strong>Adaptive quadrature.</strong> Refine the mesh only where the integrand needs it. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 4.6</a>)</span></p></li>
 <li><p><strong>Clenshaw–Curtis quadrature.</strong> Integrate the Chebyshev interpolant exactly. How does it compare with Gaussian quadrature? (Surprisingly well!) <span class="citation" data-cites="Trefethen2008 Trefethen">(<a href="../references.html#ref-Trefethen2008" role="doc-biblioref">Trefethen 2008</a>; <a href="../references.html#ref-Trefethen" role="doc-biblioref">Trefethen 2019</a>, Ch. 19)</span></p></li>
 <li><p><strong>The exponentially convergent trapezoidal rule.</strong> ★ The trapezoidal rule is only second order accurate in general, but converges extremely fast for smooth periodic functions. Explain why (e.g.&nbsp;using the Euler–Maclaurin formula or Fourier series). <span class="citation" data-cites="TrefethenWeideman2014">(<a href="../references.html#ref-TrefethenWeideman2014" role="doc-biblioref">Trefethen and Weideman 2014</a>)</span></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
@@ -1789,10 +1798,10 @@ Plot code
 <section id="chapter-4.5-integrating-initial-value-problems" class="level2">
 <h2 class="anchored" data-anchor-id="chapter-4.5-integrating-initial-value-problems">Chapter 4.5: Integrating initial value problems</h2>
 <ol type="1">
-<li><p><strong>Runge–Kutta methods.</strong> Higher order one-step methods; the classical RK4 method and Butcher tableaux. <span class="citation" data-cites="Suli Burden">(<a href="../references.html#ref-Suli" role="doc-biblioref">Süli and Mayers 2003</a>, Ch. 12; <a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 5.4</a>)</span></p></li>
-<li><p><strong>Adaptive time stepping.</strong> Embedded Runge–Kutta pairs (e.g.&nbsp;the Dormand–Prince method used by <code>ode45</code> in MATLAB) estimate the error and adjust the step size automatically. <span class="citation" data-cites="Burden fnc">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 5.5</a>; <a href="../references.html#ref-fnc" role="doc-biblioref">Driscoll and Braun 2017</a>, Ch. 6)</span></p></li>
-<li><p><strong>Stiff equations.</strong> ★ Why explicit methods need very small time steps for some problems, and how implicit methods (e.g.&nbsp;backward Euler) avoid this. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 5.11</a>)</span></p></li>
-<li><p><strong>Symplectic integrators.</strong> The Störmer–Verlet method conserves energy (approximately) over very long times, unlike Euler or RK4. Demonstrate with planetary orbits or a pendulum. <span class="citation" data-cites="HairerLubichWanner2003">(<a href="../references.html#ref-HairerLubichWanner2003" role="doc-biblioref">Hairer, Lubich, and Wanner 2003</a>)</span></p></li>
+<li><p><strong>Runge–Kutta methods.</strong> Higher order one-step methods; the classical RK4 method and Butcher tableaux. <span class="citation" data-cites="Suli Burden">(<a href="../references.html#ref-Suli" role="doc-biblioref">Süli and Mayers 2003</a>, Ch. 12; <a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 5.4</a>)</span></p></li>
+<li><p><strong>Adaptive time stepping.</strong> Embedded Runge–Kutta pairs (e.g.&nbsp;the Dormand–Prince method used by <code>ode45</code> in MATLAB) estimate the error and adjust the step size automatically. <span class="citation" data-cites="Burden fnc">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 5.5</a>; <a href="../references.html#ref-fnc" role="doc-biblioref">Driscoll and Braun 2017</a>, Ch. 6)</span></p></li>
+<li><p><strong>Stiff equations.</strong> ★ Why explicit methods need very small time steps for some problems, and how implicit methods (e.g.&nbsp;backward Euler) avoid this. <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 5.11</a>)</span></p></li>
+<li><p><strong>Symplectic integrators.</strong> The Störmer–Verlet method conserves energy (approximately) over very long times, unlike Euler or RK4. Demonstrate with planetary orbits or a pendulum. <span class="citation" data-cites="HairerLubichWanner2003">(<a href="../references.html#ref-HairerLubichWanner2003" role="doc-biblioref">Hairer et al. 2003</a>)</span></p></li>
 </ol>
 </section>
 <section id="chapter-5-solving-linear-systems-of-equations" class="level2">
@@ -1888,12 +1897,12 @@ Plot code
 </div>
 </div></li>
 <li><p><strong>Lanczos algorithm.</strong> ★ Approximating eigenvalues of large symmetric matrices using Krylov subspaces. <span class="citation" data-cites="TrefethenBau">(<a href="../references.html#ref-TrefethenBau" role="doc-biblioref">Trefethen and Bau 1997</a>, Lecture 36)</span></p></li>
-<li><p><strong>Using LU decomposition to solve a tridiagonal system of linear equations.</strong> The Thomas algorithm solves tridiagonal systems in <span class="math inline">\(O(n)\)</span> operations (useful for cubic splines). <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 6.6</a>)</span></p></li>
+<li><p><strong>Using LU decomposition to solve a tridiagonal system of linear equations.</strong> The Thomas algorithm solves tridiagonal systems in <span class="math inline">\(O(n)\)</span> operations (useful for cubic splines). <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 6.6</a>)</span></p></li>
 <li><p><strong>Linear regression.</strong> Least squares problems, the normal equations, and why we use the QR decomposition instead. <span class="citation" data-cites="TrefethenBau fnc">(<a href="../references.html#ref-TrefethenBau" role="doc-biblioref">Trefethen and Bau 1997</a>, Lecture 11; <a href="../references.html#ref-fnc" role="doc-biblioref">Driscoll and Braun 2017</a>, Ch. 3)</span></p></li>
 <li><p><strong>Circulant matrices.</strong> Every circulant matrix is diagonalised by the discrete Fourier transform, and so circulant linear systems can be solved in <span class="math inline">\(O(n \log n)\)</span> operations using the FFT. <span class="citation" data-cites="Gray2006">(<a href="../references.html#ref-Gray2006" role="doc-biblioref">Gray 2006</a>)</span></p></li>
 <li><p><strong>Toeplitz matrices.</strong> Matrices which are constant along each diagonal. How can we exploit this structure? <span class="citation" data-cites="Gray2006">(<a href="../references.html#ref-Gray2006" role="doc-biblioref">Gray 2006</a>)</span></p></li>
 <li><p><strong>Bauer–Fike theorem on perturbation of eigenvalues.</strong> ★ How sensitive are eigenvalues to perturbations of the matrix? <span class="citation" data-cites="GolubVanLoan">(<a href="../references.html#ref-GolubVanLoan" role="doc-biblioref">Golub and Van Loan 2013, sec. 7.2</a>)</span></p></li>
-<li><p><strong>Iterative methods for linear systems.</strong> The Jacobi and Gauss–Seidel methods are simple iterations (Lecture 4) for linear systems. When do they converge? <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden, Faires, and Burden 2016, sec. 7.3</a>)</span></p></li>
+<li><p><strong>Iterative methods for linear systems.</strong> The Jacobi and Gauss–Seidel methods are simple iterations (Lecture 4) for linear systems. When do they converge? <span class="citation" data-cites="Burden">(<a href="../references.html#ref-Burden" role="doc-biblioref">Burden et al. 2016, sec. 7.3</a>)</span></p></li>
 <li><p><strong>PageRank.</strong> How Google ranked web pages using the power method for computing the leading eigenvector of a (very large) matrix. <span class="citation" data-cites="BryanLeise2006">(<a href="../references.html#ref-BryanLeise2006" role="doc-biblioref">Bryan and Leise 2006</a>)</span></p>
 <div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
@@ -1990,9 +1999,9 @@ Plot code
 </ol>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-ArnoldDisasters" class="csl-entry" role="listitem">
-Arnold, Douglas N. n.d. <span>“Some Disasters Attributable to Bad Numerical Computing.”</span> <a href="https://www-users.cse.umn.edu/~arnold/disasters/" class="uri">https://www-users.cse.umn.edu/~arnold/disasters/</a>. <a href="https://www-users.cse.umn.edu/~arnold/disasters/">https://www-users.cse.umn.edu/~arnold/disasters/</a>.
+Arnold, Douglas N. n.d. <em>Some Disasters Attributable to Bad Numerical Computing</em>. <a href="https://www-users.cse.umn.edu/~arnold/disasters/" class="uri">Https://www-users.cse.umn.edu/~arnold/disasters/</a>. <a href="https://www-users.cse.umn.edu/~arnold/disasters/">https://www-users.cse.umn.edu/~arnold/disasters/</a>.
 </div>
 <div id="ref-BerrutTrefethen2004" class="csl-entry" role="listitem">
 Berrut, Jean-Paul, and Lloyd N. Trefethen. 2004. <span>“Barycentric Lagrange Interpolation.”</span> <em>SIAM Review</em> 46 (3): 501–17. <a href="https://doi.org/10.1137/S0036144502417715">https://doi.org/10.1137/S0036144502417715</a>.
@@ -2019,7 +2028,7 @@ Floater, Michael S., and Kai Hormann. 2007. <span>“Barycentric Rational Interp
 Goldberg, David. 1991. <span>“What Every Computer Scientist Should Know about Floating-Point Arithmetic.”</span> <em>ACM Computing Surveys</em> 23 (1): 5–48. <a href="https://doi.org/10.1145/103162.103163">https://doi.org/10.1145/103162.103163</a>.
 </div>
 <div id="ref-GolubVanLoan" class="csl-entry" role="listitem">
-Golub, Gene H., and Charles F. Van Loan. 2013. <em>Matrix Computations</em>. 4th ed. Baltimore, MD: Johns Hopkins University Press.
+Golub, Gene H., and Charles F. Van Loan. 2013. <em>Matrix Computations</em>. 4th ed. Johns Hopkins University Press.
 </div>
 <div id="ref-GolubWelsch1969" class="csl-entry" role="listitem">
 Golub, Gene H., and John H. Welsch. 1969. <span>“Calculation of <span>Gauss</span> Quadrature Rules.”</span> <em>Mathematics of Computation</em> 23 (106): 221–30. <a href="https://doi.org/10.1090/S0025-5718-69-99647-1">https://doi.org/10.1090/S0025-5718-69-99647-1</a>.
@@ -2031,10 +2040,10 @@ Gray, Robert M. 2006. <span>“<span>Toeplitz</span> and Circulant Matrices: A R
 Hairer, Ernst, Christian Lubich, and Gerhard Wanner. 2003. <span>“Geometric Numerical Integration Illustrated by the <span>Störmer–Verlet</span> Method.”</span> <em>Acta Numerica</em> 12: 399–450. <a href="https://doi.org/10.1017/S0962492902000144">https://doi.org/10.1017/S0962492902000144</a>.
 </div>
 <div id="ref-HighamASNA" class="csl-entry" role="listitem">
-Higham, Nicholas J. 2002. <em>Accuracy and Stability of Numerical Algorithms</em>. 2nd ed. Philadelphia, PA: Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9780898718027">https://doi.org/10.1137/1.9780898718027</a>.
+Higham, Nicholas J. 2002. <em>Accuracy and Stability of Numerical Algorithms</em>. 2nd ed. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9780898718027">https://doi.org/10.1137/1.9780898718027</a>.
 </div>
 <div id="ref-Higham2004" class="csl-entry" role="listitem">
-———. 2004. <span>“The Numerical Stability of Barycentric <span>Lagrange</span> Interpolation.”</span> <em>IMA Journal of Numerical Analysis</em> 24 (4): 547–56. <a href="https://doi.org/10.1093/imanum/24.4.547">https://doi.org/10.1093/imanum/24.4.547</a>.
+Higham, Nicholas J. 2004. <span>“The Numerical Stability of Barycentric <span>Lagrange</span> Interpolation.”</span> <em>IMA Journal of Numerical Analysis</em> 24 (4): 547–56. <a href="https://doi.org/10.1093/imanum/24.4.547">https://doi.org/10.1093/imanum/24.4.547</a>.
 </div>
 <div id="ref-HighamMary2022" class="csl-entry" role="listitem">
 Higham, Nicholas J., and Theo Mary. 2022. <span>“Mixed Precision Algorithms in Numerical Linear Algebra.”</span> <em>Acta Numerica</em> 31: 347–414. <a href="https://doi.org/10.1017/S0962492922000022">https://doi.org/10.1017/S0962492922000022</a>.
@@ -2043,7 +2052,7 @@ Higham, Nicholas J., and Theo Mary. 2022. <span>“Mixed Precision Algorithms in
 Kahan, William. 1965. <span>“Pracniques: Further Remarks on Reducing Truncation Errors.”</span> <em>Communications of the ACM</em> 8 (1): 40. <a href="https://doi.org/10.1145/363707.363723">https://doi.org/10.1145/363707.363723</a>.
 </div>
 <div id="ref-Muller2006" class="csl-entry" role="listitem">
-Muller, Jean-Michel. 2006. <em>Elementary Functions: Algorithms and Implementation</em>. 2nd ed. Boston, MA: Birkhäuser. <a href="https://doi.org/10.1007/b137928">https://doi.org/10.1007/b137928</a>.
+Muller, Jean-Michel. 2006. <em>Elementary Functions: Algorithms and Implementation</em>. 2nd ed. Birkhäuser. <a href="https://doi.org/10.1007/b137928">https://doi.org/10.1007/b137928</a>.
 </div>
 <div id="ref-Osada1994" class="csl-entry" role="listitem">
 Osada, Naoki. 1994. <span>“An Optimal Multiple Root-Finding Method of Order Three.”</span> <em>Journal of Computational and Applied Mathematics</em> 51 (1): 131–33. <a href="https://doi.org/10.1016/0377-0427(94)00044-1">https://doi.org/10.1016/0377-0427(94)00044-1</a>.
@@ -2052,19 +2061,19 @@ Osada, Naoki. 1994. <span>“An Optimal Multiple Root-Finding Method of Order Th
 Scavo, T. R., and J. B. Thoo. 1995. <span>“On the Geometry of <span class="nocase">Halley’s</span> Method.”</span> <em>The American Mathematical Monthly</em> 102 (5): 417–26. <a href="https://doi.org/10.1080/00029890.1995.12004594">https://doi.org/10.1080/00029890.1995.12004594</a>.
 </div>
 <div id="ref-Suli" class="csl-entry" role="listitem">
-Süli, Endre, and David F. Mayers. 2003. <em>An Introduction to Numerical Analysis</em>. Cambridge, England: Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511801181">https://doi.org/10.1017/CBO9780511801181</a>.
+Süli, Endre, and David F. Mayers. 2003. <em>An Introduction to Numerical Analysis</em>. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511801181">https://doi.org/10.1017/CBO9780511801181</a>.
 </div>
 <div id="ref-Traub1964" class="csl-entry" role="listitem">
-Traub, Joe F. 1964. <em>Iterative Methods for the Solution of Equations</em>. Englewood Cliffs, NJ: Prentice-Hall.
+Traub, Joe F. 1964. <em>Iterative Methods for the Solution of Equations</em>. Prentice-Hall.
 </div>
 <div id="ref-Trefethen2008" class="csl-entry" role="listitem">
 Trefethen, Lloyd N. 2008. <span>“Is <span>Gauss</span> Quadrature Better Than <span>Clenshaw–Curtis</span>?”</span> <em>SIAM Review</em> 50 (1): 67–87. <a href="https://doi.org/10.1137/060659831">https://doi.org/10.1137/060659831</a>.
 </div>
 <div id="ref-Trefethen" class="csl-entry" role="listitem">
-———. 2019. <em>Approximation Theory and Approximation Practice, Extended Edition</em>. Philadelphia, PA: Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611975949">https://doi.org/10.1137/1.9781611975949</a>.
+Trefethen, Lloyd N. 2019. <em>Approximation Theory and Approximation Practice, Extended Edition</em>. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9781611975949">https://doi.org/10.1137/1.9781611975949</a>.
 </div>
 <div id="ref-TrefethenBau" class="csl-entry" role="listitem">
-Trefethen, Lloyd N., and David Bau III. 1997. <em>Numerical Linear Algebra</em>. Philadelphia, PA: Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9780898719574">https://doi.org/10.1137/1.9780898719574</a>.
+Trefethen, Lloyd N., and David Bau III. 1997. <em>Numerical Linear Algebra</em>. Society for Industrial; Applied Mathematics. <a href="https://doi.org/10.1137/1.9780898719574">https://doi.org/10.1137/1.9780898719574</a>.
 </div>
 <div id="ref-TrefethenWeideman2014" class="csl-entry" role="listitem">
 Trefethen, Lloyd N., and J. A. C. Weideman. 2014. <span>“The Exponentially Convergent Trapezoidal Rule.”</span> <em>SIAM Review</em> 56 (3): 385–458. <a href="https://doi.org/10.1137/130932132">https://doi.org/10.1137/130932132</a>.
@@ -2849,16 +2858,16 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -2886,7 +2895,8 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -2895,8 +2905,69 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -2910,6 +2981,7 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -3072,44 +3144,54 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -3208,10 +3290,13 @@ document.querySelectorAll('.theorem > p:first-child > .theorem-title').forEach(f
     }
   });
   </script>
-<nav class="page-navigation">
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../assignments/A04.html" class="pagination-link" aria-label="A4: Integrating differential equations (group project)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">A4: Integrating differential equations (group project)</span>
+      <a href="../appendix/calculus.html" class="pagination-link" aria-label="Calculus">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Calculus</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
