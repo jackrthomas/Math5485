@@ -406,6 +406,12 @@ window.Quarto = {
  <span class="menu-text">A4: Integrating differential equations (group project)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/A05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A5: Poisson’s equation and Gauss quadrature</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -513,6 +519,10 @@ window.Quarto = {
                  * Updates dated in the future are hidden until that day (so you can schedule them).
 
                  * Only the newest few scroll (MAX_SCROLLING below); all are listed under "All updates". ── -->
+
+          <span class="banner-item" data-date="2026-11-24">Assignment 5 online</span>
+
+          <span class="banner-item" data-date="2026-11-23">Lecture 14 (Pivoted LU decomposition) online</span>
 
           <span class="banner-item" data-date="2026-11-11">Lecture 13 (Linear systems of equations) online</span>
 
@@ -2243,7 +2253,7 @@ Code
 <div class="exercise-solution" style="display:none;">
 <p><a href="https://jack.thomaslabs.co.uk/teaching/Math5485-Fall-2025/A3%20Solutions.html">Solution</a></p>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -2780,7 +2790,7 @@ p(x) &amp;= e\,\frac{x(x-1)}{2} + (1-x^2) + e^{-1}\frac{x(x+1)}{2} \nonumber\\
 \]</span> So Part 3 holds with <span class="math inline">\(c = 2\sqrt\pi/e\approx1.30\)</span>.</p>
 <p>Parts 2 and 3 together show that <span class="math inline">\(\max|\ell_X|\)</span> decays like <span class="math inline">\((2/e)^n\approx(0.736)^n\)</span>, up to a factor between <span class="math inline">\(1/n\)</span> and <span class="math inline">\(1/\sqrt n\)</span>.</p>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -2846,7 +2856,7 @@ f^{(n)}(x) = \frac{(-1)^n\,n!\,\sin\big((n+1)\theta\big)}{\sqrt\alpha\;r^{n+1}} 
 \end{align}
 \]</span> If <span class="math inline">\(\alpha \leq e^2/4\)</span> then <span class="math inline">\(\max_{x\in[-1,1]}|f(x)-I_Xf(x)|\to0\)</span> (and this error bound blows up for <span class="math inline">\(\alpha&gt;e^2/4\)</span>).</p>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3296,7 +3306,7 @@ w'(x) = x T_n'(x) + n^2 T_n(x).
 <li>The barycentric formula is unchanged if every <span class="math inline">\(\lambda_j\)</span> is multiplied by the same constant <span class="math inline">\(c \not= 0\)</span> (the factor <span class="math inline">\(c\)</span> cancels between the numerator and the denominator). Taking <span class="math inline">\(c = \frac{2n}{2^n}\)</span> gives the weights <span class="math inline">\((-1)^j\)</span>, halved for <span class="math inline">\(j = 0, n\)</span>. For large <span class="math inline">\(n\)</span>, <span class="math inline">\(2^n\)</span> overflows in floating point arithmetic (for example, <code>2.0^1024 == Inf</code>) whereas the rescaled weights are all of size <span class="math inline">\(1\)</span> or <span class="math inline">\(\frac12\)</span>.</li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3482,7 +3492,7 @@ r(x) = (x - z_0)^{m_0} (x - z_1)^{m_1} \cdots (x - z_k)^{m_k} s(x)
 <li><p>Differentiation and evaluation are linear and so <span class="math inline">\(L\)</span> is linear. If <span class="math inline">\(L p = 0\)</span>, then <span class="math inline">\(p = 0\)</span> by 2, and so <span class="math inline">\(L\)</span> is injective. Since <span class="math inline">\(\dim \mathcal P_n = n + 1 = \dim \mathbb R^{n+1}\)</span>, the rank-nullity theorem shows that <span class="math inline">\(L\)</span> is also surjective. In particular, there exists <span class="math inline">\(p \in \mathcal P_n\)</span> with <span class="math inline">\(L p = \big( f^{(l)}(z_j) \big)_{j,l}\)</span>, which is exactly a solution to the Hermite interpolation problem. By 3, this solution is unique.</p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3519,7 +3529,7 @@ g(t) := f(t) - p(t) - \big[ f(x) - p(x) \big] \frac{\ell_X(t)}{\ell_X(x)}.
 \]</span> Rearranging gives the result.</p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3584,7 +3594,7 @@ f[x_0, x_0 + h, \dots, x_0 + nh] \to \frac{f^{(n)}(x_0)}{n!}
 <li><p>By 1, <span class="math inline">\(f[x_0, x_0 + h, \dots, x_0 + nh] = \frac{f^{(n)}(\xi_h)}{n!}\)</span> for some <span class="math inline">\(\xi_h\)</span> between <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_0 + nh\)</span>. As <span class="math inline">\(h \to 0\)</span>, <span class="math inline">\(\xi_h \to x_0\)</span> and, since <span class="math inline">\(f^{(n)}\)</span> is continuous, <span class="math inline">\(f^{(n)}(\xi_h) \to f^{(n)}(x_0)\)</span>. So the divided difference on <span class="math inline">\(n+1\)</span> nearby nodes converges to <span class="math inline">\(\frac{f^{(n)}(x_0)}{n!}\)</span> as the nodes merge. Defining <span class="math inline">\(f[x_0, \dots, x_0] := \frac{f^{(n)}(x_0)}{n!}\)</span> makes the divided difference continuous in the nodes, and Hermite interpolation is the limit of Lagrange interpolation as nodes come together.</p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -3942,7 +3952,7 @@ w_{n-j} &amp;= \int_a^b \ell_j(a+b-x) \,\mathrm{d}x \nonumber\\
 \]</span></p></li>
 </ol>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
@@ -4311,7 +4321,7 @@ Code
 </details>
 <p><img loading="lazy" src="bank-media/b5f72dc99d7149a6.png" style="max-width:100%;height:auto;display:block;margin:.5em 0;"></p>
 </div>
-<div class="exr-difficult" aria-label="This exercise is more difficult" tabindex="0">
+<div class="exr-difficult" tabindex="0" aria-label="This exercise is more difficult">
 <span class="exr-difficult-icon" aria-hidden="true">◆</span>
 <div class="exr-difficult-tip" role="tooltip">
 <p><strong>This exercise is more difficult</strong></p>
